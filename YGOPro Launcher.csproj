@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{88D612BA-D741-46CD-A187-DEE5DEB40BE4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YGOPro_Launcher</RootNamespace>
+    <AssemblyName>DevPro</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\ygo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="FileManager\FileManagerDesign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileManager\FileManagerDesign.Designer.cs">
+      <DependentUpon>FileManagerDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileManager\FileManagerTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FileManager\FileManagerTab.Designer.cs">
+      <DependentUpon>FileManagerTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameList\Host_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameList\Host_frm.Designer.cs">
+      <DependentUpon>Host_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameList\ServerTabDesign_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameList\ServerTabDesign_frm.Designer.cs">
+      <DependentUpon>ServerTabDesign_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Input_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Input_frm.designer.cs">
+      <DependentUpon>Input_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main_frm.Designer.cs">
+      <DependentUpon>Main_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LauncherHelper.cs" />
+    <Compile Include="Login\Login_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\Login_frm.Designer.cs">
+      <DependentUpon>Login_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NetClient.cs" />
+    <Compile Include="GameList\Options_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameList\Options_frm.Designer.cs">
+      <DependentUpon>Options_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Login\Register_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\Register_frm.Designer.cs">
+      <DependentUpon>Register_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameList\RoomInfos.cs" />
+    <Compile Include="GameList\ServerTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GameList\ServerTab.Designer.cs">
+      <DependentUpon>ServerTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameList\UserData.cs" />
+    <Compile Include="RegEditor.cs" />
+    <EmbeddedResource Include="FileManager\FileManagerDesign.resx">
+      <DependentUpon>FileManagerDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileManager\FileManagerTab.resx">
+      <DependentUpon>FileManagerTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameList\Options_frm.resx">
+      <DependentUpon>Options_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameList\Host_frm.resx">
+      <DependentUpon>Host_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameList\ServerTabDesign_frm.resx">
+      <DependentUpon>ServerTabDesign_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Input_frm.resx">
+      <DependentUpon>Input_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main_frm.resx">
+      <DependentUpon>Main_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\Login_frm.resx">
+      <DependentUpon>Login_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Login\Register_frm.resx">
+      <DependentUpon>Register_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameList\ServerTab.resx">
+      <DependentUpon>ServerTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ICSharpCode.SharpZipLib.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YgoUpdater.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ygo.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
