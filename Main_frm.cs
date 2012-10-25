@@ -13,29 +13,29 @@ namespace YGOPro_Launcher
             TabPage FileManager = new TabPage("File Manager");
             TabControl FileControl = new TabControl();
             FileControl.Dock = DockStyle.Fill;
-            FileControl.TabPages.Add(new FileManagerTab("Decks", Program.Config.LauncherDir +"deck/",".ydk"));
-            FileControl.TabPages.Add(new FileManagerTab("Replays", Program.Config.LauncherDir + "replay/", ".yrp"));
+
+            TabPage decktab = new TabPage() {Name = "Decks",Text ="Decks" };
+            decktab.Controls.Add(new FileManager_frm("Decks", Program.Config.LauncherDir + "deck/", ".ydk"));
+            
+            TabPage replaytab = new TabPage() { Name = "Replays", Text = "Replays" };
+            replaytab.Controls.Add(new FileManager_frm("Replays", Program.Config.LauncherDir + "replay/", ".yrp"));
+            FileControl.TabPages.AddRange(new TabPage[] { decktab, replaytab });
+
             FileManager.Controls.Add(FileControl);
 
-            ServerControl.TabPages.AddRange(new TabPage[] { new ServerTab(Program.Config.ServerName), 
+            TabPage ServerTab = new TabPage() { Text = Program.Config.ServerName, Name = Program.Config.ServerName };
+            ServerTab.Controls.Add(new ServerInterface_frm(Program.Config.ServerName));
+
+            TabPage CustomizeTab = new TabPage() { Text = "Customize", Name = "Customize" };
+            CustomizeTab.Controls.Add(new Customize_frm());
+
+            ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
                 CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro"),
-                FileManager, new CustomizeTab() });
+                FileManager, CustomizeTab });
 
         }
 
-        private void Main_Load(object sender, System.EventArgs e)
-        {
-            Program.ServerConnection.SendPacket("GETROOMS");
-            foreach (TabPage page in ServerControl.TabPages)
-            {
-                if (page is ServerTab)
-                {
-                    ServerTab tab = (ServerTab)page;
-                     tab.RequestUserWLD();
-                    
-                }
-            }
-        }
+       
 
         private TabPage CreateBrowserWindow(string name, string url)
         {
@@ -46,6 +46,26 @@ namespace YGOPro_Launcher
             page.Controls.Add(browser);
             browser.Dock = DockStyle.Fill;
             return page;
+        }
+
+        private void Main_frm_Load(object sender, EventArgs e)
+        {
+            foreach (TabPage tab in ServerControl.TabPages)
+            {
+                if (tab.Name == Program.Config.ServerName)
+                {
+                    foreach (Control control in tab.Controls)
+                    {
+                        if (control is ServerInterface_frm)
+                        {
+                            ServerInterface_frm form = (ServerInterface_frm)control;
+                            form.RequestUserWLD();
+                            Program.ServerConnection.SendPacket("GETROOMS");
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }

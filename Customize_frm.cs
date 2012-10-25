@@ -1,24 +1,31 @@
-﻿using System.Windows.Forms;
+﻿using System;
 using System.Collections.Generic;
-using System;
-using System.IO;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
-using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.IO;
 using System.Xml.Serialization;
+
 namespace YGOPro_Launcher
 {
-    public partial class CustomizeTab : TabPage
+    public partial class Customize_frm : Form
     {
+
         public Dictionary<ContentType, Content> Data = new Dictionary<ContentType, Content>();
         public ContentType contentView = ContentType.Covers;
-        public Dictionary<string, Theme> Themes = new Dictionary<string, Theme>();
+        Dictionary<string, Theme> Themes = new Dictionary<string, Theme>();
         public string SelectedTheme = "None";
 
-        public CustomizeTab()
+        public Customize_frm()
         {
-            this.Name = "Customize";
-            this.Text = "Customize YGOPro";
             InitializeComponent();
+            TopLevel = false;
+            Dock = DockStyle.Fill;
+            Visible = true;
+            ViewSelect.SelectedIndex = 0;
             this.Data.Add(ContentType.Covers, new Content { AssetPath = "Assets/Covers/", IconSize = new Size(177, 252), GameItem = "textures\\cover.jpg", FileType = ".jpg" });
             this.Data.Add(ContentType.Backgrounds, new Content { AssetPath = "Assets/Backgrounds/", IconSize = new Size(256, 256), GameItem = "textures\\bg.jpg", FileType = ".jpg" });
             this.Data.Add(ContentType.Field, new Content { AssetPath = "Assets/Field/", IconSize = new Size(256, 256), GameItem = "textures\\\\field.png", FileType = ".png" });
@@ -39,10 +46,13 @@ namespace YGOPro_Launcher
             this.Data.Add(ContentType.Music, new Content { AssetPath = "Assets/Music/", IconSize = new Size(40, 40), GameItem = "sound\\\\", FileType = ".mp3" });
             this.Data.Add(ContentType.Sound_Effects, new Content { AssetPath = "Assets/SoundEffects/", IconSize = new Size(40, 40), GameItem = "sound\\\\", FileType = ".wav" });
 
+
+
+            this.ContentList.View = System.Windows.Forms.View.LargeIcon;
             LoadAssets();
             LoadThemeFiles();
 
-            ContentList.MouseUp += new MouseEventHandler(OnListViewMouseUp);
+            this.MouseUp += new MouseEventHandler(OnListViewMouseUp);
             contentView = ContentType.Covers;
         }
 
@@ -81,6 +91,7 @@ namespace YGOPro_Launcher
 
         void LoadThemeFiles()
         {
+
             //create theme folder
             if (!Directory.Exists("Assets/Themes/"))
             {
@@ -184,7 +195,6 @@ namespace YGOPro_Launcher
         void ChangeImageView()
         {
             this.ContentList.Items.Clear();
-            //this.SmallImageList = Data[contentView].Images;
             this.ContentList.LargeImageList = Data[contentView].Images;
             string[] itempaths = Directory.GetFiles(Data[contentView].AssetPath);
             foreach (string item in itempaths)
@@ -551,7 +561,14 @@ namespace YGOPro_Launcher
                 InstallAsset(themeobject.Type, themeobject.Filepath);
             }
         }
+
+        private void PreviewBtn_Click(object sender, EventArgs e)
+        {
+            LauncherHelper.GenerateConfig("ygopro:/" + Program.Config.ServerAddress + "/" + Program.Config.GamePort + "/20000,U,Edit");
+            LauncherHelper.RunGame("-r");
+        }
     }
+
     public class Content
     {
         public string AssetPath;
@@ -612,4 +629,5 @@ namespace YGOPro_Launcher
         public string Filepath;
         public string Filename;
     }
+
 }

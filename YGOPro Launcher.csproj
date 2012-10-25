@@ -45,30 +45,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
-    <Compile Include="Customize\Customize_frm.cs">
+    <Compile Include="Customize_frm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customize\Customize_frm.Designer.cs">
+    <Compile Include="Customize_frm.Designer.cs">
       <DependentUpon>Customize_frm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Customize\CustomizeTab.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Customize\CustomizeTab.Designer.cs">
-      <DependentUpon>CustomizeTab.cs</DependentUpon>
-    </Compile>
     <Compile Include="Enums\ContentType.cs" />
-    <Compile Include="FileManager\FileManagerDesign.cs">
+    <Compile Include="FileManager\FileManager_frm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileManager\FileManagerDesign.Designer.cs">
-      <DependentUpon>FileManagerDesign.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FileManager\FileManagerTab.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="FileManager\FileManagerTab.Designer.cs">
-      <DependentUpon>FileManagerTab.cs</DependentUpon>
+    <Compile Include="FileManager\FileManager_frm.Designer.cs">
+      <DependentUpon>FileManager_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="GameList\Host_frm.cs">
       <SubType>Form</SubType>
@@ -117,27 +105,13 @@
       <DependentUpon>Register_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="GameList\RoomInfos.cs" />
-    <Compile Include="GameList\ServerTab.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GameList\ServerTab.Designer.cs">
-      <DependentUpon>ServerTab.cs</DependentUpon>
-    </Compile>
     <Compile Include="GameList\UserData.cs" />
     <Compile Include="RegEditor.cs" />
-    <EmbeddedResource Include="Customize\Customize_frm.resx">
+    <EmbeddedResource Include="Customize_frm.resx">
       <DependentUpon>Customize_frm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customize\CustomizeTab.resx">
-      <DependentUpon>CustomizeTab.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FileManager\FileManagerDesign.resx">
-      <DependentUpon>FileManagerDesign.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FileManager\FileManagerTab.resx">
-      <DependentUpon>FileManagerTab.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="FileManager\FileManager_frm.resx">
+      <DependentUpon>FileManager_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameList\Options_frm.resx">
       <DependentUpon>Options_frm.cs</DependentUpon>
@@ -170,10 +144,6 @@
     <EmbeddedResource Include="Login\Register_frm.resx">
       <DependentUpon>Register_frm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GameList\ServerTab.resx">
-      <DependentUpon>ServerTab.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -193,7 +163,9 @@
   <ItemGroup>
     <None Include="Resources\ygo.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Customize\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

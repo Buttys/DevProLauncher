@@ -1,6 +1,6 @@
 ﻿namespace YGOPro_Launcher
 {
-    partial class FileManagerDesign
+    partial class FileManager_frm
     {
         /// <summary>
         /// Required designer variable.

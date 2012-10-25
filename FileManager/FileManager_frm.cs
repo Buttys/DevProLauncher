@@ -1,21 +1,27 @@
-﻿using System.Windows.Forms;
+﻿using System;
 using System.Collections.Generic;
-using System;
-using System.IO;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.IO;
 using System.Diagnostics;
+
 namespace YGOPro_Launcher
 {
-    public partial class FileManagerTab : TabPage
+    public partial class FileManager_frm : Form
     {
         private string FileLocation;
         private string FileType;
 
-        public FileManagerTab(string name, string dir, string filetype)
+        public FileManager_frm(string name, string dir, string filetype)
         {
             InitializeComponent();
-            this.Text = name;
-            this.Name = name;
+            TopLevel = false;
+            Dock = DockStyle.Fill;
+            Visible = true;
             FileLocation = dir;
             FileType = filetype;
             RefreshFileList();
@@ -34,7 +40,7 @@ namespace YGOPro_Launcher
         private void GameBtn_Click(object sender, EventArgs e)
         {
             LauncherHelper.GenerateConfig("ygopro:/" + Program.Config.ServerAddress + "/" + Program.Config.GamePort + "/20000,U,Replay");
-            LauncherHelper.RunGame((Name == "Decks" ? "-d":"-r"));
+            LauncherHelper.RunGame((Name == "Decks" ? "-d" : "-r"));
         }
 
         public void RenameItem(object sender, EventArgs e)
@@ -132,6 +138,6 @@ namespace YGOPro_Launcher
 
 
         }
-
+        
     }
 }
