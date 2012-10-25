@@ -394,5 +394,23 @@ namespace YGOPro_Launcher
             LauncherHelper.RunGame("-j");
         }
 
+        private void FilterTextBox_Enter(object sender, EventArgs e)
+        {
+            if (FilterTextBox.Text == "Search")
+            {
+                FilterTextBox.Text = "";
+                FilterTextBox.ForeColor = SystemColors.WindowText;
+            }
+        }
+
+        private void FilterTextBox_Leave(object sender, EventArgs e)
+        {
+            if (FilterTextBox.Text == "")
+            {
+                FilterTextBox.Text = "Search";
+                FilterTextBox.ForeColor = SystemColors.WindowFrame;
+            }
+        }
+
     }
 }
