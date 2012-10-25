@@ -45,10 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
-    <Compile Include="Customize_frm.cs">
+    <Compile Include="Customize\Customize_frm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customize_frm.Designer.cs">
+    <Compile Include="Customize\Customize_frm.Designer.cs">
       <DependentUpon>Customize_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="Enums\ContentType.cs" />
@@ -107,7 +107,7 @@
     <Compile Include="GameList\RoomInfos.cs" />
     <Compile Include="GameList\UserData.cs" />
     <Compile Include="RegEditor.cs" />
-    <EmbeddedResource Include="Customize_frm.resx">
+    <EmbeddedResource Include="Customize\Customize_frm.resx">
       <DependentUpon>Customize_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileManager\FileManager_frm.resx">
@@ -163,9 +163,7 @@
   <ItemGroup>
     <None Include="Resources\ygo.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Customize\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
