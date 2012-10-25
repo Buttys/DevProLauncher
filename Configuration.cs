@@ -7,57 +7,33 @@ namespace YGOPro_Launcher
     public class Configuration
     {
         public string ServerName;
-        public string ServerAddress;
-        public string UpdaterAddress;
-        public string ServerInfoAddress;
-        public int ServerPort;
-        public int GamePort;
-        public string GameEXE;
-        public string LauncherDir;
-        public string DefualtUsername;
-        public string DefualtDeck;
-        public bool EnableSound;
-        public bool EnableMusic;
-        public bool Enabled3d;
-        public int Antialias;
-        public bool Fullscreen;
+        public string ServerAddress = "85.214.205.124";
+        public string UpdaterAddress = "http://dev.ygopro-online.net/launcher/checkversion.php";
+        public string ServerInfoAddress = "http://dev.ygopro-online.net/launcher/serverinfo.php";
+        public int ServerPort = 6911;
+        public int GamePort = 6922;
+        public string GameEXE = "ygopro_vs.exe";
+        public string LauncherDir =  "";
+        public string DefualtUsername = "";
+        public string DefualtDeck = "";
+        public bool EnableSound = true;
+        public bool EnableMusic = true;
+        public bool Enabled3d = true;
+        public int Antialias = 0;
+        public bool Fullscreen = false;
 
         //quickhost settings
-        public string CardRules;
-        public string Mode;
-        public bool EnablePrority;
-        public bool DisableCheckDeck;
-        public bool DisableShuffleDeck;
-        public string Lifepoints;
-        public string GameName;
-        public bool DebugMode;
+        public string CardRules = "OCG/TCG";
+        public string Mode = "Single";
+        public bool EnablePrority = false;
+        public bool DisableCheckDeck = false;
+        public bool DisableShuffleDeck = false;
+        public string Lifepoints = "8000";
+        public string GameName = LauncherHelper.GenerateString().Substring(0, 5);
+        public bool DebugMode = false;
 
         public void Load(string configFileName)
         {
-            ServerAddress = "85.214.205.124";
-            UpdaterAddress = "http://dev.ygopro-online.net/launcher/checkversion.php";
-            ServerInfoAddress = "http://dev.ygopro-online.net/launcher/serverinfo.php";
-            ServerPort = 6911;
-            GamePort = 6922;
-            GameEXE = "ygopro_vs.exe";
-            LauncherDir = "";
-            ServerName = "YGOPro";
-            DefualtUsername = "";
-            DefualtDeck = "";
-            EnableSound = true;
-            EnableMusic = true;
-            Enabled3d = true;
-            Antialias = 2;
-            Fullscreen = false;
-            CardRules = "OCG/TCG";
-            Mode = "Single";
-            EnablePrority = false;
-            DisableCheckDeck = false;
-            DisableShuffleDeck = false;
-            Lifepoints = "8000";
-            GameName = LauncherHelper.GenerateString().Substring(0, 5);
-            DebugMode = false;
-
             if (!File.Exists(configFileName))
             {
                 MessageBox.Show("File " + configFileName + " was not found. Using default settings.");
