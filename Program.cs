@@ -31,7 +31,7 @@ namespace YGOPro_Launcher
 
             Config = new Configuration();
             UserInfo = new UserData();
-            Config.Load();
+            Config.Load("launcher.conf");
             if (CheckUpdates())
                 return;
 

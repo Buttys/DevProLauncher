@@ -55,7 +55,7 @@ namespace YGOPro_Launcher
         private void DeckSelect_SelectedValueChanged(object sender, EventArgs e)
         {
             Program.Config.DefualtDeck = DeckSelect.SelectedItem.ToString();
-            Program.Config.Save();
+            Program.Config.Save("launcher.conf");
         }
 
         private void GameType_SelectedIndexChanged(object sender, EventArgs e)

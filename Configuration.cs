@@ -32,7 +32,7 @@ namespace YGOPro_Launcher
         public string GameName;
         public bool DebugMode;
 
-        public void Load()
+        public void Load(string configFileName)
         {
             ServerAddress = "85.214.205.124";
             UpdaterAddress = "http://dev.ygopro-online.net/launcher/checkversion.php";
@@ -58,13 +58,13 @@ namespace YGOPro_Launcher
             GameName = LauncherHelper.GenerateString().Substring(0, 5);
             DebugMode = false;
 
-            if (!File.Exists("launcher.conf"))
+            if (!File.Exists(configFileName))
             {
-                MessageBox.Show("launcher.conf file found. Using default settings.");
+                MessageBox.Show(configFileName + " file found. Using default settings.");
                 return;
             }
 
-            StreamReader reader = new StreamReader(File.OpenRead("launcher.conf"));
+            StreamReader reader = new StreamReader(File.OpenRead(configFileName));
             while (!reader.EndOfStream)
             {
                 string line = reader.ReadLine();
@@ -159,12 +159,13 @@ namespace YGOPro_Launcher
             }
 
         }
-        public void Save()
-        {
-            if ((File.Exists("launcher.conf")))
-                File.Delete("launcher.conf");
 
-            StreamWriter writer = new StreamWriter("launcher.conf");
+        public void Save(string configFileName)
+        {
+            if ((File.Exists(configFileName)))
+                File.Delete(configFileName);
+
+            StreamWriter writer = new StreamWriter(configFileName);
 
             writer.WriteLine("#Server Settings");
             writer.WriteLine("serveraddress = " + ServerAddress);
