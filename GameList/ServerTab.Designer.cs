@@ -49,7 +49,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.FilterActive = new System.Windows.Forms.CheckBox();
-            this.GameType = new System.Windows.Forms.ComboBox();
+            this.GameType = new System.Windows.Forms.ComboBox() { DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList };
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.QuickBtn = new System.Windows.Forms.Button();
@@ -57,7 +57,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.Username = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.DeckSelect = new System.Windows.Forms.ComboBox();
+            this.DeckSelect = new System.Windows.Forms.ComboBox() { DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList };
             this.label14 = new System.Windows.Forms.Label();
             this.Record = new System.Windows.Forms.Label();
             this.listRooms = new System.Windows.Forms.ListView();
