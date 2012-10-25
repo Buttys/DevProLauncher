@@ -123,6 +123,7 @@
             // DefualtDeck
             // 
             this.DefualtDeck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.DefualtDeck.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DefualtDeck.FormattingEnabled = true;
             this.DefualtDeck.Location = new System.Drawing.Point(139, 31);
             this.DefualtDeck.Name = "DefualtDeck";
