@@ -14,6 +14,7 @@ namespace YGOPro_Launcher
         public static Configuration Config;
         public static NetClient ServerConnection;
         public static UserData UserInfo;
+        public static string ConfigurationFilename = "launcher.conf";
         //public static Main MainForm;
         public static Login_frm LoginWindow;
 
@@ -31,7 +32,7 @@ namespace YGOPro_Launcher
 
             Config = new Configuration();
             UserInfo = new UserData();
-            Config.Load("launcher.conf");
+            Config.Load(Program.ConfigurationFilename);
             if (CheckUpdates())
                 return;
 
