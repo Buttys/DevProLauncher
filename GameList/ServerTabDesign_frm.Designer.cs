@@ -472,6 +472,7 @@
             this.ColumnState,
             this.ColumnPlayers});
             this.listRooms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listRooms.FullRowSelect = true;
             this.listRooms.Location = new System.Drawing.Point(3, 3);
             this.listRooms.Name = "listRooms";
             this.listRooms.Size = new System.Drawing.Size(736, 290);
