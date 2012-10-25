@@ -166,12 +166,15 @@
             // FilterTextBox
             // 
             this.FilterTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FilterTextBox.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.FilterTextBox.Location = new System.Drawing.Point(3, 3);
             this.FilterTextBox.Name = "FilterTextBox";
             this.FilterTextBox.Size = new System.Drawing.Size(149, 20);
             this.FilterTextBox.TabIndex = 0;
             this.FilterTextBox.Text = "Search";
             this.FilterTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.FilterTextBox.Enter += new System.EventHandler(this.FilterTextBox_Enter);
+            this.FilterTextBox.Leave += new System.EventHandler(this.FilterTextBox_Leave);
             // 
             // groupBox1
             // 
