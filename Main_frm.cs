@@ -9,8 +9,6 @@ namespace YGOPro_Launcher
             InitializeComponent();
             char[] version = Program.Version.ToCharArray();
             this.Text = this.Text + " v" + version[0] + "." + version[1] + "." + version[2];
-            ServerControl.TabPages.Add(new ServerTab(Program.Config.ServerName));
-            ServerControl.TabPages.Add(CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro"));
 
             TabPage FileManager = new TabPage("File Manager");
             TabControl FileControl = new TabControl();
@@ -18,7 +16,10 @@ namespace YGOPro_Launcher
             FileControl.TabPages.Add(new FileManagerTab("Decks", Program.Config.LauncherDir +"deck/",".ydk"));
             FileControl.TabPages.Add(new FileManagerTab("Replays", Program.Config.LauncherDir + "replay/", ".yrp"));
             FileManager.Controls.Add(FileControl);
-            ServerControl.TabPages.Add(FileManager);
+
+            ServerControl.TabPages.AddRange(new TabPage[] { new ServerTab(Program.Config.ServerName), 
+                CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro"),
+                FileManager, new CustomizeTab() });
 
         }
 

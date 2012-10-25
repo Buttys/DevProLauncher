@@ -45,6 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
+    <Compile Include="Customize\Customize_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customize\Customize_frm.Designer.cs">
+      <DependentUpon>Customize_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customize\CustomizeTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Customize\CustomizeTab.Designer.cs">
+      <DependentUpon>CustomizeTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\ContentType.cs" />
     <Compile Include="FileManager\FileManagerDesign.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +125,13 @@
     </Compile>
     <Compile Include="GameList\UserData.cs" />
     <Compile Include="RegEditor.cs" />
+    <EmbeddedResource Include="Customize\Customize_frm.resx">
+      <DependentUpon>Customize_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customize\CustomizeTab.resx">
+      <DependentUpon>CustomizeTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileManager\FileManagerDesign.resx">
       <DependentUpon>FileManagerDesign.cs</DependentUpon>
     </EmbeddedResource>
