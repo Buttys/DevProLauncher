@@ -60,7 +60,7 @@ namespace YGOPro_Launcher
 
             if (!File.Exists(configFileName))
             {
-                MessageBox.Show(configFileName + " file found. Using default settings.");
+                MessageBox.Show("File " + configFileName + " was not found. Using default settings.");
                 return;
             }
 
