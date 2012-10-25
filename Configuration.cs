@@ -151,13 +151,13 @@ namespace YGOPro_Launcher
                 }
             }
             reader.Close();
+
             if (DebugMode)
             {
                 ServerAddress = "127.0.0.1";
                 UpdaterAddress = "http://127.0.0.1/launcher/checkversion.php";
                 ServerInfoAddress = "http://127.0.0.1/launcher/ServerInfo.php";
             }
-
         }
 
         public void Save(string configFileName)
@@ -194,11 +194,7 @@ namespace YGOPro_Launcher
             writer.WriteLine("lifepoints = " + Lifepoints);
             writer.WriteLine("gamename = " + GameName);
 
-
             writer.Close();
-
-
-
         }
     }
 }

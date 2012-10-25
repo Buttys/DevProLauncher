@@ -118,6 +118,7 @@ namespace YGOPro_Launcher
             }
             if (result == "KO")
                 return false;
+
             try
             {
                 string[] infos = result.Split(',');
@@ -131,7 +132,6 @@ namespace YGOPro_Launcher
                 MessageBox.Show("Incorrect server string format");
                 return false;
             }
-
 
             return true;
         }
