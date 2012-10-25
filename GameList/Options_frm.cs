@@ -41,7 +41,7 @@ namespace YGOPro_Launcher
             Program.Config.Enabled3d = Enabled3d.Checked;
             Program.Config.Fullscreen = Fullscreen.Checked;
 
-            Program.Config.Save();
+            Program.Config.Save(Program.ConfigurationFilename);
             DialogResult = DialogResult.OK;
 
         }
