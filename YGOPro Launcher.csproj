@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About_frm.Designer.cs">
+      <DependentUpon>About_frm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Configuration.cs" />
     <Compile Include="Customize\Customize_frm.cs">
       <SubType>Form</SubType>
@@ -107,6 +113,9 @@
     <Compile Include="GameList\RoomInfos.cs" />
     <Compile Include="GameList\UserData.cs" />
     <Compile Include="RegEditor.cs" />
+    <EmbeddedResource Include="About_frm.resx">
+      <DependentUpon>About_frm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customize\Customize_frm.resx">
       <DependentUpon>Customize_frm.cs</DependentUpon>
     </EmbeddedResource>

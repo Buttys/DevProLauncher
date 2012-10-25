@@ -29,9 +29,12 @@ namespace YGOPro_Launcher
             TabPage CustomizeTab = new TabPage() { Text = "Customize", Name = "Customize" };
             CustomizeTab.Controls.Add(new Customize_frm());
 
+            TabPage AboutTab = new TabPage() { Text = "About", Name = "About" };
+            AboutTab.Controls.Add(new About_frm());
+
             ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
                 CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro"),
-                FileManager, CustomizeTab });
+                FileManager, CustomizeTab, AboutTab });
 
         }
 

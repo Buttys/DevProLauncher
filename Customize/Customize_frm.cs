@@ -53,6 +53,9 @@ namespace YGOPro_Launcher
             LoadThemeFiles();
 
             this.MouseUp += new MouseEventHandler(OnListViewMouseUp);
+            ViewSelect.SelectedIndexChanged += new EventHandler(SelectedIndex_Changed);
+            ThemeSelect.SelectedIndexChanged += new EventHandler(SelectedTheme_Changed);
+
             contentView = ContentType.Covers;
         }
 
@@ -105,6 +108,7 @@ namespace YGOPro_Launcher
                 if (file.Contains(".YGOTheme"))
                 {
                     LoadTheme(file);
+                    ThemeSelect.Items.Add(Path.GetFileNameWithoutExtension(file));
                 }
             }
 
@@ -566,6 +570,73 @@ namespace YGOPro_Launcher
         {
             LauncherHelper.GenerateConfig("ygopro:/" + Program.Config.ServerAddress + "/" + Program.Config.GamePort + "/20000,U,Edit");
             LauncherHelper.RunGame("-r");
+        }
+
+        private void AddThemeBtn_Click(object sender, EventArgs e)
+        {
+            Input_frm form = new Input_frm("Add Theme", "Enter theme name", "Add", "Cancel");
+           
+            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (Themes.ContainsKey(form.InputBox.Text))
+                {
+                    MessageBox.Show("Theme already exsists!", "Error", MessageBoxButtons.OK);
+                    return;
+                }
+                AddTheme(form.InputBox.Text);
+                ThemeSelect.Items.Add(form.InputBox.Text);
+                ThemeSelect.SelectedItem = form.InputBox.Text;
+            }
+        }
+
+        private void RemoveThemeBtn_Click(object sender, EventArgs e)
+        {
+            if (ThemeSelect.Text == "") return;
+            if (MessageBox.Show("Are you sure you want to remove " + ThemeSelect.SelectedItem.ToString(), "Remove theme", MessageBoxButtons.YesNo) 
+                == DialogResult.Yes)
+            {
+                File.Delete("Assets/Themes/" + ThemeSelect.SelectedItem.ToString() + ".YGOTheme");
+                Themes.Remove(ThemeSelect.SelectedItem.ToString());
+                ThemeSelect.Items.Remove(ThemeSelect.SelectedItem);
+                
+            }
+        }
+
+        private void AddContentBtn_Click(object sender, EventArgs e)
+        {
+            AddNewAsset(null, EventArgs.Empty);
+        }
+
+        private void BackUpBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to back up the current game Textures?", "Backup Textures", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (!ThemeExists("Backup Theme")) AddTheme("Backup Theme");
+                SelectedTheme = "Backup Theme";
+                ThemeSelect.SelectedItem = "Backup Theme";
+
+                foreach (ContentType type in ItemKeys())
+                {
+                    if (type != ContentType.Music && type != ContentType.Sound_Effects)
+                    {
+                        try
+                        {
+                            string GeneratedString = LauncherHelper.GenerateString();
+                            File.Copy(Data[type].GameItem, Data[type].AssetPath + GeneratedString + Data[type].FileType);
+                            AddThemeItem(type, Data[type].AssetPath + GeneratedString + Data[type].FileType, GeneratedString);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                }
+                RefreshList();
+                RefreshInstalledThemeItems();
+                SaveTheme("Backup Theme");
+                ThemeSelect.Items.Add("Backup Theme");
+                ThemeSelect.SelectedItem = "Backup Theme";
+            }
         }
     }
 
