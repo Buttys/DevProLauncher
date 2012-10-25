@@ -320,6 +320,7 @@
             // GameType
             // 
             this.GameType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GameType.FormattingEnabled = true;
             this.GameType.Location = new System.Drawing.Point(3, 240);
             this.GameType.Name = "GameType";
@@ -420,6 +421,7 @@
             // DeckSelect
             // 
             this.DeckSelect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeckSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DeckSelect.FormattingEnabled = true;
             this.DeckSelect.Location = new System.Drawing.Point(203, 3);
             this.DeckSelect.Name = "DeckSelect";

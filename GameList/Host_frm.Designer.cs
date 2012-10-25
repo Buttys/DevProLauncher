@@ -244,6 +244,7 @@
             // CardRules
             // 
             this.CardRules.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CardRules.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CardRules.FormattingEnabled = true;
             this.CardRules.Items.AddRange(new object[] {
             "OCG/TCG",
@@ -258,6 +259,7 @@
             // Mode
             // 
             this.Mode.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Mode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Mode.FormattingEnabled = true;
             this.Mode.Items.AddRange(new object[] {
             "Single",
