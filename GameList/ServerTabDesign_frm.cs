@@ -163,13 +163,14 @@ namespace YGOPro_Launcher
             {
                 form.Mode.Items.Clear();
                 form.Mode.Items.AddRange(new object[] { "Match", "Tag" });
-                form.Mode.Text = "Match";
+                form.Mode.SelectedItem = "Match";
                 form.Priority.Enabled = false;
                 form.ShuffleDeck.Enabled = false;
                 form.CheckDeck.Enabled = false;
                 form.LifePoints.Enabled = false;
                 form.CardRules.Items.Clear();
                 form.CardRules.Items.AddRange(new object[] { "OCG/TCG", "TCG", "OCG" });
+                form.CardRules.SelectedItem = "OCG/TCG";
             }
 
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -411,6 +412,7 @@ namespace YGOPro_Launcher
                 FilterTextBox.ForeColor = SystemColors.WindowFrame;
             }
         }
+
 
     }
 }

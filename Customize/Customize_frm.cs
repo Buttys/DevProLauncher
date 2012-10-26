@@ -52,7 +52,7 @@ namespace YGOPro_Launcher
             LoadAssets();
             LoadThemeFiles();
 
-            this.MouseUp += new MouseEventHandler(OnListViewMouseUp);
+            this.ContentList.MouseUp += new MouseEventHandler(OnListViewMouseUp);
             ViewSelect.SelectedIndexChanged += new EventHandler(SelectedIndex_Changed);
             ThemeSelect.SelectedIndexChanged += new EventHandler(SelectedTheme_Changed);
 
