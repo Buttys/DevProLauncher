@@ -22,6 +22,8 @@ namespace YGOPro_Launcher
             EnableSound.Checked = Program.Config.EnableSound;
             Enabled3d.Checked = Program.Config.Enabled3d;
             Fullscreen.Checked = Program.Config.Fullscreen;
+            tbTextFont.Text = Program.Config.TextFont;
+            tbTextSize.Text = Program.Config.TextSize.ToString();
             if (Directory.Exists(Program.Config.LauncherDir + "deck/"))
             {
                 string[] decks = Directory.GetFiles(Program.Config.LauncherDir + "deck/");
@@ -40,6 +42,8 @@ namespace YGOPro_Launcher
             Program.Config.EnableMusic = EnableMusic.Checked;
             Program.Config.Enabled3d = Enabled3d.Checked;
             Program.Config.Fullscreen = Fullscreen.Checked;
+            Program.Config.TextFont = tbTextFont.Text;
+            Program.Config.TextSize = Convert.ToInt32(tbTextSize.Text);
 
             Program.Config.Save(Program.ConfigurationFilename);
             DialogResult = DialogResult.OK;

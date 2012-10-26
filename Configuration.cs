@@ -21,6 +21,8 @@ namespace YGOPro_Launcher
         public bool Enabled3d = true;
         public int Antialias = 0;
         public bool Fullscreen = false;
+        public string TextFont = "fonts/arialuni.ttf";
+        public int TextSize = 12;
 
         //quickhost settings
         public string CardRules = "OCG/TCG";
@@ -97,6 +99,12 @@ namespace YGOPro_Launcher
                     case "antialias":
                         Antialias = Convert.ToInt32(value);
                         break;
+                    case "textfont":
+                        TextFont = value;
+                        break;
+                    case "textsize":
+                        TextSize = Convert.ToInt32(value);
+                        break;
                     case "fullscreen":
                         Fullscreen = Convert.ToBoolean(value);
                         break;
@@ -156,6 +164,8 @@ namespace YGOPro_Launcher
             writer.WriteLine("defualtusername = " + DefualtUsername);
             writer.WriteLine("defualtdeck = " + DefualtDeck);
             writer.WriteLine("antialias = " + Antialias);
+            writer.WriteLine("textfont = " + TextFont);
+            writer.WriteLine("textsize = " + TextSize);
             writer.WriteLine("enablesound = " + (EnableSound ? "true" : "false"));
             writer.WriteLine("enablemusic = " + (EnableMusic ? "true" : "false"));
             writer.WriteLine("enabled3d = " + (Enabled3d ? "true" : "false"));

@@ -1,6 +1,6 @@
 ﻿namespace YGOPro_Launcher
 {
-    partial class ServerInterface
+    partial class ServerInterface_frm
     {
         /// <summary>
         /// Required designer variable.
@@ -60,6 +60,13 @@
             this.DeckSelect = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.Record = new System.Windows.Forms.Label();
+            this.listRooms = new System.Windows.Forms.ListView();
+            this.ColumnRoomName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnRules = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -136,6 +143,7 @@
             this.ReplaysBtn.TabIndex = 3;
             this.ReplaysBtn.Text = "Replays";
             this.ReplaysBtn.UseVisualStyleBackColor = true;
+            this.ReplaysBtn.Click += new System.EventHandler(this.ReplaysBtn_Click);
             // 
             // ProfileBtn
             // 
@@ -158,12 +166,15 @@
             // FilterTextBox
             // 
             this.FilterTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FilterTextBox.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.FilterTextBox.Location = new System.Drawing.Point(3, 3);
             this.FilterTextBox.Name = "FilterTextBox";
             this.FilterTextBox.Size = new System.Drawing.Size(149, 20);
             this.FilterTextBox.TabIndex = 0;
             this.FilterTextBox.Text = "Search";
             this.FilterTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.FilterTextBox.Enter += new System.EventHandler(this.FilterTextBox_Enter);
+            this.FilterTextBox.Leave += new System.EventHandler(this.FilterTextBox_Leave);
             // 
             // groupBox1
             // 
@@ -322,17 +333,20 @@
             this.GameType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GameType.FormattingEnabled = true;
+            this.GameType.Items.AddRange(new object[] {
+            "Unranked",
+            "Ranked"});
             this.GameType.Location = new System.Drawing.Point(3, 240);
             this.GameType.Name = "GameType";
             this.GameType.Size = new System.Drawing.Size(149, 21);
             this.GameType.TabIndex = 8;
-            this.GameType.Text = "Unranked";
             // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.listRooms, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -448,14 +462,62 @@
             this.Record.TabIndex = 5;
             this.Record.Text = "0/0/0";
             // 
-            // ServerInterface
+            // listRooms
+            // 
+            this.listRooms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColumnRoomName,
+            this.ColumnType,
+            this.ColumnRules,
+            this.ColumnMode,
+            this.ColumnState,
+            this.ColumnPlayers});
+            this.listRooms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listRooms.FullRowSelect = true;
+            this.listRooms.Location = new System.Drawing.Point(3, 3);
+            this.listRooms.Name = "listRooms";
+            this.listRooms.Size = new System.Drawing.Size(736, 290);
+            this.listRooms.TabIndex = 3;
+            this.listRooms.UseCompatibleStateImageBehavior = false;
+            this.listRooms.View = System.Windows.Forms.View.Details;
+            // 
+            // ColumnRoomName
+            // 
+            this.ColumnRoomName.Text = "Room Name";
+            this.ColumnRoomName.Width = 86;
+            // 
+            // ColumnType
+            // 
+            this.ColumnType.Text = "Type";
+            this.ColumnType.Width = 76;
+            // 
+            // ColumnRules
+            // 
+            this.ColumnRules.Text = "Rules";
+            this.ColumnRules.Width = 80;
+            // 
+            // ColumnMode
+            // 
+            this.ColumnMode.Text = "Mode";
+            this.ColumnMode.Width = 100;
+            // 
+            // ColumnState
+            // 
+            this.ColumnState.Text = "State";
+            this.ColumnState.Width = 106;
+            // 
+            // ColumnPlayers
+            // 
+            this.ColumnPlayers.Text = "Players";
+            this.ColumnPlayers.Width = 254;
+            // 
+            // ServerInterface_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 339);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ServerInterface";
+            this.Name = "ServerInterface_frm";
             this.Text = "ServerInterface";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -505,5 +567,12 @@
         private System.Windows.Forms.Button DeckBtn;
         private System.Windows.Forms.Button ReplaysBtn;
         private System.Windows.Forms.ComboBox GameType;
+        private System.Windows.Forms.ListView listRooms;
+        private System.Windows.Forms.ColumnHeader ColumnType;
+        private System.Windows.Forms.ColumnHeader ColumnRoomName;
+        private System.Windows.Forms.ColumnHeader ColumnRules;
+        private System.Windows.Forms.ColumnHeader ColumnMode;
+        private System.Windows.Forms.ColumnHeader ColumnState;
+        private System.Windows.Forms.ColumnHeader ColumnPlayers;
     }
 }
