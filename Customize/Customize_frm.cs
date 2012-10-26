@@ -321,7 +321,7 @@ namespace YGOPro_Launcher
         {
 
             ListViewItem item = this.ContentList.SelectedItems[0];
-            if (MessageBox.Show("Are you sure you want to dealte " + item.Text, "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to delete " + item.Text, "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Data[contentView].Images.Images.RemoveByKey(item.Text);
                 this.ContentList.Items.Remove(item);
@@ -384,7 +384,7 @@ namespace YGOPro_Launcher
                         ToolStripMenuItem mnuInstall = new ToolStripMenuItem("Install");
                         ToolStripMenuItem mnuApplyTheme = new ToolStripMenuItem("Set to current theme");
                         ToolStripMenuItem mnuRemoveFromTheme = new ToolStripMenuItem("Remove from current theme");
-                        ToolStripMenuItem mnuDealte = new ToolStripMenuItem("Dealte");
+                        ToolStripMenuItem mnuDealte = new ToolStripMenuItem("Delete");
 
                         mnuInstall.Click += new EventHandler(InstallAsset);
                         mnuApplyTheme.Click += new EventHandler(ApplyToTheme);
