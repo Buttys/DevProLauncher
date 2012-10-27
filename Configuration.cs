@@ -35,10 +35,7 @@ namespace YGOPro_Launcher
         public void Load(string configFileName)
         {
             if (!File.Exists(configFileName))
-            {
-                MessageBox.Show("File " + configFileName + " was not found. Using default settings.");
                 return;
-            }
 
             StreamReader reader = new StreamReader(File.OpenRead(configFileName));
             while (!reader.EndOfStream)
