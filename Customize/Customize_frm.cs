@@ -261,7 +261,25 @@ namespace YGOPro_Launcher
         void AddImage(ImageList type, string path)
         {
             string imagename = Path.GetFileNameWithoutExtension(path);
-            type.Images.Add(imagename, Image.FromFile(path));
+            try
+            {
+                type.Images.Add(imagename, Image.FromFile(path));
+            }
+            catch (OutOfMemoryException)
+            {
+                if (MessageBox.Show(imagename + " failed to load and could have a bad format. Can i delete it to prevent future errors?", 
+                    "Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                }
+            }
         }
         void AddIconImage(ImageList type, string path)
         {
