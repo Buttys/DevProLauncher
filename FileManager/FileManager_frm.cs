@@ -34,7 +34,18 @@ namespace YGOPro_Launcher
 
         private void OpenBtn_Click(object sender, EventArgs e)
         {
-            Process.Start(FileLocation);
+            if(Program.Config.LauncherDir == "")
+            {
+                if (Directory.Exists(Path.GetDirectoryName(Application.ExecutablePath) + "/" + FileLocation))
+                Process.Start(Path.GetDirectoryName(Application.ExecutablePath)+ "/" + FileLocation);
+                else
+                    MessageBox.Show(Path.GetDirectoryName(Application.ExecutablePath) + "/" + FileLocation + "does no exsist");
+            }
+            else
+                if (Directory.Exists(FileLocation))
+                        Process.Start(FileLocation);
+                else
+                    MessageBox.Show(FileLocation + "does no exsist");
         }
 
         private void GameBtn_Click(object sender, EventArgs e)

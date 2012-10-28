@@ -42,7 +42,7 @@
             this.EnableMusic = new System.Windows.Forms.CheckBox();
             this.EnableSound = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.Antialias = new System.Windows.Forms.TextBox();
+            this.Antialias = new System.Windows.Forms.NumericUpDown();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.CancelBtn = new System.Windows.Forms.Button();
             this.SaveBtn = new System.Windows.Forms.Button();
@@ -53,6 +53,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Antialias)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,7 +119,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Defualt Username";
+            this.label1.Text = "Default Username";
             // 
             // DefualtDeck
             // 
@@ -234,9 +235,16 @@
             // 
             this.Antialias.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Antialias.Location = new System.Drawing.Point(139, 3);
+            this.Antialias.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
             this.Antialias.Name = "Antialias";
+            this.Antialias.ReadOnly = true;
             this.Antialias.Size = new System.Drawing.Size(130, 20);
             this.Antialias.TabIndex = 5;
+            this.Antialias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // flowLayoutPanel1
             // 
@@ -307,6 +315,7 @@
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Antialias)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -328,11 +337,11 @@
         private System.Windows.Forms.CheckBox EnableMusic;
         private System.Windows.Forms.CheckBox EnableSound;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox Antialias;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Button SaveBtn;
         private System.Windows.Forms.Button QuickHostSettingsbtn;
         private System.Windows.Forms.Button QuickSettingsBtn;
+        private System.Windows.Forms.NumericUpDown Antialias;
     }
 }

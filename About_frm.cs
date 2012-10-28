@@ -17,6 +17,7 @@ namespace YGOPro_Launcher
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
+
         }
     }
 }

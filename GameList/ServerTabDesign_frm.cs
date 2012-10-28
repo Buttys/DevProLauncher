@@ -24,12 +24,6 @@ namespace YGOPro_Launcher
             FilterActive.CheckedChanged += new EventHandler(FilterGames);
             FilterTextBox.TextChanged += new EventHandler(FilterGames);
             GameType.SelectedIndexChanged += new EventHandler(GameType_SelectedIndexChanged);
-            QuickBtn.Click += new EventHandler(QuickBtn_Click);
-            HostBtn.Click += new EventHandler(HostBtn_Click);
-            DeckBtn.Click += new EventHandler(DeckBtn_Click);
-            ReplaysBtn.Click += new EventHandler(ReplaysBtn_Click);
-            ProfileBtn.Click += new EventHandler(ProfileBtn_Click);
-            OptionsBtn.Click += new EventHandler(OptionsBtn_Click);
 
             Program.ServerConnection.AddRooms += new NetClient.ServerRooms(OnRoomsList);
             Program.ServerConnection.AddRoom += new NetClient.ServerRooms(OnRoomCreated);
@@ -163,13 +157,14 @@ namespace YGOPro_Launcher
             {
                 form.Mode.Items.Clear();
                 form.Mode.Items.AddRange(new object[] { "Match", "Tag" });
-                form.Mode.Text = "Match";
+                form.Mode.SelectedItem = "Match";
                 form.Priority.Enabled = false;
                 form.ShuffleDeck.Enabled = false;
                 form.CheckDeck.Enabled = false;
                 form.LifePoints.Enabled = false;
                 form.CardRules.Items.Clear();
                 form.CardRules.Items.AddRange(new object[] { "OCG/TCG", "TCG", "OCG" });
+                form.CardRules.SelectedItem = "OCG/TCG";
             }
 
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)

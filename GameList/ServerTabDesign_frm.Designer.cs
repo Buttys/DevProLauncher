@@ -134,6 +134,7 @@
             this.DeckBtn.TabIndex = 2;
             this.DeckBtn.Text = "Deck Edit";
             this.DeckBtn.UseVisualStyleBackColor = true;
+            this.DeckBtn.Click += new System.EventHandler(this.DeckBtn_Click);
             // 
             // ReplaysBtn
             // 
@@ -153,6 +154,7 @@
             this.ProfileBtn.TabIndex = 8;
             this.ProfileBtn.Text = "Profile";
             this.ProfileBtn.UseVisualStyleBackColor = true;
+            this.ProfileBtn.Click += new System.EventHandler(this.ProfileBtn_Click);
             // 
             // OptionsBtn
             // 
@@ -162,6 +164,7 @@
             this.OptionsBtn.TabIndex = 9;
             this.OptionsBtn.Text = "Options";
             this.OptionsBtn.UseVisualStyleBackColor = true;
+            this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
             // 
             // FilterTextBox
             // 
@@ -392,6 +395,7 @@
             this.QuickBtn.TabIndex = 1;
             this.QuickBtn.Text = "Quick";
             this.QuickBtn.UseVisualStyleBackColor = true;
+            this.QuickBtn.Click += new System.EventHandler(this.QuickBtn_Click);
             // 
             // HostBtn
             // 
@@ -401,6 +405,7 @@
             this.HostBtn.TabIndex = 0;
             this.HostBtn.Text = "Host";
             this.HostBtn.UseVisualStyleBackColor = true;
+            this.HostBtn.Click += new System.EventHandler(this.HostBtn_Click);
             // 
             // label11
             // 
@@ -488,7 +493,6 @@
             // ColumnType
             // 
             this.ColumnType.Text = "Type";
-            this.ColumnType.Width = 76;
             // 
             // ColumnRules
             // 
@@ -498,17 +502,17 @@
             // ColumnMode
             // 
             this.ColumnMode.Text = "Mode";
-            this.ColumnMode.Width = 100;
+            this.ColumnMode.Width = 75;
             // 
             // ColumnState
             // 
             this.ColumnState.Text = "State";
-            this.ColumnState.Width = 106;
+            this.ColumnState.Width = 75;
             // 
             // ColumnPlayers
             // 
             this.ColumnPlayers.Text = "Players";
-            this.ColumnPlayers.Width = 254;
+            this.ColumnPlayers.Width = 273;
             // 
             // ServerInterface_frm
             // 

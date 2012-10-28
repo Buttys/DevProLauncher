@@ -52,7 +52,7 @@ namespace YGOPro_Launcher
             LoadAssets();
             LoadThemeFiles();
 
-            this.MouseUp += new MouseEventHandler(OnListViewMouseUp);
+            this.ContentList.MouseUp += new MouseEventHandler(OnListViewMouseUp);
             ViewSelect.SelectedIndexChanged += new EventHandler(SelectedIndex_Changed);
             ThemeSelect.SelectedIndexChanged += new EventHandler(SelectedTheme_Changed);
 
@@ -261,7 +261,25 @@ namespace YGOPro_Launcher
         void AddImage(ImageList type, string path)
         {
             string imagename = Path.GetFileNameWithoutExtension(path);
-            type.Images.Add(imagename, Image.FromFile(path));
+            try
+            {
+                type.Images.Add(imagename, Image.FromFile(path));
+            }
+            catch (OutOfMemoryException)
+            {
+                if (MessageBox.Show(imagename + " failed to load and could have a bad format. Can i delete it to prevent future errors?", 
+                    "Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                }
+            }
         }
         void AddIconImage(ImageList type, string path)
         {
@@ -321,7 +339,7 @@ namespace YGOPro_Launcher
         {
 
             ListViewItem item = this.ContentList.SelectedItems[0];
-            if (MessageBox.Show("Are you sure you want to dealte " + item.Text, "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to delete " + item.Text, "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Data[contentView].Images.Images.RemoveByKey(item.Text);
                 this.ContentList.Items.Remove(item);
@@ -384,7 +402,7 @@ namespace YGOPro_Launcher
                         ToolStripMenuItem mnuInstall = new ToolStripMenuItem("Install");
                         ToolStripMenuItem mnuApplyTheme = new ToolStripMenuItem("Set to current theme");
                         ToolStripMenuItem mnuRemoveFromTheme = new ToolStripMenuItem("Remove from current theme");
-                        ToolStripMenuItem mnuDealte = new ToolStripMenuItem("Dealte");
+                        ToolStripMenuItem mnuDealte = new ToolStripMenuItem("Delete");
 
                         mnuInstall.Click += new EventHandler(InstallAsset);
                         mnuApplyTheme.Click += new EventHandler(ApplyToTheme);
