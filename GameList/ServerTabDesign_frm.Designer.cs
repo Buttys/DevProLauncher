@@ -493,7 +493,6 @@
             // ColumnType
             // 
             this.ColumnType.Text = "Type";
-            this.ColumnType.Width = 76;
             // 
             // ColumnRules
             // 
@@ -503,17 +502,17 @@
             // ColumnMode
             // 
             this.ColumnMode.Text = "Mode";
-            this.ColumnMode.Width = 100;
+            this.ColumnMode.Width = 75;
             // 
             // ColumnState
             // 
             this.ColumnState.Text = "State";
-            this.ColumnState.Width = 106;
+            this.ColumnState.Width = 75;
             // 
             // ColumnPlayers
             // 
             this.ColumnPlayers.Text = "Players";
-            this.ColumnPlayers.Width = 254;
+            this.ColumnPlayers.Width = 273;
             // 
             // ServerInterface_frm
             // 
