@@ -48,7 +48,7 @@ namespace YGOPro_Launcher
                 MessageBox.Show("Error Connecting to server");
             }
 
-            LoginWindow = new Login_frm();
+            LoginWindow = new Login_frm(Config, ServerConnection, UserInfo);
             if (LoginWindow.ShowDialog() != DialogResult.OK)
             {
                 return;

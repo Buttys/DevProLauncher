@@ -11,11 +11,21 @@ namespace YGOPro_Launcher
 {
     public partial class Login_frm : Form
     {
-        public Login_frm()
+
+        private readonly Configuration _configuration;
+
+        private readonly NetClient _connection;
+
+        private readonly UserData _userInfo;
+
+        public Login_frm(Configuration configuration, NetClient connection, UserData userData)
         {
             InitializeComponent();
-            Program.ServerConnection.LoginReply += new NetClient.ServerResponse(LoginResponse);
-            UsernameInput.Text = Program.Config.DefualtUsername;
+            _configuration = configuration;
+            _connection = connection;
+            _userInfo = userData;
+            _connection.LoginReply += new NetClient.ServerResponse(LoginResponse);
+            UsernameInput.Text = _configuration.DefualtUsername;
             PasswordInput.KeyPress += new KeyPressEventHandler(PasswordInput_KeyPress);
         }
 
@@ -35,7 +45,7 @@ namespace YGOPro_Launcher
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            if (!Program.ServerConnection.IsConnected)
+            if (!_connection.IsConnected)
             {
                 MessageBox.Show("Not connected to the server.");
                 return;
@@ -50,8 +60,8 @@ namespace YGOPro_Launcher
                 MessageBox.Show("Please enter username,");
                 return;
             }
-            if (Program.ServerConnection.IsConnected)
-                Program.ServerConnection.SendPacket("LOGIN|" + UsernameInput.Text + "|" + LauncherHelper.EncodePassword(PasswordInput.Text));
+            if (_connection.IsConnected)
+                _connection.SendPacket("LOGIN|" + UsernameInput.Text + "|" + LauncherHelper.EncodePassword(PasswordInput.Text));
             else
                 MessageBox.Show("Not connected to server.");
 
@@ -69,9 +79,9 @@ namespace YGOPro_Launcher
                 if (message == "Failed") MessageBox.Show(message,"Login Error",MessageBoxButtons.OK);
                 else
                 {
-                    Program.UserInfo.Username = UsernameInput.Text;
-                    Program.UserInfo.Rank = 0;
-                    Program.UserInfo.LoginKey = message;
+                    _userInfo.Username = UsernameInput.Text;
+                    _userInfo.Rank = 0;
+                    _userInfo.LoginKey = message;
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
             }
