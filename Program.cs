@@ -67,14 +67,14 @@ namespace YGOPro_Launcher
                 {
                     return;
                 }
+
+                Thread.Sleep(2000);
             }
 
             if (!ServerConnection.IsConnected)
             {
                 return;
             }
-
-            Thread.Sleep(2000);
 
             if (UserInfo.Username != "" && UserInfo.LoginKey != "")
                 Application.Run(new Main_frm());
