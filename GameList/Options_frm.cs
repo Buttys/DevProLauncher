@@ -64,5 +64,15 @@ namespace YGOPro_Launcher
             }
 
         }
+
+        private void ForgetAutoLoginButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you really want to forget auto login credentials?", "Confirmation required", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                Program.Config.Password = "";
+                Program.Config.AutoLogin = false;
+                Program.Config.Save(Program.ConfigurationFilename);
+            }
+        }
     }
 }

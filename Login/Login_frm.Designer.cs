@@ -38,24 +38,29 @@
             this.label2 = new System.Windows.Forms.Label();
             this.UsernameInput = new System.Windows.Forms.TextBox();
             this.PasswordInput = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.AutoLoginCheckBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.panel1, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.6383F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.3617F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(248, 94);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(248, 124);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -66,7 +71,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 60);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(242, 31);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(242, 30);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // RegisterBtn
@@ -144,23 +149,44 @@
             this.PasswordInput.TabIndex = 5;
             this.PasswordInput.UseSystemPasswordChar = true;
             // 
-            // Login
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.AutoLoginCheckBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 96);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(242, 25);
+            this.panel1.TabIndex = 2;
+            // 
+            // AutoLoginCheckBox
+            // 
+            this.AutoLoginCheckBox.AutoSize = true;
+            this.AutoLoginCheckBox.Location = new System.Drawing.Point(14, 3);
+            this.AutoLoginCheckBox.Name = "AutoLoginCheckBox";
+            this.AutoLoginCheckBox.Size = new System.Drawing.Size(183, 19);
+            this.AutoLoginCheckBox.TabIndex = 0;
+            this.AutoLoginCheckBox.Text = "Log me in automatically next time";
+            this.AutoLoginCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // Login_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 94);
+            this.ClientSize = new System.Drawing.Size(248, 124);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Font = new System.Drawing.Font("Arial Unicode MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Login";
+            this.Name = "Login_frm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DevPro - Login";
             this.tableLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -176,6 +202,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox UsernameInput;
         private System.Windows.Forms.TextBox PasswordInput;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox AutoLoginCheckBox;
 
     }
 }

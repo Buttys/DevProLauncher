@@ -20,7 +20,9 @@ namespace YGOPro_Launcher
         public bool EnableMusic = true;
         public bool Enabled3d = true;
         public int Antialias = 0;
+        public bool AutoLogin = false;
         public bool Fullscreen = false;
+        public string Password = "";
 
         //quickhost settings
         public string CardRules = "OCG/TCG";
@@ -121,6 +123,12 @@ namespace YGOPro_Launcher
                     case "debugmode":
                         DebugMode = Convert.ToBoolean(value);
                         break;
+                    case "autologin":
+                        AutoLogin = Convert.ToBoolean(value);
+                        break;
+                    case "password":
+                        Password = value;
+                        break;
                 }
             }
             reader.Close();
@@ -157,7 +165,8 @@ namespace YGOPro_Launcher
             writer.WriteLine("enablemusic = " + (EnableMusic ? "true" : "false"));
             writer.WriteLine("enabled3d = " + (Enabled3d ? "true" : "false"));
             writer.WriteLine("fullscreen = " + (Fullscreen ? "true" : "false"));
-            writer.WriteLine("");
+            writer.WriteLine("autologin = " + (AutoLogin ? "true" : "false"));
+            writer.WriteLine("password = " + Password);
             writer.WriteLine("#Quick Host Settings");
             writer.WriteLine("cardrules = " + CardRules);
             writer.WriteLine("mode = " + Mode);

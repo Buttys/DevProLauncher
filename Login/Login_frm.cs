@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using YGOPro_Launcher.Login;
 
 namespace YGOPro_Launcher
 {
@@ -16,16 +11,18 @@ namespace YGOPro_Launcher
 
         private readonly NetClient _connection;
 
-        private readonly UserData _userInfo;
+        private readonly Authenticator _authenticator;
 
-        public Login_frm(Configuration configuration, NetClient connection, UserData userData)
+        internal Login_frm(Configuration configuration, NetClient connection, Authenticator authenticator)
         {
             InitializeComponent();
+
             _configuration = configuration;
             _connection = connection;
-            _userInfo = userData;
-            _connection.LoginReply += new NetClient.ServerResponse(LoginResponse);
+            _authenticator = authenticator;
+
             UsernameInput.Text = _configuration.DefualtUsername;
+            AutoLoginCheckBox.Checked = _configuration.AutoLogin;
             PasswordInput.KeyPress += new KeyPressEventHandler(PasswordInput_KeyPress);
         }
 
@@ -52,46 +49,27 @@ namespace YGOPro_Launcher
             }
             if (UsernameInput.Text == "")
             {
-                MessageBox.Show("Please enter username,");
+                MessageBox.Show("Please enter username.");
                 return;
             }
             if (PasswordInput.Text == "")
             {
-                MessageBox.Show("Please enter username,");
+                MessageBox.Show("Please enter password.");
                 return;
             }
-            if (_connection.IsConnected)
-                _connection.SendPacket("LOGIN|" + UsernameInput.Text + "|" + LauncherHelper.EncodePassword(PasswordInput.Text));
-            else
-                MessageBox.Show("Not connected to server.");
 
+            _authenticator.Authenticate(UsernameInput.Text, LauncherHelper.EncodePassword(PasswordInput.Text));
+            if (AutoLoginCheckBox.Checked)
+            {
+                _configuration.DefualtUsername = UsernameInput.Text;
+                _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
+                _configuration.AutoLogin = AutoLoginCheckBox.Checked;
+                _configuration.Save(Program.ConfigurationFilename);
+            }
+            DialogResult = DialogResult.OK;
         }
 
-        private void LoginResponse(string message)
-        {
-            if (message != "" && !IsDisposed)
-            {
-                if (message == "" || UsernameInput.Text == "")
-                {
-                    MessageBox.Show("There was an error logging in. Please try again");
-                    return;
-                }
-                if (message == "Failed") MessageBox.Show(message,"Login Error",MessageBoxButtons.OK);
-                else
-                {
-                    _userInfo.Username = UsernameInput.Text;
-                    _userInfo.Rank = 0;
-                    _userInfo.LoginKey = message;
-                    DialogResult = System.Windows.Forms.DialogResult.OK;
-                }
-            }
-            else
-            {
-                if(!IsDisposed)
-                    MessageBox.Show("There was an error logging in. Please try again");
-            }
 
-        }
 
     }
 }
