@@ -48,6 +48,7 @@
             this.SaveBtn = new System.Windows.Forms.Button();
             this.QuickSettingsBtn = new System.Windows.Forms.Button();
             this.QuickHostSettingsbtn = new System.Windows.Forms.Button();
+            this.ForgetAutoLoginButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -60,7 +61,7 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.75125F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 2);
@@ -68,10 +69,10 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.29268F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.70732F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(284, 220);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(284, 241);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // groupBox1
@@ -80,7 +81,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 74);
+            this.groupBox1.Size = new System.Drawing.Size(278, 99);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "User Settings";
@@ -94,19 +95,21 @@
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.DefualtDeck, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.label5, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.ForgetAutoLoginButton, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.06383F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.93617F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 55);
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 80);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // Username
             // 
             this.Username.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Username.Location = new System.Drawing.Point(139, 4);
+            this.Username.Location = new System.Drawing.Point(139, 3);
             this.Username.Name = "Username";
             this.Username.Size = new System.Drawing.Size(130, 20);
             this.Username.TabIndex = 0;
@@ -115,7 +118,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 7);
+            this.label1.Location = new System.Drawing.Point(22, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 2;
@@ -126,7 +129,7 @@
             this.DefualtDeck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.DefualtDeck.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DefualtDeck.FormattingEnabled = true;
-            this.DefualtDeck.Location = new System.Drawing.Point(139, 31);
+            this.DefualtDeck.Location = new System.Drawing.Point(139, 29);
             this.DefualtDeck.Name = "DefualtDeck";
             this.DefualtDeck.Size = new System.Drawing.Size(130, 21);
             this.DefualtDeck.TabIndex = 3;
@@ -135,7 +138,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 35);
+            this.label5.Location = new System.Drawing.Point(33, 33);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 4;
@@ -145,7 +148,7 @@
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 83);
+            this.groupBox2.Location = new System.Drawing.Point(3, 108);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(278, 98);
             this.groupBox2.TabIndex = 1;
@@ -253,7 +256,7 @@
             this.flowLayoutPanel1.Controls.Add(this.QuickSettingsBtn);
             this.flowLayoutPanel1.Controls.Add(this.QuickHostSettingsbtn);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 187);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 212);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(278, 28);
             this.flowLayoutPanel1.TabIndex = 3;
@@ -298,11 +301,21 @@
             this.QuickHostSettingsbtn.Text = "Quick Host Settings";
             this.QuickHostSettingsbtn.UseVisualStyleBackColor = true;
             // 
+            // ForgetAutoLoginButton
+            // 
+            this.ForgetAutoLoginButton.Location = new System.Drawing.Point(139, 56);
+            this.ForgetAutoLoginButton.Name = "ForgetAutoLoginButton";
+            this.ForgetAutoLoginButton.Size = new System.Drawing.Size(130, 23);
+            this.ForgetAutoLoginButton.TabIndex = 5;
+            this.ForgetAutoLoginButton.Text = "Forget Auto Login";
+            this.ForgetAutoLoginButton.UseVisualStyleBackColor = true;
+            this.ForgetAutoLoginButton.Click += new System.EventHandler(this.ForgetAutoLoginButton_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 220);
+            this.ClientSize = new System.Drawing.Size(284, 241);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Settings";
@@ -343,5 +356,6 @@
         private System.Windows.Forms.Button QuickHostSettingsbtn;
         private System.Windows.Forms.Button QuickSettingsBtn;
         private System.Windows.Forms.NumericUpDown Antialias;
+        private System.Windows.Forms.Button ForgetAutoLoginButton;
     }
 }
