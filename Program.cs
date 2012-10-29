@@ -4,6 +4,7 @@ using System;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
+using YGOPro_Launcher.Config;
 using YGOPro_Launcher.Login;
 
 namespace YGOPro_Launcher
@@ -46,7 +47,7 @@ namespace YGOPro_Launcher
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            LoginService = new Authenticator(Config.DefualtUsername, Config.Password, ServerConnection, UserInfo);
+            LoginService = new Authenticator(Config.DefaultUsername, Config.Password, ServerConnection, UserInfo);
 
             if(!ServerConnection.Connect(Config.ServerAddress, Config.ServerPort))
             {

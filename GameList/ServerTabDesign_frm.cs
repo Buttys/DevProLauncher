@@ -39,7 +39,7 @@ namespace YGOPro_Launcher
                 foreach (string deck in decks)
                     DeckSelect.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
-            DeckSelect.Text = Program.Config.DefualtDeck;
+            DeckSelect.Text = Program.Config.DefaultDeck;
         }
 
         public void RequestUserWLD()
@@ -49,7 +49,7 @@ namespace YGOPro_Launcher
 
         private void DeckSelect_SelectedValueChanged(object sender, EventArgs e)
         {
-            Program.Config.DefualtDeck = DeckSelect.SelectedItem.ToString();
+            Program.Config.DefaultDeck = DeckSelect.SelectedItem.ToString();
             Program.Config.Save(Program.ConfigurationFilename);
         }
 

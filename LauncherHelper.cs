@@ -62,7 +62,7 @@ namespace YGOPro_Launcher
             try
             {
                 Process process = new Process();
-                ProcessStartInfo startInfos = new ProcessStartInfo(Program.Config.LauncherDir + Program.Config.GameEXE, arg);
+                ProcessStartInfo startInfos = new ProcessStartInfo(Program.Config.LauncherDir + Program.Config.GameExe, arg);
                 process.StartInfo = startInfos;
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
@@ -73,7 +73,7 @@ namespace YGOPro_Launcher
             }
             catch
             {
-                MessageBox.Show("Cannot find: " +Program.Config.LauncherDir + Program.Config.GameEXE);
+                MessageBox.Show("Cannot find: " +Program.Config.LauncherDir + Program.Config.GameExe);
             }
         }
         static void UpdateInfo(object sender, EventArgs e)
@@ -126,13 +126,13 @@ namespace YGOPro_Launcher
             writer.WriteLine("#config file");
             writer.WriteLine("#nickname & gamename should be less than 20 characters");
             writer.WriteLine("#Generated using " + roominfo);
-            writer.WriteLine("use_d3d = " +Convert.ToInt32(Program.Config.Enabled3d));
+            writer.WriteLine("use_d3d = " +Convert.ToInt32(Program.Config.Enabled3D));
             writer.WriteLine(("antialias = " + Program.Config.Antialias));
             writer.WriteLine("errorlog = 1");
             writer.WriteLine(("nickname = " + Program.UserInfo.Username + "$" + Program.UserInfo.LoginKey));
             writer.WriteLine("gamename = " + GameName);
             writer.WriteLine(("roompass ="));
-            writer.WriteLine(("lastdeck = " + Program.Config.DefualtDeck));
+            writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
             writer.WriteLine("textfont = fonts/simhei.ttf 14");
             writer.WriteLine("numfont = fonts/arialbd.ttf");
             writer.WriteLine(("serverport = " + Program.Config.GamePort));
