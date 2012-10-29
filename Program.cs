@@ -26,7 +26,7 @@ namespace YGOPro_Launcher
         [STAThread]
         static void Main(string[] args)
         {
-            //AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
             if (LauncherHelper.checkInstance() != null)
                 if (MessageBox.Show("Program already running") == DialogResult.OK)
