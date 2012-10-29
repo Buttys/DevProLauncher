@@ -82,6 +82,7 @@
     <Compile Include="Input_frm.designer.cs">
       <DependentUpon>Input_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\Authenticator.cs" />
     <Compile Include="Main_frm.cs">
       <SubType>Form</SubType>
     </Compile>
