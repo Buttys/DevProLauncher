@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DefualtDeck = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.ForgetAutoLoginButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.Enabled3d = new System.Windows.Forms.CheckBox();
@@ -48,7 +49,6 @@
             this.SaveBtn = new System.Windows.Forms.Button();
             this.QuickSettingsBtn = new System.Windows.Forms.Button();
             this.QuickHostSettingsbtn = new System.Windows.Forms.Button();
-            this.ForgetAutoLoginButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -143,6 +143,16 @@
             this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "Default Deck";
+            // 
+            // ForgetAutoLoginButton
+            // 
+            this.ForgetAutoLoginButton.Location = new System.Drawing.Point(139, 56);
+            this.ForgetAutoLoginButton.Name = "ForgetAutoLoginButton";
+            this.ForgetAutoLoginButton.Size = new System.Drawing.Size(130, 23);
+            this.ForgetAutoLoginButton.TabIndex = 5;
+            this.ForgetAutoLoginButton.Text = "Forget Auto Login";
+            this.ForgetAutoLoginButton.UseVisualStyleBackColor = true;
+            this.ForgetAutoLoginButton.Click += new System.EventHandler(this.ForgetAutoLoginButton_Click);
             // 
             // groupBox2
             // 
@@ -300,16 +310,6 @@
             this.QuickHostSettingsbtn.TabIndex = 4;
             this.QuickHostSettingsbtn.Text = "Quick Host Settings";
             this.QuickHostSettingsbtn.UseVisualStyleBackColor = true;
-            // 
-            // ForgetAutoLoginButton
-            // 
-            this.ForgetAutoLoginButton.Location = new System.Drawing.Point(139, 56);
-            this.ForgetAutoLoginButton.Name = "ForgetAutoLoginButton";
-            this.ForgetAutoLoginButton.Size = new System.Drawing.Size(130, 23);
-            this.ForgetAutoLoginButton.TabIndex = 5;
-            this.ForgetAutoLoginButton.Text = "Forget Auto Login";
-            this.ForgetAutoLoginButton.UseVisualStyleBackColor = true;
-            this.ForgetAutoLoginButton.Click += new System.EventHandler(this.ForgetAutoLoginButton_Click);
             // 
             // Settings
             // 

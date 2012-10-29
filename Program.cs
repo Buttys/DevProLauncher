@@ -41,8 +41,8 @@ namespace YGOPro_Launcher
 
             if (CheckUpdates())
                 return;
-
-            CheckServerInfo();
+            if(!Config.DebugMode)
+                CheckServerInfo();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

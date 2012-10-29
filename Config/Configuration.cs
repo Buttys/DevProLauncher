@@ -9,8 +9,8 @@ namespace YGOPro_Launcher.Config
         public string ServerAddress = "85.214.205.124";
         public string UpdaterAddress = "http://dev.ygopro-online.net/launcher/checkversion.php";
         public string ServerInfoAddress = "http://dev.ygopro-online.net/launcher/serverinfo.php";
-        public int ServerPort = 6911;
-        public int GamePort = 6922;
+        public int ServerPort = 6922;
+        public int GamePort = 6911;
         public string GameExe = "ygopro_vs.exe";
         public string LauncherDir =  "";
         public string DefaultUsername = "";
@@ -129,7 +129,10 @@ namespace YGOPro_Launcher.Config
 
             if (DebugMode)
             {
+                ServerName = "Debug";
                 ServerAddress = "127.0.0.1";
+                ServerPort = 8922;
+                GamePort = 8911;
                 UpdaterAddress = "http://127.0.0.1/launcher/checkversion.php";
                 ServerInfoAddress = "http://127.0.0.1/launcher/ServerInfo.php";
             }
