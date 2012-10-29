@@ -15,12 +15,12 @@ namespace YGOPro_Launcher
         public Settings()
         {
             InitializeComponent();
-            Username.Text = Program.Config.DefualtUsername;
+            Username.Text = Program.Config.DefaultUsername;
             
             Antialias.Text = Program.Config.Antialias.ToString();
             EnableMusic.Checked = Program.Config.EnableMusic;
             EnableSound.Checked = Program.Config.EnableSound;
-            Enabled3d.Checked = Program.Config.Enabled3d;
+            Enabled3d.Checked = Program.Config.Enabled3D;
             Fullscreen.Checked = Program.Config.Fullscreen;
             if (Directory.Exists(Program.Config.LauncherDir + "deck/"))
             {
@@ -28,17 +28,17 @@ namespace YGOPro_Launcher
                 foreach (string deck in decks)
                     DefualtDeck.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
-            DefualtDeck.Text = Program.Config.DefualtDeck;
+            DefualtDeck.Text = Program.Config.DefaultDeck;
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            Program.Config.DefualtDeck = DefualtDeck.Text;
-            Program.Config.DefualtUsername = Username.Text;
+            Program.Config.DefaultDeck = DefualtDeck.Text;
+            Program.Config.DefaultUsername = Username.Text;
             Program.Config.Antialias = Convert.ToInt32(Antialias.Text);
             Program.Config.EnableSound = EnableSound.Checked;
             Program.Config.EnableMusic = EnableMusic.Checked;
-            Program.Config.Enabled3d = Enabled3d.Checked;
+            Program.Config.Enabled3D = Enabled3d.Checked;
             Program.Config.Fullscreen = Fullscreen.Checked;
 
             Program.Config.Save(Program.ConfigurationFilename);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using YGOPro_Launcher.Config;
 using YGOPro_Launcher.Login;
 
 namespace YGOPro_Launcher
@@ -21,7 +22,7 @@ namespace YGOPro_Launcher
             _connection = connection;
             _authenticator = authenticator;
 
-            UsernameInput.Text = _configuration.DefualtUsername;
+            UsernameInput.Text = _configuration.DefaultUsername;
             AutoLoginCheckBox.Checked = _configuration.AutoLogin;
             PasswordInput.KeyPress += new KeyPressEventHandler(PasswordInput_KeyPress);
         }
@@ -61,7 +62,7 @@ namespace YGOPro_Launcher
             _authenticator.Authenticate(UsernameInput.Text, LauncherHelper.EncodePassword(PasswordInput.Text));
             if (AutoLoginCheckBox.Checked)
             {
-                _configuration.DefualtUsername = UsernameInput.Text;
+                _configuration.DefaultUsername = UsernameInput.Text;
                 _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
                 _configuration.AutoLogin = AutoLoginCheckBox.Checked;
                 _configuration.Save(Program.ConfigurationFilename);
