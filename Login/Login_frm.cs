@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using YGOPro_Launcher.Config;
 using YGOPro_Launcher.Login;
 
 namespace YGOPro_Launcher

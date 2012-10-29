@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.IO;
 
-namespace YGOPro_Launcher
+namespace YGOPro_Launcher.Config
 {
     public class Configuration
     {

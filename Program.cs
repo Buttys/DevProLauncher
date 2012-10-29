@@ -4,6 +4,7 @@ using System;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
+using YGOPro_Launcher.Config;
 using YGOPro_Launcher.Login;
 
 namespace YGOPro_Launcher
