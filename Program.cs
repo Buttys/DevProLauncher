@@ -46,7 +46,7 @@ namespace YGOPro_Launcher
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            LoginService = new Authenticator(Config.DefualtUsername, Config.Password, ServerConnection, UserInfo);
+            LoginService = new Authenticator(Config.DefaultUsername, Config.Password, ServerConnection, UserInfo);
 
             if(!ServerConnection.Connect(Config.ServerAddress, Config.ServerPort))
             {
