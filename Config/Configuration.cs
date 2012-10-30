@@ -46,7 +46,9 @@ namespace YGOPro_Launcher.Config
 
                 string[] data = line.Split('=');
                 string variable = data[0].Trim().ToLower();
-                string value = data[1].Trim().ToLower();
+                string value = data[1].Trim();
+
+
                 switch (variable)
                 {
                     case "servername":
@@ -122,7 +124,18 @@ namespace YGOPro_Launcher.Config
                         AutoLogin = Convert.ToBoolean(value);
                         break;
                     case "password":
-                        Password = value;
+                        string builtpassword = "";
+                        if (data.Length > 2)
+                        {
+                            for (int i = 1; i < data.Length; i++)
+                            {
+                                if (data[i] == "")
+                                    builtpassword += "=";
+                                else
+                                    builtpassword += data[i].Trim();
+                            }
+                        }
+                        Password = builtpassword;
                         break;
                 }
             }
