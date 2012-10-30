@@ -8,6 +8,8 @@ namespace YGOPro_Launcher
     public partial class Login_frm : Form
     {
 
+        private readonly Configuration _configuration;
+
         private readonly NetClient _connection;
 
         private readonly Authenticator _authenticator;
@@ -16,11 +18,12 @@ namespace YGOPro_Launcher
         {
             InitializeComponent();
 
+            _configuration = configuration;
             _connection = connection;
             _authenticator = authenticator;
 
-            UsernameInput.Text = Program.Config.DefaultUsername;
-            AutoLoginCheckBox.Checked = Program.Config.AutoLogin;
+            UsernameInput.Text = _configuration.DefaultUsername;
+            AutoLoginCheckBox.Checked = _configuration.AutoLogin;
             PasswordInput.KeyPress += new KeyPressEventHandler(PasswordInput_KeyPress);
         }
 
@@ -59,10 +62,10 @@ namespace YGOPro_Launcher
             _authenticator.Authenticate(UsernameInput.Text, LauncherHelper.EncodePassword(PasswordInput.Text));
             if (AutoLoginCheckBox.Checked)
             {
-                Program.Config.DefaultUsername = UsernameInput.Text;
-                Program.Config.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
-                Program.Config.AutoLogin = AutoLoginCheckBox.Checked;
-                Program.Config.Save(Program.ConfigurationFilename);
+                _configuration.DefaultUsername = UsernameInput.Text;
+                _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
+                _configuration.AutoLogin = AutoLoginCheckBox.Checked;
+                _configuration.Save(Program.ConfigurationFilename);
             }
             DialogResult = DialogResult.OK;
         }
