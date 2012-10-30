@@ -24,12 +24,6 @@ namespace YGOPro_Launcher
             FilterActive.CheckedChanged += new EventHandler(FilterGames);
             FilterTextBox.TextChanged += new EventHandler(FilterGames);
             GameType.SelectedIndexChanged += new EventHandler(GameType_SelectedIndexChanged);
-            QuickBtn.Click += new EventHandler(QuickBtn_Click);
-            HostBtn.Click += new EventHandler(HostBtn_Click);
-            DeckBtn.Click += new EventHandler(DeckBtn_Click);
-            ReplaysBtn.Click += new EventHandler(ReplaysBtn_Click);
-            ProfileBtn.Click += new EventHandler(ProfileBtn_Click);
-            OptionsBtn.Click += new EventHandler(OptionsBtn_Click);
 
             Program.ServerConnection.AddRooms += new NetClient.ServerRooms(OnRoomsList);
             Program.ServerConnection.AddRoom += new NetClient.ServerRooms(OnRoomCreated);
@@ -45,7 +39,7 @@ namespace YGOPro_Launcher
                 foreach (string deck in decks)
                     DeckSelect.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
-            DeckSelect.Text = Program.Config.DefualtDeck;
+            DeckSelect.Text = Program.Config.DefaultDeck;
         }
 
         public void RequestUserWLD()
@@ -55,7 +49,7 @@ namespace YGOPro_Launcher
 
         private void DeckSelect_SelectedValueChanged(object sender, EventArgs e)
         {
-            Program.Config.DefualtDeck = DeckSelect.SelectedItem.ToString();
+            Program.Config.DefaultDeck = DeckSelect.SelectedItem.ToString();
             Program.Config.Save(Program.ConfigurationFilename);
         }
 
@@ -412,7 +406,6 @@ namespace YGOPro_Launcher
                 FilterTextBox.ForeColor = SystemColors.WindowFrame;
             }
         }
-
 
     }
 }

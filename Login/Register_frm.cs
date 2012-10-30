@@ -34,7 +34,7 @@ namespace YGOPro_Launcher
                 MessageBox.Show("Please enter username.");
                 return;
             }
-            Program.ServerConnection.SendPacket("REGISTER|" + UsernameInput.Text + "|" + LauncherHelper.EncodePassword(PasswordInput.Text) + "|" + LauncherHelper.GetUID());
+           Program.ServerConnection.SendPacket("REGISTER|" + UsernameInput.Text + "|" + LauncherHelper.EncodePassword(PasswordInput.Text) + "|" + LauncherHelper.GetUID());
         }
 
         private void RegisterResponse(string message)

@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.IO;
-using System.Windows.Forms;
 
-namespace YGOPro_Launcher
+namespace YGOPro_Launcher.Config
 {
     public class Configuration
     {
@@ -10,19 +9,21 @@ namespace YGOPro_Launcher
         public string ServerAddress = "85.214.205.124";
         public string UpdaterAddress = "http://dev.ygopro-online.net/launcher/checkversion.php";
         public string ServerInfoAddress = "http://dev.ygopro-online.net/launcher/serverinfo.php";
-        public int ServerPort = 6911;
-        public int GamePort = 6922;
-        public string GameEXE = "ygopro_vs.exe";
+        public int ServerPort = 6922;
+        public int GamePort = 6911;
+        public string GameExe = "ygopro_vs.exe";
         public string LauncherDir =  "";
-        public string DefualtUsername = "";
-        public string DefualtDeck = "";
+        public string DefaultUsername = "";
+        public string DefaultDeck = "";
         public bool EnableSound = true;
         public bool EnableMusic = true;
-        public bool Enabled3d = true;
+        public bool Enabled3D = true;
         public int Antialias = 0;
+        public bool AutoLogin = false;
         public bool Fullscreen = false;
-        public string TextFont = "fonts/arialuni.ttf";
-        public int TextSize = 12;
+        public string TextFont = "fonts/arialuni.ttf"; //only ger
+        public int TextSize = 12; //only ger
+        public string Password = "";
 
         //quickhost settings
         public string CardRules = "OCG/TCG";
@@ -37,22 +38,15 @@ namespace YGOPro_Launcher
         public void Load(string configFileName)
         {
             if (!File.Exists(configFileName))
-            {
-                MessageBox.Show("File " + configFileName + " was not found. Using default settings.");
                 return;
-            }
 
-            StreamReader reader = new StreamReader(File.OpenRead(configFileName));
-            while (!reader.EndOfStream)
-            {
-                string line = reader.ReadLine();
-                if (line == null) continue;
-                line = line.Trim();
-                if (line.Equals(string.Empty)) continue;
-                if (!line.Contains("=")) continue;
-                if (line.StartsWith("#")) continue;
+            var lines = File.ReadAllLines(configFileName);
 
-                string[] data = line.Split(new char[] {'='}, 2);
+            foreach (string nonTrimmerLine in lines) {
+                string line = nonTrimmerLine.Trim();
+                if (line.Equals(string.Empty) || !line.Contains("=") || line.StartsWith("#")) continue;
+
+                string[] data = line.Split('=');
                 string variable = data[0].Trim().ToLower();
                 string value = data[1].Trim();
                 switch (variable)
@@ -73,7 +67,7 @@ namespace YGOPro_Launcher
                         GamePort = Convert.ToInt32(value);
                         break;
                     case "gameexe":
-                        GameEXE = value;
+                        GameExe = value;
                         break;
                     case "launcherdir":
                         LauncherDir = value;
@@ -82,10 +76,10 @@ namespace YGOPro_Launcher
                         UpdaterAddress = value;
                         break;
                     case "defualtusername":
-                        DefualtUsername = value;
+                        DefaultUsername = value;
                         break;
                     case "defualtdeck":
-                        DefualtDeck = value;
+                        DefaultDeck = value;
                         break;
                     case "enablesound":
                         EnableSound = Convert.ToBoolean(value);
@@ -94,7 +88,7 @@ namespace YGOPro_Launcher
                         EnableMusic = Convert.ToBoolean(value);
                         break;
                     case "enabled3d":
-                        Enabled3d = Convert.ToBoolean(value);
+                        Enabled3D = Convert.ToBoolean(value);
                         break;
                     case "antialias":
                         Antialias = Convert.ToInt32(value);
@@ -132,13 +126,34 @@ namespace YGOPro_Launcher
                     case "debugmode":
                         DebugMode = Convert.ToBoolean(value);
                         break;
+                    case "autologin":
+                        AutoLogin = Convert.ToBoolean(value);
+                        break;
+                    case "password":
+                        string builtpassword = "";
+                        if (data.Length > 2)
+                        {
+                            for (int i = 1; i < data.Length; i++)
+                            {
+                                if (data[i] == "")
+                                    builtpassword += "=";
+                                else
+                                    builtpassword += data[i].Trim();
+                            }
+                            Password = builtpassword;
+                        }
+                        else
+                            Password = value;
+                        break;
                 }
             }
-            reader.Close();
 
             if (DebugMode)
             {
+                ServerName = "Debug";
                 ServerAddress = "127.0.0.1";
+                ServerPort = 8922;
+                GamePort = 8911;
                 UpdaterAddress = "http://127.0.0.1/launcher/checkversion.php";
                 ServerInfoAddress = "http://127.0.0.1/launcher/ServerInfo.php";
             }
@@ -160,23 +175,25 @@ namespace YGOPro_Launcher
             writer.WriteLine("");
             writer.WriteLine("#Game Settings");
             writer.WriteLine("launcherdir = " + LauncherDir);
-            writer.WriteLine("gameexe = " + GameEXE);
-            writer.WriteLine("defualtusername = " + DefualtUsername);
-            writer.WriteLine("defualtdeck = " + DefualtDeck);
+            writer.WriteLine("gameexe = " + GameExe);
+            writer.WriteLine("defualtusername = " + DefaultUsername);
+            writer.WriteLine("defualtdeck = " + DefaultDeck);
             writer.WriteLine("antialias = " + Antialias);
             writer.WriteLine("textfont = " + TextFont);
             writer.WriteLine("textsize = " + TextSize);
-            writer.WriteLine("enablesound = " + (EnableSound ? "true" : "false"));
-            writer.WriteLine("enablemusic = " + (EnableMusic ? "true" : "false"));
-            writer.WriteLine("enabled3d = " + (Enabled3d ? "true" : "false"));
-            writer.WriteLine("fullscreen = " + (Fullscreen ? "true" : "false"));
+            writer.WriteLine("enablesound = " + EnableSound);
+            writer.WriteLine("enablemusic = " + EnableMusic);
+            writer.WriteLine("enabled3d = " + Enabled3D);
+            writer.WriteLine("fullscreen = " + Fullscreen);
+            writer.WriteLine("autologin = " + AutoLogin);
+            writer.WriteLine("password = " + Password);
             writer.WriteLine("");
             writer.WriteLine("#Quick Host Settings");
             writer.WriteLine("cardrules = " + CardRules);
             writer.WriteLine("mode = " + Mode);
-            writer.WriteLine("enableprority = " + (EnablePrority ? "true":"false"));
-            writer.WriteLine("disablecheckdeck = " + (DisableCheckDeck ? "true" : "false"));
-            writer.WriteLine("disableshuffledeck = " + (DisableShuffleDeck ? "true" : "false"));
+            writer.WriteLine("enableprority = " + EnablePrority);
+            writer.WriteLine("disablecheckdeck = " + DisableCheckDeck);
+            writer.WriteLine("disableshuffledeck = " + DisableShuffleDeck);
             writer.WriteLine("lifepoints = " + Lifepoints);
             writer.WriteLine("gamename = " + GameName);
 

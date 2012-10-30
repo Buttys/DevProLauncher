@@ -33,7 +33,7 @@ namespace YGOPro_Launcher
             AboutTab.Controls.Add(new About_frm());
 
             ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
-                CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro,ygopro-german"),
+                CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro"),
                 FileManager, CustomizeTab, AboutTab });
 
         }

@@ -15,35 +15,35 @@ namespace YGOPro_Launcher
         public Settings()
         {
             InitializeComponent();
-            Username.Text = Program.Config.DefualtUsername;
+            Username.Text = Program.Config.DefaultUsername;
             
             Antialias.Text = Program.Config.Antialias.ToString();
             EnableMusic.Checked = Program.Config.EnableMusic;
             EnableSound.Checked = Program.Config.EnableSound;
-            Enabled3d.Checked = Program.Config.Enabled3d;
+            Enabled3d.Checked = Program.Config.Enabled3D;
             Fullscreen.Checked = Program.Config.Fullscreen;
-            tbTextFont.Text = Program.Config.TextFont;
-            tbTextSize.Text = Program.Config.TextSize.ToString();
+            tbTextFont.Text = Program.Config.TextFont;  //only ger
+            tbTextSize.Text = Program.Config.TextSize.ToString(); //only ger
             if (Directory.Exists(Program.Config.LauncherDir + "deck/"))
             {
                 string[] decks = Directory.GetFiles(Program.Config.LauncherDir + "deck/");
                 foreach (string deck in decks)
                     DefualtDeck.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
-            DefualtDeck.Text = Program.Config.DefualtDeck;
+            DefualtDeck.Text = Program.Config.DefaultDeck;
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            Program.Config.DefualtDeck = DefualtDeck.Text;
-            Program.Config.DefualtUsername = Username.Text;
+            Program.Config.DefaultDeck = DefualtDeck.Text;
+            Program.Config.DefaultUsername = Username.Text;
             Program.Config.Antialias = Convert.ToInt32(Antialias.Text);
             Program.Config.EnableSound = EnableSound.Checked;
             Program.Config.EnableMusic = EnableMusic.Checked;
-            Program.Config.Enabled3d = Enabled3d.Checked;
+            Program.Config.Enabled3D = Enabled3d.Checked;
             Program.Config.Fullscreen = Fullscreen.Checked;
-            Program.Config.TextFont = tbTextFont.Text;
-            Program.Config.TextSize = Convert.ToInt32(tbTextSize.Text);
+            Program.Config.TextFont = tbTextFont.Text; //only ger
+            Program.Config.TextSize = Convert.ToInt32(tbTextSize.Text); //only ger
 
             Program.Config.Save(Program.ConfigurationFilename);
             DialogResult = DialogResult.OK;
@@ -67,6 +67,16 @@ namespace YGOPro_Launcher
                 Program.Config.GameName = form.GameName.Text;
             }
 
+        }
+
+        private void ForgetAutoLoginButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you really want to forget auto login credentials?", "Confirmation required", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                Program.Config.Password = "";
+                Program.Config.AutoLogin = false;
+                Program.Config.Save(Program.ConfigurationFilename);
+            }
         }
     }
 }

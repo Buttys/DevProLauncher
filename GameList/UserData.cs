@@ -2,8 +2,8 @@
 {
     public class UserData
     {
-        public string Username;
-        public string LoginKey;
+        public string Username = "";
+        public string LoginKey = "";
         public int Rank;
     }
 }

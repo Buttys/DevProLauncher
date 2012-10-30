@@ -1,22 +1,25 @@
-﻿
-
+﻿using System.Threading;
 using System.Windows.Forms;
 using System;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
+using YGOPro_Launcher.Config;
+using YGOPro_Launcher.Login;
+
 namespace YGOPro_Launcher
 {
     static class Program
     {
 
-        public static string Version = "241000";
+        public static string Version = "250000";
         public static Configuration Config;
         public static NetClient ServerConnection;
         public static UserData UserInfo;
         public static string ConfigurationFilename = "launcher.conf";
         //public static Main MainForm;
         public static Login_frm LoginWindow;
+        public static Authenticator LoginService;
 
         /// <summary>
         /// The main entry point for the application.
@@ -31,25 +34,45 @@ namespace YGOPro_Launcher
                     return;
 
             Config = new Configuration();
-            UserInfo = new UserData();
             Config.Load(Program.ConfigurationFilename);
+
+            UserInfo = new UserData();
+            ServerConnection = new NetClient();
+
             if (CheckUpdates())
                 return;
-
-            CheckServerInfo();
+            if(!Config.DebugMode)
+                CheckServerInfo();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ServerConnection = new NetClient();
+            LoginService = new Authenticator(Config.DefaultUsername, Config.Password, ServerConnection, UserInfo);
 
             if(!ServerConnection.Connect(Config.ServerAddress, Config.ServerPort))
             {
                 MessageBox.Show("Error Connecting to server");
             }
 
-            LoginWindow = new Login_frm();
-            if (LoginWindow.ShowDialog() != DialogResult.OK)
+            if (Config.AutoLogin)
+            {
+                LoginService.Authenticate();
+                Thread.Sleep(2000);
+            }
+
+            if (UserInfo.Username == "" && UserInfo.LoginKey == "")
+            {
+                LoginWindow = new Login_frm(Config, ServerConnection, LoginService);
+
+                if (LoginWindow.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                Thread.Sleep(2000);
+            }
+
+            if (!ServerConnection.IsConnected)
             {
                 return;
             }
@@ -140,6 +163,8 @@ namespace YGOPro_Launcher
         {
             Exception exception = e.ExceptionObject as Exception ?? new Exception();
 
+            MessageBox.Show("Oooops! Something bad happened! Software will now exit!");
+           
             File.WriteAllText("crash_" + DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt", exception.ToString());
             
             Console.WriteLine(exception.ToString());
