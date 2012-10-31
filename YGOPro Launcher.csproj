@@ -165,15 +165,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ICSharpCode.SharpZipLib.dll" />
+    <None Include="Resources\ygo.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\YgoUpdater.exe" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ygo.ico" />
+    <None Include="Resources\ICSharpCode.SharpZipLib.dll" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
