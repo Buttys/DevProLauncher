@@ -41,6 +41,8 @@ namespace YGOPro_Launcher
                 gamestring = "2";
             else if ((this.CardRules.Text == "Anime"))
                 gamestring = "4";
+            else if ((this.CardRules.Text == "Turbo Duel"))
+                gamestring = "5";
             else
                 gamestring = "3";
             if ((this.Mode.Text == "Single"))
@@ -65,6 +67,11 @@ namespace YGOPro_Launcher
             gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U") + "," + GameName.Text;
 
             return "ygopro:/" + server + "/" + port + "/" + gamestring;
+        }
+
+        private void HostBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

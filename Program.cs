@@ -12,7 +12,7 @@ namespace YGOPro_Launcher
     static class Program
     {
 
-        public static string Version = "250000";
+        public static string Version = "251000";
         public static Configuration Config;
         public static NetClient ServerConnection;
         public static UserData UserInfo;
@@ -38,11 +38,14 @@ namespace YGOPro_Launcher
 
             UserInfo = new UserData();
             ServerConnection = new NetClient();
+            
+            if (!Config.DebugMode)
+            {
+                if (CheckUpdates())
+                    return;
 
-            if (CheckUpdates())
-                return;
-            if(!Config.DebugMode)
                 CheckServerInfo();
+            }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

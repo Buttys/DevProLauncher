@@ -216,6 +216,7 @@ namespace YGOPro_Launcher
             if (room.Rule == 1) rule = "TCG";
             if (room.Rule == 0) rule = "OCG";
             if (room.Rule == 4) rule = "Anime";
+            if (room.Rule == 5) rule = "Turbo Duel";
             item.SubItems.Add(rule);
 
             string type = "Single";
@@ -232,9 +233,11 @@ namespace YGOPro_Launcher
 
             item.BackColor = room.Started ? Color.LightGray :
                 (illegal ? Color.LightCoral :
+                (room.Rule == 4 ? Color.Violet:
+                (room.Rule == 5 ? Color.Gold:
                 (room.Mode == 2 ? Color.LightGreen :
                 (room.Mode == 1 ? Color.LightSteelBlue :
-                Color.LightBlue)));
+                Color.LightBlue)))));
 
 
             if (FilterActive.Checked)
