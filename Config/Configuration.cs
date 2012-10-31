@@ -24,6 +24,7 @@ namespace YGOPro_Launcher.Config
         public string TextFont = "fonts/arialuni.ttf"; //only ger
         public int TextSize = 12; //only ger
         public string Password = "";
+        public string language = "";
 
         //quickhost settings
         public string CardRules = "OCG/TCG";
@@ -53,6 +54,9 @@ namespace YGOPro_Launcher.Config
                 {
                     case "servername":
                         ServerName = value;
+                        break;
+                    case "language":
+                        language = value;
                         break;
                     case "serverport":
                         ServerPort = Convert.ToInt32(value);
@@ -174,6 +178,7 @@ namespace YGOPro_Launcher.Config
             writer.WriteLine("serverinfoaddress = " + ServerInfoAddress);
             writer.WriteLine("");
             writer.WriteLine("#Game Settings");
+            writer.WriteLine("Language = " + language);
             writer.WriteLine("launcherdir = " + LauncherDir);
             writer.WriteLine("gameexe = " + GameExe);
             writer.WriteLine("defualtusername = " + DefaultUsername);

@@ -7,12 +7,13 @@ namespace YGOPro_Launcher
 {
     public partial class Login_frm : Form
     {
-
         private readonly Configuration _configuration;
 
         private readonly NetClient _connection;
 
         private readonly Authenticator _authenticator;
+
+        Language _language = new Language();
 
         internal Login_frm(Configuration configuration, NetClient connection, Authenticator authenticator)
         {
@@ -25,6 +26,20 @@ namespace YGOPro_Launcher
             UsernameInput.Text = _configuration.DefaultUsername;
             AutoLoginCheckBox.Checked = _configuration.AutoLogin;
             PasswordInput.KeyPress += new KeyPressEventHandler(PasswordInput_KeyPress);
+
+            sprache.Text = Program.Config.language;
+            newText();
+        }
+
+        private void newText()
+        {
+            _language.Load(Program.Config.language + ".conf");
+            label1.Text = _language.LoginUserName;
+            label2.Text = _language.LoginPassWord;
+            label3.Text = _language.LoginLanguage;
+            LoginBtn.Text = _language.LoginLoginButton;
+            RegisterBtn.Text = _language.LoginRegisterButton;
+            AutoLoginCheckBox.Text = _language.LoginAutoLogin;
         }
 
         private void PasswordInput_KeyPress(object sender, KeyPressEventArgs e)
@@ -43,19 +58,21 @@ namespace YGOPro_Launcher
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
+            
+
             if (!_connection.IsConnected)
             {
-                MessageBox.Show("Not connected to the server.");
+                MessageBox.Show(_language.LoginMsb1);
                 return;
             }
             if (UsernameInput.Text == "")
             {
-                MessageBox.Show("Please enter username.");
+                MessageBox.Show(_language.LoginMsb1);
                 return;
             }
             if (PasswordInput.Text == "")
             {
-                MessageBox.Show("Please enter password.");
+                MessageBox.Show(_language.LoginMsb1);
                 return;
             }
 
@@ -70,7 +87,39 @@ namespace YGOPro_Launcher
             DialogResult = DialogResult.OK;
         }
 
+        private void sprache_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Program.Config.language = sprache.Text;
 
+            switch (Program.Config.language)
+            {
+                case "english":
+                    Program.Config.language = "english";
+                    newText();
+                    break;
+                case "german":
+                    Program.Config.language = "german";
+                    newText();
+                    break;
+                case "spain":
+                    Program.Config.language = "spain";
+                    newText();
+                    break;
+                case "french":
+                    Program.Config.language = "french";
+                    newText();
+                    break;
+                case "italy":
+                    Program.Config.language = "italy";
+                    newText();
+                    break;
+                default:
+                    Program.Config.language = "english";
+                    newText();
+                    break;
+            }
 
+            
+        }
     }
 }
