@@ -91,7 +91,7 @@ namespace YGOPro_Launcher
         {
             string updateLink = Config.UpdaterAddress;
             const string updaterName = "YgoUpdater.exe";
-            const string dllName = "ICSharpCode_SharpZipLib.dll";
+            const string dllName = "ICSharpCode.SharpZipLib.dll";
             WebClient client = new WebClient { Proxy = null };
             string result = "";
             try
