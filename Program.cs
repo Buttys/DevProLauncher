@@ -12,7 +12,7 @@ namespace YGOPro_Launcher
     static class Program
     {
 
-        public static string Version = "251000";
+        public static string Version = "251100";
         public static Configuration Config;
         public static NetClient ServerConnection;
         public static UserData UserInfo;
