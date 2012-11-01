@@ -179,7 +179,7 @@ namespace YGOPro_Launcher.Config
             writer.WriteLine("");
             writer.WriteLine("#Game Settings");
             writer.WriteLine("language = " + language);
-            writer.WriteLine("textfont = fonts/" + TextFont);
+            writer.WriteLine("textfont = " + TextFont);
             writer.WriteLine("textsize = " + TextSize);
             writer.WriteLine("launcherdir = " + LauncherDir);
             writer.WriteLine("gameexe = " + GameExe);

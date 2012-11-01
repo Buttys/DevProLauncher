@@ -133,7 +133,7 @@ namespace YGOPro_Launcher
             writer.WriteLine("gamename = " + GameName);
             writer.WriteLine(("roompass ="));
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
-            writer.WriteLine(("textfont = " + Program.Config.TextFont + " " + Convert.ToInt32(Program.Config.TextSize)));
+            writer.WriteLine(("textfont = fonts/" + Program.Config.TextFont + " " + Convert.ToInt32(Program.Config.TextSize)));
             writer.WriteLine("numfont = fonts/arialbd.ttf");
             writer.WriteLine(("serverport = " + Program.Config.GamePort));
             writer.WriteLine(("lastip = " + Program.Config.ServerAddress));
