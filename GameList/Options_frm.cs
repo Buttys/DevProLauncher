@@ -12,6 +12,8 @@ namespace YGOPro_Launcher
 {
     public partial class Settings : Form
     {
+        private Language lang = new Language();
+
         public Settings()
         {
             InitializeComponent();
@@ -22,8 +24,8 @@ namespace YGOPro_Launcher
             EnableSound.Checked = Program.Config.EnableSound;
             Enabled3d.Checked = Program.Config.Enabled3D;
             Fullscreen.Checked = Program.Config.Fullscreen;
-            tbTextFont.Text = Program.Config.TextFont;  //only ger
-            tbTextSize.Text = Program.Config.TextSize.ToString(); //only ger
+            nUDFontsize.Text = Program.Config.TextSize.ToString();
+            cBTextfont.Text = Program.Config.TextFont;
             if (Directory.Exists(Program.Config.LauncherDir + "deck/"))
             {
                 string[] decks = Directory.GetFiles(Program.Config.LauncherDir + "deck/");
@@ -31,6 +33,28 @@ namespace YGOPro_Launcher
                     DefualtDeck.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
             DefualtDeck.Text = Program.Config.DefaultDeck;
+            lang.Load(Program.Config.language + ".conf");
+            newText();
+        }
+
+        private void newText()
+        {
+            groupBox1.Text = lang.optionGb1;
+            groupBox2.Text = lang.optionGb2;
+            groupBox3.Text = lang.optionGb3;
+            label1.Text = lang.optionUser;
+            label5.Text = lang.optionDeck;
+            ForgetAutoLoginButton.Text = lang.optionBtnAutoLogin;
+            label4.Text = lang.optionAntialias;
+            EnableSound.Text = lang.optionCbSound;
+            EnableMusic.Text = lang.optionCbMusic;
+            Enabled3d.Text = lang.optionCbDirect;
+            Fullscreen.Text = lang.optionCbFull;
+            label2.Text = lang.optionTexts;
+            label3.Text = lang.optionTextf;
+            QuickSettingsBtn.Text = lang.optionBtnQuick;
+            SaveBtn.Text = lang.optionBtnSave;
+            CancelBtn.Text = lang.optionBtnCancel;
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
@@ -42,8 +66,8 @@ namespace YGOPro_Launcher
             Program.Config.EnableMusic = EnableMusic.Checked;
             Program.Config.Enabled3D = Enabled3d.Checked;
             Program.Config.Fullscreen = Fullscreen.Checked;
-            Program.Config.TextFont = tbTextFont.Text; //only ger
-            Program.Config.TextSize = Convert.ToInt32(tbTextSize.Text); //only ger
+            Program.Config.TextFont = cBTextfont.Text;
+            Program.Config.TextSize = Convert.ToInt32(nUDFontsize.Text);
 
             Program.Config.Save(Program.ConfigurationFilename);
             DialogResult = DialogResult.OK;
@@ -53,8 +77,8 @@ namespace YGOPro_Launcher
         private void QuickSettingsBtn_Click(object sender, EventArgs e)
         {
             Host form = new Host();
-            form.Text = "Quick Host Settings";
-            form.HostBtn.Text = "Confirm";
+            form.Text = lang.QuickHostSetting;
+            form.HostBtn.Text = lang.QuickHostBtn;
 
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -71,7 +95,7 @@ namespace YGOPro_Launcher
 
         private void ForgetAutoLoginButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you really want to forget auto login credentials?", "Confirmation required", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show(lang.optionMsbForget, "Confirmation required", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 Program.Config.Password = "";
                 Program.Config.AutoLogin = false;

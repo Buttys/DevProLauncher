@@ -21,10 +21,10 @@ namespace YGOPro_Launcher.Config
         public int Antialias = 0;
         public bool AutoLogin = false;
         public bool Fullscreen = false;
-        public string TextFont = "fonts/arialuni.ttf"; //only ger
-        public int TextSize = 12; //only ger
         public string Password = "";
-        public string language = "";
+        public string TextFont = "simhei.ttf"; //only ger
+        public int TextSize = 14; //only ger
+        public string language = "english"; // confirm Language
 
         //quickhost settings
         public string CardRules = "OCG/TCG";
@@ -55,9 +55,6 @@ namespace YGOPro_Launcher.Config
                     case "servername":
                         ServerName = value;
                         break;
-                    case "language":
-                        language = value;
-                        break;
                     case "serverport":
                         ServerPort = Convert.ToInt32(value);
                         break;
@@ -69,6 +66,9 @@ namespace YGOPro_Launcher.Config
                         break;
                     case "gameport":
                         GamePort = Convert.ToInt32(value);
+                        break;
+                    case "language":
+                        language = value;
                         break;
                     case "gameexe":
                         GameExe = value;
@@ -156,8 +156,8 @@ namespace YGOPro_Launcher.Config
             {
                 ServerName = "Debug";
                 ServerAddress = "127.0.0.1";
-                ServerPort = 8922;
-                GamePort = 8911;
+                ServerPort = 7922;
+                GamePort = 7911;
                 UpdaterAddress = "http://127.0.0.1/launcher/checkversion.php";
                 ServerInfoAddress = "http://127.0.0.1/launcher/ServerInfo.php";
             }
@@ -178,14 +178,14 @@ namespace YGOPro_Launcher.Config
             writer.WriteLine("serverinfoaddress = " + ServerInfoAddress);
             writer.WriteLine("");
             writer.WriteLine("#Game Settings");
-            writer.WriteLine("Language = " + language);
+            writer.WriteLine("language = " + language);
+            writer.WriteLine("textfont = fonts/" + TextFont);
+            writer.WriteLine("textsize = " + TextSize);
             writer.WriteLine("launcherdir = " + LauncherDir);
             writer.WriteLine("gameexe = " + GameExe);
             writer.WriteLine("defualtusername = " + DefaultUsername);
             writer.WriteLine("defualtdeck = " + DefaultDeck);
             writer.WriteLine("antialias = " + Antialias);
-            writer.WriteLine("textfont = " + TextFont);
-            writer.WriteLine("textsize = " + TextSize);
             writer.WriteLine("enablesound = " + EnableSound);
             writer.WriteLine("enablemusic = " + EnableMusic);
             writer.WriteLine("enabled3d = " + Enabled3D);

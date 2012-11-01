@@ -11,6 +11,8 @@ namespace YGOPro_Launcher
 {
     public partial class Host : Form
     {
+        private Language lang = new Language();
+
         public Host()
         {
             InitializeComponent();
@@ -18,6 +20,23 @@ namespace YGOPro_Launcher
             Mode.SelectedIndex = 0;
             GameName.Text = LauncherHelper.GenerateString().Substring(0, 5);
             Mode.SelectedIndexChanged += DuelModeChanged;
+            lang.Load(Program.Config.language + ".conf");
+            newText();
+        }
+
+        private void newText()
+        {
+            groupBox1.Text = lang.hostGb1;
+            groupBox2.Text = lang.hostGb2;
+            label3.Text = lang.hostRules;
+            label4.Text = lang.hostMode;
+            Priority.Text = lang.hostPrio;
+            CheckDeck.Text = lang.hostCheckDeck;
+            ShuffleDeck.Text = lang.hostShuffle;
+            label1.Text = lang.hostLifep;
+            label2.Text = lang.hostGameN;
+            HostBtn.Text = lang.hostBtnHost;
+            CancelBtn.Text = lang.hostBtnCancel;
         }
 
         private void DuelModeChanged(object sender, EventArgs e)
@@ -41,6 +60,8 @@ namespace YGOPro_Launcher
                 gamestring = "2";
             else if ((this.CardRules.Text == "Anime"))
                 gamestring = "4";
+            else if ((this.CardRules.Text == "Turbo Duel"))
+                gamestring = "5";
             else
                 gamestring = "3";
             if ((this.Mode.Text == "Single"))
@@ -65,6 +86,11 @@ namespace YGOPro_Launcher
             gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U") + "," + GameName.Text;
 
             return "ygopro:/" + server + "/" + port + "/" + gamestring;
+        }
+
+        private void HostBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

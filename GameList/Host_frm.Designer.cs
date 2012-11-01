@@ -250,7 +250,8 @@
             "OCG/TCG",
             "OCG",
             "TCG",
-            "Anime"});
+            "Anime",
+            "Turbo Duel"});
             this.CardRules.Location = new System.Drawing.Point(106, 3);
             this.CardRules.Name = "CardRules";
             this.CardRules.Size = new System.Drawing.Size(138, 21);
@@ -320,6 +321,7 @@
             this.HostBtn.TabIndex = 0;
             this.HostBtn.Text = "Host";
             this.HostBtn.UseVisualStyleBackColor = true;
+            this.HostBtn.Click += new System.EventHandler(this.HostBtn_Click);
             // 
             // Host
             // 

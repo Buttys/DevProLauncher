@@ -9,6 +9,7 @@ namespace YGOPro_Launcher
     {
 
         private Dictionary<string, ListViewItem> m_rooms;
+        private Language lang = new Language();
 
         public ServerInterface_frm(string ServerName)
         {
@@ -32,6 +33,8 @@ namespace YGOPro_Launcher
             Program.ServerConnection.UpdateRoomPlayers += new NetClient.ServerResponse(OnRoomPlayersUpdate);
 
             Username.Text = Program.UserInfo.Username;
+            lang.Load(Program.Config.language + ".conf");
+            newText();
 
             if (Directory.Exists(Program.Config.LauncherDir + "deck/"))
             {
@@ -40,6 +43,26 @@ namespace YGOPro_Launcher
                     DeckSelect.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
             DeckSelect.Text = Program.Config.DefaultDeck;
+        }
+
+        private void newText()
+        {
+            groupBox1.Text = lang.GameServerInfo;
+            label1.Text = "# " + lang.GameofRooms;
+            label2.Text = "# " + lang.GameofUnranked;
+            label3.Text = "# " + lang.GameofRanked;
+            label5.Text = "# " + lang.GameofOpenRooms;
+            label4.Text = "# " + lang.GameofPlayers;
+
+            FilterActive.Text = lang.GameFilterActive;
+
+            ColumnRoomName.Text = lang.GameColumnRoomName;
+            ColumnType.Text = lang.GameColumnType;
+            ColumnRules.Text = lang.GameColumnRules;
+            ColumnMode.Text = lang.GameColumnMode;
+            ColumnState.Text = lang.GameColumnState;
+            ColumnPlayers.Text = lang.GameColumnPlayers;
+
         }
 
         public void RequestUserWLD()
@@ -216,6 +239,7 @@ namespace YGOPro_Launcher
             if (room.Rule == 1) rule = "TCG";
             if (room.Rule == 0) rule = "OCG";
             if (room.Rule == 4) rule = "Anime";
+            if (room.Rule == 5) rule = "Turbo Duel";
             item.SubItems.Add(rule);
 
             string type = "Single";
@@ -232,9 +256,11 @@ namespace YGOPro_Launcher
 
             item.BackColor = room.Started ? Color.LightGray :
                 (illegal ? Color.LightCoral :
+                (room.Rule == 4 ? Color.Violet:
+                (room.Rule == 5 ? Color.Gold:
                 (room.Mode == 2 ? Color.LightGreen :
                 (room.Mode == 1 ? Color.LightSteelBlue :
-                Color.LightBlue)));
+                Color.LightBlue)))));
 
 
             if (FilterActive.Checked)
