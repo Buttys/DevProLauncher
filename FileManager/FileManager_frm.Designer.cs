@@ -113,15 +113,15 @@
             this.RenameBtn.Text = "Rename";
             this.RenameBtn.UseVisualStyleBackColor = true;
             // 
-            // FileManagerDesign
+            // FileManager_frm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(810, 451);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Arial Unicode MS", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FileManagerDesign";
+            this.Name = "FileManager_frm";
             this.Text = "FileManagerDesign";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
