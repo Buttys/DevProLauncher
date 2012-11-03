@@ -15,6 +15,7 @@ namespace YGOPro_Launcher
     {
         private string FileLocation;
         private string FileType;
+        private object InfoWindow;
 
         public FileManager_frm(string name, string dir, string filetype)
         {
@@ -25,11 +26,25 @@ namespace YGOPro_Launcher
             FileLocation = dir;
             FileType = filetype;
             RefreshFileList();
+            Name = name;
+            if (name == "Decks")
+            {
+                    InfoWindow = new CardInfoControl();
+                    tableLayoutPanel1.Controls.Add((CardInfoControl)InfoWindow, 1, 0);
+                
+            }
+            else if (name == "Replays")
+            {
+                InfoWindow = new ReplayInfoControl();
+                tableLayoutPanel1.Controls.Add((ReplayInfoControl)InfoWindow, 1, 0);
+            }
+
             this.FileList.MouseUp += new MouseEventHandler(this.OnListMouseUp);
             this.RenameBtn.Click += new EventHandler(RenameItem);
             this.DeleteBtn.Click += new EventHandler(DeleteItem);
             this.OpenBtn.Click += new EventHandler(OpenBtn_Click);
             this.GameBtn.Click += new EventHandler(GameBtn_Click);
+            this.FileList.SelectedIndexChanged +=new EventHandler(FileList_SelectedIndexChanged);
         }
 
         private void OpenBtn_Click(object sender, EventArgs e)
@@ -145,9 +160,14 @@ namespace YGOPro_Launcher
                     strip.Show(this, e.Location);
                 }
             }
+        }
 
-
-
+        private void FileList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Name == "Decks")
+            {
+                ((CardInfoControl)InfoWindow).LoadDeck(Path.GetDirectoryName(Application.ExecutablePath) + "/" + FileLocation +  FileList.SelectedItem.ToString() + ".ydk");
+            }
         }
         
     }

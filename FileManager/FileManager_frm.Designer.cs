@@ -31,6 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.FileList = new System.Windows.Forms.ListBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ImportBtn = new System.Windows.Forms.Button();
             this.GameBtn = new System.Windows.Forms.Button();
             this.OpenBtn = new System.Windows.Forms.Button();
             this.DeleteBtn = new System.Windows.Forms.Button();
@@ -41,11 +42,12 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94F));
             this.tableLayoutPanel1.Controls.Add(this.FileList, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -61,25 +63,35 @@
             this.FileList.ItemHeight = 15;
             this.FileList.Location = new System.Drawing.Point(3, 3);
             this.FileList.Name = "FileList";
-            this.FileList.Size = new System.Drawing.Size(709, 445);
+            this.FileList.Size = new System.Drawing.Size(492, 445);
             this.FileList.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Controls.Add(this.ImportBtn);
             this.flowLayoutPanel1.Controls.Add(this.GameBtn);
             this.flowLayoutPanel1.Controls.Add(this.OpenBtn);
             this.flowLayoutPanel1.Controls.Add(this.DeleteBtn);
             this.flowLayoutPanel1.Controls.Add(this.RenameBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(718, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(719, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(89, 445);
-            this.flowLayoutPanel1.TabIndex = 1;
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 445);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // ImportBtn
+            // 
+            this.ImportBtn.Location = new System.Drawing.Point(3, 415);
+            this.ImportBtn.Name = "ImportBtn";
+            this.ImportBtn.Size = new System.Drawing.Size(84, 27);
+            this.ImportBtn.TabIndex = 4;
+            this.ImportBtn.Text = "Import";
+            this.ImportBtn.UseVisualStyleBackColor = true;
             // 
             // GameBtn
             // 
-            this.GameBtn.Location = new System.Drawing.Point(3, 415);
+            this.GameBtn.Location = new System.Drawing.Point(3, 382);
             this.GameBtn.Name = "GameBtn";
             this.GameBtn.Size = new System.Drawing.Size(84, 27);
             this.GameBtn.TabIndex = 0;
@@ -88,7 +100,7 @@
             // 
             // OpenBtn
             // 
-            this.OpenBtn.Location = new System.Drawing.Point(3, 382);
+            this.OpenBtn.Location = new System.Drawing.Point(3, 349);
             this.OpenBtn.Name = "OpenBtn";
             this.OpenBtn.Size = new System.Drawing.Size(84, 27);
             this.OpenBtn.TabIndex = 1;
@@ -97,7 +109,7 @@
             // 
             // DeleteBtn
             // 
-            this.DeleteBtn.Location = new System.Drawing.Point(3, 349);
+            this.DeleteBtn.Location = new System.Drawing.Point(3, 316);
             this.DeleteBtn.Name = "DeleteBtn";
             this.DeleteBtn.Size = new System.Drawing.Size(84, 27);
             this.DeleteBtn.TabIndex = 2;
@@ -106,7 +118,7 @@
             // 
             // RenameBtn
             // 
-            this.RenameBtn.Location = new System.Drawing.Point(3, 316);
+            this.RenameBtn.Location = new System.Drawing.Point(3, 283);
             this.RenameBtn.Name = "RenameBtn";
             this.RenameBtn.Size = new System.Drawing.Size(84, 27);
             this.RenameBtn.TabIndex = 3;
@@ -138,6 +150,7 @@
         private System.Windows.Forms.Button OpenBtn;
         private System.Windows.Forms.Button DeleteBtn;
         private System.Windows.Forms.Button RenameBtn;
+        private System.Windows.Forms.Button ImportBtn;
 
     }
 }

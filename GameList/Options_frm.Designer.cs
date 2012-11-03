@@ -67,24 +67,21 @@
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 131F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 105F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(355, 301);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(284, 241);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(4, 4);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(347, 123);
+            this.groupBox1.Size = new System.Drawing.Size(278, 99);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "User Settings";
@@ -100,33 +97,30 @@
             this.tableLayoutPanel2.Controls.Add(this.label5, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.ForgetAutoLoginButton, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 19);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(339, 100);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 80);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // Username
             // 
             this.Username.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Username.Location = new System.Drawing.Point(173, 4);
-            this.Username.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Username.Location = new System.Drawing.Point(139, 3);
             this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(162, 22);
+            this.Username.Size = new System.Drawing.Size(130, 20);
             this.Username.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 6);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(22, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 17);
+            this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Default Username";
             // 
@@ -135,29 +129,26 @@
             this.DefualtDeck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.DefualtDeck.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DefualtDeck.FormattingEnabled = true;
-            this.DefualtDeck.Location = new System.Drawing.Point(173, 34);
-            this.DefualtDeck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DefualtDeck.Location = new System.Drawing.Point(139, 29);
             this.DefualtDeck.Name = "DefualtDeck";
-            this.DefualtDeck.Size = new System.Drawing.Size(162, 24);
+            this.DefualtDeck.Size = new System.Drawing.Size(130, 21);
             this.DefualtDeck.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 37);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(33, 33);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 17);
+            this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "Default Deck";
             // 
             // ForgetAutoLoginButton
             // 
-            this.ForgetAutoLoginButton.Location = new System.Drawing.Point(173, 66);
-            this.ForgetAutoLoginButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ForgetAutoLoginButton.Location = new System.Drawing.Point(139, 56);
             this.ForgetAutoLoginButton.Name = "ForgetAutoLoginButton";
-            this.ForgetAutoLoginButton.Size = new System.Drawing.Size(162, 29);
+            this.ForgetAutoLoginButton.Size = new System.Drawing.Size(130, 23);
             this.ForgetAutoLoginButton.TabIndex = 5;
             this.ForgetAutoLoginButton.Text = "Forget Auto Login";
             this.ForgetAutoLoginButton.UseVisualStyleBackColor = true;
@@ -167,11 +158,9 @@
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(4, 135);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(3, 108);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(347, 122);
+            this.groupBox2.Size = new System.Drawing.Size(278, 98);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Game Settings";
@@ -188,14 +177,13 @@
             this.tableLayoutPanel3.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.Antialias, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 19);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(339, 99);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(272, 79);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // Enabled3d
@@ -203,10 +191,9 @@
             this.Enabled3d.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Enabled3d.AutoSize = true;
             this.Enabled3d.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Enabled3d.Location = new System.Drawing.Point(44, 70);
-            this.Enabled3d.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Enabled3d.Location = new System.Drawing.Point(38, 56);
             this.Enabled3d.Name = "Enabled3d";
-            this.Enabled3d.Size = new System.Drawing.Size(121, 21);
+            this.Enabled3d.Size = new System.Drawing.Size(95, 17);
             this.Enabled3d.TabIndex = 2;
             this.Enabled3d.Text = "Enable Directx";
             this.Enabled3d.UseVisualStyleBackColor = true;
@@ -216,10 +203,9 @@
             this.Fullscreen.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Fullscreen.AutoSize = true;
             this.Fullscreen.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Fullscreen.Location = new System.Drawing.Point(173, 70);
-            this.Fullscreen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Fullscreen.Location = new System.Drawing.Point(139, 56);
             this.Fullscreen.Name = "Fullscreen";
-            this.Fullscreen.Size = new System.Drawing.Size(119, 21);
+            this.Fullscreen.Size = new System.Drawing.Size(92, 17);
             this.Fullscreen.TabIndex = 3;
             this.Fullscreen.Text = "Fullscreen      ";
             this.Fullscreen.UseVisualStyleBackColor = true;
@@ -229,10 +215,9 @@
             this.EnableMusic.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.EnableMusic.AutoSize = true;
             this.EnableMusic.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.EnableMusic.Location = new System.Drawing.Point(173, 36);
-            this.EnableMusic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EnableMusic.Location = new System.Drawing.Point(139, 29);
             this.EnableMusic.Name = "EnableMusic";
-            this.EnableMusic.Size = new System.Drawing.Size(114, 21);
+            this.EnableMusic.Size = new System.Drawing.Size(90, 17);
             this.EnableMusic.TabIndex = 1;
             this.EnableMusic.Text = "Enable Music";
             this.EnableMusic.UseVisualStyleBackColor = true;
@@ -242,10 +227,9 @@
             this.EnableSound.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EnableSound.AutoSize = true;
             this.EnableSound.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.EnableSound.Location = new System.Drawing.Point(46, 36);
-            this.EnableSound.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EnableSound.Location = new System.Drawing.Point(40, 29);
             this.EnableSound.Name = "EnableSound";
-            this.EnableSound.Size = new System.Drawing.Size(119, 21);
+            this.EnableSound.Size = new System.Drawing.Size(93, 17);
             this.EnableSound.TabIndex = 0;
             this.EnableSound.Text = "Enable Sound";
             this.EnableSound.UseVisualStyleBackColor = true;
@@ -254,18 +238,16 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(54, 7);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(45, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 17);
+            this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "Antialias";
             // 
             // Antialias
             // 
             this.Antialias.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Antialias.Location = new System.Drawing.Point(173, 4);
-            this.Antialias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Antialias.Location = new System.Drawing.Point(139, 3);
             this.Antialias.Maximum = new decimal(new int[] {
             32,
             0,
@@ -273,7 +255,7 @@
             0});
             this.Antialias.Name = "Antialias";
             this.Antialias.ReadOnly = true;
-            this.Antialias.Size = new System.Drawing.Size(162, 22);
+            this.Antialias.Size = new System.Drawing.Size(130, 20);
             this.Antialias.TabIndex = 5;
             this.Antialias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -284,29 +266,26 @@
             this.flowLayoutPanel1.Controls.Add(this.QuickSettingsBtn);
             this.flowLayoutPanel1.Controls.Add(this.QuickHostSettingsbtn);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 265);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 212);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(347, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(278, 28);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // CancelBtn
             // 
             this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelBtn.Location = new System.Drawing.Point(249, 4);
-            this.CancelBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CancelBtn.Location = new System.Drawing.Point(200, 3);
             this.CancelBtn.Name = "CancelBtn";
-            this.CancelBtn.Size = new System.Drawing.Size(94, 29);
+            this.CancelBtn.Size = new System.Drawing.Size(75, 23);
             this.CancelBtn.TabIndex = 1;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
             // 
             // SaveBtn
             // 
-            this.SaveBtn.Location = new System.Drawing.Point(147, 4);
-            this.SaveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SaveBtn.Location = new System.Drawing.Point(119, 3);
             this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(94, 29);
+            this.SaveBtn.Size = new System.Drawing.Size(75, 23);
             this.SaveBtn.TabIndex = 0;
             this.SaveBtn.Text = "Save";
             this.SaveBtn.UseVisualStyleBackColor = true;
@@ -314,10 +293,9 @@
             // 
             // QuickSettingsBtn
             // 
-            this.QuickSettingsBtn.Location = new System.Drawing.Point(205, 41);
-            this.QuickSettingsBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.QuickSettingsBtn.Location = new System.Drawing.Point(3, 3);
             this.QuickSettingsBtn.Name = "QuickSettingsBtn";
-            this.QuickSettingsBtn.Size = new System.Drawing.Size(138, 29);
+            this.QuickSettingsBtn.Size = new System.Drawing.Size(110, 23);
             this.QuickSettingsBtn.TabIndex = 5;
             this.QuickSettingsBtn.Text = "Quick Host Settings";
             this.QuickSettingsBtn.UseVisualStyleBackColor = true;
@@ -326,22 +304,20 @@
             // QuickHostSettingsbtn
             // 
             this.QuickHostSettingsbtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.QuickHostSettingsbtn.Location = new System.Drawing.Point(41, 41);
-            this.QuickHostSettingsbtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.QuickHostSettingsbtn.Location = new System.Drawing.Point(150, 32);
             this.QuickHostSettingsbtn.Name = "QuickHostSettingsbtn";
-            this.QuickHostSettingsbtn.Size = new System.Drawing.Size(156, 29);
+            this.QuickHostSettingsbtn.Size = new System.Drawing.Size(125, 23);
             this.QuickHostSettingsbtn.TabIndex = 4;
             this.QuickHostSettingsbtn.Text = "Quick Host Settings";
             this.QuickHostSettingsbtn.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(355, 301);
+            this.ClientSize = new System.Drawing.Size(284, 241);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Settings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Options";
