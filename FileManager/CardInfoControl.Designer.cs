@@ -74,6 +74,7 @@
             // DeckList
             // 
             this.DeckList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeckList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.DeckList.FormattingEnabled = true;
             this.DeckList.Location = new System.Drawing.Point(3, 3);
             this.DeckList.Name = "DeckList";

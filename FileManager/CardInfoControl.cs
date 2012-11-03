@@ -28,6 +28,7 @@ namespace YGOPro_Launcher
             CardList = new Dictionary<string, string>();
             Manager.Init();
            
+            DeckList.DrawItem +=new DrawItemEventHandler(DeckList_DrawItem);
             DeckList.SelectedIndexChanged += new EventHandler(DeckList_SelectedIndexChanged);
 
         }
@@ -81,6 +82,49 @@ namespace YGOPro_Launcher
                 //((CardType)card.Type == CardType.Ritual ? Color.LightBlue :
                 //Color.Red))))));
                 }
+        }
+
+        private void DeckList_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+
+            bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
+
+            int index = e.Index;
+            if (index >= 0 && index < DeckList.Items.Count)
+            {
+                string text = DeckList.Items[index].ToString();                
+                Graphics g = e.Graphics;
+                if (!CardList.ContainsKey(text))
+                {
+                    g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+                    g.DrawString(text, e.Font, (selected) ? Brushes.Blue : Brushes.Black,
+                         DeckList.GetItemRectangle(index).Location);
+                    e.DrawFocusRectangle();
+                    return;
+                }
+
+                CardInfos card = Manager.FromId(Int32.Parse(CardList[text]));
+                
+                Color itemcolor = 
+                (card.HasType(CardType.Synchro) ? Color.White :
+                (card.HasType(CardType.Xyz) ? Color.Gray :
+                (card.HasType(CardType.Ritual) ? Color.CornflowerBlue :
+                (card.HasType(CardType.Fusion) ? Color.MediumPurple :
+                (card.HasType(CardType.Effect) ? Color.Orange :
+                (card.HasType(CardType.Normal) ? Color.Yellow :
+                (card.HasType(CardType.Trap) ? Color.Violet :
+                (card.HasType(CardType.Spell) ? Color.LawnGreen :
+                Color.Red))))))));
+
+                g.FillRectangle(new SolidBrush(itemcolor), e.Bounds);
+
+                // Print text
+                g.DrawString(text, e.Font, (selected) ? Brushes.Blue : Brushes.Black,
+                    DeckList.GetItemRectangle(index).Location);
+            }
+
+            e.DrawFocusRectangle();
         }
 
         private void DeckList_SelectedIndexChanged(object sender, EventArgs e)
