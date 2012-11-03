@@ -6,7 +6,7 @@
     using System.Runtime.CompilerServices;
     using System.Text;
 
-    public class CardInfos
+    public class CardInfos: ICloneable
     {
         private string m_cardRace;
         private string m_cardTypes;
@@ -87,6 +87,11 @@
             return true;
         }
 
+        public object Clone()
+        {
+            return  (CardInfos)this.MemberwiseClone();
+        }
+
         public int AliasId { get; set; }
 
         public int Atk { get; set; }
@@ -108,6 +113,8 @@
         public int Race { get; set; }
 
         public int Type { get; set; }
+
+        public int Amount { get; set; }
 
     }
 }

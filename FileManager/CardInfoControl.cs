@@ -16,7 +16,7 @@ namespace YGOPro_Launcher
     {
 
         private CardsManager Manager;
-        private Dictionary<string, string> CardList;
+        private Dictionary<string, CardInfos> CardList;
 
         public CardInfoControl()
         {
@@ -25,7 +25,7 @@ namespace YGOPro_Launcher
             Dock = DockStyle.Fill;
             Visible = true;
             Manager = new CardsManager();
-            CardList = new Dictionary<string, string>();
+            CardList = new Dictionary<string, CardInfos>();
             Manager.Init();
            
             DeckList.DrawItem +=new DrawItemEventHandler(DeckList_DrawItem);
@@ -70,17 +70,16 @@ namespace YGOPro_Launcher
 
                     CardInfos card = Manager.FromId(Int32.Parse(line));
                     if (card == null) continue;
-                    DeckList.Items.Add(card.Name);
-                    if (!CardList.ContainsKey(card.Name))
-                        CardList.Add(card.Name, line);
-
-                //    item.BackColor = ((CardType)card.Type == CardType.Normal ? Color.Yellow :
-                //((CardType)card.Type == CardType.Effect ? Color.Orange :
-                //((CardType)card.Type == CardType.Fusion ? Color.Violet :
-                //((CardType)card.Type == CardType.Synchro ? Color.White :
-                //((CardType)card.Type == CardType.Xyz ? Color.Gray :
-                //((CardType)card.Type == CardType.Ritual ? Color.LightBlue :
-                //Color.Red))))));
+                    if (CardList.ContainsKey(card.Name))
+                    {
+                        CardList[card.Name].Amount++;
+                    }
+                    else
+                    {
+                        CardList.Add(card.Name,(CardInfos)card.Clone());
+                        DeckList.Items.Add(card.Name);
+                        CardList[card.Name].Amount++;
+                    }
                 }
         }
 
@@ -104,7 +103,7 @@ namespace YGOPro_Launcher
                     return;
                 }
 
-                CardInfos card = Manager.FromId(Int32.Parse(CardList[text]));
+                CardInfos card = CardList[text];
                 
                 Color itemcolor = 
                 (card.HasType(CardType.Synchro) ? Color.White :
@@ -120,7 +119,7 @@ namespace YGOPro_Launcher
                 g.FillRectangle(new SolidBrush(itemcolor), e.Bounds);
 
                 // Print text
-                g.DrawString(text, e.Font, (selected) ? Brushes.Blue : Brushes.Black,
+                g.DrawString(text + " x" + card.Amount , e.Font, (selected) ? Brushes.Blue : Brushes.Black,
                     DeckList.GetItemRectangle(index).Location);
             }
 
@@ -136,7 +135,7 @@ namespace YGOPro_Launcher
                 CardDetails.Text = "";
                 return;
             }
-            CardInfos card = Manager.FromId(Int32.Parse(CardList[DeckList.SelectedItem.ToString()]));
+            CardInfos card = CardList[DeckList.SelectedItem.ToString()];
             if (card == null) return;
             CardName.Text = card.Name;
             CardID.Text = card.Id.ToString();
