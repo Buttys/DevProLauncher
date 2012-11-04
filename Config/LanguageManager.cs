@@ -55,6 +55,11 @@ namespace YGOPro_Launcher.Config
                 Translation = (LanguageInfo)deserializer.Deserialize(textReader);
                 textReader.Close();
                 Loaded = true;
+                if(File.Exists(Path + language + "/strings.conf"))
+                    File.Copy(Path + language + "/strings.conf", "strings.conf", true);
+                if (File.Exists(Path + language + "/cards.cdb"))
+                    File.Copy(Path + language + "/cards.cdb", "cards.cdb", true);
+
             }
             catch (Exception)
             {

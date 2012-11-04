@@ -171,8 +171,8 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.64103F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.35897F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.55914F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.44086F));
             this.tableLayoutPanel4.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.LifePoints, 1, 0);
@@ -188,28 +188,28 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 5);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.Size = new System.Drawing.Size(95, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Lifepoints";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 30);
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(3, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.Size = new System.Drawing.Size(95, 28);
             this.label2.TabIndex = 1;
             this.label2.Text = "GameName";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LifePoints
             // 
             this.LifePoints.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.LifePoints.Location = new System.Drawing.Point(106, 3);
+            this.LifePoints.Location = new System.Drawing.Point(121, 3);
             this.LifePoints.Name = "LifePoints";
             this.LifePoints.Size = new System.Drawing.Size(138, 20);
             this.LifePoints.TabIndex = 2;
@@ -218,7 +218,7 @@
             // GameName
             // 
             this.GameName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.GameName.Location = new System.Drawing.Point(105, 27);
+            this.GameName.Location = new System.Drawing.Point(120, 27);
             this.GameName.Name = "GameName";
             this.GameName.Size = new System.Drawing.Size(139, 20);
             this.GameName.TabIndex = 3;
@@ -226,8 +226,8 @@
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.64103F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.35897F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.91756F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.08244F));
             this.tableLayoutPanel5.Controls.Add(this.CardRules, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.Mode, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.label3, 0, 0);
@@ -252,7 +252,7 @@
             "TCG",
             "Anime",
             "Turbo Duel"});
-            this.CardRules.Location = new System.Drawing.Point(106, 3);
+            this.CardRules.Location = new System.Drawing.Point(122, 3);
             this.CardRules.Name = "CardRules";
             this.CardRules.Size = new System.Drawing.Size(138, 21);
             this.CardRules.TabIndex = 0;
@@ -266,30 +266,30 @@
             "Single",
             "Tag",
             "Match"});
-            this.Mode.Location = new System.Drawing.Point(106, 26);
+            this.Mode.Location = new System.Drawing.Point(122, 26);
             this.Mode.Name = "Mode";
             this.Mode.Size = new System.Drawing.Size(138, 21);
             this.Mode.TabIndex = 1;
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 5);
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.Size = new System.Drawing.Size(97, 23);
             this.label3.TabIndex = 2;
             this.label3.Text = "Card Rules";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 28);
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(3, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 13);
+            this.label4.Size = new System.Drawing.Size(97, 24);
             this.label4.TabIndex = 3;
             this.label4.Text = "Duel Mode";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // flowLayoutPanel1
             // 
@@ -343,7 +343,6 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

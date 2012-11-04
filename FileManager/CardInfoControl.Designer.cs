@@ -36,12 +36,14 @@
             this.CardName = new System.Windows.Forms.Label();
             this.CardID = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.CardDetails = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.CardDetails = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -127,21 +129,33 @@
             // panel3
             // 
             this.panel3.AutoScroll = true;
-            this.panel3.Controls.Add(this.CardDetails);
+            this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 267);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(241, 168);
             this.panel3.TabIndex = 5;
             // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.CardDetails);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(241, 168);
+            this.panel4.TabIndex = 0;
+            // 
             // CardDetails
             // 
-            this.CardDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CardDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.CardDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CardDetails.Location = new System.Drawing.Point(0, 0);
             this.CardDetails.Name = "CardDetails";
-            this.CardDetails.Size = new System.Drawing.Size(241, 168);
-            this.CardDetails.TabIndex = 7;
+            this.CardDetails.ReadOnly = true;
+            this.CardDetails.Size = new System.Drawing.Size(239, 166);
+            this.CardDetails.TabIndex = 1;
+            this.CardDetails.Text = "";
             // 
             // CardInfoControl
             // 
@@ -157,6 +171,7 @@
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -171,6 +186,7 @@
         private System.Windows.Forms.Label CardName;
         private System.Windows.Forms.Label CardID;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label CardDetails;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.RichTextBox CardDetails;
     }
 }

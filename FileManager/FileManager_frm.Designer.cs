@@ -44,8 +44,8 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 248F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.Controls.Add(this.FileList, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -63,7 +63,7 @@
             this.FileList.ItemHeight = 15;
             this.FileList.Location = new System.Drawing.Point(3, 3);
             this.FileList.Name = "FileList";
-            this.FileList.Size = new System.Drawing.Size(492, 445);
+            this.FileList.Size = new System.Drawing.Size(446, 445);
             this.FileList.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -75,16 +75,16 @@
             this.flowLayoutPanel1.Controls.Add(this.RenameBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(719, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(703, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(88, 445);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(104, 445);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // ImportBtn
             // 
             this.ImportBtn.Location = new System.Drawing.Point(3, 415);
             this.ImportBtn.Name = "ImportBtn";
-            this.ImportBtn.Size = new System.Drawing.Size(84, 27);
+            this.ImportBtn.Size = new System.Drawing.Size(99, 27);
             this.ImportBtn.TabIndex = 4;
             this.ImportBtn.Text = "Import";
             this.ImportBtn.UseVisualStyleBackColor = true;
@@ -93,7 +93,7 @@
             // 
             this.GameBtn.Location = new System.Drawing.Point(3, 382);
             this.GameBtn.Name = "GameBtn";
-            this.GameBtn.Size = new System.Drawing.Size(84, 27);
+            this.GameBtn.Size = new System.Drawing.Size(99, 27);
             this.GameBtn.TabIndex = 0;
             this.GameBtn.Text = "Open Game";
             this.GameBtn.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
             // 
             this.OpenBtn.Location = new System.Drawing.Point(3, 349);
             this.OpenBtn.Name = "OpenBtn";
-            this.OpenBtn.Size = new System.Drawing.Size(84, 27);
+            this.OpenBtn.Size = new System.Drawing.Size(99, 27);
             this.OpenBtn.TabIndex = 1;
             this.OpenBtn.Text = "Open Folder";
             this.OpenBtn.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@
             // 
             this.DeleteBtn.Location = new System.Drawing.Point(3, 316);
             this.DeleteBtn.Name = "DeleteBtn";
-            this.DeleteBtn.Size = new System.Drawing.Size(84, 27);
+            this.DeleteBtn.Size = new System.Drawing.Size(99, 27);
             this.DeleteBtn.TabIndex = 2;
             this.DeleteBtn.Text = "Delete";
             this.DeleteBtn.UseVisualStyleBackColor = true;
@@ -120,7 +120,7 @@
             // 
             this.RenameBtn.Location = new System.Drawing.Point(3, 283);
             this.RenameBtn.Name = "RenameBtn";
-            this.RenameBtn.Size = new System.Drawing.Size(84, 27);
+            this.RenameBtn.Size = new System.Drawing.Size(99, 27);
             this.RenameBtn.TabIndex = 3;
             this.RenameBtn.Text = "Rename";
             this.RenameBtn.UseVisualStyleBackColor = true;

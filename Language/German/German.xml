@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <QuickHostSetting>Schnell hosten</QuickHostSetting>
-  <QuickHostBtn>Bestätigen</QuickHostBtn>
-  <pmsbProgRun>Programm läuft schon</pmsbProgRun>
+  <QuickHostBtn>BestÃ¤tigen</QuickHostBtn>
+  <pmsbProgRun>Programm lÃ¤uft schon</pmsbProgRun>
   <pMsbErrorToServer>Fehler beim verbinden zum Server</pMsbErrorToServer>
   <pMsbBadLog>Login Fehler</pMsbBadLog>
   <pMsbOldVers>Version ist veraltet. Bitte neu Installieren.</pMsbOldVers>
@@ -12,7 +12,7 @@
   <LoginLanguage>Sprache</LoginLanguage>
   <LoginLoginButton>Einloggen</LoginLoginButton>
   <LoginRegisterButton>Registrieren</LoginRegisterButton>
-  <LoginAutoLogin>Beim nächsten Start automatisch Einloggen</LoginAutoLogin>
+  <LoginAutoLogin>Beim nÃ¤chsten Start automatisch Einloggen</LoginAutoLogin>
   <LoginMsb1>Keine Verbindung zum Server.</LoginMsb1>
   <LoginMsb2>Bitte Benutzernamen eingeben.</LoginMsb2>
   <LoginMsb3>Bitte Passwort eingeben.</LoginMsb3>
@@ -51,7 +51,7 @@
   <optionGb1>Benutzer Einstellungen</optionGb1>
   <optionGb2>Spieleinstellungen</optionGb2>
   <optionGb3>Schrifteinstellungen</optionGb3>
-  <optionMsbForget>Autologin Daten löschen?</optionMsbForget>
+  <optionMsbForget>Autologin Daten lÃ¶schen?</optionMsbForget>
   <optionUser>Default Spielername</optionUser>
   <optionDeck>Defualt Deck</optionDeck>
   <optionBtnAutoLogin>Forget Auto Login</optionBtnAutoLogin>
@@ -60,7 +60,7 @@
   <optionCbMusic>Musik einschalten</optionCbMusic>
   <optionCbDirect>Directx einschalten</optionCbDirect>
   <optionCbFull>Vollbild einschalten</optionCbFull>
-  <optionTexts>Schriftgröße</optionTexts>
+  <optionTexts>SchriftgrÃ¶ÃŸe</optionTexts>
   <optionTextf>Schriftfont</optionTextf>
   <optionBtnQuick>Quick Host Einstellungen</optionBtnQuick>
   <optionBtnSave>Speichern</optionBtnSave>
@@ -69,7 +69,7 @@
   <hostGb2>erweiterte Optionen</hostGb2>
   <hostRules>Kartenregelen</hostRules>
   <hostMode>Duell Modus</hostMode>
-  <hostPrio>Prioriät einschalten</hostPrio>
+  <hostPrio>PrioriÃ¤t einschalten</hostPrio>
   <hostCheckDeck>Deck checken aussschalten</hostCheckDeck>
   <hostShuffle>Deck mischen aussschalten</hostShuffle>
   <hostLifep>Lebenspunkte</hostLifep>
@@ -77,21 +77,21 @@
   <hostBtnHost>Erstellen</hostBtnHost>
   <hostBtnCancel>Abbrechen</hostBtnCancel>
   <fileBtnRename>Umbenennen</fileBtnRename>
-  <fileBtnDelete>Löschen</fileBtnDelete>
-  <fileBtnFolder>Öffne Ordner</fileBtnFolder>
-  <fileBtnGame>Öffne Spiel</fileBtnGame>
+  <fileBtnDelete>LÃ¶schen</fileBtnDelete>
+  <fileBtnFolder>Ã–ffne Ordner</fileBtnFolder>
+  <fileBtnGame>Ã–ffne Deck</fileBtnGame>
   <fileMsgNoExist>Datei nicht vorhanden</fileMsgNoExist>
-  <fileMsgNoSelect>nichts ausgewählt</fileMsgNoSelect>
-  <fileMsbMulti>Mehrere Dateien können nicht gleichzeitig umbenannt werden.</fileMsbMulti>
-  <fileAskDelete>Datei wirklich löschen?</fileAskDelete>
+  <fileMsgNoSelect>nichts ausgewÃ¤hlt</fileMsgNoSelect>
+  <fileMsbMulti>Mehrere Dateien kÃ¶nnen nicht gleichzeitig umbenannt werden.</fileMsbMulti>
+  <fileAskDelete>Datei wirklich lÃ¶schen?</fileAskDelete>
   <fileNewName>Neuen Namen eingeben</fileNewName>
   <fileInputConfirm>Umbenennen</fileInputConfirm>
-  <aboutLabel1>Über DevPro</aboutLabel1>
-  <aAboutText>DDas YgoPro Online Team besteht aus Programmieren und Webentwicklern die YGO weiter entwickeln und der Community zur Verfügung stellen. Das Team ist international und es haben sich Freundschaften entwickelt die Länderübergreifend sind.</aAboutText>
+  <aboutLabel1>Ãœber DevPro</aboutLabel1>
+  <aAboutText>Das YgoPro Online Team besteht aus Programmieren und Webentwicklern die YGO weiter entwickeln und der Community zur VerfÃ¼gung stellen. Das Team ist international und es haben sich Freundschaften entwickelt die LÃ¤nderÃ¼bergreifend sind.</aAboutText>
   <aboutLabel5>DevPro Mitwirkende</aboutLabel5>
   <cusRemoveBtn>Entfernen</cusRemoveBtn>
-  <cusAddThemeBtn>Hinzufügen</cusAddThemeBtn>
-  <cusAddContentBtn>Hinzufügen</cusAddContentBtn>
+  <cusAddThemeBtn>HinzufÃ¼gen</cusAddThemeBtn>
+  <cusAddContentBtn>HinzufÃ¼gen</cusAddContentBtn>
   <cusPreview>Vorschau</cusPreview>
   <cusBackup>Sichern</cusBackup>
   <cusLabelTheme>Theme</cusLabelTheme>

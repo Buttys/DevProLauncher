@@ -105,15 +105,16 @@ namespace YGOPro_Launcher
 
                 CardInfos card = CardList[text];
                 
-                Color itemcolor = 
+                Color itemcolor =                 
+                (card.HasType(CardType.Trap) ? Color.Violet :
+                (card.HasType(CardType.Spell) ? Color.LawnGreen :
                 (card.HasType(CardType.Synchro) ? Color.White :
                 (card.HasType(CardType.Xyz) ? Color.Gray :
                 (card.HasType(CardType.Ritual) ? Color.CornflowerBlue :
                 (card.HasType(CardType.Fusion) ? Color.MediumPurple :
                 (card.HasType(CardType.Effect) ? Color.Orange :
                 (card.HasType(CardType.Normal) ? Color.Yellow :
-                (card.HasType(CardType.Trap) ? Color.Violet :
-                (card.HasType(CardType.Spell) ? Color.LawnGreen :
+
                 Color.Red))))))));
 
                 g.FillRectangle(new SolidBrush(itemcolor), e.Bounds);
