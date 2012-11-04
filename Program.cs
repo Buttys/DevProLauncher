@@ -12,12 +12,12 @@ namespace YGOPro_Launcher
     static class Program
     {
 
-        public static string Version = "251100";
+        public const string Version = "251100";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
         public static UserData UserInfo;
-        public static string ConfigurationFilename = "launcher.conf";
+        public const string ConfigurationFilename = "launcher.conf";
         //public static Main MainForm;
         public static Login_frm LoginWindow;
         public static Authenticator LoginService;
@@ -33,8 +33,7 @@ namespace YGOPro_Launcher
             Config = new Configuration();
             Config.Load(Program.ConfigurationFilename);
             LanguageManager = new LanguageManager();
-            //LanguageManager.Save("English");
-            //LanguageManager.Loaded = true;         
+            //LanguageManager.Save("English");    
             LanguageManager.Load(Config.Language);
             
             if (LauncherHelper.checkInstance() != null)

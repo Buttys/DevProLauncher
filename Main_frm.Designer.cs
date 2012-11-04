@@ -21,14 +21,14 @@
             this.ServerControl.Location = new System.Drawing.Point(0, 0);
             this.ServerControl.Name = "ServerControl";
             this.ServerControl.SelectedIndex = 0;
-            this.ServerControl.Size = new System.Drawing.Size(834, 491);
+            this.ServerControl.Size = new System.Drawing.Size(934, 491);
             this.ServerControl.TabIndex = 0;
             // 
             // Main_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(834, 491);
+            this.ClientSize = new System.Drawing.Size(934, 491);
             this.Controls.Add(this.ServerControl);
             this.Font = new System.Drawing.Font("Arial Unicode MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

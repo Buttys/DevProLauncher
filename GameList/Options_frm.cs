@@ -31,6 +31,8 @@ namespace YGOPro_Launcher
                     DefualtDeck.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
             DefualtDeck.Text = Program.Config.DefaultDeck;
+
+            ApplyTranslation();
         }
 
         private void ApplyTranslation()

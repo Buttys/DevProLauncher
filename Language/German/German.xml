@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QuickHostSetting>Schnell hosten</QuickHostSetting>
+  <QuickHostBtn>Bestätigen</QuickHostBtn>
+  <pmsbProgRun>Programm läuft schon</pmsbProgRun>
+  <pMsbErrorToServer>Fehler beim verbinden zum Server</pMsbErrorToServer>
+  <pMsbBadLog>Login Fehler</pMsbBadLog>
+  <pMsbOldVers>Version ist veraltet. Bitte neu Installieren.</pMsbOldVers>
+  <pMsbException>Fehler ist aufgetreten. Programm wird beendet</pMsbException>
+  <LoginUserName>Benutzername</LoginUserName>
+  <LoginPassWord>Passwort</LoginPassWord>
+  <LoginLanguage>Sprache</LoginLanguage>
+  <LoginLoginButton>Einloggen</LoginLoginButton>
+  <LoginRegisterButton>Registrieren</LoginRegisterButton>
+  <LoginAutoLogin>Beim nächsten Start automatisch Einloggen</LoginAutoLogin>
+  <LoginMsb1>Keine Verbindung zum Server.</LoginMsb1>
+  <LoginMsb2>Bitte Benutzernamen eingeben.</LoginMsb2>
+  <LoginMsb3>Bitte Passwort eingeben.</LoginMsb3>
+  <RegistLbUser>Benutzername</RegistLbUser>
+  <RegistLbPw>Passwort</RegistLbPw>
+  <RegistLbPw2>Passwort wiederholen</RegistLbPw2>
+  <RegistBtnRegister>Registrieren</RegistBtnRegister>
+  <RegistBtnCancel>abbrechen</RegistBtnCancel>
+  <RegistMsb1>Bitte Passwort wiederholen.</RegistMsb1>
+  <RegistMsb2>Bitte Passwort eingeben.</RegistMsb2>
+  <RegistMsb3>Bitte Benutzernamen eingeben.</RegistMsb3>
+  <RegistMsb4>Registrierung komplett</RegistMsb4>
+  <RegistMsb5>Benutzername vergeben</RegistMsb5>
+  <GameServerInfo>Server Infos</GameServerInfo>
+  <GameofRooms>Duelle insgesamt</GameofRooms>
+  <GameofUnranked>davon Unranked</GameofUnranked>
+  <GameofRanked>davon Ranked</GameofRanked>
+  <GameofOpenRooms>offene Duelle</GameofOpenRooms>
+  <GameofPlayers>Spieler insgesamt</GameofPlayers>
+  <GameFilterActive>Filter offene Spiele</GameFilterActive>
+  <GameColumnRoomName>Duellname</GameColumnRoomName>
+  <GameColumnType>Type</GameColumnType>
+  <GameColumnRules>Regeln</GameColumnRules>
+  <GameColumnMode>Mode</GameColumnMode>
+  <GameColumnState>State</GameColumnState>
+  <GameColumnPlayers>Spieler</GameColumnPlayers>
+  <GameBtnDeck>Deck bearbeiten</GameBtnDeck>
+  <GameBtnReplay>Replays</GameBtnReplay>
+  <GameBtnOption>Optionen</GameBtnOption>
+  <GameBtnProfile>Profil</GameBtnProfile>
+  <GameBtnHost>Host</GameBtnHost>
+  <GameBtnQuick>Quick</GameBtnQuick>
+  <GameLabWLD>Win/Lose/Unentschieden</GameLabWLD>
+  <GameLabDeck>Deck:</GameLabDeck>
+  <GameLabUser>Spielername:</GameLabUser>
+  <optionGb1>Benutzer Einstellungen</optionGb1>
+  <optionGb2>Spieleinstellungen</optionGb2>
+  <optionGb3>Schrifteinstellungen</optionGb3>
+  <optionMsbForget>Autologin Daten löschen?</optionMsbForget>
+  <optionUser>Default Spielername</optionUser>
+  <optionDeck>Defualt Deck</optionDeck>
+  <optionBtnAutoLogin>Forget Auto Login</optionBtnAutoLogin>
+  <optionAntialias>Antialias</optionAntialias>
+  <optionCbSound>Sound einschalten</optionCbSound>
+  <optionCbMusic>Musik einschalten</optionCbMusic>
+  <optionCbDirect>Directx einschalten</optionCbDirect>
+  <optionCbFull>Vollbild einschalten</optionCbFull>
+  <optionTexts>Schriftgröße</optionTexts>
+  <optionTextf>Schriftfont</optionTextf>
+  <optionBtnQuick>Quick Host Einstellungen</optionBtnQuick>
+  <optionBtnSave>Speichern</optionBtnSave>
+  <optionBtnCancel>Abbrechen</optionBtnCancel>
+  <hostGb1>Einstellungen</hostGb1>
+  <hostGb2>erweiterte Optionen</hostGb2>
+  <hostRules>Kartenregelen</hostRules>
+  <hostMode>Duell Modus</hostMode>
+  <hostPrio>Prioriät einschalten</hostPrio>
+  <hostCheckDeck>Deck checken aussschalten</hostCheckDeck>
+  <hostShuffle>Deck mischen aussschalten</hostShuffle>
+  <hostLifep>Lebenspunkte</hostLifep>
+  <hostGameN>Hostname</hostGameN>
+  <hostBtnHost>Erstellen</hostBtnHost>
+  <hostBtnCancel>Abbrechen</hostBtnCancel>
+  <fileBtnRename>Umbenennen</fileBtnRename>
+  <fileBtnDelete>Löschen</fileBtnDelete>
+  <fileBtnFolder>Öffne Ordner</fileBtnFolder>
+  <fileBtnGame>Öffne Spiel</fileBtnGame>
+  <fileMsgNoExist>Datei nicht vorhanden</fileMsgNoExist>
+  <fileMsgNoSelect>nichts ausgewählt</fileMsgNoSelect>
+  <fileMsbMulti>Mehrere Dateien können nicht gleichzeitig umbenannt werden.</fileMsbMulti>
+  <fileAskDelete>Datei wirklich löschen?</fileAskDelete>
+  <fileNewName>Neuen Namen eingeben</fileNewName>
+  <fileInputConfirm>Umbenennen</fileInputConfirm>
+  <aboutLabel1>Über DevPro</aboutLabel1>
+  <aAboutText>DDas YgoPro Online Team besteht aus Programmieren und Webentwicklern die YGO weiter entwickeln und der Community zur Verfügung stellen. Das Team ist international und es haben sich Freundschaften entwickelt die Länderübergreifend sind.</aAboutText>
+  <aboutLabel5>DevPro Mitwirkende</aboutLabel5>
+  <cusRemoveBtn>Entfernen</cusRemoveBtn>
+  <cusAddThemeBtn>Hinzufügen</cusAddThemeBtn>
+  <cusAddContentBtn>Hinzufügen</cusAddContentBtn>
+  <cusPreview>Vorschau</cusPreview>
+  <cusBackup>Sichern</cusBackup>
+  <cusLabelTheme>Theme</cusLabelTheme>
+  <cusLabelCont>Inhalt</cusLabelCont>
+</LanguageInfo>

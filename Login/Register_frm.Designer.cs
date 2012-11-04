@@ -46,8 +46,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.35849F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.64151F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.88679F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.11321F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
@@ -63,62 +63,62 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(265, 112);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(285, 112);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 6);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(113, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Username";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 31);
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(3, 25);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(113, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "Password";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 56);
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 50);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 13);
+            this.label3.Size = new System.Drawing.Size(113, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "Confirm Password";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // UsernameInput
             // 
             this.UsernameInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UsernameInput.Location = new System.Drawing.Point(101, 3);
+            this.UsernameInput.Location = new System.Drawing.Point(122, 3);
             this.UsernameInput.Name = "UsernameInput";
-            this.UsernameInput.Size = new System.Drawing.Size(161, 20);
+            this.UsernameInput.Size = new System.Drawing.Size(160, 20);
             this.UsernameInput.TabIndex = 3;
             // 
             // PasswordInput
             // 
             this.PasswordInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PasswordInput.Location = new System.Drawing.Point(101, 28);
+            this.PasswordInput.Location = new System.Drawing.Point(122, 28);
             this.PasswordInput.Name = "PasswordInput";
-            this.PasswordInput.Size = new System.Drawing.Size(161, 20);
+            this.PasswordInput.Size = new System.Drawing.Size(160, 20);
             this.PasswordInput.TabIndex = 4;
             this.PasswordInput.UseSystemPasswordChar = true;
             // 
             // ConfirmInput
             // 
             this.ConfirmInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ConfirmInput.Location = new System.Drawing.Point(101, 53);
+            this.ConfirmInput.Location = new System.Drawing.Point(122, 53);
             this.ConfirmInput.Name = "ConfirmInput";
-            this.ConfirmInput.Size = new System.Drawing.Size(161, 20);
+            this.ConfirmInput.Size = new System.Drawing.Size(160, 20);
             this.ConfirmInput.TabIndex = 5;
             this.ConfirmInput.UseSystemPasswordChar = true;
             // 
@@ -127,9 +127,9 @@
             this.flowLayoutPanel1.Controls.Add(this.RegisterBtn);
             this.flowLayoutPanel1.Controls.Add(this.CancelBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(101, 78);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(122, 78);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(161, 31);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(160, 31);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // RegisterBtn
@@ -156,7 +156,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(265, 112);
+            this.ClientSize = new System.Drawing.Size(285, 112);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

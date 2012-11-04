@@ -16,7 +16,7 @@ namespace YGOPro_Launcher.Config
 
         public bool Loaded { get; set; }
 
-        private string path = "Language/";
+        public const string Path = "Language/";
 
         public LanguageManager()
         {
@@ -25,27 +25,41 @@ namespace YGOPro_Launcher.Config
 
         public void Save(string language)
         {            
-            if (!Directory.Exists(path + language))
-                Directory.CreateDirectory(path + language);
-            XmlSerializer serializer = new XmlSerializer(typeof(LanguageInfo));
-            TextWriter textWriter = new StreamWriter(path + language + "/" + language + ".xml");
-            serializer.Serialize(textWriter, Translation);
-            textWriter.Close();
+            if (!Directory.Exists(Path + language))
+                Directory.CreateDirectory(Path + language);
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(LanguageInfo));
+                TextWriter textWriter = new StreamWriter(Path + language + "/" + language + ".xml");
+                serializer.Serialize(textWriter, Translation);
+                textWriter.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Saving " + language);
+            }
         }
 
         public void Load(string language)
         {
-            if (!Directory.Exists(path + language)
-                || !File.Exists(path + language + "/" + language + ".xml"))
+            if (!Directory.Exists(Path + language)
+                || !File.Exists(Path + language + "/" + language + ".xml"))
             {
                 MessageBox.Show("File not found");
                 return;
             }
-            XmlSerializer deserializer = new XmlSerializer(typeof(LanguageInfo));
-            TextReader textReader = new StreamReader(path + language + "/" + language + ".xml");
-            Translation = (LanguageInfo)deserializer.Deserialize(textReader);
-            textReader.Close();
-            Loaded = true;
+            try
+            {
+                XmlSerializer deserializer = new XmlSerializer(typeof(LanguageInfo));
+                TextReader textReader = new StreamReader(Path + language + "/" + language + ".xml");
+                Translation = (LanguageInfo)deserializer.Deserialize(textReader);
+                textReader.Close();
+                Loaded = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Laoding " + language);
+            }
         }
     }
 }

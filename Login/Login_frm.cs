@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using YGOPro_Launcher.Config;
 using YGOPro_Launcher.Login;
@@ -25,9 +26,23 @@ namespace YGOPro_Launcher
             UsernameInput.Text = _configuration.DefaultUsername;
             AutoLoginCheckBox.Checked = _configuration.AutoLogin;
             PasswordInput.KeyPress += new KeyPressEventHandler(PasswordInput_KeyPress);
-            LanguageSelect.SelectedItem = Program.Config.Language;
-            LanguageSelect.SelectedIndexChanged += new EventHandler(LanguageSelect_SelectedIndexChanged);
 
+            if (Directory.Exists(LanguageManager.Path))
+            {
+                string[] languages = Directory.GetDirectories(LanguageManager.Path);
+                foreach (string language in languages)
+                {
+                    LanguageSelect.Items.Add(language.Split('/')[1]);
+                }
+
+                LanguageSelect.SelectedItem = Program.Config.Language;
+                LanguageSelect.SelectedIndexChanged += new EventHandler(LanguageSelect_SelectedIndexChanged);
+            }
+            else
+            {
+                LanguageSelect.Items.Add("Files Not Found");
+                LanguageSelect.SelectedIndex = 0;
+            }
             ApplyTranslation();
         }
 
@@ -46,6 +61,8 @@ namespace YGOPro_Launcher
 
         private void LanguageSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Program.Config.Language = LanguageSelect.SelectedItem.ToString();
+            Program.Config.Save(Program.ConfigurationFilename);
             Program.LanguageManager.Load(LanguageSelect.SelectedItem.ToString());
             ApplyTranslation();
         }
