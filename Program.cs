@@ -14,6 +14,7 @@ namespace YGOPro_Launcher
 
         public static string Version = "251100";
         public static Configuration Config;
+        public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
         public static UserData UserInfo;
         public static string ConfigurationFilename = "launcher.conf";
@@ -29,12 +30,16 @@ namespace YGOPro_Launcher
         {
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
-            if (LauncherHelper.checkInstance() != null)
-                if (MessageBox.Show("Program already running") == DialogResult.OK)
-                    return;
-
             Config = new Configuration();
             Config.Load(Program.ConfigurationFilename);
+            LanguageManager = new LanguageManager();
+            //LanguageManager.Save("English");
+            //LanguageManager.Loaded = true;         
+            LanguageManager.Load(Config.Language);
+            
+            if (LauncherHelper.checkInstance() != null)
+                if (MessageBox.Show(LanguageManager.Translation.pmsbProgRun) == DialogResult.OK)
+                    return;
 
             UserInfo = new UserData();
             ServerConnection = new NetClient();
@@ -54,7 +59,7 @@ namespace YGOPro_Launcher
 
             if(!ServerConnection.Connect(Config.ServerAddress, Config.ServerPort))
             {
-                MessageBox.Show("Error Connecting to server");
+                MessageBox.Show(LanguageManager.Translation.pMsbErrorToServer);
             }
 
             if (Config.AutoLogin)
@@ -83,7 +88,7 @@ namespace YGOPro_Launcher
             if (UserInfo.Username != "" && UserInfo.LoginKey != "")
                 Application.Run(new Main_frm());
             else
-                MessageBox.Show("Bad Login");
+                MessageBox.Show(LanguageManager.Translation.pMsbBadLog);
 
         }
 
@@ -108,8 +113,8 @@ namespace YGOPro_Launcher
 
             if (result.Equals("KO"))
             {
-                MessageBox.Show("You have a too old version of the launcher. Please reinstall it.",
-                    "TDOANE - Update", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(LanguageManager.Translation.pMsbOldVers,
+                    "DevPro - Update", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             if (result.Contains("|"))
@@ -166,7 +171,7 @@ namespace YGOPro_Launcher
         {
             Exception exception = e.ExceptionObject as Exception ?? new Exception();
 
-            MessageBox.Show("Oooops! Something bad happened! Software will now exit!");
+            MessageBox.Show(LanguageManager.Translation.pMsbException);
            
             File.WriteAllText("crash_" + DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt", exception.ToString());
             

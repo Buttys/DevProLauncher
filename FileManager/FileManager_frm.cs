@@ -45,6 +45,18 @@ namespace YGOPro_Launcher
             this.OpenBtn.Click += new EventHandler(OpenBtn_Click);
             this.GameBtn.Click += new EventHandler(GameBtn_Click);
             this.FileList.SelectedIndexChanged +=new EventHandler(FileList_SelectedIndexChanged);
+            ApplyTranslation();
+        }
+
+        private void ApplyTranslation()
+        {
+            if (Program.LanguageManager.Loaded)
+            {
+                RenameBtn.Text = Program.LanguageManager.Translation.fileBtnRename;
+                DeleteBtn.Text = Program.LanguageManager.Translation.fileBtnDelete;
+                OpenBtn.Text = Program.LanguageManager.Translation.fileBtnFolder;
+                GameBtn.Text = Program.LanguageManager.Translation.fileBtnGame;
+            }
         }
 
         private void OpenBtn_Click(object sender, EventArgs e)
@@ -54,13 +66,13 @@ namespace YGOPro_Launcher
                 if (Directory.Exists(Path.GetDirectoryName(Application.ExecutablePath) + "/" + FileLocation))
                 Process.Start(Path.GetDirectoryName(Application.ExecutablePath)+ "/" + FileLocation);
                 else
-                    MessageBox.Show(Path.GetDirectoryName(Application.ExecutablePath) + "/" + FileLocation + "does no exsist");
+                    MessageBox.Show(Path.GetDirectoryName(Application.ExecutablePath) + "/" + FileLocation + Program.LanguageManager.Translation.fileMsgNoExist);
             }
             else
                 if (Directory.Exists(FileLocation))
                         Process.Start(FileLocation);
                 else
-                    MessageBox.Show(FileLocation + "does no exsist");
+                    MessageBox.Show(FileLocation + Program.LanguageManager.Translation.fileMsgNoExist);
         }
 
         private void GameBtn_Click(object sender, EventArgs e)
@@ -73,10 +85,10 @@ namespace YGOPro_Launcher
         {
             if ((FileList.SelectedItems.Count == 0))
             {
-                MessageBox.Show("Nothing selected");
+                MessageBox.Show(Program.LanguageManager.Translation.fileMsgNoSelect);
                 return;
             }
-            Input_frm input = new Input_frm("Rename", "Enter new name", "Rename", "Cancel");
+            Input_frm input = new Input_frm("Rename", Program.LanguageManager.Translation.fileNewName, Program.LanguageManager.Translation.fileInputConfirm, "Cancel");
             if ((!(FileList.SelectedItems.Count > 1)))
             {
 
@@ -96,7 +108,7 @@ namespace YGOPro_Launcher
             }
             else
             {
-                MessageBox.Show("Can't Rename multiple items", "Rename Error");
+                MessageBox.Show(Program.LanguageManager.Translation.fileMsbMulti, "Rename Error");
 
             }
         }
@@ -105,11 +117,11 @@ namespace YGOPro_Launcher
         {
             if ((FileList.SelectedItems.Count == 0))
             {
-                MessageBox.Show("Nothing selected");
+                MessageBox.Show(Program.LanguageManager.Translation.fileMsgNoSelect);
                 return;
             }
 
-            if ((MessageBox.Show("Are you sure you want to delete the following item(s) ", "Delete " + this.Name, MessageBoxButtons.YesNo) == DialogResult.Yes))
+            if ((MessageBox.Show(Program.LanguageManager.Translation.fileAskDelete, "Delete " + this.Name, MessageBoxButtons.YesNo) == DialogResult.Yes))
             {
                 try
                 {

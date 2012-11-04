@@ -57,6 +57,18 @@ namespace YGOPro_Launcher
             ThemeSelect.SelectedIndexChanged += new EventHandler(SelectedTheme_Changed);
 
             contentView = ContentType.Covers;
+            ApplyTranslation();
+        }
+
+        public  void ApplyTranslation()
+        {
+            RemoveThemeBtn.Text = Program.LanguageManager.Translation.cusRemoveBtn;
+            AddThemeBtn.Text = Program.LanguageManager.Translation.cusAddThemeBtn;
+            AddContentBtn.Text = Program.LanguageManager.Translation.cusAddContentBtn;
+            PreviewBtn.Text = Program.LanguageManager.Translation.cusPreview;
+            BackUpBtn.Text = Program.LanguageManager.Translation.cusBackup;
+            label2.Text = Program.LanguageManager.Translation.cusLabelTheme;
+            label1.Text = Program.LanguageManager.Translation.cusLabelCont;
         }
 
         public void SaveTheme(string themename)

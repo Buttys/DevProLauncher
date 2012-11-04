@@ -25,6 +25,29 @@ namespace YGOPro_Launcher
             UsernameInput.Text = _configuration.DefaultUsername;
             AutoLoginCheckBox.Checked = _configuration.AutoLogin;
             PasswordInput.KeyPress += new KeyPressEventHandler(PasswordInput_KeyPress);
+            LanguageSelect.SelectedItem = Program.Config.Language;
+            LanguageSelect.SelectedIndexChanged += new EventHandler(LanguageSelect_SelectedIndexChanged);
+
+            ApplyTranslation();
+        }
+
+        public void ApplyTranslation()
+        {
+            if (Program.LanguageManager.Loaded)
+            {
+                label1.Text = Program.LanguageManager.Translation.LoginUserName;
+                label2.Text = Program.LanguageManager.Translation.LoginPassWord;
+                label3.Text = Program.LanguageManager.Translation.LoginLanguage;
+                LoginBtn.Text = Program.LanguageManager.Translation.LoginLoginButton;
+                RegisterBtn.Text = Program.LanguageManager.Translation.LoginRegisterButton;
+                AutoLoginCheckBox.Text = Program.LanguageManager.Translation.LoginAutoLogin;
+            }
+        }
+
+        private void LanguageSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Program.LanguageManager.Load(LanguageSelect.SelectedItem.ToString());
+            ApplyTranslation();
         }
 
         private void PasswordInput_KeyPress(object sender, KeyPressEventArgs e)
@@ -45,17 +68,17 @@ namespace YGOPro_Launcher
         {
             if (!_connection.IsConnected)
             {
-                MessageBox.Show("Not connected to the server.");
+                MessageBox.Show(Program.LanguageManager.Translation.LoginMsb1);
                 return;
             }
             if (UsernameInput.Text == "")
             {
-                MessageBox.Show("Please enter username.");
+                MessageBox.Show(Program.LanguageManager.Translation.LoginMsb2);
                 return;
             }
             if (PasswordInput.Text == "")
             {
-                MessageBox.Show("Please enter password.");
+                MessageBox.Show(Program.LanguageManager.Translation.LoginMsb3);
                 return;
             }
 

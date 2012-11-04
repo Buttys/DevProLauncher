@@ -22,6 +22,8 @@ namespace YGOPro_Launcher
             EnableSound.Checked = Program.Config.EnableSound;
             Enabled3d.Checked = Program.Config.Enabled3D;
             Fullscreen.Checked = Program.Config.Fullscreen;
+            GameFont.Text = Program.Config.GameFont;
+            FontSize.Value = Program.Config.FontSize;
             if (Directory.Exists(Program.Config.LauncherDir + "deck/"))
             {
                 string[] decks = Directory.GetFiles(Program.Config.LauncherDir + "deck/");
@@ -29,6 +31,29 @@ namespace YGOPro_Launcher
                     DefualtDeck.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
             DefualtDeck.Text = Program.Config.DefaultDeck;
+        }
+
+        private void ApplyTranslation()
+        {
+            if (Program.LanguageManager.Loaded)
+            {
+                groupBox1.Text = Program.LanguageManager.Translation.optionGb1;
+                groupBox2.Text = Program.LanguageManager.Translation.optionGb2;
+                groupBox3.Text = Program.LanguageManager.Translation.optionGb3;
+                label1.Text = Program.LanguageManager.Translation.optionUser;
+                label5.Text = Program.LanguageManager.Translation.optionDeck;
+                ForgetAutoLoginButton.Text = Program.LanguageManager.Translation.optionBtnAutoLogin;
+                label4.Text = Program.LanguageManager.Translation.optionAntialias;
+                EnableSound.Text = Program.LanguageManager.Translation.optionCbSound;
+                EnableMusic.Text = Program.LanguageManager.Translation.optionCbMusic;
+                Enabled3d.Text = Program.LanguageManager.Translation.optionCbDirect;
+                Fullscreen.Text = Program.LanguageManager.Translation.optionCbFull;
+                label2.Text = Program.LanguageManager.Translation.optionTexts;
+                label3.Text = Program.LanguageManager.Translation.optionTextf;
+                QuickSettingsBtn.Text = Program.LanguageManager.Translation.optionBtnQuick;
+                SaveBtn.Text = Program.LanguageManager.Translation.optionBtnSave;
+                CancelBtn.Text = Program.LanguageManager.Translation.optionBtnCancel;
+            }
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
@@ -40,7 +65,8 @@ namespace YGOPro_Launcher
             Program.Config.EnableMusic = EnableMusic.Checked;
             Program.Config.Enabled3D = Enabled3d.Checked;
             Program.Config.Fullscreen = Fullscreen.Checked;
-
+            Program.Config.FontSize = (int)FontSize.Value;
+            Program.Config.GameFont = GameFont.Text;
             Program.Config.Save(Program.ConfigurationFilename);
             DialogResult = DialogResult.OK;
 
@@ -49,8 +75,8 @@ namespace YGOPro_Launcher
         private void QuickSettingsBtn_Click(object sender, EventArgs e)
         {
             Host form = new Host();
-            form.Text = "Quick Host Settings";
-            form.HostBtn.Text = "Confirm";
+            form.Text = Program.LanguageManager.Translation.QuickHostSetting;
+            form.HostBtn.Text = Program.LanguageManager.Translation.QuickHostBtn;
 
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -67,7 +93,7 @@ namespace YGOPro_Launcher
 
         private void ForgetAutoLoginButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you really want to forget auto login credentials?", "Confirmation required", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show(Program.LanguageManager.Translation.optionMsbForget, "Confirmation required", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 Program.Config.Password = "";
                 Program.Config.AutoLogin = false;

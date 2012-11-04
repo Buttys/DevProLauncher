@@ -17,7 +17,14 @@ namespace YGOPro_Launcher
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
+            ApplyTranslation();
+        }
 
+        public void ApplyTranslation()
+        {
+            AboutText.Text = Program.LanguageManager.Translation.aAboutText;
+            label1.Text = Program.LanguageManager.Translation.aboutLabel1;
+            label5.Text = Program.LanguageManager.Translation.aboutLabel5;
         }
     }
 }

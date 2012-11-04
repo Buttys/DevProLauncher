@@ -22,6 +22,9 @@ namespace YGOPro_Launcher.Config
         public bool AutoLogin = false;
         public bool Fullscreen = false;
         public string Password = "";
+        public string GameFont = "simhei.ttf"; //only ger
+        public int FontSize = 14; //only ger
+        public string Language = "English"; // confirm Language
 
         //quickhost settings
         public string CardRules = "OCG/TCG";
@@ -90,6 +93,15 @@ namespace YGOPro_Launcher.Config
                         break;
                     case "antialias":
                         Antialias = Convert.ToInt32(value);
+                        break;
+                    case "gamefont":
+                        GameFont = value;
+                        break;
+                    case "fontsize":
+                        FontSize = Convert.ToInt32(value);
+                        break;
+                    case "language":
+                        Language = value;
                         break;
                     case "fullscreen":
                         Fullscreen = Convert.ToBoolean(value);
@@ -177,6 +189,9 @@ namespace YGOPro_Launcher.Config
             writer.WriteLine("fullscreen = " + Fullscreen);
             writer.WriteLine("autologin = " + AutoLogin);
             writer.WriteLine("password = " + Password);
+            writer.WriteLine("language = " + Language);
+            writer.WriteLine("textfont = " + GameFont);
+            writer.WriteLine("textsize = " + FontSize);
             writer.WriteLine("");
             writer.WriteLine("#Quick Host Settings");
             writer.WriteLine("cardrules = " + CardRules);

@@ -18,6 +18,25 @@ namespace YGOPro_Launcher
             Mode.SelectedIndex = 0;
             GameName.Text = LauncherHelper.GenerateString().Substring(0, 5);
             Mode.SelectedIndexChanged += DuelModeChanged;
+            ApplyTranslation();
+        }
+
+        public void ApplyTranslation()
+        {
+            if (Program.LanguageManager.Loaded)
+            {
+                groupBox1.Text = Program.LanguageManager.Translation.hostGb1;
+                groupBox2.Text = Program.LanguageManager.Translation.hostGb2;
+                label3.Text = Program.LanguageManager.Translation.hostRules;
+                label4.Text = Program.LanguageManager.Translation.hostMode;
+                Priority.Text = Program.LanguageManager.Translation.hostPrio;
+                CheckDeck.Text = Program.LanguageManager.Translation.hostCheckDeck;
+                ShuffleDeck.Text = Program.LanguageManager.Translation.hostShuffle;
+                label1.Text = Program.LanguageManager.Translation.hostLifep;
+                label2.Text = Program.LanguageManager.Translation.hostGameN;
+                HostBtn.Text = Program.LanguageManager.Translation.hostBtnHost;
+                CancelBtn.Text = Program.LanguageManager.Translation.hostBtnCancel;
+            }
         }
 
         private void DuelModeChanged(object sender, EventArgs e)

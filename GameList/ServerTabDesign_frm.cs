@@ -40,6 +40,37 @@ namespace YGOPro_Launcher
                     DeckSelect.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
             DeckSelect.Text = Program.Config.DefaultDeck;
+            ApplyTranslation();
+        }
+
+        public void ApplyTranslation()
+        {
+            groupBox1.Text = Program.LanguageManager.Translation.GameServerInfo;
+            label1.Text = "# " + Program.LanguageManager.Translation.GameofRooms;
+            label2.Text = "# " + Program.LanguageManager.Translation.GameofUnranked;
+            label3.Text = "# " + Program.LanguageManager.Translation.GameofRanked;
+            label5.Text = "# " + Program.LanguageManager.Translation.GameofOpenRooms;
+            label4.Text = "# " + Program.LanguageManager.Translation.GameofPlayers;
+
+            FilterActive.Text = Program.LanguageManager.Translation.GameFilterActive;
+
+            ColumnRoomName.Text = Program.LanguageManager.Translation.GameColumnRoomName;
+            ColumnType.Text = Program.LanguageManager.Translation.GameColumnType;
+            ColumnRules.Text = Program.LanguageManager.Translation.GameColumnRules;
+            ColumnMode.Text = Program.LanguageManager.Translation.GameColumnMode;
+            ColumnState.Text = Program.LanguageManager.Translation.GameColumnState;
+            ColumnPlayers.Text = Program.LanguageManager.Translation.GameColumnPlayers;
+
+            DeckBtn.Text = Program.LanguageManager.Translation.GameBtnDeck;
+            ReplaysBtn.Text = Program.LanguageManager.Translation.GameBtnReplay;
+            ProfileBtn.Text = Program.LanguageManager.Translation.GameBtnProfile;
+            OptionsBtn.Text = Program.LanguageManager.Translation.GameBtnOption;
+            QuickBtn.Text = Program.LanguageManager.Translation.GameBtnQuick;
+            HostBtn.Text = Program.LanguageManager.Translation.GameBtnHost;
+            label14.Text = Program.LanguageManager.Translation.GameLabWLD;
+            label13.Text = Program.LanguageManager.Translation.GameLabDeck;
+            label11.Text = Program.LanguageManager.Translation.GameLabUser; 
+
         }
 
         public void RequestUserWLD()

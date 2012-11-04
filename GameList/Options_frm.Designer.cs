@@ -48,7 +48,12 @@
             this.CancelBtn = new System.Windows.Forms.Button();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.QuickSettingsBtn = new System.Windows.Forms.Button();
-            this.QuickHostSettingsbtn = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.FontSize = new System.Windows.Forms.NumericUpDown();
+            this.GameFont = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -56,6 +61,9 @@
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Antialias)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FontSize)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -64,15 +72,17 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox3, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(284, 241);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(284, 323);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // groupBox1
@@ -81,7 +91,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 99);
+            this.groupBox1.Size = new System.Drawing.Size(278, 97);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "User Settings";
@@ -103,7 +113,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 80);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 78);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // Username
@@ -158,7 +168,7 @@
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 108);
+            this.groupBox2.Location = new System.Drawing.Point(3, 106);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(278, 98);
             this.groupBox2.TabIndex = 1;
@@ -264,9 +274,9 @@
             this.flowLayoutPanel1.Controls.Add(this.CancelBtn);
             this.flowLayoutPanel1.Controls.Add(this.SaveBtn);
             this.flowLayoutPanel1.Controls.Add(this.QuickSettingsBtn);
-            this.flowLayoutPanel1.Controls.Add(this.QuickHostSettingsbtn);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 212);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 292);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(278, 28);
             this.flowLayoutPanel1.TabIndex = 3;
@@ -301,21 +311,88 @@
             this.QuickSettingsBtn.UseVisualStyleBackColor = true;
             this.QuickSettingsBtn.Click += new System.EventHandler(this.QuickSettingsBtn_Click);
             // 
-            // QuickHostSettingsbtn
+            // groupBox3
             // 
-            this.QuickHostSettingsbtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.QuickHostSettingsbtn.Location = new System.Drawing.Point(150, 32);
-            this.QuickHostSettingsbtn.Name = "QuickHostSettingsbtn";
-            this.QuickHostSettingsbtn.Size = new System.Drawing.Size(125, 23);
-            this.QuickHostSettingsbtn.TabIndex = 4;
-            this.QuickHostSettingsbtn.Text = "Quick Host Settings";
-            this.QuickHostSettingsbtn.UseVisualStyleBackColor = true;
+            this.groupBox3.Controls.Add(this.tableLayoutPanel4);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(3, 210);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(278, 76);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Font Settings";
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.FontSize, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.GameFont, 1, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(272, 57);
+            this.tableLayoutPanel4.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(38, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Game Font";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(42, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Font Size";
+            // 
+            // FontSize
+            // 
+            this.FontSize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FontSize.Location = new System.Drawing.Point(139, 3);
+            this.FontSize.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.FontSize.Name = "FontSize";
+            this.FontSize.ReadOnly = true;
+            this.FontSize.Size = new System.Drawing.Size(130, 20);
+            this.FontSize.TabIndex = 5;
+            this.FontSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // GameFont
+            // 
+            this.GameFont.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GameFont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GameFont.FormattingEnabled = true;
+            this.GameFont.Items.AddRange(new object[] {
+            "simhei.ttf",
+            "arialuni.ttf"});
+            this.GameFont.Location = new System.Drawing.Point(139, 32);
+            this.GameFont.Name = "GameFont";
+            this.GameFont.Size = new System.Drawing.Size(130, 21);
+            this.GameFont.TabIndex = 7;
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(284, 241);
+            this.ClientSize = new System.Drawing.Size(284, 323);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Settings";
@@ -330,6 +407,10 @@
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Antialias)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FontSize)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -353,9 +434,14 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Button SaveBtn;
-        private System.Windows.Forms.Button QuickHostSettingsbtn;
         private System.Windows.Forms.Button QuickSettingsBtn;
         private System.Windows.Forms.NumericUpDown Antialias;
         private System.Windows.Forms.Button ForgetAutoLoginButton;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown FontSize;
+        private System.Windows.Forms.ComboBox GameFont;
     }
 }
