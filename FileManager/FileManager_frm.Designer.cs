@@ -88,6 +88,7 @@
             this.ImportBtn.TabIndex = 4;
             this.ImportBtn.Text = "Import";
             this.ImportBtn.UseVisualStyleBackColor = true;
+            this.ImportBtn.Click += new System.EventHandler(this.ImportBtn_Click);
             // 
             // GameBtn
             // 

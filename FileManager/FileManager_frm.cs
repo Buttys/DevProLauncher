@@ -181,6 +181,27 @@ namespace YGOPro_Launcher
                 ((CardInfoControl)InfoWindow).LoadDeck(Path.GetDirectoryName(Application.ExecutablePath) + "/" + FileLocation +  FileList.SelectedItem.ToString() + ".ydk");
             }
         }
+
+        private void ImportBtn_Click(object sender, EventArgs e)
+        {
+            string[] importfiles = LauncherHelper.OpenFileWindow("Import " + Text, "", "(*" + FileType + ")|*" + FileType + ";", true);
+            if (importfiles != null)
+            {
+                foreach (string file in importfiles)
+                {
+                    try
+                    {
+                        File.Copy(file, FileLocation + Path.GetFileNameWithoutExtension(file) + FileType);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                }
+                RefreshFileList();
+            }
+        }
         
     }
 }

@@ -252,7 +252,7 @@
             "TCG",
             "Anime",
             "Turbo Duel"});
-            this.CardRules.Location = new System.Drawing.Point(122, 3);
+            this.CardRules.Location = new System.Drawing.Point(121, 3);
             this.CardRules.Name = "CardRules";
             this.CardRules.Size = new System.Drawing.Size(138, 21);
             this.CardRules.TabIndex = 0;
@@ -266,7 +266,7 @@
             "Single",
             "Tag",
             "Match"});
-            this.Mode.Location = new System.Drawing.Point(122, 26);
+            this.Mode.Location = new System.Drawing.Point(121, 26);
             this.Mode.Name = "Mode";
             this.Mode.Size = new System.Drawing.Size(138, 21);
             this.Mode.TabIndex = 1;
@@ -276,7 +276,7 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 23);
+            this.label3.Size = new System.Drawing.Size(96, 23);
             this.label3.TabIndex = 2;
             this.label3.Text = "Card Rules";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -286,7 +286,7 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Location = new System.Drawing.Point(3, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 24);
+            this.label4.Size = new System.Drawing.Size(96, 24);
             this.label4.TabIndex = 3;
             this.label4.Text = "Duel Mode";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

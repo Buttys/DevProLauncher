@@ -12,13 +12,12 @@ namespace YGOPro_Launcher
     static class Program
     {
 
-        public const string Version = "251100";
+        public const string Version = "130000";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
         public static UserData UserInfo;
         public const string ConfigurationFilename = "launcher.conf";
-        //public static Main MainForm;
         public static Login_frm LoginWindow;
         public static Authenticator LoginService;
 
