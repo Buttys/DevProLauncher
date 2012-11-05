@@ -6,13 +6,15 @@ using System.IO;
 using System.Diagnostics;
 using YGOPro_Launcher.Config;
 using YGOPro_Launcher.Login;
+using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace YGOPro_Launcher
 {
     static class Program
     {
 
-        public const string Version = "130000";
+        public const string Version = "130100";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -28,7 +30,6 @@ namespace YGOPro_Launcher
         static void Main(string[] args)
         {
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
-
             Config = new Configuration();
             Config.Load(Program.ConfigurationFilename);
             LanguageManager = new LanguageManager();

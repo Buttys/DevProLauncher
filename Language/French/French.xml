@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QuickHostSetting>Paramètres Jeu Rapide</QuickHostSetting>
+  <QuickHostBtn>Sauver</QuickHostBtn>
+  <pmsbProgRun>Programme en cours d'exécution</pmsbProgRun>
+  <pMsbErrorToServer>Erreur de connection au serveur</pMsbErrorToServer>
+  <pMsbBadLog>Mauvais profil</pMsbBadLog>
+  <pMsbOldVers>Votre version du lanceur est trop ancienne. Veuillez le réinstaller.</pMsbOldVers>
+  <pMsbException>Oooops! Une erreur est survenue! Le programme va fermer!</pMsbException>
+  <LoginUserName>Profil</LoginUserName>
+  <LoginPassWord>Mot de passe</LoginPassWord>
+  <LoginLanguage>Langue</LoginLanguage>
+  <LoginLoginButton>Entrer</LoginLoginButton>
+  <LoginRegisterButton>S'enregistrer</LoginRegisterButton>
+  <LoginAutoLogin>Me connecter automatiquement les fois suivantes.</LoginAutoLogin>
+  <LoginMsb1>Non connecté au serveur.</LoginMsb1>
+  <LoginMsb2>Veuillez entrer votre profil.</LoginMsb2>
+  <LoginMsb3>Veuillez entrer votre mot de passe.</LoginMsb3>
+  <RegistLbUser>Profil</RegistLbUser>
+  <RegistLbPw>Mot de passe</RegistLbPw>
+  <RegistLbPw2>Confirmer mot de passe</RegistLbPw2>
+  <RegistBtnRegister>S'enregistrer</RegistBtnRegister>
+  <RegistBtnCancel>Annuler</RegistBtnCancel>
+  <RegistMsb1>Veuillez confirmer votre mot de passe</RegistMsb1>
+  <RegistMsb2>Veuillez entrer votre mot de passe</RegistMsb2>
+  <RegistMsb3>Veuillez entrer votre profil.</RegistMsb3>
+  <RegistMsb4>Enregistrement réussi!</RegistMsb4>
+  <RegistMsb5>Porifl déjà existant</RegistMsb5>
+  <GameServerInfo>Détails du serveur</GameServerInfo>
+  <GameofRooms>Salons</GameofRooms>
+  <GameofUnranked>Sans classemnt</GameofUnranked>
+  <GameofRanked>Avec classement</GameofRanked>
+  <GameofOpenRooms>Salons ouverts</GameofOpenRooms>
+  <GameofPlayers>Joueurs en ligne</GameofPlayers>
+  <GameFilterActive>Afficher que les salons disponibles</GameFilterActive>
+  <GameColumnRoomName>Nom du salon</GameColumnRoomName>
+  <GameColumnType>Type</GameColumnType>
+  <GameColumnRules>Règles</GameColumnRules>
+  <GameColumnMode>Mode</GameColumnMode>
+  <GameColumnState>Etat</GameColumnState>
+  <GameColumnPlayers>Joueurs</GameColumnPlayers>
+  <GameBtnDeck>Decks</GameBtnDeck>
+  <GameBtnReplay>Replays</GameBtnReplay>
+  <GameBtnOption>Options</GameBtnOption>
+  <GameBtnProfile>Profil</GameBtnProfile>
+  <GameBtnHost>Hôte</GameBtnHost>
+  <GameBtnQuick>Rapide</GameBtnQuick>
+  <GameLabWLD>Gagné/Perdu/Nul</GameLabWLD>
+  <GameLabDeck>Deck:</GameLabDeck>
+  <GameLabUser>Profil:</GameLabUser>
+  <optionGb1>Paramètres Utilisateurs</optionGb1>
+  <optionGb2>Paramètres Jeu</optionGb2>
+  <optionGb3>Paramètres Police</optionGb3>
+  <optionMsbForget>Souhaitez-vous vraiment oublier la connexion automatique au lancement du lanceur?</optionMsbForget>
+  <optionUser>Profil par défaut</optionUser>
+  <optionDeck>Deck par défaut</optionDeck>
+  <optionBtnAutoLogin>Désactiver connexion auto</optionBtnAutoLogin>
+  <optionAntialias>Antialias</optionAntialias>
+  <optionCbSound>Activer les sons</optionCbSound>
+  <optionCbMusic>Activer les musqiues</optionCbMusic>
+  <optionCbDirect>Activer DirectX</optionCbDirect>
+  <optionCbFull>Plein écran</optionCbFull>
+  <optionTexts>Taille Police</optionTexts>
+  <optionTextf>Police du Jeu</optionTextf>
+  <optionBtnQuick>Param. Jeu Rapide</optionBtnQuick>
+  <optionBtnSave>Sauver</optionBtnSave>
+  <optionBtnCancel>Annuler</optionBtnCancel>
+  <hostGb1>Paramètres</hostGb1>
+  <hostGb2>Options supplémentaires</hostGb2>
+  <hostRules>Règles des cartes</hostRules>
+  <hostMode>Type de Duel</hostMode>
+  <hostPrio>Activer la priorité</hostPrio>
+  <hostCheckDeck>Désactiver Vérif. Deck</hostCheckDeck>
+  <hostShuffle>Désactiver Mélanger Deck</hostShuffle>
+  <hostLifep>Life Points</hostLifep>
+  <hostGameN>Nom du Jeu</hostGameN>
+  <hostBtnHost>Créer</hostBtnHost>
+  <hostBtnCancel>Annuler</hostBtnCancel>
+  <fileBtnRename>Renommer</fileBtnRename>
+  <fileBtnDelete>Supprimer</fileBtnDelete>
+  <fileBtnFolder>Ouvrir dossier</fileBtnFolder>
+  <fileBtnGame>Lancer le jeu</fileBtnGame>
+  <fileMsgNoExist>n'existe pas</fileMsgNoExist>
+  <fileMsgNoSelect>Aucune sélection</fileMsgNoSelect>
+  <fileMsbMulti>Impossible de renommer plusieurs objets</fileMsbMulti>
+  <fileAskDelete>Souhaitez-vous supprimer les objets suivants </fileAskDelete>
+  <fileNewName>Entrer nouveau nom</fileNewName>
+  <fileInputConfirm>Renommer</fileInputConfirm>
+  <aboutLabel1>A propos de DevPro</aboutLabel1>
+  <aAboutText>The YGOPro Online Development Group is a rag tag team of programmers, philanthropist, and generally knowledgeable people in the YGOPro community that seek to better and progress the Yu-Gi-Oh! Online community as a whole by providing services and software to allow duelist to grow by dueling and forming lasting friendships.</aAboutText>
+  <aboutLabel5>Contributeurs DevPro</aboutLabel5>
+  <cusRemoveBtn>Retirer</cusRemoveBtn>
+  <cusAddThemeBtn>Ajouter</cusAddThemeBtn>
+  <cusAddContentBtn>Ajouter</cusAddContentBtn>
+  <cusPreview>Aperçu</cusPreview>
+  <cusBackup>Sauvegarder</cusBackup>
+  <cusLabelTheme>Thème</cusLabelTheme>
+  <cusLabelCont>Contenu</cusLabelCont>
+</LanguageInfo>
