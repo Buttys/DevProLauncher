@@ -11,7 +11,7 @@ namespace YGOPro_Launcher.Config
         public string ServerInfoAddress = "http://dev.ygopro-online.net/launcher/serverinfo.php";
         public int ServerPort = 6922;
         public int GamePort = 6911;
-        public string GameExe = "ygopro_vs.exe";
+        public string GameExe = "devpro.dll";
         public string LauncherDir =  "";
         public string DefaultUsername = "";
         public string DefaultDeck = "";

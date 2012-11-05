@@ -14,7 +14,7 @@ namespace YGOPro_Launcher
     static class Program
     {
 
-        public const string Version = "130200";
+        public const string Version = "131000";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -32,6 +32,15 @@ namespace YGOPro_Launcher
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
             Config = new Configuration();
             Config.Load(Program.ConfigurationFilename);
+
+            if (File.Exists("ygopro_vs.exe") && !File.Exists("devpro.dll"))
+            {
+                File.Copy("ygopro_vs.exe", "devpro.dll");
+                File.Delete("ygopro_vs.exe");
+                Config.GameExe = "devpro.dll";
+                Config.Save(ConfigurationFilename);
+            }
+
             LanguageManager = new LanguageManager();
             //LanguageManager.Save("English");    
             LanguageManager.Load(Config.Language);
