@@ -62,6 +62,11 @@ namespace YGOPro_Launcher
 
         public static void RunGame(string arg)
         {
+            RunGame(arg, null);
+        }
+
+        public static void RunGame(string arg, EventHandler onExit)
+        {
             try
             {
                 Process process = new Process();
@@ -71,6 +76,10 @@ namespace YGOPro_Launcher
                 process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
                 process.StartInfo.WorkingDirectory = Program.Config.LauncherDir;
                 process.Exited += new EventHandler(UpdateInfo);
+                if (onExit != null)
+                {
+                    process.Exited += new EventHandler(onExit);
+                }
                 process.EnableRaisingEvents = true;
                 process.Start();
             }

@@ -78,7 +78,23 @@ namespace YGOPro_Launcher
         private void GameBtn_Click(object sender, EventArgs e)
         {
             LauncherHelper.GenerateConfig("ygopro:/" + Program.Config.ServerAddress + "/" + Program.Config.GamePort + "/20000,U,Replay");
-            LauncherHelper.RunGame((Name == "Decks" ? "-d" : "-r"));
+            if (Name == "Decks")
+            {
+                LauncherHelper.RunGame("-d");    
+            } else
+            {
+                if (FileList.SelectedItem == null)
+                {
+                    MessageBox.Show("Choose a replay first!");
+                    return;
+                }
+                string replayDir = Path.GetDirectoryName(Application.ExecutablePath) + "/replay/";
+                string fileName = replayDir + FileList.SelectedItem + ".yrp";
+                string tempFile = replayDir + "000000000000000000000000000000000000000000000.yrp";
+                File.Copy(fileName, tempFile);
+                LauncherHelper.RunGame("-r", (evSender, evArgs) => File.Delete(tempFile));
+            }
+            
         }
 
         public void RenameItem(object sender, EventArgs e)
