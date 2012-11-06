@@ -60,12 +60,7 @@ namespace YGOPro_Launcher
 
         public static UpdateUserInfo GameClosed;
 
-        public static void RunGame(string arg)
-        {
-            RunGame(arg, null);
-        }
-
-        public static void RunGame(string arg, EventHandler onExit)
+        public static void RunGame(string arg, EventHandler onExit = null)
         {
             try
             {
