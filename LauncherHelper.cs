@@ -41,6 +41,7 @@ namespace YGOPro_Launcher
             //Convert encoded bytes back to a 'readable' string
             return Convert.ToBase64String(saltedHash);
         }
+
         public static string[] OpenFileWindow(string title, string startpath, string filefilter, bool multiselect)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -56,7 +57,9 @@ namespace YGOPro_Launcher
         }
 
         public delegate void UpdateUserInfo();
+
         public static UpdateUserInfo GameClosed;
+
         public static void RunGame(string arg)
         {
             try
@@ -73,9 +76,10 @@ namespace YGOPro_Launcher
             }
             catch
             {
-                MessageBox.Show("Cannot find: " +Program.Config.LauncherDir + Program.Config.GameExe);
+                MessageBox.Show("Cannot find: " + Program.Config.LauncherDir + Program.Config.GameExe);
             }
         }
+
         static void UpdateInfo(object sender, EventArgs e)
         {
             if (GameClosed != null)
@@ -91,6 +95,7 @@ namespace YGOPro_Launcher
                 return false;
 
         }
+
         public static Process checkInstance()
         {
             Process cProcess = Process.GetCurrentProcess();
@@ -126,14 +131,14 @@ namespace YGOPro_Launcher
             writer.WriteLine("#config file");
             writer.WriteLine("#nickname & gamename should be less than 20 characters");
             writer.WriteLine("#Generated using " + roominfo);
-            writer.WriteLine("use_d3d = " +Convert.ToInt32(Program.Config.Enabled3D));
+            writer.WriteLine("use_d3d = " + Convert.ToInt32(Program.Config.Enabled3D));
             writer.WriteLine(("antialias = " + Program.Config.Antialias));
             writer.WriteLine("errorlog = 1");
             writer.WriteLine(("nickname = " + Program.UserInfo.Username + "$" + Program.UserInfo.LoginKey));
             writer.WriteLine("gamename = " + GameName);
             writer.WriteLine(("roompass ="));
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
-            writer.WriteLine("textfont = fonts/"+Program.Config.GameFont +" " + Program.Config.FontSize);
+            writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
             writer.WriteLine("numfont = fonts/arialbd.ttf");
             writer.WriteLine(("serverport = " + Program.Config.GamePort));
             writer.WriteLine(("lastip = " + Program.Config.ServerAddress));
@@ -143,6 +148,7 @@ namespace YGOPro_Launcher
             writer.WriteLine(("enable_music = " + Convert.ToInt32(Program.Config.EnableMusic)));
             writer.Close();
         }
+
         public static string GenerateString()
         {
             Guid g = Guid.NewGuid();
