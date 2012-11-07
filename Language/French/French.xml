@@ -2,37 +2,37 @@
 <LanguageInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <QuickHostSetting>Paramètres Jeu Rapide</QuickHostSetting>
   <QuickHostBtn>Sauver</QuickHostBtn>
-  <pmsbProgRun>Programme en cours d'exécution</pmsbProgRun>
-  <pMsbErrorToServer>Erreur de connection au serveur</pMsbErrorToServer>
-  <pMsbBadLog>Mauvais profil</pMsbBadLog>
+  <pmsbProgRun>Programme déjà en cours d'exécution.</pmsbProgRun>
+  <pMsbErrorToServer>Erreur de connection au serveur.</pMsbErrorToServer>
+  <pMsbBadLog>Mauvais profil et/ou mot de passe.</pMsbBadLog>
   <pMsbOldVers>Votre version du lanceur est trop ancienne. Veuillez le réinstaller.</pMsbOldVers>
   <pMsbException>Oooops! Une erreur est survenue! Le programme va fermer!</pMsbException>
   <LoginUserName>Profil</LoginUserName>
   <LoginPassWord>Mot de passe</LoginPassWord>
   <LoginLanguage>Langue</LoginLanguage>
-  <LoginLoginButton>Entrer</LoginLoginButton>
-  <LoginRegisterButton>S'enregistrer</LoginRegisterButton>
-  <LoginAutoLogin>Me connecter automatiquement les fois suivantes.</LoginAutoLogin>
+  <LoginLoginButton>OK</LoginLoginButton>
+  <LoginRegisterButton>S'inscrire</LoginRegisterButton>
+  <LoginAutoLogin>Me connecter automatiquement.</LoginAutoLogin>
   <LoginMsb1>Non connecté au serveur.</LoginMsb1>
   <LoginMsb2>Veuillez entrer votre profil.</LoginMsb2>
   <LoginMsb3>Veuillez entrer votre mot de passe.</LoginMsb3>
-  <RegistLbUser>Profil</RegistLbUser>
-  <RegistLbPw>Mot de passe</RegistLbPw>
-  <RegistLbPw2>Confirmer mot de passe</RegistLbPw2>
-  <RegistBtnRegister>S'enregistrer</RegistBtnRegister>
+  <RegistLbUser>Profil :</RegistLbUser>
+  <RegistLbPw>Mot de passe :</RegistLbPw>
+  <RegistLbPw2>Confirmer-le :</RegistLbPw2>
+  <RegistBtnRegister>S'inscrire</RegistBtnRegister>
   <RegistBtnCancel>Annuler</RegistBtnCancel>
   <RegistMsb1>Veuillez confirmer votre mot de passe</RegistMsb1>
   <RegistMsb2>Veuillez entrer votre mot de passe</RegistMsb2>
   <RegistMsb3>Veuillez entrer votre profil.</RegistMsb3>
   <RegistMsb4>Enregistrement réussi!</RegistMsb4>
-  <RegistMsb5>Porifl déjà existant</RegistMsb5>
+  <RegistMsb5>Profil déjà existant</RegistMsb5>
   <GameServerInfo>Détails du serveur</GameServerInfo>
   <GameofRooms>Salons</GameofRooms>
-  <GameofUnranked>Sans classemnt</GameofUnranked>
+  <GameofUnranked>Sans classement</GameofUnranked>
   <GameofRanked>Avec classement</GameofRanked>
   <GameofOpenRooms>Salons ouverts</GameofOpenRooms>
   <GameofPlayers>Joueurs en ligne</GameofPlayers>
-  <GameFilterActive>Afficher que les salons disponibles</GameFilterActive>
+  <GameFilterActive>Afficher que les disponibles.</GameFilterActive>
   <GameColumnRoomName>Nom du salon</GameColumnRoomName>
   <GameColumnType>Type</GameColumnType>
   <GameColumnRules>Règles</GameColumnRules>
