@@ -179,10 +179,11 @@ namespace YGOPro_Launcher
         {
             Exception exception = e.ExceptionObject as Exception ?? new Exception();
 
-            MessageBox.Show(LanguageManager.Translation.pMsbException);
-           
             File.WriteAllText("crash_" + DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt", exception.ToString());
-            
+
+            ErrorReport_frm error = new ErrorReport_frm(exception);
+            error.ShowDialog();
+
             Console.WriteLine(exception.ToString());
             Process.GetCurrentProcess().Kill();
         }
