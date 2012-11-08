@@ -191,7 +191,7 @@ namespace YGOPro_Launcher.Config
             writer.WriteLine("password = " + Password);
             writer.WriteLine("language = " + Language);
             writer.WriteLine("textfont = " + GameFont);
-            writer.WriteLine("textsize = " + FontSize);
+            writer.WriteLine("fontsize = " + FontSize);
             writer.WriteLine("");
             writer.WriteLine("#Quick Host Settings");
             writer.WriteLine("cardrules = " + CardRules);
