@@ -26,7 +26,7 @@
   <RegistMsb3>Please enter username.</RegistMsb3>
   <RegistMsb4>Registering Complete!</RegistMsb4>
   <RegistMsb5>Username Exists</RegistMsb5>
-  <GameServerInfo>Server Detials</GameServerInfo>
+  <GameServerInfo>Server Details</GameServerInfo>
   <GameofRooms>of Rooms</GameofRooms>
   <GameofUnranked>of Unranked</GameofUnranked>
   <GameofRanked>of Ranked</GameofRanked>
@@ -58,7 +58,7 @@
   <optionAntialias>Antialias</optionAntialias>
   <optionCbSound>Enable Sound</optionCbSound>
   <optionCbMusic>Enable Music</optionCbMusic>
-  <optionCbDirect>Enable Directx</optionCbDirect>
+  <optionCbDirect>Enable DirectX</optionCbDirect>
   <optionCbFull>Fullscreen</optionCbFull>
   <optionTexts>Font Size</optionTexts>
   <optionTextf>Game Font</optionTextf>
