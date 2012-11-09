@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QuickHostSetting>Configuración rápida de acogida</QuickHostSetting>
+  <QuickHostBtn>confirmar</QuickHostBtn>
+  <pmsbProgRun>Programa ya se está ejecutando</pmsbProgRun>
+  <pMsbErrorToServer>Error al conectar con el servidor</pMsbErrorToServer>
+  <pMsbBadLog>Ingresar Bad</pMsbBadLog>
+  <pMsbOldVers>Usted tiene una versión antigua del lanzador. Por favor, vuelva a instalarlo.</pMsbOldVers>
+  <pMsbException>Oooops! Algo malo sucedió! Software se cerrará ahora!</pMsbException>
+  <LoginUserName>Nombre de usuario</LoginUserName>
+  <LoginPassWord>Contraseña</LoginPassWord>
+  <LoginLanguage>Lenguaje</LoginLanguage>
+  <LoginLoginButton>Login</LoginLoginButton>
+  <LoginRegisterButton>registro</LoginRegisterButton>
+  <LoginAutoLogin>Iniciar sesión automáticamente la próxima vez</LoginAutoLogin>
+  <LoginMsb1>No está conectado al servidor.</LoginMsb1>
+  <LoginMsb2>Por favor, introduzca nombre de usuario.</LoginMsb2>
+  <LoginMsb3>Por favor, introduzca su contraseña.</LoginMsb3>
+  <RegistLbUser>Nombre de usuario</RegistLbUser>
+  <RegistLbPw>Contraseña</RegistLbPw>
+  <RegistLbPw2>Confirme su contraseña</RegistLbPw2>
+  <RegistBtnRegister>Registro</RegistBtnRegister>
+  <RegistBtnCancel>cancelar</RegistBtnCancel>
+  <RegistMsb1>Por favor, confirme su contraseña</RegistMsb1>
+  <RegistMsb2>Por favor, introduzca la contraseña</RegistMsb2>
+  <RegistMsb3>Por favor, introduzca su nombre de usuario.</RegistMsb3>
+  <RegistMsb4>Registro completo!</RegistMsb4>
+  <RegistMsb5>Nombre de usuario ya existe</RegistMsb5>
+  <GameServerInfo>Detalles del Servidor</GameServerInfo>
+  <GameofRooms>de salas</GameofRooms>
+  <GameofUnranked>de jugador sin clasificado</GameofUnranked>
+  <GameofRanked>de jugador clasificado</GameofRanked>
+  <GameofOpenRooms>de Salas abiertas</GameofOpenRooms>
+  <GameofPlayers>de jugador</GameofPlayers>
+  <GameFilterActive>Filtro Juegos Activos</GameFilterActive>
+  <GameColumnRoomName>Nombre de juego sala</GameColumnRoomName>
+  <GameColumnType>tipo</GameColumnType>
+  <GameColumnRules>Reglas</GameColumnRules>
+  <GameColumnMode>Modo</GameColumnMode>
+  <GameColumnState>condición</GameColumnState>
+  <GameColumnPlayers>Jugadores</GameColumnPlayers>
+  <GameBtnDeck>Editar Deck</GameBtnDeck>
+  <GameBtnReplay>repeticiones</GameBtnReplay>
+  <GameBtnOption>Configuración</GameBtnOption>
+  <GameBtnProfile>perfil</GameBtnProfile>
+  <GameBtnHost>anfitrión</GameBtnHost>
+  <GameBtnQuick>rápido</GameBtnQuick>
+  <GameLabWLD>Ganar / Perder / Empate</GameLabWLD>
+  <GameLabDeck>Deck:</GameLabDeck>
+  <GameLabUser>Nombre de usuario:</GameLabUser>
+  <optionGb1>Ajustes del usuario</optionGb1>
+  <optionGb2>Configuración del juego</optionGb2>
+  <optionGb3>Configuración de fuente</optionGb3>
+  <optionMsbForget>¿Estás seguro que quieres olvidar las credenciales de inicio de sesión automático?</optionMsbForget>
+  <optionUser>Por defecto Nombre de usuario</optionUser>
+  <optionDeck>Por defecto Deck</optionDeck>
+  <optionBtnAutoLogin>Olvídese de inicio de sesión automático</optionBtnAutoLogin>
+  <optionAntialias>Anti-aliasing</optionAntialias>
+  <optionCbSound>Activar sonido</optionCbSound>
+  <optionCbMusic>Activar Music</optionCbMusic>
+  <optionCbDirect>Activar Directx</optionCbDirect>
+  <optionCbFull>Pantalla Completa</optionCbFull>
+  <optionTexts>Tamaño de la Fuente</optionTexts>
+  <optionTextf>Juego de letra</optionTextf>
+  <optionBtnQuick>Configuración rápida de acogida</optionBtnQuick>
+  <optionBtnSave>guardar</optionBtnSave>
+  <optionBtnCancel>cancelar</optionBtnCancel>
+  <hostGb1>Configuracións</hostGb1>
+  <hostGb2>Opciones adicionales</hostGb2>
+  <hostRules>Reglas de la Tarjeta</hostRules>
+  <hostMode>Modo de juego</hostMode>
+  <hostPrio>Activar Prioridad</hostPrio>
+  <hostCheckDeck>Desactivar Compruebe Deck</hostCheckDeck>
+  <hostShuffle>Desactivar Deck Baraja</hostShuffle>
+  <hostLifep>puntos de vida</hostLifep>
+  <hostGameN>Nombre del Juego</hostGameN>
+  <hostBtnHost>anfitrión</hostBtnHost>
+  <hostBtnCancel>Cancelar</hostBtnCancel>
+  <fileBtnRename>Rebautizar</fileBtnRename>
+  <fileBtnDelete>Borrar</fileBtnDelete>
+  <fileBtnFolder>Abrir carpeta</fileBtnFolder>
+  <fileBtnGame>Abierto juego</fileBtnGame>
+  <fileMsgNoExist>does not exsist</fileMsgNoExist>
+  <fileMsgNoSelect>Nada se ha seleccionado</fileMsgNoSelect>
+  <fileMsbMulti>No se puede renombrar varios artículos</fileMsbMulti>
+  <fileAskDelete>¿Está seguro que desea eliminar el elemento siguiente(s)?</fileAskDelete>
+  <fileNewName>Introducir un nuevo nombre</fileNewName>
+  <fileInputConfirm>rebautizar</fileInputConfirm>
+  <aboutLabel1>Acerca DevPro</aboutLabel1>
+  <aAboutText>El Grupo de Desarrollo YGOPro Online es un equipo de la etiqueta de trapo de programadores, filántropo, y las personas en general con conocimientos en la comunidad YGOPro que buscan mejorar y avanzar en el Yu-Gi-Oh! Comunidad en línea como un todo por la prestación de servicios y el software para permitir que crezca un duelista amistades duraderas duelo y de conformación.</aAboutText>
+  <aboutLabel5>DevPro Colaboradores</aboutLabel5>
+  <cusRemoveBtn>Quitar</cusRemoveBtn>
+  <cusAddThemeBtn>Añadir</cusAddThemeBtn>
+  <cusAddContentBtn>Añadir</cusAddContentBtn>
+  <cusPreview>Avance</cusPreview>
+  <cusBackup>Retroceder</cusBackup>
+  <cusLabelTheme>Tema</cusLabelTheme>
+  <cusLabelCont>Contenido</cusLabelCont>
+</LanguageInfo>
