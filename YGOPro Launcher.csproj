@@ -54,6 +54,12 @@
     <Compile Include="About_frm.Designer.cs">
       <DependentUpon>About_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Admin_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin_frm.Designer.cs">
+      <DependentUpon>Admin_frm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Config\Configuration.cs" />
     <Compile Include="Config\LanguageInfo.cs" />
     <Compile Include="Config\LanguageManager.cs" />
@@ -152,6 +158,9 @@
     <None Include="System.Data.SQLite.dll" />
     <EmbeddedResource Include="About_frm.resx">
       <DependentUpon>About_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Admin_frm.resx">
+      <DependentUpon>Admin_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customize\Customize_frm.resx">
       <DependentUpon>Customize_frm.cs</DependentUpon>

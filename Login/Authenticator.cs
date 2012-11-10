@@ -1,4 +1,5 @@
 ﻿using System.Security.Authentication;
+using System;
 
 namespace YGOPro_Launcher.Login
 {
@@ -39,9 +40,10 @@ namespace YGOPro_Launcher.Login
         {
             if (message != "" && message != "Failed")
             {
+                string[] args = message.Split('|');
                 _userInfo.Username = _username;
-                _userInfo.Rank = 0;
-                _userInfo.LoginKey = message;
+                _userInfo.Rank = Int32.Parse(args[1]);
+                _userInfo.LoginKey = args[0];
             }
         }
 

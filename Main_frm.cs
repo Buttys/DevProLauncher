@@ -32,13 +32,30 @@ namespace YGOPro_Launcher
             TabPage AboutTab = new TabPage() { Text = "About", Name = "About" };
             AboutTab.Controls.Add(new About_frm());
 
-            ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
+            if (Program.UserInfo.Rank > 0)
+            {
+                TabPage AdminTab = new TabPage() { Text = "Admin Panel", Name = "Admin" };
+                AdminTab.Controls.Add(new Admin_frm());
+
+
+                ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
+                CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro"),
+                FileManager, CustomizeTab, AboutTab,AdminTab });
+            }
+            else
+            {
+                ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
                 CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro"),
                 FileManager, CustomizeTab, AboutTab });
+            }
+            Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);
 
         }
 
-       
+        private void ServerMessage(string message)
+        {
+            MessageBox.Show(message, "Server Message", MessageBoxButtons.OK);
+        }
 
         private TabPage CreateBrowserWindow(string name, string url)
         {
