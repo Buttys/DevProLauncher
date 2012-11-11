@@ -16,6 +16,7 @@ namespace YGOPro_Launcher
             InitializeComponent();
             ApplyTranslation();
             Program.ServerConnection.RegisterReply += new NetClient.ServerResponse(RegisterResponse);
+            ConfirmInput.KeyPress += new KeyPressEventHandler(ConfirmInput_KeyPress);
         }
 
         public void ApplyTranslation()
@@ -27,6 +28,14 @@ namespace YGOPro_Launcher
                 label3.Text = Program.LanguageManager.Translation.RegistLbPw2;
                 RegisterBtn.Text = Program.LanguageManager.Translation.RegistBtnRegister;
                 CancelBtn.Text = Program.LanguageManager.Translation.RegistBtnCancel;
+            }
+        }
+
+        private void ConfirmInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                RegisterBtn_Click(null, EventArgs.Empty);
             }
         }
 

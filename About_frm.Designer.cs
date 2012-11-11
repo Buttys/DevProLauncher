@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About_frm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -50,10 +54,7 @@
             this.StaffText = new System.Windows.Forms.Label();
             this.AboutText = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.YuGiOhMoDDeR = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +62,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.YuGiOhMoDDeR);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.label19);
@@ -90,6 +92,42 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(862, 446);
             this.panel1.TabIndex = 0;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(635, 193);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(53, 13);
+            this.label21.TabIndex = 23;
+            this.label21.Text = "Hurricane";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(576, 193);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(45, 13);
+            this.label20.TabIndex = 22;
+            this.label20.Text = "benbulb";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(576, 329);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(100, 13);
+            this.label19.TabIndex = 21;
+            this.label19.Text = "Zeak (Anime Cards)";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(462, 329);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(99, 13);
+            this.label18.TabIndex = 20;
+            this.label18.Text = "馬骨 (Anime Cards)";
             // 
             // label17
             // 
@@ -275,41 +313,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "About DevPro";
             // 
-            // label18
+            // YuGiOhMoDDeR
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(462, 329);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(99, 13);
-            this.label18.TabIndex = 20;
-            this.label18.Text = "馬骨 (Anime Cards)";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(576, 329);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(100, 13);
-            this.label19.TabIndex = 21;
-            this.label19.Text = "Zeak (Anime Cards)";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(576, 193);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(45, 13);
-            this.label20.TabIndex = 22;
-            this.label20.Text = "benbulb";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(635, 193);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(53, 13);
-            this.label21.TabIndex = 23;
-            this.label21.Text = "Hurricane";
+            this.YuGiOhMoDDeR.AutoSize = true;
+            this.YuGiOhMoDDeR.Location = new System.Drawing.Point(426, 238);
+            this.YuGiOhMoDDeR.Name = "YuGiOhMoDDeR";
+            this.YuGiOhMoDDeR.Size = new System.Drawing.Size(89, 13);
+            this.YuGiOhMoDDeR.TabIndex = 25;
+            this.YuGiOhMoDDeR.Text = "YuGiOhMoDDeR";
             // 
             // About_frm
             // 
@@ -354,6 +365,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label YuGiOhMoDDeR;
 
 
     }
