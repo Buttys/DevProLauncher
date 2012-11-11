@@ -379,10 +379,10 @@
             // 
             this.tableLayoutPanel5.ColumnCount = 9;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
@@ -437,7 +437,7 @@
             // 
             this.Username.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Username.AutoSize = true;
-            this.Username.Location = new System.Drawing.Point(101, 9);
+            this.Username.Location = new System.Drawing.Point(119, 9);
             this.Username.Name = "Username";
             this.Username.Size = new System.Drawing.Size(36, 13);
             this.Username.TabIndex = 1;
@@ -446,9 +446,9 @@
             // label13
             // 
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Location = new System.Drawing.Point(160, 0);
+            this.label13.Location = new System.Drawing.Point(195, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(39, 31);
+            this.label13.Size = new System.Drawing.Size(54, 31);
             this.label13.TabIndex = 2;
             this.label13.Text = "Deck:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -458,17 +458,17 @@
             this.DeckSelect.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DeckSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DeckSelect.FormattingEnabled = true;
-            this.DeckSelect.Location = new System.Drawing.Point(205, 3);
+            this.DeckSelect.Location = new System.Drawing.Point(255, 3);
             this.DeckSelect.Name = "DeckSelect";
-            this.DeckSelect.Size = new System.Drawing.Size(129, 21);
+            this.DeckSelect.Size = new System.Drawing.Size(97, 21);
             this.DeckSelect.TabIndex = 3;
             // 
             // label14
             // 
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(340, 0);
+            this.label14.Location = new System.Drawing.Point(358, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(136, 31);
+            this.label14.Size = new System.Drawing.Size(118, 31);
             this.label14.TabIndex = 4;
             this.label14.Text = "Win/Lose/Draws";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

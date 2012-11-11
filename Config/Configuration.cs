@@ -23,7 +23,7 @@ namespace YGOPro_Launcher.Config
         public bool Fullscreen = false;
         public string Password = "";
         public string GameFont = "simhei.ttf"; //only ger
-        public int FontSize = 14; //only ger
+        public int FontSize = 12; //only ger
         public string Language = "English"; // confirm Language
 
         //quickhost settings
