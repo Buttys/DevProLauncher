@@ -41,6 +41,11 @@ namespace YGOPro_Launcher
 
         private void RegisterBtn_Click(object sender, EventArgs e)
         {
+            if (ConfirmInput.Text != PasswordInput.Text)
+            {
+                MessageBox.Show("Confirm password is wrong.");
+                return;
+            }
             if (ConfirmInput.Text == "")
             {
                 MessageBox.Show(Program.LanguageManager.Translation.RegistMsb1);
