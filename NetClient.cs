@@ -177,7 +177,7 @@ namespace YGOPro_Launcher
             else if (cmd == "LOGIN")
             {
                 if (LoginReply != null)
-                    LoginReply(args[1] + "|" + args[2]);
+                    LoginReply(args[1] + ( args.Length > 2 ? "|" + args[2]: ""));
             }
             else if (cmd == "WLD")
             {

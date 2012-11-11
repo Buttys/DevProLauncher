@@ -1,5 +1,6 @@
 ﻿using System.Security.Authentication;
 using System;
+using System.Windows.Forms;
 
 namespace YGOPro_Launcher.Login
 {
@@ -38,12 +39,18 @@ namespace YGOPro_Launcher.Login
 
         private void LoginResponse(string message)
         {
-            if (message != "" && message != "Failed")
+            if (message == "") return;
+            string[] args = message.Split('|');
+
+            if (args[0] != "Banned")
             {
-                string[] args = message.Split('|');
                 _userInfo.Username = _username;
                 _userInfo.Rank = Int32.Parse(args[1]);
                 _userInfo.LoginKey = args[0];
+            }
+            else
+            {
+                MessageBox.Show("You are banned.");
             }
         }
 

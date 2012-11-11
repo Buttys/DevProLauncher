@@ -20,6 +20,38 @@ namespace YGOPro_Launcher
             InputBox.KeyPress +=new KeyPressEventHandler(InputBox_KeyPress);
             ServerLog.KeyDown +=new KeyEventHandler(ServerLog_KeyDown);
             Program.ServerConnection.AdminMessage += new NetClient.ServerResponse(ParseMessage);
+            UserList.MouseUp += new MouseEventHandler(UserList_MouseUp);
+        }
+
+        private void UserList_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int index = UserList.IndexFromPoint(e.Location);
+
+                if (index == -1) return;
+                else
+                    UserList.SelectedIndex = index;
+
+                ContextMenuStrip mnu = new ContextMenuStrip();
+                ToolStripMenuItem mnukick = new ToolStripMenuItem("Kick");
+                ToolStripMenuItem mnuban = new ToolStripMenuItem("Ban");
+
+                mnukick.Click += new EventHandler(KickUser);
+                mnuban.Click += new EventHandler(BanUser);
+
+                mnu.Items.AddRange(new ToolStripItem[] { mnukick, mnuban });
+                mnu.Show(UserList, e.Location);
+            }
+        }
+
+        private void BanUser(object sender, EventArgs e)
+        {
+            Program.ServerConnection.SendPacket("ADMIN|BAN|" + UserList.SelectedItem.ToString());
+        }
+        private void KickUser(object sender, EventArgs e)
+        {
+            Program.ServerConnection.SendPacket("ADMIN|KICK|" + UserList.SelectedItem.ToString());
         }
 
         private void InputBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -67,6 +99,7 @@ namespace YGOPro_Launcher
                 {
                     UserList.Items.Add(user);
                 }
+                UserCount.Text = "Users: " + UserList.Items.Count;
             }
         }
 

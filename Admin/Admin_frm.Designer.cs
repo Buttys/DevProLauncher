@@ -32,6 +32,7 @@
             this.InputBox = new System.Windows.Forms.TextBox();
             this.ServerLog = new System.Windows.Forms.RichTextBox();
             this.UserList = new System.Windows.Forms.ListBox();
+            this.UserCount = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,6 +44,7 @@
             this.tableLayoutPanel1.Controls.Add(this.InputBox, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.ServerLog, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.UserList, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.UserCount, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -67,7 +69,8 @@
             this.ServerLog.Name = "ServerLog";
             this.ServerLog.Size = new System.Drawing.Size(560, 364);
             this.ServerLog.TabIndex = 1;
-            this.ServerLog.Text = "";
+            this.ServerLog.Text = "Commands: kill [room], ban [user], unban [user], kick [user], msg [message], user" +
+    "s, restart, shutdown";
             // 
             // UserList
             // 
@@ -78,6 +81,15 @@
             this.UserList.Name = "UserList";
             this.UserList.Size = new System.Drawing.Size(144, 364);
             this.UserList.TabIndex = 2;
+            // 
+            // UserCount
+            // 
+            this.UserCount.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.UserCount.AutoSize = true;
+            this.UserCount.Location = new System.Drawing.Point(641, 376);
+            this.UserCount.Name = "UserCount";
+            this.UserCount.Size = new System.Drawing.Size(0, 13);
+            this.UserCount.TabIndex = 3;
             // 
             // Admin_frm
             // 
@@ -100,5 +112,6 @@
         private System.Windows.Forms.TextBox InputBox;
         private System.Windows.Forms.RichTextBox ServerLog;
         private System.Windows.Forms.ListBox UserList;
+        private System.Windows.Forms.Label UserCount;
     }
 }

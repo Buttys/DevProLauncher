@@ -41,6 +41,11 @@ namespace YGOPro_Launcher
             }
             DeckSelect.Text = Program.Config.DefaultDeck;
             ApplyTranslation();
+            if (Program.UserInfo.Rank > 0)
+            {
+                listRooms.MouseUp +=new MouseEventHandler(listRooms_MouseUp);
+            }
+
         }
 
         public void ApplyTranslation()
@@ -71,6 +76,28 @@ namespace YGOPro_Launcher
             label13.Text = Program.LanguageManager.Translation.GameLabDeck;
             label11.Text = Program.LanguageManager.Translation.GameLabUser; 
 
+        }
+
+        private void listRooms_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ListViewItem item = listRooms.GetItemAt(e.X, e.Y);
+                item.Selected = true;
+
+                ContextMenuStrip mnu = new ContextMenuStrip();
+                ToolStripMenuItem mnukill = new ToolStripMenuItem("Kill");
+
+                mnukill.Click += new EventHandler(KillRoom);
+
+                mnu.Items.Add(mnukill);
+                mnu.Show(listRooms, e.Location);
+            }
+        }
+
+        private void KillRoom(object sender, EventArgs e)
+        {
+            Program.ServerConnection.SendPacket("ADMIN|KILL|" + listRooms.SelectedItems[0].Text);
         }
 
         public void RequestUserWLD()
