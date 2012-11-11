@@ -70,7 +70,8 @@ namespace YGOPro_Launcher
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
                 process.StartInfo.WorkingDirectory = Program.Config.LauncherDir;
-                process.Exited += new EventHandler(UpdateInfo);
+                if(arg == "-j")
+                    process.Exited += new EventHandler(UpdateInfo);
                 if (onExit != null)
                 {
                     process.Exited += new EventHandler(onExit);

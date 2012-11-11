@@ -30,6 +30,8 @@ namespace YGOPro_Launcher
             Program.ServerConnection.RemoveRoom += new NetClient.ServerResponse(OnRoomRemoved);
             Program.ServerConnection.UpdateRoomStatus += new NetClient.ServerResponse(OnRoomStarted);
             Program.ServerConnection.UpdateRoomPlayers += new NetClient.ServerResponse(OnRoomPlayersUpdate);
+            Program.ServerConnection.UserInfoUpdate += new NetClient.ServerResponse(UpdateUserInfo);
+            LauncherHelper.GameClosed += new LauncherHelper.UpdateUserInfo(RequestUserWLD);
 
             Username.Text = Program.UserInfo.Username;
 
