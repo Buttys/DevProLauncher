@@ -14,7 +14,7 @@ namespace YGOPro_Launcher
     static class Program
     {
 
-        public const string Version = "140000";
+        public const string Version = "141000";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
