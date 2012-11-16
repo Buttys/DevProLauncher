@@ -33,12 +33,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.UsernameInput = new System.Windows.Forms.MaskedTextBox();
-            this.PasswordInput = new System.Windows.Forms.MaskedTextBox();
-            this.ConfirmInput = new System.Windows.Forms.MaskedTextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.RegisterBtn = new System.Windows.Forms.Button();
             this.CancelBtn = new System.Windows.Forms.Button();
+            this.UsernameInput = new System.Windows.Forms.TextBox();
+            this.PasswordInput = new System.Windows.Forms.TextBox();
+            this.ConfirmInput = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -51,10 +51,10 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.UsernameInput, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.PasswordInput, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.ConfirmInput, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -96,32 +96,6 @@
             this.label3.Text = "Confirm Password";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // UsernameInput
-            // 
-            this.UsernameInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UsernameInput.Location = new System.Drawing.Point(122, 3);
-            this.UsernameInput.Name = "UsernameInput";
-            this.UsernameInput.Size = new System.Drawing.Size(160, 20);
-            this.UsernameInput.TabIndex = 3;
-            // 
-            // PasswordInput
-            // 
-            this.PasswordInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PasswordInput.Location = new System.Drawing.Point(122, 28);
-            this.PasswordInput.Name = "PasswordInput";
-            this.PasswordInput.Size = new System.Drawing.Size(160, 20);
-            this.PasswordInput.TabIndex = 4;
-            this.PasswordInput.UseSystemPasswordChar = true;
-            // 
-            // ConfirmInput
-            // 
-            this.ConfirmInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ConfirmInput.Location = new System.Drawing.Point(122, 53);
-            this.ConfirmInput.Name = "ConfirmInput";
-            this.ConfirmInput.Size = new System.Drawing.Size(160, 20);
-            this.ConfirmInput.TabIndex = 5;
-            this.ConfirmInput.UseSystemPasswordChar = true;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.RegisterBtn);
@@ -152,6 +126,35 @@
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
             // 
+            // UsernameInput
+            // 
+            this.UsernameInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UsernameInput.Location = new System.Drawing.Point(122, 3);
+            this.UsernameInput.MaxLength = 15;
+            this.UsernameInput.Name = "UsernameInput";
+            this.UsernameInput.Size = new System.Drawing.Size(160, 20);
+            this.UsernameInput.TabIndex = 7;
+            // 
+            // PasswordInput
+            // 
+            this.PasswordInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PasswordInput.Location = new System.Drawing.Point(122, 28);
+            this.PasswordInput.MaxLength = 15;
+            this.PasswordInput.Name = "PasswordInput";
+            this.PasswordInput.Size = new System.Drawing.Size(160, 20);
+            this.PasswordInput.TabIndex = 8;
+            this.PasswordInput.UseSystemPasswordChar = true;
+            // 
+            // ConfirmInput
+            // 
+            this.ConfirmInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConfirmInput.Location = new System.Drawing.Point(122, 53);
+            this.ConfirmInput.MaxLength = 15;
+            this.ConfirmInput.Name = "ConfirmInput";
+            this.ConfirmInput.Size = new System.Drawing.Size(160, 20);
+            this.ConfirmInput.TabIndex = 9;
+            this.ConfirmInput.UseSystemPasswordChar = true;
+            // 
             // Register_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -177,11 +180,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.MaskedTextBox UsernameInput;
-        private System.Windows.Forms.MaskedTextBox PasswordInput;
-        private System.Windows.Forms.MaskedTextBox ConfirmInput;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button RegisterBtn;
         private System.Windows.Forms.Button CancelBtn;
+        private System.Windows.Forms.TextBox UsernameInput;
+        private System.Windows.Forms.TextBox PasswordInput;
+        private System.Windows.Forms.TextBox ConfirmInput;
     }
 }

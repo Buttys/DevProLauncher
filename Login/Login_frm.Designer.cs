@@ -139,6 +139,7 @@
             // 
             this.UsernameInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UsernameInput.Location = new System.Drawing.Point(86, 3);
+            this.UsernameInput.MaxLength = 15;
             this.UsernameInput.Name = "UsernameInput";
             this.UsernameInput.Size = new System.Drawing.Size(168, 22);
             this.UsernameInput.TabIndex = 4;
@@ -147,6 +148,7 @@
             // 
             this.PasswordInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PasswordInput.Location = new System.Drawing.Point(86, 28);
+            this.PasswordInput.MaxLength = 15;
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.Size = new System.Drawing.Size(168, 22);
             this.PasswordInput.TabIndex = 5;
