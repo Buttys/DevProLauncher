@@ -130,7 +130,7 @@
             // 
             this.UsernameInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UsernameInput.Location = new System.Drawing.Point(122, 3);
-            this.UsernameInput.MaxLength = 15;
+            this.UsernameInput.MaxLength = 14;
             this.UsernameInput.Name = "UsernameInput";
             this.UsernameInput.Size = new System.Drawing.Size(160, 20);
             this.UsernameInput.TabIndex = 7;
