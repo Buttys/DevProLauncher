@@ -40,12 +40,14 @@ namespace YGOPro_Launcher
 
                 ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
                 CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro"),
+                CreateBrowserWindow("Youtube", "https://www.youtube.com/user/blub2blb"),
                 FileManager, CustomizeTab, AboutTab,AdminTab });
             }
             else
             {
                 ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
                 CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro"),
+                CreateBrowserWindow("Youtube", "http://www.youtube.com/user/blub2blb"),
                 FileManager, CustomizeTab, AboutTab });
             }
             Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);

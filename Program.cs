@@ -29,7 +29,7 @@ namespace YGOPro_Launcher
         [STAThread]
         static void Main(string[] args)
         {
-           // AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
             Config = new Configuration();
             Config.Load(Program.ConfigurationFilename);
 
