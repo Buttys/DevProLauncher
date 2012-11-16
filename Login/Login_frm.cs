@@ -50,6 +50,7 @@ namespace YGOPro_Launcher
         {
             if (Program.LanguageManager.Loaded)
             {
+                Font = new System.Drawing.Font("ARIALUNI", 8);
                 label1.Text = Program.LanguageManager.Translation.LoginUserName;
                 label2.Text = Program.LanguageManager.Translation.LoginPassWord;
                 label3.Text = Program.LanguageManager.Translation.LoginLanguage;

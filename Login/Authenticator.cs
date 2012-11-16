@@ -41,16 +41,21 @@ namespace YGOPro_Launcher.Login
         {
             if (message == "") return;
             string[] args = message.Split('|');
-
-            if (args[0] != "Banned")
+          
+            if (args[0] == "Banned")
             {
+                MessageBox.Show("You are banned.");
+            }
+            if (args[0] == "Failed")
+            {
+                MessageBox.Show("Incorrect Password or Username.");
+            }
+            else
+            {                
                 _userInfo.Username = _username;
                 _userInfo.Rank = Int32.Parse(args[1]);
                 _userInfo.LoginKey = args[0];
-            }
-            else
-            {
-                MessageBox.Show("You are banned.");
+                
             }
         }
 

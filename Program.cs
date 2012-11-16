@@ -14,7 +14,7 @@ namespace YGOPro_Launcher
     static class Program
     {
 
-        public const string Version = "141000";
+        public const string Version = "142000";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -29,7 +29,7 @@ namespace YGOPro_Launcher
         [STAThread]
         static void Main(string[] args)
         {
-            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+           // AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
             Config = new Configuration();
             Config.Load(Program.ConfigurationFilename);
 
