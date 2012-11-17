@@ -48,10 +48,11 @@
   <GameLabWLD>Win/Lose/Unentschieden</GameLabWLD>
   <GameLabDeck>Deck:</GameLabDeck>
   <GameLabUser>Spielername:</GameLabUser>
+  <!-- Optionen Fenster -->
   <optionGb1>Benutzer Einstellungen</optionGb1>
   <optionGb2>Spieleinstellungen</optionGb2>
   <optionGb3>Schrifteinstellungen</optionGb3>
-  <optionMsbForget>Autologin Daten löschen?</optionMsbForget>
+  <optionBtnAutoLogin>Autologin löschen?</optionBtnAutoLogin>
   <optionUser>Default Spielername</optionUser>
   <optionDeck>Defualt Deck</optionDeck>
   <optionBtnAutoLogin>Forget Auto Login</optionBtnAutoLogin>
