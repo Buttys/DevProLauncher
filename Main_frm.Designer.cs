@@ -11,8 +11,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_frm));
             this.ServerControl = new System.Windows.Forms.TabControl();
+            this.ConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // ServerControl
@@ -23,6 +25,11 @@
             this.ServerControl.SelectedIndex = 0;
             this.ServerControl.Size = new System.Drawing.Size(934, 491);
             this.ServerControl.TabIndex = 0;
+            // 
+            // ConnectionCheck
+            // 
+            this.ConnectionCheck.Enabled = true;
+            this.ConnectionCheck.Interval = 5000;
             // 
             // Main_frm
             // 
@@ -43,5 +50,7 @@
         #endregion
 
         private System.Windows.Forms.TabControl ServerControl;
+        private System.Windows.Forms.Timer ConnectionCheck;
+        private System.ComponentModel.IContainer components;
     }
 }

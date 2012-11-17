@@ -9,8 +9,6 @@ namespace YGOPro_Launcher
 {
     public class NetClient
     {
-        public bool IsConnected { get; private set; }
-
         private TcpClient m_client;
         private StreamReader m_reader;
         private Thread m_receiveThread;
@@ -35,6 +33,21 @@ namespace YGOPro_Launcher
         public ServerRooms AddRooms;
         public ServerRooms AddRoom;
 
+        public bool IsConnected 
+        { 
+            get
+            {
+                try
+                {
+                    return m_client.Connected;
+                }
+                catch
+                {
+                    return false;
+                }
+            } 
+        }
+
         public NetClient()
         {
             m_messageQueue = new Queue<string>();
@@ -58,7 +71,6 @@ namespace YGOPro_Launcher
                 m_client = new TcpClient();
                 m_client.Connect(address, port);
                 m_reader = new StreamReader(m_client.GetStream());
-                IsConnected = true;
                 m_receiveThread.Start();
                 m_parserThread.Start();
                 
@@ -208,7 +220,6 @@ namespace YGOPro_Launcher
         {
             if (!IsConnected) return;
             
-                IsConnected = false;
                 Disconnect();
 
                 if (OnFatalError != null)

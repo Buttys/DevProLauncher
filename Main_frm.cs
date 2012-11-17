@@ -51,7 +51,30 @@ namespace YGOPro_Launcher
                 FileManager, CustomizeTab, AboutTab });
             }
             Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);
+            ConnectionCheck.Tick += new EventHandler(CheckConnection);
 
+        }
+
+        private void CheckConnection(object sender, EventArgs e)
+        {
+            if (!Program.ServerConnection.IsConnected)
+            {
+                this.Hide();
+                if (MessageBox.Show("Dissconnected from server") == DialogResult.OK)
+                {
+                    Login_frm login = new Login_frm(Program.Config, Program.ServerConnection, Program.LoginService);
+                    if (login.ShowDialog() == DialogResult.OK)
+                    {
+                        Main_frm_Load(null, EventArgs.Empty);
+                        this.Show();
+                    }
+                }
+                else
+                {
+                    Application.Exit();
+                }
+
+            }
         }
 
         private void ServerMessage(string message)

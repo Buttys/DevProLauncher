@@ -86,8 +86,11 @@ namespace YGOPro_Launcher
         {
             if (!_connection.IsConnected)
             {
-                MessageBox.Show(Program.LanguageManager.Translation.LoginMsb1);
-                return;
+                if (!Program.ServerConnection.Connect(Program.Config.ServerAddress, Program.Config.ServerPort))
+                {
+                    MessageBox.Show(Program.LanguageManager.Translation.pMsbErrorToServer);
+                    return;
+                }
             }
             if (UsernameInput.Text == "")
             {
