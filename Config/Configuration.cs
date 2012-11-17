@@ -201,6 +201,8 @@ namespace YGOPro_Launcher.Config
             writer.WriteLine("disableshuffledeck = " + DisableShuffleDeck);
             writer.WriteLine("lifepoints = " + Lifepoints);
             writer.WriteLine("gamename = " + GameName);
+            if (DebugMode == true)
+                writer.WriteLine("debugmode = " + DebugMode);
 
             writer.Close();
         }

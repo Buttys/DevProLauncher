@@ -26,6 +26,7 @@ namespace YGOPro_Launcher
             UsernameInput.Text = _configuration.DefaultUsername;
             AutoLoginCheckBox.Checked = _configuration.AutoLogin;
             PasswordInput.KeyPress += new KeyPressEventHandler(PasswordInput_KeyPress);
+          
 
             if (Directory.Exists(LanguageManager.Path))
             {
@@ -58,6 +59,14 @@ namespace YGOPro_Launcher
                 RegisterBtn.Text = Program.LanguageManager.Translation.LoginRegisterButton;
                 AutoLoginCheckBox.Text = Program.LanguageManager.Translation.LoginAutoLogin;
             }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+            if(DialogResult != DialogResult.OK)
+                Application.Exit();
         }
 
         private void LanguageSelect_SelectedIndexChanged(object sender, EventArgs e)

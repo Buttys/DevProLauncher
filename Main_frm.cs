@@ -60,14 +60,20 @@ namespace YGOPro_Launcher
             if (!Program.ServerConnection.IsConnected)
             {
                 this.Hide();
+                ConnectionCheck.Enabled = false;
                 if (MessageBox.Show("Dissconnected from server") == DialogResult.OK)
                 {
-                    Login_frm login = new Login_frm(Program.Config, Program.ServerConnection, Program.LoginService);
-                    if (login.ShowDialog() == DialogResult.OK)
-                    {
-                        Main_frm_Load(null, EventArgs.Empty);
-                        this.Show();
-                    }
+                    //Program.ServerConnection = new NetClient();
+                    //Program.UserInfo = new UserData();
+        
+                    //Login_frm login = new Login_frm(Program.Config, Program.ServerConnection, Program.LoginService);
+                    //if (login.ShowDialog() == DialogResult.OK)
+                    //{
+                    //    Main_frm_Load(null, EventArgs.Empty);
+                    //    this.Show();
+                    //    ConnectionCheck.Enabled = true;
+                    //}
+                    Application.Exit();
                 }
                 else
                 {
