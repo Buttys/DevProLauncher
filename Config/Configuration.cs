@@ -25,6 +25,11 @@ namespace YGOPro_Launcher.Config
         public string GameFont = "simhei.ttf"; //only ger
         public int FontSize = 12; //only ger
         public string Language = "English"; // confirm Language
+        public bool UseSkin = false;
+        public bool AutoPlacing = true;
+        public bool RandomPlacing = false;
+        public bool AutoChain = true;
+        public bool NoChainDelay = false;
 
         //quickhost settings
         public string CardRules = "OCG/TCG";
@@ -149,6 +154,21 @@ namespace YGOPro_Launcher.Config
                         else
                             Password = value;
                         break;
+                    case "useskin":
+                        UseSkin = Convert.ToBoolean(value);
+                        break;
+                    case "autoplacing":
+                        AutoPlacing = Convert.ToBoolean(value);
+                        break;
+                    case "randomplacing":
+                        RandomPlacing = Convert.ToBoolean(value);
+                        break;
+                    case "autochain":
+                        AutoChain = Convert.ToBoolean(value);
+                        break;
+                    case "nochaindelay":
+                        NoChainDelay = Convert.ToBoolean(value);
+                        break;
                 }
             }
 
@@ -192,6 +212,11 @@ namespace YGOPro_Launcher.Config
             writer.WriteLine("language = " + Language);
             writer.WriteLine("textfont = " + GameFont);
             writer.WriteLine("fontsize = " + FontSize);
+            writer.WriteLine("useskin = " + UseSkin);
+            writer.WriteLine("autoplacing = " + AutoPlacing);
+            writer.WriteLine("randomplacing = " + RandomPlacing);
+            writer.WriteLine("autochain = " + AutoChain);
+            writer.WriteLine("nochaindelay = " + NoChainDelay);
             writer.WriteLine("");
             writer.WriteLine("#Quick Host Settings");
             writer.WriteLine("cardrules = " + CardRules);

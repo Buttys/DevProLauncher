@@ -24,6 +24,11 @@ namespace YGOPro_Launcher
             Fullscreen.Checked = Program.Config.Fullscreen;
             GameFont.Text = Program.Config.GameFont;
             FontSize.Value = Program.Config.FontSize;
+            UseSkin.Checked = Program.Config.UseSkin;
+            AutoPlacing.Checked = Program.Config.AutoPlacing;
+            RandomPlacing.Checked = Program.Config.RandomPlacing;
+            AutoChain.Checked = Program.Config.AutoChain;
+            NoDelay.Checked = Program.Config.NoChainDelay;
             if (Directory.Exists(Program.Config.LauncherDir + "deck/"))
             {
                 string[] decks = Directory.GetFiles(Program.Config.LauncherDir + "deck/");
@@ -31,6 +36,7 @@ namespace YGOPro_Launcher
                     DefualtDeck.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
             DefualtDeck.Text = Program.Config.DefaultDeck;
+            UseSkin.CheckedChanged += new EventHandler(UseSkin_CheckedChanged);
 
             ApplyTranslation();
         }
@@ -45,7 +51,7 @@ namespace YGOPro_Launcher
                 label1.Text = Program.LanguageManager.Translation.optionUser;
                 label5.Text = Program.LanguageManager.Translation.optionDeck;
                 ForgetAutoLoginButton.Text = Program.LanguageManager.Translation.optionBtnAutoLogin;
-                label4.Text = Program.LanguageManager.Translation.optionAntialias;
+                label6.Text = Program.LanguageManager.Translation.optionAntialias;
                 EnableSound.Text = Program.LanguageManager.Translation.optionCbSound;
                 EnableMusic.Text = Program.LanguageManager.Translation.optionCbMusic;
                 Enabled3d.Text = Program.LanguageManager.Translation.optionCbDirect;
@@ -55,6 +61,14 @@ namespace YGOPro_Launcher
                 QuickSettingsBtn.Text = Program.LanguageManager.Translation.optionBtnQuick;
                 SaveBtn.Text = Program.LanguageManager.Translation.optionBtnSave;
                 CancelBtn.Text = Program.LanguageManager.Translation.optionBtnCancel;
+            }
+        }
+
+        private void UseSkin_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!Enabled3d.Checked)
+            {
+                Enabled3d.Checked = true;
             }
         }
 
@@ -69,6 +83,11 @@ namespace YGOPro_Launcher
             Program.Config.Fullscreen = Fullscreen.Checked;
             Program.Config.FontSize = (int)FontSize.Value;
             Program.Config.GameFont = GameFont.Text;
+            Program.Config.UseSkin = UseSkin.Checked;
+            Program.Config.AutoPlacing = AutoPlacing.Checked;
+            Program.Config.RandomPlacing = RandomPlacing.Checked;
+            Program.Config.AutoChain = AutoChain.Checked;
+            Program.Config.NoChainDelay = NoDelay.Checked;
             Program.Config.Save(Program.ConfigurationFilename);
             DialogResult = DialogResult.OK;
 
@@ -102,5 +121,6 @@ namespace YGOPro_Launcher
                 Program.Config.Save(Program.ConfigurationFilename);
             }
         }
+
     }
 }

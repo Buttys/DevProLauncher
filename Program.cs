@@ -14,7 +14,7 @@ namespace YGOPro_Launcher
     static class Program
     {
 
-        public const string Version = "150000";
+        public const string Version = "150100";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -65,14 +65,14 @@ namespace YGOPro_Launcher
 
             LoginService = new Authenticator(Config.DefaultUsername, Config.Password, ServerConnection, UserInfo);
 
-
-
-            if (Config.AutoLogin && Config.DefaultUsername.Length < 15)
-            {           
                 if(!ServerConnection.Connect(Config.ServerAddress, Config.ServerPort))
                 {
                     MessageBox.Show(LanguageManager.Translation.pMsbErrorToServer);
                 }
+
+            if (Config.AutoLogin && Config.DefaultUsername.Length < 15)
+            {           
+
                 LoginService.Authenticate();
                 Thread.Sleep(2000);
             }

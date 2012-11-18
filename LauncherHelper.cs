@@ -151,6 +151,11 @@ namespace YGOPro_Launcher
             writer.WriteLine(("fullscreen = " + Convert.ToInt32(Program.Config.Fullscreen)));
             writer.WriteLine(("enable_sound = " + Convert.ToInt32(Program.Config.EnableSound)));
             writer.WriteLine(("enable_music = " + Convert.ToInt32(Program.Config.EnableMusic)));
+            writer.WriteLine("use_skin = " + Convert.ToInt32(Program.Config.UseSkin));
+            writer.WriteLine("auto_card_placing = " + Convert.ToInt32(Program.Config.AutoPlacing));
+            writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
+            writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
+            writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
             writer.Close();
         }
 
