@@ -105,6 +105,7 @@
     <Compile Include="GameList\Host_frm.Designer.cs">
       <DependentUpon>Host_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameList\ListViewComparer.cs" />
     <Compile Include="GameList\ServerTabDesign_frm.cs">
       <SubType>Form</SubType>
     </Compile>

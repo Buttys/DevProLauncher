@@ -61,6 +61,12 @@ namespace YGOPro_Launcher
                 QuickSettingsBtn.Text = Program.LanguageManager.Translation.optionBtnQuick;
                 SaveBtn.Text = Program.LanguageManager.Translation.optionBtnSave;
                 CancelBtn.Text = Program.LanguageManager.Translation.optionBtnCancel;
+                UseSkin.Text = Program.LanguageManager.Translation.optionCbCustomSkin;
+                AutoPlacing.Text = Program.LanguageManager.Translation.optionCbAutoPlacing;
+                RandomPlacing.Text = Program.LanguageManager.Translation.optionCbRandomPlacing;
+                AutoChain.Text = Program.LanguageManager.Translation.optionCbAutoChain;
+                NoDelay.Text = Program.LanguageManager.Translation.optionCbNoChainDelay;
+
             }
         }
 

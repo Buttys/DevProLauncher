@@ -32,6 +32,7 @@ namespace YGOPro_Launcher
             Program.ServerConnection.UpdateRoomPlayers += new NetClient.ServerResponse(OnRoomPlayersUpdate);
             Program.ServerConnection.UserInfoUpdate += new NetClient.ServerResponse(UpdateUserInfo);
             LauncherHelper.GameClosed += new LauncherHelper.UpdateUserInfo(RequestUserWLD);
+            listRooms.ColumnClick += new ColumnClickEventHandler(listRooms_ColumnClick);
 
             Username.Text = Program.UserInfo.Username;
 
@@ -468,6 +469,23 @@ namespace YGOPro_Launcher
                 FilterTextBox.Text = "Search";
                 FilterTextBox.ForeColor = SystemColors.WindowFrame;
             }
+        }
+
+        private void listRooms_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ListViewItemComparer sorter = listRooms.ListViewItemSorter as ListViewItemComparer;
+
+            if (sorter == null)
+            {
+                sorter = new ListViewItemComparer(e.Column);
+                listRooms.ListViewItemSorter = sorter;
+            }
+            else
+            {
+                sorter.Column = e.Column;
+            }
+
+            listRooms.Sort();
         }
 
     }

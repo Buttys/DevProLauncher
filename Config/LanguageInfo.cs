@@ -80,6 +80,11 @@ namespace YGOPro_Launcher.Config
         public string optionBtnQuick = "Quick Host Settings";
         public string optionBtnSave = "Save";
         public string optionBtnCancel = "Cancel";
+        public string optionCbCustomSkin = "Use Custom Skin";
+        public string optionCbAutoPlacing = "Auto Card Placing";
+        public string optionCbRandomPlacing = "Random Card Placing";
+        public string optionCbAutoChain = "Auto Chain Order";
+        public string optionCbNoChainDelay = "No Delay for Chain";
 
         // Host_frm.cs
         public string hostGb1 = "Settings";
