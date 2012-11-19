@@ -39,7 +39,7 @@ namespace YGOPro_Launcher.Config
         public string RegistMsb5 = "Username Exists";
 
         // ServerTabDesign_frm
-        public string GameServerInfo = "Server Detials";
+        public string GameServerInfo = "Server Details";
         public string GameofRooms = "of Rooms";
         public string GameofUnranked = "of Unranked";
         public string GameofRanked = "of Ranked";
