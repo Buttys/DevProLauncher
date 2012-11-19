@@ -54,8 +54,8 @@
   <optionMsbForget>Souhaitez-vous vraiment oublier la connexion automatique au lancement du lanceur?</optionMsbForget>
   <optionUser>Profil par défaut</optionUser>
   <optionDeck>Deck par défaut</optionDeck>
-  <optionBtnAutoLogin>Désactiver connexion auto</optionBtnAutoLogin>
-  <optionAntialias>Antialias</optionAntialias>
+  <optionBtnAutoLogin>Oublier connexion auto</optionBtnAutoLogin>
+  <optionAntialias>Anti-aliasing</optionAntialias>
   <optionCbSound>Activer les sons</optionCbSound>
   <optionCbMusic>Activer les musiques</optionCbMusic>
   <optionCbDirect>Activer DirectX</optionCbDirect>
@@ -65,6 +65,11 @@
   <optionBtnQuick>Param. Jeu Rapide</optionBtnQuick>
   <optionBtnSave>Sauver</optionBtnSave>
   <optionBtnCancel>Annuler</optionBtnCancel>
+  <optionCbCustomSkin>Activer les Skins</optionCbCustomSkin>
+  <optionCbAutoPlacing>Placer cartes auto</optionCbAutoPlacing>
+  <optionCbRandomPlacing>Placer cartes au hasard</optionCbRandomPlacing>
+  <optionCbAutoChain>Chaîner auto</optionCbAutoChain>
+  <optionCbNoChainDelay>Chaîner sans délai</optionCbNoChainDelay>
   <hostGb1>Paramètres</hostGb1>
   <hostGb2>Options supplémentaires</hostGb2>
   <hostRules>Règles des cartes</hostRules>
