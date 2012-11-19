@@ -26,7 +26,7 @@
   <RegistMsb3>Please enter username.</RegistMsb3>
   <RegistMsb4>Registering Complete!</RegistMsb4>
   <RegistMsb5>Username Exists</RegistMsb5>
-  <GameServerInfo>Server Details</GameServerInfo>
+  <GameServerInfo>Server Detials</GameServerInfo>
   <GameofRooms>of Rooms</GameofRooms>
   <GameofUnranked>of Unranked</GameofUnranked>
   <GameofRanked>of Ranked</GameofRanked>
@@ -58,13 +58,18 @@
   <optionAntialias>Antialias</optionAntialias>
   <optionCbSound>Enable Sound</optionCbSound>
   <optionCbMusic>Enable Music</optionCbMusic>
-  <optionCbDirect>Enable DirectX</optionCbDirect>
+  <optionCbDirect>Enable Directx</optionCbDirect>
   <optionCbFull>Fullscreen</optionCbFull>
   <optionTexts>Font Size</optionTexts>
   <optionTextf>Game Font</optionTextf>
   <optionBtnQuick>Quick Host Settings</optionBtnQuick>
   <optionBtnSave>Save</optionBtnSave>
   <optionBtnCancel>Cancel</optionBtnCancel>
+  <optionCbCustomSkin>Use Custom Skin</optionCbCustomSkin>
+  <optionCbAutoPlacing>Auto Card Placing</optionCbAutoPlacing>
+  <optionCbRandomPlacing>Random Card Placing</optionCbRandomPlacing>
+  <optionCbAutoChain>Auto Chain Order</optionCbAutoChain>
+  <optionCbNoChainDelay>No Delay for Chain</optionCbNoChainDelay>
   <hostGb1>Settings</hostGb1>
   <hostGb2>Additional Options</hostGb2>
   <hostRules>Card Rules</hostRules>
