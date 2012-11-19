@@ -106,6 +106,12 @@
       <DependentUpon>Host_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="GameList\ListViewComparer.cs" />
+    <Compile Include="GameList\Profile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameList\Profile.Designer.cs">
+      <DependentUpon>Profile.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameList\ServerTabDesign_frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameList\Host_frm.resx">
       <DependentUpon>Host_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameList\Profile.resx">
+      <DependentUpon>Profile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GameList\ServerTabDesign_frm.resx">
       <DependentUpon>ServerTabDesign_frm.cs</DependentUpon>

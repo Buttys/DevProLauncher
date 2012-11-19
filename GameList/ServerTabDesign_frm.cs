@@ -162,6 +162,9 @@ namespace YGOPro_Launcher
                     Username.Text = Program.UserInfo.Username;
                     if (message == "not found") return;
                     string[] values = message.Split(',');
+                    Program.UserInfo.Wins = Int32.Parse(values[0]);
+                    Program.UserInfo.Loses = Int32.Parse(values[1]);
+                    Program.UserInfo.Draws = Int32.Parse(values[2]);
                     Record.Text = values[0] + "/" + values[1] + "/" + values[2];
 
                 }
@@ -186,7 +189,8 @@ namespace YGOPro_Launcher
 
         private void ProfileBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not Implemented");
+            Profile profile = new Profile();
+            profile.ShowDialog();
 
         }
 
