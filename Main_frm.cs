@@ -61,7 +61,7 @@ namespace YGOPro_Launcher
             {
                 this.Hide();
                 ConnectionCheck.Enabled = false;
-                if (MessageBox.Show("Dissconnected from server") == DialogResult.OK)
+                if (MessageBox.Show("Disconnected from server") == DialogResult.OK)
                 {
                     //Program.ServerConnection = new NetClient();
                     //Program.UserInfo = new UserData();

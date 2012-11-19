@@ -51,10 +51,10 @@
   <optionGb1>User Settings</optionGb1>
   <optionGb2>Game Settings</optionGb2>
   <optionGb3>Font Settings</optionGb3>
-  <optionGb4>Luancher Settings</optionGb4>
+  <optionGb4>Launcher Settings</optionGb4>
   <optionMsbForget>Do you really want to forget auto login credentials?</optionMsbForget>
   <optionUser>Default Username</optionUser>
-  <optionDeck>Defualt Deck</optionDeck>
+  <optionDeck>Default Deck</optionDeck>
   <optionBtnAutoLogin>Forget Auto Login</optionBtnAutoLogin>
   <optionAntialias>Antialias</optionAntialias>
   <optionCbSound>Enable Sound</optionCbSound>
