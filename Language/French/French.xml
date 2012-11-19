@@ -51,6 +51,7 @@
   <optionGb1>Paramètres Utilisateurs</optionGb1>
   <optionGb2>Paramètres Jeu</optionGb2>
   <optionGb3>Paramètres Police</optionGb3>
+  <optionGb4>Paramètres Lanceur</optionGb4>
   <optionMsbForget>Souhaitez-vous vraiment oublier la connexion automatique au lancement du lanceur?</optionMsbForget>
   <optionUser>Profil par défaut</optionUser>
   <optionDeck>Deck par défaut</optionDeck>
@@ -101,4 +102,27 @@
   <cusBackup>Sauvegarder</cusBackup>
   <cusLabelTheme>Thème</cusLabelTheme>
   <cusLabelCont>Contenu</cusLabelCont>
+  <profileGb1>Info Dueliste</profileGb1>
+  <profileGb2>Non classé</profileGb2>
+  <profileGb3>Classé</profileGb3>
+  <profileGb4>Stats Gagnés</profileGb4>
+  <profileGb5>Stats Perdus</profileGb5>
+  <profileLblLP>LP à 0</profileLblLP>
+  <profileLblSurrendered>Abandon</profileLblSurrendered>
+  <profileLbl0Cards>Plus de cartes</profileLbl0Cards>
+  <profileLblTimeLimit>Temps limite atteint</profileLblTimeLimit>
+  <profileLblDisconnect>Déconnexion-RQ</profileLblDisconnect>
+  <profileLblExodia>Exodia</profileLblExodia>
+  <profileLblFinalCountdown>Compte à Rebours Final</profileLblFinalCountdown>
+  <profileLblVennominaga>Vennominaga</profileLblVennominaga>
+  <profileLblHorakhty>Horakhty</profileLblHorakhty>
+  <profileLblExodius>Exodius</profileLblExodius>
+  <profileLblDestinyBoard>Tableau de la Destinée</profileLblDestinyBoard>
+  <profileLblLastTurn>Dernier Tour</profileLblLastTurn>
+  <profileLblDestinyLeo>Destiny Leo</profileLblDestinyLeo>
+  <profileLblUnknown>Inconnu</profileLblUnknown>
+  <profileLblUsername>Dueliste: </profileLblUsername>
+  <profileLblwld>Gagné/Perdu/Nul: </profileLblwld>
+  <profileLblRank>Rang: </profileLblRank>
+  <profileLblTeam>Equipe: </profileLblTeam>
 </LanguageInfo>
