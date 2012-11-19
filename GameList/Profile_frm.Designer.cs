@@ -1,6 +1,6 @@
 ﻿namespace YGOPro_Launcher
 {
-    partial class Profile
+    partial class Profile_frm
     {
         /// <summary>
         /// Required designer variable.

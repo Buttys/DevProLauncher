@@ -30,7 +30,7 @@ namespace YGOPro_Launcher.Config
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(LanguageInfo));
-                TextWriter textWriter = new StreamWriter(Path + language + "/" + language + ".xml");
+                TextWriter textWriter = new StreamWriter("../../"+ Path + language + "/" + language + ".xml");
                 serializer.Serialize(textWriter, Translation);
                 textWriter.Close();
             }

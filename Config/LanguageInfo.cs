@@ -66,6 +66,7 @@ namespace YGOPro_Launcher.Config
         public string optionGb1 = "User Settings";
         public string optionGb2 = "Game Settings";
         public string optionGb3 = "Font Settings";
+        public string optionGb4 = "Luancher Settings";
         public string optionMsbForget = "Do you really want to forget auto login credentials?";
         public string optionUser = "Default Username";
         public string optionDeck = "Defualt Deck";
@@ -125,5 +126,29 @@ namespace YGOPro_Launcher.Config
         public string cusLabelTheme = "Theme";
         public string cusLabelCont = "Content";
 
+        //Profile_frm.cs
+        public string profileGb1 = "User Info";
+        public string profileGb2 = "Unranked";
+        public string profileGb3 = "Ranked";
+        public string profileGb4 = "Win Stats";
+        public string profileGb5 = "Lose Stats";
+        public string profileLblLP = "LP Reached 0";
+        public string profileLblSurrendered = "Surrendered";
+        public string profileLbl0Cards = "0 Cards Left";
+        public string profileLblTimeLimit = "Time Limit Up";
+        public string profileLblDisconnect = "Rage Quit/D/C";
+        public string profileLblExodia = "Exodia";
+        public string profileLblFinalCountdown = "Final Countdown";
+        public string profileLblVennominaga = "Vennominaga";
+        public string profileLblHorakhty = "Horakhty";
+        public string profileLblExodius = "Exodius";
+        public string profileLblDestinyBoard = "Destiny Board";
+        public string profileLblLastTurn = "Last Turn";
+        public string profileLblDestinyLeo = "Destiny Leo";
+        public string profileLblUnknown = "Unknown";
+        public string profileLblUsername = "Username: ";
+        public string profileLblwld = "Win/Lose/Draw: ";
+        public string profileLblRank = "Rank: ";
+        public string profileLblTeam = "Team: ";
     }
 }

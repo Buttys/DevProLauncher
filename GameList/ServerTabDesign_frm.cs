@@ -166,7 +166,6 @@ namespace YGOPro_Launcher
                     Program.UserInfo.Loses = Int32.Parse(values[1]);
                     Program.UserInfo.Draws = Int32.Parse(values[2]);
                     Record.Text = values[0] + "/" + values[1] + "/" + values[2];
-
                 }
             }
             catch (Exception ex)
@@ -189,7 +188,7 @@ namespace YGOPro_Launcher
 
         private void ProfileBtn_Click(object sender, EventArgs e)
         {
-            Profile profile = new Profile();
+            Profile_frm profile = new Profile_frm();
             profile.ShowDialog();
 
         }

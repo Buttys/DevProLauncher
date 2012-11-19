@@ -48,6 +48,7 @@ namespace YGOPro_Launcher
                 groupBox1.Text = Program.LanguageManager.Translation.optionGb1;
                 groupBox2.Text = Program.LanguageManager.Translation.optionGb2;
                 groupBox3.Text = Program.LanguageManager.Translation.optionGb3;
+                groupBox4.Text = Program.LanguageManager.Translation.optionGb4;
                 label1.Text = Program.LanguageManager.Translation.optionUser;
                 label5.Text = Program.LanguageManager.Translation.optionDeck;
                 ForgetAutoLoginButton.Text = Program.LanguageManager.Translation.optionBtnAutoLogin;
