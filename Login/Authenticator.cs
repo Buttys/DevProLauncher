@@ -10,6 +10,8 @@ namespace YGOPro_Launcher.Login
         private readonly string _encodedPassword;
         private readonly NetClient _connection;
         private readonly UserData _userInfo;
+        public delegate void Reset();
+        public Reset ResetTimeout;
 
         public Authenticator(string username, string encodedPassword, NetClient connection, UserData userData)
         {
@@ -43,19 +45,24 @@ namespace YGOPro_Launcher.Login
             string[] args = message.Split('|');
           
             if (args[0] == "Banned")
-            {
+            {               
+                if (ResetTimeout != null)
+                    ResetTimeout();
                 MessageBox.Show("You are banned.");
+
             }
             if (args[0] == "Failed")
-            {
+            {    
+                if (ResetTimeout != null)
+                    ResetTimeout();
                 MessageBox.Show("Incorrect Password or Username.");
+            
             }
             else
             {                
                 _userInfo.Username = _username;
                 _userInfo.Rank = Int32.Parse(args[1]);
                 _userInfo.LoginKey = args[0];
-                
             }
         }
 

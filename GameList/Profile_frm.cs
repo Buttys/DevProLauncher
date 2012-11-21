@@ -178,7 +178,6 @@ namespace YGOPro_Launcher
                         RLOSEUnknown.Text = rankedparts[27];
                     }
 
-
                 }
             }
         }

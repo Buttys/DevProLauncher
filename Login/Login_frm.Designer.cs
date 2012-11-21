@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login_frm));
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -41,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.LanguageSelect = new System.Windows.Forms.ComboBox();
             this.AutoLoginCheckBox = new System.Windows.Forms.CheckBox();
+            this.LoginTimeOut = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -185,6 +187,10 @@
             this.AutoLoginCheckBox.Text = "Log me in automatically next time";
             this.AutoLoginCheckBox.UseVisualStyleBackColor = true;
             // 
+            // LoginTimeOut
+            // 
+            this.LoginTimeOut.Interval = 2000;
+            // 
             // Login_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -221,6 +227,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox LanguageSelect;
         private System.Windows.Forms.CheckBox AutoLoginCheckBox;
+        public System.Windows.Forms.Timer LoginTimeOut;
 
     }
 }

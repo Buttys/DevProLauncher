@@ -65,10 +65,10 @@ namespace YGOPro_Launcher
 
             LoginService = new Authenticator(Config.DefaultUsername, Config.Password, ServerConnection, UserInfo);
 
-                if(!ServerConnection.Connect(Config.ServerAddress, Config.ServerPort))
-                {
-                    MessageBox.Show(LanguageManager.Translation.pMsbErrorToServer);
-                }
+            if(!ServerConnection.Connect(Config.ServerAddress, Config.ServerPort))
+            {
+                MessageBox.Show(LanguageManager.Translation.pMsbErrorToServer);
+            }
 
             if (Config.AutoLogin && Config.DefaultUsername.Length < 15)
             {           
@@ -85,8 +85,6 @@ namespace YGOPro_Launcher
                 {
                     return;
                 }
-
-                Thread.Sleep(2000);
             }
 
             if (!ServerConnection.IsConnected)

@@ -8,6 +8,7 @@ namespace YGOPro_Launcher
 {
     public partial class Login_frm : Form
     {
+        
 
         private readonly Configuration _configuration;
 
@@ -26,6 +27,7 @@ namespace YGOPro_Launcher
             UsernameInput.Text = _configuration.DefaultUsername;
             AutoLoginCheckBox.Checked = _configuration.AutoLogin;
             PasswordInput.KeyPress += new KeyPressEventHandler(PasswordInput_KeyPress);
+            _authenticator.ResetTimeout += new Authenticator.Reset(ResetTimeOut);
           
 
             if (Directory.Exists(LanguageManager.Path))
@@ -44,6 +46,9 @@ namespace YGOPro_Launcher
                 LanguageSelect.Items.Add("Files Not Found");
                 LanguageSelect.SelectedIndex = 0;
             }
+
+            LoginTimeOut.Tick += new EventHandler(LoginTimeOut_Tick);
+
             ApplyTranslation();
         }
 
@@ -61,12 +66,44 @@ namespace YGOPro_Launcher
             }
         }
 
+        private void LoginTimeOut_Tick(object sender, EventArgs e)
+        {
+            if (!IsDisposed)
+            {
+                if (Program.UserInfo.Username == "" && Program.UserInfo.LoginKey == "")
+                {
+                    ResetTimeOut();
+                    MessageBox.Show("Login Timeout");    
+                }
+                else
+                {
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
+        }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
             if(DialogResult != DialogResult.OK)
                 Application.Exit();
+        }
+
+        public void ResetTimeOut()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(ResetTimeOut));
+            }
+            else
+            {
+                if (!IsDisposed)
+                {
+                    LoginTimeOut.Enabled = false;
+                    LoginBtn.Enabled = true;
+                }
+            }
         }
 
         private void LanguageSelect_SelectedIndexChanged(object sender, EventArgs e)
@@ -93,11 +130,14 @@ namespace YGOPro_Launcher
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
+            LoginBtn.Enabled = false;
+            LoginTimeOut.Enabled = true;
             if (!_connection.IsConnected)
             {
                 if (!Program.ServerConnection.Connect(Program.Config.ServerAddress, Program.Config.ServerPort))
                 {
                     MessageBox.Show(Program.LanguageManager.Translation.pMsbErrorToServer);
+                    ResetTimeOut();
                     return;
                 }
             }
@@ -120,7 +160,6 @@ namespace YGOPro_Launcher
                 _configuration.AutoLogin = AutoLoginCheckBox.Checked;
                 _configuration.Save(Program.ConfigurationFilename);
             }
-            DialogResult = DialogResult.OK;
         }
 
 
