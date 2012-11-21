@@ -9,7 +9,6 @@ namespace YGOPro_Launcher
     public partial class Login_frm : Form
     {
         
-
         private readonly Configuration _configuration;
 
         private readonly NetClient _connection;
