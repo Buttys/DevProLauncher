@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.IO;
 using System.Net;
+using YGOPro_Launcher.CardDatabase;
 
 namespace YGOPro_Launcher
 {
@@ -182,5 +183,7 @@ namespace YGOPro_Launcher
                 return RegEditor.Read("Software\\devpro\\", "UID");
             }
         }
+
+        public static CardsManager CardManager;
     }
 }

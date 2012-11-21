@@ -17,6 +17,7 @@ namespace YGOPro_Launcher
         private string FileType;
         private object InfoWindow;
 
+
         public FileManager_frm(string name, string dir, string filetype)
         {
             InitializeComponent();
@@ -40,10 +41,6 @@ namespace YGOPro_Launcher
             }
 
             this.FileList.MouseUp += new MouseEventHandler(this.OnListMouseUp);
-            this.RenameBtn.Click += new EventHandler(RenameItem);
-            this.DeleteBtn.Click += new EventHandler(DeleteItem);
-            this.OpenBtn.Click += new EventHandler(OpenBtn_Click);
-            this.GameBtn.Click += new EventHandler(GameBtn_Click);
             this.FileList.SelectedIndexChanged +=new EventHandler(FileList_SelectedIndexChanged);
             ApplyTranslation();
         }
@@ -88,7 +85,7 @@ namespace YGOPro_Launcher
                     MessageBox.Show("Choose a replay first!");
                     return;
                 }
-                string replayDir = Path.GetDirectoryName(Application.ExecutablePath) + "/replay/";
+                string replayDir = (Program.Config.LauncherDir == "" ? Path.GetDirectoryName(Application.ExecutablePath) + "/" : "") + FileLocation;
                 if (!Directory.Exists(replayDir))
                 {
                     MessageBox.Show("Replay directory doesn't exist!");
@@ -208,7 +205,11 @@ namespace YGOPro_Launcher
         {
             if (Name == "Decks")
             {
-                ((CardInfoControl)InfoWindow).LoadDeck(Path.GetDirectoryName(Application.ExecutablePath) + "/" + FileLocation +  FileList.SelectedItem.ToString() + ".ydk");
+                ((CardInfoControl)InfoWindow).LoadDeck((Program.Config.LauncherDir == "" ? Path.GetDirectoryName(Application.ExecutablePath) + "/":"") + FileLocation +  FileList.SelectedItem.ToString() + ".ydk");
+            }
+            else if (Name == "Replays")
+            {
+                ((ReplayInfoControl)InfoWindow).ReadReplay((Program.Config.LauncherDir == "" ? Path.GetDirectoryName(Application.ExecutablePath) + "/":"") +FileLocation + FileList.SelectedItem.ToString() + ".yrp");
             }
         }
 
@@ -231,6 +232,11 @@ namespace YGOPro_Launcher
                 }
                 RefreshFileList();
             }
+        }
+
+        private void RefreshBtn_Click(object sender, EventArgs e)
+        {
+            RefreshFileList();
         }
         
     }

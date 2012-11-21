@@ -99,6 +99,7 @@
     <Compile Include="FileManager\ReplayInfoControl.Designer.cs">
       <DependentUpon>ReplayInfoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileManager\ReplayReader.cs" />
     <Compile Include="GameList\Host_frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +157,21 @@
     <Compile Include="GameList\RoomInfos.cs" />
     <Compile Include="GameList\UserData.cs" />
     <Compile Include="RegEditor.cs" />
+    <Compile Include="SevenZip\Common\CommandLineParser.cs" />
+    <Compile Include="SevenZip\Common\CRC.cs" />
+    <Compile Include="SevenZip\Common\InBuffer.cs" />
+    <Compile Include="SevenZip\Common\OutBuffer.cs" />
+    <Compile Include="SevenZip\Compress\LZMA\LzmaBase.cs" />
+    <Compile Include="SevenZip\Compress\LZMA\LzmaDecoder.cs" />
+    <Compile Include="SevenZip\Compress\LZMA\LzmaEncoder.cs" />
+    <Compile Include="SevenZip\Compress\LZ\IMatchFinder.cs" />
+    <Compile Include="SevenZip\Compress\LZ\LzBinTree.cs" />
+    <Compile Include="SevenZip\Compress\LZ\LzInWindow.cs" />
+    <Compile Include="SevenZip\Compress\LZ\LzOutWindow.cs" />
+    <Compile Include="SevenZip\Compress\RangeCoder\RangeCoder.cs" />
+    <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBit.cs" />
+    <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBitTree.cs" />
+    <Compile Include="SevenZip\ICoder.cs" />
     <Content Include="Language\French\cards.cdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

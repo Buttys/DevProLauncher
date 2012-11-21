@@ -15,7 +15,6 @@ namespace YGOPro_Launcher
     public partial class CardInfoControl : Form
     {
 
-        private CardsManager Manager;
         private Dictionary<string, CardInfos> CardList;
 
         public CardInfoControl()
@@ -24,9 +23,7 @@ namespace YGOPro_Launcher
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
-            Manager = new CardsManager();
             CardList = new Dictionary<string, CardInfos>();
-            Manager.Init();
            
             DeckList.DrawItem +=new DrawItemEventHandler(DeckList_DrawItem);
             DeckList.SelectedIndexChanged += new EventHandler(DeckList_SelectedIndexChanged);
@@ -68,7 +65,7 @@ namespace YGOPro_Launcher
                         continue;
                     }
 
-                    CardInfos card = Manager.FromId(Int32.Parse(line));
+                    CardInfos card = LauncherHelper.CardManager.FromId(Int32.Parse(line));
                     if (card == null) continue;
                     if (CardList.ContainsKey(card.Name))
                     {

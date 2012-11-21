@@ -36,6 +36,7 @@
             this.OpenBtn = new System.Windows.Forms.Button();
             this.DeleteBtn = new System.Windows.Forms.Button();
             this.RenameBtn = new System.Windows.Forms.Button();
+            this.RefreshBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +74,7 @@
             this.flowLayoutPanel1.Controls.Add(this.OpenBtn);
             this.flowLayoutPanel1.Controls.Add(this.DeleteBtn);
             this.flowLayoutPanel1.Controls.Add(this.RenameBtn);
+            this.flowLayoutPanel1.Controls.Add(this.RefreshBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(703, 3);
@@ -98,6 +100,7 @@
             this.GameBtn.TabIndex = 0;
             this.GameBtn.Text = "Open Game";
             this.GameBtn.UseVisualStyleBackColor = true;
+            this.GameBtn.Click += new System.EventHandler(this.GameBtn_Click);
             // 
             // OpenBtn
             // 
@@ -107,6 +110,7 @@
             this.OpenBtn.TabIndex = 1;
             this.OpenBtn.Text = "Open Folder";
             this.OpenBtn.UseVisualStyleBackColor = true;
+            this.OpenBtn.Click += new System.EventHandler(this.OpenBtn_Click);
             // 
             // DeleteBtn
             // 
@@ -116,6 +120,7 @@
             this.DeleteBtn.TabIndex = 2;
             this.DeleteBtn.Text = "Delete";
             this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteItem);
             // 
             // RenameBtn
             // 
@@ -125,6 +130,17 @@
             this.RenameBtn.TabIndex = 3;
             this.RenameBtn.Text = "Rename";
             this.RenameBtn.UseVisualStyleBackColor = true;
+            this.RenameBtn.Click += new System.EventHandler(this.RenameItem);
+            // 
+            // RefreshBtn
+            // 
+            this.RefreshBtn.Location = new System.Drawing.Point(3, 250);
+            this.RefreshBtn.Name = "RefreshBtn";
+            this.RefreshBtn.Size = new System.Drawing.Size(99, 27);
+            this.RefreshBtn.TabIndex = 5;
+            this.RefreshBtn.Text = "Refresh";
+            this.RefreshBtn.UseVisualStyleBackColor = true;
+            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
             // 
             // FileManager_frm
             // 
@@ -152,6 +168,7 @@
         private System.Windows.Forms.Button DeleteBtn;
         private System.Windows.Forms.Button RenameBtn;
         private System.Windows.Forms.Button ImportBtn;
+        private System.Windows.Forms.Button RefreshBtn;
 
     }
 }

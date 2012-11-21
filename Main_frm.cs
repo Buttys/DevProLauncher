@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
+
 namespace YGOPro_Launcher
 {
     public partial class Main_frm : Form
     {
+       
+
         public Main_frm()
         {
             InitializeComponent();
+
+            LauncherHelper.CardManager = new CardDatabase.CardsManager();
+            LauncherHelper.CardManager.Init();
+
             char[] version = Program.Version.ToCharArray();
             this.Text = this.Text + " v" + version[0] + "." + version[1] + "." + version[2];
 
