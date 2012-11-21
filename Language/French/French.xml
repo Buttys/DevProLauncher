@@ -67,8 +67,8 @@
   <optionBtnSave>Sauver</optionBtnSave>
   <optionBtnCancel>Annuler</optionBtnCancel>
   <optionCbCustomSkin>Activer les Skins</optionCbCustomSkin>
-  <optionCbAutoPlacing>Placer cartes auto</optionCbAutoPlacing>
-  <optionCbRandomPlacing>Placer cartes au hasard</optionCbRandomPlacing>
+  <optionCbAutoPlacing>Placement auto</optionCbAutoPlacing>
+  <optionCbRandomPlacing>Placement aléatoire</optionCbRandomPlacing>
   <optionCbAutoChain>Chaîner auto</optionCbAutoChain>
   <optionCbNoChainDelay>Chaîner sans délai</optionCbNoChainDelay>
   <hostGb1>Paramètres</hostGb1>
@@ -102,7 +102,7 @@
   <cusBackup>Sauvegarder</cusBackup>
   <cusLabelTheme>Thème</cusLabelTheme>
   <cusLabelCont>Contenu</cusLabelCont>
-  <profileGb1>Info Dueliste</profileGb1>
+  <profileGb1>Info Duelliste</profileGb1>
   <profileGb2>Non classé</profileGb2>
   <profileGb3>Classé</profileGb3>
   <profileGb4>Stats Gagnés</profileGb4>
@@ -121,7 +121,7 @@
   <profileLblLastTurn>Dernier Tour</profileLblLastTurn>
   <profileLblDestinyLeo>Destiny Leo</profileLblDestinyLeo>
   <profileLblUnknown>Inconnu</profileLblUnknown>
-  <profileLblUsername>Dueliste: </profileLblUsername>
+  <profileLblUsername>Duelliste: </profileLblUsername>
   <profileLblwld>Gagné/Perdu/Nul: </profileLblwld>
   <profileLblRank>Rang: </profileLblRank>
   <profileLblTeam>Equipe: </profileLblTeam>
