@@ -75,7 +75,7 @@ namespace YGOPro_Launcher
             txtRWinExodius.Text = language.profileLblExodius;
             txtRWinDestinyBoard.Text = language.profileLblDestinyBoard;
             txtRWinLastTurn.Text = language.profileLblLastTurn;
-            txtRWinDestinyBoard.Text = language.profileLblDestinyLeo;
+            txtRWinDestinyLeo.Text = language.profileLblDestinyLeo;
             txtRWinUnknown.Text = language.profileLblUnknown;
 
             txtRLOSELP0.Text = language.profileLblLP;
