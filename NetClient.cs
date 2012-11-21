@@ -9,6 +9,8 @@ namespace YGOPro_Launcher
 {
     public class NetClient
     {
+        public bool IsConnected { get; private set; }
+
         private TcpClient m_client;
         private StreamReader m_reader;
         private Thread m_receiveThread;
@@ -16,7 +18,7 @@ namespace YGOPro_Launcher
 
         private Queue<string> m_messageQueue;
         private Thread m_parserThread;
-        
+
         public delegate void ServerResponse(string message);
         public delegate void ServerRooms(RoomInfos[] rooms);
         public delegate void ServerDisconnected();
@@ -30,23 +32,9 @@ namespace YGOPro_Launcher
         public ServerResponse UpdateRoomStatus;
         public ServerResponse AdminMessage;
         public ServerResponse ServerMessage;
+        public ServerResponse ProfileMessage;
         public ServerRooms AddRooms;
         public ServerRooms AddRoom;
-
-        public bool IsConnected 
-        { 
-            get
-            {
-                try
-                {
-                    return m_client.Connected;
-                }
-                catch
-                {
-                    return false;
-                }
-            } 
-        }
 
         public NetClient()
         {
@@ -57,6 +45,11 @@ namespace YGOPro_Launcher
             m_parserThread = new Thread(Parse);
             m_parserThread.IsBackground = true;
             OnFatalError += new ServerResponse(FatalError);
+        }
+
+        public bool CheckConnection()
+        {
+            return m_client.Connected;
         }
 
         private void FatalError(string message)
@@ -71,9 +64,10 @@ namespace YGOPro_Launcher
                 m_client = new TcpClient();
                 m_client.Connect(address, port);
                 m_reader = new StreamReader(m_client.GetStream());
+                IsConnected = true;
                 m_receiveThread.Start();
                 m_parserThread.Start();
-                
+
                 return true;
             }
             catch (Exception)
@@ -109,15 +103,17 @@ namespace YGOPro_Launcher
             {
                 while (IsConnected)
                 {
-                        string line = m_reader.ReadLine();
-                        if (line != null)
-                        {
-                            lock (m_lock)
-                                m_messageQueue.Enqueue(line);
-                        }
-                        else
-                            OnDisconnected();
-                        Thread.Sleep(1);
+                    string line = m_reader.ReadLine();
+                    if (line != null)
+                    {
+                        lock (m_lock)
+                            m_messageQueue.Enqueue(line);
+                    }
+                    else
+                    {
+                      OnDisconnected();
+                    }
+                    Thread.Sleep(1);
                 }
             }
             catch (Exception)
@@ -183,18 +179,23 @@ namespace YGOPro_Launcher
             }
             else if (cmd == "REGISTER")
             {
-                if (RegisterReply != null) 
+                if (RegisterReply != null)
                     RegisterReply(args[1]);
             }
             else if (cmd == "LOGIN")
             {
                 if (LoginReply != null)
-                    LoginReply(args[1] + ( args.Length > 2 ? "|" + args[2]: ""));
+                    LoginReply(args[1] + (args.Length > 2 ? "|" + args[2] : ""));
             }
             else if (cmd == "WLD")
             {
-                if (UserInfoUpdate != null) 
+                if (UserInfoUpdate != null)
                     UserInfoUpdate(args[1]);
+            }
+            else if (cmd == "STATS")
+            {
+                if (ProfileMessage != null)
+                    ProfileMessage(args[1]);
             }
             else if (cmd == "ADMIN")
             {
@@ -219,12 +220,13 @@ namespace YGOPro_Launcher
         private void OnDisconnected()
         {
             if (!IsConnected) return;
-            
-                Disconnect();
 
-                if (OnFatalError != null)
-                    OnFatalError("Disconnected from server.");
-            
+            IsConnected = false;
+            Disconnect();
+
+            if (OnFatalError != null)
+                OnFatalError("Disconnected from server.");
+
         }
     }
 }

@@ -18,6 +18,8 @@ namespace YGOPro_Launcher
             ApplyTranslation();
             Username.Text += Program.UserInfo.Username;
             wld.Text += Program.UserInfo.Wins + "/" + Program.UserInfo.Loses + "/" + Program.UserInfo.Draws;
+            Program.ServerConnection.ProfileMessage += new NetClient.ServerResponse(ProfileUpdate);
+
         }
 
         public void ApplyTranslation()
@@ -28,6 +30,21 @@ namespace YGOPro_Launcher
             wld.Text = language.profileLblwld;
             rank.Text = language.profileLblRank;
             team.Text = language.profileLblTeam;
+        }
+
+        private void ProfileUpdate(string message)
+        {
+            if (!IsDisposed)
+            {
+                string[] parts = message.Split(',');
+
+
+            }
+        }
+
+        private void Profile_frm_Load(object sender, EventArgs e)
+        {
+            Program.ServerConnection.SendPacket("STATS");
         }
     }
 }

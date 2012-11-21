@@ -57,7 +57,7 @@ namespace YGOPro_Launcher
 
         private void CheckConnection(object sender, EventArgs e)
         {
-            if (!Program.ServerConnection.IsConnected)
+            if (!Program.ServerConnection.CheckConnection())
             {
                 this.Hide();
                 ConnectionCheck.Enabled = false;
@@ -117,6 +117,8 @@ namespace YGOPro_Launcher
                     }
                 }
             }
+
+            ConnectionCheck.Enabled = true;
         }
     }
 }

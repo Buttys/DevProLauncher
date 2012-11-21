@@ -13,7 +13,6 @@ namespace YGOPro_Launcher
         public ServerInterface_frm(string ServerName)
         {
             InitializeComponent();
-            GameType.SelectedIndex = 0;
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
@@ -23,7 +22,7 @@ namespace YGOPro_Launcher
             listRooms.DoubleClick += new System.EventHandler(this.LoadRoom);
             FilterActive.CheckedChanged += new EventHandler(FilterGames);
             FilterTextBox.TextChanged += new EventHandler(FilterGames);
-            GameType.SelectedIndexChanged += new EventHandler(GameType_SelectedIndexChanged);
+            ServerTabs.SelectedIndexChanged += new EventHandler(GameType_SelectedIndexChanged);
 
             Program.ServerConnection.AddRooms += new NetClient.ServerRooms(OnRoomsList);
             Program.ServerConnection.AddRoom += new NetClient.ServerRooms(OnRoomCreated);
@@ -32,7 +31,8 @@ namespace YGOPro_Launcher
             Program.ServerConnection.UpdateRoomPlayers += new NetClient.ServerResponse(OnRoomPlayersUpdate);
             Program.ServerConnection.UserInfoUpdate += new NetClient.ServerResponse(UpdateUserInfo);
             LauncherHelper.GameClosed += new LauncherHelper.UpdateUserInfo(RequestUserWLD);
-            listRooms.ColumnClick += new ColumnClickEventHandler(listRooms_ColumnClick);
+            listRooms.ColumnClick += new ColumnClickEventHandler(SortRooms);
+            RankedRooms.ColumnClick += new ColumnClickEventHandler(SortRooms);
 
             Username.Text = Program.UserInfo.Username;
 
@@ -86,6 +86,8 @@ namespace YGOPro_Launcher
             if (e.Button == MouseButtons.Right)
             {
                 ListViewItem item = listRooms.GetItemAt(e.X, e.Y);
+                if (item == null) return;
+
                 item.Selected = true;
 
                 ContextMenuStrip mnu = new ContextMenuStrip();
@@ -117,7 +119,7 @@ namespace YGOPro_Launcher
         private void GameType_SelectedIndexChanged(object sender, EventArgs e)
         {
             FilterGames(null, EventArgs.Empty);
-            if (GameType.Text == "Ranked")
+            if (ServerTabs.SelectedTab.Text == "Ranked")
                 QuickBtn.Enabled = false;
             else
                 QuickBtn.Enabled = true;
@@ -210,14 +212,14 @@ namespace YGOPro_Launcher
             form.LifePoints.Text = Program.Config.Lifepoints;
             form.GameName.Text = Program.Config.GameName;
 
-            LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (GameType.Text == "Ranked") ? true : false));
+            LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (ServerTabs.SelectedTab.Text == "Ranked") ? true : false));
             LauncherHelper.RunGame("-j");
             return;
         }
         private void HostBtn_Click(object sender, EventArgs e)
         {
             Host form = new Host();
-            if (GameType.Text == "Ranked")
+            if (ServerTabs.SelectedTab.Text == "Ranked")
             {
                 form.Mode.Items.Clear();
                 form.Mode.Items.AddRange(new object[] { "Match", "Tag" });
@@ -233,7 +235,7 @@ namespace YGOPro_Launcher
 
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (GameType.Text == "Ranked") ? true : false));
+                LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (ServerTabs.SelectedTab.Text == "Ranked") ? true : false));
                 LauncherHelper.RunGame("-j");
             }
         }
@@ -303,29 +305,30 @@ namespace YGOPro_Launcher
                 (room.Mode == 1 ? Color.LightSteelBlue :
                 Color.LightBlue)))));
 
+            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
 
             if (FilterActive.Checked)
             {
                 if (m_rooms[room.RoomName].SubItems[4].Text.Contains("Waiting") &&
-                    m_rooms[room.RoomName].SubItems[1].Text.Contains(GameType.Text))
+                    m_rooms[room.RoomName].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Text))
                 {
                     if (m_rooms[room.RoomName].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                         m_rooms[room.RoomName].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                         FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                     {
-                        listRooms.Items.Add(m_rooms[room.RoomName]);
+                        rooms.Items.Add(m_rooms[room.RoomName]);
                     }
                 }
             }
             else
             {
-                if (m_rooms[room.RoomName].SubItems[1].Text.Contains(GameType.Text))
+                if (m_rooms[room.RoomName].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Text))
                 {
                     if (m_rooms[room.RoomName].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                         m_rooms[room.RoomName].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                         FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                     {
-                        listRooms.Items.Add(m_rooms[room.RoomName]);
+                        rooms.Items.Add(m_rooms[room.RoomName]);
                     }
                 }
             }
@@ -335,31 +338,33 @@ namespace YGOPro_Launcher
 
         public void FilterGames(object sender, EventArgs e)
         {
-            listRooms.Items.Clear();
+            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
+
+            rooms.Items.Clear();
             foreach (string item in ObjectKeys())
             {
                 if (FilterActive.Checked)
                 {
                     if (m_rooms[item].SubItems[4].Text.Contains("Waiting") &&
-                        m_rooms[item].SubItems[1].Text.Contains(GameType.Text))
+                        m_rooms[item].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Text))
                     {
                         if (m_rooms[item].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                             m_rooms[item].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                             FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                         {
-                            listRooms.Items.Add(m_rooms[item]);
+                            rooms.Items.Add(m_rooms[item]);
                         }
                     }
                 }
                 else
                 {
-                    if (m_rooms[item].SubItems[1].Text.Contains(GameType.Text))
+                    if (m_rooms[item].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Text))
                     {
                         if (m_rooms[item].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                             m_rooms[item].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                             FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                         {
-                            listRooms.Items.Add(m_rooms[item]);
+                            rooms.Items.Add(m_rooms[item]);
                         }
                     }
                 }
@@ -409,11 +414,12 @@ namespace YGOPro_Launcher
         private void InternalRoomStarted(string roomname)
         {
             if (!m_rooms.ContainsKey(roomname)) return;
+            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
             ListViewItem item = m_rooms[roomname];
 
             item.BackColor = Color.LightGray;
             item.SubItems[4].Text = "Started";
-            if (FilterActive.Checked) listRooms.Items.Remove(item);
+            if (FilterActive.Checked) rooms.Items.Remove(item);
         }
 
         public void OnRoomRemoved(string roomname)
@@ -425,8 +431,9 @@ namespace YGOPro_Launcher
         private void InternalRoomRemoved(string roomname)
         {
             if (!m_rooms.ContainsKey(roomname)) return;
+            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
             ListViewItem item = m_rooms[roomname];
-            listRooms.Items.Remove(item);
+            rooms.Items.Remove(item);
             m_rooms.Remove(roomname);
             UpdateServerInfo();
         }
@@ -451,7 +458,8 @@ namespace YGOPro_Launcher
 
         public void LoadRoom(object sender, EventArgs e)
         {
-            ListViewItem item = listRooms.SelectedItems[0];
+            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
+            ListViewItem item = rooms.SelectedItems[0];
             LauncherHelper.GenerateConfig(item.SubItems[6].Text);
             LauncherHelper.RunGame("-j");
         }
@@ -474,21 +482,22 @@ namespace YGOPro_Launcher
             }
         }
 
-        private void listRooms_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void SortRooms(object sender, ColumnClickEventArgs e)
         {
-            ListViewItemComparer sorter = listRooms.ListViewItemSorter as ListViewItemComparer;
+            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
+            ListViewItemComparer sorter = rooms.ListViewItemSorter as ListViewItemComparer;
 
             if (sorter == null)
             {
                 sorter = new ListViewItemComparer(e.Column);
-                listRooms.ListViewItemSorter = sorter;
+                rooms.ListViewItemSorter = sorter;
             }
             else
             {
                 sorter.Column = e.Column;
             }
 
-            listRooms.Sort();
+            rooms.Sort();
         }
 
     }

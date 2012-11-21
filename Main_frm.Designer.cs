@@ -28,7 +28,6 @@
             // 
             // ConnectionCheck
             // 
-            this.ConnectionCheck.Enabled = true;
             this.ConnectionCheck.Interval = 5000;
             // 
             // Main_frm

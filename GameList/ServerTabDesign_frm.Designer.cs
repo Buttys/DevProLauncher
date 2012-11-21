@@ -44,7 +44,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.FilterActive = new System.Windows.Forms.CheckBox();
-            this.GameType = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.DeckBtn = new System.Windows.Forms.Button();
@@ -61,6 +60,9 @@
             this.DeckSelect = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.Record = new System.Windows.Forms.Label();
+            this.ServerTabs = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listRooms = new System.Windows.Forms.ListView();
             this.ColumnRoomName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -68,6 +70,13 @@
             this.ColumnMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RankedRooms = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -76,6 +85,9 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.ServerTabs.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -99,9 +111,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.FilterTextBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.FilterActive, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.GameType, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.FilterActive, 0, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(737, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -273,26 +284,13 @@
             this.FilterActive.AutoSize = true;
             this.FilterActive.Checked = true;
             this.FilterActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.FilterActive.Location = new System.Drawing.Point(26, 217);
+            this.FilterActive.Location = new System.Drawing.Point(26, 246);
             this.FilterActive.Name = "FilterActive";
             this.FilterActive.Size = new System.Drawing.Size(117, 17);
             this.FilterActive.TabIndex = 3;
             this.FilterActive.Text = "Filter Active Games";
             this.FilterActive.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.FilterActive.UseVisualStyleBackColor = true;
-            // 
-            // GameType
-            // 
-            this.GameType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.GameType.FormattingEnabled = true;
-            this.GameType.Items.AddRange(new object[] {
-            "Unranked",
-            "Ranked"});
-            this.GameType.Location = new System.Drawing.Point(3, 240);
-            this.GameType.Name = "GameType";
-            this.GameType.Size = new System.Drawing.Size(163, 21);
-            this.GameType.TabIndex = 8;
             // 
             // tableLayoutPanel6
             // 
@@ -365,7 +363,7 @@
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.listRooms, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.ServerTabs, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -483,6 +481,39 @@
             this.Record.TabIndex = 5;
             this.Record.Text = "0/0/0";
             // 
+            // ServerTabs
+            // 
+            this.ServerTabs.Controls.Add(this.tabPage1);
+            this.ServerTabs.Controls.Add(this.tabPage2);
+            this.ServerTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ServerTabs.Location = new System.Drawing.Point(3, 3);
+            this.ServerTabs.Name = "ServerTabs";
+            this.ServerTabs.SelectedIndex = 0;
+            this.ServerTabs.Size = new System.Drawing.Size(722, 290);
+            this.ServerTabs.TabIndex = 3;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.listRooms);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(714, 264);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Unranked";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.RankedRooms);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(714, 264);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Ranked";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // listRooms
             // 
             this.listRooms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -496,8 +527,8 @@
             this.listRooms.FullRowSelect = true;
             this.listRooms.Location = new System.Drawing.Point(3, 3);
             this.listRooms.Name = "listRooms";
-            this.listRooms.Size = new System.Drawing.Size(722, 290);
-            this.listRooms.TabIndex = 3;
+            this.listRooms.Size = new System.Drawing.Size(708, 258);
+            this.listRooms.TabIndex = 4;
             this.listRooms.UseCompatibleStateImageBehavior = false;
             this.listRooms.View = System.Windows.Forms.View.Details;
             // 
@@ -530,6 +561,53 @@
             this.ColumnPlayers.Text = "Players";
             this.ColumnPlayers.Width = 273;
             // 
+            // RankedRooms
+            // 
+            this.RankedRooms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.RankedRooms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RankedRooms.FullRowSelect = true;
+            this.RankedRooms.Location = new System.Drawing.Point(3, 3);
+            this.RankedRooms.Name = "RankedRooms";
+            this.RankedRooms.Size = new System.Drawing.Size(708, 258);
+            this.RankedRooms.TabIndex = 5;
+            this.RankedRooms.UseCompatibleStateImageBehavior = false;
+            this.RankedRooms.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Room Name";
+            this.columnHeader1.Width = 86;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Type";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Rules";
+            this.columnHeader3.Width = 80;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Mode";
+            this.columnHeader4.Width = 75;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "State";
+            this.columnHeader5.Width = 75;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Players";
+            this.columnHeader6.Width = 273;
+            // 
             // ServerInterface_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -549,6 +627,9 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.ServerTabs.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -581,19 +662,28 @@
         private System.Windows.Forms.Label Record;
         private System.Windows.Forms.Button HostBtn;
         private System.Windows.Forms.Button QuickBtn;
-        private System.Windows.Forms.ComboBox GameType;
-        private System.Windows.Forms.ListView listRooms;
-        private System.Windows.Forms.ColumnHeader ColumnType;
-        private System.Windows.Forms.ColumnHeader ColumnRoomName;
-        private System.Windows.Forms.ColumnHeader ColumnRules;
-        private System.Windows.Forms.ColumnHeader ColumnMode;
-        private System.Windows.Forms.ColumnHeader ColumnState;
-        private System.Windows.Forms.ColumnHeader ColumnPlayers;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button DeckBtn;
         private System.Windows.Forms.Button ReplaysBtn;
         private System.Windows.Forms.Button ProfileBtn;
         private System.Windows.Forms.Button OptionsBtn;
+        private System.Windows.Forms.TabControl ServerTabs;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.ListView listRooms;
+        private System.Windows.Forms.ColumnHeader ColumnRoomName;
+        private System.Windows.Forms.ColumnHeader ColumnType;
+        private System.Windows.Forms.ColumnHeader ColumnRules;
+        private System.Windows.Forms.ColumnHeader ColumnMode;
+        private System.Windows.Forms.ColumnHeader ColumnState;
+        private System.Windows.Forms.ColumnHeader ColumnPlayers;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ListView RankedRooms;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

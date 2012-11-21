@@ -175,11 +175,9 @@ namespace YGOPro_Launcher.Config
             if (DebugMode)
             {
                 ServerName = "Debug";
-                ServerAddress = "127.0.0.1";
+                ServerAddress = "86.0.24.143";
                 ServerPort = 7922;
                 GamePort = 7911;
-                UpdaterAddress = "http://127.0.0.1/launcher/checkversion.php";
-                ServerInfoAddress = "http://127.0.0.1/launcher/ServerInfo.php";
             }
         }
 
