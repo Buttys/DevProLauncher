@@ -43,13 +43,13 @@
             this.NumberofRooms = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.FilterActive = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.DeckBtn = new System.Windows.Forms.Button();
             this.ReplaysBtn = new System.Windows.Forms.Button();
             this.ProfileBtn = new System.Windows.Forms.Button();
             this.OptionsBtn = new System.Windows.Forms.Button();
+            this.FilterActive = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.QuickBtn = new System.Windows.Forms.Button();
@@ -61,15 +61,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.Record = new System.Windows.Forms.Label();
             this.ServerTabs = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listRooms = new System.Windows.Forms.ListView();
-            this.ColumnRoomName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnRules = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RankedRooms = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -77,6 +69,14 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listRooms = new System.Windows.Forms.ListView();
+            this.ColumnRoomName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnRules = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -86,8 +86,8 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.ServerTabs.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -278,20 +278,6 @@
             this.label5.Text = "# of Open Rooms";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // FilterActive
-            // 
-            this.FilterActive.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.FilterActive.AutoSize = true;
-            this.FilterActive.Checked = true;
-            this.FilterActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.FilterActive.Location = new System.Drawing.Point(26, 246);
-            this.FilterActive.Name = "FilterActive";
-            this.FilterActive.Size = new System.Drawing.Size(117, 17);
-            this.FilterActive.TabIndex = 3;
-            this.FilterActive.Text = "Filter Active Games";
-            this.FilterActive.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.FilterActive.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 2;
@@ -357,6 +343,20 @@
             this.OptionsBtn.Text = "Options";
             this.OptionsBtn.UseVisualStyleBackColor = true;
             this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
+            // 
+            // FilterActive
+            // 
+            this.FilterActive.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.FilterActive.AutoSize = true;
+            this.FilterActive.Checked = true;
+            this.FilterActive.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FilterActive.Location = new System.Drawing.Point(26, 246);
+            this.FilterActive.Name = "FilterActive";
+            this.FilterActive.Size = new System.Drawing.Size(117, 17);
+            this.FilterActive.TabIndex = 3;
+            this.FilterActive.Text = "Filter Active Games";
+            this.FilterActive.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.FilterActive.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel4
             // 
@@ -483,25 +483,14 @@
             // 
             // ServerTabs
             // 
-            this.ServerTabs.Controls.Add(this.tabPage1);
             this.ServerTabs.Controls.Add(this.tabPage2);
+            this.ServerTabs.Controls.Add(this.tabPage1);
             this.ServerTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ServerTabs.Location = new System.Drawing.Point(3, 3);
             this.ServerTabs.Name = "ServerTabs";
             this.ServerTabs.SelectedIndex = 0;
             this.ServerTabs.Size = new System.Drawing.Size(722, 290);
             this.ServerTabs.TabIndex = 3;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.listRooms);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(714, 264);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Unranked";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -513,53 +502,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Ranked";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // listRooms
-            // 
-            this.listRooms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ColumnRoomName,
-            this.ColumnType,
-            this.ColumnRules,
-            this.ColumnMode,
-            this.ColumnState,
-            this.ColumnPlayers});
-            this.listRooms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listRooms.FullRowSelect = true;
-            this.listRooms.Location = new System.Drawing.Point(3, 3);
-            this.listRooms.Name = "listRooms";
-            this.listRooms.Size = new System.Drawing.Size(708, 258);
-            this.listRooms.TabIndex = 4;
-            this.listRooms.UseCompatibleStateImageBehavior = false;
-            this.listRooms.View = System.Windows.Forms.View.Details;
-            // 
-            // ColumnRoomName
-            // 
-            this.ColumnRoomName.Text = "Room Name";
-            this.ColumnRoomName.Width = 86;
-            // 
-            // ColumnType
-            // 
-            this.ColumnType.Text = "Type";
-            // 
-            // ColumnRules
-            // 
-            this.ColumnRules.Text = "Rules";
-            this.ColumnRules.Width = 80;
-            // 
-            // ColumnMode
-            // 
-            this.ColumnMode.Text = "Mode";
-            this.ColumnMode.Width = 75;
-            // 
-            // ColumnState
-            // 
-            this.ColumnState.Text = "State";
-            this.ColumnState.Width = 75;
-            // 
-            // ColumnPlayers
-            // 
-            this.ColumnPlayers.Text = "Players";
-            this.ColumnPlayers.Width = 273;
             // 
             // RankedRooms
             // 
@@ -608,6 +550,64 @@
             this.columnHeader6.Text = "Players";
             this.columnHeader6.Width = 273;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.listRooms);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(714, 264);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Unranked";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // listRooms
+            // 
+            this.listRooms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColumnRoomName,
+            this.ColumnType,
+            this.ColumnRules,
+            this.ColumnMode,
+            this.ColumnState,
+            this.ColumnPlayers});
+            this.listRooms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listRooms.FullRowSelect = true;
+            this.listRooms.Location = new System.Drawing.Point(3, 3);
+            this.listRooms.Name = "listRooms";
+            this.listRooms.Size = new System.Drawing.Size(708, 258);
+            this.listRooms.TabIndex = 4;
+            this.listRooms.UseCompatibleStateImageBehavior = false;
+            this.listRooms.View = System.Windows.Forms.View.Details;
+            // 
+            // ColumnRoomName
+            // 
+            this.ColumnRoomName.Text = "Room Name";
+            this.ColumnRoomName.Width = 86;
+            // 
+            // ColumnType
+            // 
+            this.ColumnType.Text = "Type";
+            // 
+            // ColumnRules
+            // 
+            this.ColumnRules.Text = "Rules";
+            this.ColumnRules.Width = 80;
+            // 
+            // ColumnMode
+            // 
+            this.ColumnMode.Text = "Mode";
+            this.ColumnMode.Width = 75;
+            // 
+            // ColumnState
+            // 
+            this.ColumnState.Text = "State";
+            this.ColumnState.Width = 75;
+            // 
+            // ColumnPlayers
+            // 
+            this.ColumnPlayers.Text = "Players";
+            this.ColumnPlayers.Width = 273;
+            // 
             // ServerInterface_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -628,8 +628,8 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.ServerTabs.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

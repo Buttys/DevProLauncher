@@ -20,9 +20,11 @@ namespace YGOPro_Launcher
             this.Text = ServerName;
             m_rooms = new Dictionary<string, ListViewItem>();
             listRooms.DoubleClick += new System.EventHandler(this.LoadRoom);
+            RankedRooms.DoubleClick += new System.EventHandler(this.LoadRoom);
             FilterActive.CheckedChanged += new EventHandler(FilterGames);
             FilterTextBox.TextChanged += new EventHandler(FilterGames);
             ServerTabs.SelectedIndexChanged += new EventHandler(GameType_SelectedIndexChanged);
+            GameType_SelectedIndexChanged(null, EventArgs.Empty);
 
             Program.ServerConnection.AddRooms += new NetClient.ServerRooms(OnRoomsList);
             Program.ServerConnection.AddRoom += new NetClient.ServerRooms(OnRoomCreated);
