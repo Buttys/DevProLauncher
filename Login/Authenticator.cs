@@ -49,17 +49,21 @@ namespace YGOPro_Launcher.Login
                 if (ResetTimeout != null)
                     ResetTimeout();
                 MessageBox.Show("You are banned.");
-
             }
-            if (args[0] == "Failed")
+            else if (args[0] == "Failed")
             {    
                 if (ResetTimeout != null)
                     ResetTimeout();
                 MessageBox.Show("Incorrect Password or Username.");
-            
+            }
+            else if (args[0] == "LoginDown")
+            {
+                if (ResetTimeout != null)
+                    ResetTimeout();
+                MessageBox.Show("Login Server is down.");
             }
             else
-            {                
+            {
                 _userInfo.Username = _username;
                 _userInfo.Rank = Int32.Parse(args[1]);
                 _userInfo.LoginKey = args[0];

@@ -40,6 +40,8 @@ namespace YGOPro_Launcher.Config
 
         // ServerTabDesign_frm
         public string GameServerInfo = "Server Details";
+        public string GameTabRanked = "Ranked";
+        public string GameTabUnranked = "Unranked";
         public string GameofRooms = "of Rooms";
         public string GameofUnranked = "of Unranked";
         public string GameofRanked = "of Ranked";
@@ -90,6 +92,8 @@ namespace YGOPro_Launcher.Config
         // Host_frm.cs
         public string hostGb1 = "Settings";
         public string hostGb2 = "Additional Options";
+        public string hostBanlist = "Ban List";
+        public string hostTimeLimit = "Time Limit";
         public string hostRules = "Card Rules";
         public string hostMode = "Duel Mode";
         public string hostPrio = "Enable Priority";

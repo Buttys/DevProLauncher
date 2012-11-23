@@ -49,6 +49,7 @@ namespace YGOPro_Launcher
             if (Program.UserInfo.Rank > 0)
             {
                 listRooms.MouseUp +=new MouseEventHandler(listRooms_MouseUp);
+                RankedRooms.MouseUp += new MouseEventHandler(RankedRooms_MouseUp);
             }
 
         }
@@ -56,6 +57,9 @@ namespace YGOPro_Launcher
         public void ApplyTranslation()
         {
             groupBox1.Text = Program.LanguageManager.Translation.GameServerInfo;
+            ServerTabs.TabPages[0].Text = Program.LanguageManager.Translation.GameTabRanked;
+            ServerTabs.TabPages[1].Text = Program.LanguageManager.Translation.GameTabUnranked;
+
             label1.Text = "# " + Program.LanguageManager.Translation.GameofRooms;
             label2.Text = "# " + Program.LanguageManager.Translation.GameofUnranked;
             label3.Text = "# " + Program.LanguageManager.Translation.GameofRanked;
@@ -93,18 +97,73 @@ namespace YGOPro_Launcher
                 item.Selected = true;
 
                 ContextMenuStrip mnu = new ContextMenuStrip();
-                ToolStripMenuItem mnukill = new ToolStripMenuItem("Kill");
+                List<ToolStripMenuItem> mnuitems = new List<ToolStripMenuItem>();
 
-                mnukill.Click += new EventHandler(KillRoom);
+                mnuitems.Add(new ToolStripMenuItem("Kill Room"));
+                string[] players = item.SubItems[5].Text.Split(',');
+                foreach (string player in players)
+                {
+                    mnuitems.Add(new ToolStripMenuItem("Disconnect: " + player.Trim()));
+                }
 
-                mnu.Items.Add(mnukill);
+
+                foreach (ToolStripMenuItem mnuitem in mnuitems)
+                {
+                    if (mnuitem.Text == "Kill Room")
+                        mnuitem.Click += new EventHandler(KillRoom);
+                    else
+                        mnuitem.Click += new EventHandler(DisconnectUser);
+                }
+
+                mnu.Items.AddRange(mnuitems.ToArray());
                 mnu.Show(listRooms, e.Location);
             }
         }
 
+        private void RankedRooms_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ListViewItem item = RankedRooms.GetItemAt(e.X, e.Y);
+                if (item == null) return;
+
+                item.Selected = true;
+
+                ContextMenuStrip mnu = new ContextMenuStrip();
+                List<ToolStripMenuItem> mnuitems = new List<ToolStripMenuItem>(); 
+
+                mnuitems.Add(new ToolStripMenuItem("Kill Room"));
+                string[] players = item.SubItems[5].Text.Split(',');
+                foreach (string player in players)
+                {
+                    mnuitems.Add(new ToolStripMenuItem("Disconnect: " +player));
+                }
+               
+
+                foreach (ToolStripMenuItem mnuitem in mnuitems)
+                {
+                    if (mnuitem.Text == "Kill Room")
+                        mnuitem.Click += new EventHandler(KillRoom);
+                    else
+                        mnuitem.Click += new EventHandler(DisconnectUser);
+                }
+
+                mnu.Items.AddRange(mnuitems.ToArray());
+                mnu.Show(RankedRooms, e.Location);
+            }
+        }
+
+        private void DisconnectUser(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            Program.ServerConnection.SendPacket("ADMIN|GKICK|" + item.Text.Replace("Disconnect:", "").Trim());
+
+        }
+
         private void KillRoom(object sender, EventArgs e)
         {
-            Program.ServerConnection.SendPacket("ADMIN|KILL|" + listRooms.SelectedItems[0].Text);
+            ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
+            Program.ServerConnection.SendPacket("ADMIN|KILL|" + rooms.SelectedItems[0].Text);
         }
 
         public void RequestUserWLD()
@@ -121,7 +180,7 @@ namespace YGOPro_Launcher
         private void GameType_SelectedIndexChanged(object sender, EventArgs e)
         {
             FilterGames(null, EventArgs.Empty);
-            if (ServerTabs.SelectedTab.Text == "Ranked")
+            if (ServerTabs.SelectedTab.Name == "Ranked")
                 QuickBtn.Enabled = false;
             else
                 QuickBtn.Enabled = true;
@@ -214,14 +273,14 @@ namespace YGOPro_Launcher
             form.LifePoints.Text = Program.Config.Lifepoints;
             form.GameName.Text = Program.Config.GameName;
 
-            LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (ServerTabs.SelectedTab.Text == "Ranked") ? true : false));
+            LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (ServerTabs.SelectedTab.Name == "Ranked") ? true : false));
             LauncherHelper.RunGame("-j");
             return;
         }
         private void HostBtn_Click(object sender, EventArgs e)
         {
             Host form = new Host();
-            if (ServerTabs.SelectedTab.Text == "Ranked")
+            if (ServerTabs.SelectedTab.Name == "Ranked")
             {
                 form.Mode.Items.Clear();
                 form.Mode.Items.AddRange(new object[] { "Match", "Tag" });
@@ -237,7 +296,7 @@ namespace YGOPro_Launcher
 
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (ServerTabs.SelectedTab.Text == "Ranked") ? true : false));
+                LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (ServerTabs.SelectedTab.Name == "Ranked") ? true : false));
                 LauncherHelper.RunGame("-j");
             }
         }
@@ -307,12 +366,12 @@ namespace YGOPro_Launcher
                 (room.Mode == 1 ? Color.LightSteelBlue :
                 Color.LightBlue)))));
 
-            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
+            ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
 
             if (FilterActive.Checked)
             {
                 if (m_rooms[room.RoomName].SubItems[4].Text.Contains("Waiting") &&
-                    m_rooms[room.RoomName].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Text))
+                    m_rooms[room.RoomName].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Name))
                 {
                     if (m_rooms[room.RoomName].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                         m_rooms[room.RoomName].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
@@ -324,7 +383,7 @@ namespace YGOPro_Launcher
             }
             else
             {
-                if (m_rooms[room.RoomName].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Text))
+                if (m_rooms[room.RoomName].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Name))
                 {
                     if (m_rooms[room.RoomName].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                         m_rooms[room.RoomName].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
@@ -340,7 +399,7 @@ namespace YGOPro_Launcher
 
         public void FilterGames(object sender, EventArgs e)
         {
-            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
+            ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
 
             rooms.Items.Clear();
             foreach (string item in ObjectKeys())
@@ -348,7 +407,7 @@ namespace YGOPro_Launcher
                 if (FilterActive.Checked)
                 {
                     if (m_rooms[item].SubItems[4].Text.Contains("Waiting") &&
-                        m_rooms[item].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Text))
+                        m_rooms[item].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Name))
                     {
                         if (m_rooms[item].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                             m_rooms[item].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
@@ -360,7 +419,7 @@ namespace YGOPro_Launcher
                 }
                 else
                 {
-                    if (m_rooms[item].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Text))
+                    if (m_rooms[item].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Name))
                     {
                         if (m_rooms[item].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                             m_rooms[item].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
@@ -416,7 +475,7 @@ namespace YGOPro_Launcher
         private void InternalRoomStarted(string roomname)
         {
             if (!m_rooms.ContainsKey(roomname)) return;
-            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
+            ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
             ListViewItem item = m_rooms[roomname];
 
             item.BackColor = Color.LightGray;
@@ -433,7 +492,7 @@ namespace YGOPro_Launcher
         private void InternalRoomRemoved(string roomname)
         {
             if (!m_rooms.ContainsKey(roomname)) return;
-            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
+            ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
             ListViewItem item = m_rooms[roomname];
             rooms.Items.Remove(item);
             m_rooms.Remove(roomname);
@@ -460,7 +519,7 @@ namespace YGOPro_Launcher
 
         public void LoadRoom(object sender, EventArgs e)
         {
-            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
+            ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
             ListViewItem item = rooms.SelectedItems[0];
             LauncherHelper.GenerateConfig(item.SubItems[6].Text);
             LauncherHelper.RunGame("-j");
@@ -486,7 +545,7 @@ namespace YGOPro_Launcher
 
         private void SortRooms(object sender, ColumnClickEventArgs e)
         {
-            ListView rooms = (ServerTabs.SelectedTab.Text == "Ranked" ? RankedRooms : listRooms);
+            ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
             ListViewItemComparer sorter = rooms.ListViewItemSorter as ListViewItemComparer;
 
             if (sorter == null)

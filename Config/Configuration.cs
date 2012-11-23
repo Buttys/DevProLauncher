@@ -32,6 +32,8 @@ namespace YGOPro_Launcher.Config
         public bool NoChainDelay = false;
 
         //quickhost settings
+        public string BanList = "";
+        public string TimeLimit = "3 minutes";
         public string CardRules = "OCG/TCG";
         public string Mode = "Single";
         public bool EnablePrority = false;
@@ -113,6 +115,12 @@ namespace YGOPro_Launcher.Config
                         break;
                     case "cardrules":
                         CardRules = value;
+                        break;
+                    case "banlist":
+                        BanList = value;
+                        break;
+                    case "timelimit":
+                        TimeLimit = value;
                         break;
                     case "mode":
                         Mode = value;
@@ -217,8 +225,10 @@ namespace YGOPro_Launcher.Config
             writer.WriteLine("nochaindelay = " + NoChainDelay);
             writer.WriteLine("");
             writer.WriteLine("#Quick Host Settings");
+            writer.WriteLine("banlist = " + BanList);
             writer.WriteLine("cardrules = " + CardRules);
             writer.WriteLine("mode = " + Mode);
+            writer.WriteLine("timelimit = " + TimeLimit);
             writer.WriteLine("enableprority = " + EnablePrority);
             writer.WriteLine("disablecheckdeck = " + DisableCheckDeck);
             writer.WriteLine("disableshuffledeck = " + DisableShuffleDeck);

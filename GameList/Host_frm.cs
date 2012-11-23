@@ -6,14 +6,19 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace YGOPro_Launcher
 {
     public partial class Host : Form
     {
+        private Dictionary<string, int> Banlists = new Dictionary<string,int>();
+
         public Host()
         {
             InitializeComponent();
+            LoadBanlist();
+            TimeLimit.SelectedIndex = 0;
             CardRules.SelectedIndex = 0;
             Mode.SelectedIndex = 0;
             GameName.Text = LauncherHelper.GenerateString().Substring(0, 5);
@@ -27,6 +32,8 @@ namespace YGOPro_Launcher
             {
                 groupBox1.Text = Program.LanguageManager.Translation.hostGb1;
                 groupBox2.Text = Program.LanguageManager.Translation.hostGb2;
+                label6.Text = Program.LanguageManager.Translation.hostTimeLimit;
+                label5.Text = Program.LanguageManager.Translation.hostBanlist;
                 label3.Text = Program.LanguageManager.Translation.hostRules;
                 label4.Text = Program.LanguageManager.Translation.hostMode;
                 Priority.Text = Program.LanguageManager.Translation.hostPrio;
@@ -37,6 +44,26 @@ namespace YGOPro_Launcher
                 HostBtn.Text = Program.LanguageManager.Translation.hostBtnHost;
                 CancelBtn.Text = Program.LanguageManager.Translation.hostBtnCancel;
             }
+        }
+
+        public void LoadBanlist()
+        {
+            if(!File.Exists(Program.Config.LauncherDir + "lflist.conf"))
+                return;
+
+            BanList.Items.Clear();
+            var lines = File.ReadAllLines(Program.Config.LauncherDir +"lflist.conf");
+
+            foreach (string nonTrimmerLine in lines)
+            {
+                string line = nonTrimmerLine.Trim();
+                if (line.StartsWith("!"))
+                {
+                    Banlists.Add(line.Substring(1),Banlists.Count);
+                    BanList.Items.Add(line.Substring(1));
+                }
+            }
+            BanList.SelectedIndex = 0;
         }
 
         private void DuelModeChanged(object sender, EventArgs e)
@@ -70,6 +97,11 @@ namespace YGOPro_Launcher
                 gamestring = gamestring + "1";
             else
                 gamestring = gamestring + "2";
+
+            gamestring += Banlists[BanList.SelectedItem.ToString()];
+
+            gamestring += "0";
+
             if ((Priority.Checked))
                 gamestring = gamestring + "T";
             else
@@ -86,11 +118,6 @@ namespace YGOPro_Launcher
             gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U") + "," + GameName.Text;
 
             return "ygopro:/" + server + "/" + port + "/" + gamestring;
-        }
-
-        private void HostBtn_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

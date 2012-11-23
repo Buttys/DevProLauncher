@@ -61,7 +61,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.Record = new System.Windows.Forms.Label();
             this.ServerTabs = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Ranked = new System.Windows.Forms.TabPage();
             this.RankedRooms = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -69,7 +69,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Unranked = new System.Windows.Forms.TabPage();
             this.listRooms = new System.Windows.Forms.ListView();
             this.ColumnRoomName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -86,8 +86,8 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.ServerTabs.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.Ranked.SuspendLayout();
+            this.Unranked.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -483,8 +483,8 @@
             // 
             // ServerTabs
             // 
-            this.ServerTabs.Controls.Add(this.tabPage2);
-            this.ServerTabs.Controls.Add(this.tabPage1);
+            this.ServerTabs.Controls.Add(this.Ranked);
+            this.ServerTabs.Controls.Add(this.Unranked);
             this.ServerTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ServerTabs.Location = new System.Drawing.Point(3, 3);
             this.ServerTabs.Name = "ServerTabs";
@@ -492,16 +492,16 @@
             this.ServerTabs.Size = new System.Drawing.Size(722, 290);
             this.ServerTabs.TabIndex = 3;
             // 
-            // tabPage2
+            // Ranked
             // 
-            this.tabPage2.Controls.Add(this.RankedRooms);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(714, 264);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Ranked";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.Ranked.Controls.Add(this.RankedRooms);
+            this.Ranked.Location = new System.Drawing.Point(4, 22);
+            this.Ranked.Name = "Ranked";
+            this.Ranked.Padding = new System.Windows.Forms.Padding(3);
+            this.Ranked.Size = new System.Drawing.Size(714, 264);
+            this.Ranked.TabIndex = 1;
+            this.Ranked.Text = "Ranked";
+            this.Ranked.UseVisualStyleBackColor = true;
             // 
             // RankedRooms
             // 
@@ -550,16 +550,16 @@
             this.columnHeader6.Text = "Players";
             this.columnHeader6.Width = 273;
             // 
-            // tabPage1
+            // Unranked
             // 
-            this.tabPage1.Controls.Add(this.listRooms);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(714, 264);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Unranked";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.Unranked.Controls.Add(this.listRooms);
+            this.Unranked.Location = new System.Drawing.Point(4, 22);
+            this.Unranked.Name = "Unranked";
+            this.Unranked.Padding = new System.Windows.Forms.Padding(3);
+            this.Unranked.Size = new System.Drawing.Size(714, 264);
+            this.Unranked.TabIndex = 0;
+            this.Unranked.Text = "Unranked";
+            this.Unranked.UseVisualStyleBackColor = true;
             // 
             // listRooms
             // 
@@ -628,8 +628,8 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.ServerTabs.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.Ranked.ResumeLayout(false);
+            this.Unranked.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -669,7 +669,7 @@
         private System.Windows.Forms.Button ProfileBtn;
         private System.Windows.Forms.Button OptionsBtn;
         private System.Windows.Forms.TabControl ServerTabs;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage Unranked;
         private System.Windows.Forms.ListView listRooms;
         private System.Windows.Forms.ColumnHeader ColumnRoomName;
         private System.Windows.Forms.ColumnHeader ColumnType;
@@ -677,7 +677,7 @@
         private System.Windows.Forms.ColumnHeader ColumnMode;
         private System.Windows.Forms.ColumnHeader ColumnState;
         private System.Windows.Forms.ColumnHeader ColumnPlayers;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage Ranked;
         private System.Windows.Forms.ListView RankedRooms;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;

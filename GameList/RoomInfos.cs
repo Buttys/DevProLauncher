@@ -3,6 +3,8 @@ namespace YGOPro_Launcher
 {
     public class RoomInfos
     {
+        public int BanList;
+        public int Timer;
         public int Rule;
         public int Mode;
 
@@ -26,17 +28,21 @@ namespace YGOPro_Launcher
 
            // if (roomname.Length < 15) return null;
 
-            string rules = roomname.Substring(0, 5);
+            string rules = roomname.Substring(0, 7);
 
             if (!int.TryParse(rules[0].ToString(), out infos.Rule))
                 return null;
             if (!int.TryParse(rules[1].ToString(), out infos.Mode))
                 return null;
-            infos.EnablePriority = rules[2] == 'T' || rules[2] == '1';
-            infos.NoCheckDeck = rules[3] == 'T' || rules[3] == '1';
-            infos.NoShuffleDeck = rules[4] == 'T' || rules[4] == '1';
+            if (!int.TryParse(rules[2].ToString(), out infos.BanList))
+                return null;
+            if (!int.TryParse(rules[3].ToString(), out infos.Timer))
+                return null;
+            infos.EnablePriority = rules[4] == 'T' || rules[4] == '1';
+            infos.NoCheckDeck = rules[5] == 'T' || rules[5] == '1';
+            infos.NoShuffleDeck = rules[6] == 'T' || rules[6] == '1';
 
-            string data = roomname.Substring(5, roomname.Length - 5);
+            string data = roomname.Substring(7, roomname.Length - 7);
 
             if (!data.Contains(",")) return null;
 
@@ -60,7 +66,7 @@ namespace YGOPro_Launcher
 
         public string GenerateURI(string server, int port)
         {
-            return "ygpro:/" + server + "/" + port + "/" + Rule + Mode + (EnablePriority ? 1 : 0) + (NoCheckDeck ? 1 : 0) + (NoShuffleDeck ? 1 : 0) + StartLp + "," + (isRanked ? "R" : "U") + "," + RoomName;
+            return "ygpro:/" + server + "/" + port + "/" + Rule + Mode + BanList + Timer + (EnablePriority ? 1 : 0) + (NoCheckDeck ? 1 : 0) + (NoShuffleDeck ? 1 : 0) + StartLp + "," + (isRanked ? "R" : "U") + "," + RoomName;
         }
     }
 }
