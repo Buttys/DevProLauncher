@@ -102,7 +102,7 @@ namespace YGOPro_Launcher
 
         private void QuickSettingsBtn_Click(object sender, EventArgs e)
         {
-            Host form = new Host();
+            Host form = new Host(true);
             form.Text = Program.LanguageManager.Translation.QuickHostSetting;
             form.HostBtn.Text = Program.LanguageManager.Translation.QuickHostBtn;
 
@@ -115,6 +115,8 @@ namespace YGOPro_Launcher
                 Program.Config.DisableShuffleDeck = form.ShuffleDeck.Checked;
                 Program.Config.Lifepoints = form.LifePoints.Text;
                 Program.Config.GameName = form.GameName.Text;
+                Program.Config.BanList = form.BanList.Text;
+                Program.Config.TimeLimit = form.TimeLimit.Text;
             }
 
         }

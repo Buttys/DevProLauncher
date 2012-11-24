@@ -14,15 +14,31 @@ namespace YGOPro_Launcher
     {
         private Dictionary<string, int> Banlists = new Dictionary<string,int>();
 
-        public Host()
+        public Host(bool options)
         {
             InitializeComponent();
             LoadBanlist();
-            TimeLimit.SelectedIndex = 0;
-            CardRules.SelectedIndex = 0;
-            Mode.SelectedIndex = 0;
-            GameName.Text = LauncherHelper.GenerateString().Substring(0, 5);
+            if (options)
+            {
+                TimeLimit.SelectedItem = Program.Config.TimeLimit;
+                BanList.SelectedItem = Program.Config.BanList;
+                Mode.SelectedItem = Program.Config.Mode;
+                GameName.Text = Program.Config.GameName;
+                CardRules.SelectedItem = Program.Config.CardRules;
+                Priority.Checked = Program.Config.EnablePrority;
+                ShuffleDeck.Checked = Program.Config.DisableShuffleDeck;
+                CheckDeck.Checked = Program.Config.DisableCheckDeck;
+            }
+            else
+            {
+                TimeLimit.SelectedIndex = 0;
+                CardRules.SelectedIndex = 0;
+                Mode.SelectedIndex = 0;
+                GameName.Text = LauncherHelper.GenerateString().Substring(0, 5);
+                BanList.SelectedIndex = 0;
+            }
             Mode.SelectedIndexChanged += DuelModeChanged;
+            CardRules.SelectedIndexChanged += new EventHandler(CardRulesChanged);
             ApplyTranslation();
         }
 
@@ -63,7 +79,20 @@ namespace YGOPro_Launcher
                     BanList.Items.Add(line.Substring(1));
                 }
             }
-            BanList.SelectedIndex = 0;
+        }
+
+        private void CardRulesChanged(object sender, EventArgs e)
+        {
+            if (CardRules.SelectedIndex >= 3)
+            {
+                BanList.SelectedIndex = 1;
+                BanList.Enabled = false;
+            }
+            else
+            {
+                BanList.Enabled = true;
+                BanList.SelectedItem = Program.Config.BanList;
+            }
         }
 
         private void DuelModeChanged(object sender, EventArgs e)
@@ -100,7 +129,7 @@ namespace YGOPro_Launcher
 
             gamestring += Banlists[BanList.SelectedItem.ToString()];
 
-            gamestring += "0";
+            gamestring += TimeLimit.SelectedIndex;
 
             if ((Priority.Checked))
                 gamestring = gamestring + "T";

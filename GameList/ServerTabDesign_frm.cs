@@ -264,7 +264,7 @@ namespace YGOPro_Launcher
 
         private void QuickBtn_Click(object sender, EventArgs e)
         {
-            Host form = new Host();
+            Host form = new Host(false);
             form.CardRules.Text = Program.Config.CardRules;
             form.Mode.Text = Program.Config.Mode;
             form.Priority.Checked = Program.Config.EnablePrority;
@@ -272,6 +272,8 @@ namespace YGOPro_Launcher
             form.ShuffleDeck.Checked = Program.Config.DisableShuffleDeck;
             form.LifePoints.Text = Program.Config.Lifepoints;
             form.GameName.Text = Program.Config.GameName;
+            form.BanList.SelectedItem = Program.Config.BanList;
+            form.TimeLimit.SelectedItem = Program.Config.TimeLimit;
 
             LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (ServerTabs.SelectedTab.Name == "Ranked") ? true : false));
             LauncherHelper.RunGame("-j");
@@ -279,12 +281,18 @@ namespace YGOPro_Launcher
         }
         private void HostBtn_Click(object sender, EventArgs e)
         {
-            Host form = new Host();
+            Host form = new Host(false);
             if (ServerTabs.SelectedTab.Name == "Ranked")
             {
                 form.Mode.Items.Clear();
                 form.Mode.Items.AddRange(new object[] { "Match", "Tag" });
                 form.Mode.SelectedItem = "Match";
+                form.BanList.SelectedIndex = 0;
+                form.BanList.Enabled = false;
+                form.TimeLimit.Items.Clear();
+                form.TimeLimit.Items.Add("Server Defualt");
+                form.TimeLimit.SelectedItem = "Server Defualt";
+                form.TimeLimit.Enabled = false;
                 form.Priority.Enabled = false;
                 form.ShuffleDeck.Enabled = false;
                 form.CheckDeck.Enabled = false;

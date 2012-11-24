@@ -329,7 +329,8 @@
             this.TimeLimit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TimeLimit.FormattingEnabled = true;
             this.TimeLimit.Items.AddRange(new object[] {
-            "Server Defualt"});
+            "3 minutes",
+            "5 minutes"});
             this.TimeLimit.Location = new System.Drawing.Point(121, 78);
             this.TimeLimit.Name = "TimeLimit";
             this.TimeLimit.Size = new System.Drawing.Size(138, 21);
