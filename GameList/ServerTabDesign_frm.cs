@@ -75,6 +75,13 @@ namespace YGOPro_Launcher
             ColumnState.Text = Program.LanguageManager.Translation.GameColumnState;
             ColumnPlayers.Text = Program.LanguageManager.Translation.GameColumnPlayers;
 
+            RColumnRoomName.Text = Program.LanguageManager.Translation.GameColumnRoomName;
+            RColumnType.Text = Program.LanguageManager.Translation.GameColumnType;
+            RColumnRules.Text = Program.LanguageManager.Translation.GameColumnRules;
+            RColumnMode.Text = Program.LanguageManager.Translation.GameColumnMode;
+            RColumnState.Text = Program.LanguageManager.Translation.GameColumnState;
+            RColumnPlayers.Text = Program.LanguageManager.Translation.GameColumnPlayers;
+
             DeckBtn.Text = Program.LanguageManager.Translation.GameBtnDeck;
             ReplaysBtn.Text = Program.LanguageManager.Translation.GameBtnReplay;
             ProfileBtn.Text = Program.LanguageManager.Translation.GameBtnProfile;
@@ -156,14 +163,14 @@ namespace YGOPro_Launcher
         private void DisconnectUser(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            Program.ServerConnection.SendPacket("ADMIN|GKICK|" + item.Text.Replace("Disconnect:", "").Trim());
+            Program.ServerConnection.SendPacket("ADMIN||GKICK||" + item.Text.Replace("Disconnect:", "").Trim());
 
         }
 
         private void KillRoom(object sender, EventArgs e)
         {
             ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
-            Program.ServerConnection.SendPacket("ADMIN|KILL|" + rooms.SelectedItems[0].Text);
+            Program.ServerConnection.SendPacket("ADMIN||KILL||" + rooms.SelectedItems[0].Text);
         }
 
         public void RequestUserWLD()
@@ -264,7 +271,7 @@ namespace YGOPro_Launcher
 
         private void QuickBtn_Click(object sender, EventArgs e)
         {
-            Host form = new Host(false);
+            Host form = new Host(false,false);
             form.CardRules.Text = Program.Config.CardRules;
             form.Mode.Text = Program.Config.Mode;
             form.Priority.Checked = Program.Config.EnablePrority;
@@ -281,7 +288,7 @@ namespace YGOPro_Launcher
         }
         private void HostBtn_Click(object sender, EventArgs e)
         {
-            Host form = new Host(false);
+            Host form = new Host(false, (ServerTabs.SelectedTab.Name == "Ranked"));
             if (ServerTabs.SelectedTab.Name == "Ranked")
             {
                 form.Mode.Items.Clear();
@@ -347,6 +354,10 @@ namespace YGOPro_Launcher
             if (room.isRanked) roomtype = "Ranked";
             item.SubItems.Add(roomtype);
 
+            item.SubItems.Add(LauncherHelper.GetBanListFromInt(room.BanList));
+            
+            item.SubItems.Add((room.Timer == 0 ? "3 mins":"5 mins"));
+            
             string rule = "TCG/OCG";
             if (room.Rule == 1) rule = "TCG";
             if (room.Rule == 0) rule = "OCG";
@@ -358,6 +369,8 @@ namespace YGOPro_Launcher
             if (room.Mode == 1) type = "Match";
             if (room.Mode == 2) type = "Tag";
             item.SubItems.Add(type);
+
+           
 
             item.SubItems.Add(room.Started ? "Started" : "Waiting");
 
@@ -378,11 +391,11 @@ namespace YGOPro_Launcher
 
             if (FilterActive.Checked)
             {
-                if (m_rooms[room.RoomName].SubItems[4].Text.Contains("Waiting") &&
+                if (m_rooms[room.RoomName].SubItems[6].Text.Contains("Waiting") &&
                     m_rooms[room.RoomName].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Name))
                 {
-                    if (m_rooms[room.RoomName].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
-                        m_rooms[room.RoomName].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                    if (m_rooms[room.RoomName].SubItems[7].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                        m_rooms[room.RoomName].SubItems[0].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                         FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                     {
                         rooms.Items.Add(m_rooms[room.RoomName]);
@@ -393,8 +406,8 @@ namespace YGOPro_Launcher
             {
                 if (m_rooms[room.RoomName].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Name))
                 {
-                    if (m_rooms[room.RoomName].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
-                        m_rooms[room.RoomName].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                    if (m_rooms[room.RoomName].SubItems[7].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                        m_rooms[room.RoomName].SubItems[0].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                         FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                     {
                         rooms.Items.Add(m_rooms[room.RoomName]);
@@ -414,7 +427,7 @@ namespace YGOPro_Launcher
             {
                 if (FilterActive.Checked)
                 {
-                    if (m_rooms[item].SubItems[4].Text.Contains("Waiting") &&
+                    if (m_rooms[item].SubItems[6].Text.Contains("Waiting") &&
                         m_rooms[item].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Name))
                     {
                         if (m_rooms[item].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
@@ -462,9 +475,9 @@ namespace YGOPro_Launcher
             int unrankedrooms = 0;
             foreach (string item in ObjectKeys())
             {
-                string[] players = m_rooms[item].SubItems[5].Text.Split(',');
+                string[] players = m_rooms[item].SubItems[7].Text.Split(',');
                 playercount = playercount + players.Length;
-                if (m_rooms[item].SubItems[4].Text == "Waiting") openroom++;
+                if (m_rooms[item].SubItems[6].Text == "Waiting") openroom++;
                 if (m_rooms[item].SubItems[1].Text == "Ranked") rankedrooms++; else unrankedrooms++;
                 rooms++;
             }
@@ -487,7 +500,7 @@ namespace YGOPro_Launcher
             ListViewItem item = m_rooms[roomname];
 
             item.BackColor = Color.LightGray;
-            item.SubItems[4].Text = "Started";
+            item.SubItems[6].Text = "Started";
             if (FilterActive.Checked) rooms.Items.Remove(item);
         }
 
@@ -520,7 +533,7 @@ namespace YGOPro_Launcher
             if (!m_rooms.ContainsKey(roomname)) return;
             ListViewItem item = m_rooms[roomname];
 
-            item.SubItems[5].Text = players;
+            item.SubItems[7].Text = players;
 
             UpdateServerInfo();
         }
@@ -529,7 +542,7 @@ namespace YGOPro_Launcher
         {
             ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
             ListViewItem item = rooms.SelectedItems[0];
-            LauncherHelper.GenerateConfig(item.SubItems[6].Text);
+            LauncherHelper.GenerateConfig(item.SubItems[8].Text);
             LauncherHelper.RunGame("-j");
         }
 

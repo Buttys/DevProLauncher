@@ -140,7 +140,7 @@ namespace YGOPro_Launcher
 
         private void OnCommand(string command)
         {
-            string[] args = command.Split('|');
+            string[] args = command.Split(new string[]{"||"},StringSplitOptions.None);
             string cmd = args[0];
 
             if (cmd == "ROOMS")
@@ -195,14 +195,14 @@ namespace YGOPro_Launcher
             else if (cmd == "STATS")
             {
                 if (ProfileMessage != null)
-                    ProfileMessage(args[1] + "|" + args[2] + "|" + args[3] +"|" + args[4]);
+                    ProfileMessage(args[1] + "||" + args[2] + "||" + args[3] +"||" + args[4]);
             }
             else if (cmd == "ADMIN")
             {
                 if (args.Length >= 3)
                 {
                     if (AdminMessage != null)
-                        AdminMessage(args[1] + "|" + args[2]);
+                        AdminMessage(args[1] + "||" + args[2]);
                 }
             }
             else if (cmd == "MSG")

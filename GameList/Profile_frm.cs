@@ -106,7 +106,7 @@ namespace YGOPro_Launcher
 
                 if (!IsDisposed)
                 {
-                    string[] sections = message.Split('|');
+                    string[] sections = message.Split(new string[] {"||"}, StringSplitOptions.None);
                     rank.Text += sections[0];
                     team.Text += sections[1];
                     string[] unrankedparts = sections[2].Split(',');

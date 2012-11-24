@@ -61,7 +61,7 @@ namespace YGOPro_Launcher
                 MessageBox.Show(Program.LanguageManager.Translation.RegistMsb3);
                 return;
             }
-           Program.ServerConnection.SendPacket("REGISTER|" + UsernameInput.Text + "|" + LauncherHelper.EncodePassword(PasswordInput.Text) + "|" + LauncherHelper.GetUID());
+           Program.ServerConnection.SendPacket("REGISTER||" + UsernameInput.Text + "||" + LauncherHelper.EncodePassword(PasswordInput.Text) + "||" + LauncherHelper.GetUID());
         }
 
         private void RegisterResponse(string message)

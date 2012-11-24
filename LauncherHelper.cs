@@ -6,11 +6,60 @@ using System.Reflection;
 using System.IO;
 using System.Net;
 using YGOPro_Launcher.CardDatabase;
+using System.Collections.Generic;
 
 namespace YGOPro_Launcher
 {
     public static class LauncherHelper
     {
+
+        private static Dictionary<string, int> Banlists = new Dictionary<string, int>();
+
+        public static void LoadBanlist()
+        {
+            if (!File.Exists(Program.Config.LauncherDir + "lflist.conf"))
+                return;
+            Banlists.Clear();
+            var lines = File.ReadAllLines(Program.Config.LauncherDir + "lflist.conf");
+
+            foreach (string nonTrimmerLine in lines)
+            {
+                string line = nonTrimmerLine.Trim();
+                if (line.StartsWith("!"))
+                {
+                    Banlists.Add(line.Substring(1), Banlists.Count);
+                }
+            }
+        }
+
+        public static string[] GetBanListArray()
+        {
+            List<string> keys = new List<string>();
+            foreach (string key in Banlists.Keys)
+            {
+                keys.Add(key);
+            }
+
+            return keys.ToArray();
+        }
+
+        public static string GetBanListFromInt(int value)
+        {
+            foreach (string key in GetBanListArray())
+            {
+                if (Banlists[key] == value)
+                    return key;
+            }
+            return "Unknown";
+        }
+
+        public static int GetBanListValue(string key)
+        {
+            if (Banlists.ContainsKey(key))
+                return Banlists[key];
+            else
+                return 0;
+        }
 
         public static string RequestWebData(string url)
         {

@@ -12,12 +12,12 @@ namespace YGOPro_Launcher
 {
     public partial class Host : Form
     {
-        private Dictionary<string, int> Banlists = new Dictionary<string,int>();
+       
 
-        public Host(bool options)
+        public Host(bool options, bool isranked)
         {
             InitializeComponent();
-            LoadBanlist();
+            
             if (options)
             {
                 TimeLimit.SelectedItem = Program.Config.TimeLimit;
@@ -28,6 +28,7 @@ namespace YGOPro_Launcher
                 Priority.Checked = Program.Config.EnablePrority;
                 ShuffleDeck.Checked = Program.Config.DisableShuffleDeck;
                 CheckDeck.Checked = Program.Config.DisableCheckDeck;
+                BanList.Items.AddRange(LauncherHelper.GetBanListArray());
             }
             else
             {
@@ -35,10 +36,14 @@ namespace YGOPro_Launcher
                 CardRules.SelectedIndex = 0;
                 Mode.SelectedIndex = 0;
                 GameName.Text = LauncherHelper.GenerateString().Substring(0, 5);
+                BanList.Items.AddRange(LauncherHelper.GetBanListArray());
                 BanList.SelectedIndex = 0;
+                
+
             }
             Mode.SelectedIndexChanged += DuelModeChanged;
-            CardRules.SelectedIndexChanged += new EventHandler(CardRulesChanged);
+            if(!isranked)
+                CardRules.SelectedIndexChanged += new EventHandler(CardRulesChanged);
             ApplyTranslation();
         }
 
@@ -59,25 +64,6 @@ namespace YGOPro_Launcher
                 label2.Text = Program.LanguageManager.Translation.hostGameN;
                 HostBtn.Text = Program.LanguageManager.Translation.hostBtnHost;
                 CancelBtn.Text = Program.LanguageManager.Translation.hostBtnCancel;
-            }
-        }
-
-        public void LoadBanlist()
-        {
-            if(!File.Exists(Program.Config.LauncherDir + "lflist.conf"))
-                return;
-
-            BanList.Items.Clear();
-            var lines = File.ReadAllLines(Program.Config.LauncherDir +"lflist.conf");
-
-            foreach (string nonTrimmerLine in lines)
-            {
-                string line = nonTrimmerLine.Trim();
-                if (line.StartsWith("!"))
-                {
-                    Banlists.Add(line.Substring(1),Banlists.Count);
-                    BanList.Items.Add(line.Substring(1));
-                }
             }
         }
 
@@ -127,7 +113,7 @@ namespace YGOPro_Launcher
             else
                 gamestring = gamestring + "2";
 
-            gamestring += Banlists[BanList.SelectedItem.ToString()];
+            gamestring += LauncherHelper.GetBanListValue(BanList.SelectedItem.ToString());
 
             gamestring += TimeLimit.SelectedIndex;
 

@@ -256,8 +256,6 @@
             this.BanList.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BanList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.BanList.FormattingEnabled = true;
-            this.BanList.Items.AddRange(new object[] {
-            "Server Defualt"});
             this.BanList.Location = new System.Drawing.Point(121, 3);
             this.BanList.Name = "BanList";
             this.BanList.Size = new System.Drawing.Size(138, 21);

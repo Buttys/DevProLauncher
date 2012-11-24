@@ -47,11 +47,11 @@ namespace YGOPro_Launcher
 
         private void BanUser(object sender, EventArgs e)
         {
-            Program.ServerConnection.SendPacket("ADMIN|BAN|" + UserList.SelectedItem.ToString());
+            Program.ServerConnection.SendPacket("ADMIN||BAN||" + UserList.SelectedItem.ToString());
         }
         private void KickUser(object sender, EventArgs e)
         {
-            Program.ServerConnection.SendPacket("ADMIN|KICK|" + UserList.SelectedItem.ToString());
+            Program.ServerConnection.SendPacket("ADMIN||KICK||" + UserList.SelectedItem.ToString());
         }
 
         private void InputBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -60,7 +60,22 @@ namespace YGOPro_Launcher
             {
                 if (InputBox.Text == "") return;
                 string[] args = InputBox.Text.Split(' ');
-                Program.ServerConnection.SendPacket("ADMIN|" +args[0].ToUpper() + "|" + InputBox.Text.Replace(args[0],"").Trim());
+                if (args[0].ToLower() != "op")
+                {
+                    Program.ServerConnection.SendPacket("ADMIN||" + args[0].ToUpper() + "||" + InputBox.Text.Substring(0, args[0].Length).Trim());
+                }
+                else
+                {
+                    int rank = 0;
+                    if (Int32.TryParse(args[args.Length - 1], out rank))
+                    {
+                        Program.ServerConnection.SendPacket("ADMIN||" + args[0].ToUpper() + "||" + InputBox.Text.Replace(args[0], "").Replace(args[args.Length - 1], "").Trim() + "||" + rank.ToString());
+                    }
+                    else
+                    {
+                        WriteMessage("Invalid args");
+                    }
+                }
                 InputBox.Clear();
                 e.Handled = true;
             }
@@ -68,7 +83,7 @@ namespace YGOPro_Launcher
 
         private void ParseMessage(string command)
         {
-            string[] args = command.Split('|');
+            string[] args = command.Split(new string[] {"||"}, StringSplitOptions.None);
             string cmd = args[0];
 
             if (cmd == "MSG")

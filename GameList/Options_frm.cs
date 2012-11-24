@@ -102,7 +102,7 @@ namespace YGOPro_Launcher
 
         private void QuickSettingsBtn_Click(object sender, EventArgs e)
         {
-            Host form = new Host(true);
+            Host form = new Host(true, false);
             form.Text = Program.LanguageManager.Translation.QuickHostSetting;
             form.HostBtn.Text = Program.LanguageManager.Translation.QuickHostBtn;
 

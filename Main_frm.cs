@@ -60,6 +60,8 @@ namespace YGOPro_Launcher
             Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);
             ConnectionCheck.Tick += new EventHandler(CheckConnection);
 
+            LauncherHelper.LoadBanlist();
+
         }
 
         private void CheckConnection(object sender, EventArgs e)

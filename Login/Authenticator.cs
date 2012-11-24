@@ -36,7 +36,7 @@ namespace YGOPro_Launcher.Login
 
             _username = username;
            
-            _connection.SendPacket("LOGIN|" + username + "|" + password);
+            _connection.SendPacket("LOGIN||" + username + "||" + password);
         }
 
         private void LoginResponse(string message)
