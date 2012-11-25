@@ -27,6 +27,8 @@
   <RegistMsb4>Registering Complete!</RegistMsb4>
   <RegistMsb5>Username Exists</RegistMsb5>
   <GameServerInfo>Server Details</GameServerInfo>
+  <GameTabRanked>Ranked</GameTabRanked>
+  <GameTabUnranked>Unranked</GameTabUnranked>
   <GameofRooms>of Rooms</GameofRooms>
   <GameofUnranked>of Unranked</GameofUnranked>
   <GameofRanked>of Ranked</GameofRanked>
@@ -51,10 +53,10 @@
   <optionGb1>User Settings</optionGb1>
   <optionGb2>Game Settings</optionGb2>
   <optionGb3>Font Settings</optionGb3>
-  <optionGb4>Launcher Settings</optionGb4>
+  <optionGb4>Luancher Settings</optionGb4>
   <optionMsbForget>Do you really want to forget auto login credentials?</optionMsbForget>
   <optionUser>Default Username</optionUser>
-  <optionDeck>Default Deck</optionDeck>
+  <optionDeck>Defualt Deck</optionDeck>
   <optionBtnAutoLogin>Forget Auto Login</optionBtnAutoLogin>
   <optionAntialias>Antialias</optionAntialias>
   <optionCbSound>Enable Sound</optionCbSound>
@@ -73,6 +75,8 @@
   <optionCbNoChainDelay>No Delay for Chain</optionCbNoChainDelay>
   <hostGb1>Settings</hostGb1>
   <hostGb2>Additional Options</hostGb2>
+  <hostBanlist>Ban List</hostBanlist>
+  <hostTimeLimit>Time Limit</hostTimeLimit>
   <hostRules>Card Rules</hostRules>
   <hostMode>Duel Mode</hostMode>
   <hostPrio>Enable Priority</hostPrio>
@@ -92,6 +96,8 @@
   <fileAskDelete>Are you sure you want to delete the following item(s) </fileAskDelete>
   <fileNewName>Enter new name</fileNewName>
   <fileInputConfirm>Rename</fileInputConfirm>
+  <fileBtnRefresh>Refresh</fileBtnRefresh>
+  <fileBtnImport>Import</fileBtnImport>
   <aboutLabel1>About DevPro</aboutLabel1>
   <aAboutText>The YGOPro Online Development Group is a rag tag team of programmers, philanthropist, and generally knowledgeable people in the YGOPro community that seek to better and progress the Yu-Gi-Oh! Online community as a whole by providing services and software to allow duelist to grow by dueling and forming lasting friendships.</aAboutText>
   <aboutLabel5>DevPro Contributors</aboutLabel5>

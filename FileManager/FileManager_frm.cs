@@ -53,6 +53,8 @@ namespace YGOPro_Launcher
                 DeleteBtn.Text = Program.LanguageManager.Translation.fileBtnDelete;
                 OpenBtn.Text = Program.LanguageManager.Translation.fileBtnFolder;
                 GameBtn.Text = Program.LanguageManager.Translation.fileBtnGame;
+                RefreshBtn.Text = Program.LanguageManager.Translation.fileBtnRefresh;
+                ImportBtn.Text = Program.LanguageManager.Translation.fileBtnImport;
             }
         }
 

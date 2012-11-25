@@ -65,6 +65,8 @@
             this.RankedRooms = new System.Windows.Forms.ListView();
             this.RColumnRoomName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RColumnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RColumnBanList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RColumnTimer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RColumnRules = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RColumnMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RColumnState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -73,14 +75,12 @@
             this.listRooms = new System.Windows.Forms.ListView();
             this.ColumnRoomName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnBanList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnTimer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnRules = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RColumnBanList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RColumnTimer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnBanList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnTimer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -527,35 +527,42 @@
             this.RankedRooms.UseCompatibleStateImageBehavior = false;
             this.RankedRooms.View = System.Windows.Forms.View.Details;
             // 
-            // RColumnRoomName
+            // ColumnRoomName
             // 
             this.RColumnRoomName.Text = "Room Name";
-            this.RColumnRoomName.Width = 74;
+            this.RColumnRoomName.Width = 86;
             // 
-            // RColumnType
+            // ColumnType
             // 
             this.RColumnType.Text = "Type";
-            this.RColumnType.Width = 65;
             // 
-            // RColumnRules
+            // ColumnBanList
+            // 
+            this.RColumnBanList.Text = "Banlist";
+            // 
+            // ColumnTimer
+            // 
+            this.RColumnTimer.Text = "Timer";
+            // 
+            // ColumnRules
             // 
             this.RColumnRules.Text = "Rules";
-            this.RColumnRules.Width = 72;
+            this.RColumnRules.Width = 80;
             // 
-            // RColumnMode
+            // ColumnMode
             // 
             this.RColumnMode.Text = "Mode";
-            this.RColumnMode.Width = 67;
+            this.RColumnMode.Width = 75;
             // 
-            // RColumnState
+            // ColumnState
             // 
             this.RColumnState.Text = "State";
             this.RColumnState.Width = 75;
             // 
-            // RColumnPlayers
+            // ColumnPlayers
             // 
             this.RColumnPlayers.Text = "Players";
-            this.RColumnPlayers.Width = 192;
+            this.RColumnPlayers.Width = 163;
             // 
             // Unranked
             // 
@@ -597,6 +604,14 @@
             // 
             this.ColumnType.Text = "Type";
             // 
+            // ColumnBanList
+            // 
+            this.ColumnBanList.Text = "Banlist";
+            // 
+            // ColumnTimer
+            // 
+            this.ColumnTimer.Text = "Timer";
+            // 
             // ColumnRules
             // 
             this.ColumnRules.Text = "Rules";
@@ -616,24 +631,6 @@
             // 
             this.ColumnPlayers.Text = "Players";
             this.ColumnPlayers.Width = 163;
-            // 
-            // RColumnBanList
-            // 
-            this.RColumnBanList.Text = "BanList";
-            this.RColumnBanList.Width = 78;
-            // 
-            // RColumnTimer
-            // 
-            this.RColumnTimer.Text = "Timer";
-            this.RColumnTimer.Width = 65;
-            // 
-            // ColumnBanList
-            // 
-            this.ColumnBanList.Text = "Banlist";
-            // 
-            // ColumnTimer
-            // 
-            this.ColumnTimer.Text = "Timer";
             // 
             // ServerInterface_frm
             // 

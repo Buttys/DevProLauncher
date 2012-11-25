@@ -115,6 +115,8 @@ namespace YGOPro_Launcher.Config
         public string fileAskDelete = "Are you sure you want to delete the following item(s) ";
         public string fileNewName = "Enter new name";
         public string fileInputConfirm = "Rename";
+        public string fileBtnRefresh = "Refresh";
+        public string fileBtnImport = "Import";
 
         // About_frm.cs
         public string aboutLabel1 = "About DevPro";
