@@ -527,39 +527,39 @@
             this.RankedRooms.UseCompatibleStateImageBehavior = false;
             this.RankedRooms.View = System.Windows.Forms.View.Details;
             // 
-            // ColumnRoomName
+            // RColumnRoomName
             // 
             this.RColumnRoomName.Text = "Room Name";
             this.RColumnRoomName.Width = 86;
             // 
-            // ColumnType
+            // RColumnType
             // 
             this.RColumnType.Text = "Type";
             // 
-            // ColumnBanList
+            // RColumnBanList
             // 
             this.RColumnBanList.Text = "Banlist";
             // 
-            // ColumnTimer
+            // RColumnTimer
             // 
             this.RColumnTimer.Text = "Timer";
             // 
-            // ColumnRules
+            // RColumnRules
             // 
             this.RColumnRules.Text = "Rules";
             this.RColumnRules.Width = 80;
             // 
-            // ColumnMode
+            // RColumnMode
             // 
             this.RColumnMode.Text = "Mode";
             this.RColumnMode.Width = 75;
             // 
-            // ColumnState
+            // RColumnState
             // 
             this.RColumnState.Text = "State";
             this.RColumnState.Width = 75;
             // 
-            // ColumnPlayers
+            // RColumnPlayers
             // 
             this.RColumnPlayers.Text = "Players";
             this.RColumnPlayers.Width = 163;

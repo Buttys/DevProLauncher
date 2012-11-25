@@ -48,19 +48,22 @@ namespace YGOPro_Launcher
 
 
                 ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
-                CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro"),
-                CreateBrowserWindow("Youtube", "https://www.youtube.com/user/blub2blb"),
+                CreateBrowserWindow("Ranking"),
+                CreateBrowserWindow("Chat"),
+                CreateBrowserWindow("Youtube"),
                 FileManager, CustomizeTab, AboutTab,AdminTab });
             }
             else
             {
-                ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
-                CreateBrowserWindow("Chat", "http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro"),
-                CreateBrowserWindow("Youtube", "http://www.youtube.com/user/blub2blb"),
+                ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,
+                CreateBrowserWindow("Ranking"),
+                CreateBrowserWindow("Chat"),
+                CreateBrowserWindow("Youtube"),
                 FileManager, CustomizeTab, AboutTab });
             }
             Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);
             ConnectionCheck.Tick += new EventHandler(CheckConnection);
+            ServerControl.SelectedIndexChanged += new EventHandler(NavigateOnClick);
 
             LauncherHelper.LoadBanlist();
 
@@ -93,11 +96,11 @@ namespace YGOPro_Launcher
             MessageBox.Show(message, "Server Message", MessageBoxButtons.OK);
         }
 
-        private TabPage CreateBrowserWindow(string name, string url)
+        private TabPage CreateBrowserWindow(string name)
         {
             TabPage page = new TabPage(name);
+            page.Name = name;
             WebBrowser browser = new WebBrowser();
-            browser.Navigate(url);
             browser.ScriptErrorsSuppressed = true;
             page.Controls.Add(browser);
             browser.Dock = DockStyle.Fill;
@@ -108,8 +111,6 @@ namespace YGOPro_Launcher
         {
             foreach (TabPage tab in ServerControl.TabPages)
             {
-                if (tab.Name == Program.Config.ServerName)
-                {
                     foreach (Control control in tab.Controls)
                     {
                         if (control is ServerInterface_frm)
@@ -120,10 +121,33 @@ namespace YGOPro_Launcher
                             break;
                         }
                     }
-                }
             }
 
             ConnectionCheck.Enabled = true;
+        }
+
+        private void NavigateOnClick(object sender,EventArgs e)
+        {
+            TabControl tabpanel = (TabControl)sender;
+            TabPage tab = tabpanel.SelectedTab;
+
+            foreach (Control control in tab.Controls)
+            {
+                if (control is WebBrowser)
+                {
+                    WebBrowser browser = (WebBrowser)control;
+                    if (browser.Url == null)
+                    {
+                        if (tab.Name == "Chat")
+                            browser.Navigate("http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro");
+                        else if (tab.Name == "Youtube")
+                            browser.Navigate("https://www.youtube.com/user/blub2blb");
+                        else if (tab.Name == "Ranking")
+                            browser.Navigate("http://h2092539.stratoserver.net/ranking/ranking.php");
+                    }
+                }
+            }
+
         }
     }
 }
