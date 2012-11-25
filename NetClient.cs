@@ -223,10 +223,6 @@ namespace YGOPro_Launcher
 
             IsConnected = false;
             Disconnect();
-
-            if (OnFatalError != null)
-                OnFatalError("Disconnected from server.");
-
         }
     }
 }

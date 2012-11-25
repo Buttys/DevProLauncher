@@ -151,22 +151,22 @@ namespace YGOPro_Launcher
 
         }
 
-        public static Process checkInstance()
+        public static bool checkInstance()
         {
             Process cProcess = Process.GetCurrentProcess();
             Process[] aProcesses = Process.GetProcessesByName(cProcess.ProcessName);
-
+            int count = 0;
             foreach (Process process in aProcesses)
             {
                 if (process.Id != cProcess.Id)
                 {
                     if (Assembly.GetExecutingAssembly().Location == cProcess.MainModule.FileName)
                     {
-                        return process;
+                        count++;
                     }
                 }
             }
-            return null;
+            return (count > 0);
         }
 
         public static void GenerateConfig(string roominfo)

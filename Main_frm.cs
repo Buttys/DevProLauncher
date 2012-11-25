@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.IO;
 
 namespace YGOPro_Launcher
 {
@@ -70,18 +72,12 @@ namespace YGOPro_Launcher
             {
                 this.Hide();
                 ConnectionCheck.Enabled = false;
-                if (MessageBox.Show("Disconnected from server") == DialogResult.OK)
+                if (MessageBox.Show("Disconnected from server.","Server",MessageBoxButtons.OK) == DialogResult.OK)
                 {
-                    //Program.ServerConnection = new NetClient();
-                    //Program.UserInfo = new UserData();
-        
-                    //Login_frm login = new Login_frm(Program.Config, Program.ServerConnection, Program.LoginService);
-                    //if (login.ShowDialog() == DialogResult.OK)
-                    //{
-                    //    Main_frm_Load(null, EventArgs.Empty);
-                    //    this.Show();
-                    //    ConnectionCheck.Enabled = true;
-                    //}
+                    Process process = new Process();
+                    ProcessStartInfo startInfos = new ProcessStartInfo(Application.ExecutablePath, "-r");
+                    process.StartInfo = startInfos;
+                    process.Start();
                     Application.Exit();
                 }
                 else

@@ -30,6 +30,27 @@ namespace YGOPro_Launcher
         static void Main(string[] args)
         {
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+
+            foreach(string arg in args)
+            {
+                if (arg == "-r")
+                {
+                    int timeout = 0;
+                    while (LauncherHelper.checkInstance())
+                    {
+                        if (timeout == 3)
+                        {
+                            if (MessageBox.Show(LanguageManager.Translation.pmsbProgRun) == DialogResult.OK)
+                            {
+                                return;
+                            }
+                        }
+                        Thread.Sleep(500);
+                        timeout++;
+                    }
+                }
+            }
+
             Config = new Configuration();
             Config.Load(Program.ConfigurationFilename);
 
@@ -45,7 +66,7 @@ namespace YGOPro_Launcher
             //LanguageManager.Save("English");    
             LanguageManager.Load(Config.Language);
             
-            if (LauncherHelper.checkInstance() != null)
+            if (LauncherHelper.checkInstance())
                 if (MessageBox.Show(LanguageManager.Translation.pmsbProgRun) == DialogResult.OK)
                     return;
 
