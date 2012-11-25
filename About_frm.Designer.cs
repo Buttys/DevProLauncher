@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About_frm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.YuGiOhMoDDeR = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -54,7 +55,15 @@
             this.StaffText = new System.Windows.Forms.Label();
             this.AboutText = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.YuGiOhMoDDeR = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +71,15 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.label30);
+            this.panel1.Controls.Add(this.label29);
+            this.panel1.Controls.Add(this.label28);
+            this.panel1.Controls.Add(this.label27);
+            this.panel1.Controls.Add(this.label26);
+            this.panel1.Controls.Add(this.label25);
+            this.panel1.Controls.Add(this.label24);
+            this.panel1.Controls.Add(this.label23);
+            this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.YuGiOhMoDDeR);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.label20);
@@ -90,8 +108,17 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(862, 446);
+            this.panel1.Size = new System.Drawing.Size(956, 446);
             this.panel1.TabIndex = 0;
+            // 
+            // YuGiOhMoDDeR
+            // 
+            this.YuGiOhMoDDeR.AutoSize = true;
+            this.YuGiOhMoDDeR.Location = new System.Drawing.Point(210, 280);
+            this.YuGiOhMoDDeR.Name = "YuGiOhMoDDeR";
+            this.YuGiOhMoDDeR.Size = new System.Drawing.Size(89, 13);
+            this.YuGiOhMoDDeR.TabIndex = 25;
+            this.YuGiOhMoDDeR.Text = "YuGiOhMoDDeR";
             // 
             // label21
             // 
@@ -114,7 +141,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(576, 329);
+            this.label19.Location = new System.Drawing.Point(576, 365);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(100, 13);
             this.label19.TabIndex = 21;
@@ -123,7 +150,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(462, 329);
+            this.label18.Location = new System.Drawing.Point(462, 365);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(99, 13);
             this.label18.TabIndex = 20;
@@ -132,7 +159,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(296, 288);
+            this.label17.Location = new System.Drawing.Point(296, 324);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(115, 13);
             this.label17.TabIndex = 19;
@@ -141,7 +168,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(210, 329);
+            this.label16.Location = new System.Drawing.Point(210, 365);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(70, 13);
             this.label16.TabIndex = 18;
@@ -150,16 +177,16 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(296, 329);
+            this.label15.Location = new System.Drawing.Point(296, 365);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(149, 13);
+            this.label15.Size = new System.Drawing.Size(150, 13);
             this.label15.TabIndex = 17;
-            this.label15.Text = "percival18 (Client/Anime Mod)";
+            this.label15.Text = "Percival18 (Client/Anime Mod)";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(210, 288);
+            this.label14.Location = new System.Drawing.Point(210, 324);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(76, 13);
             this.label14.TabIndex = 16;
@@ -241,7 +268,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(140, 311);
+            this.label6.Location = new System.Drawing.Point(140, 347);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 13);
             this.label6.TabIndex = 7;
@@ -261,7 +288,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(140, 262);
+            this.label4.Location = new System.Drawing.Point(140, 298);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 13);
             this.label4.TabIndex = 5;
@@ -292,7 +319,7 @@
             this.StaffText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.StaffText.Location = new System.Drawing.Point(56, 131);
             this.StaffText.Name = "StaffText";
-            this.StaffText.Size = new System.Drawing.Size(701, 229);
+            this.StaffText.Size = new System.Drawing.Size(833, 306);
             this.StaffText.TabIndex = 2;
             // 
             // AboutText
@@ -300,7 +327,7 @@
             this.AboutText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AboutText.Location = new System.Drawing.Point(56, 51);
             this.AboutText.Name = "AboutText";
-            this.AboutText.Size = new System.Drawing.Size(701, 68);
+            this.AboutText.Size = new System.Drawing.Size(833, 68);
             this.AboutText.TabIndex = 1;
             this.AboutText.Text = resources.GetString("AboutText.Text");
             // 
@@ -313,20 +340,94 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "About DevPro";
             // 
-            // YuGiOhMoDDeR
+            // label22
             // 
-            this.YuGiOhMoDDeR.AutoSize = true;
-            this.YuGiOhMoDDeR.Location = new System.Drawing.Point(426, 238);
-            this.YuGiOhMoDDeR.Name = "YuGiOhMoDDeR";
-            this.YuGiOhMoDDeR.Size = new System.Drawing.Size(89, 13);
-            this.YuGiOhMoDDeR.TabIndex = 25;
-            this.YuGiOhMoDDeR.Text = "YuGiOhMoDDeR";
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(310, 280);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(58, 13);
+            this.label22.TabIndex = 26;
+            this.label22.Text = "sidschingis";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(397, 280);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(38, 13);
+            this.label23.TabIndex = 27;
+            this.label23.Text = "Haruhi";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(140, 260);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(133, 13);
+            this.label24.TabIndex = 28;
+            this.label24.Text = "DevPro Server Scripts";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(441, 280);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(70, 13);
+            this.label25.TabIndex = 29;
+            this.label25.Text = "Fluorohydride";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(520, 280);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(56, 13);
+            this.label26.TabIndex = 30;
+            this.label26.Text = "VanillaSalt";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(591, 280);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(57, 13);
+            this.label27.TabIndex = 31;
+            this.label27.Text = "Percival18";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(140, 391);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(122, 13);
+            this.label28.TabIndex = 32;
+            this.label28.Text = "DevPro Translations";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(210, 413);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(88, 13);
+            this.label29.TabIndex = 33;
+            this.label29.Text = "benbulb(German)";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(312, 413);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(87, 13);
+            this.label30.TabIndex = 34;
+            this.label30.Text = "Jyru-Ken(French)";
             // 
             // About_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(862, 446);
+            this.ClientSize = new System.Drawing.Size(956, 446);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "About_frm";
@@ -366,6 +467,15 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label YuGiOhMoDDeR;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
 
 
     }
