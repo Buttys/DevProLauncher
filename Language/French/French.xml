@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <QuickHostSetting>Paramètres Jeu Rapide</QuickHostSetting>
   <QuickHostBtn>Sauver</QuickHostBtn>
@@ -27,6 +27,8 @@
   <RegistMsb4>Enregistrement réussi!</RegistMsb4>
   <RegistMsb5>Profil déjà existant</RegistMsb5>
   <GameServerInfo>Détails du serveur</GameServerInfo>
+  <GameTabRanked>Classé</GameTabRanked>
+  <GameTabUnranked>Non classé</GameTabUnranked>
   <GameofRooms>Salons</GameofRooms>
   <GameofUnranked>Sans classement</GameofUnranked>
   <GameofRanked>Avec classement</GameofRanked>
@@ -73,13 +75,15 @@
   <optionCbNoChainDelay>Chaîner sans délai</optionCbNoChainDelay>
   <hostGb1>Paramètres</hostGb1>
   <hostGb2>Options supplémentaires</hostGb2>
-  <hostRules>Règles des cartes</hostRules>
-  <hostMode>Type de Duel</hostMode>
+  <hostBanlist>Restriction :</hostBanlist>
+  <hostTimeLimit>Limite de temps :</hostTimeLimit>
+  <hostRules>Règles de jeu :</hostRules>
+  <hostMode>Type de Duel :</hostMode>
   <hostPrio>Activer la priorité</hostPrio>
-  <hostCheckDeck>Désactiver Vérif. Deck</hostCheckDeck>
-  <hostShuffle>Désactiver Mélanger Deck</hostShuffle>
-  <hostLifep>Life Points</hostLifep>
-  <hostGameN>Nom du Jeu</hostGameN>
+  <hostCheckDeck>Désactiver vérification Deck</hostCheckDeck>
+  <hostShuffle>Désactiver mélanger Deck</hostShuffle>
+  <hostLifep>Life Points :</hostLifep>
+  <hostGameN>Nom du Jeu :</hostGameN>
   <hostBtnHost>Créer</hostBtnHost>
   <hostBtnCancel>Annuler</hostBtnCancel>
   <fileBtnRename>Renommer</fileBtnRename>
@@ -92,6 +96,8 @@
   <fileAskDelete>Souhaitez-vous supprimer les objets suivants </fileAskDelete>
   <fileNewName>Entrer nouveau nom</fileNewName>
   <fileInputConfirm>Renommer</fileInputConfirm>
+  <fileBtnRefresh>Actualiser</fileBtnRefresh>
+  <fileBtnImport>Importer</fileBtnImport>
   <aboutLabel1>A propos de DevPro</aboutLabel1>
   <aAboutText>The YGOPro Online Development Group is a rag tag team of programmers, philanthropist, and generally knowledgeable people in the YGOPro community that seek to better and progress the Yu-Gi-Oh! Online community as a whole by providing services and software to allow duelist to grow by dueling and forming lasting friendships.</aAboutText>
   <aboutLabel5>Contributeurs DevPro</aboutLabel5>
