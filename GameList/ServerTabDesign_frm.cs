@@ -45,6 +45,7 @@ namespace YGOPro_Launcher
                     DeckSelect.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
             DeckSelect.Text = Program.Config.DefaultDeck;
+            DeckSelect.SelectedIndexChanged += new EventHandler(DeckSelect_SelectedValueChanged);
             ApplyTranslation();
             if (Program.UserInfo.Rank > 0)
             {
@@ -69,6 +70,8 @@ namespace YGOPro_Launcher
             FilterActive.Text = Program.LanguageManager.Translation.GameFilterActive;
 
             ColumnRoomName.Text = Program.LanguageManager.Translation.GameColumnRoomName;
+            ColumnBanList.Text = Program.LanguageManager.Translation.GameColumnBanList;
+            ColumnTimer.Text = Program.LanguageManager.Translation.GameColumnTimer;
             ColumnType.Text = Program.LanguageManager.Translation.GameColumnType;
             ColumnRules.Text = Program.LanguageManager.Translation.GameColumnRules;
             ColumnMode.Text = Program.LanguageManager.Translation.GameColumnMode;
@@ -76,6 +79,8 @@ namespace YGOPro_Launcher
             ColumnPlayers.Text = Program.LanguageManager.Translation.GameColumnPlayers;
 
             RColumnRoomName.Text = Program.LanguageManager.Translation.GameColumnRoomName;
+            RColumnBanList.Text = Program.LanguageManager.Translation.GameColumnBanList;
+            RColumnTimer.Text = Program.LanguageManager.Translation.GameColumnTimer;
             RColumnType.Text = Program.LanguageManager.Translation.GameColumnType;
             RColumnRules.Text = Program.LanguageManager.Translation.GameColumnRules;
             RColumnMode.Text = Program.LanguageManager.Translation.GameColumnMode;

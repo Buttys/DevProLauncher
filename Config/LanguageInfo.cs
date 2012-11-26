@@ -54,6 +54,8 @@ namespace YGOPro_Launcher.Config
         public string GameColumnMode = "Mode";
         public string GameColumnState = "State";
         public string GameColumnPlayers = "Players";
+        public string GameColumnBanList = "Banlist";
+        public string GameColumnTimer = "Timer";
         public string GameBtnDeck = "Deck Edit"; 
         public string GameBtnReplay = "Replays";
         public string GameBtnOption = "Options";

@@ -323,7 +323,7 @@
             this.tableLayoutPanel65.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.84962F));
             this.tableLayoutPanel65.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.15038F));
             this.tableLayoutPanel65.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 144F));
-            this.tableLayoutPanel65.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
+            this.tableLayoutPanel65.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 183F));
             this.tableLayoutPanel65.Controls.Add(this.Username, 0, 0);
             this.tableLayoutPanel65.Controls.Add(this.wld, 1, 0);
             this.tableLayoutPanel65.Controls.Add(this.rank, 2, 0);
@@ -340,7 +340,7 @@
             // 
             this.Username.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Username.AutoSize = true;
-            this.Username.Location = new System.Drawing.Point(40, 7);
+            this.Username.Location = new System.Drawing.Point(39, 7);
             this.Username.Name = "Username";
             this.Username.Size = new System.Drawing.Size(61, 13);
             this.Username.TabIndex = 0;
@@ -350,7 +350,7 @@
             // 
             this.wld.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.wld.AutoSize = true;
-            this.wld.Location = new System.Drawing.Point(202, 7);
+            this.wld.Location = new System.Drawing.Point(201, 7);
             this.wld.Name = "wld";
             this.wld.Size = new System.Drawing.Size(90, 13);
             this.wld.TabIndex = 1;
@@ -360,7 +360,7 @@
             // 
             this.rank.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.rank.AutoSize = true;
-            this.rank.Location = new System.Drawing.Point(406, 7);
+            this.rank.Location = new System.Drawing.Point(404, 7);
             this.rank.Name = "rank";
             this.rank.Size = new System.Drawing.Size(39, 13);
             this.rank.TabIndex = 2;
@@ -370,7 +370,7 @@
             // 
             this.team.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.team.AutoSize = true;
-            this.team.Location = new System.Drawing.Point(569, 7);
+            this.team.Location = new System.Drawing.Point(568, 7);
             this.team.Name = "team";
             this.team.Size = new System.Drawing.Size(40, 13);
             this.team.TabIndex = 3;
@@ -405,15 +405,15 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.groupBox4, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.groupBox5, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.59813F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.40187F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(331, 341);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
@@ -423,7 +423,7 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(3, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(325, 159);
+            this.groupBox4.Size = new System.Drawing.Size(325, 164);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Win Stats";
@@ -458,7 +458,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(319, 140);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(319, 145);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // tableLayoutPanel19
@@ -473,14 +473,14 @@
             this.tableLayoutPanel19.Name = "tableLayoutPanel19";
             this.tableLayoutPanel19.RowCount = 1;
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel19.Size = new System.Drawing.Size(154, 14);
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(154, 19);
             this.tableLayoutPanel19.TabIndex = 13;
             // 
             // txtUWinUnknown
             // 
             this.txtUWinUnknown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtUWinUnknown.AutoSize = true;
-            this.txtUWinUnknown.Location = new System.Drawing.Point(3, 0);
+            this.txtUWinUnknown.Location = new System.Drawing.Point(3, 3);
             this.txtUWinUnknown.Name = "txtUWinUnknown";
             this.txtUWinUnknown.Size = new System.Drawing.Size(53, 13);
             this.txtUWinUnknown.TabIndex = 1;
@@ -490,7 +490,7 @@
             // 
             this.UWinUnknown.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.UWinUnknown.AutoSize = true;
-            this.UWinUnknown.Location = new System.Drawing.Point(138, 0);
+            this.UWinUnknown.Location = new System.Drawing.Point(138, 3);
             this.UWinUnknown.Name = "UWinUnknown";
             this.UWinUnknown.Size = new System.Drawing.Size(13, 13);
             this.UWinUnknown.TabIndex = 2;
@@ -508,14 +508,14 @@
             this.tableLayoutPanel18.Name = "tableLayoutPanel18";
             this.tableLayoutPanel18.RowCount = 1;
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(153, 14);
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(153, 19);
             this.tableLayoutPanel18.TabIndex = 12;
             // 
             // txtUWinDestinyLeo
             // 
             this.txtUWinDestinyLeo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtUWinDestinyLeo.AutoSize = true;
-            this.txtUWinDestinyLeo.Location = new System.Drawing.Point(3, 0);
+            this.txtUWinDestinyLeo.Location = new System.Drawing.Point(3, 3);
             this.txtUWinDestinyLeo.Name = "txtUWinDestinyLeo";
             this.txtUWinDestinyLeo.Size = new System.Drawing.Size(63, 13);
             this.txtUWinDestinyLeo.TabIndex = 1;
@@ -525,7 +525,7 @@
             // 
             this.UWinDestinyLeo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.UWinDestinyLeo.AutoSize = true;
-            this.UWinDestinyLeo.Location = new System.Drawing.Point(137, 0);
+            this.UWinDestinyLeo.Location = new System.Drawing.Point(137, 3);
             this.UWinDestinyLeo.Name = "UWinDestinyLeo";
             this.UWinDestinyLeo.Size = new System.Drawing.Size(13, 13);
             this.UWinDestinyLeo.TabIndex = 2;
@@ -956,9 +956,9 @@
             // 
             this.groupBox5.Controls.Add(this.tableLayoutPanel20);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(3, 168);
+            this.groupBox5.Location = new System.Drawing.Point(3, 173);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(325, 170);
+            this.groupBox5.Size = new System.Drawing.Size(325, 165);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Lose Stats";
@@ -993,7 +993,7 @@
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel20.Size = new System.Drawing.Size(319, 151);
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(319, 146);
             this.tableLayoutPanel20.TabIndex = 1;
             // 
             // tableLayoutPanel21
@@ -1008,14 +1008,14 @@
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
             this.tableLayoutPanel21.RowCount = 1;
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel21.Size = new System.Drawing.Size(154, 25);
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(154, 20);
             this.tableLayoutPanel21.TabIndex = 13;
             // 
             // txtULOSEUnknown
             // 
             this.txtULOSEUnknown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtULOSEUnknown.AutoSize = true;
-            this.txtULOSEUnknown.Location = new System.Drawing.Point(3, 6);
+            this.txtULOSEUnknown.Location = new System.Drawing.Point(3, 3);
             this.txtULOSEUnknown.Name = "txtULOSEUnknown";
             this.txtULOSEUnknown.Size = new System.Drawing.Size(53, 13);
             this.txtULOSEUnknown.TabIndex = 1;
@@ -1025,7 +1025,7 @@
             // 
             this.ULOSEUnknown.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ULOSEUnknown.AutoSize = true;
-            this.ULOSEUnknown.Location = new System.Drawing.Point(138, 6);
+            this.ULOSEUnknown.Location = new System.Drawing.Point(138, 3);
             this.ULOSEUnknown.Name = "ULOSEUnknown";
             this.ULOSEUnknown.Size = new System.Drawing.Size(13, 13);
             this.ULOSEUnknown.TabIndex = 2;
@@ -1043,14 +1043,14 @@
             this.tableLayoutPanel22.Name = "tableLayoutPanel22";
             this.tableLayoutPanel22.RowCount = 1;
             this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel22.Size = new System.Drawing.Size(153, 25);
+            this.tableLayoutPanel22.Size = new System.Drawing.Size(153, 20);
             this.tableLayoutPanel22.TabIndex = 12;
             // 
             // txtULOSEDestinyLeo
             // 
             this.txtULOSEDestinyLeo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtULOSEDestinyLeo.AutoSize = true;
-            this.txtULOSEDestinyLeo.Location = new System.Drawing.Point(3, 6);
+            this.txtULOSEDestinyLeo.Location = new System.Drawing.Point(3, 3);
             this.txtULOSEDestinyLeo.Name = "txtULOSEDestinyLeo";
             this.txtULOSEDestinyLeo.Size = new System.Drawing.Size(63, 13);
             this.txtULOSEDestinyLeo.TabIndex = 1;
@@ -1060,7 +1060,7 @@
             // 
             this.ULOSEDestinyLeo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ULOSEDestinyLeo.AutoSize = true;
-            this.ULOSEDestinyLeo.Location = new System.Drawing.Point(137, 6);
+            this.ULOSEDestinyLeo.Location = new System.Drawing.Point(137, 3);
             this.ULOSEDestinyLeo.Name = "ULOSEDestinyLeo";
             this.ULOSEDestinyLeo.Size = new System.Drawing.Size(13, 13);
             this.ULOSEDestinyLeo.TabIndex = 2;
@@ -1501,15 +1501,15 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.groupBox6, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.groupBox7, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.59813F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.40187F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(331, 341);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
@@ -1519,7 +1519,7 @@
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(3, 3);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(325, 159);
+            this.groupBox6.Size = new System.Drawing.Size(325, 164);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Win Stats";
@@ -1554,7 +1554,7 @@
             this.tableLayoutPanel35.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel35.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel35.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel35.Size = new System.Drawing.Size(319, 140);
+            this.tableLayoutPanel35.Size = new System.Drawing.Size(319, 145);
             this.tableLayoutPanel35.TabIndex = 1;
             // 
             // tableLayoutPanel36
@@ -1569,14 +1569,14 @@
             this.tableLayoutPanel36.Name = "tableLayoutPanel36";
             this.tableLayoutPanel36.RowCount = 1;
             this.tableLayoutPanel36.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel36.Size = new System.Drawing.Size(154, 14);
+            this.tableLayoutPanel36.Size = new System.Drawing.Size(154, 19);
             this.tableLayoutPanel36.TabIndex = 13;
             // 
             // txtRWinUnknown
             // 
             this.txtRWinUnknown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtRWinUnknown.AutoSize = true;
-            this.txtRWinUnknown.Location = new System.Drawing.Point(3, 0);
+            this.txtRWinUnknown.Location = new System.Drawing.Point(3, 3);
             this.txtRWinUnknown.Name = "txtRWinUnknown";
             this.txtRWinUnknown.Size = new System.Drawing.Size(53, 13);
             this.txtRWinUnknown.TabIndex = 1;
@@ -1586,7 +1586,7 @@
             // 
             this.RWinUnknown.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.RWinUnknown.AutoSize = true;
-            this.RWinUnknown.Location = new System.Drawing.Point(138, 0);
+            this.RWinUnknown.Location = new System.Drawing.Point(138, 3);
             this.RWinUnknown.Name = "RWinUnknown";
             this.RWinUnknown.Size = new System.Drawing.Size(13, 13);
             this.RWinUnknown.TabIndex = 2;
@@ -1604,14 +1604,14 @@
             this.tableLayoutPanel37.Name = "tableLayoutPanel37";
             this.tableLayoutPanel37.RowCount = 1;
             this.tableLayoutPanel37.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel37.Size = new System.Drawing.Size(153, 14);
+            this.tableLayoutPanel37.Size = new System.Drawing.Size(153, 19);
             this.tableLayoutPanel37.TabIndex = 12;
             // 
             // txtRWinDestinyLeo
             // 
             this.txtRWinDestinyLeo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtRWinDestinyLeo.AutoSize = true;
-            this.txtRWinDestinyLeo.Location = new System.Drawing.Point(3, 0);
+            this.txtRWinDestinyLeo.Location = new System.Drawing.Point(3, 3);
             this.txtRWinDestinyLeo.Name = "txtRWinDestinyLeo";
             this.txtRWinDestinyLeo.Size = new System.Drawing.Size(63, 13);
             this.txtRWinDestinyLeo.TabIndex = 1;
@@ -1621,7 +1621,7 @@
             // 
             this.RWinDestinyLeo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.RWinDestinyLeo.AutoSize = true;
-            this.RWinDestinyLeo.Location = new System.Drawing.Point(137, 0);
+            this.RWinDestinyLeo.Location = new System.Drawing.Point(137, 3);
             this.RWinDestinyLeo.Name = "RWinDestinyLeo";
             this.RWinDestinyLeo.Size = new System.Drawing.Size(13, 13);
             this.RWinDestinyLeo.TabIndex = 2;
@@ -2052,9 +2052,9 @@
             // 
             this.groupBox7.Controls.Add(this.tableLayoutPanel50);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox7.Location = new System.Drawing.Point(3, 168);
+            this.groupBox7.Location = new System.Drawing.Point(3, 173);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(325, 170);
+            this.groupBox7.Size = new System.Drawing.Size(325, 165);
             this.groupBox7.TabIndex = 1;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Lose Stats";
@@ -2089,7 +2089,7 @@
             this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel50.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel50.Size = new System.Drawing.Size(319, 151);
+            this.tableLayoutPanel50.Size = new System.Drawing.Size(319, 146);
             this.tableLayoutPanel50.TabIndex = 1;
             // 
             // tableLayoutPanel51
@@ -2104,14 +2104,14 @@
             this.tableLayoutPanel51.Name = "tableLayoutPanel51";
             this.tableLayoutPanel51.RowCount = 1;
             this.tableLayoutPanel51.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel51.Size = new System.Drawing.Size(154, 25);
+            this.tableLayoutPanel51.Size = new System.Drawing.Size(154, 20);
             this.tableLayoutPanel51.TabIndex = 13;
             // 
             // txtRLOSEUnknown
             // 
             this.txtRLOSEUnknown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtRLOSEUnknown.AutoSize = true;
-            this.txtRLOSEUnknown.Location = new System.Drawing.Point(3, 6);
+            this.txtRLOSEUnknown.Location = new System.Drawing.Point(3, 3);
             this.txtRLOSEUnknown.Name = "txtRLOSEUnknown";
             this.txtRLOSEUnknown.Size = new System.Drawing.Size(53, 13);
             this.txtRLOSEUnknown.TabIndex = 1;
@@ -2121,7 +2121,7 @@
             // 
             this.RLOSEUnknown.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.RLOSEUnknown.AutoSize = true;
-            this.RLOSEUnknown.Location = new System.Drawing.Point(138, 6);
+            this.RLOSEUnknown.Location = new System.Drawing.Point(138, 3);
             this.RLOSEUnknown.Name = "RLOSEUnknown";
             this.RLOSEUnknown.Size = new System.Drawing.Size(13, 13);
             this.RLOSEUnknown.TabIndex = 2;
@@ -2139,14 +2139,14 @@
             this.tableLayoutPanel52.Name = "tableLayoutPanel52";
             this.tableLayoutPanel52.RowCount = 1;
             this.tableLayoutPanel52.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel52.Size = new System.Drawing.Size(153, 25);
+            this.tableLayoutPanel52.Size = new System.Drawing.Size(153, 20);
             this.tableLayoutPanel52.TabIndex = 12;
             // 
             // txtRLOSEDestinyLeo
             // 
             this.txtRLOSEDestinyLeo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtRLOSEDestinyLeo.AutoSize = true;
-            this.txtRLOSEDestinyLeo.Location = new System.Drawing.Point(3, 6);
+            this.txtRLOSEDestinyLeo.Location = new System.Drawing.Point(3, 3);
             this.txtRLOSEDestinyLeo.Name = "txtRLOSEDestinyLeo";
             this.txtRLOSEDestinyLeo.Size = new System.Drawing.Size(63, 13);
             this.txtRLOSEDestinyLeo.TabIndex = 1;
@@ -2156,7 +2156,7 @@
             // 
             this.RLOSEDestinyLeo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.RLOSEDestinyLeo.AutoSize = true;
-            this.RLOSEDestinyLeo.Location = new System.Drawing.Point(137, 6);
+            this.RLOSEDestinyLeo.Location = new System.Drawing.Point(137, 3);
             this.RLOSEDestinyLeo.Name = "RLOSEDestinyLeo";
             this.RLOSEDestinyLeo.Size = new System.Drawing.Size(13, 13);
             this.RLOSEDestinyLeo.TabIndex = 2;
