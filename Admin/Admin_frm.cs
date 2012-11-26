@@ -62,14 +62,27 @@ namespace YGOPro_Launcher
                 string[] args = InputBox.Text.Split(' ');
                 if (args[0].ToLower() != "op")
                 {
-                    Program.ServerConnection.SendPacket("ADMIN||" + args[0].ToUpper() + "||" + InputBox.Text.Substring(0, args[0].Length).Trim());
+                    Program.ServerConnection.SendPacket("ADMIN||" + args[0].ToUpper() + "||" + InputBox.Text.Replace(args[0],"").Trim());
                 }
                 else
                 {
                     int rank = 0;
                     if (Int32.TryParse(args[args.Length - 1], out rank))
                     {
-                        Program.ServerConnection.SendPacket("ADMIN||" + args[0].ToUpper() + "||" + InputBox.Text.Replace(args[0], "").Replace(args[args.Length - 1], "").Trim() + "||" + rank.ToString());
+                        string username = null;
+                        for(int i=0; i< args.Length - 1; i++)
+                        {
+                            if(i != 0 && i != args.Length -1)
+                            {
+                                if(username == null)
+                                    username += args[i];
+                                else
+                                    username += " " + args[i];
+                            }
+
+                        }
+
+                        Program.ServerConnection.SendPacket("ADMIN||OP||" + username.Trim() + "||" + rank.ToString());
                     }
                     else
                     {

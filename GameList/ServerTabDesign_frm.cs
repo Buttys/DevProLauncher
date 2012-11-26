@@ -112,7 +112,7 @@ namespace YGOPro_Launcher
                 List<ToolStripMenuItem> mnuitems = new List<ToolStripMenuItem>();
 
                 mnuitems.Add(new ToolStripMenuItem("Kill Room"));
-                string[] players = item.SubItems[5].Text.Split(',');
+                string[] players = item.SubItems[7].Text.Split(',');
                 foreach (string player in players)
                 {
                     mnuitems.Add(new ToolStripMenuItem("Disconnect: " + player.Trim()));
@@ -145,7 +145,7 @@ namespace YGOPro_Launcher
                 List<ToolStripMenuItem> mnuitems = new List<ToolStripMenuItem>(); 
 
                 mnuitems.Add(new ToolStripMenuItem("Kill Room"));
-                string[] players = item.SubItems[5].Text.Split(',');
+                string[] players = item.SubItems[7].Text.Split(',');
                 foreach (string player in players)
                 {
                     mnuitems.Add(new ToolStripMenuItem("Disconnect: " +player));
