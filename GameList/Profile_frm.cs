@@ -30,6 +30,11 @@ namespace YGOPro_Launcher
             wld.Text = language.profileLblwld;
             rank.Text = language.profileLblRank;
             team.Text = language.profileLblTeam;
+            groupBox1.Text = language.profileGb1;
+            groupBox2.Text = language.profileGb2;
+            groupBox3.Text = language.profileGb3;
+            groupBox4.Text = language.profileGb4;
+            groupBox5.Text = language.profileGb5;
 
             //unranked
             txtUWinLP0.Text = language.profileLblLP;
