@@ -41,6 +41,8 @@
   <GameColumnMode>Mode</GameColumnMode>
   <GameColumnState>Etat</GameColumnState>
   <GameColumnPlayers>Joueurs</GameColumnPlayers>
+  <GameColumnBanList>Restriction</GameColumnBanList>
+  <GameColumnTimer>Temps limite</GameColumnTimer>
   <GameBtnDeck>Decks</GameBtnDeck>
   <GameBtnReplay>Replays</GameBtnReplay>
   <GameBtnOption>Options</GameBtnOption>
