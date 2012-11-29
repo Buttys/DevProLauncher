@@ -47,6 +47,7 @@ namespace YGOPro_Launcher
             }
 
             LoginTimeOut.Tick += new EventHandler(LoginTimeOut_Tick);
+            UsernameInput.KeyDown += new KeyEventHandler(UsernameInput_KeyDown);
 
             ApplyTranslation();
         }
@@ -63,6 +64,12 @@ namespace YGOPro_Launcher
                 RegisterBtn.Text = Program.LanguageManager.Translation.LoginRegisterButton;
                 AutoLoginCheckBox.Text = Program.LanguageManager.Translation.LoginAutoLogin;
             }
+        }
+
+        private void UsernameInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+                e.SuppressKeyPress = true;
         }
 
         private void LoginTimeOut_Tick(object sender, EventArgs e)

@@ -17,6 +17,7 @@ namespace YGOPro_Launcher
             ApplyTranslation();
             Program.ServerConnection.RegisterReply += new NetClient.ServerResponse(RegisterResponse);
             ConfirmInput.KeyPress += new KeyPressEventHandler(ConfirmInput_KeyPress);
+            UsernameInput.KeyDown += new KeyEventHandler(UsernameInput_KeyDown);
         }
 
         public void ApplyTranslation()
@@ -37,6 +38,12 @@ namespace YGOPro_Launcher
             {
                 RegisterBtn_Click(null, EventArgs.Empty);
             }
+        }
+
+        private void UsernameInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Space)
+                e.SuppressKeyPress = true;
         }
 
         private void RegisterBtn_Click(object sender, EventArgs e)
