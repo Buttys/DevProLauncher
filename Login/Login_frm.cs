@@ -159,6 +159,7 @@ namespace YGOPro_Launcher
             }
 
             _authenticator.Authenticate(UsernameInput.Text, LauncherHelper.EncodePassword(PasswordInput.Text));
+
             if (AutoLoginCheckBox.Checked)
             {
                 _configuration.DefaultUsername = UsernameInput.Text;
@@ -166,6 +167,7 @@ namespace YGOPro_Launcher
                 _configuration.AutoLogin = AutoLoginCheckBox.Checked;
                 _configuration.Save(Program.ConfigurationFilename);
             }
+            _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
         }
 
 

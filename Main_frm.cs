@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using YGOPro_Launcher.Chat;
 
 namespace YGOPro_Launcher
 {
@@ -52,6 +53,14 @@ namespace YGOPro_Launcher
                 CreateBrowserWindow("Chat"),
                 CreateBrowserWindow("Youtube"),
                 FileManager, CustomizeTab, AboutTab,AdminTab });
+                if(Program.UserInfo.Rank >= 2)
+                {
+                    TabPage ChatTab = new TabPage() { Text = "Chat (Alpha)", Name = "Chat (Alpha)" };
+                    ChatTab.Controls.Add(new Chat_frm());
+
+                    ServerControl.TabPages.Add(ChatTab);
+                }
+
             }
             else
             {

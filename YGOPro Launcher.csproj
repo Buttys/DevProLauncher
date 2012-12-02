@@ -63,6 +63,21 @@
     <Compile Include="Admin\Admin_frm.Designer.cs">
       <DependentUpon>Admin_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Chat\ChatMessage.cs" />
+    <Compile Include="Chat\ChatWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Chat\Chat_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chat\Chat_frm.Designer.cs">
+      <DependentUpon>Chat_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Chat\Enums\MessageType.cs" />
+    <Compile Include="Chat\FixedTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Chat\ChatClient.cs" />
     <Compile Include="Config\Configuration.cs" />
     <Compile Include="Config\LanguageInfo.cs" />
     <Compile Include="Config\LanguageManager.cs" />
@@ -188,6 +203,9 @@
     <EmbeddedResource Include="Admin\Admin_frm.resx">
       <DependentUpon>Admin_frm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Chat\Chat_frm.resx">
+      <DependentUpon>Chat_frm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customize\Customize_frm.resx">
       <DependentUpon>Customize_frm.cs</DependentUpon>
     </EmbeddedResource>
@@ -277,6 +295,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

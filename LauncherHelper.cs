@@ -7,6 +7,7 @@ using System.IO;
 using System.Net;
 using YGOPro_Launcher.CardDatabase;
 using System.Collections.Generic;
+using System.Text;
 
 namespace YGOPro_Launcher
 {
@@ -90,6 +91,38 @@ namespace YGOPro_Launcher
 
             //Convert encoded bytes back to a 'readable' string
             return Convert.ToBase64String(saltedHash);
+        }
+
+        public static string StringToBinary(string s)
+        {
+            string output = "";
+            foreach (char c in s.ToCharArray())
+            {
+                for (int i = 128; i >= 1; i /= 2)
+                {
+                    if (((int)c & i) > 0)
+                    {
+                        output += "1";
+                    }
+                    else
+                    {
+                        output += "0";
+                    }
+                }
+            }
+            return output;
+        }
+
+        public static string BinaryToString(string binary)
+        {
+                int numOfBytes = binary.Length / 8;
+                byte[] bytes = new byte[numOfBytes];
+                for (int i = 0; i < numOfBytes; ++i)
+                {
+                    bytes[i] = Convert.ToByte(binary.Substring(8 * i, 8), 2);
+                }
+
+                return Encoding.ASCII.GetString(bytes);
         }
 
         public static string[] OpenFileWindow(string title, string startpath, string filefilter, bool multiselect)

@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(934, 491);
             this.Controls.Add(this.ServerControl);
             this.Font = new System.Drawing.Font("Arial Unicode MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main_frm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
