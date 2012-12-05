@@ -26,6 +26,7 @@ namespace YGOPro_Launcher
         {
             LanguageInfo language = Program.LanguageManager.Translation;
 
+            Text = language.profileName;
             Username.Text = language.profileLblUsername;
             wld.Text = language.profileLblwld;
             rank.Text = language.profileLblRank;
@@ -35,6 +36,10 @@ namespace YGOPro_Launcher
             groupBox3.Text = language.profileGb3;
             groupBox4.Text = language.profileGb4;
             groupBox5.Text = language.profileGb5;
+            rwin.Text = language.profileWin;
+            uwin.Text = language.profileWin;
+            rlose.Text = language.profileLose;
+            ulose.Text = language.profileLose;
 
             //unranked
             txtUWinLP0.Text = language.profileLblLP;
@@ -51,52 +56,6 @@ namespace YGOPro_Launcher
             txtUWinLastTurn.Text = language.profileLblLastTurn;
             txtUWinDestinyLeo.Text = language.profileLblDestinyLeo;
             txtUWinUnknown.Text = language.profileLblUnknown;
-
-            txtULOSELP0.Text = language.profileLblLP;
-            txtULOSESurrendered.Text = language.profileLblSurrendered;
-            txtULOSE0Cards.Text = language.profileLbl0Cards;
-            txtULOSETimeLimit.Text = language.profileLblTimeLimit;
-            txtULOSERageQuit.Text = language.profileLblDisconnect;
-            txtULOSEExodia.Text = language.profileLblExodia;
-            txtULOSECountdown.Text = language.profileLblFinalCountdown;
-            txtULOSEVennominaga.Text = language.profileLblVennominaga;
-            txtULOSEHorakhty.Text = language.profileLblHorakhty;
-            txtULOSEExodius.Text = language.profileLblExodius;
-            txtULOSEDestinyBoard.Text = language.profileLblDestinyBoard;
-            txtULOSELastTurn.Text = language.profileLblLastTurn;
-            txtULOSEDestinyLeo.Text = language.profileLblDestinyLeo;
-            txtULOSEUnknown.Text = language.profileLblUnknown;
-
-            //ranked
-            txtRWinLP0.Text = language.profileLblLP;
-            txtRWinSurrendered.Text = language.profileLblSurrendered;
-            txtRWin0Cards.Text = language.profileLbl0Cards;
-            txtRWinTimeLimit.Text = language.profileLblTimeLimit;
-            txtRWinRageQuit.Text = language.profileLblDisconnect;
-            txtRWinExodia.Text = language.profileLblExodia;
-            txtRWinCountdown.Text = language.profileLblFinalCountdown;
-            txtRWinVennominaga.Text = language.profileLblVennominaga;
-            txtRWinHorakhty.Text = language.profileLblHorakhty;
-            txtRWinExodius.Text = language.profileLblExodius;
-            txtRWinDestinyBoard.Text = language.profileLblDestinyBoard;
-            txtRWinLastTurn.Text = language.profileLblLastTurn;
-            txtRWinDestinyLeo.Text = language.profileLblDestinyLeo;
-            txtRWinUnknown.Text = language.profileLblUnknown;
-
-            txtRLOSELP0.Text = language.profileLblLP;
-            txtRLOSESurrendered.Text = language.profileLblSurrendered;
-            txtRLOSE0Cards.Text = language.profileLbl0Cards;
-            txtRLOSETimeLimit.Text = language.profileLblTimeLimit;
-            txtRLOSERageQuit.Text = language.profileLblDisconnect;
-            txtRLOSEExodia.Text = language.profileLblExodia;
-            txtRLOSECountdown.Text = language.profileLblFinalCountdown;
-            txtRLOSEVennominaga.Text = language.profileLblVennominaga;
-            txtRLOSEHorakhty.Text = language.profileLblHorakhty;
-            txtRLOSEExodius.Text = language.profileLblExodius;
-            txtRLOSEDestinyBoard.Text = language.profileLblDestinyBoard;
-            txtRLOSELastTurn.Text = language.profileLblLastTurn;
-            txtRLOSEDestinyLeo.Text = language.profileLblDestinyLeo;
-            txtRLOSEUnknown.Text = language.profileLblUnknown;
 
         }
 
@@ -190,6 +149,16 @@ namespace YGOPro_Launcher
         private void Profile_frm_Load(object sender, EventArgs e)
         {
             Program.ServerConnection.SendPacket("STATS");
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label32_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -26,6 +26,8 @@ namespace YGOPro_Launcher.Chat
 
             server.Message += new ChatClient.ServerMessage(NewMessage);
             server.UserList += new ChatClient.ServerResponse(CreateUserList);
+            server.AddUser += new ChatClient.ServerResponse(AddUser);
+            server.RemoveUser += new ChatClient.ServerResponse(RemoveUser);
 
         }
 
@@ -82,7 +84,7 @@ namespace YGOPro_Launcher.Chat
             else
             {
                 UserList.Items.Clear();
-                string[] users = userlist.Split(';');
+                string[] users = userlist.Split(new string[] {";" }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string user in users)
                 {
                     string[] info = user.Split(',');
@@ -112,18 +114,17 @@ namespace YGOPro_Launcher.Chat
             }
         }
 
-        private void RemoveUser(string userinfo)
+        private void RemoveUser(string username)
         {
             if (InvokeRequired)
             {
-                Invoke(new Action<string>(RemoveUser), userinfo);
+                Invoke(new Action<string>(RemoveUser), username);
             }
             else
             {
-                string[] info = userinfo.Split(',');
                 foreach (object user in UserList.Items)
                 {
-                    if (info[0] == user.ToString())
+                    if (username == user.ToString())
                     {
                         UserList.Items.Remove(user);
                         return;

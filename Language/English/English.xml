@@ -110,11 +110,14 @@
   <cusBackup>Back Up</cusBackup>
   <cusLabelTheme>Theme</cusLabelTheme>
   <cusLabelCont>Content</cusLabelCont>
+  <profileName>Profile</profileName>
+  <profileWin>Win</profileWin>
+  <profileLose>Lose</profileLose>
   <profileGb1>User Info</profileGb1>
-  <profileGb2>Unranked</profileGb2>
-  <profileGb3>Ranked</profileGb3>
-  <profileGb4>Win Stats</profileGb4>
-  <profileGb5>Lose Stats</profileGb5>
+  <profileGb2>Stats</profileGb2>
+  <profileGb3>Condition</profileGb3>
+  <profileGb4>Ranked</profileGb4>
+  <profileGb5>Unranked</profileGb5>
   <profileLblLP>LP Reached 0</profileLblLP>
   <profileLblSurrendered>Surrendered</profileLblSurrendered>
   <profileLbl0Cards>0 Cards Left</profileLbl0Cards>

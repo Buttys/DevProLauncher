@@ -135,11 +135,14 @@ namespace YGOPro_Launcher.Config
         public string cusLabelCont = "Content";
 
         //Profile_frm.cs
+        public string profileName = "Profile";
+        public string profileWin = "Win";
+        public string profileLose = "Lose";
         public string profileGb1 = "User Info";
-        public string profileGb2 = "Unranked";
-        public string profileGb3 = "Ranked";
-        public string profileGb4 = "Win Stats";
-        public string profileGb5 = "Lose Stats";
+        public string profileGb2 = "Stats";
+        public string profileGb3 = "Condition";
+        public string profileGb4 = "Ranked";
+        public string profileGb5 = "Unranked";
         public string profileLblLP = "LP Reached 0";
         public string profileLblSurrendered = "Surrendered";
         public string profileLbl0Cards = "0 Cards Left";
