@@ -110,6 +110,9 @@
   <cusBackup>Sauvegarder</cusBackup>
   <cusLabelTheme>Thème</cusLabelTheme>
   <cusLabelCont>Contenu</cusLabelCont>
+  <profileName>Profil</profileName>
+  <profileWin>Gagné</profileWin>
+  <profileLose>Perdu</profileLose>
   <profileGb1>Info Duelliste</profileGb1>
   <profileGb2>Non classé</profileGb2>
   <profileGb3>Classé</profileGb3>
