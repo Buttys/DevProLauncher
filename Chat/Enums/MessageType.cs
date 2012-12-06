@@ -6,7 +6,10 @@
         Challenge,
         FriendRequest,
         System,
+        Server,
         Message,
-        PrivateMessage
+        PrivateMessage,
+        Join,
+        Leave
     }
 }

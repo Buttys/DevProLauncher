@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using YGOPro_Launcher.Chat;
+using System.Threading;
 
 namespace YGOPro_Launcher
 {
@@ -127,7 +128,14 @@ namespace YGOPro_Launcher
                             ServerInterface_frm form = (ServerInterface_frm)control;
                             form.RequestUserWLD();
                             Program.ServerConnection.SendPacket("GETROOMS");
-                            break;
+                        }
+                        if (control is Chat_frm)
+                        {
+                            Chat_frm form = (Chat_frm)control;
+                            Thread chatserver = new Thread(form.Connect);
+                            chatserver.Name = "ChatServer";
+                            chatserver.IsBackground = true;
+                            chatserver.Start();
                         }
                     }
             }

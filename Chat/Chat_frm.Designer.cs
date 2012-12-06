@@ -154,7 +154,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Chat_frm";
             this.Text = "Chat_frm";
-            this.Load += new System.EventHandler(this.Chat_frm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();

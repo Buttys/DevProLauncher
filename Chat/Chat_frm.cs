@@ -28,27 +28,41 @@ namespace YGOPro_Launcher.Chat
             server.UserList += new ChatClient.ServerResponse(CreateUserList);
             server.AddUser += new ChatClient.ServerResponse(AddUser);
             server.RemoveUser += new ChatClient.ServerResponse(RemoveUser);
+            server.Login += new ChatClient.ServerResponse(LoginCheck);
 
         }
 
-        private void Connect()
+        public void Connect()
+        {
+            if (server.Connect("86.0.24.143", 7922))
+                {
+                    server.SendPacket("LOGIN||" + Program.UserInfo.Username + "||" + Program.Config.Password);
+                }
+        }
+
+        private void LoginCheck(string message)
         {
             if (InvokeRequired)
             {
-                Invoke(new Action(Connect));
+                Invoke(new Action<string>(LoginCheck), message);
             }
             else
             {
-                if (server.Connect("86.0.24.143", 7922))
+                if (message == "Failed")
                 {
-                    ChatWindow window = CurrentChatWindow();
-                    window.WriteMessage(new ChatMessage(MessageType.System,window.Name,"Connected to DevPro chat server."));
-                    server.SendPacket("LOGIN||" + Program.UserInfo.Username + "||" + Program.Config.Password);
+                    NewMessage(new ChatMessage(MessageType.System, Program.UserInfo, CurrentChatWindow().Name, "Unable to login.", false));
+                }
+                else if (message == "Banned")
+                {
+                    NewMessage(new ChatMessage(MessageType.System, Program.UserInfo, CurrentChatWindow().Name, "You are banned.", false));
+                }
+                else if (message == "LoginDown")
+                {
+                    NewMessage(new ChatMessage(MessageType.System, Program.UserInfo, CurrentChatWindow().Name, "Login Server is currently down or locked.", false));
                 }
                 else
                 {
-                    ChatWindow window = CurrentChatWindow();
-                    window.WriteMessage(new ChatMessage(Enums.MessageType.System, window.Name, "Failed to connect to server."));
+                    NewMessage(new ChatMessage(MessageType.System, Program.UserInfo, CurrentChatWindow().Name, "Connected to the DevPro chat server.", false));
                 }
             }
         }
@@ -213,14 +227,6 @@ namespace YGOPro_Launcher.Chat
             ChatTabs.TabPages.Add(new ChatWindow(name));
             ChatTabs.SelectedTab = GetChatWindow(name);
 
-        }
-
-        private void Chat_frm_Load(object sender, EventArgs e)
-        {
-            Thread chatserver = new Thread(Connect);
-            chatserver.Name = "ChatServer";
-            chatserver.IsBackground = true;
-            chatserver.Start();
         }
     }
 }
