@@ -435,8 +435,8 @@ namespace YGOPro_Launcher
                     if (m_rooms[item].SubItems[6].Text.Contains("Waiting") &&
                         m_rooms[item].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Name))
                     {
-                        if (m_rooms[item].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
-                            m_rooms[item].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                        if (m_rooms[item].SubItems[7].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                            m_rooms[item].SubItems[0].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                             FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                         {
                             rooms.Items.Add(m_rooms[item]);
@@ -447,8 +447,8 @@ namespace YGOPro_Launcher
                 {
                     if (m_rooms[item].SubItems[1].Text.Contains(ServerTabs.SelectedTab.Name))
                     {
-                        if (m_rooms[item].SubItems[5].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
-                            m_rooms[item].SubItems[1].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                        if (m_rooms[item].SubItems[7].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                            m_rooms[item].SubItems[0].Text.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                             FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                         {
                             rooms.Items.Add(m_rooms[item]);

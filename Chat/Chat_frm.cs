@@ -34,10 +34,10 @@ namespace YGOPro_Launcher.Chat
 
         public void Connect()
         {
-            if (server.Connect("86.0.24.143", 7922))
-                {
-                    server.SendPacket("LOGIN||" + Program.UserInfo.Username + "||" + Program.Config.Password);
-                }
+            if (server.Connect("86.0.24.143", 6666))
+            {
+                server.SendPacket("LOGIN||" + Program.UserInfo.Username + "||" + Program.Config.Password);
+            }
         }
 
         private void LoginCheck(string message)
