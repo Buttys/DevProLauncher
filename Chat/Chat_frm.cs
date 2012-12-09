@@ -14,6 +14,7 @@ namespace YGOPro_Launcher.Chat
     public partial class Chat_frm : Form
     {
         ChatClient server = new ChatClient();
+        Dictionary<string,UserData> UserData = new Dictionary<string,UserData>();
         
         public Chat_frm()
         {
@@ -29,6 +30,13 @@ namespace YGOPro_Launcher.Chat
             server.AddUser += new ChatClient.ServerResponse(AddUser);
             server.RemoveUser += new ChatClient.ServerResponse(RemoveUser);
             server.Login += new ChatClient.ServerResponse(LoginCheck);
+            server.DuelRequest += new ChatClient.ServerResponse(HandleDuelRequest);
+            server.Error += new ChatClient.ServerMessage(NewMessage);
+            
+
+            UserList.DrawItem += new DrawItemEventHandler(UserList_DrawItem);
+            UserList.MouseUp += new MouseEventHandler(UserList_MouseUp);
+            FriendList.MouseUp += new MouseEventHandler(FriendList_MouseUp);
 
         }
 
@@ -97,12 +105,14 @@ namespace YGOPro_Launcher.Chat
             }
             else
             {
+                UserData.Clear();
                 UserList.Items.Clear();
                 string[] users = userlist.Split(new string[] {";" }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string user in users)
                 {
                     string[] info = user.Split(',');
                     UserList.Items.Add(info[0]);
+                    UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
                 }
             }
         }
@@ -125,6 +135,9 @@ namespace YGOPro_Launcher.Chat
                 }
 
                 UserList.Items.Add(info[0]);
+                if(!UserData.ContainsKey(info[0]))
+                    UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
+                NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, CurrentChatWindow().Name, info[0] + " has joined.", false));
             }
         }
 
@@ -140,7 +153,9 @@ namespace YGOPro_Launcher.Chat
                 {
                     if (username == user.ToString())
                     {
-                        UserList.Items.Remove(user);
+                        if (UserData.ContainsKey(user.ToString()))
+                            UserList.Items.Remove(user);
+                        NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, CurrentChatWindow().Name, user + " has left.", false));
                         return;
                     }
                 }
@@ -227,6 +242,179 @@ namespace YGOPro_Launcher.Chat
             ChatTabs.TabPages.Add(new ChatWindow(name));
             ChatTabs.SelectedTab = GetChatWindow(name);
 
+        }
+
+        private void UserList_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int index = UserList.IndexFromPoint(e.Location);
+
+                if (index == -1) return;
+                else
+                    UserList.SelectedIndex = index;
+
+                ContextMenuStrip mnu = new ContextMenuStrip();
+                ToolStripMenuItem mnuprofile = new ToolStripMenuItem("View Profile");
+                ToolStripMenuItem mnuduel = new ToolStripMenuItem("Request Duel");
+                ToolStripMenuItem mnufriend = new ToolStripMenuItem("Add to friends");
+                ToolStripMenuItem mnukick = new ToolStripMenuItem("Kick");
+                ToolStripMenuItem mnuban = new ToolStripMenuItem("Ban");
+
+                mnukick.Click += new EventHandler(KickUser);
+                mnuban.Click += new EventHandler(BanUser);
+                mnuprofile.Click += new EventHandler(ViewProfile);
+                mnuduel.Click += new EventHandler(RequestDuel);
+                mnufriend.Click += new EventHandler(AddFriend);
+
+                mnu.Items.AddRange(new ToolStripItem[] {mnuprofile, mnuduel, mnufriend });
+
+                if (Program.UserInfo.Rank > 0)
+                    mnu.Items.Add(mnukick);
+                if (Program.UserInfo.Rank > 1)
+                    mnu.Items.Add(mnuban);
+
+                mnu.Show(UserList, e.Location);
+            }
+        }
+
+        private void FriendList_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int index = FriendList.IndexFromPoint(e.Location);
+
+                if (index == -1) return;
+                else
+                    FriendList.SelectedIndex = index;
+
+                ContextMenuStrip mnu = new ContextMenuStrip();
+                ToolStripMenuItem mnuremovefriend = new ToolStripMenuItem("Remove Friend");
+
+                mnuremovefriend.Click += new EventHandler(RemoveFriend);
+
+                mnu.Items.Add(mnuremovefriend);
+
+                mnu.Show(FriendList, e.Location);
+            }
+        }
+
+        private void RemoveFriend(object sender, EventArgs e)
+        {
+            NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, FriendList.SelectedItem.ToString() + " has been removed from your friendlist."));
+            FriendList.Items.Remove(FriendList.SelectedItem);
+        }
+
+        private void BanUser(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Are you sure you want to ban " + UserList.SelectedItem.ToString(),"Ban User",MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                server.SendPacket("ADMIN||BAN||" + UserList.SelectedItem.ToString());
+        }
+        private void KickUser(object sender, EventArgs e)
+        {
+            server.SendPacket("ADMIN||KICK||" + UserList.SelectedItem.ToString());
+        }
+
+        private void AddFriend(object sender, EventArgs e)
+        {
+            if (UserList.SelectedItem.ToString() == Program.UserInfo.Username)
+            {
+                NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You cannot be your own friend."));
+                return;
+            }
+
+            foreach (object user in FriendList.Items)
+            {
+                if (user.ToString() == UserList.SelectedItem.ToString())
+                {
+                    NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, UserList.SelectedItem.ToString() + " is already your friend."));
+                    return;
+                }
+            }
+
+            NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, UserList.SelectedItem.ToString() + " has been added to your friend list."));
+            FriendList.Items.Add(UserList.SelectedItem.ToString());
+        }
+
+        private void ViewProfile(object sender, EventArgs e)
+        {
+            Profile_frm profile = new Profile_frm(UserList.SelectedItem.ToString());
+            profile.ShowDialog();
+
+        }
+
+        private void RequestDuel(object sender, EventArgs e)
+        {
+            if (UserList.SelectedItem.ToString() == Program.UserInfo.Username)
+                NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You cannot duel request your self."));
+            else
+                server.SendPacket("REQUESTDUEL||" + UserList.SelectedItem.ToString());
+        }
+
+        private void HandleDuelRequest(string command)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<string>(HandleDuelRequest), command);
+            }
+            else
+            {
+                string[] args = command.Split(new string[] { "||" }, StringSplitOptions.None);
+                string cmd = args[0];
+
+                if (cmd == "START")
+                {
+                    LauncherHelper.GenerateConfig("ygopro:/" + Program.Config.ServerAddress + "/" + Program.Config.GamePort + "/" + args[1]);
+                    LauncherHelper.RunGame("-j");
+                }
+                else if (cmd == "REQUEST")
+                {
+                    if (MessageBox.Show(args[1] + " has challenged you to a ranked duel! Do you accept?", "Duel Request", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You accepted " + args[1] + " duel request."));
+                        server.SendPacket("ACCEPTDUEL||" + args[1]);
+                    }
+                    else
+                    {
+                        NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You refused " + args[1] + " duel request."));
+                        server.SendPacket("REFUSEDUEL||" + args[1]);
+                    }
+                }
+                else if (cmd == "REFUSE")
+                {
+                    NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, args[1] + " refused your duel request."));
+                }
+            }
+        }
+
+        private void UserList_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+
+            bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
+
+            int index = e.Index;
+            if (index >= 0 && index < UserList.Items.Count)
+            {
+                string text = UserList.Items[index].ToString();
+                Graphics g = e.Graphics;
+                if (!UserData.ContainsKey(text))
+                {
+                    g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+                    g.DrawString(text, e.Font, (selected) ? Brushes.Blue : Brushes.Black,
+                         UserList.GetItemRectangle(index).Location);
+                    e.DrawFocusRectangle();
+                    return;
+                }
+
+                g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+
+                // Print text
+                g.DrawString(text , e.Font, (selected) ? Brushes.Blue :  ChatMessage.GetUserColor(UserData[text].Rank),
+                    UserList.GetItemRectangle(index).Location);
+            }
+
+            e.DrawFocusRectangle();
         }
     }
 }

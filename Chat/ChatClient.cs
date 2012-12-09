@@ -27,7 +27,9 @@ namespace YGOPro_Launcher.Chat
         public ServerResponse AddUser;
         public ServerResponse RemoveUser;
         public ServerResponse Login;
+        public ServerResponse DuelRequest;
         public ServerMessage Message;
+        public ServerMessage Error;
 
         public ChatClient()
         {
@@ -160,17 +162,38 @@ namespace YGOPro_Launcher.Chat
                 if (Message != null)
                     Message(new ChatMessage(MessageType.Message, new UserData() { Username = userinfo[0], Rank = Convert.ToInt32(userinfo[1]) }, args[2], args[3],true));
             }
-            else
+            else if (cmd == "STARTDUEL")
+            {
+                if (DuelRequest != null)
+                    DuelRequest("START||" + args[1]);
+            }
+            else if (cmd == "DUELREQUEST")
+            {
+                if (DuelRequest != null)
+                    DuelRequest("REQUEST||" + args[1]);
+            }
+            else if (cmd == "REFUSEDUEL")
+            {
+                if (DuelRequest != null)
+                    DuelRequest("REFUSE||" + args[1]);
+            }
+            else if (cmd == "ACCEPTDUEL")
             {
                 if (Message != null)
-                    Message(new ChatMessage(MessageType.System,"DevPro","Unknown Packet"));
+                    Message(new ChatMessage(MessageType.System,"DevPro", args[1] + " has accepted your duel request."));
+            }
+            else
+            {
+                if (Error != null)
+                    Error(new ChatMessage(MessageType.System, "DevPro", "Unknown Packet - " + command));
             }
         }
 
         private void OnDisconnected()
         {
             if (!IsConnected) return;
-
+            if (Error != null)
+                Error(new ChatMessage(MessageType.System, "DevPro", "Disconnected from server."));
             IsConnected = false;
             Disconnect();
         }

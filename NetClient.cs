@@ -195,7 +195,7 @@ namespace YGOPro_Launcher
             else if (cmd == "STATS")
             {
                 if (ProfileMessage != null)
-                    ProfileMessage(args[1] + "||" + args[2] + "||" + args[3] +"||" + args[4]);
+                    ProfileMessage(args[1] + "||" + args[2] + "||" + args[3] +"||" + args[4] + "||" + args[5]);
             }
             else if (cmd == "ADMIN")
             {

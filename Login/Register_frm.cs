@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace YGOPro_Launcher
@@ -66,6 +67,11 @@ namespace YGOPro_Launcher
             if (UsernameInput.Text == "")
             {
                 MessageBox.Show(Program.LanguageManager.Translation.RegistMsb3);
+                return;
+            }
+            if (!Regex.IsMatch(UsernameInput.Text, "^[a-zA-Z0-9_]*$"))
+            {
+                MessageBox.Show(Program.LanguageManager.Translation.RegistMsb6);
                 return;
             }
            Program.ServerConnection.SendPacket("REGISTER||" + UsernameInput.Text + "||" + LauncherHelper.EncodePassword(PasswordInput.Text) + "||" + LauncherHelper.GetUID());

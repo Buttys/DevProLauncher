@@ -37,6 +37,7 @@ namespace YGOPro_Launcher.Config
         public string RegistMsb3 = "Please enter username.";
         public string RegistMsb4 = "Registering Complete!";
         public string RegistMsb5 = "Username Exists";
+        public string RegistMsb6 = "Username cannot contain special characters";
 
         // ServerTabDesign_frm
         public string GameServerInfo = "Server Details";

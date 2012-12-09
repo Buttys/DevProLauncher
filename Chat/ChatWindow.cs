@@ -45,7 +45,7 @@ namespace YGOPro_Launcher.Chat
                     WriteText(message.FormattedMessage.Trim(), message.MessageColor);
 
                 }
-                else if (message.Type == MessageType.System)
+                else if (message.Type == MessageType.System || message.Type == MessageType.Join || message.Type == MessageType.Leave)
                 {
                     WriteText(message.FormattedMessage, message.MessageColor);
                 }                    

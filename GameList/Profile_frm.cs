@@ -12,12 +12,26 @@ namespace YGOPro_Launcher
 {
     public partial class Profile_frm : Form
     {
+        private string ProfileUsername;
+
         public Profile_frm()
         {
+            ProfileUsername = Program.UserInfo.Username;
             InitializeComponent();
             ApplyTranslation();
             Username.Text += Program.UserInfo.Username;
             wld.Text += Program.UserInfo.Wins + "/" + Program.UserInfo.Loses + "/" + Program.UserInfo.Draws;
+            Program.ServerConnection.ProfileMessage += new NetClient.ServerResponse(ProfileUpdate);
+
+        }
+
+        public Profile_frm(string username)
+        {
+            ProfileUsername = username;
+            InitializeComponent();
+            ApplyTranslation();
+            Username.Text += username;
+            //wld.Text += Program.UserInfo.Wins + "/" + Program.UserInfo.Loses + "/" + Program.UserInfo.Draws;
             Program.ServerConnection.ProfileMessage += new NetClient.ServerResponse(ProfileUpdate);
 
         }
@@ -72,9 +86,16 @@ namespace YGOPro_Launcher
                 {
                     string[] sections = message.Split(new string[] {"||"}, StringSplitOptions.None);
                     rank.Text += sections[0];
-                    team.Text += sections[1];
-                    string[] unrankedparts = sections[2].Split(',');
-                    string[] rankedparts = sections[3].Split(',');
+                    if (sections[1] == "not found")
+                        wld.Text += "0/0/0";
+                    else
+                    {
+                        string[] values = sections[1].Split(',');
+                        wld.Text += values[0] + "/" + values[1] + "/" + values[2];
+                    }
+                    team.Text += sections[2];
+                    string[] unrankedparts = sections[3].Split(',');
+                    string[] rankedparts = sections[4].Split(',');
 
                     if (unrankedparts[0] != "NotFound")
                     {
@@ -148,17 +169,7 @@ namespace YGOPro_Launcher
 
         private void Profile_frm_Load(object sender, EventArgs e)
         {
-            Program.ServerConnection.SendPacket("STATS");
-        }
-
-        private void label27_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label32_Click(object sender, EventArgs e)
-        {
-
+            Program.ServerConnection.SendPacket("STATS||" + ProfileUsername);
         }
     }
 }

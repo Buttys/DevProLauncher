@@ -74,5 +74,22 @@ namespace YGOPro_Launcher.Chat
                 return Color.Black;
             }
         }
+
+        public static Brush GetUserColor(int rank)
+        {
+                switch (rank)
+                {
+                    case 0:
+                        return Brushes.Black;
+                    case 1:
+                        return Brushes.Pink;
+                    case 2:
+                        return Brushes.Red;
+                    case 99:
+                        return Brushes.Green;
+                }
+
+                return Brushes.Black;
+        }
     }
 }
