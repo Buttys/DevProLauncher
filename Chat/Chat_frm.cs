@@ -200,9 +200,42 @@ namespace YGOPro_Launcher.Chat
                                 NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, parts[1] + " not found."));
                         }
                     }
+                    else if (Program.UserInfo.Rank > 0)
+                    {
+                        if (cmd != "op")
+                        {
+                            server.SendPacket("ADMIN||" + cmd.ToUpper() + "||" + ChatInput.Text.Replace(parts[0], "").Trim());
+                        }
+                        else
+                        {
+                            int rank = 0;
+                            if (Int32.TryParse(parts[parts.Length - 1], out rank))
+                            {
+                                string username = null;
+                                for (int i = 0; i < parts.Length - 1; i++)
+                                {
+                                    if (i != 0 && i != parts.Length - 1)
+                                    {
+                                        if (username == null)
+                                            username += parts[i];
+                                        else
+                                            username += " " + parts[i];
+                                    }
+
+                                }
+
+                                server.SendPacket("ADMIN||OP||" + username.Trim() + "||" + rank.ToString());
+                            }
+                            else
+                            {
+                                NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "Invalid args."));
+                            }
+                        }
+
+                    }
                     else
                     {
-                        NewMessage(new ChatMessage(MessageType.System,CurrentChatWindow().Name,"Unknown command."));
+                        NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "Unknown command."));
                     }
                 }
                 else

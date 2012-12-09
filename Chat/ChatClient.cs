@@ -182,6 +182,14 @@ namespace YGOPro_Launcher.Chat
                 if (Message != null)
                     Message(new ChatMessage(MessageType.System,"DevPro", args[1] + " has accepted your duel request."));
             }
+            else if (cmd == "ADMIN")
+            {
+                if (args.Length >= 3)
+                {
+                    if (Message != null)
+                        Message(new ChatMessage(MessageType.Server, "DevPro", args[2]));
+                }
+            }
             else
             {
                 if (Error != null)

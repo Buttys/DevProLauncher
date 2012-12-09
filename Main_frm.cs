@@ -41,26 +41,19 @@ namespace YGOPro_Launcher
             CustomizeTab.Controls.Add(new Customize_frm());
 
             TabPage AboutTab = new TabPage() { Text = "About", Name = "About" };
-            AboutTab.Controls.Add(new About_frm());
+            AboutTab.Controls.Add(new About_frm());                    
+            
+            TabPage ChatTab = new TabPage() { Text = "Chat (Alpha)", Name = "Chat (Alpha)" };
+            ChatTab.Controls.Add(new Chat_frm());
 
             if (Program.UserInfo.Rank > 0)
             {
-                TabPage AdminTab = new TabPage() { Text = "Admin Panel", Name = "Admin" };
-                AdminTab.Controls.Add(new Admin_frm());
-
-
                 ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
                 CreateBrowserWindow("Ranking"),
                 CreateBrowserWindow("Chat"),
+                ChatTab,
                 CreateBrowserWindow("Youtube"),
-                FileManager, CustomizeTab, AboutTab,AdminTab });
-                if (Program.UserInfo.Rank >= 2)
-                {
-                    TabPage ChatTab = new TabPage() { Text = "Chat (Alpha)", Name = "Chat (Alpha)" };
-                    ChatTab.Controls.Add(new Chat_frm());
-
-                    ServerControl.TabPages.Add(ChatTab);
-                }
+                FileManager, CustomizeTab, AboutTab });
 
             }
             else
@@ -68,9 +61,11 @@ namespace YGOPro_Launcher
                 ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,
                 CreateBrowserWindow("Ranking"),
                 CreateBrowserWindow("Chat"),
+                ChatTab,
                 CreateBrowserWindow("Youtube"),
                 FileManager, CustomizeTab, AboutTab });
             }
+
             Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);
             ConnectionCheck.Tick += new EventHandler(CheckConnection);
             ServerControl.SelectedIndexChanged += new EventHandler(NavigateOnClick);

@@ -57,12 +57,6 @@
     <Compile Include="About_frm.Designer.cs">
       <DependentUpon>About_frm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Admin_frm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\Admin_frm.Designer.cs">
-      <DependentUpon>Admin_frm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Chat\ChatMessage.cs" />
     <Compile Include="Chat\ChatWindow.cs">
       <SubType>Component</SubType>
@@ -199,9 +193,6 @@
     <None Include="System.Data.SQLite.dll" />
     <EmbeddedResource Include="About_frm.resx">
       <DependentUpon>About_frm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\Admin_frm.resx">
-      <DependentUpon>Admin_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Chat\Chat_frm.resx">
       <DependentUpon>Chat_frm.cs</DependentUpon>

@@ -30,7 +30,6 @@ namespace YGOPro_Launcher
         public ServerResponse RemoveRoom;
         public ServerResponse UpdateRoomPlayers;
         public ServerResponse UpdateRoomStatus;
-        public ServerResponse AdminMessage;
         public ServerResponse ServerMessage;
         public ServerResponse ProfileMessage;
         public ServerRooms AddRooms;
@@ -196,14 +195,6 @@ namespace YGOPro_Launcher
             {
                 if (ProfileMessage != null)
                     ProfileMessage(args[1] + "||" + args[2] + "||" + args[3] +"||" + args[4] + "||" + args[5]);
-            }
-            else if (cmd == "ADMIN")
-            {
-                if (args.Length >= 3)
-                {
-                    if (AdminMessage != null)
-                        AdminMessage(args[1] + "||" + args[2]);
-                }
             }
             else if (cmd == "MSG")
             {
