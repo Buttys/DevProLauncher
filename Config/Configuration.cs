@@ -11,6 +11,7 @@ namespace YGOPro_Launcher.Config
         public string ServerInfoAddress = "http://dev.ygopro-online.net/launcher/serverinfo.php";
         public int ServerPort = 6922;
         public int GamePort = 6911;
+        public int ChatPort = 6666;
         public string GameExe = "devpro.dll";
         public string LauncherDir =  "";
         public string DefaultUsername = "";
@@ -64,6 +65,9 @@ namespace YGOPro_Launcher.Config
                         break;
                     case "serverport":
                         ServerPort = Convert.ToInt32(value);
+                        break;
+                    case "chatport":
+                        ChatPort = Convert.ToInt32(value);
                         break;
                     case "serveraddress":
                         ServerAddress = value;
@@ -186,6 +190,7 @@ namespace YGOPro_Launcher.Config
                 ServerAddress = "86.0.24.143";
                 ServerPort = 7922;
                 GamePort = 7911;
+                ChatPort = 6666;
             }
         }
 
@@ -199,6 +204,7 @@ namespace YGOPro_Launcher.Config
             writer.WriteLine("#Server Settings");
             writer.WriteLine("serveraddress = " + ServerAddress);
             writer.WriteLine("serverport = " + ServerPort);
+            writer.WriteLine("chatport = " + ChatPort);
             writer.WriteLine("gameport = " + GamePort);
             writer.WriteLine("updateraddress = " + UpdaterAddress);
             writer.WriteLine("serverinfoaddress = " + ServerInfoAddress);

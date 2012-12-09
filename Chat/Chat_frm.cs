@@ -42,7 +42,7 @@ namespace YGOPro_Launcher.Chat
 
         public void Connect()
         {
-            if (server.Connect("86.0.24.143", 6666))
+            if (server.Connect(Program.Config.ServerAddress, Program.Config.ChatPort))
             {
                 server.SendPacket("LOGIN||" + Program.UserInfo.Username + "||" + Program.Config.Password);
             }
