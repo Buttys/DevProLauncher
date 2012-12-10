@@ -189,6 +189,7 @@ namespace YGOPro_Launcher
                 Config.ServerAddress = infos[1];
                 Config.ServerPort = Convert.ToInt32(infos[2]);
                 Config.GamePort = Convert.ToInt32(infos[3]);
+                Config.ChatPort = Convert.ToInt32(infos[4]);
             }
             catch
             {

@@ -113,6 +113,8 @@ namespace YGOPro_Launcher
             return output;
         }
 
+      
+
         public static string BinaryToString(string binary)
         {
                 int numOfBytes = binary.Length / 8;
@@ -123,6 +125,18 @@ namespace YGOPro_Launcher
                 }
 
                 return Encoding.ASCII.GetString(bytes);
+        }
+
+        public static string StringToBase64(string text)
+        {
+            byte[] bytes = Encoding.ASCII.GetBytes(text);
+            return Convert.ToBase64String(bytes);
+        }
+
+        public static string Base64toString(string text)
+        {
+            byte[] bytes = Convert.FromBase64String(text);
+            return Encoding.ASCII.GetString(bytes);
         }
 
         public static string[] OpenFileWindow(string title, string startpath, string filefilter, bool multiselect)

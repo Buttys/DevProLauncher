@@ -15,14 +15,17 @@ namespace YGOPro_Launcher.Chat
     {
         ChatClient server = new ChatClient();
         Dictionary<string,UserData> UserData = new Dictionary<string,UserData>();
+        private object m_lock;
         
         public Chat_frm()
         {
+            
             InitializeComponent();
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
-            ChatTabs.TabPages.Add(new ChatWindow("DevPro"));
+            m_lock = new object();
+            ChatTabs.TabPages.Add(new ChatWindow("DevPro",false));
             ChatInput.KeyPress += new KeyPressEventHandler(ChatInput_KeyPress);
 
             server.Message += new ChatClient.ServerMessage(NewMessage);
@@ -32,11 +35,32 @@ namespace YGOPro_Launcher.Chat
             server.Login += new ChatClient.ServerResponse(LoginCheck);
             server.DuelRequest += new ChatClient.ServerResponse(HandleDuelRequest);
             server.Error += new ChatClient.ServerMessage(NewMessage);
-            
+            server.FriendList += new ChatClient.ServerResponse(LoadFriends);
 
             UserList.DrawItem += new DrawItemEventHandler(UserList_DrawItem);
+            UserList.DoubleClick += UserList_DoubleClick;
             UserList.MouseUp += new MouseEventHandler(UserList_MouseUp);
             FriendList.MouseUp += new MouseEventHandler(FriendList_MouseUp);
+            IgnoreList.MouseUp += IgnoreList_MouseUp;
+
+            LoadIgnoreList();
+        }
+
+        public void LoadIgnoreList()
+        {
+            string[] users = Program.Config.IgnoreList.Split(new string[] {","},StringSplitOptions.RemoveEmptyEntries);
+            foreach (string user in users)
+                IgnoreList.Items.Add(user);
+        }
+
+        public void LoadFriends(string message)
+        {
+            if (message == "not found")
+                return;
+
+            string[] friends = message.Split(',');
+            foreach (string friend in friends)
+                FriendList.Items.Add(friend);
 
         }
 
@@ -83,10 +107,18 @@ namespace YGOPro_Launcher.Chat
             }
             else
             {
+                if (message.Type == MessageType.PrivateMessage ||
+                    message.Type == MessageType.Message ||
+                    message.Type == MessageType.Me)
+                {
+                    if (IgnoreContainsUser(message.From.Username))
+                        return;
+                }
+
                 ChatWindow window = GetChatWindow(message.Channel);
                 if (window == null)
                 {
-                    ChatTabs.TabPages.Add(new ChatWindow(message.Channel));
+                    ChatTabs.TabPages.Add(new ChatWindow(message.Channel,true));
                     window = GetChatWindow(message.Channel);
                     window.WriteMessage(message);
                 }
@@ -105,14 +137,18 @@ namespace YGOPro_Launcher.Chat
             }
             else
             {
-                UserData.Clear();
-                UserList.Items.Clear();
-                string[] users = userlist.Split(new string[] {";" }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (string user in users)
+                lock (m_lock)
                 {
-                    string[] info = user.Split(',');
-                    UserList.Items.Add(info[0]);
-                    UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
+                    UserData.Clear();
+                    UserList.Items.Clear();
+                    string[] users = userlist.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string user in users)
+                    {
+                        string[] info = user.Split(',');
+                        UserList.Items.Add(info[0]);
+                        UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
+                    }
+                    SortUserList();
                 }
             }
         }
@@ -125,19 +161,26 @@ namespace YGOPro_Launcher.Chat
             }
             else
             {
-                string[] info = userinfo.Split(',');
-                foreach (object user in UserList.Items)
+                lock (m_lock)
                 {
-                    if (info[0] == user.ToString())
+                    string[] info = userinfo.Split(',');
+                    foreach (object user in UserList.Items)
                     {
-                        return;
+                        if (info[0] == user.ToString())
+                        {
+                            return;
+                        }
                     }
-                }
 
-                UserList.Items.Add(info[0]);
-                if(!UserData.ContainsKey(info[0]))
-                    UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
-                NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, CurrentChatWindow().Name, info[0] + " has joined.", false));
+                    UserList.Items.Add(info[0]);
+                    if (!UserData.ContainsKey(info[0]))
+                        UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
+                    else
+                        UserData[info[0]] = new UserData(){ Username = info[0], Rank = Int32.Parse(info[1]) };
+                    NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", info[0] + " has joined.", false));
+                    if(UserData[info[0]].Rank > 0)
+                        SortUserList();
+                }
             }
         }
 
@@ -149,14 +192,17 @@ namespace YGOPro_Launcher.Chat
             }
             else
             {
-                foreach (object user in UserList.Items)
+                lock (m_lock)
                 {
-                    if (username == user.ToString())
+                    foreach (object user in UserList.Items)
                     {
-                        if (UserData.ContainsKey(user.ToString()))
-                            UserList.Items.Remove(user);
-                        NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, CurrentChatWindow().Name, user + " has left.", false));
-                        return;
+                        if (username == user.ToString())
+                        {
+                            if (UserData.ContainsKey(user.ToString()))
+                                UserList.Items.Remove(user);
+                            NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", user + " has left.", false));
+                            return;
+                        }
                     }
                 }
             }
@@ -179,6 +225,11 @@ namespace YGOPro_Launcher.Chat
             {
                 if (ChatInput.Text == "")
                     return;
+                if (CurrentChatWindow().isprivate && ChatInput.Text.StartsWith("/"))
+                {
+                    NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "Commands are not supported in private windows."));
+                    return;
+                }
                 if (ChatInput.Text.StartsWith("/"))
                 {
                     string[] parts = ChatInput.Text.Split(' ');
@@ -193,12 +244,18 @@ namespace YGOPro_Launcher.Chat
                         {
                             if (UserExsists(parts[1]))
                             {
-                                CreateChatWindow(parts[1]);
-                                NewMessage(new ChatMessage(MessageType.Message,Program.UserInfo, CurrentChatWindow().Name, ChatInput.Text.Substring(parts[0].Length + parts[1].Length +1),false));
+                                CreateChatWindow(parts[1],true);
+                                NewMessage(new ChatMessage(MessageType.Message, Program.UserInfo, parts[1], ChatInput.Text.Substring(parts[0].Length + parts[1].Length + 1), false));
+                                server.SendPacket("MSG||" + parts[1] + "||" + (int)MessageType.PrivateMessage + "||" + LauncherHelper.StringToBase64(ChatInput.Text.Substring(parts[0].Length + parts[1].Length + 1)));
                             }
                             else
                                 NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, parts[1] + " not found."));
                         }
+                    }
+                    else if (cmd == "me")
+                    {
+                        string messagetext = ChatInput.Text.Replace("/me", Program.UserInfo.Username);
+                        server.SendPacket("MSG||" + CurrentChatWindow().Name + "||" + (int)MessageType.Me + "||" + LauncherHelper.StringToBase64(messagetext));
                     }
                     else if (Program.UserInfo.Rank > 0)
                     {
@@ -228,6 +285,7 @@ namespace YGOPro_Launcher.Chat
                             }
                             else
                             {
+
                                 NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "Invalid args."));
                             }
                         }
@@ -235,12 +293,21 @@ namespace YGOPro_Launcher.Chat
                     }
                     else
                     {
+
                         NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "Unknown command."));
                     }
                 }
                 else
                 {
-                    server.SendPacket("MSG||" + CurrentChatWindow().Name + "||" + LauncherHelper.StringToBinary(ChatInput.Text));
+                    if (CurrentChatWindow().isprivate)
+                    {
+                        NewMessage(new ChatMessage(MessageType.Message, Program.UserInfo, CurrentChatWindow().Name, ChatInput.Text, false));
+                        server.SendPacket("MSG||" + CurrentChatWindow().Name + "||" + (int)MessageType.PrivateMessage + "||" + LauncherHelper.StringToBase64(ChatInput.Text));
+                    }
+                    else
+                    {
+                        server.SendPacket("MSG||" + CurrentChatWindow().Name + "||" + (int)MessageType.Message + "||" + LauncherHelper.StringToBase64(ChatInput.Text));
+                    }
                 }
                 ChatInput.Clear();
                 e.Handled = true;
@@ -261,7 +328,7 @@ namespace YGOPro_Launcher.Chat
             return null;
         }
 
-        private void CreateChatWindow(string name)
+        private void CreateChatWindow(string name,bool isprivate)
         {
             foreach (TabPage window in ChatTabs.TabPages)
             {
@@ -272,7 +339,7 @@ namespace YGOPro_Launcher.Chat
                 }
             }
 
-            ChatTabs.TabPages.Add(new ChatWindow(name));
+            ChatTabs.TabPages.Add(new ChatWindow(name,isprivate));
             ChatTabs.SelectedTab = GetChatWindow(name);
 
         }
@@ -291,6 +358,7 @@ namespace YGOPro_Launcher.Chat
                 ToolStripMenuItem mnuprofile = new ToolStripMenuItem("View Profile");
                 ToolStripMenuItem mnuduel = new ToolStripMenuItem("Request Duel");
                 ToolStripMenuItem mnufriend = new ToolStripMenuItem("Add to friends");
+                ToolStripMenuItem mnuignore = new ToolStripMenuItem("Ignore User");
                 ToolStripMenuItem mnukick = new ToolStripMenuItem("Kick");
                 ToolStripMenuItem mnuban = new ToolStripMenuItem("Ban");
 
@@ -299,8 +367,9 @@ namespace YGOPro_Launcher.Chat
                 mnuprofile.Click += new EventHandler(ViewProfile);
                 mnuduel.Click += new EventHandler(RequestDuel);
                 mnufriend.Click += new EventHandler(AddFriend);
+                mnuignore.Click += new EventHandler(IgnoreUser);
 
-                mnu.Items.AddRange(new ToolStripItem[] {mnuprofile, mnuduel, mnufriend });
+                mnu.Items.AddRange(new ToolStripItem[] { mnuprofile, mnuduel, mnufriend, mnuignore });
 
                 if (Program.UserInfo.Rank > 0)
                     mnu.Items.Add(mnukick);
@@ -323,19 +392,99 @@ namespace YGOPro_Launcher.Chat
 
                 ContextMenuStrip mnu = new ContextMenuStrip();
                 ToolStripMenuItem mnuremovefriend = new ToolStripMenuItem("Remove Friend");
+                ToolStripMenuItem mnuprofile = new ToolStripMenuItem("View Profile");
+                ToolStripMenuItem mnuduel = new ToolStripMenuItem("Request Duel");
 
                 mnuremovefriend.Click += new EventHandler(RemoveFriend);
+                mnuprofile.Click += new EventHandler(ViewProfile);
+                mnuduel.Click += new EventHandler(RequestDuel);
 
-                mnu.Items.Add(mnuremovefriend);
+                mnu.Items.AddRange(new ToolStripMenuItem[] { mnuprofile, mnuduel, mnuremovefriend});
 
                 mnu.Show(FriendList, e.Location);
+            }
+        }
+
+        private void IgnoreList_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int index = IgnoreList.IndexFromPoint(e.Location);
+
+                if (index == -1) return;
+                else
+                    IgnoreList.SelectedIndex = index;
+
+                ContextMenuStrip mnu = new ContextMenuStrip();
+                ToolStripMenuItem mnuremoveignore = new ToolStripMenuItem("Remove");
+
+                mnuremoveignore.Click += new EventHandler(UnignoreUser);
+
+                mnu.Items.Add(mnuremoveignore);
+
+                mnu.Show(IgnoreList, e.Location);
             }
         }
 
         private void RemoveFriend(object sender, EventArgs e)
         {
             NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, FriendList.SelectedItem.ToString() + " has been removed from your friendlist."));
+            server.SendPacket("REMOVEFRIEND||" + FriendList.SelectedItem.ToString());
             FriendList.Items.Remove(FriendList.SelectedItem);
+            
+        }
+
+        private void IgnoreUser(object sender, EventArgs e)
+        {
+            if (UserList.SelectedItem.ToString() == Program.UserInfo.Username)
+            {
+                NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You cannot ignore yourself."));
+                return;
+            }
+            if (IgnoreContainsUser(UserList.SelectedItem.ToString()))
+            {
+                NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, UserList.SelectedItem.ToString() + " is already on your ignore list."));
+                return;
+            }
+
+            IgnoreList.Items.Add(UserList.SelectedItem.ToString());
+            SaveIgnoreList();
+            NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, UserList.SelectedItem.ToString() + " has been added to your ignore list."));
+        }
+
+        private void UnignoreUser(object sender, EventArgs e)
+        {
+            IgnoreList.Items.Remove(IgnoreList.SelectedItem);
+            SaveIgnoreList();
+            NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, UserList.SelectedItem.ToString() + " has been removed from your ignore list."));
+        }
+
+        private bool IgnoreContainsUser(string username)
+        {
+            foreach (object user in IgnoreList.Items)
+            {
+                if (username == user.ToString())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void SaveIgnoreList()
+        {
+            string ignorestring = null;
+            foreach (object user in IgnoreList.Items)
+            {
+                if (ignorestring == null)
+                    ignorestring += user.ToString();
+                else
+                    ignorestring += "," + user.ToString();
+            }
+            Program.Config.IgnoreList = ignorestring;
+            Program.Config.Save(Program.ConfigurationFilename);
+
         }
 
         private void BanUser(object sender, EventArgs e)
@@ -367,21 +516,27 @@ namespace YGOPro_Launcher.Chat
 
             NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, UserList.SelectedItem.ToString() + " has been added to your friend list."));
             FriendList.Items.Add(UserList.SelectedItem.ToString());
+            server.SendPacket("ADDFRIEND||" + UserList.SelectedItem.ToString());
         }
 
         private void ViewProfile(object sender, EventArgs e)
         {
-            Profile_frm profile = new Profile_frm(UserList.SelectedItem.ToString());
+            ListBox list = (UserTabs.SelectedTab.Name == "UserTab" ? UserList:FriendList);
+            Profile_frm profile = new Profile_frm(list.SelectedItem.ToString());
             profile.ShowDialog();
 
         }
 
         private void RequestDuel(object sender, EventArgs e)
         {
-            if (UserList.SelectedItem.ToString() == Program.UserInfo.Username)
+            ListBox list = (UserTabs.SelectedTab.Name == "UserTab" ? UserList : FriendList);
+            if (list.SelectedItem.ToString() == Program.UserInfo.Username)
                 NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You cannot duel request your self."));
             else
-                server.SendPacket("REQUESTDUEL||" + UserList.SelectedItem.ToString());
+            {
+                server.SendPacket("REQUESTDUEL||" + list.SelectedItem.ToString());
+                NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "Duel request sent to " + list.SelectedItem.ToString() + "."));
+            }
         }
 
         private void HandleDuelRequest(string command)
@@ -433,21 +588,52 @@ namespace YGOPro_Launcher.Chat
                 Graphics g = e.Graphics;
                 if (!UserData.ContainsKey(text))
                 {
-                    g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
-                    g.DrawString(text, e.Font, (selected) ? Brushes.Blue : Brushes.Black,
+                    g.FillRectangle((selected) ? new SolidBrush(Color.Blue) : new SolidBrush(Color.White), e.Bounds);
+                    g.DrawString(text, e.Font, (selected) ? Brushes.White : Brushes.Black,
                          UserList.GetItemRectangle(index).Location);
                     e.DrawFocusRectangle();
                     return;
                 }
 
-                g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+                g.FillRectangle((selected) ? new SolidBrush(Color.Blue) : new SolidBrush(Color.White), e.Bounds);
 
                 // Print text
-                g.DrawString(text , e.Font, (selected) ? Brushes.Blue :  ChatMessage.GetUserColor(UserData[text].Rank),
+                g.DrawString(text , e.Font, (selected) ? Brushes.White :  ChatMessage.GetUserColor(UserData[text].Rank),
                     UserList.GetItemRectangle(index).Location);
             }
 
             e.DrawFocusRectangle();
         }
+
+        private void UserList_DoubleClick(object sender, EventArgs e)
+        {
+            CreateChatWindow(UserList.SelectedItem.ToString(), true);
+        }
+
+        private void SortUserList()
+        {
+            lock (m_lock)
+            {
+                List<object> sortedlist = new List<object>();
+
+                foreach (object user in UserList.Items)
+                {
+                    if (UserData.ContainsKey(user.ToString()))
+                        if (UserData[user.ToString()].Rank > 0)
+                            sortedlist.Add(user.ToString());
+                }
+
+                foreach (object user in UserList.Items)
+                {
+                    if (UserData.ContainsKey(user.ToString()))
+                        if (UserData[user.ToString()].Rank == 0)
+                            sortedlist.Add(user.ToString());
+                }
+
+                UserList.Items.Clear();
+                UserList.Items.AddRange(sortedlist.ToArray());
+            }
+        }
+
     }
 }

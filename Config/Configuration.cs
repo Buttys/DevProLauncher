@@ -31,6 +31,7 @@ namespace YGOPro_Launcher.Config
         public bool RandomPlacing = false;
         public bool AutoChain = true;
         public bool NoChainDelay = false;
+        public string IgnoreList = "";
 
         //quickhost settings
         public string BanList = "";
@@ -181,6 +182,9 @@ namespace YGOPro_Launcher.Config
                     case "nochaindelay":
                         NoChainDelay = Convert.ToBoolean(value);
                         break;
+                    case "ignorelist":
+                        IgnoreList = value;
+                        break;
                 }
             }
 
@@ -242,6 +246,9 @@ namespace YGOPro_Launcher.Config
             writer.WriteLine("gamename = " + GameName);
             if (DebugMode == true)
                 writer.WriteLine("debugmode = " + DebugMode);
+            writer.WriteLine("");
+            writer.WriteLine("#Chat Settings");
+            writer.WriteLine("ignorelist = " + IgnoreList);
 
             writer.Close();
         }

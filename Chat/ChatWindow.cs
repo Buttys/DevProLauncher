@@ -9,12 +9,13 @@ namespace YGOPro_Launcher.Chat
     {
         RichTextBox ChatLog = new RichTextBox();
         public bool isprivate = false;
-        public ChatWindow(string name)
+        public ChatWindow(string name,bool privatewindow)
         {
             this.Name = name;
             this.Text = name;
             this.Controls.Add(ChatLog);
             ChatLog.Dock = DockStyle.Fill;
+            isprivate = privatewindow;
 
             ChatLog.KeyDown += new KeyEventHandler(ChatLog_KeyDown);
         }
@@ -37,7 +38,7 @@ namespace YGOPro_Launcher.Chat
                 if (ChatLog.Text != "")//start a new line unless theres no text
                         ChatLog.AppendText(Environment.NewLine);
                ChatLog.Select(ChatLog.TextLength, 0);
-                if (message.Type == MessageType.Message)
+                if (message.Type == MessageType.Message || message.Type == MessageType.PrivateMessage)
                 {
                     WriteText("<", Color.Black);
                     WriteText(message.From.Username, message.UserColor);
@@ -46,10 +47,11 @@ namespace YGOPro_Launcher.Chat
 
                 }
                 else if (message.Type == MessageType.System || message.Type == MessageType.Join 
-                    || message.Type == MessageType.Leave || message.Type == MessageType.Server)
+                    || message.Type == MessageType.Leave || message.Type == MessageType.Server ||
+                    message.Type == MessageType.Me)
                 {
                     WriteText(message.FormattedMessage, message.MessageColor);
-                }                    
+                }
                 
                 ChatLog.SelectionStart = ChatLog.TextLength;
                 ChatLog.SelectionLength = 0;

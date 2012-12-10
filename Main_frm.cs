@@ -43,7 +43,7 @@ namespace YGOPro_Launcher
             TabPage AboutTab = new TabPage() { Text = "About", Name = "About" };
             AboutTab.Controls.Add(new About_frm());                    
             
-            TabPage ChatTab = new TabPage() { Text = "Chat (Alpha)", Name = "Chat (Alpha)" };
+            TabPage ChatTab = new TabPage() { Text = "Chat (Beta)", Name = "Chat (Beta)" };
             ChatTab.Controls.Add(new Chat_frm());
 
             if (Program.UserInfo.Rank > 0)

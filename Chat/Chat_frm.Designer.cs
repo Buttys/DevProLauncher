@@ -28,64 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.ChatInput = new System.Windows.Forms.TextBox();
             this.UserTabs = new System.Windows.Forms.TabControl();
             this.UserTab = new System.Windows.Forms.TabPage();
             this.UserList = new System.Windows.Forms.ListBox();
             this.FriendTab = new System.Windows.Forms.TabPage();
             this.FriendList = new System.Windows.Forms.ListBox();
+            this.IgnoreTab = new System.Windows.Forms.TabPage();
+            this.IgnoreList = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.ChatInput = new System.Windows.Forms.TextBox();
             this.ChatTabs = new YGOPro_Launcher.Chat.FixedTabControl();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.UserTabs.SuspendLayout();
             this.UserTab.SuspendLayout();
             this.FriendTab.SuspendLayout();
+            this.IgnoreTab.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.UserTabs, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(715, 379);
-            this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.76224F));
-            this.tableLayoutPanel2.Controls.Add(this.ChatInput, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.ChatTabs, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.87599F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.124011F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(569, 373);
-            this.tableLayoutPanel2.TabIndex = 1;
-            // 
-            // ChatInput
-            // 
-            this.ChatInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChatInput.Location = new System.Drawing.Point(3, 349);
-            this.ChatInput.Name = "ChatInput";
-            this.ChatInput.Size = new System.Drawing.Size(563, 20);
-            this.ChatInput.TabIndex = 0;
             // 
             // UserTabs
             // 
             this.UserTabs.Controls.Add(this.UserTab);
             this.UserTabs.Controls.Add(this.FriendTab);
+            this.UserTabs.Controls.Add(this.IgnoreTab);
             this.UserTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UserTabs.Location = new System.Drawing.Point(578, 3);
             this.UserTabs.Name = "UserTabs";
@@ -136,6 +102,49 @@
             this.FriendList.Size = new System.Drawing.Size(120, 341);
             this.FriendList.TabIndex = 0;
             // 
+            // IgnoreTab
+            // 
+            this.IgnoreTab.Controls.Add(this.IgnoreList);
+            this.IgnoreTab.Location = new System.Drawing.Point(4, 22);
+            this.IgnoreTab.Name = "IgnoreTab";
+            this.IgnoreTab.Size = new System.Drawing.Size(126, 347);
+            this.IgnoreTab.TabIndex = 2;
+            this.IgnoreTab.Text = "Ignore";
+            this.IgnoreTab.UseVisualStyleBackColor = true;
+            // 
+            // IgnoreList
+            // 
+            this.IgnoreList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.IgnoreList.FormattingEnabled = true;
+            this.IgnoreList.IntegralHeight = false;
+            this.IgnoreList.Location = new System.Drawing.Point(0, 0);
+            this.IgnoreList.Name = "IgnoreList";
+            this.IgnoreList.Size = new System.Drawing.Size(126, 347);
+            this.IgnoreList.TabIndex = 1;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.ChatInput, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.ChatTabs, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(569, 373);
+            this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // ChatInput
+            // 
+            this.ChatInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChatInput.Location = new System.Drawing.Point(3, 351);
+            this.ChatInput.Name = "ChatInput";
+            this.ChatInput.Size = new System.Drawing.Size(563, 20);
+            this.ChatInput.TabIndex = 0;
+            // 
             // ChatTabs
             // 
             this.ChatTabs.Alignment = System.Windows.Forms.TabAlignment.Bottom;
@@ -143,8 +152,23 @@
             this.ChatTabs.Location = new System.Drawing.Point(3, 3);
             this.ChatTabs.Name = "ChatTabs";
             this.ChatTabs.SelectedIndex = 0;
-            this.ChatTabs.Size = new System.Drawing.Size(563, 340);
+            this.ChatTabs.Size = new System.Drawing.Size(563, 342);
             this.ChatTabs.TabIndex = 2;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.UserTabs, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(715, 379);
+            this.tableLayoutPanel1.TabIndex = 1;
             // 
             // Chat_frm
             // 
@@ -155,27 +179,32 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Chat_frm";
             this.Text = "Chat_frm";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.UserTabs.ResumeLayout(false);
             this.UserTab.ResumeLayout(false);
             this.FriendTab.ResumeLayout(false);
+            this.IgnoreTab.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TextBox ChatInput;
-        private FixedTabControl ChatTabs;
         private System.Windows.Forms.TabControl UserTabs;
         private System.Windows.Forms.TabPage UserTab;
         private System.Windows.Forms.ListBox UserList;
         private System.Windows.Forms.TabPage FriendTab;
         private System.Windows.Forms.ListBox FriendList;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TextBox ChatInput;
+        private FixedTabControl ChatTabs;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TabPage IgnoreTab;
+        private System.Windows.Forms.ListBox IgnoreList;
+
+
 
 
     }

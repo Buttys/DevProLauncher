@@ -28,6 +28,7 @@ namespace YGOPro_Launcher.Chat
         public ServerResponse RemoveUser;
         public ServerResponse Login;
         public ServerResponse DuelRequest;
+        public ServerResponse FriendList;
         public ServerMessage Message;
         public ServerMessage Error;
 
@@ -77,7 +78,7 @@ namespace YGOPro_Launcher.Chat
                 return;
             try
             {
-                byte[] data = Encoding.Default.GetBytes(packet + "\n");
+                byte[] data = Encoding.UTF8.GetBytes(packet + "\n");
                 m_client.Client.Send(data, data.Length, SocketFlags.None);
             }
             catch (Exception)
@@ -147,11 +148,17 @@ namespace YGOPro_Launcher.Chat
                 if (RemoveUser != null)
                     RemoveUser(args[1]);
             }
+            else if (cmd == "FRIENDS")
+            {
+                if (FriendList != null)
+                    FriendList(args[1]);
+            }
             else if (cmd == "LOGIN")
             {
                 if (args[1] != "")
                 {
                     SendPacket("GETUSERS");
+                    SendPacket("GETFRIENDS");
                 }
                 if (Login != null)
                     Login(args[1]);
@@ -160,7 +167,7 @@ namespace YGOPro_Launcher.Chat
             {
                 string[] userinfo = args[1].Split(',');
                 if (Message != null)
-                    Message(new ChatMessage(MessageType.Message, new UserData() { Username = userinfo[0], Rank = Convert.ToInt32(userinfo[1]) }, args[2], args[3],true));
+                    Message(new ChatMessage((MessageType)Convert.ToInt32(args[3]), new UserData() { Username = userinfo[0], Rank = Convert.ToInt32(userinfo[1]) }, args[2], args[4], true));
             }
             else if (cmd == "STARTDUEL")
             {
@@ -180,7 +187,7 @@ namespace YGOPro_Launcher.Chat
             else if (cmd == "ACCEPTDUEL")
             {
                 if (Message != null)
-                    Message(new ChatMessage(MessageType.System,"DevPro", args[1] + " has accepted your duel request."));
+                    Message(new ChatMessage(MessageType.System, "DevPro", args[1] + " has accepted your duel request."));
             }
             else if (cmd == "ADMIN")
             {

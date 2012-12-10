@@ -14,9 +14,9 @@ namespace YGOPro_Launcher.Chat
         public MessageType Type;
         
 
-        public ChatMessage(MessageType type, UserData user,string channel,string message,bool isbinary)
+        public ChatMessage(MessageType type, UserData user,string channel,string message,bool isencoded)
         {
-            if (isbinary) FormattedMessage = LauncherHelper.BinaryToString(message);
+            if (isencoded) FormattedMessage = LauncherHelper.Base64toString(message);
             else FormattedMessage = message;
             Type = type;
             From = user;
