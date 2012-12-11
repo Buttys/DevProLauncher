@@ -26,6 +26,7 @@
   <RegistMsb3>Please enter username.</RegistMsb3>
   <RegistMsb4>Registering Complete!</RegistMsb4>
   <RegistMsb5>Username Exists</RegistMsb5>
+  <RegistMsb6>Username cannot contain special characters</RegistMsb6>
   <GameServerInfo>Server Details</GameServerInfo>
   <GameTabRanked>Ranked</GameTabRanked>
   <GameTabUnranked>Unranked</GameTabUnranked>
