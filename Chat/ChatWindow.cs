@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using YGOPro_Launcher.Chat.Enums;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace YGOPro_Launcher.Chat
 {
@@ -18,6 +19,8 @@ namespace YGOPro_Launcher.Chat
             isprivate = privatewindow;
 
             ChatLog.KeyDown += new KeyEventHandler(ChatLog_KeyDown);
+            ChatLog.MouseUp += new MouseEventHandler(Chat_MouseUp);
+            ChatLog.LinkClicked += new LinkClickedEventHandler(ChatLog_LinkClicked);
         }
 
         private void ChatLog_KeyDown(object sender, KeyEventArgs e)
@@ -65,6 +68,32 @@ namespace YGOPro_Launcher.Chat
             ChatLog.Select(ChatLog.TextLength, 0);
             ChatLog.SelectionColor = color;
             ChatLog.AppendText(text);
+        }
+
+        private void Chat_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (ChatLog.SelectedText == "") return;
+                ContextMenuStrip mnu = new ContextMenuStrip();
+                ToolStripMenuItem mnucopy = new ToolStripMenuItem("Copy");
+
+                mnucopy.Click += new EventHandler(CopyText);
+
+                mnu.Items.Add(mnucopy);
+
+                mnu.Show(ChatLog, e.Location);
+            }
+        }
+
+        private void CopyText(object sender, EventArgs e)
+        {
+            Clipboard.SetText(ChatLog.SelectedText);
+        }
+
+        private void ChatLog_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            Process.Start(e.LinkText);
         }
 
     }

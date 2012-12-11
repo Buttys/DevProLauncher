@@ -44,7 +44,7 @@ namespace YGOPro_Launcher.Chat
                     case MessageType.System:
                         return Color.Purple;
                     case MessageType.Me:
-                        return Color.Orange;
+                        return Color.DeepPink;
                     case MessageType.Join:
                         return Color.Green;
                     case MessageType.Leave:

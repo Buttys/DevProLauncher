@@ -37,8 +37,8 @@
             this.IgnoreList = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ChatInput = new System.Windows.Forms.TextBox();
-            this.ChatTabs = new YGOPro_Launcher.Chat.FixedTabControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ChatTabs = new YGOPro_Launcher.Chat.FixedTabControl();
             this.UserTabs.SuspendLayout();
             this.UserTab.SuspendLayout();
             this.FriendTab.SuspendLayout();
@@ -95,6 +95,7 @@
             // FriendList
             // 
             this.FriendList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FriendList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.FriendList.FormattingEnabled = true;
             this.FriendList.IntegralHeight = false;
             this.FriendList.Location = new System.Drawing.Point(3, 3);
@@ -145,16 +146,6 @@
             this.ChatInput.Size = new System.Drawing.Size(563, 20);
             this.ChatInput.TabIndex = 0;
             // 
-            // ChatTabs
-            // 
-            this.ChatTabs.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.ChatTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChatTabs.Location = new System.Drawing.Point(3, 3);
-            this.ChatTabs.Name = "ChatTabs";
-            this.ChatTabs.SelectedIndex = 0;
-            this.ChatTabs.Size = new System.Drawing.Size(563, 342);
-            this.ChatTabs.TabIndex = 2;
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -169,6 +160,17 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(715, 379);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // ChatTabs
+            // 
+            this.ChatTabs.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.ChatTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChatTabs.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.ChatTabs.Location = new System.Drawing.Point(3, 3);
+            this.ChatTabs.Name = "ChatTabs";
+            this.ChatTabs.SelectedIndex = 0;
+            this.ChatTabs.Size = new System.Drawing.Size(563, 342);
+            this.ChatTabs.TabIndex = 2;
             // 
             // Chat_frm
             // 

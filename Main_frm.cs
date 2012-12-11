@@ -49,7 +49,6 @@ namespace YGOPro_Launcher
             if (Program.UserInfo.Rank > 0)
             {
                 ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
-                CreateBrowserWindow("Ranking"),
                 CreateBrowserWindow("Chat"),
                 ChatTab,
                 CreateBrowserWindow("Youtube"),
@@ -59,7 +58,6 @@ namespace YGOPro_Launcher
             else
             {
                 ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,
-                CreateBrowserWindow("Ranking"),
                 CreateBrowserWindow("Chat"),
                 ChatTab,
                 CreateBrowserWindow("Youtube"),
