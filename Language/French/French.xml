@@ -21,11 +21,12 @@
   <RegistLbPw2>Confirmer-le :</RegistLbPw2>
   <RegistBtnRegister>S'inscrire</RegistBtnRegister>
   <RegistBtnCancel>Annuler</RegistBtnCancel>
-  <RegistMsb1>Veuillez confirmer votre mot de passe</RegistMsb1>
-  <RegistMsb2>Veuillez entrer votre mot de passe</RegistMsb2>
+  <RegistMsb1>Veuillez confirmer votre mot de passe.</RegistMsb1>
+  <RegistMsb2>Veuillez entrer votre mot de passe.</RegistMsb2>
   <RegistMsb3>Veuillez entrer votre profil.</RegistMsb3>
   <RegistMsb4>Enregistrement réussi!</RegistMsb4>
-  <RegistMsb5>Profil déjà existant</RegistMsb5>
+  <RegistMsb5>Profil déjà existant.</RegistMsb5>
+  <RegistMsb6>Le profil ne peut contenir de caractères spéciaux.</RegistMsb6>
   <GameServerInfo>Détails du serveur</GameServerInfo>
   <GameTabRanked>Classé</GameTabRanked>
   <GameTabUnranked>Non classé</GameTabUnranked>
