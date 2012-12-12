@@ -248,7 +248,7 @@ namespace YGOPro_Launcher.Chat
                     }
                     else if (cmd == "me")
                     {
-                        string messagetext = ChatInput.Text.Replace("/me", Program.UserInfo.Username);
+                        string messagetext = ChatInput.Text.Substring(3);
                         server.SendPacket("MSG||" + CurrentChatWindow().Name + "||" + (int)MessageType.Me + "||" + LauncherHelper.StringToBase64(messagetext));
                     }
                     else if (cmd == "join")

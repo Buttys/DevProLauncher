@@ -64,7 +64,7 @@ namespace YGOPro_Launcher.Chat
                     case 0:
                         return Color.Black;
                     case 1:
-                        return Color.Pink;
+                        return Color.RoyalBlue;
                     case 2:
                         return Color.Red;
                     case 99:
@@ -82,7 +82,7 @@ namespace YGOPro_Launcher.Chat
                     case 0:
                         return Brushes.Black;
                     case 1:
-                        return Brushes.Pink;
+                        return Brushes.RoyalBlue;
                     case 2:
                         return Brushes.Red;
                     case 99:

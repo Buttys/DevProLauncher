@@ -129,14 +129,14 @@ namespace YGOPro_Launcher
 
         public static string StringToBase64(string text)
         {
-            byte[] bytes = Encoding.ASCII.GetBytes(text);
-            return Convert.ToBase64String(bytes);
+                byte[] bytes = Encoding.UTF8.GetBytes(text);
+                return Convert.ToBase64String(bytes);
         }
 
         public static string Base64toString(string text)
         {
-            byte[] bytes = Convert.FromBase64String(text);
-            return Encoding.ASCII.GetString(bytes);
+                byte[] bytes = Convert.FromBase64String(text);
+                return Encoding.UTF8.GetString(bytes);
         }
 
         public static string[] OpenFileWindow(string title, string startpath, string filefilter, bool multiselect)
