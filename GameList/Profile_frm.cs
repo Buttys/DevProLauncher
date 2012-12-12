@@ -20,7 +20,6 @@ namespace YGOPro_Launcher
             InitializeComponent();
             ApplyTranslation();
             Username.Text += Program.UserInfo.Username;
-            wld.Text += Program.UserInfo.Wins + "/" + Program.UserInfo.Loses + "/" + Program.UserInfo.Draws;
             Program.ServerConnection.ProfileMessage += new NetClient.ServerResponse(ProfileUpdate);
 
         }
