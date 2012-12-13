@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Threading;
 using YGOPro_Launcher.Chat.Enums;
 using System.Media;
+using System.Diagnostics;
 
 namespace YGOPro_Launcher.Chat
 {
@@ -16,6 +17,7 @@ namespace YGOPro_Launcher.Chat
     {
         ChatClient server = new ChatClient();
         Dictionary<string,UserData> UserData = new Dictionary<string,UserData>();
+        Dictionary<string, PmWindow_frm> PmWindows = new Dictionary<string, PmWindow_frm>();
         
         public Chat_frm()
         {
@@ -43,7 +45,14 @@ namespace YGOPro_Launcher.Chat
             FriendList.MouseUp += new MouseEventHandler(FriendList_MouseUp);
             IgnoreList.MouseUp += IgnoreList_MouseUp;
 
+            DonateIMG.Click += new EventHandler(DonateClick);
+
             LoadIgnoreList();
+        }
+
+        private void DonateClick(object sender, EventArgs e)
+        {
+            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KH8843F5JWUNS");
         }
 
         public void LoadIgnoreList()
@@ -99,6 +108,12 @@ namespace YGOPro_Launcher.Chat
             }
         }
 
+        private void Chat_frm_FormClosed(object sender, EventArgs e)
+        {
+            PmWindow_frm form = (PmWindow_frm)sender;
+            PmWindows.Remove(form.Name);
+        }
+
         private void NewMessage(ChatMessage message)
         {
             if (InvokeRequired)
@@ -115,20 +130,39 @@ namespace YGOPro_Launcher.Chat
                         return;
                 }
 
-                ChatWindow window = GetChatWindow(message.Channel);
-                if (window == null)
+                if (Program.Config.PmWindows && message.Type == MessageType.PrivateMessage)
                 {
-                    ChatTabs.TabPages.Add(new ChatWindow(message.Channel,true));
-                    window = GetChatWindow(message.Channel);
-                    window.WriteMessage(message);
+                    if (PmWindows.ContainsKey(message.Channel))
+                    {
+                        PmWindows[message.Channel].WriteMessage(message);
+                    }
+                    else
+                    {
+                        PmWindows.Add(message.Channel, new PmWindow_frm(message.Channel, true,server));
+                        PmWindows[message.Channel].WriteMessage(message);
+                        PmWindows[message.Channel].Show();
+                        PmWindows[message.Channel].FormClosed += Chat_frm_FormClosed;
+                    }
+
                 }
                 else
                 {
-                    window.WriteMessage(message);
-                }
 
-                if(ChatTabs.SelectedTab.Name != window.Name && window.isprivate)
-                    SystemSounds.Beep.Play();
+                    ChatWindow window = GetChatWindow(message.Channel);
+                    if (window == null)
+                    {
+                        ChatTabs.TabPages.Add(new ChatWindow(message.Channel, true));
+                        window = GetChatWindow(message.Channel);
+                        window.WriteMessage(message);
+                    }
+                    else
+                    {
+                        window.WriteMessage(message);
+                    }
+
+                    if (ChatTabs.SelectedTab.Name != window.Name && window.isprivate)
+                        SystemSounds.Beep.Play();
+                }
             }
         }
 
@@ -175,8 +209,13 @@ namespace YGOPro_Launcher.Chat
                         UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
                     else
                         UserData[info[0]] = new UserData(){ Username = info[0], Rank = Int32.Parse(info[1]) };
+                
+                if(!Program.Config.HideJoinLeave)
                     NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", info[0] + " has joined.", false));
-                    if(UserData[info[0]].Rank > 0)
+                else if(FriendListContains(info[0]))
+                    NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", "Your friend " + info[0] + " has logged in.", false));
+                    
+                if(UserData[info[0]].Rank > 0)
                         SortUserList();
             }
         }
@@ -195,7 +234,10 @@ namespace YGOPro_Launcher.Chat
                         {
                             if (UserData.ContainsKey(user.ToString()))
                                 UserList.Items.Remove(user);
-                            NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", user + " has left.", false));
+                            if (!Program.Config.HideJoinLeave)
+                                NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", user + " has left.", false));
+                            else if (FriendListContains(username))
+                                NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", "Your friend " + user + " has logged off.", false));
                             return;
                         }
                     }
@@ -446,6 +488,17 @@ namespace YGOPro_Launcher.Chat
             return false;
         }
 
+        private bool FriendListContains(string username)
+        {
+            foreach (object user in FriendList.Items)
+            {
+                if (username == user.ToString())
+                    return true;
+            }
+
+            return false;
+        }
+
         private void IgnoreUser(object sender, EventArgs e)
         {
             if (UserList.SelectedItem.ToString() == Program.UserInfo.Username)
@@ -495,7 +548,7 @@ namespace YGOPro_Launcher.Chat
                     ignorestring += "," + user.ToString();
             }
             Program.Config.IgnoreList = ignorestring;
-            Program.Config.Save(Program.ConfigurationFilename);
+            Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
 
         }
 
@@ -569,6 +622,12 @@ namespace YGOPro_Launcher.Chat
                 }
                 else if (cmd == "REQUEST")
                 {
+                    if (Program.Config.RefuseDuelRequests)
+                    {
+                        server.SendPacket("REFUSEDUEL||" + args[1]);
+                        return;
+                    }
+
                     if (MessageBox.Show(args[1] + " has challenged you to a ranked duel! Do you accept?", "Duel Request", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                     {
                         NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You accepted " + args[1] + " duel request."));
@@ -600,17 +659,17 @@ namespace YGOPro_Launcher.Chat
                 Graphics g = e.Graphics;
                 if (!UserData.ContainsKey(text))
                 {
-                    g.FillRectangle((selected) ? new SolidBrush(Color.Blue) : new SolidBrush(Color.White), e.Bounds);
+                    g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black): new SolidBrush(Color.Blue)) : new SolidBrush(Color.White), e.Bounds);
                     g.DrawString(text, e.Font, (selected) ? Brushes.White : Brushes.Black,
                          UserList.GetItemRectangle(index).Location);
                     e.DrawFocusRectangle();
                     return;
                 }
 
-                g.FillRectangle((selected) ? new SolidBrush(Color.Blue) : new SolidBrush(Color.White), e.Bounds);
+                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Color.White), e.Bounds);
 
                 // Print text
-                g.DrawString(text , e.Font, (selected) ? Brushes.White :  ChatMessage.GetUserColor(UserData[text].Rank),
+                g.DrawString((Program.Config.ColorBlindMode && UserData[text].Rank > 0 ? "[Admin] " + text: text), e.Font, (selected) ? Brushes.White :(Program.Config.ColorBlindMode ? Brushes.Black:  ChatMessage.GetUserColor(UserData[text].Rank)),
                     UserList.GetItemRectangle(index).Location);
             }
 
@@ -629,10 +688,11 @@ namespace YGOPro_Launcher.Chat
                 string text = FriendList.Items[index].ToString();
                 Graphics g = e.Graphics;
 
-                g.FillRectangle((selected) ? new SolidBrush(Color.Blue) : new SolidBrush(Color.White), e.Bounds);
+                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black): new SolidBrush(Color.Blue)) : new SolidBrush(Color.White), e.Bounds);
 
                 // Print text
-                g.DrawString(text, e.Font, (selected) ? Brushes.White : (UserListContains(text) ? Brushes.Green : Brushes.Red),
+                g.DrawString((Program.Config.ColorBlindMode ? (UserListContains(text) ? text +" (Online)" :text + " (Offline)"):text), e.Font, 
+                    (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black: (UserListContains(text) ? Brushes.Green : Brushes.Red)),
                     FriendList.GetItemRectangle(index).Location);
             }
 
@@ -664,6 +724,47 @@ namespace YGOPro_Launcher.Chat
 
                 UserList.Items.Clear();
                 UserList.Items.AddRange(sortedlist.ToArray());
+        }
+
+        private void OptionsBtn_Click(object sender, EventArgs e)
+        {
+            ChatOptions_frm form = new ChatOptions_frm();
+
+            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ApplyNewSettings();
+                Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
+            }
+        }
+
+        private void ApplyNewSettings()
+        {
+            foreach (ChatWindow chat in ChatTabs.TabPages)
+            {
+                chat.ApplyNewSettings();
+                SortUserList();
+            }
+            if (!Program.Config.PmWindows)
+            {
+                List<string> keys = new List<string>();
+                foreach (string key in PmWindows.Keys)
+                    keys.Add(key);
+                foreach (string key in keys)
+                    PmWindows[key].Close();
+            }
+            else
+            {
+                List<ChatWindow> removelist = new List<ChatWindow>();
+                foreach (ChatWindow tab in ChatTabs.TabPages)
+                {
+                    if (tab.isprivate)
+                        removelist.Add(tab);
+                }
+
+                foreach (ChatWindow tab in removelist)
+                    ChatTabs.TabPages.Remove(tab);
+            }
+
         }
 
     }

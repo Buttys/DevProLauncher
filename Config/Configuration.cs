@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace YGOPro_Launcher.Config
 {
@@ -45,212 +47,36 @@ namespace YGOPro_Launcher.Config
         public string GameName = LauncherHelper.GenerateString().Substring(0, 5);
         public bool DebugMode = false;
 
-        public void Load(string configFileName)
-        {
-            if (!File.Exists(configFileName))
-                return;
+        //chat settings
+        public bool HideJoinLeave = true;
+        public bool PmWindows = true;
+        public bool ColorBlindMode = false;
+        public bool ShowTimeStamp = false;
+        public bool RefuseDuelRequests = false;
 
-            var lines = File.ReadAllLines(configFileName);
+        public string ChatBGColor = "White";
+        public string NormalTextColor = "Black";
+        public string Level99Color = "Green";
+        public string Level2Color = "Red";
+        public string Level1Color = "RoyalBlue";
+        public string Level0Color = "Black";
+        public string ServerMsgColor = "Red";
+        public string MeMsgColor = "DeepPink";
+        public string JoinColor = "Green";
+        public string LeaveColor = "Gray";
+        public string SystemColor = "Purple";
 
-            foreach (string nonTrimmerLine in lines) {
-                string line = nonTrimmerLine.Trim();
-                if (line.Equals(string.Empty) || !line.Contains("=") || line.StartsWith("#")) continue;
+        public string chtBanList = "";
+        public string chtTimeLimit = "3 minutes";
+        public string chtCardRules = "OCG/TCG";
+        public string chtMode = "Single";
+        public bool chtEnablePrority = false;
+        public bool chtDisableCheckDeck = false;
+        public bool chtDisableShuffleDeck = false;
+        public string chtLifepoints = "8000";
+        public string chtGameName = LauncherHelper.GenerateString().Substring(0, 5);
+        public bool chtDebugMode = false;
 
-                string[] data = line.Split('=');
-                string variable = data[0].Trim().ToLower();
-                string value = data[1].Trim();
-                switch (variable)
-                {
-                    case "servername":
-                        ServerName = value;
-                        break;
-                    case "serverport":
-                        ServerPort = Convert.ToInt32(value);
-                        break;
-                    case "chatport":
-                        ChatPort = Convert.ToInt32(value);
-                        break;
-                    case "serveraddress":
-                        ServerAddress = value;
-                        break;
-                    case "serverinfoaddress":
-                        ServerInfoAddress = value;
-                        break;
-                    case "gameport":
-                        GamePort = Convert.ToInt32(value);
-                        break;
-                    case "gameexe":
-                        GameExe = value;
-                        break;
-                    case "launcherdir":
-                        LauncherDir = value;
-                        break;
-                    case "updateraddress":
-                        UpdaterAddress = value;
-                        break;
-                    case "defualtusername":
-                        DefaultUsername = value;
-                        break;
-                    case "defualtdeck":
-                        DefaultDeck = value;
-                        break;
-                    case "enablesound":
-                        EnableSound = Convert.ToBoolean(value);
-                        break;
-                    case "enablemusic":
-                        EnableMusic = Convert.ToBoolean(value);
-                        break;
-                    case "enabled3d":
-                        Enabled3D = Convert.ToBoolean(value);
-                        break;
-                    case "antialias":
-                        Antialias = Convert.ToInt32(value);
-                        break;
-                    case "gamefont":
-                        GameFont = value;
-                        break;
-                    case "fontsize":
-                        FontSize = Convert.ToInt32(value);
-                        break;
-                    case "language":
-                        Language = value;
-                        break;
-                    case "fullscreen":
-                        Fullscreen = Convert.ToBoolean(value);
-                        break;
-                    case "cardrules":
-                        CardRules = value;
-                        break;
-                    case "banlist":
-                        BanList = value;
-                        break;
-                    case "timelimit":
-                        TimeLimit = value;
-                        break;
-                    case "mode":
-                        Mode = value;
-                        break;
-                    case "enablepriority":
-                        EnablePrority = Convert.ToBoolean(value);
-                        break;
-                    case "disablecheckdeck":
-                        DisableCheckDeck = Convert.ToBoolean(value);
-                        break;
-                    case "disableshuffledeck":
-                        DisableShuffleDeck = Convert.ToBoolean(value);
-                        break;
-                    case "lifepoints":
-                        Lifepoints = value;
-                        break;
-                    case "gamename":
-                        GameName = value;
-                        break;
-                    case "debugmode":
-                        DebugMode = Convert.ToBoolean(value);
-                        break;
-                    case "autologin":
-                        AutoLogin = Convert.ToBoolean(value);
-                        break;
-                    case "password":
-                        string builtpassword = "";
-                        if (data.Length > 2)
-                        {
-                            for (int i = 1; i < data.Length; i++)
-                            {
-                                if (data[i] == "")
-                                    builtpassword += "=";
-                                else
-                                    builtpassword += data[i].Trim();
-                            }
-                            Password = builtpassword;
-                        }
-                        else
-                            Password = value;
-                        break;
-                    case "useskin":
-                        UseSkin = Convert.ToBoolean(value);
-                        break;
-                    case "autoplacing":
-                        AutoPlacing = Convert.ToBoolean(value);
-                        break;
-                    case "randomplacing":
-                        RandomPlacing = Convert.ToBoolean(value);
-                        break;
-                    case "autochain":
-                        AutoChain = Convert.ToBoolean(value);
-                        break;
-                    case "nochaindelay":
-                        NoChainDelay = Convert.ToBoolean(value);
-                        break;
-                    case "ignorelist":
-                        IgnoreList = value;
-                        break;
-                }
-            }
 
-            if (DebugMode)
-            {
-                ServerName = "Debug";
-                ServerAddress = "86.0.24.143";
-                ServerPort = 7922;
-                GamePort = 7911;
-                ChatPort = 6666;
-            }
-        }
-
-        public void Save(string configFileName)
-        {
-            if ((File.Exists(configFileName)))
-                File.Delete(configFileName);
-
-            StreamWriter writer = new StreamWriter(configFileName);
-
-            writer.WriteLine("#Server Settings");
-            writer.WriteLine("serveraddress = " + ServerAddress);
-            writer.WriteLine("serverport = " + ServerPort);
-            writer.WriteLine("chatport = " + ChatPort);
-            writer.WriteLine("gameport = " + GamePort);
-            writer.WriteLine("updateraddress = " + UpdaterAddress);
-            writer.WriteLine("serverinfoaddress = " + ServerInfoAddress);
-            writer.WriteLine("");
-            writer.WriteLine("#Game Settings");
-            writer.WriteLine("launcherdir = " + LauncherDir);
-            writer.WriteLine("gameexe = " + GameExe);
-            writer.WriteLine("defualtusername = " + DefaultUsername);
-            writer.WriteLine("defualtdeck = " + DefaultDeck);
-            writer.WriteLine("antialias = " + Antialias);
-            writer.WriteLine("enablesound = " + EnableSound);
-            writer.WriteLine("enablemusic = " + EnableMusic);
-            writer.WriteLine("enabled3d = " + Enabled3D);
-            writer.WriteLine("fullscreen = " + Fullscreen);
-            writer.WriteLine("autologin = " + AutoLogin);
-            writer.WriteLine("password = " + Password);
-            writer.WriteLine("language = " + Language);
-            writer.WriteLine("textfont = " + GameFont);
-            writer.WriteLine("fontsize = " + FontSize);
-            writer.WriteLine("useskin = " + UseSkin);
-            writer.WriteLine("autoplacing = " + AutoPlacing);
-            writer.WriteLine("randomplacing = " + RandomPlacing);
-            writer.WriteLine("autochain = " + AutoChain);
-            writer.WriteLine("nochaindelay = " + NoChainDelay);
-            writer.WriteLine("");
-            writer.WriteLine("#Quick Host Settings");
-            writer.WriteLine("banlist = " + BanList);
-            writer.WriteLine("cardrules = " + CardRules);
-            writer.WriteLine("mode = " + Mode);
-            writer.WriteLine("timelimit = " + TimeLimit);
-            writer.WriteLine("enableprority = " + EnablePrority);
-            writer.WriteLine("disablecheckdeck = " + DisableCheckDeck);
-            writer.WriteLine("disableshuffledeck = " + DisableShuffleDeck);
-            writer.WriteLine("lifepoints = " + Lifepoints);
-            writer.WriteLine("gamename = " + GameName);
-            if (DebugMode == true)
-                writer.WriteLine("debugmode = " + DebugMode);
-            writer.WriteLine("");
-            writer.WriteLine("#Chat Settings");
-            writer.WriteLine("ignorelist = " + IgnoreList);
-
-            writer.Close();
-        }
     }
 }

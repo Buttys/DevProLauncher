@@ -95,7 +95,7 @@ namespace YGOPro_Launcher
             Program.Config.RandomPlacing = RandomPlacing.Checked;
             Program.Config.AutoChain = AutoChain.Checked;
             Program.Config.NoChainDelay = NoDelay.Checked;
-            Program.Config.Save(Program.ConfigurationFilename);
+            Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
             DialogResult = DialogResult.OK;
 
         }
@@ -127,7 +127,7 @@ namespace YGOPro_Launcher
             {
                 Program.Config.Password = "";
                 Program.Config.AutoLogin = false;
-                Program.Config.Save(Program.ConfigurationFilename);
+                Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
             }
         }
 

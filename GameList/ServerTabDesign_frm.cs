@@ -186,7 +186,7 @@ namespace YGOPro_Launcher
         private void DeckSelect_SelectedValueChanged(object sender, EventArgs e)
         {
             Program.Config.DefaultDeck = DeckSelect.SelectedItem.ToString();
-            Program.Config.Save(Program.ConfigurationFilename);
+            Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
         }
 
         private void GameType_SelectedIndexChanged(object sender, EventArgs e)

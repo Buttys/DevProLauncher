@@ -29,6 +29,7 @@ namespace YGOPro_Launcher
                 ShuffleDeck.Checked = Program.Config.DisableShuffleDeck;
                 CheckDeck.Checked = Program.Config.DisableCheckDeck;
                 BanList.Items.AddRange(LauncherHelper.GetBanListArray());
+                BanList.SelectedItem = Program.Config.BanList;
             }
             else
             {
@@ -44,6 +45,26 @@ namespace YGOPro_Launcher
             Mode.SelectedIndexChanged += DuelModeChanged;
             if(!isranked)
                 CardRules.SelectedIndexChanged += new EventHandler(CardRulesChanged);
+            ApplyTranslation();
+        }
+
+        public Host()
+        {
+            InitializeComponent();
+
+            TimeLimit.SelectedItem = Program.Config.chtTimeLimit;
+            BanList.SelectedItem = Program.Config.chtBanList;
+            Mode.SelectedItem = Program.Config.chtMode;
+            GameName.Text = Program.Config.chtGameName;
+            CardRules.SelectedItem = Program.Config.chtCardRules;
+            Priority.Checked = Program.Config.chtEnablePrority;
+            ShuffleDeck.Checked = Program.Config.chtDisableShuffleDeck;
+            CheckDeck.Checked = Program.Config.chtDisableCheckDeck;
+            BanList.Items.AddRange(LauncherHelper.GetBanListArray());
+            BanList.SelectedIndex = 0;
+
+            Mode.SelectedIndexChanged += DuelModeChanged;
+
             ApplyTranslation();
         }
 

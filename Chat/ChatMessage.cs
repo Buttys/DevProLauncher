@@ -36,22 +36,22 @@ namespace YGOPro_Launcher.Chat
                 switch (Type)
                 {
                     case MessageType.Message:
-                        return Color.Black;
+                        return Color.FromName(Program.Config.NormalTextColor);
                     case MessageType.PrivateMessage:
-                        return Color.Black;
+                        return Color.FromName(Program.Config.NormalTextColor);
                     case MessageType.Server:
-                        return Color.Red;
+                        return Color.FromName(Program.Config.ServerMsgColor);
                     case MessageType.System:
-                        return Color.Purple;
+                        return Color.FromName(Program.Config.SystemColor);
                     case MessageType.Me:
-                        return Color.DeepPink;
+                        return Color.FromName(Program.Config.MeMsgColor);
                     case MessageType.Join:
-                        return Color.Green;
+                        return Color.FromName(Program.Config.JoinColor);
                     case MessageType.Leave:
-                        return Color.Gray;
+                        return Color.FromName(Program.Config.LeaveColor);
                 }
 
-                return Color.Black;
+                return Color.FromName(Program.Config.NormalTextColor);
             }
         }
 
@@ -62,13 +62,13 @@ namespace YGOPro_Launcher.Chat
                 switch (From.Rank)
                 {
                     case 0:
-                        return Color.Black;
+                        return Color.FromName(Program.Config.Level0Color);
                     case 1:
-                        return Color.RoyalBlue;
+                        return Color.FromName(Program.Config.Level1Color);
                     case 2:
-                        return Color.Red;
+                        return Color.FromName(Program.Config.Level2Color);
                     case 99:
-                        return Color.Green;
+                        return Color.FromName(Program.Config.Level99Color);
                 }
 
                 return Color.Black;
@@ -80,16 +80,16 @@ namespace YGOPro_Launcher.Chat
                 switch (rank)
                 {
                     case 0:
-                        return Brushes.Black;
+                        return new SolidBrush(Color.FromName(Program.Config.Level0Color));
                     case 1:
-                        return Brushes.RoyalBlue;
+                        return new SolidBrush(Color.FromName(Program.Config.Level1Color));
                     case 2:
-                        return Brushes.Red;
+                        return new SolidBrush(Color.FromName(Program.Config.Level2Color));
                     case 99:
-                        return Brushes.Green;
+                        return new SolidBrush(Color.FromName(Program.Config.Level99Color));
                 }
 
-                return Brushes.Black;
+                return new SolidBrush(Color.FromName(Program.Config.NormalTextColor));
         }
     }
 }

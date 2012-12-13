@@ -115,7 +115,7 @@ namespace YGOPro_Launcher
         private void LanguageSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.Config.Language = LanguageSelect.SelectedItem.ToString();
-            Program.Config.Save(Program.ConfigurationFilename);
+            Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
             Program.LanguageManager.Load(LanguageSelect.SelectedItem.ToString());
             ApplyTranslation();
         }
@@ -165,7 +165,7 @@ namespace YGOPro_Launcher
                 _configuration.DefaultUsername = UsernameInput.Text;
                 _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
                 _configuration.AutoLogin = AutoLoginCheckBox.Checked;
-                _configuration.Save(Program.ConfigurationFilename);
+                Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
             }
             _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
         }

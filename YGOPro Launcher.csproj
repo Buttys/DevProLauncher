@@ -58,6 +58,12 @@
       <DependentUpon>About_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="Chat\ChatMessage.cs" />
+    <Compile Include="Chat\ChatOptions_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chat\ChatOptions_frm.Designer.cs">
+      <DependentUpon>ChatOptions_frm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Chat\ChatWindow.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -67,11 +73,20 @@
     <Compile Include="Chat\Chat_frm.Designer.cs">
       <DependentUpon>Chat_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Chat\DropBoxColorPicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Chat\Enums\MessageType.cs" />
     <Compile Include="Chat\FixedTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Chat\ChatClient.cs" />
+    <Compile Include="Chat\PmWindow_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chat\PmWindow_frm.Designer.cs">
+      <DependentUpon>PmWindow_frm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Config\Configuration.cs" />
     <Compile Include="Config\LanguageInfo.cs" />
     <Compile Include="Config\LanguageManager.cs" />
@@ -190,12 +205,19 @@
     <Content Include="Language\French\strings.conf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\btn_donate_LG.gif" />
     <None Include="System.Data.SQLite.dll" />
     <EmbeddedResource Include="About_frm.resx">
       <DependentUpon>About_frm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Chat\ChatOptions_frm.resx">
+      <DependentUpon>ChatOptions_frm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Chat\Chat_frm.resx">
       <DependentUpon>Chat_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Chat\PmWindow_frm.resx">
+      <DependentUpon>PmWindow_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customize\Customize_frm.resx">
       <DependentUpon>Customize_frm.cs</DependentUpon>

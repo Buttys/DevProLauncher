@@ -8,6 +8,7 @@ using YGOPro_Launcher.Config;
 using YGOPro_Launcher.Login;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace YGOPro_Launcher
 {
@@ -29,8 +30,6 @@ namespace YGOPro_Launcher
         [STAThread]
         static void Main(string[] args)
         {
-            //AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
-
             foreach(string arg in args)
             {
                 if (arg == "-r")
@@ -52,14 +51,16 @@ namespace YGOPro_Launcher
             }
 
             Config = new Configuration();
-            Config.Load(Program.ConfigurationFilename);
+            LoadConfig(Program.ConfigurationFilename);
+            if(!Config.DebugMode)
+                AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
             if (File.Exists("ygopro_vs.exe") && !File.Exists("devpro.dll"))
             {
                 File.Copy("ygopro_vs.exe", "devpro.dll");
                 File.Delete("ygopro_vs.exe");
                 Config.GameExe = "devpro.dll";
-                Config.Save(ConfigurationFilename);
+                SaveConfig(ConfigurationFilename,Config);
             }
 
             LanguageManager = new LanguageManager();
@@ -118,7 +119,7 @@ namespace YGOPro_Launcher
             else
             {
                 Config.AutoLogin = false;
-                Config.Save(ConfigurationFilename);
+                SaveConfig(ConfigurationFilename,Config);
                 MessageBox.Show(LanguageManager.Translation.pMsbBadLog);
             }
 
@@ -211,6 +212,42 @@ namespace YGOPro_Launcher
 
             Console.WriteLine(exception.ToString());
             Process.GetCurrentProcess().Kill();
+        }
+
+        public static void SaveConfig(string filename, Configuration config)
+        {
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Configuration));
+                TextWriter textWriter = new StreamWriter(filename);
+                serializer.Serialize(textWriter, config);
+                textWriter.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Saving " + filename);
+            }
+        }
+
+        public static void LoadConfig(string filename)
+        {
+            if (!File.Exists(filename))
+            {
+                MessageBox.Show("File not found");
+                return;
+            }
+            try
+            {
+                XmlSerializer deserializer = new XmlSerializer(typeof(Configuration));
+                TextReader textReader = new StreamReader(filename);
+                Program.Config = (Configuration)deserializer.Deserialize(textReader);
+                textReader.Close();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Laoding " + filename);
+            }
         }
     }
 }
