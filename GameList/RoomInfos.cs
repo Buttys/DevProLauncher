@@ -68,5 +68,39 @@ namespace YGOPro_Launcher
         {
             return "ygpro:/" + server + "/" + port + "/" + Rule + Mode + BanList + Timer + (EnablePriority ? 1 : 0) + (NoCheckDeck ? 1 : 0) + (NoShuffleDeck ? 1 : 0) + StartLp + "," + (isRanked ? "R" : "U") + "," + RoomName;
         }
+
+        public static string GameRule(int rule)
+        {
+            switch (rule)
+            {
+                case 0:
+                    return "OCG";
+                case 1:
+                    return "TCG";
+                case 2:
+                    return "OCG/TCG";
+                case 4:
+                    return "Anime";
+                case 5:
+                    return "Turbo";
+            }
+
+            return "Unkown";
+        }
+
+        public static string GameMode(int mode)
+        {
+            switch (mode)
+            {
+                case 0:
+                    return "Single";
+                case 1:
+                    return "Match";
+                case 2:
+                    return "Tag";
+            }
+
+            return "Unkown";
+        }
     }
 }

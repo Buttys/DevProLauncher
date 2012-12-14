@@ -157,5 +157,49 @@ namespace YGOPro_Launcher
 
             return "ygopro:/" + server + "/" + port + "/" + gamestring;
         }
+
+        public string GenerateGameString(bool isranked)
+        {
+            string gamestring = null;
+            if ((this.CardRules.Text == "OCG"))
+                gamestring = "0";
+            else if ((this.CardRules.Text == "TCG"))
+                gamestring = "1";
+            else if ((this.CardRules.Text == "OCG/TCG"))
+                gamestring = "2";
+            else if ((this.CardRules.Text == "Anime"))
+                gamestring = "4";
+            else if ((this.CardRules.Text == "Turbo Duel"))
+                gamestring = "5";
+            else
+                gamestring = "3";
+            if ((this.Mode.Text == "Single"))
+                gamestring = gamestring + "0";
+            else if ((this.Mode.Text == "Match"))
+                gamestring = gamestring + "1";
+            else
+                gamestring = gamestring + "2";
+
+            gamestring += LauncherHelper.GetBanListValue(BanList.SelectedItem.ToString());
+
+            gamestring += TimeLimit.SelectedIndex;
+
+            if ((Priority.Checked))
+                gamestring = gamestring + "T";
+            else
+                gamestring = gamestring + "O";
+            if ((CheckDeck.Checked))
+                gamestring = gamestring + "T";
+            else
+                gamestring = gamestring + "O";
+            if ((ShuffleDeck.Checked))
+                gamestring = gamestring + "T";
+            else
+                gamestring = gamestring + "O";
+
+            gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U") + "," + GameName.Text;
+
+            return gamestring;
+        }
     }
 }

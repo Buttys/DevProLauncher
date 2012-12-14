@@ -75,7 +75,6 @@ namespace YGOPro_Launcher.Config
         public bool chtDisableShuffleDeck = false;
         public string chtLifepoints = "8000";
         public string chtGameName = LauncherHelper.GenerateString().Substring(0, 5);
-        public bool chtDebugMode = false;
 
 
     }

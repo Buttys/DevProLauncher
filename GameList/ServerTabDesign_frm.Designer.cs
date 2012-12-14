@@ -30,6 +30,12 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.DeckBtn = new System.Windows.Forms.Button();
+            this.ReplaysBtn = new System.Windows.Forms.Button();
+            this.ProfileBtn = new System.Windows.Forms.Button();
+            this.OptionsBtn = new System.Windows.Forms.Button();
             this.FilterTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -75,14 +81,10 @@
             this.ColumnMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.DeckBtn = new System.Windows.Forms.Button();
-            this.ReplaysBtn = new System.Windows.Forms.Button();
-            this.ProfileBtn = new System.Windows.Forms.Button();
-            this.OptionsBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -90,8 +92,6 @@
             this.ServerTabs.SuspendLayout();
             this.Ranked.SuspendLayout();
             this.Unranked.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -129,6 +129,72 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(169, 333);
             this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.907976F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 95.09203F));
+            this.tableLayoutPanel6.Controls.Add(this.flowLayoutPanel1, 1, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 265);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(163, 65);
+            this.tableLayoutPanel6.TabIndex = 10;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.DeckBtn);
+            this.flowLayoutPanel1.Controls.Add(this.ReplaysBtn);
+            this.flowLayoutPanel1.Controls.Add(this.ProfileBtn);
+            this.flowLayoutPanel1.Controls.Add(this.OptionsBtn);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(149, 59);
+            this.flowLayoutPanel1.TabIndex = 8;
+            // 
+            // DeckBtn
+            // 
+            this.DeckBtn.Location = new System.Drawing.Point(3, 3);
+            this.DeckBtn.Name = "DeckBtn";
+            this.DeckBtn.Size = new System.Drawing.Size(66, 23);
+            this.DeckBtn.TabIndex = 2;
+            this.DeckBtn.Text = "Deck Edit";
+            this.DeckBtn.UseVisualStyleBackColor = true;
+            this.DeckBtn.Click += new System.EventHandler(this.DeckBtn_Click);
+            // 
+            // ReplaysBtn
+            // 
+            this.ReplaysBtn.Location = new System.Drawing.Point(75, 3);
+            this.ReplaysBtn.Name = "ReplaysBtn";
+            this.ReplaysBtn.Size = new System.Drawing.Size(66, 23);
+            this.ReplaysBtn.TabIndex = 3;
+            this.ReplaysBtn.Text = "Replays";
+            this.ReplaysBtn.UseVisualStyleBackColor = true;
+            this.ReplaysBtn.Click += new System.EventHandler(this.ReplaysBtn_Click);
+            // 
+            // ProfileBtn
+            // 
+            this.ProfileBtn.Location = new System.Drawing.Point(3, 32);
+            this.ProfileBtn.Name = "ProfileBtn";
+            this.ProfileBtn.Size = new System.Drawing.Size(66, 23);
+            this.ProfileBtn.TabIndex = 8;
+            this.ProfileBtn.Text = "Profile";
+            this.ProfileBtn.UseVisualStyleBackColor = true;
+            this.ProfileBtn.Click += new System.EventHandler(this.ProfileBtn_Click);
+            // 
+            // OptionsBtn
+            // 
+            this.OptionsBtn.Location = new System.Drawing.Point(75, 32);
+            this.OptionsBtn.Name = "OptionsBtn";
+            this.OptionsBtn.Size = new System.Drawing.Size(66, 23);
+            this.OptionsBtn.TabIndex = 9;
+            this.OptionsBtn.Text = "Options";
+            this.OptionsBtn.UseVisualStyleBackColor = true;
+            this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
             // 
             // FilterTextBox
             // 
@@ -565,68 +631,6 @@
             this.ColumnPlayers.Text = "Players";
             this.ColumnPlayers.Width = 163;
             // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.907976F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 95.09203F));
-            this.tableLayoutPanel6.Controls.Add(this.flowLayoutPanel1, 1, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 265);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(163, 65);
-            this.tableLayoutPanel6.TabIndex = 10;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.DeckBtn);
-            this.flowLayoutPanel1.Controls.Add(this.ReplaysBtn);
-            this.flowLayoutPanel1.Controls.Add(this.ProfileBtn);
-            this.flowLayoutPanel1.Controls.Add(this.OptionsBtn);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 3);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(149, 59);
-            this.flowLayoutPanel1.TabIndex = 8;
-            // 
-            // DeckBtn
-            // 
-            this.DeckBtn.Location = new System.Drawing.Point(3, 3);
-            this.DeckBtn.Name = "DeckBtn";
-            this.DeckBtn.Size = new System.Drawing.Size(66, 23);
-            this.DeckBtn.TabIndex = 2;
-            this.DeckBtn.Text = "Deck Edit";
-            this.DeckBtn.UseVisualStyleBackColor = true;
-            // 
-            // ReplaysBtn
-            // 
-            this.ReplaysBtn.Location = new System.Drawing.Point(75, 3);
-            this.ReplaysBtn.Name = "ReplaysBtn";
-            this.ReplaysBtn.Size = new System.Drawing.Size(66, 23);
-            this.ReplaysBtn.TabIndex = 3;
-            this.ReplaysBtn.Text = "Replays";
-            this.ReplaysBtn.UseVisualStyleBackColor = true;
-            // 
-            // ProfileBtn
-            // 
-            this.ProfileBtn.Location = new System.Drawing.Point(3, 32);
-            this.ProfileBtn.Name = "ProfileBtn";
-            this.ProfileBtn.Size = new System.Drawing.Size(66, 23);
-            this.ProfileBtn.TabIndex = 8;
-            this.ProfileBtn.Text = "Profile";
-            this.ProfileBtn.UseVisualStyleBackColor = true;
-            // 
-            // OptionsBtn
-            // 
-            this.OptionsBtn.Location = new System.Drawing.Point(75, 32);
-            this.OptionsBtn.Name = "OptionsBtn";
-            this.OptionsBtn.Size = new System.Drawing.Size(66, 23);
-            this.OptionsBtn.TabIndex = 9;
-            this.OptionsBtn.Text = "Options";
-            this.OptionsBtn.UseVisualStyleBackColor = true;
-            // 
             // ServerInterface_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -638,6 +642,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
@@ -647,8 +653,6 @@
             this.ServerTabs.ResumeLayout(false);
             this.Ranked.ResumeLayout(false);
             this.Unranked.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

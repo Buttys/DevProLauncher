@@ -599,7 +599,9 @@ namespace YGOPro_Launcher.Chat
                 NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You cannot duel request your self."));
             else
             {
-                server.SendPacket("REQUESTDUEL||" + list.SelectedItem.ToString());
+                Host form = new Host();
+                server.SendPacket("REQUESTDUEL||" + list.SelectedItem.ToString() +"||"
+                    + form.GenerateGameString(false));
                 NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "Duel request sent to " + list.SelectedItem.ToString() + "."));
             }
         }
@@ -627,11 +629,15 @@ namespace YGOPro_Launcher.Chat
                         server.SendPacket("REFUSEDUEL||" + args[1]);
                         return;
                     }
+                    RoomInfos info = RoomInfos.FromName(args[2], "", false);
+                    DuelRequest_frm request = new DuelRequest_frm(args[1] + " has challenged you to a ranked duel! Do you accept?" + Environment.NewLine +
+                        "Type: " + RoomInfos.GameMode(info.Mode) + " Rules: " + RoomInfos.GameRule(info.Rule) + " Banlist: " + LauncherHelper.GetBanListFromInt(info.BanList));
 
-                    if (MessageBox.Show(args[1] + " has challenged you to a ranked duel! Do you accept?", "Duel Request", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+
+                    if (request.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
                     {
                         NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You accepted " + args[1] + " duel request."));
-                        server.SendPacket("ACCEPTDUEL||" + args[1]);
+                        server.SendPacket("ACCEPTDUEL||" + args[1] + "||" + args[2]);
                     }
                     else
                     {

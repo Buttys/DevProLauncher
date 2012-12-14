@@ -177,7 +177,7 @@ namespace YGOPro_Launcher.Chat
             else if (cmd == "DUELREQUEST")
             {
                 if (DuelRequest != null)
-                    DuelRequest("REQUEST||" + args[1]);
+                    DuelRequest("REQUEST||" + args[1] + "||" + args[2]);
             }
             else if (cmd == "REFUSEDUEL")
             {

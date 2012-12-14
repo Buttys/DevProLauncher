@@ -55,6 +55,15 @@ namespace YGOPro_Launcher
             if(!Config.DebugMode)
                 AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
+            if (Config.DebugMode)
+            {
+                Config.ServerAddress = "86.0.24.143";
+                Config.GamePort = 7911;
+                Config.ServerPort = 7922;
+                Config.ChatPort = 6666;
+                Config.ServerName = "Debug";
+            }
+
             if (File.Exists("ygopro_vs.exe") && !File.Exists("devpro.dll"))
             {
                 File.Copy("ygopro_vs.exe", "devpro.dll");

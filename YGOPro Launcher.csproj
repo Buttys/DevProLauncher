@@ -76,6 +76,12 @@
     <Compile Include="Chat\DropBoxColorPicker.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Chat\DuelRequest_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chat\DuelRequest_frm.Designer.cs">
+      <DependentUpon>DuelRequest_frm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Chat\Enums\MessageType.cs" />
     <Compile Include="Chat\FixedTabControl.cs">
       <SubType>Component</SubType>
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Chat\Chat_frm.resx">
       <DependentUpon>Chat_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Chat\DuelRequest_frm.resx">
+      <DependentUpon>DuelRequest_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Chat\PmWindow_frm.resx">
       <DependentUpon>PmWindow_frm.cs</DependentUpon>
