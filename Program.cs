@@ -255,7 +255,7 @@ namespace YGOPro_Launcher
             }
             catch (Exception)
             {
-                MessageBox.Show("Error Laoding " + filename);
+                MessageBox.Show("Error Loading " + filename);
             }
         }
     }
