@@ -213,7 +213,7 @@ namespace YGOPro_Launcher.Chat
                 if(!Program.Config.HideJoinLeave)
                     NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", info[0] + " has joined.", false));
                 else if(FriendListContains(info[0]))
-                    NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", "Your friend " + info[0] + " has logged in.", false));
+                    NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", "Your friend " + info[0] + " has logged in.", false));
                     
                 if(UserData[info[0]].Rank > 0)
                         SortUserList();

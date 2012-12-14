@@ -38,7 +38,8 @@ namespace YGOPro_Launcher
                 Mode.SelectedIndex = 0;
                 GameName.Text = LauncherHelper.GenerateString().Substring(0, 5);
                 BanList.Items.AddRange(LauncherHelper.GetBanListArray());
-                BanList.SelectedIndex = 0;
+                if (BanList.Items.Count > 0)
+                    BanList.SelectedIndex = 0;
                 
 
             }
@@ -61,7 +62,8 @@ namespace YGOPro_Launcher
             ShuffleDeck.Checked = Program.Config.chtDisableShuffleDeck;
             CheckDeck.Checked = Program.Config.chtDisableCheckDeck;
             BanList.Items.AddRange(LauncherHelper.GetBanListArray());
-            BanList.SelectedIndex = 0;
+            if(BanList.Items.Count > 0)
+                BanList.SelectedIndex = 0;
 
             Mode.SelectedIndexChanged += DuelModeChanged;
 
