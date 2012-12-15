@@ -18,6 +18,8 @@ namespace YGOPro_Launcher.Chat
         ChatClient server = new ChatClient();
         Dictionary<string,UserData> UserData = new Dictionary<string,UserData>();
         Dictionary<string, PmWindow_frm> PmWindows = new Dictionary<string, PmWindow_frm>();
+        List<string> MsgHistory = new List<string>();
+        int Historyindex = -1;
         
         public Chat_frm()
         {
@@ -26,8 +28,10 @@ namespace YGOPro_Launcher.Chat
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
+            
             ChatTabs.TabPages.Add(new ChatWindow("DevPro",false));
             ChatInput.KeyPress += new KeyPressEventHandler(ChatInput_KeyPress);
+            ChatInput.KeyDown += new KeyEventHandler(Input_KeyDown);
 
             server.Message += new ChatClient.ServerMessage(NewMessage);
             server.UserList += new ChatClient.ServerResponse(CreateUserList);
@@ -48,7 +52,10 @@ namespace YGOPro_Launcher.Chat
             DonateIMG.Click += new EventHandler(DonateClick);
 
             LoadIgnoreList();
+            
         }
+
+
 
         private void DonateClick(object sender, EventArgs e)
         {
@@ -215,8 +222,7 @@ namespace YGOPro_Launcher.Chat
                 else if(FriendListContains(info[0]))
                     NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", "Your friend " + info[0] + " has logged in.", false));
                     
-                if(UserData[info[0]].Rank > 0)
-                        SortUserList();
+                SortUserList();
             }
         }
 
@@ -306,6 +312,7 @@ namespace YGOPro_Launcher.Chat
                         if (cmd != "op")
                         {
                             server.SendPacket("ADMIN||" + cmd.ToUpper() + "||" + ChatInput.Text.Replace(parts[0], "").Trim());
+                            AddChatHistory(ChatInput.Text);
                         }
                         else
                         {
@@ -353,8 +360,65 @@ namespace YGOPro_Launcher.Chat
                         server.SendPacket("MSG||" + CurrentChatWindow().Name + "||" + (int)MessageType.Message + "||" + LauncherHelper.StringToBase64(ChatInput.Text));
                     }
                 }
+                AddChatHistory(ChatInput.Text);
                 ChatInput.Clear();
                 e.Handled = true;
+            }
+        }
+
+        private void Input_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            switch (e.KeyCode)
+            {
+                case Keys.Down:
+                    if (MsgHistory.Count == 0)
+                        return;
+
+                    if (Historyindex <= 0)
+                        Historyindex = 4;
+                    else
+                        Historyindex--;
+                    ChatInput.Text = MsgHistory[Historyindex];
+                    break;
+                    
+                case Keys.Up:
+                    if (MsgHistory.Count == 0)
+                        return;
+
+                    if (Historyindex != 4)
+                        Historyindex++;
+                    else
+                        Historyindex = 0;
+                    ChatInput.Text = MsgHistory[Historyindex];
+                    break;
+                case Keys.Tab:
+                    string[] parts = ChatInput.Text.Split(' ');
+                    foreach (string user in UserList.Items)
+                    {
+                        if (user.ToLower().StartsWith(parts[parts.Length - 1].ToLower()))
+                        {
+                           ChatInput.Text = ChatInput.Text.Substring(ChatInput.Text.Length - parts[parts.Length - 1].Length, parts[parts.Length - 1].Length);
+                           ChatInput.Text += user;
+                            break;
+                        }
+                    }
+
+                    break;
+            }
+            
+        }
+
+        private void AddChatHistory(string message)
+        {
+            if (MsgHistory.Count != 5)
+            {
+                MsgHistory.Add(message);
+            }
+            else
+            {
+                MsgHistory.RemoveAt(0);
+                MsgHistory.Add(message);
             }
         }
 
@@ -665,14 +729,14 @@ namespace YGOPro_Launcher.Chat
                 Graphics g = e.Graphics;
                 if (!UserData.ContainsKey(text))
                 {
-                    g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black): new SolidBrush(Color.Blue)) : new SolidBrush(Color.White), e.Bounds);
+                    g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Color.FromName(Program.Config.ChatBGColor)), e.Bounds);
                     g.DrawString(text, e.Font, (selected) ? Brushes.White : Brushes.Black,
                          UserList.GetItemRectangle(index).Location);
                     e.DrawFocusRectangle();
                     return;
                 }
 
-                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Color.White), e.Bounds);
+                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Color.FromName(Program.Config.ChatBGColor)), e.Bounds);
 
                 // Print text
                 g.DrawString((Program.Config.ColorBlindMode && UserData[text].Rank > 0 ? "[Admin] " + text: text), e.Font, (selected) ? Brushes.White :(Program.Config.ColorBlindMode ? Brushes.Black:  ChatMessage.GetUserColor(UserData[text].Rank)),
@@ -694,7 +758,7 @@ namespace YGOPro_Launcher.Chat
                 string text = FriendList.Items[index].ToString();
                 Graphics g = e.Graphics;
 
-                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black): new SolidBrush(Color.Blue)) : new SolidBrush(Color.White), e.Bounds);
+                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black): new SolidBrush(Color.Blue)) : new SolidBrush(Color.FromName(Program.Config.ChatBGColor)), e.Bounds);
 
                 // Print text
                 g.DrawString((Program.Config.ColorBlindMode ? (UserListContains(text) ? text +" (Online)" :text + " (Offline)"):text), e.Font, 
@@ -712,24 +776,40 @@ namespace YGOPro_Launcher.Chat
 
         private void SortUserList()
         {
-                List<object> sortedlist = new List<object>();
+                List<string> adminlist = new List<string>();
+                List<string> botlist = new List<string>();
+                List<string> normaluserlist = new List<string>();
+
 
                 foreach (object user in UserList.Items)
                 {
                     if (UserData.ContainsKey(user.ToString()))
-                        if (UserData[user.ToString()].Rank > 0)
-                            sortedlist.Add(user.ToString());
+                        if (UserData[user.ToString()].Rank > 0 && UserData[user.ToString()].Rank != 10)
+                            adminlist.Add(user.ToString());
                 }
+                adminlist.Sort();
+
+                foreach (object user in UserList.Items)
+                {
+                    if (UserData.ContainsKey(user.ToString()))
+                        if (UserData[user.ToString()].Rank == 10)
+                            botlist.Add(user.ToString());
+                }
+                botlist.Sort();
 
                 foreach (object user in UserList.Items)
                 {
                     if (UserData.ContainsKey(user.ToString()))
                         if (UserData[user.ToString()].Rank == 0)
-                            sortedlist.Add(user.ToString());
+                            normaluserlist.Add(user.ToString());
                 }
 
+                normaluserlist.Sort();
+
                 UserList.Items.Clear();
-                UserList.Items.AddRange(sortedlist.ToArray());
+                UserList.Items.AddRange(adminlist.ToArray());
+                UserList.Items.AddRange(botlist.ToArray());
+                UserList.Items.AddRange(normaluserlist.ToArray());
         }
 
         private void OptionsBtn_Click(object sender, EventArgs e)
@@ -748,6 +828,10 @@ namespace YGOPro_Launcher.Chat
             foreach (ChatWindow chat in ChatTabs.TabPages)
             {
                 chat.ApplyNewSettings();
+                UserList.BackColor = Color.FromName(Program.Config.ChatBGColor);
+                FriendList.BackColor = Color.FromName(Program.Config.ChatBGColor);
+                IgnoreList.BackColor = Color.FromName(Program.Config.ChatBGColor);
+                IgnoreList.ForeColor = Color.FromName(Program.Config.NormalTextColor);
                 SortUserList();
             }
             if (!Program.Config.PmWindows)

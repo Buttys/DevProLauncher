@@ -71,7 +71,7 @@ namespace YGOPro_Launcher.Chat
                         return Color.FromName(Program.Config.Level99Color);
                 }
 
-                return Color.Black;
+                return Color.FromName(Program.Config.Level0Color);
             }
         }
 
@@ -89,7 +89,7 @@ namespace YGOPro_Launcher.Chat
                         return new SolidBrush(Color.FromName(Program.Config.Level99Color));
                 }
 
-                return new SolidBrush(Color.FromName(Program.Config.NormalTextColor));
+                return new SolidBrush(Color.FromName(Program.Config.Level0Color));
         }
     }
 }

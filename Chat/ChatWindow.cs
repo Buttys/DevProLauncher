@@ -25,6 +25,7 @@ namespace YGOPro_Launcher.Chat
             ChatLog.LinkClicked += new LinkClickedEventHandler(ChatLog_LinkClicked);
 
             ApplyNewSettings();
+            ChatLog.TabStop = false;
 
         }
 

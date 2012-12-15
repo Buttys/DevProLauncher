@@ -21,7 +21,8 @@ namespace YGOPro_Launcher.Chat
                                           BindingFlags.DeclaredOnly | BindingFlags.Public);
             foreach (PropertyInfo c in propInfoList)
             {
-                this.Items.Add(c.Name);
+                if(c.Name != "Transparent")
+                    this.Items.Add(c.Name);
             }
             this.DrawItem += DropBoxColorPicker_DrawItem;
         }

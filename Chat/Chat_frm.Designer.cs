@@ -86,11 +86,13 @@
             // 
             // ChatInput
             // 
+            this.ChatInput.AcceptsTab = true;
             this.ChatInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChatInput.Location = new System.Drawing.Point(3, 3);
             this.ChatInput.Name = "ChatInput";
             this.ChatInput.Size = new System.Drawing.Size(477, 20);
             this.ChatInput.TabIndex = 1;
+            this.ChatInput.TabStop = false;
             // 
             // OptionsBtn
             // 
@@ -98,6 +100,7 @@
             this.OptionsBtn.Name = "OptionsBtn";
             this.OptionsBtn.Size = new System.Drawing.Size(74, 21);
             this.OptionsBtn.TabIndex = 2;
+            this.OptionsBtn.TabStop = false;
             this.OptionsBtn.Text = "Options";
             this.OptionsBtn.UseVisualStyleBackColor = true;
             this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
@@ -143,6 +146,7 @@
             this.UserTabs.SelectedIndex = 0;
             this.UserTabs.Size = new System.Drawing.Size(128, 329);
             this.UserTabs.TabIndex = 3;
+            this.UserTabs.TabStop = false;
             // 
             // UserTab
             // 
@@ -165,6 +169,7 @@
             this.UserList.Name = "UserList";
             this.UserList.Size = new System.Drawing.Size(114, 297);
             this.UserList.TabIndex = 0;
+            this.UserList.TabStop = false;
             // 
             // FriendTab
             // 
@@ -229,6 +234,7 @@
             this.ChatTabs.SelectedIndex = 0;
             this.ChatTabs.Size = new System.Drawing.Size(563, 334);
             this.ChatTabs.TabIndex = 2;
+            this.ChatTabs.TabStop = false;
             // 
             // Chat_frm
             // 
