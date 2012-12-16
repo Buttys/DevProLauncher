@@ -127,6 +127,19 @@ namespace YGOPro_Launcher.Chat
                 else
                 {
                     NewMessage(new ChatMessage(MessageType.System, Program.UserInfo, CurrentChatWindow().Name, "Connected to the DevPro chat server.", false));
+
+                    if (Program.Config.Language != "English")
+                    {
+                        CreateChatWindow("DevPro-" + Program.Config.Language, false);
+                        server.SendPacket("JOIN||" + "DevPro-" + Program.Config.Language);
+                    }
+                    if (Program.UserInfo.Rank > 0)
+                    {
+                        CreateChatWindow("Dev", false);
+                        server.SendPacket("JOIN||" + "Dev");
+                    }
+
+                    ChatTabs.SelectedIndex = 0;
                 }
             }
         }
@@ -254,6 +267,15 @@ namespace YGOPro_Launcher.Chat
                         {
                             if (!ChannelContainsUser(info[0], parts[1]))
                                 ChannelUsers[parts[1]].Add(info[0]);
+                            if (!UserData.ContainsKey(info[0]))
+                                UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
+                            else
+                                UserData[info[0]] = new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) };
+
+                            if (info[0] == Program.UserInfo.Username)
+                                Program.UserInfo.Rank = Int32.Parse(info[1]);
+
+                            ChatTabsChanged(null, EventArgs.Empty);
                             return;
                         }
                     }
@@ -262,6 +284,7 @@ namespace YGOPro_Launcher.Chat
                         UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
                     else
                         UserData[info[0]] = new UserData(){ Username = info[0], Rank = Int32.Parse(info[1]) };
+                
                 if(!ChannelContainsUser(info[0],parts[1]))
                     ChannelUsers[parts[1]].Add(info[0]);
 
@@ -332,7 +355,7 @@ namespace YGOPro_Launcher.Chat
                     if (!Program.Config.HideJoinLeave)
                         NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", parts[0] + " has left.", false));
                     else if (FriendListContains(parts[0]))
-                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", "Your friend " + parts[0] + " has left in.", false));
+                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", "Your friend " + parts[0] + " has logged out.", false));
                 }
 
                 ChatTabsChanged(null, EventArgs.Empty);
@@ -360,7 +383,32 @@ namespace YGOPro_Launcher.Chat
                     return;
                 if (CurrentChatWindow().isprivate && ChatInput.Text.StartsWith("/"))
                 {
-                    NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "Commands are not supported in private windows."));
+                    string[] parts = ChatInput.Text.Split(' ');
+                    string cmd = parts[0].Substring(1);
+
+                    if (cmd == "leave" || cmd == "part" || cmd == "quit")
+                    {
+                        if (CurrentChatWindow().Name == "DevPro")
+                        {
+                            NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You cannot leave the master channel."));
+                            ChatInput.Clear();
+                            return;
+                        }
+                        ChatTabs.TabPages.Remove(CurrentChatWindow());
+                        ChatInput.Clear();
+                    }
+                    else if (cmd == "join")
+                    {
+                        if (GetChatWindow(parts[1]) == null)
+                        {
+                            CreateChatWindow(parts[1], false);
+                            server.SendPacket("JOIN||" + parts[1]);
+                        }
+                    }
+                    else
+                    {
+                        NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "Commands are not supported in private windows."));
+                    }
                     return;
                 }
                 if (ChatInput.Text.StartsWith("/"))
@@ -377,8 +425,25 @@ namespace YGOPro_Launcher.Chat
                         {
                             if (UserExsists(parts[1]))
                             {
-                                CreateChatWindow(parts[1],true);
-                                NewMessage(new ChatMessage(MessageType.Message, Program.UserInfo, parts[1], ChatInput.Text.Substring(parts[0].Length + parts[1].Length + 1), false));
+                                if (Program.Config.PmWindows)
+                                {
+                                    if (PmWindows.ContainsKey(parts[1]))
+                                    {
+                                        PmWindows[parts[1]].WriteMessage(new ChatMessage(MessageType.Message, Program.UserInfo, parts[1], ChatInput.Text.Substring(parts[0].Length + parts[1].Length + 1), false));
+                                    }
+                                    else
+                                    {
+                                        PmWindows.Add(parts[1], new PmWindow_frm(parts[1], true, server));
+                                        PmWindows[parts[1]].WriteMessage(new ChatMessage(MessageType.Message, Program.UserInfo, parts[1], ChatInput.Text.Substring(parts[0].Length + parts[1].Length + 1), false));
+                                        PmWindows[parts[1]].Show();
+                                        PmWindows[parts[1]].FormClosed += Chat_frm_FormClosed;
+                                    }
+                                }
+                                else
+                                {
+                                    CreateChatWindow(parts[1], true);
+                                    NewMessage(new ChatMessage(MessageType.Message, Program.UserInfo, parts[1], ChatInput.Text.Substring(parts[0].Length + parts[1].Length + 1), false));
+                                }
                                 server.SendPacket("MSG||" + parts[1] + "||" + (int)MessageType.PrivateMessage + "||" + LauncherHelper.StringToBase64(ChatInput.Text.Substring(parts[0].Length + parts[1].Length + 1)));
                             }
                             else
@@ -480,7 +545,7 @@ namespace YGOPro_Launcher.Chat
                         return;
 
                     if (Historyindex <= 0)
-                        Historyindex = 4;
+                        Historyindex = MsgHistory.Count - 1;
                     else
                         Historyindex--;
                     ChatInput.Text = MsgHistory[Historyindex];
@@ -490,7 +555,8 @@ namespace YGOPro_Launcher.Chat
                     if (MsgHistory.Count == 0)
                         return;
 
-                    if (Historyindex != 4)
+                    
+                    if (Historyindex != MsgHistory.Count - 1)
                         Historyindex++;
                     else
                         Historyindex = 0;
@@ -875,7 +941,20 @@ namespace YGOPro_Launcher.Chat
 
         private void UserList_DoubleClick(object sender, EventArgs e)
         {
-            CreateChatWindow(UserList.SelectedItem.ToString(), true);
+            if (UserList.SelectedItem == null)
+                return;
+
+            if (Program.Config.PmWindows)
+            {
+                    PmWindows.Add(UserList.SelectedItem.ToString(), new PmWindow_frm(UserList.SelectedItem.ToString(), true, server));
+                    PmWindows[UserList.SelectedItem.ToString()].Show();
+                    PmWindows[UserList.SelectedItem.ToString()].FormClosed += Chat_frm_FormClosed;
+            }
+            else
+            {
+                CreateChatWindow(UserList.SelectedItem.ToString(), true);
+            }
+                           
         }
 
         private void SortUserList()
