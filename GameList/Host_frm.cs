@@ -106,11 +106,9 @@ namespace YGOPro_Launcher
 
         private void DuelModeChanged(object sender, EventArgs e)
         {
-            if ((Mode.SelectedIndex == 1))
+            if ((Mode.SelectedItem.ToString() == "Tag"))
                 LifePoints.Text = "16000";
-            if ((Mode.SelectedIndex == 0))
-                LifePoints.Text = "8000";
-            if ((Mode.SelectedIndex == 2))
+            else
                 LifePoints.Text = "8000";
         }
 

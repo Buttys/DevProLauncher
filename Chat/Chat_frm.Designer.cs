@@ -58,8 +58,8 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.ChatTabs, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.ChatTabs, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -228,13 +228,11 @@
             // 
             this.ChatTabs.Alignment = System.Windows.Forms.TabAlignment.Bottom;
             this.ChatTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChatTabs.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.ChatTabs.Location = new System.Drawing.Point(3, 3);
             this.ChatTabs.Name = "ChatTabs";
             this.ChatTabs.SelectedIndex = 0;
             this.ChatTabs.Size = new System.Drawing.Size(563, 334);
-            this.ChatTabs.TabIndex = 2;
-            this.ChatTabs.TabStop = false;
+            this.ChatTabs.TabIndex = 4;
             // 
             // Chat_frm
             // 
@@ -262,7 +260,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private FixedTabControl ChatTabs;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TextBox ChatInput;
@@ -276,6 +273,7 @@
         private System.Windows.Forms.TabPage IgnoreTab;
         private System.Windows.Forms.ListBox IgnoreList;
         private System.Windows.Forms.PictureBox DonateIMG;
+        private FixedTabControl ChatTabs;
 
 
 

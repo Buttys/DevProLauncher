@@ -136,17 +136,17 @@ namespace YGOPro_Launcher.Chat
             if (cmd == "USERS")
             {
                 if (UserList != null)
-                    UserList(args[1]);
+                    UserList(args[1] + "||" + args[2]);
             }
             else if (cmd == "+USER")
             {
                 if (AddUser != null)
-                    AddUser(args[1]);
+                    AddUser(args[1] + "||" + args[2]);
             }
             else if (cmd == "-USER")
             {
                 if (RemoveUser != null)
-                    RemoveUser(args[1]);
+                    RemoveUser(args[1] + "||" + args[2]);
             }
             else if (cmd == "FRIENDS")
             {
@@ -157,7 +157,7 @@ namespace YGOPro_Launcher.Chat
             {
                 if (args[1] != "")
                 {
-                    SendPacket("GETUSERS");
+                    //SendPacket("GETUSERS");
                     SendPacket("GETFRIENDS");
                 }
                 if (Login != null)

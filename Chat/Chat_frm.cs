@@ -19,6 +19,7 @@ namespace YGOPro_Launcher.Chat
         Dictionary<string,UserData> UserData = new Dictionary<string,UserData>();
         Dictionary<string, PmWindow_frm> PmWindows = new Dictionary<string, PmWindow_frm>();
         List<string> MsgHistory = new List<string>();
+        Dictionary<string, List<string>> ChannelUsers = new Dictionary<string, List<string>>();
         int Historyindex = -1;
         
         public Chat_frm()
@@ -30,6 +31,7 @@ namespace YGOPro_Launcher.Chat
             Visible = true;
             
             ChatTabs.TabPages.Add(new ChatWindow("DevPro",false));
+            ChatTabs.SelectedIndexChanged += new EventHandler(ChatTabsChanged);
             ChatInput.KeyPress += new KeyPressEventHandler(ChatInput_KeyPress);
             ChatInput.KeyDown += new KeyEventHandler(Input_KeyDown);
 
@@ -53,6 +55,20 @@ namespace YGOPro_Launcher.Chat
 
             LoadIgnoreList();
             
+        }
+
+        private void ChatTabsChanged(object sender, EventArgs e)
+        {
+            UserList.Items.Clear();
+
+            if (!ChannelUsers.ContainsKey(CurrentChatWindow().Name))
+                ChannelUsers.Add(CurrentChatWindow().Name, new List<string>());
+
+            foreach (string user in ChannelUsers[CurrentChatWindow().Name])
+            {
+                UserList.Items.Add(user);
+            }
+            SortUserList();
         }
 
 
@@ -181,16 +197,38 @@ namespace YGOPro_Launcher.Chat
             }
             else
             {
-                    UserData.Clear();
-                    UserList.Items.Clear();
-                    string[] users = userlist.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                string[] parts = userlist.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
+                string[] users = parts[0].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+                    
                     foreach (string user in users)
                     {
                         string[] info = user.Split(',');
                         UserList.Items.Add(info[0]);
-                        UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
+                        if (UserData.ContainsKey(info[0]))
+                        {
+                            UserData[info[0]] = new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) };
+                        }
+                        else
+                        {
+                            UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
+                        }
+
+                        if (ChannelUsers.ContainsKey(parts[1]))
+                        {
+                            if (!ChannelUsers[parts[1]].Contains(info[0]))
+                            {
+                                ChannelUsers[parts[1]].Add(info[0]);
+                            }
+
+                        }
+                        else
+                        {
+                                ChannelUsers.Add(parts[1], new List<string>());
+                                ChannelUsers[parts[1]].Add(info[0]);
+                        }
+
                     }
-                    SortUserList();
+                    ChatTabsChanged(null, EventArgs.Empty);
             }
         }
 
@@ -202,51 +240,104 @@ namespace YGOPro_Launcher.Chat
             }
             else
             {
-                    string[] info = userinfo.Split(',');
+
+
+                string[] parts = userinfo.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
+                
+                if (!ChannelUsers.ContainsKey(parts[1]))
+                    ChannelUsers.Add(parts[1], new List<string>());
+
+                    string[] info = parts[0].Split(',');
                     foreach (object user in UserList.Items)
                     {
                         if (info[0] == user.ToString())
                         {
+                            if (!ChannelContainsUser(info[0], parts[1]))
+                                ChannelUsers[parts[1]].Add(info[0]);
                             return;
                         }
                     }
 
-                    UserList.Items.Add(info[0]);
                     if (!UserData.ContainsKey(info[0]))
                         UserData.Add(info[0], new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) });
                     else
                         UserData[info[0]] = new UserData(){ Username = info[0], Rank = Int32.Parse(info[1]) };
-                
-                if(!Program.Config.HideJoinLeave)
-                    NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", info[0] + " has joined.", false));
-                else if(FriendListContains(info[0]))
-                    NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", "Your friend " + info[0] + " has logged in.", false));
-                    
-                SortUserList();
+                if(!ChannelContainsUser(info[0],parts[1]))
+                    ChannelUsers[parts[1]].Add(info[0]);
+
+                if (parts[1] != "DevPro")
+                {
+                    if (FriendListContains(info[0]))
+                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, parts[1], "Your friend " + info[0] + " has joined the channel.", false));
+                    else
+                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, parts[1], info[0] + " has joined the channel.", false));
+
+                }
+                else
+                {
+
+                    if (!Program.Config.HideJoinLeave)
+                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", info[0] + " has joined.", false));
+                    else if (FriendListContains(info[0]))
+                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", "Your friend " + info[0] + " has logged in.", false));
+                }
+
+                ChatTabsChanged(null, EventArgs.Empty);
             }
         }
 
-        private void RemoveUser(string username)
+        private bool ChannelContainsUser(string username,string channel)
+        {
+            if (ChannelUsers.ContainsKey(channel))
+            {
+                foreach (string user in ChannelUsers[channel])
+                {
+                    if (user == username)
+                        return true;
+                }
+            }
+            else
+                return false;
+
+            return false;
+
+        }
+
+        private void RemoveUser(string message)
         {
             if (InvokeRequired)
             {
-                Invoke(new Action<string>(RemoveUser), username);
+                Invoke(new Action<string>(RemoveUser), message);
             }
             else
             {
-                    foreach (object user in UserList.Items)
-                    {
-                        if (username == user.ToString())
-                        {
-                            if (UserData.ContainsKey(user.ToString()))
-                                UserList.Items.Remove(user);
-                            if (!Program.Config.HideJoinLeave)
-                                NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", user + " has left.", false));
-                            else if (FriendListContains(username))
-                                NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", "Your friend " + user + " has logged off.", false));
-                            return;
-                        }
-                    }
+                string[] parts = message.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (ChannelUsers.ContainsKey(parts[1]))
+                {
+                    if(ChannelUsers[parts[1]].Contains(parts[0]))
+                        ChannelUsers[parts[1]].Remove(parts[0]);
+                }
+                if (parts[1] != "DevPro")
+                {
+                    if (FriendListContains(parts[0]))
+                        NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, parts[1], "Your friend " + parts[0] + " has left the channel.", false));
+                    else
+                        NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, parts[1], parts[0] + " has left the channel.", false));
+
+                }
+                else
+                {
+
+                    if (!Program.Config.HideJoinLeave)
+                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", parts[0] + " has left.", false));
+                    else if (FriendListContains(parts[0]))
+                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", "Your friend " + parts[0] + " has left in.", false));
+                }
+
+                ChatTabsChanged(null, EventArgs.Empty);
+                
+
             }
         }
 
@@ -306,6 +397,19 @@ namespace YGOPro_Launcher.Chat
                             CreateChatWindow(parts[1], false);
                             server.SendPacket("JOIN||" + parts[1]);
                         }
+                    }
+                    else if (cmd == "leave" || cmd == "part" || cmd == "quit")
+                    {
+                        if (CurrentChatWindow().Name == "DevPro")
+                        {
+                            NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You cannot leave the master channel."));
+                            ChatInput.Clear();
+                            return;
+                        }
+                        if(Program.Config.PmWindows && !CurrentChatWindow().isprivate)
+                            server.SendPacket("LEAVE||" + CurrentChatWindow().Name);
+                        ChatTabs.TabPages.Remove(CurrentChatWindow());
+
                     }
                     else if (Program.UserInfo.Rank > 0)
                     {
@@ -832,7 +936,7 @@ namespace YGOPro_Launcher.Chat
                 FriendList.BackColor = Color.FromName(Program.Config.ChatBGColor);
                 IgnoreList.BackColor = Color.FromName(Program.Config.ChatBGColor);
                 IgnoreList.ForeColor = Color.FromName(Program.Config.NormalTextColor);
-                SortUserList();
+                ChatTabsChanged(null, EventArgs.Empty);
             }
             if (!Program.Config.PmWindows)
             {

@@ -50,7 +50,7 @@ namespace YGOPro_Launcher.Chat
                 if (message.Type == MessageType.Message || message.Type == MessageType.PrivateMessage)
                 {
                     if(Program.Config.ShowTimeStamp)
-                        WriteText(DateTime.UtcNow.ToString("[HH:mm] "),(Program.Config.ColorBlindMode ? Color.Black: Color.FromName(Program.Config.NormalTextColor)));
+                        WriteText(DateTime.Now.ToString("[HH:mm] "),(Program.Config.ColorBlindMode ? Color.Black: Color.FromName(Program.Config.NormalTextColor)));
                     
                     WriteText("<", (Program.Config.ColorBlindMode ? Color.Black : Color.FromName(Program.Config.NormalTextColor)));
                     WriteText((Program.Config.ColorBlindMode && message.From.Rank > 0 ? "[Admin] " + message.From.Username: message.From.Username),
