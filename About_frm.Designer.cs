@@ -30,6 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About_frm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.YuGiOhMoDDeR = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -55,15 +64,6 @@
             this.StaffText = new System.Windows.Forms.Label();
             this.AboutText = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,6 +111,89 @@
             this.panel1.Size = new System.Drawing.Size(956, 446);
             this.panel1.TabIndex = 0;
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(312, 413);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(87, 13);
+            this.label30.TabIndex = 34;
+            this.label30.Text = "Jyru-Ken(French)";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(210, 413);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(88, 13);
+            this.label29.TabIndex = 33;
+            this.label29.Text = "benblub(German)";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(140, 391);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(122, 13);
+            this.label28.TabIndex = 32;
+            this.label28.Text = "DevPro Translations";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(591, 280);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(57, 13);
+            this.label27.TabIndex = 31;
+            this.label27.Text = "Percival18";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(520, 280);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(56, 13);
+            this.label26.TabIndex = 30;
+            this.label26.Text = "VanillaSalt";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(441, 280);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(70, 13);
+            this.label25.TabIndex = 29;
+            this.label25.Text = "Fluorohydride";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(140, 260);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(133, 13);
+            this.label24.TabIndex = 28;
+            this.label24.Text = "DevPro Server Scripts";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(397, 280);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(38, 13);
+            this.label23.TabIndex = 27;
+            this.label23.Text = "Haruhi";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(310, 280);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(58, 13);
+            this.label22.TabIndex = 26;
+            this.label22.Text = "sidschingis";
+            // 
             // YuGiOhMoDDeR
             // 
             this.YuGiOhMoDDeR.AutoSize = true;
@@ -136,7 +219,7 @@
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(45, 13);
             this.label20.TabIndex = 22;
-            this.label20.Text = "benbulb";
+            this.label20.Text = "benblub";
             // 
             // label19
             // 
@@ -339,89 +422,6 @@
             this.label1.Size = new System.Drawing.Size(251, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "About DevPro";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(310, 280);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(58, 13);
-            this.label22.TabIndex = 26;
-            this.label22.Text = "sidschingis";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(397, 280);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(38, 13);
-            this.label23.TabIndex = 27;
-            this.label23.Text = "Haruhi";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(140, 260);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(133, 13);
-            this.label24.TabIndex = 28;
-            this.label24.Text = "DevPro Server Scripts";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(441, 280);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(70, 13);
-            this.label25.TabIndex = 29;
-            this.label25.Text = "Fluorohydride";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(520, 280);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(56, 13);
-            this.label26.TabIndex = 30;
-            this.label26.Text = "VanillaSalt";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(591, 280);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(57, 13);
-            this.label27.TabIndex = 31;
-            this.label27.Text = "Percival18";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(140, 391);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(122, 13);
-            this.label28.TabIndex = 32;
-            this.label28.Text = "DevPro Translations";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(210, 413);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(88, 13);
-            this.label29.TabIndex = 33;
-            this.label29.Text = "benbulb(German)";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(312, 413);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(87, 13);
-            this.label30.TabIndex = 34;
-            this.label30.Text = "Jyru-Ken(French)";
             // 
             // About_frm
             // 

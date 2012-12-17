@@ -10,6 +10,7 @@ using System.Threading;
 using YGOPro_Launcher.Chat.Enums;
 using System.Media;
 using System.Diagnostics;
+using YGOPro_Launcher.Config;
 
 namespace YGOPro_Launcher.Chat
 {
@@ -54,7 +55,19 @@ namespace YGOPro_Launcher.Chat
             DonateIMG.Click += new EventHandler(DonateClick);
 
             LoadIgnoreList();
+            ApplyTranslation();
             
+        }
+
+        private void ApplyTranslation()
+        {
+            LanguageInfo lang = Program.LanguageManager.Translation;
+
+            OptionsBtn.Text = lang.chatBtnoptions;
+            UserTabs.TabPages[0].Text = lang.chatTabUsers;
+            UserTabs.TabPages[1].Text = lang.chatTabFriends;
+            UserTabs.TabPages[2].Text = lang.chatTabIgnore;
+
         }
 
         private void ChatTabsChanged(object sender, EventArgs e)

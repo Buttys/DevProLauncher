@@ -162,5 +162,40 @@ namespace YGOPro_Launcher.Config
         public string profileLblwld = "Win/Lose/Draw: ";
         public string profileLblRank = "Rank: ";
         public string profileLblTeam = "Team: ";
+
+        //ChatOptions_frm.cs
+
+        public string chatoptionsFormName = "Chat Options";
+        public string chatoptionsGb1 = "Chat Settings";
+        public string chatoptionsGb2 = "Other Settings";
+        public string chatoptionsGb3 = "Color Style";
+        public string chatoptionsGb4 = "DevPro Channel";
+        public string chatoptionsLblHideJoinLeave = "Hide Join/Leave";
+        public string chatoptionsLblPmWindows = "PM Windows";
+        public string chatoptionsLblColorBlindMode = "Color Blind Mode";
+        public string chatoptionsLblShowTimeStamp = "Show Time Stamp";
+        public string chatoptionsLblRefuseDuelRequests = "Refuse Duel Requests";
+        public string chatoptionsLblChatBackground = "Chat Background";
+        public string chatoptionsLblNormalText = "Normal Text";
+        public string chatoptionsLblLevel99 = "Level 99";
+        public string chatoptionsLblLevel2 = "Level 2";
+        public string chatoptionsLblLevel1 = "Level 1";
+        public string chatoptionsLblNormalUser = "Normal Username";
+        public string chatoptionsLblServerMessages = "Server Message";
+        public string chatoptionsLblMeMessage = "/Me Message";
+        public string chatoptionsLblJoin = "Join";
+        public string chatoptionsLblLeave = "Leave";
+        public string chatoptionsLblSystem = "System";
+        public string chatoptionsBtnRequestSettings = "Request Settings";
+        public string chatoptionsBtnSave = "Save";
+        public string chatoptionsBtnCancel = "Cancel";
+        public string chatoptionsRequestFormText = "Duel Request Settings";
+
+        //Chat_frm.cs
+
+        public string chatBtnoptions = "Options";
+        public string chatTabUsers = "Users";
+        public string chatTabFriends = "Friends";
+        public string chatTabIgnore = "Ignore";
     }
 }

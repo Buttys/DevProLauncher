@@ -137,4 +137,33 @@
   <profileLblwld>Win/Lose/Draw: </profileLblwld>
   <profileLblRank>Rank: </profileLblRank>
   <profileLblTeam>Team: </profileLblTeam>
+  <chatoptionsFormName>Chat Options</chatoptionsFormName>
+  <chatoptionsGb1>Chat Settings</chatoptionsGb1>
+  <chatoptionsGb2>Other Settings</chatoptionsGb2>
+  <chatoptionsGb3>Color Style</chatoptionsGb3>
+  <chatoptionsGb4>DevPro Channel</chatoptionsGb4>
+  <chatoptionsLblHideJoinLeave>Hide Join/Leave</chatoptionsLblHideJoinLeave>
+  <chatoptionsLblPmWindows>PM Windows</chatoptionsLblPmWindows>
+  <chatoptionsLblColorBlindMode>Color Blind Mode</chatoptionsLblColorBlindMode>
+  <chatoptionsLblShowTimeStamp>Show Time Stamp</chatoptionsLblShowTimeStamp>
+  <chatoptionsLblRefuseDuelRequests>Refuse Duel Requests</chatoptionsLblRefuseDuelRequests>
+  <chatoptionsLblChatBackground>Chat Background</chatoptionsLblChatBackground>
+  <chatoptionsLblNormalText>Normal Text</chatoptionsLblNormalText>
+  <chatoptionsLblLevel99>Level 99</chatoptionsLblLevel99>
+  <chatoptionsLblLevel2>Level 2</chatoptionsLblLevel2>
+  <chatoptionsLblLevel1>Level 1</chatoptionsLblLevel1>
+  <chatoptionsLblNormalUser>Normal Username</chatoptionsLblNormalUser>
+  <chatoptionsLblServerMessages>Server Message</chatoptionsLblServerMessages>
+  <chatoptionsLblMeMessage>/Me Message</chatoptionsLblMeMessage>
+  <chatoptionsLblJoin>Join</chatoptionsLblJoin>
+  <chatoptionsLblLeave>Leave</chatoptionsLblLeave>
+  <chatoptionsLblSystem>System</chatoptionsLblSystem>
+  <chatoptionsBtnRequestSettings>Request Settings</chatoptionsBtnRequestSettings>
+  <chatoptionsBtnSave>Save</chatoptionsBtnSave>
+  <chatoptionsBtnCancel>Cancel</chatoptionsBtnCancel>
+  <chatoptionsRequestFormText>Duel Request Settings</chatoptionsRequestFormText>
+  <chatBtnoptions>Options</chatBtnoptions>
+  <chatTabUsers>Users</chatTabUsers>
+  <chatTabFriends>Friends</chatTabFriends>
+  <chatTabIgnore>Ignore</chatTabIgnore>
 </LanguageInfo>

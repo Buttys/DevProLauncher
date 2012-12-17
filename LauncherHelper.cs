@@ -8,6 +8,7 @@ using System.Net;
 using YGOPro_Launcher.CardDatabase;
 using System.Collections.Generic;
 using System.Text;
+using System.Net.NetworkInformation;
 
 namespace YGOPro_Launcher
 {
@@ -254,6 +255,24 @@ namespace YGOPro_Launcher
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
             writer.Close();
+        }
+
+        public static string GetMacAddress()
+        {
+            const int MIN_MAC_ADDR_LENGTH = 12;
+            string macAddress = "";
+            long maxSpeed = -1;
+
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                string tempMac = nic.GetPhysicalAddress().ToString();
+                if (nic.Speed > maxSpeed && !String.IsNullOrEmpty(tempMac) && tempMac.Length >= MIN_MAC_ADDR_LENGTH)
+                {
+                    maxSpeed = nic.Speed;
+                    macAddress = tempMac;
+                }
+            }
+            return macAddress;
         }
 
         public static string GenerateString()

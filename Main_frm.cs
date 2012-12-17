@@ -49,8 +49,9 @@ namespace YGOPro_Launcher
             if (Program.UserInfo.Rank > 0)
             {
                 ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
-                CreateBrowserWindow("Chat"),
                 ChatTab,
+                CreateBrowserWindow("Tournament Room"),
+                
                 CreateBrowserWindow("Youtube"),
                 FileManager, CustomizeTab, AboutTab });
 
@@ -58,8 +59,8 @@ namespace YGOPro_Launcher
             else
             {
                 ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,
-                CreateBrowserWindow("Chat"),
-                ChatTab,
+                    ChatTab,
+                    CreateBrowserWindow("Tournament Room"),
                 CreateBrowserWindow("Youtube"),
                 FileManager, CustomizeTab, AboutTab });
             }
@@ -148,8 +149,8 @@ namespace YGOPro_Launcher
                     WebBrowser browser = (WebBrowser)control;
                     if (browser.Url == null)
                     {
-                        if (tab.Name == "Chat")
-                            browser.Navigate("http://liberty.mainframe-irc.net:20003/?nick=&channels=ygopro");
+                        if (tab.Name == "Tournament Room")
+                            browser.Navigate("http://liberty.mainframe-irc.net:20003/?nick="+Program.Config.DefaultUsername+"&channels=YGOPT");
                         else if (tab.Name == "Youtube")
                             browser.Navigate("https://www.youtube.com/user/blub2blb");
                         else if (tab.Name == "Ranking")
