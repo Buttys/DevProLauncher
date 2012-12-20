@@ -8,7 +8,7 @@ namespace YGOPro_Launcher.Chat
 {
     public class ChatWindow : TabPage
     {
-        RichTextBox ChatLog = new RichTextBox();
+        CustomRTB ChatLog = new CustomRTB();
         public bool isprivate = false;
         public ChatWindow(string name,bool privatewindow)
         {
@@ -20,10 +20,8 @@ namespace YGOPro_Launcher.Chat
 
             ChatLog.Font = new System.Drawing.Font("Arial", 12);
 
-            ChatLog.KeyDown += new KeyEventHandler(ChatLog_KeyDown);
-            ChatLog.MouseUp += new MouseEventHandler(Chat_MouseUp);
             ChatLog.LinkClicked += new LinkClickedEventHandler(ChatLog_LinkClicked);
-
+            ChatLog.ReadOnly = true;
             ApplyNewSettings();
             ChatLog.TabStop = false;
 
@@ -50,7 +48,7 @@ namespace YGOPro_Launcher.Chat
                 if (message.Type == MessageType.Message || message.Type == MessageType.PrivateMessage)
                 {
                     if(Program.Config.ShowTimeStamp)
-                        WriteText(DateTime.Now.ToString("[HH:mm] "),(Program.Config.ColorBlindMode ? Color.Black: Color.FromName(Program.Config.NormalTextColor)));
+                        WriteText(message.Time.ToString("[HH:mm] "),(Program.Config.ColorBlindMode ? Color.Black: Color.FromName(Program.Config.NormalTextColor)));
                     
                     WriteText("<", (Program.Config.ColorBlindMode ? Color.Black : Color.FromName(Program.Config.NormalTextColor)));
                     WriteText((Program.Config.ColorBlindMode && message.From.Rank > 0 ? "[Admin] " + message.From.Username: message.From.Username),
@@ -70,7 +68,9 @@ namespace YGOPro_Launcher.Chat
                 
                 ChatLog.SelectionStart = ChatLog.TextLength;
                 ChatLog.SelectionLength = 0;
-                ChatLog.ScrollToCaret();
+
+                if(ChatLog.IsAtMaxScroll())
+                    ChatLog.ScrollToCaret();
             }
 
         }

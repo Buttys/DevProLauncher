@@ -150,7 +150,7 @@ namespace YGOPro_Launcher
                     if (browser.Url == null)
                     {
                         if (tab.Name == "Tournament Room")
-                            browser.Navigate("http://liberty.mainframe-irc.net:20003/?nick="+Program.Config.DefaultUsername+"&channels=YGOPT");
+                            browser.Navigate(" http://widget01.mibbit.com/?settings=1d3b9b4a953ff06aa383b6608dde1815&server=liberty.mainframe-irc.net&channel=%23ygopt");
                         else if (tab.Name == "Youtube")
                             browser.Navigate("https://www.youtube.com/user/blub2blb");
                         else if (tab.Name == "Ranking")

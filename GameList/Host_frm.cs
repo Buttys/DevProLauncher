@@ -62,8 +62,13 @@ namespace YGOPro_Launcher
             ShuffleDeck.Checked = Program.Config.chtDisableShuffleDeck;
             CheckDeck.Checked = Program.Config.chtDisableCheckDeck;
             BanList.Items.AddRange(LauncherHelper.GetBanListArray());
-            if(BanList.Items.Count > 0)
-                BanList.SelectedIndex = 0;
+            if (BanList.Items.Count > 0)
+            {
+                if (BanList.Items.Contains(Program.Config.chtBanList))
+                {
+                    BanList.SelectedItem = Program.Config.chtBanList;
+                }
+            }
 
             Mode.SelectedIndexChanged += DuelModeChanged;
 

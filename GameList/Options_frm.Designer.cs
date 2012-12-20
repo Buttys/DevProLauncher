@@ -450,8 +450,7 @@
             this.GameFont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GameFont.FormattingEnabled = true;
             this.GameFont.Items.AddRange(new object[] {
-            "simhei.ttf",
-            "arialuni.ttf"});
+            "simhei.ttf"});
             this.GameFont.Location = new System.Drawing.Point(141, 32);
             this.GameFont.Name = "GameFont";
             this.GameFont.Size = new System.Drawing.Size(133, 21);

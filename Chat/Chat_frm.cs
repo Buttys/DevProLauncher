@@ -46,6 +46,7 @@ namespace YGOPro_Launcher.Chat
             server.FriendList += new ChatClient.ServerResponse(LoadFriends);
 
             UserList.DrawItem += new DrawItemEventHandler(UserList_DrawItem);
+     
             FriendList.DrawItem += new DrawItemEventHandler(FriendList_DrawItem);
             UserList.DoubleClick += UserList_DoubleClick;
             UserList.MouseUp += new MouseEventHandler(UserList_MouseUp);
@@ -56,6 +57,7 @@ namespace YGOPro_Launcher.Chat
 
             LoadIgnoreList();
             ApplyTranslation();
+            ApplyNewSettings();
             
         }
 
@@ -229,7 +231,7 @@ namespace YGOPro_Launcher.Chat
                     foreach (string user in users)
                     {
                         string[] info = user.Split(',');
-                        UserList.Items.Add(info[0]);
+                        
                         if (UserData.ContainsKey(info[0]))
                         {
                             UserData[info[0]] = new UserData() { Username = info[0], Rank = Int32.Parse(info[1]) };
@@ -253,8 +255,10 @@ namespace YGOPro_Launcher.Chat
                                 ChannelUsers[parts[1]].Add(info[0]);
                         }
 
+
+                        ChatTabsChanged(null, EventArgs.Empty);
+
                     }
-                    ChatTabsChanged(null, EventArgs.Empty);
             }
         }
 
@@ -301,7 +305,7 @@ namespace YGOPro_Launcher.Chat
                 if(!ChannelContainsUser(info[0],parts[1]))
                     ChannelUsers[parts[1]].Add(info[0]);
 
-                if (parts[1] != "DevPro")
+                if (!Program.Config.HideJoinLeave)
                 {
                     if (FriendListContains(info[0]))
                         NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, parts[1], "Your friend " + info[0] + " has joined the channel.", false));
@@ -318,7 +322,11 @@ namespace YGOPro_Launcher.Chat
                         NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", "Your friend " + info[0] + " has logged in.", false));
                 }
 
-                ChatTabsChanged(null, EventArgs.Empty);
+                if (parts[1] == CurrentChatWindow().Name)
+                {
+                    InsetIntoUserList(info[0]);
+                }
+               
             }
         }
 
@@ -354,7 +362,7 @@ namespace YGOPro_Launcher.Chat
                     if(ChannelUsers[parts[1]].Contains(parts[0]))
                         ChannelUsers[parts[1]].Remove(parts[0]);
                 }
-                if (parts[1] != "DevPro")
+                if (!Program.Config.HideJoinLeave)
                 {
                     if (FriendListContains(parts[0]))
                         NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, parts[1], "Your friend " + parts[0] + " has left the channel.", false));
@@ -366,12 +374,24 @@ namespace YGOPro_Launcher.Chat
                 {
 
                     if (!Program.Config.HideJoinLeave)
-                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", parts[0] + " has left.", false));
+                        NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", parts[0] + " has left.", false));
                     else if (FriendListContains(parts[0]))
-                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", "Your friend " + parts[0] + " has logged out.", false));
+                        NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", "Your friend " + parts[0] + " has logged out.", false));
                 }
 
-                ChatTabsChanged(null, EventArgs.Empty);
+                if (parts[1] == CurrentChatWindow().Name)
+                {
+                    //UserList.Items.Remove(parts[0]);
+                    for (int i = 0; i < UserList.Items.Count - 1; i++)
+                    {
+                        if (UserList.Items[i].ToString() == parts[0])
+                        {
+                            UserList.Items.RemoveAt(i);
+                            break;
+                        }
+                    }
+
+                }
                 
 
             }
@@ -645,6 +665,9 @@ namespace YGOPro_Launcher.Chat
                 else
                     UserList.SelectedIndex = index;
 
+                if(UserList.SelectedItem == null)
+                    return;
+
                 ContextMenuStrip mnu = new ContextMenuStrip();
                 ToolStripMenuItem mnuprofile = new ToolStripMenuItem("View Profile");
                 ToolStripMenuItem mnuduel = new ToolStripMenuItem("Request Duel");
@@ -680,6 +703,9 @@ namespace YGOPro_Launcher.Chat
                 if (index == -1) return;
                 else
                     FriendList.SelectedIndex = index;
+
+                if (UserList.SelectedItem == null)
+                    return;
 
                 ContextMenuStrip mnu = new ContextMenuStrip();
                 ToolStripMenuItem mnuremovefriend = new ToolStripMenuItem("Remove Friend");
@@ -811,6 +837,9 @@ namespace YGOPro_Launcher.Chat
 
         private void AddFriend(object sender, EventArgs e)
         {
+            if (UserList.SelectedItem == null)
+                return;
+
                 if (UserList.SelectedItem.ToString() == Program.UserInfo.Username)
                 {
                     NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You cannot be your own friend."));
@@ -833,7 +862,10 @@ namespace YGOPro_Launcher.Chat
 
         private void ViewProfile(object sender, EventArgs e)
         {
-            ListBox list = (UserTabs.SelectedTab.Name == "UserTab" ? UserList:FriendList);
+            ListBox list = (UserTabs.SelectedTab.Text == Program.LanguageManager.Translation.chatTabUsers ? UserList:FriendList);
+            if (list.SelectedItem == null)
+                return;
+            
             Profile_frm profile = new Profile_frm(list.SelectedItem.ToString());
             profile.ShowDialog();
 
@@ -841,7 +873,11 @@ namespace YGOPro_Launcher.Chat
 
         private void RequestDuel(object sender, EventArgs e)
         {
-            ListBox list = (UserTabs.SelectedTab.Name == "UserTab" ? UserList : FriendList);
+            ListBox list = (UserTabs.SelectedTab.Text == Program.LanguageManager.Translation.chatTabUsers ? UserList : FriendList);
+
+            if (list.SelectedItem == null)
+                return;
+            
             if (list.SelectedItem.ToString() == Program.UserInfo.Username)
                 NewMessage(new ChatMessage(MessageType.System, CurrentChatWindow().Name, "You cannot duel request your self."));
             else
@@ -970,42 +1006,127 @@ namespace YGOPro_Launcher.Chat
                            
         }
 
+        private void InsetIntoUserList(string username)
+        {
+            List<string> adminlist = new List<string>();
+            List<string> botlist = new List<string>();
+            List<string> normaluserlist = new List<string>();
+            int rank = 0;
+
+            if (UserData.ContainsKey(username))
+                rank = UserData[username].Rank;
+
+            foreach (object user in UserList.Items)
+            {
+                if (UserData.ContainsKey(user.ToString()))
+                    if (UserData[user.ToString()].Rank > 0 && UserData[user.ToString()].Rank != 10)
+                        adminlist.Add(user.ToString());
+            }
+
+            if (rank > 0 && rank != 10)
+                adminlist.Add(username);
+
+            adminlist.Sort();
+
+            foreach (object user in UserList.Items)
+            {
+                if (UserData.ContainsKey(user.ToString()))
+                    if (UserData[user.ToString()].Rank == 10)
+                        botlist.Add(user.ToString());
+            }
+
+            if (rank == 10)
+                botlist.Add(username);
+
+            botlist.Sort();
+
+            foreach (object user in UserList.Items)
+            {
+                if (UserData.ContainsKey(user.ToString()))
+                    if (UserData[user.ToString()].Rank == 0)
+                        normaluserlist.Add(user.ToString());
+            }
+
+            if (rank == 0)
+                normaluserlist.Add(username);
+
+            normaluserlist.Sort();
+
+            if (rank >0 && rank !=  10)
+            {
+                for (int i = 0; i < adminlist.Count - 1; i++)
+                {
+                    if (adminlist[i] == username)
+                    {
+                        UserList.Items.Insert(i, username);
+                        return;
+                    }
+                }
+            }
+
+            if (rank == 10)
+            {
+                for (int i = 0; i < botlist.Count - 1; i++)
+                {
+                    if (botlist[i] == username)
+                    {
+                        UserList.Items.Insert(adminlist.Count + i, username);
+                        return;
+                    }
+                }
+            }
+
+            if (rank == 0)
+            {
+                for (int i = 0; i < normaluserlist.Count - 1; i++)
+                {
+                    if (normaluserlist[i] == username)
+                    {
+                        UserList.Items.Insert(adminlist.Count + botlist.Count + i, username);
+                        return;
+                    }
+                }
+            }
+
+        }
+
         private void SortUserList()
         {
-                List<string> adminlist = new List<string>();
-                List<string> botlist = new List<string>();
-                List<string> normaluserlist = new List<string>();
+            List<string> adminlist = new List<string>();
+            List<string> botlist = new List<string>();
+            List<string> normaluserlist = new List<string>();
 
 
-                foreach (object user in UserList.Items)
-                {
-                    if (UserData.ContainsKey(user.ToString()))
-                        if (UserData[user.ToString()].Rank > 0 && UserData[user.ToString()].Rank != 10)
-                            adminlist.Add(user.ToString());
-                }
-                adminlist.Sort();
+            foreach (object user in UserList.Items)
+            {
+                if (UserData.ContainsKey(user.ToString()))
+                    if (UserData[user.ToString()].Rank > 0 && UserData[user.ToString()].Rank != 10)
+                        adminlist.Add(user.ToString());
+            }
+            adminlist.Sort();
 
-                foreach (object user in UserList.Items)
-                {
-                    if (UserData.ContainsKey(user.ToString()))
-                        if (UserData[user.ToString()].Rank == 10)
-                            botlist.Add(user.ToString());
-                }
-                botlist.Sort();
+            foreach (object user in UserList.Items)
+            {
+                if (UserData.ContainsKey(user.ToString()))
+                    if (UserData[user.ToString()].Rank == 10)
+                        botlist.Add(user.ToString());
+            }
+            botlist.Sort();
 
-                foreach (object user in UserList.Items)
-                {
-                    if (UserData.ContainsKey(user.ToString()))
-                        if (UserData[user.ToString()].Rank == 0)
-                            normaluserlist.Add(user.ToString());
-                }
+            foreach (object user in UserList.Items)
+            {
+                if (UserData.ContainsKey(user.ToString()))
+                    if (UserData[user.ToString()].Rank == 0)
+                        normaluserlist.Add(user.ToString());
+            }
 
-                normaluserlist.Sort();
+            normaluserlist.Sort();
 
-                UserList.Items.Clear();
-                UserList.Items.AddRange(adminlist.ToArray());
-                UserList.Items.AddRange(botlist.ToArray());
-                UserList.Items.AddRange(normaluserlist.ToArray());
+            UserList.Items.Clear();
+            UserList.Items.AddRange(adminlist.ToArray());
+            UserList.Items.AddRange(botlist.ToArray());
+            UserList.Items.AddRange(normaluserlist.ToArray());
+
         }
 
         private void OptionsBtn_Click(object sender, EventArgs e)
@@ -1021,6 +1142,7 @@ namespace YGOPro_Launcher.Chat
 
         private void ApplyNewSettings()
         {
+
             foreach (ChatWindow chat in ChatTabs.TabPages)
             {
                 chat.ApplyNewSettings();

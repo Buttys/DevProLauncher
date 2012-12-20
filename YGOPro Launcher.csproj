@@ -87,11 +87,15 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Chat\ChatClient.cs" />
+    <Compile Include="Chat\FlashWindow.cs" />
     <Compile Include="Chat\PmWindow_frm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Chat\PmWindow_frm.Designer.cs">
       <DependentUpon>PmWindow_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Chat\CustomRTB.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Config\Configuration.cs" />
     <Compile Include="Config\LanguageInfo.cs" />

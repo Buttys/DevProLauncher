@@ -12,6 +12,7 @@ namespace YGOPro_Launcher.Chat
         public string Channel;
         public UserData From;
         public MessageType Type;
+        public DateTime Time;
         
 
         public ChatMessage(MessageType type, UserData user,string channel,string message,bool isencoded)
@@ -21,12 +22,14 @@ namespace YGOPro_Launcher.Chat
             Type = type;
             From = user;
             Channel = channel;
+            Time = DateTime.Now;
         }
         public ChatMessage(MessageType type, string channel, string message)
         {
             FormattedMessage = message;
             Type = type;
             Channel = channel;
+            Time = DateTime.Now;
         }
 
         public Color MessageColor

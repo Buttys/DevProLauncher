@@ -169,7 +169,7 @@ namespace YGOPro_Launcher.Config
         public string chatoptionsGb1 = "Chat Settings";
         public string chatoptionsGb2 = "Other Settings";
         public string chatoptionsGb3 = "Color Style";
-        public string chatoptionsGb4 = "DevPro Channel";
+        public string chatoptionsGb4 = "Channel Settings";
         public string chatoptionsLblHideJoinLeave = "Hide Join/Leave";
         public string chatoptionsLblPmWindows = "PM Windows";
         public string chatoptionsLblColorBlindMode = "Color Blind Mode";

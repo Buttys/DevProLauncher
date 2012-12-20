@@ -25,19 +25,19 @@ namespace YGOPro_Launcher.Chat
             isprivate = privatewindow;
 
             ChatLog.Font = new System.Drawing.Font("Arial", 12);
+            ChatLog.ReadOnly = true;
 
-            ChatLog.KeyDown += new KeyEventHandler(ChatLog_KeyDown);
             ChatLog.MouseUp += new MouseEventHandler(Chat_MouseUp);
             ChatLog.LinkClicked += new LinkClickedEventHandler(ChatLog_LinkClicked);
             ChatInput.KeyPress += new KeyPressEventHandler(ChatInput_KeyPress);
-
+            
+            this.ChatInput.Click += new EventHandler(ChatInput_Click);
             ApplyNewSettings();
         }
 
-        private void ChatLog_KeyDown(object sender, KeyEventArgs e)
+        private void ChatInput_Click(object sender, EventArgs e)
         {
-            e.Handled = true;
-            e.SuppressKeyPress = true;
+            FlashWindow.Stop(this);
         }
 
         public void WriteMessage(ChatMessage message)
@@ -55,7 +55,7 @@ namespace YGOPro_Launcher.Chat
                 if (message.Type == MessageType.Message || message.Type == MessageType.PrivateMessage)
                 {
                     if (Program.Config.ShowTimeStamp)
-                        WriteText(DateTime.UtcNow.ToString("[HH:mm] "), (Program.Config.ColorBlindMode ? Color.Black : Color.FromName(Program.Config.NormalTextColor)));
+                        WriteText(message.Time.ToString("[HH:mm] "), (Program.Config.ColorBlindMode ? Color.Black : Color.FromName(Program.Config.NormalTextColor)));
 
                     WriteText("<", (Program.Config.ColorBlindMode ? Color.Black : Color.FromName(Program.Config.NormalTextColor)));
                     WriteText((Program.Config.ColorBlindMode && message.From.Rank > 0 ? "[Admin] " + message.From.Username : message.From.Username),
@@ -76,6 +76,10 @@ namespace YGOPro_Launcher.Chat
                 ChatLog.SelectionStart = ChatLog.TextLength;
                 ChatLog.SelectionLength = 0;
                 ChatLog.ScrollToCaret();
+
+                //if (this.)
+                    FlashWindow.Start(this);
+
             }
 
         }
@@ -144,5 +148,6 @@ namespace YGOPro_Launcher.Chat
                 e.Handled = true;
             }
         }
+
     }
 }

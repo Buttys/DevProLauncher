@@ -132,9 +132,38 @@
   <profileLblDestinyBoard>Tableau de la Destinée</profileLblDestinyBoard>
   <profileLblLastTurn>Dernier Tour</profileLblLastTurn>
   <profileLblDestinyLeo>Destiny Leo</profileLblDestinyLeo>
-  <profileLblUnknown>Inconnu</profileLblUnknown>
+  <profileLblUnknown>Autre</profileLblUnknown>
   <profileLblUsername>Duelliste: </profileLblUsername>
   <profileLblwld>Gagné/Perdu/Nul: </profileLblwld>
   <profileLblRank>Rang: </profileLblRank>
   <profileLblTeam>Equipe: </profileLblTeam>
+  <chatoptionsFormName>Options du Chat</chatoptionsFormName>
+  <chatoptionsGb1>Paramètres du Chat</chatoptionsGb1>
+  <chatoptionsGb2>Autres paramètres</chatoptionsGb2>
+  <chatoptionsGb3>Couleurs</chatoptionsGb3>
+  <chatoptionsGb4>Canal DevPro</chatoptionsGb4>
+  <chatoptionsLblHideJoinLeave>Cacher Joindre/Quitter</chatoptionsLblHideJoinLeave>
+  <chatoptionsLblPmWindows>Fenêtre des MP</chatoptionsLblPmWindows>
+  <chatoptionsLblColorBlindMode>Mode pour daltoniens</chatoptionsLblColorBlindMode>
+  <chatoptionsLblShowTimeStamp>Montrer l'horodatage</chatoptionsLblShowTimeStamp>
+  <chatoptionsLblRefuseDuelRequests>Refuser Requête Duel</chatoptionsLblRefuseDuelRequests>
+  <chatoptionsLblChatBackground>Fond du Chat</chatoptionsLblChatBackground>
+  <chatoptionsLblNormalText>Texte Normal</chatoptionsLblNormalText>
+  <chatoptionsLblLevel99>Niveau 99</chatoptionsLblLevel99>
+  <chatoptionsLblLevel2>Niveau 2</chatoptionsLblLevel2>
+  <chatoptionsLblLevel1>Niveau 1</chatoptionsLblLevel1>
+  <chatoptionsLblNormalUser>Duelliste classique</chatoptionsLblNormalUser>
+  <chatoptionsLblServerMessages>Message du serveur</chatoptionsLblServerMessages>
+  <chatoptionsLblMeMessage>Message /Me</chatoptionsLblMeMessage>
+  <chatoptionsLblJoin>Joindre</chatoptionsLblJoin>
+  <chatoptionsLblLeave>Quitter</chatoptionsLblLeave>
+  <chatoptionsLblSystem>Système</chatoptionsLblSystem>
+  <chatoptionsBtnRequestSettings>Param. Requête Duel</chatoptionsBtnRequestSettings>
+  <chatoptionsBtnSave>Sauver</chatoptionsBtnSave>
+  <chatoptionsBtnCancel>Annuler</chatoptionsBtnCancel>
+  <chatoptionsRequestFormText>Paramètres Requête Duel</chatoptionsRequestFormText>
+  <chatBtnoptions>Options</chatBtnoptions>
+  <chatTabUsers>Duellistes</chatTabUsers>
+  <chatTabFriends>Amis</chatTabFriends>
+  <chatTabIgnore>Ignorés</chatTabIgnore>
 </LanguageInfo>
