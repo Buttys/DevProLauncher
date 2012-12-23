@@ -30,6 +30,8 @@ namespace YGOPro_Launcher
                 CheckDeck.Checked = Program.Config.DisableCheckDeck;
                 BanList.Items.AddRange(LauncherHelper.GetBanListArray());
                 BanList.SelectedItem = Program.Config.BanList;
+                if (BanList.SelectedItem == null && BanList.Items.Count > 0)
+                    BanList.SelectedIndex = 0;
             }
             else
             {

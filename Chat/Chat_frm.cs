@@ -48,7 +48,9 @@ namespace YGOPro_Launcher.Chat
             UserList.DrawItem += new DrawItemEventHandler(UserList_DrawItem);
      
             FriendList.DrawItem += new DrawItemEventHandler(FriendList_DrawItem);
-            UserList.DoubleClick += UserList_DoubleClick;
+            UserList.DoubleClick += List_DoubleClick;
+            FriendList.DoubleClick += List_DoubleClick;
+
             UserList.MouseUp += new MouseEventHandler(UserList_MouseUp);
             FriendList.MouseUp += new MouseEventHandler(FriendList_MouseUp);
             IgnoreList.MouseUp += IgnoreList_MouseUp;
@@ -988,20 +990,22 @@ namespace YGOPro_Launcher.Chat
             e.DrawFocusRectangle();
         }
 
-        private void UserList_DoubleClick(object sender, EventArgs e)
+        private void List_DoubleClick(object sender, EventArgs e)
         {
-            if (UserList.SelectedItem == null)
+            ListBox list = (UserTabs.SelectedTab.Text == Program.LanguageManager.Translation.chatTabUsers ? UserList : FriendList);
+
+            if (list.SelectedItem == null)
                 return;
 
             if (Program.Config.PmWindows)
             {
-                    PmWindows.Add(UserList.SelectedItem.ToString(), new PmWindow_frm(UserList.SelectedItem.ToString(), true, server));
-                    PmWindows[UserList.SelectedItem.ToString()].Show();
-                    PmWindows[UserList.SelectedItem.ToString()].FormClosed += Chat_frm_FormClosed;
+                PmWindows.Add(list.SelectedItem.ToString(), new PmWindow_frm(list.SelectedItem.ToString(), true, server));
+                PmWindows[list.SelectedItem.ToString()].Show();
+                PmWindows[list.SelectedItem.ToString()].FormClosed += Chat_frm_FormClosed;
             }
             else
             {
-                CreateChatWindow(UserList.SelectedItem.ToString(), true);
+                CreateChatWindow(list.SelectedItem.ToString(), true);
             }
                            
         }

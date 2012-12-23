@@ -31,7 +31,7 @@ namespace YGOPro_Launcher.Chat
             Point rtfPoint = Point.Empty;
             SendMessage(this.Handle, EM_GETSCROLLPOS, 0, ref rtfPoint);
 
-            int safezone = maxScroll / 100 * 10;
+            int safezone = maxScroll / 100 * 20;
 
             return (rtfPoint.Y + this.ClientSize.Height >= maxScroll - safezone);
         }

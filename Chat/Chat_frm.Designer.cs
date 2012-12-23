@@ -66,7 +66,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(569, 373);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(554, 373);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // tableLayoutPanel3
@@ -81,7 +81,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(563, 27);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(548, 27);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // ChatInput
@@ -90,13 +90,13 @@
             this.ChatInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChatInput.Location = new System.Drawing.Point(3, 3);
             this.ChatInput.Name = "ChatInput";
-            this.ChatInput.Size = new System.Drawing.Size(477, 20);
+            this.ChatInput.Size = new System.Drawing.Size(462, 20);
             this.ChatInput.TabIndex = 1;
             this.ChatInput.TabStop = false;
             // 
             // OptionsBtn
             // 
-            this.OptionsBtn.Location = new System.Drawing.Point(486, 3);
+            this.OptionsBtn.Location = new System.Drawing.Point(471, 3);
             this.OptionsBtn.Name = "OptionsBtn";
             this.OptionsBtn.Size = new System.Drawing.Size(74, 21);
             this.OptionsBtn.TabIndex = 2;
@@ -112,14 +112,14 @@
             this.ChatTabs.Location = new System.Drawing.Point(3, 3);
             this.ChatTabs.Name = "ChatTabs";
             this.ChatTabs.SelectedIndex = 0;
-            this.ChatTabs.Size = new System.Drawing.Size(563, 334);
+            this.ChatTabs.Size = new System.Drawing.Size(548, 334);
             this.ChatTabs.TabIndex = 4;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -137,12 +137,12 @@
             this.tableLayoutPanel4.Controls.Add(this.UserTabs, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.DonateIMG, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(578, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(563, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(134, 373);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(149, 373);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
             // UserTabs
@@ -154,7 +154,7 @@
             this.UserTabs.Location = new System.Drawing.Point(3, 3);
             this.UserTabs.Name = "UserTabs";
             this.UserTabs.SelectedIndex = 0;
-            this.UserTabs.Size = new System.Drawing.Size(128, 329);
+            this.UserTabs.Size = new System.Drawing.Size(143, 329);
             this.UserTabs.TabIndex = 3;
             this.UserTabs.TabStop = false;
             // 
@@ -164,7 +164,7 @@
             this.UserTab.Location = new System.Drawing.Point(4, 22);
             this.UserTab.Name = "UserTab";
             this.UserTab.Padding = new System.Windows.Forms.Padding(3);
-            this.UserTab.Size = new System.Drawing.Size(120, 303);
+            this.UserTab.Size = new System.Drawing.Size(135, 303);
             this.UserTab.TabIndex = 0;
             this.UserTab.Text = "Users";
             this.UserTab.UseVisualStyleBackColor = true;
@@ -177,7 +177,7 @@
             this.UserList.IntegralHeight = false;
             this.UserList.Location = new System.Drawing.Point(3, 3);
             this.UserList.Name = "UserList";
-            this.UserList.Size = new System.Drawing.Size(114, 297);
+            this.UserList.Size = new System.Drawing.Size(129, 297);
             this.UserList.TabIndex = 0;
             this.UserList.TabStop = false;
             // 
@@ -187,7 +187,7 @@
             this.FriendTab.Location = new System.Drawing.Point(4, 22);
             this.FriendTab.Name = "FriendTab";
             this.FriendTab.Padding = new System.Windows.Forms.Padding(3);
-            this.FriendTab.Size = new System.Drawing.Size(120, 303);
+            this.FriendTab.Size = new System.Drawing.Size(135, 303);
             this.FriendTab.TabIndex = 1;
             this.FriendTab.Text = "Friends";
             this.FriendTab.UseVisualStyleBackColor = true;
@@ -200,7 +200,7 @@
             this.FriendList.IntegralHeight = false;
             this.FriendList.Location = new System.Drawing.Point(3, 3);
             this.FriendList.Name = "FriendList";
-            this.FriendList.Size = new System.Drawing.Size(114, 297);
+            this.FriendList.Size = new System.Drawing.Size(129, 297);
             this.FriendList.TabIndex = 0;
             // 
             // IgnoreTab
@@ -208,7 +208,7 @@
             this.IgnoreTab.Controls.Add(this.IgnoreList);
             this.IgnoreTab.Location = new System.Drawing.Point(4, 22);
             this.IgnoreTab.Name = "IgnoreTab";
-            this.IgnoreTab.Size = new System.Drawing.Size(120, 303);
+            this.IgnoreTab.Size = new System.Drawing.Size(135, 303);
             this.IgnoreTab.TabIndex = 2;
             this.IgnoreTab.Text = "Ignore";
             this.IgnoreTab.UseVisualStyleBackColor = true;
@@ -220,7 +220,7 @@
             this.IgnoreList.IntegralHeight = false;
             this.IgnoreList.Location = new System.Drawing.Point(0, 0);
             this.IgnoreList.Name = "IgnoreList";
-            this.IgnoreList.Size = new System.Drawing.Size(120, 303);
+            this.IgnoreList.Size = new System.Drawing.Size(135, 303);
             this.IgnoreList.TabIndex = 1;
             // 
             // DonateIMG
@@ -229,7 +229,7 @@
             this.DonateIMG.Image = global::YGOPro_Launcher.Properties.Resources.btn_donate_LG;
             this.DonateIMG.Location = new System.Drawing.Point(3, 338);
             this.DonateIMG.Name = "DonateIMG";
-            this.DonateIMG.Size = new System.Drawing.Size(128, 32);
+            this.DonateIMG.Size = new System.Drawing.Size(143, 32);
             this.DonateIMG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.DonateIMG.TabIndex = 4;
             this.DonateIMG.TabStop = false;

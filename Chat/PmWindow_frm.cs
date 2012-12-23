@@ -31,7 +31,7 @@ namespace YGOPro_Launcher.Chat
             ChatLog.LinkClicked += new LinkClickedEventHandler(ChatLog_LinkClicked);
             ChatInput.KeyPress += new KeyPressEventHandler(ChatInput_KeyPress);
             
-            this.ChatInput.Click += new EventHandler(ChatInput_Click);
+            this.Activated += new EventHandler(ChatInput_Click);
             ApplyNewSettings();
         }
 
@@ -77,7 +77,7 @@ namespace YGOPro_Launcher.Chat
                 ChatLog.SelectionLength = 0;
                 ChatLog.ScrollToCaret();
 
-                //if (this.)
+                if(message.From.Username != Program.UserInfo.Username && !ChatInput.Focused)
                     FlashWindow.Start(this);
 
             }
