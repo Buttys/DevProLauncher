@@ -829,11 +829,15 @@ namespace YGOPro_Launcher.Chat
 
         private void BanUser(object sender, EventArgs e)
         {
+            if (UserList.SelectedItem == null)
+                return;
             if(MessageBox.Show("Are you sure you want to ban " + UserList.SelectedItem.ToString(),"Ban User",MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                 server.SendPacket("ADMIN||BAN||" + UserList.SelectedItem.ToString());
         }
         private void KickUser(object sender, EventArgs e)
         {
+            if (UserList.SelectedItem == null)
+                return;
             server.SendPacket("ADMIN||KICK||" + UserList.SelectedItem.ToString());
         }
 
