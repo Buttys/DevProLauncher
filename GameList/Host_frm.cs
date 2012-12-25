@@ -141,7 +141,10 @@ namespace YGOPro_Launcher
             else
                 gamestring = gamestring + "2";
 
-            gamestring += LauncherHelper.GetBanListValue(BanList.SelectedItem.ToString());
+            if (BanList.SelectedItem == null)
+                gamestring += 0;
+            else
+                gamestring += LauncherHelper.GetBanListValue(BanList.SelectedItem.ToString());
 
             gamestring += TimeLimit.SelectedIndex;
 

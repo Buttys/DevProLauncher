@@ -259,6 +259,7 @@ namespace YGOPro_Launcher.Chat
 
 
                         ChatTabsChanged(null, EventArgs.Empty);
+                        UpdateUserCount();
 
                     }
             }
@@ -327,6 +328,7 @@ namespace YGOPro_Launcher.Chat
                 if (parts[1] == CurrentChatWindow().Name)
                 {
                     InsetIntoUserList(info[0]);
+                    UpdateUserCount();
                 }
                
             }
@@ -392,6 +394,7 @@ namespace YGOPro_Launcher.Chat
                             break;
                         }
                     }
+                    UpdateUserCount();
 
                 }
                 
@@ -1139,16 +1142,27 @@ namespace YGOPro_Launcher.Chat
 
         private void OptionsBtn_Click(object sender, EventArgs e)
         {
-            ChatOptions_frm form = new ChatOptions_frm();
-
+            Settings form = new Settings();
+            form.OptionTabControl.SelectedIndex = 1;
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 ApplyNewSettings();
-                Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
             }
         }
 
-        private void ApplyNewSettings()
+        private void UpdateUserCount()
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action(UpdateUserCount));
+            }
+            else
+            {
+                UserCount.Text = "User Count: " + ChannelUsers[CurrentChatWindow().Name].Count;
+            }
+        }
+
+        public void ApplyNewSettings()
         {
 
             foreach (ChatWindow chat in ChatTabs.TabPages)

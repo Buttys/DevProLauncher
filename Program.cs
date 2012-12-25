@@ -15,7 +15,7 @@ namespace YGOPro_Launcher
     static class Program
     {
 
-        public const string Version = "165000";
+        public const string Version = "170000";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -242,8 +242,7 @@ namespace YGOPro_Launcher
         {
             if (!File.Exists(filename))
             {
-                MessageBox.Show("File not found");
-                return;
+                SaveConfig(filename, new Configuration());
             }
             try
             {

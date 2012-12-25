@@ -299,7 +299,8 @@ namespace YGOPro_Launcher
                 form.Mode.Items.Clear();
                 form.Mode.Items.AddRange(new object[] { "Match", "Tag" });
                 form.Mode.SelectedItem = "Match";
-                form.BanList.SelectedIndex = 0;
+                if(form.BanList.Items.Count > 0)
+                    form.BanList.SelectedIndex = 0;
                 form.BanList.Enabled = false;
                 form.TimeLimit.Items.Clear();
                 form.TimeLimit.Items.Add("Server Defualt");
