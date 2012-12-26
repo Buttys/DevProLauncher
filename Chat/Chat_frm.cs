@@ -320,9 +320,9 @@ namespace YGOPro_Launcher.Chat
                 {
 
                     if (!Program.Config.HideJoinLeave)
-                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", info[0] + " has joined.", false));
+                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, parts[1], info[0] + " has joined.", false));
                     else if (FriendListContains(info[0]))
-                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, "DevPro", "Your friend " + info[0] + " has logged in.", false));
+                        NewMessage(new ChatMessage(MessageType.Join, Program.UserInfo, parts[1], "Your friend " + info[0] + " has logged in.", false));
                 }
 
                 if (parts[1] == CurrentChatWindow().Name)
@@ -378,9 +378,9 @@ namespace YGOPro_Launcher.Chat
                 {
 
                     if (!Program.Config.HideJoinLeave)
-                        NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", parts[0] + " has left.", false));
+                        NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, parts[1], parts[0] + " has left.", false));
                     else if (FriendListContains(parts[0]))
-                        NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, "DevPro", "Your friend " + parts[0] + " has logged out.", false));
+                        NewMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, parts[1], "Your friend " + parts[0] + " has logged out.", false));
                 }
 
                 if (parts[1] == CurrentChatWindow().Name)
@@ -1006,9 +1006,16 @@ namespace YGOPro_Launcher.Chat
 
             if (Program.Config.PmWindows)
             {
-                PmWindows.Add(list.SelectedItem.ToString(), new PmWindow_frm(list.SelectedItem.ToString(), true, server));
-                PmWindows[list.SelectedItem.ToString()].Show();
-                PmWindows[list.SelectedItem.ToString()].FormClosed += Chat_frm_FormClosed;
+                if (!PmWindows.ContainsKey(list.SelectedItem.ToString()))
+                {
+                    PmWindows.Add(list.SelectedItem.ToString(), new PmWindow_frm(list.SelectedItem.ToString(), true, server));
+                    PmWindows[list.SelectedItem.ToString()].Show();
+                    PmWindows[list.SelectedItem.ToString()].FormClosed += Chat_frm_FormClosed;
+                }
+                else
+                {
+                    PmWindows[list.SelectedItem.ToString()].BringToFront();
+                }
             }
             else
             {

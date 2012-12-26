@@ -217,6 +217,5 @@ namespace YGOPro_Launcher
                 Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
             }
         }
-
     }
 }
