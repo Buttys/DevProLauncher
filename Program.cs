@@ -14,12 +14,7 @@ namespace YGOPro_Launcher
 {
     static class Program
     {
-
-<<<<<<< HEAD
-        public const string Version = "170200";
-=======
-        public const string Version = "170000";
->>>>>>> parent of e0ef876... cdb updates
+        public const string Version = "170300";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;

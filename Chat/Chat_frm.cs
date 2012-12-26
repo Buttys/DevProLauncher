@@ -1080,6 +1080,8 @@ namespace YGOPro_Launcher.Chat
                         return;
                     }
                 }
+                UserList.Items.Insert(0, username);
+                return;
             }
 
             if (rank == 10)
@@ -1092,6 +1094,8 @@ namespace YGOPro_Launcher.Chat
                         return;
                     }
                 }
+                UserList.Items.Insert(adminlist.Count, username);
+                return;
             }
 
             if (rank == 0)
@@ -1104,6 +1108,8 @@ namespace YGOPro_Launcher.Chat
                         return;
                     }
                 }
+                UserList.Items.Insert(adminlist.Count + botlist.Count, username);
+                return;
             }
 
         }
