@@ -19,16 +19,16 @@ namespace YGOPro_Launcher
             LauncherHelper.CardManager.Init();
 
             char[] version = Program.Version.ToCharArray();
-            this.Text = this.Text + " v" + version[0] + "." + version[1] + "." + version[2];
+            this.Text = Program.LanguageManager.Translation.MainFormTitle + " v" + version[0] + "." + version[1] + "." + version[2];
 
-            TabPage FileManager = new TabPage("File Manager");
+            TabPage FileManager = new TabPage(){ Name = "File Manager", Text = Program.LanguageManager.Translation.MainFileManagerTab};
             TabControl FileControl = new TabControl();
             FileControl.Dock = DockStyle.Fill;
 
-            TabPage decktab = new TabPage() {Name = "Decks",Text ="Decks" };
+            TabPage decktab = new TabPage() {Name = "Decks",Text =Program.LanguageManager.Translation.MainFileDeckTab};
             decktab.Controls.Add(new FileManager_frm("Decks", Program.Config.LauncherDir + "deck/", ".ydk"));
             
-            TabPage replaytab = new TabPage() { Name = "Replays", Text = "Replays" };
+            TabPage replaytab = new TabPage() { Name = "Replays", Text = Program.LanguageManager.Translation.MainFileReplayTab };
             replaytab.Controls.Add(new FileManager_frm("Replays", Program.Config.LauncherDir + "replay/", ".yrp"));
             FileControl.TabPages.AddRange(new TabPage[] { decktab, replaytab });
 
@@ -37,22 +37,22 @@ namespace YGOPro_Launcher
             TabPage ServerTab = new TabPage() { Text = Program.Config.ServerName, Name = Program.Config.ServerName };
             ServerTab.Controls.Add(new ServerInterface_frm(Program.Config.ServerName));
 
-            TabPage CustomizeTab = new TabPage() { Text = "Customize", Name = "Customize" };
+            TabPage CustomizeTab = new TabPage() { Text = "Customize", Name = Program.LanguageManager.Translation.MainCustomizeTab};
             CustomizeTab.Controls.Add(new Customize_frm());
 
-            TabPage AboutTab = new TabPage() { Text = "About", Name = "About" };
+            TabPage AboutTab = new TabPage() { Text = "About", Name = Program.LanguageManager.Translation.MainAboutTab};
             AboutTab.Controls.Add(new About_frm());                    
             
-            TabPage ChatTab = new TabPage() { Text = "Chat (Beta)", Name = "Chat (Beta)" };
+            TabPage ChatTab = new TabPage() { Text = "Chat (Beta)", Name = Program.LanguageManager.Translation.MainChatTab};
             ChatTab.Controls.Add(new Chat_frm());
 
             if (Program.UserInfo.Rank > 0)
             {
                 ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
                 ChatTab,
-                CreateBrowserWindow("Tournament Room"),
+                CreateBrowserWindow("Tournament Room",Program.LanguageManager.Translation.MainTornyTab),
                 
-                CreateBrowserWindow("Youtube"),
+                CreateBrowserWindow("Youtube",Program.LanguageManager.Translation.MainYoutubeTab),
                 FileManager, CustomizeTab, AboutTab });
 
             }
@@ -60,8 +60,8 @@ namespace YGOPro_Launcher
             {
                 ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,
                     ChatTab,
-                    CreateBrowserWindow("Tournament Room"),
-                CreateBrowserWindow("Youtube"),
+                    CreateBrowserWindow("Tournament Room",Program.LanguageManager.Translation.MainTornyTab),
+                CreateBrowserWindow("Youtube",Program.LanguageManager.Translation.MainYoutubeTab),
                 FileManager, CustomizeTab, AboutTab });
             }
 
@@ -100,9 +100,9 @@ namespace YGOPro_Launcher
             MessageBox.Show(message, "Server Message", MessageBoxButtons.OK);
         }
 
-        private TabPage CreateBrowserWindow(string name)
+        private TabPage CreateBrowserWindow(string name,string tabname)
         {
-            TabPage page = new TabPage(name);
+            TabPage page = new TabPage() { Name = name, Text = tabname};
             page.Name = name;
             WebBrowser browser = new WebBrowser();
             browser.ScriptErrorsSuppressed = true;

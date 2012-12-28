@@ -197,5 +197,24 @@ namespace YGOPro_Launcher.Config
         public string chatTabUsers = "Users";
         public string chatTabFriends = "Friends";
         public string chatTabIgnore = "Ignore";
+        public string chatUserCount = "User Count: ";
+        public string chatAddFriend = "Add to Friends";
+        public string chatRequestDuel = "Request Duel";
+        public string chatIgnoreUser = "Ignore User";
+        public string chatViewProfile = "View Profile";
+        public string chatRemoveFriend = "Remove Friend";
+        public string chatRemoveIgnore = "Remove";
+
+        //Main_frm.cs
+
+        public string MainFormTitle = "YGOPro Launcher ";
+        public string MainChatTab = "Chat (Beta)";
+        public string MainTornyTab = "Tournament Room";
+        public string MainYoutubeTab = "Youtube";
+        public string MainFileManagerTab = "File Manager";
+        public string MainFileDeckTab = "Decks";
+        public string MainFileReplayTab = "Replays";
+        public string MainCustomizeTab = "Customize";
+        public string MainAboutTab = "About";
     }
 }

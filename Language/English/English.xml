@@ -141,7 +141,7 @@
   <chatoptionsGb1>Chat Settings</chatoptionsGb1>
   <chatoptionsGb2>Other Settings</chatoptionsGb2>
   <chatoptionsGb3>Color Style</chatoptionsGb3>
-  <chatoptionsGb4>DevPro Channel</chatoptionsGb4>
+  <chatoptionsGb4>Channel Settings</chatoptionsGb4>
   <chatoptionsLblHideJoinLeave>Hide Join/Leave</chatoptionsLblHideJoinLeave>
   <chatoptionsLblPmWindows>PM Windows</chatoptionsLblPmWindows>
   <chatoptionsLblColorBlindMode>Color Blind Mode</chatoptionsLblColorBlindMode>
@@ -166,4 +166,20 @@
   <chatTabUsers>Users</chatTabUsers>
   <chatTabFriends>Friends</chatTabFriends>
   <chatTabIgnore>Ignore</chatTabIgnore>
+  <chatUserCount>User Count: </chatUserCount>
+  <chatAddFriend>Add to Friends</chatAddFriend>
+  <chatRequestDuel>Request Duel</chatRequestDuel>
+  <chatIgnoreUser>Ignore User</chatIgnoreUser>
+  <chatViewProfile>View Profile</chatViewProfile>
+  <chatRemoveFriend>Remove Friend</chatRemoveFriend>
+  <chatRemoveIgnore>Remove</chatRemoveIgnore>
+  <MainFormTitle>YGOPro Launcher </MainFormTitle>
+  <MainChatTab>Chat (Beta)</MainChatTab>
+  <MainTornyTab>Tournament Room</MainTornyTab>
+  <MainYoutubeTab>Youtube</MainYoutubeTab>
+  <MainFileManagerTab>File Manager</MainFileManagerTab>
+  <MainFileDeckTab>Decks</MainFileDeckTab>
+  <MainFileReplayTab>Replays</MainFileReplayTab>
+  <MainCustomizeTab>Customize</MainCustomizeTab>
+  <MainAboutTab>About</MainAboutTab>
 </LanguageInfo>

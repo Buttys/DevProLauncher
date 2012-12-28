@@ -674,10 +674,10 @@ namespace YGOPro_Launcher.Chat
                     return;
 
                 ContextMenuStrip mnu = new ContextMenuStrip();
-                ToolStripMenuItem mnuprofile = new ToolStripMenuItem("View Profile");
-                ToolStripMenuItem mnuduel = new ToolStripMenuItem("Request Duel");
-                ToolStripMenuItem mnufriend = new ToolStripMenuItem("Add to friends");
-                ToolStripMenuItem mnuignore = new ToolStripMenuItem("Ignore User");
+                ToolStripMenuItem mnuprofile = new ToolStripMenuItem(Program.LanguageManager.Translation.chatViewProfile);
+                ToolStripMenuItem mnuduel = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRequestDuel);
+                ToolStripMenuItem mnufriend = new ToolStripMenuItem(Program.LanguageManager.Translation.chatAddFriend);
+                ToolStripMenuItem mnuignore = new ToolStripMenuItem(Program.LanguageManager.Translation.chatIgnoreUser);
                 ToolStripMenuItem mnukick = new ToolStripMenuItem("Kick");
                 ToolStripMenuItem mnuban = new ToolStripMenuItem("Ban");
 
@@ -713,9 +713,9 @@ namespace YGOPro_Launcher.Chat
                     return;
 
                 ContextMenuStrip mnu = new ContextMenuStrip();
-                ToolStripMenuItem mnuremovefriend = new ToolStripMenuItem("Remove Friend");
-                ToolStripMenuItem mnuprofile = new ToolStripMenuItem("View Profile");
-                ToolStripMenuItem mnuduel = new ToolStripMenuItem("Request Duel");
+                ToolStripMenuItem mnuremovefriend = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRemoveFriend);
+                ToolStripMenuItem mnuprofile = new ToolStripMenuItem(Program.LanguageManager.Translation.chatViewProfile);
+                ToolStripMenuItem mnuduel = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRequestDuel);
 
                 mnuremovefriend.Click += new EventHandler(RemoveFriend);
                 mnuprofile.Click += new EventHandler(ViewProfile);
@@ -738,7 +738,7 @@ namespace YGOPro_Launcher.Chat
                     IgnoreList.SelectedIndex = index;
 
                 ContextMenuStrip mnu = new ContextMenuStrip();
-                ToolStripMenuItem mnuremoveignore = new ToolStripMenuItem("Remove");
+                ToolStripMenuItem mnuremoveignore = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRemoveIgnore);
 
                 mnuremoveignore.Click += new EventHandler(UnignoreUser);
 
@@ -1171,7 +1171,7 @@ namespace YGOPro_Launcher.Chat
             }
             else
             {
-                UserCount.Text = "User Count: " + ChannelUsers[CurrentChatWindow().Name].Count;
+                UserCount.Text = Program.LanguageManager.Translation.chatUserCount + ChannelUsers[CurrentChatWindow().Name].Count;
             }
         }
 
