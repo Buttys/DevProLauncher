@@ -166,4 +166,20 @@
   <chatTabUsers>Duellistes</chatTabUsers>
   <chatTabFriends>Amis</chatTabFriends>
   <chatTabIgnore>Ignorés</chatTabIgnore>
+  <chatUserCount>En Ligne : </chatUserCount>
+  <chatAddFriend>Ajouter ami</chatAddFriend>
+  <chatRequestDuel>Défier en Duel</chatRequestDuel>
+  <chatIgnoreUser>Ignorer duelliste</chatIgnoreUser>
+  <chatViewProfile>Profil</chatViewProfile>
+  <chatRemoveFriend>Retirer ami</chatRemoveFriend>
+  <chatRemoveIgnore>Retirer</chatRemoveIgnore>
+  <MainFormTitle>Lanceur YgoPro Online </MainFormTitle>
+  <MainChatTab>Chat (Beta)</MainChatTab>
+  <MainTornyTab>Salon des Tournois</MainTornyTab>
+  <MainYoutubeTab>Youtube</MainYoutubeTab>
+  <MainFileManagerTab>Gestions des fichiers</MainFileManagerTab>
+  <MainFileDeckTab>Decks</MainFileDeckTab>
+  <MainFileReplayTab>Replays</MainFileReplayTab>
+  <MainCustomizeTab>Personnaliser</MainCustomizeTab>
+  <MainAboutTab>A propos</MainAboutTab>
 </LanguageInfo>
