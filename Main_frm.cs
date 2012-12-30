@@ -150,11 +150,11 @@ namespace YGOPro_Launcher
                     if (browser.Url == null)
                     {
                         if (tab.Name == "Tournament Room")
-                            browser.Navigate(" http://widget01.mibbit.com/?settings=1d3b9b4a953ff06aa383b6608dde1815&server=liberty.mainframe-irc.net&channel=%23ygopt");
+                            browser.Navigate("http://dev.ygopro-online.net/launcher/tournamentchat.php");
                         else if (tab.Name == "Youtube")
                             browser.Navigate("https://www.youtube.com/user/blub2blb");
                         else if (tab.Name == "Ranking")
-                            browser.Navigate("http://h2092539.stratoserver.net/ranking/ranking.php");
+                            browser.Navigate("http://angelofcode.com/tears/ranking/ranking.php");
                     }
                 }
             }
