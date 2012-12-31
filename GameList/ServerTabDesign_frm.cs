@@ -382,7 +382,7 @@ namespace YGOPro_Launcher
 
             item.SubItems.Add(room.Players);
             item.SubItems.Add(room.GenerateURI(Program.Config.ServerAddress, Program.Config.ServerPort));
-            bool illegal = room.NoCheckDeck || room.NoShuffleDeck || room.EnablePriority || (room.Mode == 2) ? room.StartLp != 16000 : room.StartLp != 8000 || room.StartHand != 5 || room.DrawCount != 1;
+            bool illegal = (room.Rule <= 2 ? room.BanList > 0: false) || room.NoCheckDeck || room.NoShuffleDeck || room.EnablePriority || (room.Mode == 2) ? room.StartLp != 16000 : room.StartLp != 8000 || room.StartHand != 5 || room.DrawCount != 1;
 
 
             item.BackColor = room.Started ? Color.LightGray :

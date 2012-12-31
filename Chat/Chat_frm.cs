@@ -117,7 +117,7 @@ namespace YGOPro_Launcher.Chat
         {
             if (server.Connect(Program.Config.ServerAddress, Program.Config.ChatPort))
             {
-                server.SendPacket("LOGIN||" + Program.UserInfo.Username + "||" + Program.Config.Password);
+                server.SendPacket("LOGIN||" + Program.UserInfo.Username + "||" + Program.Config.Password + "||" + LauncherHelper.GetUID());
             }
         }
 
@@ -419,6 +419,23 @@ namespace YGOPro_Launcher.Chat
             {
                 if (ChatInput.Text == "")
                     return;
+
+                Dictionary<string, int> lettercount = new Dictionary<string, int>();
+
+                foreach (char letter in ChatInput.Text)
+                {
+                    if (!lettercount.ContainsKey(letter.ToString()))
+                        lettercount.Add(letter.ToString(), 1);
+                    else
+                        lettercount[letter.ToString()]++;
+                }
+
+                if (lettercount.Keys.Count <= 1)
+                {
+                    ChatInput.Clear();
+                    return;
+                }
+
                 if (CurrentChatWindow().isprivate && ChatInput.Text.StartsWith("/"))
                 {
                     string[] parts = ChatInput.Text.Split(' ');
@@ -709,7 +726,7 @@ namespace YGOPro_Launcher.Chat
                 else
                     FriendList.SelectedIndex = index;
 
-                if (UserList.SelectedItem == null)
+                if (FriendList.SelectedItem == null)
                     return;
 
                 ContextMenuStrip mnu = new ContextMenuStrip();

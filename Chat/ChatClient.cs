@@ -157,7 +157,6 @@ namespace YGOPro_Launcher.Chat
             {
                 if (args[1] != "")
                 {
-                    //SendPacket("GETUSERS");
                     SendPacket("GETFRIENDS");
                 }
                 if (Login != null)
