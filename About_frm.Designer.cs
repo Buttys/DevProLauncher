@@ -64,6 +64,7 @@
             this.StaffText = new System.Windows.Forms.Label();
             this.AboutText = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +72,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.label31);
             this.panel1.Controls.Add(this.label30);
             this.panel1.Controls.Add(this.label29);
             this.panel1.Controls.Add(this.label28);
@@ -423,6 +425,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "About DevPro";
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(693, 365);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(99, 13);
+            this.label31.TabIndex = 35;
+            this.label31.Text = "Clear (Card Images)";
+            // 
             // About_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -476,6 +487,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label31;
 
 
     }

@@ -131,6 +131,8 @@
       <DependentUpon>ReplayInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="FileManager\ReplayReader.cs" />
+    <Compile Include="LauncherCustomizer\StyleInfo.cs" />
+    <Compile Include="LauncherCustomizer\FormStyler.cs" />
     <Compile Include="GameList\Host_frm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -143,7 +143,7 @@
             this.UsernameInput.Location = new System.Drawing.Point(86, 3);
             this.UsernameInput.MaxLength = 14;
             this.UsernameInput.Name = "UsernameInput";
-            this.UsernameInput.Size = new System.Drawing.Size(168, 22);
+            this.UsernameInput.Size = new System.Drawing.Size(168, 20);
             this.UsernameInput.TabIndex = 4;
             // 
             // PasswordInput
@@ -152,7 +152,7 @@
             this.PasswordInput.Location = new System.Drawing.Point(86, 28);
             this.PasswordInput.MaxLength = 15;
             this.PasswordInput.Name = "PasswordInput";
-            this.PasswordInput.Size = new System.Drawing.Size(168, 22);
+            this.PasswordInput.Size = new System.Drawing.Size(168, 20);
             this.PasswordInput.TabIndex = 5;
             this.PasswordInput.UseSystemPasswordChar = true;
             // 
@@ -173,16 +173,16 @@
             this.LanguageSelect.FormattingEnabled = true;
             this.LanguageSelect.Location = new System.Drawing.Point(86, 53);
             this.LanguageSelect.Name = "LanguageSelect";
-            this.LanguageSelect.Size = new System.Drawing.Size(168, 23);
+            this.LanguageSelect.Size = new System.Drawing.Size(168, 21);
             this.LanguageSelect.TabIndex = 7;
             // 
             // AutoLoginCheckBox
             // 
             this.AutoLoginCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.AutoLoginCheckBox.AutoSize = true;
-            this.AutoLoginCheckBox.Location = new System.Drawing.Point(40, 125);
+            this.AutoLoginCheckBox.Location = new System.Drawing.Point(41, 126);
             this.AutoLoginCheckBox.Name = "AutoLoginCheckBox";
-            this.AutoLoginCheckBox.Size = new System.Drawing.Size(183, 19);
+            this.AutoLoginCheckBox.Size = new System.Drawing.Size(181, 17);
             this.AutoLoginCheckBox.TabIndex = 2;
             this.AutoLoginCheckBox.Text = "Log me in automatically next time";
             this.AutoLoginCheckBox.UseVisualStyleBackColor = true;
@@ -197,7 +197,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(263, 151);
             this.Controls.Add(this.tableLayoutPanel3);
-            this.Font = new System.Drawing.Font("Arial Unicode MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

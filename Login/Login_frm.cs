@@ -50,6 +50,7 @@ namespace YGOPro_Launcher
             UsernameInput.KeyDown += new KeyEventHandler(UsernameInput_KeyDown);
 
             ApplyTranslation();
+            FormStyler.ApplyStlye(this, new StyleInfo());
         }
 
         public void ApplyTranslation()

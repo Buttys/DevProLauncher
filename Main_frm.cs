@@ -46,24 +46,12 @@ namespace YGOPro_Launcher
             TabPage ChatTab = new TabPage() { Text = "Chat (Beta)", Name = Program.LanguageManager.Translation.MainChatTab};
             ChatTab.Controls.Add(new Chat_frm());
 
-            if (Program.UserInfo.Rank > 0)
-            {
-                ServerControl.TabPages.AddRange(new TabPage[] { ServerTab, 
-                ChatTab,
-                CreateBrowserWindow("Tournament Room",Program.LanguageManager.Translation.MainTornyTab),
-                
-                CreateBrowserWindow("Youtube",Program.LanguageManager.Translation.MainYoutubeTab),
-                FileManager, CustomizeTab, AboutTab });
-
-            }
-            else
-            {
-                ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,
-                    ChatTab,
-                    CreateBrowserWindow("Tournament Room",Program.LanguageManager.Translation.MainTornyTab),
-                CreateBrowserWindow("Youtube",Program.LanguageManager.Translation.MainYoutubeTab),
-                FileManager, CustomizeTab, AboutTab });
-            }
+            ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,CreateBrowserWindow("Ranking",
+            Program.LanguageManager.Translation.MainRankingTab), 
+            ChatTab,
+            CreateBrowserWindow("Tournament Room",Program.LanguageManager.Translation.MainTornyTab),
+            CreateBrowserWindow("Youtube",Program.LanguageManager.Translation.MainYoutubeTab),
+            FileManager, CustomizeTab, AboutTab });
 
             Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);
             ConnectionCheck.Tick += new EventHandler(CheckConnection);

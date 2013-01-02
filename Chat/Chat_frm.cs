@@ -536,6 +536,7 @@ namespace YGOPro_Launcher.Chat
                         if (cmd != "op")
                         {
                             server.SendPacket("ADMIN||" + cmd.ToUpper() + "||" + ChatInput.Text.Replace(parts[0], "").Trim());
+                            Program.ServerConnection.SendPacket("ADMIN||" + cmd.ToUpper() + "||" + ChatInput.Text.Replace(parts[0], "").Trim());
                             AddChatHistory(ChatInput.Text);
                         }
                         else

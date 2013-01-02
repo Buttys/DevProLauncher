@@ -118,7 +118,6 @@ namespace YGOPro_Launcher
                     mnuitems.Add(new ToolStripMenuItem("Disconnect: " + player.Trim()));
                 }
 
-
                 foreach (ToolStripMenuItem mnuitem in mnuitems)
                 {
                     if (mnuitem.Text == "Kill Room")
@@ -272,6 +271,7 @@ namespace YGOPro_Launcher
         {
             Settings settings = new Settings();
             settings.ShowDialog();
+          
         }
 
         private void QuickBtn_Click(object sender, EventArgs e)

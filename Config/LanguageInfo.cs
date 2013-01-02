@@ -209,6 +209,7 @@ namespace YGOPro_Launcher.Config
 
         public string MainFormTitle = "YGOPro Launcher ";
         public string MainChatTab = "Chat (Beta)";
+        public string MainRankingTab = "Ranking";
         public string MainTornyTab = "Tournament Room";
         public string MainYoutubeTab = "Youtube";
         public string MainFileManagerTab = "File Manager";
