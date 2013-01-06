@@ -206,11 +206,11 @@ namespace YGOPro_Launcher.Chat
                     {
                         ChatTabs.TabPages.Add(new ChatWindow(message.Channel, true));
                         window = GetChatWindow(message.Channel);
-                        window.WriteMessage(message);
+                        window.WriteMessage(message,AutoScrollChat.Checked);
                     }
                     else
                     {
-                        window.WriteMessage(message);
+                        window.WriteMessage(message, AutoScrollChat.Checked);
                     }
 
                     if (ChatTabs.SelectedTab.Name != window.Name && window.isprivate)

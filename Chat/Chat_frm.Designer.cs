@@ -32,6 +32,8 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.ChatInput = new System.Windows.Forms.TextBox();
             this.OptionsBtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.AutoScrollChat = new System.Windows.Forms.CheckBox();
             this.ChatTabs = new YGOPro_Launcher.Chat.FixedTabControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -46,6 +48,7 @@
             this.UserCount = new System.Windows.Forms.Label();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DonateIMG)).BeginInit();
@@ -60,7 +63,7 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.ChatTabs, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -107,15 +110,38 @@
             this.OptionsBtn.UseVisualStyleBackColor = true;
             this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.AutoScrollChat);
+            this.panel1.Controls.Add(this.ChatTabs);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(548, 366);
+            this.panel1.TabIndex = 4;
+            // 
+            // AutoScrollChat
+            // 
+            this.AutoScrollChat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AutoScrollChat.AutoSize = true;
+            this.AutoScrollChat.Checked = true;
+            this.AutoScrollChat.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AutoScrollChat.Location = new System.Drawing.Point(472, 352);
+            this.AutoScrollChat.Name = "AutoScrollChat";
+            this.AutoScrollChat.Size = new System.Drawing.Size(77, 17);
+            this.AutoScrollChat.TabIndex = 6;
+            this.AutoScrollChat.Text = "Auto-Scroll";
+            this.AutoScrollChat.UseVisualStyleBackColor = true;
+            // 
             // ChatTabs
             // 
             this.ChatTabs.Alignment = System.Windows.Forms.TabAlignment.Bottom;
             this.ChatTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChatTabs.Location = new System.Drawing.Point(3, 3);
+            this.ChatTabs.Location = new System.Drawing.Point(0, 0);
             this.ChatTabs.Name = "ChatTabs";
             this.ChatTabs.SelectedIndex = 0;
             this.ChatTabs.Size = new System.Drawing.Size(548, 366);
-            this.ChatTabs.TabIndex = 4;
+            this.ChatTabs.TabIndex = 5;
             // 
             // tableLayoutPanel1
             // 
@@ -260,6 +286,8 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
@@ -287,8 +315,10 @@
         private System.Windows.Forms.ListBox FriendList;
         private System.Windows.Forms.TabPage IgnoreTab;
         private System.Windows.Forms.ListBox IgnoreList;
-        private FixedTabControl ChatTabs;
         private System.Windows.Forms.PictureBox DonateIMG;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox AutoScrollChat;
+        private FixedTabControl ChatTabs;
         private System.Windows.Forms.Label UserCount;
 
 

@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml.Serialization;
+using DevPro_CardManager;
+using System.Drawing.Imaging;
 
 namespace YGOPro_Launcher
 {
@@ -26,25 +28,25 @@ namespace YGOPro_Launcher
             Dock = DockStyle.Fill;
             Visible = true;
             ViewSelect.SelectedIndex = 0;
-            this.Data.Add(ContentType.Covers, new Content { AssetPath = "Assets/Covers/", IconSize = new Size(177, 252), GameItem = "textures\\cover.jpg", FileType = ".jpg" });
-            this.Data.Add(ContentType.Backgrounds, new Content { AssetPath = "Assets/Backgrounds/", IconSize = new Size(256, 256), GameItem = "textures\\bg.jpg", FileType = ".jpg" });
-            this.Data.Add(ContentType.Field, new Content { AssetPath = "Assets/Field/", IconSize = new Size(256, 256), GameItem = "textures\\\\field.png", FileType = ".png" });
-            this.Data.Add(ContentType.FieldTransparent, new Content { AssetPath = "Assets/FieldTransparent/", IconSize = new Size(256, 256), GameItem = "textures\\\\field-transparent.png", FileType = ".png" });
-            this.Data.Add(ContentType.Numbers, new Content { AssetPath = "Assets/Numbers/", IconSize = new Size(256, 256), GameItem = "textures\\\\number.png", FileType = ".png" });
-            this.Data.Add(ContentType.Mask, new Content { AssetPath = "Assets/Mask/", IconSize = new Size(254, 254), GameItem = "textures\\\\mask.png", FileType = ".png" });
-            this.Data.Add(ContentType.Attack_Icon, new Content { AssetPath = "Assets/AttackIcon/", IconSize = new Size(128, 128), GameItem = "textures\\attack.png", FileType = ".png" });
-            this.Data.Add(ContentType.Activate_Circle, new Content { AssetPath = "Assets/ActivateCircle/", IconSize = new Size(128, 128), GameItem = "textures\\\\act.png", FileType = ".png" });
-            this.Data.Add(ContentType.Chain, new Content { AssetPath = "Assets/ChainIcon/", IconSize = new Size(128, 128), GameItem = "textures\\\\chain.png", FileType = ".png" });
-            this.Data.Add(ContentType.Target, new Content { AssetPath = "Assets/TargetIcon/", IconSize = new Size(34, 34), GameItem = "textures\\\\target.png", FileType = ".png" });
-            this.Data.Add(ContentType.Equip, new Content { AssetPath = "Assets/EquipIcon/", IconSize = new Size(34, 34), GameItem = "textures\\\\equip.png", FileType = ".png" });
-            this.Data.Add(ContentType.Rock, new Content { AssetPath = "Assets/Rock/", IconSize = new Size(89, 128), GameItem = "textures\\\\f2.jpg", FileType = ".jpg" });
-            this.Data.Add(ContentType.Paper, new Content { AssetPath = "Assets/Paper/", IconSize = new Size(89, 128), GameItem = "textures\\\\f3.jpg", FileType = ".jpg" });
-            this.Data.Add(ContentType.Scissors, new Content { AssetPath = "Assets/Scissors/", IconSize = new Size(89, 128), GameItem = "textures\\\\f1.jpg", FileType = ".jpg" });
-            this.Data.Add(ContentType.LifePoints_Color, new Content { AssetPath = "Assets/LPColor/", IconSize = new Size(16, 16), GameItem = "textures\\\\lp.png", FileType = ".png" });
-            this.Data.Add(ContentType.LifePoints_Bar, new Content { AssetPath = "Assets/LPBar/", IconSize = new Size(200, 20), GameItem = "textures\\\\lpf.png", FileType = ".png" });
-            this.Data.Add(ContentType.Negated, new Content { AssetPath = "Assets/Negated/", IconSize = new Size(128, 128), GameItem = "textures\\\\negated.png", FileType = ".png" });
-            this.Data.Add(ContentType.Music, new Content { AssetPath = "Assets/Music/", IconSize = new Size(40, 40), GameItem = "sound\\\\", FileType = ".mp3" });
-            this.Data.Add(ContentType.Sound_Effects, new Content { AssetPath = "Assets/SoundEffects/", IconSize = new Size(40, 40), GameItem = "sound\\\\", FileType = ".wav" });
+            this.Data.Add(ContentType.Covers, new Content { AssetPath = "Assets/Covers/", IconSize = new Size(177, 252), GameItem = "textures\\cover.jpg", FileType = ".jpg", ImageSize = new Size(178,254) });
+            this.Data.Add(ContentType.Backgrounds, new Content { AssetPath = "Assets/Backgrounds/", IconSize = new Size(256, 256), GameItem = "textures\\bg.jpg", FileType = ".jpg", ImageSize = new Size(1024, 640) });
+            this.Data.Add(ContentType.Field, new Content { AssetPath = "Assets/Field/", IconSize = new Size(256, 256), GameItem = "textures\\field.png", FileType = ".png", ImageSize = new Size(256, 256) });
+            this.Data.Add(ContentType.FieldTransparent, new Content { AssetPath = "Assets/FieldTransparent/", IconSize = new Size(256, 256), GameItem = "textures\\field-transparent.png", FileType = ".png", ImageSize = new Size(256, 256) });
+            this.Data.Add(ContentType.Numbers, new Content { AssetPath = "Assets/Numbers/", IconSize = new Size(256, 256), GameItem = "textures\\number.png", FileType = ".png", ImageSize = new Size(320, 256) });
+            this.Data.Add(ContentType.Mask, new Content { AssetPath = "Assets/Mask/", IconSize = new Size(254, 254), GameItem = "textures\\mask.png", FileType = ".png", ImageSize = new Size(254, 254) });
+            this.Data.Add(ContentType.Attack_Icon, new Content { AssetPath = "Assets/AttackIcon/", IconSize = new Size(128, 128), GameItem = "textures\\attack.png", FileType = ".png", ImageSize = new Size(128, 128) });
+            this.Data.Add(ContentType.Activate_Circle, new Content { AssetPath = "Assets/ActivateCircle/", IconSize = new Size(128, 128), GameItem = "textures\\\\act.png", FileType = ".png", ImageSize = new Size(128, 128) });
+            this.Data.Add(ContentType.Chain, new Content { AssetPath = "Assets/ChainIcon/", IconSize = new Size(128, 128), GameItem = "textures\\chain.png", FileType = ".png", ImageSize = new Size(128, 128) });
+            this.Data.Add(ContentType.Target, new Content { AssetPath = "Assets/TargetIcon/", IconSize = new Size(34, 34), GameItem = "textures\\target.png", FileType = ".png", ImageSize = new Size(34, 34) });
+            this.Data.Add(ContentType.Equip, new Content { AssetPath = "Assets/EquipIcon/", IconSize = new Size(34, 34), GameItem = "textures\\equip.png", FileType = ".png", ImageSize = new Size(34, 34) });
+            this.Data.Add(ContentType.Rock, new Content { AssetPath = "Assets/Rock/", IconSize = new Size(89, 128), GameItem = "textures\\f2.jpg", FileType = ".jpg", ImageSize = new Size(89, 128) });
+            this.Data.Add(ContentType.Paper, new Content { AssetPath = "Assets/Paper/", IconSize = new Size(89, 128), GameItem = "textures\\f3.jpg", FileType = ".jpg", ImageSize = new Size(89, 128) });
+            this.Data.Add(ContentType.Scissors, new Content { AssetPath = "Assets/Scissors/", IconSize = new Size(89, 128), GameItem = "textures\\f1.jpg", FileType = ".jpg", ImageSize = new Size(89, 128) });
+            this.Data.Add(ContentType.LifePoints_Color, new Content { AssetPath = "Assets/LPColor/", IconSize = new Size(16, 16), GameItem = "textures\\lp.png", FileType = ".png", ImageSize = new Size(16, 16) });
+            this.Data.Add(ContentType.LifePoints_Bar, new Content { AssetPath = "Assets/LPBar/", IconSize = new Size(200, 20), GameItem = "textures\\lpf.png", FileType = ".png", ImageSize = new Size(200, 20) });
+            this.Data.Add(ContentType.Negated, new Content { AssetPath = "Assets/Negated/", IconSize = new Size(128, 128), GameItem = "textures\\negated.png", FileType = ".png", ImageSize = new Size(128, 128) });
+            this.Data.Add(ContentType.Music, new Content { AssetPath = "Assets/Music/", IconSize = new Size(40, 40), GameItem = "sound\\", FileType = ".mp3" });
+            this.Data.Add(ContentType.Sound_Effects, new Content { AssetPath = "Assets/SoundEffects/", IconSize = new Size(40, 40), GameItem = "sound\\", FileType = ".wav" });
 
 
 
@@ -569,7 +571,24 @@ namespace YGOPro_Launcher
             try
             {
                 string filename = Path.GetFileNameWithoutExtension(filetoadd);
-                File.Copy(filetoadd, Data[contentView].AssetPath + filename + Data[contentView].FileType);
+                if (Data[contentView].FileType == ".png" || Data[contentView].FileType == ".jpg")
+                {
+                    if (MessageBox.Show("Resize image to the correct size?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        ImageResizer.SaveImage(filetoadd, Data[contentView].AssetPath + filename + Data[contentView].FileType,
+                            (Data[contentView].FileType == ".png" ? ImageFormat.Png : ImageFormat.Jpeg), Data[contentView].ImageSize);
+                    }
+                    else
+                    {
+                        File.Copy(filetoadd, Data[contentView].AssetPath + filename + Data[contentView].FileType);
+                    }
+
+
+                }
+                else
+                {
+                    File.Copy(filetoadd, Data[contentView].AssetPath + filename + Data[contentView].FileType);
+                }
                 RefreshList();
             }
             catch (Exception ex)
@@ -677,6 +696,7 @@ namespace YGOPro_Launcher
         public string FileType;
         public ImageList Images;
         public Size IconSize;
+        public Size ImageSize;
     }
 
     [Serializable]

@@ -33,11 +33,11 @@ namespace YGOPro_Launcher.Chat
             e.SuppressKeyPress = true;
         }
 
-        public void WriteMessage(ChatMessage message)
+        public void WriteMessage(ChatMessage message, bool autoscroll)
         {
             if (InvokeRequired)
             {
-                this.Invoke(new Action<ChatMessage>(WriteMessage), message);
+                this.Invoke(new Action<ChatMessage,bool>(WriteMessage), message,autoscroll);
             }
             else
             {                   
@@ -69,7 +69,7 @@ namespace YGOPro_Launcher.Chat
                 ChatLog.SelectionStart = ChatLog.TextLength;
                 ChatLog.SelectionLength = 0;
 
-                if(ChatLog.IsAtMaxScroll())
+                if(autoscroll)
                     ChatLog.ScrollToCaret();
             }
 

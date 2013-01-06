@@ -101,6 +101,7 @@
       <DependentUpon>Customize_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="Customize\Enums\ContentType.cs" />
+    <Compile Include="Customize\ImageResizer.cs" />
     <Compile Include="ErrorReport_frm.cs">
       <SubType>Form</SubType>
     </Compile>

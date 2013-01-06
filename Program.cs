@@ -14,7 +14,7 @@ namespace YGOPro_Launcher
 {
     static class Program
     {
-        public const string Version = "171700";
+        public const string Version = "172100";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -123,11 +123,13 @@ namespace YGOPro_Launcher
             }
 
             if (UserInfo.Username != "" && UserInfo.LoginKey != "")
+            {
                 Application.Run(new Main_frm());
+            }
             else
             {
                 Config.AutoLogin = false;
-                SaveConfig(ConfigurationFilename,Config);
+                SaveConfig(ConfigurationFilename, Config);
                 MessageBox.Show(LanguageManager.Translation.pMsbBadLog);
             }
 
