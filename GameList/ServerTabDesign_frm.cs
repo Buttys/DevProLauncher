@@ -23,9 +23,6 @@ namespace YGOPro_Launcher
             RankedRooms.DoubleClick += new System.EventHandler(this.LoadRoom);
             FilterActive.CheckedChanged += new EventHandler(FilterGames);
             FilterTextBox.TextChanged += new EventHandler(FilterGames);
-            ServerTabs.SelectedIndexChanged += new EventHandler(GameType_SelectedIndexChanged);
-            GameType_SelectedIndexChanged(null, EventArgs.Empty);
-
             Program.ServerConnection.AddRooms += new NetClient.ServerRooms(OnRoomsList);
             Program.ServerConnection.AddRoom += new NetClient.ServerRooms(OnRoomCreated);
             Program.ServerConnection.RemoveRoom += new NetClient.ServerResponse(OnRoomRemoved);
@@ -49,7 +46,7 @@ namespace YGOPro_Launcher
             ApplyTranslation();
             if (Program.UserInfo.Rank > 0)
             {
-                listRooms.MouseUp +=new MouseEventHandler(listRooms_MouseUp);
+                listRooms.MouseUp += new MouseEventHandler(listRooms_MouseUp);
                 RankedRooms.MouseUp += new MouseEventHandler(RankedRooms_MouseUp);
             }
 
@@ -95,7 +92,7 @@ namespace YGOPro_Launcher
             HostBtn.Text = Program.LanguageManager.Translation.GameBtnHost;
             label14.Text = Program.LanguageManager.Translation.GameLabWLD;
             label13.Text = Program.LanguageManager.Translation.GameLabDeck;
-            label11.Text = Program.LanguageManager.Translation.GameLabUser; 
+            label11.Text = Program.LanguageManager.Translation.GameLabUser;
 
         }
 
@@ -141,15 +138,15 @@ namespace YGOPro_Launcher
                 item.Selected = true;
 
                 ContextMenuStrip mnu = new ContextMenuStrip();
-                List<ToolStripMenuItem> mnuitems = new List<ToolStripMenuItem>(); 
+                List<ToolStripMenuItem> mnuitems = new List<ToolStripMenuItem>();
 
                 mnuitems.Add(new ToolStripMenuItem("Kill Room"));
                 string[] players = item.SubItems[7].Text.Split(',');
                 foreach (string player in players)
                 {
-                    mnuitems.Add(new ToolStripMenuItem("Disconnect: " +player));
+                    mnuitems.Add(new ToolStripMenuItem("Disconnect: " + player));
                 }
-               
+
 
                 foreach (ToolStripMenuItem mnuitem in mnuitems)
                 {
@@ -185,18 +182,10 @@ namespace YGOPro_Launcher
         private void DeckSelect_SelectedValueChanged(object sender, EventArgs e)
         {
             Program.Config.DefaultDeck = DeckSelect.SelectedItem.ToString();
-            Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
+            Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
         }
 
-        private void GameType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FilterGames(null, EventArgs.Empty);
-            if (ServerTabs.SelectedTab.Name == "Ranked")
-                QuickBtn.Enabled = false;
-            else
-                QuickBtn.Enabled = true;
-
-        }
+    
         private void UpdateServerInfo()
         {
 
@@ -271,12 +260,13 @@ namespace YGOPro_Launcher
         {
             Settings settings = new Settings();
             settings.ShowDialog();
-          
+
         }
 
         private void QuickBtn_Click(object sender, EventArgs e)
-        {
-            Host form = new Host(false,false);
+        {           
+            
+            Host form = new Host(false, false);
             form.CardRules.Text = Program.Config.CardRules;
             form.Mode.Text = Program.Config.Mode;
             form.Priority.Checked = Program.Config.EnablePrority;
@@ -286,6 +276,28 @@ namespace YGOPro_Launcher
             form.GameName.Text = Program.Config.GameName;
             form.BanList.SelectedItem = Program.Config.BanList;
             form.TimeLimit.SelectedItem = Program.Config.TimeLimit;
+            
+            ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
+
+            RoomInfos userinfo = RoomInfos.FromName(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (ServerTabs.SelectedTab.Name == "Ranked") ? true : false).Split('/')[3],"",false);
+
+            List<RoomInfos> MatchedRooms = new List<RoomInfos>();
+
+            foreach (ListViewItem room in rooms.Items)
+            {
+                RoomInfos info = RoomInfos.FromName(room.SubItems[8].Text.Split('/')[3], room.SubItems[7].Text, (room.SubItems[1].Text == "Ranked" ? true:false));
+                if (!RoomInfos.CompareRoomInfo(userinfo, info))
+                    continue;
+                else
+                    MatchedRooms.Add(info);
+            }
+
+            Random random = new Random();
+            if (MatchedRooms.Count > 0)
+            {
+                int selectroom = random.Next(MatchedRooms.Count);
+                form.GameName.Text = MatchedRooms[selectroom].RoomName;
+            }
 
             LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (ServerTabs.SelectedTab.Name == "Ranked") ? true : false));
             LauncherHelper.RunGame("-j");
@@ -299,7 +311,7 @@ namespace YGOPro_Launcher
                 form.Mode.Items.Clear();
                 form.Mode.Items.AddRange(new object[] { "Match", "Tag" });
                 form.Mode.SelectedItem = "Match";
-                if(form.BanList.Items.Count > 0)
+                if (form.BanList.Items.Count > 0)
                     form.BanList.SelectedIndex = 0;
                 form.BanList.Enabled = false;
                 form.TimeLimit.Items.Clear();
@@ -361,9 +373,9 @@ namespace YGOPro_Launcher
             item.SubItems.Add(roomtype);
 
             item.SubItems.Add(LauncherHelper.GetBanListFromInt(room.BanList));
-            
-            item.SubItems.Add((room.Timer == 0 ? "3 mins":"5 mins"));
-            
+
+            item.SubItems.Add((room.Timer == 0 ? "3 mins" : "5 mins"));
+
             string rule = "TCG/OCG";
             if (room.Rule == 1) rule = "TCG";
             if (room.Rule == 0) rule = "OCG";
@@ -376,19 +388,19 @@ namespace YGOPro_Launcher
             if (room.Mode == 2) type = "Tag";
             item.SubItems.Add(type);
 
-           
+
 
             item.SubItems.Add(room.Started ? "Started" : "Waiting");
 
             item.SubItems.Add(room.Players);
             item.SubItems.Add(room.GenerateURI(Program.Config.ServerAddress, Program.Config.ServerPort));
-            bool illegal = (room.Rule <= 2 ? room.BanList > 0: false) || room.NoCheckDeck || room.NoShuffleDeck || room.EnablePriority || (room.Mode == 2) ? room.StartLp != 16000 : room.StartLp != 8000 || room.StartHand != 5 || room.DrawCount != 1;
+            bool illegal = (room.Rule <= 2 ? room.BanList > 0 : false) || room.NoCheckDeck || room.NoShuffleDeck || room.EnablePriority || (room.Mode == 2) ? room.StartLp != 16000 : room.StartLp != 8000 || room.StartHand != 5 || room.DrawCount != 1;
 
 
             item.BackColor = room.Started ? Color.LightGray :
                 (illegal ? Color.LightCoral :
-                (room.Rule == 4 ? Color.Violet:
-                (room.Rule == 5 ? Color.Gold:
+                (room.Rule == 4 ? Color.Violet :
+                (room.Rule == 5 ? Color.Gold :
                 (room.Mode == 2 ? Color.LightGreen :
                 (room.Mode == 1 ? Color.LightSteelBlue :
                 Color.LightBlue)))));
@@ -587,6 +599,5 @@ namespace YGOPro_Launcher
 
             rooms.Sort();
         }
-
     }
 }

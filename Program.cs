@@ -51,7 +51,7 @@ namespace YGOPro_Launcher
 
             Config = new Configuration();
             LoadConfig(Program.ConfigurationFilename);
-            if(!Config.DebugMode)
+            if (!Config.DebugMode)
                 AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
             if (Config.DebugMode)

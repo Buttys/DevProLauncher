@@ -102,5 +102,34 @@ namespace YGOPro_Launcher
 
             return "Unkown";
         }
+        public static bool CompareRoomInfo(RoomInfos playerinfo,RoomInfos otherroom)
+        {
+            
+            if (playerinfo.Rule == otherroom.Rule && playerinfo.BanList == otherroom.BanList
+                && playerinfo.Mode == otherroom.Mode && playerinfo.NoCheckDeck == otherroom.NoCheckDeck
+                && playerinfo.NoShuffleDeck == otherroom.NoShuffleDeck && playerinfo.EnablePriority == otherroom.EnablePriority
+                && playerinfo.StartLp == otherroom.StartLp && playerinfo.Timer == otherroom.Timer && otherroom.Started == false)
+            {
+                string[] players = otherroom.Players.Split(',');
+                if (GameMode(otherroom.Mode) == "Tag")
+                {
+                    if (players.Length < 4)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                {
+                    if (players.Length < 2)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

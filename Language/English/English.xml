@@ -173,8 +173,10 @@
   <chatViewProfile>View Profile</chatViewProfile>
   <chatRemoveFriend>Remove Friend</chatRemoveFriend>
   <chatRemoveIgnore>Remove</chatRemoveIgnore>
+  <chatAutoScroll>Auto-Scroll</chatAutoScroll>
   <MainFormTitle>YGOPro Launcher </MainFormTitle>
   <MainChatTab>Chat (Beta)</MainChatTab>
+  <MainRankingTab>Ranking</MainRankingTab>
   <MainTornyTab>Tournament Room</MainTornyTab>
   <MainYoutubeTab>Youtube</MainYoutubeTab>
   <MainFileManagerTab>File Manager</MainFileManagerTab>
@@ -182,4 +184,8 @@
   <MainFileReplayTab>Replays</MainFileReplayTab>
   <MainCustomizeTab>Customize</MainCustomizeTab>
   <MainAboutTab>About</MainAboutTab>
+  <DuelReqestMessage> has challenged you to a ranked duel! Do you accept?</DuelReqestMessage>
+  <DuelRequestBanlist> Banlist: </DuelRequestBanlist>
+  <DuelRequestRules> Rules: </DuelRequestRules>
+  <DuelRequestMode> Type: </DuelRequestMode>
 </LanguageInfo>

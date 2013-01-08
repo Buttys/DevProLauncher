@@ -204,6 +204,7 @@ namespace YGOPro_Launcher.Config
         public string chatViewProfile = "View Profile";
         public string chatRemoveFriend = "Remove Friend";
         public string chatRemoveIgnore = "Remove";
+        public string chatAutoScroll = "Auto-Scroll";
 
         //Main_frm.cs
 
@@ -217,5 +218,11 @@ namespace YGOPro_Launcher.Config
         public string MainFileReplayTab = "Replays";
         public string MainCustomizeTab = "Customize";
         public string MainAboutTab = "About";
+
+        //DuelRequest_frm
+        public string DuelReqestMessage = " has challenged you to a ranked duel! Do you accept?";
+        public string DuelRequestBanlist = " Banlist: ";
+        public string DuelRequestRules = " Rules: ";
+        public string DuelRequestMode = " Type: ";
     }
 }

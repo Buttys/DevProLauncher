@@ -71,6 +71,7 @@ namespace YGOPro_Launcher.Chat
             UserTabs.TabPages[0].Text = lang.chatTabUsers;
             UserTabs.TabPages[1].Text = lang.chatTabFriends;
             UserTabs.TabPages[2].Text = lang.chatTabIgnore;
+            AutoScrollChat.Text = lang.chatAutoScroll;
 
         }
 
@@ -946,8 +947,8 @@ namespace YGOPro_Launcher.Chat
                         return;
                     }
                     RoomInfos info = RoomInfos.FromName(args[2], "", false);
-                    DuelRequest_frm request = new DuelRequest_frm(args[1] + " has challenged you to a ranked duel! Do you accept?" + Environment.NewLine +
-                        "Type: " + RoomInfos.GameMode(info.Mode) + " Rules: " + RoomInfos.GameRule(info.Rule) + " Banlist: " + LauncherHelper.GetBanListFromInt(info.BanList));
+                    DuelRequest_frm request = new DuelRequest_frm(args[1] + Program.LanguageManager.Translation.DuelReqestMessage + Environment.NewLine +
+                        Program.LanguageManager.Translation.DuelRequestMode + RoomInfos.GameMode(info.Mode) + Program.LanguageManager.Translation.DuelRequestRules + RoomInfos.GameRule(info.Rule) + Program.LanguageManager.Translation.DuelRequestBanlist + LauncherHelper.GetBanListFromInt(info.BanList));
 
 
                     if (request.ShowDialog() == System.Windows.Forms.DialogResult.Yes)

@@ -37,17 +37,17 @@ namespace YGOPro_Launcher
             TabPage ServerTab = new TabPage() { Text = Program.Config.ServerName, Name = Program.Config.ServerName };
             ServerTab.Controls.Add(new ServerInterface_frm(Program.Config.ServerName));
 
-            TabPage CustomizeTab = new TabPage() { Text = "Customize", Name = Program.LanguageManager.Translation.MainCustomizeTab};
+            TabPage CustomizeTab = new TabPage() { Name = "Customize", Text = Program.LanguageManager.Translation.MainCustomizeTab};
             CustomizeTab.Controls.Add(new Customize_frm());
 
-            TabPage AboutTab = new TabPage() { Text = "About", Name = Program.LanguageManager.Translation.MainAboutTab};
+            TabPage AboutTab = new TabPage() { Name = "About", Text = Program.LanguageManager.Translation.MainAboutTab};
             AboutTab.Controls.Add(new About_frm());                    
             
             TabPage ChatTab = new TabPage() { Text = "Chat (Beta)", Name = Program.LanguageManager.Translation.MainChatTab};
             ChatTab.Controls.Add(new Chat_frm());
 
-            ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,CreateBrowserWindow("Ranking",
-            Program.LanguageManager.Translation.MainRankingTab), 
+            ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,
+                CreateBrowserWindow("Ranking", Program.LanguageManager.Translation.MainRankingTab), 
             ChatTab,
             CreateBrowserWindow("Tournament Room",Program.LanguageManager.Translation.MainTornyTab),
             CreateBrowserWindow("Youtube",Program.LanguageManager.Translation.MainYoutubeTab),
@@ -91,7 +91,6 @@ namespace YGOPro_Launcher
         private TabPage CreateBrowserWindow(string name,string tabname)
         {
             TabPage page = new TabPage() { Name = name, Text = tabname};
-            page.Name = name;
             WebBrowser browser = new WebBrowser();
             browser.ScriptErrorsSuppressed = true;
             page.Controls.Add(browser);
