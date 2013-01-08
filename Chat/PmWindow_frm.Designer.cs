@@ -62,6 +62,7 @@
             // 
             this.ChatInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChatInput.Location = new System.Drawing.Point(3, 343);
+            this.ChatInput.MaxLength = 250;
             this.ChatInput.Name = "ChatInput";
             this.ChatInput.Size = new System.Drawing.Size(519, 20);
             this.ChatInput.TabIndex = 1;

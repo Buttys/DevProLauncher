@@ -432,8 +432,14 @@ namespace YGOPro_Launcher.Chat
 
                 if (lettercount.Keys.Count <= 1)
                 {
-                    ChatInput.Clear();
-                    return;
+                    foreach (string key in lettercount.Keys)
+                    {
+                        if (lettercount[key] > 5)
+                        {
+                            ChatInput.Clear();
+                            return;
+                        }
+                    }
                 }
 
                 if (CurrentChatWindow().isprivate && ChatInput.Text.StartsWith("/"))
