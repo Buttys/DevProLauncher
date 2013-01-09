@@ -25,6 +25,7 @@ namespace YGOPro_Launcher.Config
         public string LoginMsb1 = "Not connected to the server.";
         public string LoginMsb2 = "Please enter username.";
         public string LoginMsb3 = "Please enter password.";
+        public string LoginBtnOffline = "Offline Mode";
 
         // Register_frm.cs
         public string RegistLbUser = "Username";
@@ -66,6 +67,8 @@ namespace YGOPro_Launcher.Config
         public string GameLabWLD = "Win/Lose/Draw";
         public string GameLabDeck = "Deck:";
         public string GameLabUser = "Username:";
+        public string GameBtnOffline = "Offline";
+        public string GameBtnLogout = "Logout";
 
         // Option_frm.cs
         public string optionGb1 = "User Settings";

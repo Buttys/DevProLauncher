@@ -29,6 +29,7 @@ namespace YGOPro_Launcher
         [STAThread]
         static void Main(string[] args)
         {
+            bool forcelogin = false;
             foreach(string arg in args)
             {
                 if (arg == "-r")
@@ -47,12 +48,21 @@ namespace YGOPro_Launcher
                         timeout++;
                     }
                 }
+                if (arg == "-l")
+                {
+                    forcelogin = true;
+                }
             }
 
             Config = new Configuration();
             LoadConfig(Program.ConfigurationFilename);
             if (!Config.DebugMode)
                 AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+
+            if (forcelogin)
+            {
+                Config.AutoLogin = false;
+            }
 
             if (Config.DebugMode)
             {
@@ -124,6 +134,7 @@ namespace YGOPro_Launcher
 
             if (UserInfo.Username != "" && UserInfo.LoginKey != "")
             {
+                LoadConfig(ConfigurationFilename);
                 Application.Run(new Main_frm());
             }
             else

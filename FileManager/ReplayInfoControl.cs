@@ -13,7 +13,7 @@ namespace YGOPro_Launcher
 {
     public partial class ReplayInfoControl : Form
     {
-        private Dictionary<string, CardInfos> CardList = new Dictionary<string,CardInfos>();
+        public Dictionary<string, CardInfos> CardList = new Dictionary<string,CardInfos>();
 
         public ReplayInfoControl()
         {

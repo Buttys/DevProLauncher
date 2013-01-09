@@ -30,8 +30,8 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.DeckList = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.ReplayInfo = new System.Windows.Forms.Label();
             this.VSText = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -66,6 +66,16 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(235, 386);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // DeckList
+            // 
+            this.DeckList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeckList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.DeckList.FormattingEnabled = true;
+            this.DeckList.Location = new System.Drawing.Point(3, 148);
+            this.DeckList.Name = "DeckList";
+            this.DeckList.Size = new System.Drawing.Size(229, 235);
+            this.DeckList.TabIndex = 6;
+            // 
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -76,16 +86,6 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Your Deck";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // DeckList
-            // 
-            this.DeckList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeckList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.DeckList.FormattingEnabled = true;
-            this.DeckList.Location = new System.Drawing.Point(3, 148);
-            this.DeckList.Name = "DeckList";
-            this.DeckList.Size = new System.Drawing.Size(229, 235);
-            this.DeckList.TabIndex = 6;
             // 
             // ReplayInfo
             // 
@@ -128,8 +128,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox DeckList;
         private System.Windows.Forms.Label ReplayInfo;
         private System.Windows.Forms.Label VSText;
+        public System.Windows.Forms.ListBox DeckList;
     }
 }

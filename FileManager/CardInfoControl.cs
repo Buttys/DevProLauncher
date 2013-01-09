@@ -15,7 +15,7 @@ namespace YGOPro_Launcher
     public partial class CardInfoControl : Form
     {
 
-        private Dictionary<string, CardInfos> CardList;
+        public Dictionary<string, CardInfos> CardList;
 
         public CardInfoControl()
         {

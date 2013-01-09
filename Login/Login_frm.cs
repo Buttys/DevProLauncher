@@ -64,6 +64,7 @@ namespace YGOPro_Launcher
                 LoginBtn.Text = Program.LanguageManager.Translation.LoginLoginButton;
                 RegisterBtn.Text = Program.LanguageManager.Translation.LoginRegisterButton;
                 AutoLoginCheckBox.Text = Program.LanguageManager.Translation.LoginAutoLogin;
+                OfflineBtn.Text = Program.LanguageManager.Translation.LoginBtnOffline;
             }
         }
 
@@ -169,6 +170,11 @@ namespace YGOPro_Launcher
                 Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
             }
             _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
+        }
+
+        private void OfflineBtn_Click(object sender, EventArgs e)
+        {
+            LauncherHelper.RunGame(null);
         }
 
 

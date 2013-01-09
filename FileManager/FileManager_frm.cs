@@ -240,6 +240,46 @@ namespace YGOPro_Launcher
         {
             RefreshFileList();
         }
+
+        private void CopyDeckBtn_Click(object sender, EventArgs e)
+        {
+            StringBuilder Decklist = new StringBuilder();
+
+            if (InfoWindow is CardInfoControl)
+            {
+                if (((CardInfoControl)InfoWindow).DeckList.Items.Count == 0)
+                    return;
+                foreach (object item in ((CardInfoControl)InfoWindow).DeckList.Items)
+                {
+                    if (item.ToString().StartsWith("--"))
+                    {
+                        Decklist.AppendLine(item.ToString());
+                    }
+                    else
+                    {
+                        Decklist.AppendLine(item.ToString() + " x" + ((CardInfoControl)InfoWindow).CardList[item.ToString()].Amount);
+                    }
+                }
+            }
+            else if (InfoWindow is ReplayInfoControl)
+            {
+                if (((ReplayInfoControl)InfoWindow).DeckList.Items.Count == 0)
+                    return;
+                foreach (object item in ((ReplayInfoControl)InfoWindow).DeckList.Items)
+                {
+                    if (item.ToString().StartsWith("--"))
+                    {
+                        Decklist.AppendLine(item.ToString());
+                    }
+                    else
+                    {
+                        Decklist.AppendLine(item.ToString() + " x" + ((ReplayInfoControl)InfoWindow).CardList[item.ToString()].Amount);
+                    }
+                }
+            }
+
+            Clipboard.SetText(Decklist.ToString());
+        }
         
     }
 }

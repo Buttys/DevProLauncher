@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Diagnostics;
 namespace YGOPro_Launcher
 {
     public partial class ServerInterface_frm : Form
@@ -50,6 +51,7 @@ namespace YGOPro_Launcher
                 RankedRooms.MouseUp += new MouseEventHandler(RankedRooms_MouseUp);
             }
 
+            QuickBtn.MouseUp += new MouseEventHandler(QuickBtn_MouseUp);
         }
 
         public void ApplyTranslation()
@@ -90,6 +92,8 @@ namespace YGOPro_Launcher
             OptionsBtn.Text = Program.LanguageManager.Translation.GameBtnOption;
             QuickBtn.Text = Program.LanguageManager.Translation.GameBtnQuick;
             HostBtn.Text = Program.LanguageManager.Translation.GameBtnHost;
+            OfflineBtn.Text = Program.LanguageManager.Translation.GameBtnOffline;
+            LogoutBtn.Text = Program.LanguageManager.Translation.GameBtnLogout;
             label14.Text = Program.LanguageManager.Translation.GameLabWLD;
             label13.Text = Program.LanguageManager.Translation.GameLabDeck;
             label11.Text = Program.LanguageManager.Translation.GameLabUser;
@@ -263,21 +267,36 @@ namespace YGOPro_Launcher
 
         }
 
-        private void QuickBtn_Click(object sender, EventArgs e)
+        private void QuickHost(string mode)
         {           
-            
             Host form = new Host(false, false);
             form.CardRules.Text = Program.Config.CardRules;
-            form.Mode.Text = Program.Config.Mode;
+            form.Mode.Text = (mode == null ? Program.Config.Mode:mode);
             form.Priority.Checked = Program.Config.EnablePrority;
             form.CheckDeck.Checked = Program.Config.DisableCheckDeck;
             form.ShuffleDeck.Checked = Program.Config.DisableShuffleDeck;
             form.LifePoints.Text = Program.Config.Lifepoints;
-            form.GameName.Text = Program.Config.GameName;
+            form.GameName.Text = LauncherHelper.GenerateString().Substring(0,5);
             form.BanList.SelectedItem = Program.Config.BanList;
             form.TimeLimit.SelectedItem = Program.Config.TimeLimit;
             
             ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
+
+            if (rooms == RankedRooms)
+            {
+                form.BanList.SelectedIndex = 0;
+                form.CheckDeck.Checked = false;
+                form.ShuffleDeck.Checked = false;
+                form.Priority.Checked = false;
+                if (Program.Config.Mode == "Single")
+                {
+                    form.Mode.Text = "Match";
+                }
+                if (form.Mode.Text == "Tag")
+                    form.LifePoints.Text = "16000";
+                else
+                    form.LifePoints.Text = "8000";
+            }
 
             RoomInfos userinfo = RoomInfos.FromName(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (ServerTabs.SelectedTab.Name == "Ranked") ? true : false).Split('/')[3],"",false);
 
@@ -560,6 +579,11 @@ namespace YGOPro_Launcher
         {
             ListView rooms = (ServerTabs.SelectedTab.Name == "Ranked" ? RankedRooms : listRooms);
             ListViewItem item = rooms.SelectedItems[0];
+            if (item.SubItems[6].Text == "Started")
+            {
+                MessageBox.Show("Spectating games in progress is unavailable.. Please join them before they start.");
+                return;
+            }
             LauncherHelper.GenerateConfig(item.SubItems[8].Text);
             LauncherHelper.RunGame("-j");
         }
@@ -598,6 +622,60 @@ namespace YGOPro_Launcher
             }
 
             rooms.Sort();
+        }
+
+        private void QuickBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right || sender is Button)
+            {
+                ContextMenuStrip mnu = new ContextMenuStrip();
+                ToolStripMenuItem mnuSingle = new ToolStripMenuItem("Single");
+                mnuSingle.Name = "Single";
+                mnuSingle.Click += new EventHandler(QuickHost_Click);
+                ToolStripMenuItem mnuMatch = new ToolStripMenuItem("Match");
+                mnuMatch.Name = "Match";
+                mnuMatch.Click += new EventHandler(QuickHost_Click);
+                ToolStripMenuItem mnuTag = new ToolStripMenuItem("Tag");
+                mnuTag.Name = "Tag";
+                mnuTag.Click += new EventHandler(QuickHost_Click);
+                
+                if(ServerTabs.SelectedTab.Name == "Ranked")
+                {
+                    mnu.Items.AddRange(new ToolStripItem[] {mnuMatch, mnuTag });
+                }
+                else
+                {
+                    mnu.Items.AddRange(new ToolStripItem[] { mnuTag, mnuMatch, mnuSingle  });
+                }
+                
+                mnu.DefaultDropDownDirection = ToolStripDropDownDirection.BelowRight;
+                mnu.Show(QuickBtn, new Point(0, 0 - mnu.Height));
+            }
+        }
+
+        private void QuickHost_Click(object sender, EventArgs e)
+        {
+            ToolStripItem button = (ToolStripItem)sender;
+            QuickHost(button.Name);
+        }
+
+        private void QuickBtn_Click(object sender, EventArgs e)
+        {
+            QuickBtn_MouseUp(QuickBtn, new MouseEventArgs(System.Windows.Forms.MouseButtons.Right,1,1,1,1));//wasnt accepting MouseventArgs.Empty!?
+        }
+
+        private void OfflineBtn_Click(object sender, EventArgs e)
+        {
+            LauncherHelper.RunGame(null);
+        }
+
+        private void LogoutBtn_Click(object sender, EventArgs e)
+        {
+            Process process = new Process();
+            ProcessStartInfo info = new ProcessStartInfo(Application.ExecutablePath, "-r -l");
+            process.StartInfo = info;
+            process.Start();
+            Application.Exit();
         }
     }
 }

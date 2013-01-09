@@ -81,6 +81,8 @@
             this.ColumnMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OfflineBtn = new System.Windows.Forms.Button();
+            this.LogoutBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -124,8 +126,8 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 135F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 71F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 99F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(169, 333);
             this.tableLayoutPanel2.TabIndex = 1;
@@ -137,11 +139,11 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 95.09203F));
             this.tableLayoutPanel6.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 265);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 237);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(163, 65);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(163, 93);
             this.tableLayoutPanel6.TabIndex = 10;
             // 
             // flowLayoutPanel1
@@ -150,10 +152,13 @@
             this.flowLayoutPanel1.Controls.Add(this.ReplaysBtn);
             this.flowLayoutPanel1.Controls.Add(this.ProfileBtn);
             this.flowLayoutPanel1.Controls.Add(this.OptionsBtn);
+            this.flowLayoutPanel1.Controls.Add(this.OfflineBtn);
+            this.flowLayoutPanel1.Controls.Add(this.LogoutBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(149, 59);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(149, 87);
             this.flowLayoutPanel1.TabIndex = 8;
             // 
             // DeckBtn
@@ -168,7 +173,7 @@
             // 
             // ReplaysBtn
             // 
-            this.ReplaysBtn.Location = new System.Drawing.Point(75, 3);
+            this.ReplaysBtn.Location = new System.Drawing.Point(3, 32);
             this.ReplaysBtn.Name = "ReplaysBtn";
             this.ReplaysBtn.Size = new System.Drawing.Size(66, 23);
             this.ReplaysBtn.TabIndex = 3;
@@ -178,7 +183,7 @@
             // 
             // ProfileBtn
             // 
-            this.ProfileBtn.Location = new System.Drawing.Point(3, 32);
+            this.ProfileBtn.Location = new System.Drawing.Point(3, 61);
             this.ProfileBtn.Name = "ProfileBtn";
             this.ProfileBtn.Size = new System.Drawing.Size(66, 23);
             this.ProfileBtn.TabIndex = 8;
@@ -188,7 +193,7 @@
             // 
             // OptionsBtn
             // 
-            this.OptionsBtn.Location = new System.Drawing.Point(75, 32);
+            this.OptionsBtn.Location = new System.Drawing.Point(75, 3);
             this.OptionsBtn.Name = "OptionsBtn";
             this.OptionsBtn.Size = new System.Drawing.Size(66, 23);
             this.OptionsBtn.TabIndex = 9;
@@ -353,7 +358,7 @@
             this.FilterActive.AutoSize = true;
             this.FilterActive.Checked = true;
             this.FilterActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.FilterActive.Location = new System.Drawing.Point(26, 242);
+            this.FilterActive.Location = new System.Drawing.Point(26, 214);
             this.FilterActive.Name = "FilterActive";
             this.FilterActive.Size = new System.Drawing.Size(117, 17);
             this.FilterActive.TabIndex = 3;
@@ -631,6 +636,26 @@
             this.ColumnPlayers.Text = "Players";
             this.ColumnPlayers.Width = 163;
             // 
+            // OfflineBtn
+            // 
+            this.OfflineBtn.Location = new System.Drawing.Point(75, 32);
+            this.OfflineBtn.Name = "OfflineBtn";
+            this.OfflineBtn.Size = new System.Drawing.Size(66, 23);
+            this.OfflineBtn.TabIndex = 10;
+            this.OfflineBtn.Text = "Offline";
+            this.OfflineBtn.UseVisualStyleBackColor = true;
+            this.OfflineBtn.Click += new System.EventHandler(this.OfflineBtn_Click);
+            // 
+            // LogoutBtn
+            // 
+            this.LogoutBtn.Location = new System.Drawing.Point(75, 61);
+            this.LogoutBtn.Name = "LogoutBtn";
+            this.LogoutBtn.Size = new System.Drawing.Size(66, 23);
+            this.LogoutBtn.TabIndex = 11;
+            this.LogoutBtn.Text = "Logout";
+            this.LogoutBtn.UseVisualStyleBackColor = true;
+            this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
+            // 
             // ServerInterface_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -712,5 +737,7 @@
         private System.Windows.Forms.Button ReplaysBtn;
         private System.Windows.Forms.Button ProfileBtn;
         private System.Windows.Forms.Button OptionsBtn;
+        private System.Windows.Forms.Button OfflineBtn;
+        private System.Windows.Forms.Button LogoutBtn;
     }
 }

@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login_frm));
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.OfflineBtn = new System.Windows.Forms.Button();
             this.RegisterBtn = new System.Windows.Forms.Button();
             this.LoginBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -67,6 +68,7 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Controls.Add(this.OfflineBtn);
             this.flowLayoutPanel1.Controls.Add(this.RegisterBtn);
             this.flowLayoutPanel1.Controls.Add(this.LoginBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -76,9 +78,19 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(257, 30);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
+            // OfflineBtn
+            // 
+            this.OfflineBtn.Location = new System.Drawing.Point(171, 3);
+            this.OfflineBtn.Name = "OfflineBtn";
+            this.OfflineBtn.Size = new System.Drawing.Size(83, 27);
+            this.OfflineBtn.TabIndex = 2;
+            this.OfflineBtn.Text = "Offline Mode";
+            this.OfflineBtn.UseVisualStyleBackColor = true;
+            this.OfflineBtn.Click += new System.EventHandler(this.OfflineBtn_Click);
+            // 
             // RegisterBtn
             // 
-            this.RegisterBtn.Location = new System.Drawing.Point(179, 3);
+            this.RegisterBtn.Location = new System.Drawing.Point(90, 3);
             this.RegisterBtn.Name = "RegisterBtn";
             this.RegisterBtn.Size = new System.Drawing.Size(75, 27);
             this.RegisterBtn.TabIndex = 0;
@@ -88,7 +100,7 @@
             // 
             // LoginBtn
             // 
-            this.LoginBtn.Location = new System.Drawing.Point(98, 3);
+            this.LoginBtn.Location = new System.Drawing.Point(9, 3);
             this.LoginBtn.Name = "LoginBtn";
             this.LoginBtn.Size = new System.Drawing.Size(75, 27);
             this.LoginBtn.TabIndex = 1;
@@ -189,7 +201,7 @@
             // 
             // LoginTimeOut
             // 
-            this.LoginTimeOut.Interval = 2000;
+            this.LoginTimeOut.Interval = 5000;
             // 
             // Login_frm
             // 
@@ -228,6 +240,7 @@
         private System.Windows.Forms.ComboBox LanguageSelect;
         private System.Windows.Forms.CheckBox AutoLoginCheckBox;
         public System.Windows.Forms.Timer LoginTimeOut;
+        private System.Windows.Forms.Button OfflineBtn;
 
     }
 }
