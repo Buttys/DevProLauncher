@@ -277,7 +277,7 @@ namespace YGOPro_Launcher
             string imagename = Path.GetFileNameWithoutExtension(path);
             try
             {
-                type.Images.Add(imagename, Image.FromFile(path));
+                type.Images.Add(imagename, Image.FromStream(new MemoryStream(File.ReadAllBytes(path))));
             }
             catch (OutOfMemoryException)
             {

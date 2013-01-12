@@ -1,6 +1,6 @@
 ﻿namespace YGOPro_Launcher
 {
-    partial class ServerInterface_frm
+    partial class NewServerInterface_frm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,19 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.UnrankedList = new System.Windows.Forms.ListBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.QuickBtn = new System.Windows.Forms.Button();
+            this.HostBtn = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.RankedQuickBtn = new System.Windows.Forms.Button();
+            this.RankedHostBtn = new System.Windows.Forms.Button();
+            this.RankedList = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -53,47 +66,21 @@
             this.label5 = new System.Windows.Forms.Label();
             this.FilterActive = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.QuickBtn = new System.Windows.Forms.Button();
-            this.HostBtn = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.Username = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.DeckSelect = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.Record = new System.Windows.Forms.Label();
-            this.ServerTabs = new System.Windows.Forms.TabControl();
-            this.Ranked = new System.Windows.Forms.TabPage();
-            this.RankedRooms = new System.Windows.Forms.ListView();
-            this.RColumnRoomName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RColumnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RColumnBanList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RColumnTimer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RColumnRules = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RColumnMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RColumnState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RColumnPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Unranked = new System.Windows.Forms.TabPage();
-            this.listRooms = new System.Windows.Forms.ListView();
-            this.ColumnRoomName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnBanList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnTimer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnRules = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ColumnPlayers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.ServerTabs.SuspendLayout();
-            this.Ranked.SuspendLayout();
-            this.Unranked.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -101,8 +88,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 175F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel7, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -111,23 +98,178 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(909, 339);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.groupBox2, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.groupBox3, 1, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(728, 333);
+            this.tableLayoutPanel7.TabIndex = 5;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.tableLayoutPanel8);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(358, 327);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Unranked";
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 1;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.Controls.Add(this.UnrankedList, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.flowLayoutPanel2, 0, 1);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 2;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(352, 308);
+            this.tableLayoutPanel8.TabIndex = 0;
+            // 
+            // UnrankedList
+            // 
+            this.UnrankedList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UnrankedList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.UnrankedList.FormattingEnabled = true;
+            this.UnrankedList.IntegralHeight = false;
+            this.UnrankedList.ItemHeight = 50;
+            this.UnrankedList.Location = new System.Drawing.Point(3, 3);
+            this.UnrankedList.Name = "UnrankedList";
+            this.UnrankedList.Size = new System.Drawing.Size(346, 262);
+            this.UnrankedList.TabIndex = 2;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.QuickBtn);
+            this.flowLayoutPanel2.Controls.Add(this.HostBtn);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 271);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(346, 34);
+            this.flowLayoutPanel2.TabIndex = 3;
+            // 
+            // QuickBtn
+            // 
+            this.QuickBtn.Location = new System.Drawing.Point(277, 3);
+            this.QuickBtn.Name = "QuickBtn";
+            this.QuickBtn.Size = new System.Drawing.Size(66, 23);
+            this.QuickBtn.TabIndex = 1;
+            this.QuickBtn.Text = "Quick";
+            this.QuickBtn.UseVisualStyleBackColor = true;
+            this.QuickBtn.Click += new System.EventHandler(this.QuickBtn_Click);
+            // 
+            // HostBtn
+            // 
+            this.HostBtn.Location = new System.Drawing.Point(205, 3);
+            this.HostBtn.Name = "HostBtn";
+            this.HostBtn.Size = new System.Drawing.Size(66, 23);
+            this.HostBtn.TabIndex = 0;
+            this.HostBtn.Text = "Host";
+            this.HostBtn.UseVisualStyleBackColor = true;
+            this.HostBtn.Click += new System.EventHandler(this.HostBtn_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tableLayoutPanel9);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(367, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(358, 327);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Ranked";
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 1;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Controls.Add(this.flowLayoutPanel3, 0, 1);
+            this.tableLayoutPanel9.Controls.Add(this.RankedList, 0, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 2;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(352, 308);
+            this.tableLayoutPanel9.TabIndex = 0;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.RankedQuickBtn);
+            this.flowLayoutPanel3.Controls.Add(this.RankedHostBtn);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 271);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(346, 34);
+            this.flowLayoutPanel3.TabIndex = 4;
+            // 
+            // RankedQuickBtn
+            // 
+            this.RankedQuickBtn.Location = new System.Drawing.Point(277, 3);
+            this.RankedQuickBtn.Name = "RankedQuickBtn";
+            this.RankedQuickBtn.Size = new System.Drawing.Size(66, 23);
+            this.RankedQuickBtn.TabIndex = 1;
+            this.RankedQuickBtn.Text = "Quick";
+            this.RankedQuickBtn.UseVisualStyleBackColor = true;
+            this.RankedQuickBtn.Click += new System.EventHandler(this.QuickBtn_Click);
+            // 
+            // RankedHostBtn
+            // 
+            this.RankedHostBtn.Location = new System.Drawing.Point(205, 3);
+            this.RankedHostBtn.Name = "RankedHostBtn";
+            this.RankedHostBtn.Size = new System.Drawing.Size(66, 23);
+            this.RankedHostBtn.TabIndex = 0;
+            this.RankedHostBtn.Text = "Host";
+            this.RankedHostBtn.UseVisualStyleBackColor = true;
+            this.RankedHostBtn.Click += new System.EventHandler(this.HostBtn_Click);
+            // 
+            // RankedList
+            // 
+            this.RankedList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RankedList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.RankedList.FormattingEnabled = true;
+            this.RankedList.IntegralHeight = false;
+            this.RankedList.ItemHeight = 50;
+            this.RankedList.Location = new System.Drawing.Point(3, 3);
+            this.RankedList.Name = "RankedList";
+            this.RankedList.Size = new System.Drawing.Size(346, 262);
+            this.RankedList.TabIndex = 3;
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.FilterTextBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.FilterActive, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(737, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 135F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 99F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 101F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(169, 333);
             this.tableLayoutPanel2.TabIndex = 1;
@@ -139,12 +281,12 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 95.09203F));
             this.tableLayoutPanel6.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 237);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 235);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(163, 93);
-            this.tableLayoutPanel6.TabIndex = 10;
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(163, 95);
+            this.tableLayoutPanel6.TabIndex = 11;
             // 
             // flowLayoutPanel1
             // 
@@ -158,7 +300,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(149, 87);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(149, 89);
             this.flowLayoutPanel1.TabIndex = 8;
             // 
             // DeckBtn
@@ -378,7 +520,7 @@
             this.FilterActive.AutoSize = true;
             this.FilterActive.Checked = true;
             this.FilterActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.FilterActive.Location = new System.Drawing.Point(26, 214);
+            this.FilterActive.Location = new System.Drawing.Point(26, 181);
             this.FilterActive.Name = "FilterActive";
             this.FilterActive.Size = new System.Drawing.Size(117, 17);
             this.FilterActive.TabIndex = 3;
@@ -388,283 +530,45 @@
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.ServerTabs, 0, 0);
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.94702F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 92.05298F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
+            this.tableLayoutPanel4.Controls.Add(this.DeckSelect, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 204);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(728, 333);
-            this.tableLayoutPanel4.TabIndex = 2;
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 9;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
-            this.tableLayoutPanel5.Controls.Add(this.QuickBtn, 8, 0);
-            this.tableLayoutPanel5.Controls.Add(this.HostBtn, 7, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label11, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.Username, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label13, 2, 0);
-            this.tableLayoutPanel5.Controls.Add(this.DeckSelect, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label14, 4, 0);
-            this.tableLayoutPanel5.Controls.Add(this.Record, 5, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 299);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(722, 31);
-            this.tableLayoutPanel5.TabIndex = 2;
-            // 
-            // QuickBtn
-            // 
-            this.QuickBtn.Location = new System.Drawing.Point(653, 3);
-            this.QuickBtn.Name = "QuickBtn";
-            this.QuickBtn.Size = new System.Drawing.Size(66, 23);
-            this.QuickBtn.TabIndex = 1;
-            this.QuickBtn.Text = "Quick";
-            this.QuickBtn.UseVisualStyleBackColor = true;
-            this.QuickBtn.Click += new System.EventHandler(this.QuickBtn_Click);
-            // 
-            // HostBtn
-            // 
-            this.HostBtn.Location = new System.Drawing.Point(580, 3);
-            this.HostBtn.Name = "HostBtn";
-            this.HostBtn.Size = new System.Drawing.Size(66, 23);
-            this.HostBtn.TabIndex = 0;
-            this.HostBtn.Text = "Host";
-            this.HostBtn.UseVisualStyleBackColor = true;
-            this.HostBtn.Click += new System.EventHandler(this.HostBtn_Click);
-            // 
-            // label11
-            // 
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(76, 31);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Username:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // Username
-            // 
-            this.Username.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Username.AutoSize = true;
-            this.Username.Location = new System.Drawing.Point(119, 9);
-            this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(36, 13);
-            this.Username.TabIndex = 1;
-            this.Username.Text = "Buttys";
-            // 
-            // label13
-            // 
-            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Location = new System.Drawing.Point(195, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(54, 31);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Deck:";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(163, 25);
+            this.tableLayoutPanel4.TabIndex = 12;
             // 
             // DeckSelect
             // 
             this.DeckSelect.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DeckSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DeckSelect.FormattingEnabled = true;
-            this.DeckSelect.Location = new System.Drawing.Point(255, 3);
+            this.DeckSelect.Location = new System.Drawing.Point(15, 3);
             this.DeckSelect.Name = "DeckSelect";
-            this.DeckSelect.Size = new System.Drawing.Size(97, 21);
-            this.DeckSelect.TabIndex = 3;
+            this.DeckSelect.Size = new System.Drawing.Size(133, 21);
+            this.DeckSelect.TabIndex = 14;
             // 
-            // label14
-            // 
-            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(358, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(118, 31);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "Win/Lose/Draws";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // Record
-            // 
-            this.Record.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Record.AutoSize = true;
-            this.Record.Location = new System.Drawing.Point(488, 9);
-            this.Record.Name = "Record";
-            this.Record.Size = new System.Drawing.Size(35, 13);
-            this.Record.TabIndex = 5;
-            this.Record.Text = "0/0/0";
-            // 
-            // ServerTabs
-            // 
-            this.ServerTabs.Controls.Add(this.Ranked);
-            this.ServerTabs.Controls.Add(this.Unranked);
-            this.ServerTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ServerTabs.Location = new System.Drawing.Point(3, 3);
-            this.ServerTabs.Name = "ServerTabs";
-            this.ServerTabs.SelectedIndex = 0;
-            this.ServerTabs.Size = new System.Drawing.Size(722, 290);
-            this.ServerTabs.TabIndex = 3;
-            // 
-            // Ranked
-            // 
-            this.Ranked.Controls.Add(this.RankedRooms);
-            this.Ranked.Location = new System.Drawing.Point(4, 22);
-            this.Ranked.Name = "Ranked";
-            this.Ranked.Padding = new System.Windows.Forms.Padding(3);
-            this.Ranked.Size = new System.Drawing.Size(714, 264);
-            this.Ranked.TabIndex = 1;
-            this.Ranked.Text = "Ranked";
-            this.Ranked.UseVisualStyleBackColor = true;
-            // 
-            // RankedRooms
-            // 
-            this.RankedRooms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.RColumnRoomName,
-            this.RColumnType,
-            this.RColumnBanList,
-            this.RColumnTimer,
-            this.RColumnRules,
-            this.RColumnMode,
-            this.RColumnState,
-            this.RColumnPlayers});
-            this.RankedRooms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RankedRooms.FullRowSelect = true;
-            this.RankedRooms.Location = new System.Drawing.Point(3, 3);
-            this.RankedRooms.Name = "RankedRooms";
-            this.RankedRooms.Size = new System.Drawing.Size(708, 258);
-            this.RankedRooms.TabIndex = 5;
-            this.RankedRooms.UseCompatibleStateImageBehavior = false;
-            this.RankedRooms.View = System.Windows.Forms.View.Details;
-            // 
-            // RColumnRoomName
-            // 
-            this.RColumnRoomName.Text = "Room Name";
-            this.RColumnRoomName.Width = 86;
-            // 
-            // RColumnType
-            // 
-            this.RColumnType.Text = "Type";
-            // 
-            // RColumnBanList
-            // 
-            this.RColumnBanList.Text = "Banlist";
-            // 
-            // RColumnTimer
-            // 
-            this.RColumnTimer.Text = "Timer";
-            // 
-            // RColumnRules
-            // 
-            this.RColumnRules.Text = "Rules";
-            this.RColumnRules.Width = 80;
-            // 
-            // RColumnMode
-            // 
-            this.RColumnMode.Text = "Mode";
-            this.RColumnMode.Width = 75;
-            // 
-            // RColumnState
-            // 
-            this.RColumnState.Text = "State";
-            this.RColumnState.Width = 75;
-            // 
-            // RColumnPlayers
-            // 
-            this.RColumnPlayers.Text = "Players";
-            this.RColumnPlayers.Width = 163;
-            // 
-            // Unranked
-            // 
-            this.Unranked.Controls.Add(this.listRooms);
-            this.Unranked.Location = new System.Drawing.Point(4, 22);
-            this.Unranked.Name = "Unranked";
-            this.Unranked.Padding = new System.Windows.Forms.Padding(3);
-            this.Unranked.Size = new System.Drawing.Size(714, 264);
-            this.Unranked.TabIndex = 0;
-            this.Unranked.Text = "Unranked";
-            this.Unranked.UseVisualStyleBackColor = true;
-            // 
-            // listRooms
-            // 
-            this.listRooms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ColumnRoomName,
-            this.ColumnType,
-            this.ColumnBanList,
-            this.ColumnTimer,
-            this.ColumnRules,
-            this.ColumnMode,
-            this.ColumnState,
-            this.ColumnPlayers});
-            this.listRooms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listRooms.FullRowSelect = true;
-            this.listRooms.Location = new System.Drawing.Point(3, 3);
-            this.listRooms.Name = "listRooms";
-            this.listRooms.Size = new System.Drawing.Size(708, 258);
-            this.listRooms.TabIndex = 4;
-            this.listRooms.UseCompatibleStateImageBehavior = false;
-            this.listRooms.View = System.Windows.Forms.View.Details;
-            // 
-            // ColumnRoomName
-            // 
-            this.ColumnRoomName.Text = "Room Name";
-            this.ColumnRoomName.Width = 86;
-            // 
-            // ColumnType
-            // 
-            this.ColumnType.Text = "Type";
-            // 
-            // ColumnBanList
-            // 
-            this.ColumnBanList.Text = "Banlist";
-            // 
-            // ColumnTimer
-            // 
-            this.ColumnTimer.Text = "Timer";
-            // 
-            // ColumnRules
-            // 
-            this.ColumnRules.Text = "Rules";
-            this.ColumnRules.Width = 80;
-            // 
-            // ColumnMode
-            // 
-            this.ColumnMode.Text = "Mode";
-            this.ColumnMode.Width = 75;
-            // 
-            // ColumnState
-            // 
-            this.ColumnState.Text = "State";
-            this.ColumnState.Width = 75;
-            // 
-            // ColumnPlayers
-            // 
-            this.ColumnPlayers.Text = "Players";
-            this.ColumnPlayers.Width = 163;
-            // 
-            // ServerInterface_frm
+            // NewServerInterface_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(909, 339);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ServerInterface_frm";
+            this.Name = "NewServerInterface_frm";
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
@@ -673,11 +577,6 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
-            this.ServerTabs.ResumeLayout(false);
-            this.Ranked.ResumeLayout(false);
-            this.Unranked.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -699,38 +598,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label NumberofRooms;
         private System.Windows.Forms.CheckBox FilterActive;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label Username;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox DeckSelect;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label Record;
-        private System.Windows.Forms.Button HostBtn;
-        private System.Windows.Forms.Button QuickBtn;
-        private System.Windows.Forms.TabControl ServerTabs;
-        private System.Windows.Forms.TabPage Unranked;
-        private System.Windows.Forms.ListView listRooms;
-        private System.Windows.Forms.ColumnHeader ColumnRoomName;
-        private System.Windows.Forms.ColumnHeader ColumnType;
-        private System.Windows.Forms.ColumnHeader ColumnRules;
-        private System.Windows.Forms.ColumnHeader ColumnMode;
-        private System.Windows.Forms.ColumnHeader ColumnState;
-        private System.Windows.Forms.ColumnHeader ColumnPlayers;
-        private System.Windows.Forms.TabPage Ranked;
-        private System.Windows.Forms.ListView RankedRooms;
-        private System.Windows.Forms.ColumnHeader RColumnRoomName;
-        private System.Windows.Forms.ColumnHeader RColumnType;
-        private System.Windows.Forms.ColumnHeader RColumnRules;
-        private System.Windows.Forms.ColumnHeader RColumnMode;
-        private System.Windows.Forms.ColumnHeader RColumnState;
-        private System.Windows.Forms.ColumnHeader RColumnPlayers;
-        private System.Windows.Forms.ColumnHeader RColumnBanList;
-        private System.Windows.Forms.ColumnHeader RColumnTimer;
-        private System.Windows.Forms.ColumnHeader ColumnBanList;
-        private System.Windows.Forms.ColumnHeader ColumnTimer;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button DeckBtn;
@@ -739,5 +607,20 @@
         private System.Windows.Forms.Button OptionsBtn;
         private System.Windows.Forms.Button OfflineBtn;
         private System.Windows.Forms.Button LogoutBtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private System.Windows.Forms.ListBox UnrankedList;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button QuickBtn;
+        private System.Windows.Forms.Button HostBtn;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.Button RankedQuickBtn;
+        private System.Windows.Forms.Button RankedHostBtn;
+        private System.Windows.Forms.ListBox RankedList;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.ComboBox DeckSelect;
     }
 }

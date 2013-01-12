@@ -19,7 +19,7 @@ namespace YGOPro_Launcher
             LauncherHelper.CardManager.Init();
 
             char[] version = Program.Version.ToCharArray();
-            this.Text = Program.LanguageManager.Translation.MainFormTitle + " v" + version[0] + "." + version[1] + "." + version[2];
+            this.Text = Program.LanguageManager.Translation.MainFormTitle + " v" + version[0] + "." + version[1] + "." + version[2] + " - " + Program.UserInfo.Username;
 
             TabPage FileManager = new TabPage(){ Name = "File Manager", Text = Program.LanguageManager.Translation.MainFileManagerTab};
             TabControl FileControl = new TabControl();
@@ -35,7 +35,7 @@ namespace YGOPro_Launcher
             FileManager.Controls.Add(FileControl);
 
             TabPage ServerTab = new TabPage() { Text = Program.Config.ServerName, Name = Program.Config.ServerName };
-            ServerTab.Controls.Add(new ServerInterface_frm(Program.Config.ServerName));
+            ServerTab.Controls.Add(new NewServerInterface_frm(Program.Config.ServerName));
 
             TabPage CustomizeTab = new TabPage() { Name = "Customize", Text = Program.LanguageManager.Translation.MainCustomizeTab};
             CustomizeTab.Controls.Add(new Customize_frm());
@@ -104,9 +104,9 @@ namespace YGOPro_Launcher
             {
                     foreach (Control control in tab.Controls)
                     {
-                        if (control is ServerInterface_frm)
+                        if (control is NewServerInterface_frm)
                         {
-                            ServerInterface_frm form = (ServerInterface_frm)control;
+                            NewServerInterface_frm form = (NewServerInterface_frm)control;
                             form.RequestUserWLD();
                             Program.ServerConnection.SendPacket("GETROOMS");
                         }
