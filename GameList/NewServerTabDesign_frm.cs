@@ -533,6 +533,8 @@ namespace YGOPro_Launcher
         public void LoadRoom(object sender, EventArgs e)
         {
             ListBox rooms = (ListBox)sender;
+            if (rooms.SelectedIndex == -1)
+                return;
             if (!m_rooms.ContainsKey(rooms.SelectedItem.ToString()))
                 return;
 
@@ -633,6 +635,8 @@ namespace YGOPro_Launcher
             ListBox list = (ListBox)sender;
             e.DrawBackground();
 
+            if (e.Index == -1)
+                return;
             int index = e.Index;
             string room = list.Items[index].ToString();
             bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
