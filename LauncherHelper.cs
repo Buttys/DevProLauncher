@@ -158,6 +158,8 @@ namespace YGOPro_Launcher
 
         public static UpdateUserInfo GameClosed;
 
+        public static UpdateUserInfo DeckEditClosed;
+
         public static void RunGame(string arg, EventHandler onExit = null)
         {
             try
@@ -170,6 +172,8 @@ namespace YGOPro_Launcher
                 process.StartInfo.WorkingDirectory = Program.Config.LauncherDir;
                 if(arg == "-j")
                     process.Exited += new EventHandler(UpdateInfo);
+                if(arg == "-d")
+                    process.Exited += new EventHandler(RefreshDeckList);
                 if (onExit != null)
                 {
                     process.Exited += new EventHandler(onExit);
@@ -187,6 +191,12 @@ namespace YGOPro_Launcher
         {
             if (GameClosed != null)
                 GameClosed();
+        }
+
+        static void RefreshDeckList(object sender, EventArgs e)
+        {
+            if (DeckEditClosed != null)
+                DeckEditClosed();
         }
 
         private static bool InstantExsists(string processname)

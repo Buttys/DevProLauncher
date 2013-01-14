@@ -267,9 +267,9 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 135F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 107F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(169, 333);
             this.tableLayoutPanel2.TabIndex = 1;
@@ -281,11 +281,11 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 95.09203F));
             this.tableLayoutPanel6.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 235);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 229);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(163, 95);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(163, 101);
             this.tableLayoutPanel6.TabIndex = 11;
             // 
             // flowLayoutPanel1
@@ -300,7 +300,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(149, 89);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(149, 95);
             this.flowLayoutPanel1.TabIndex = 8;
             // 
             // DeckBtn
@@ -520,9 +520,9 @@
             this.FilterActive.AutoSize = true;
             this.FilterActive.Checked = true;
             this.FilterActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.FilterActive.Location = new System.Drawing.Point(26, 181);
+            this.FilterActive.Location = new System.Drawing.Point(26, 175);
             this.FilterActive.Name = "FilterActive";
-            this.FilterActive.Size = new System.Drawing.Size(117, 17);
+            this.FilterActive.Size = new System.Drawing.Size(117, 15);
             this.FilterActive.TabIndex = 3;
             this.FilterActive.Text = "Filter Active Games";
             this.FilterActive.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -536,11 +536,11 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
             this.tableLayoutPanel4.Controls.Add(this.DeckSelect, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 204);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 196);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(163, 25);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(163, 27);
             this.tableLayoutPanel4.TabIndex = 12;
             // 
             // DeckSelect

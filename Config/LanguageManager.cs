@@ -59,6 +59,11 @@ namespace YGOPro_Launcher.Config
                     File.Copy(Path + language + "/strings.conf", "strings.conf", true);
                 if (File.Exists(Path + language + "/cards.cdb"))
                     File.Copy(Path + language + "/cards.cdb", "cards.cdb", true);
+                else
+                {
+                    if (File.Exists(Path +"English/cards.cdb"))
+                        File.Copy(Path + "English/cards.cdb", "cards.cdb", true);
+                }
 
             }
             catch (Exception)

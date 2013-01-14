@@ -33,19 +33,13 @@ namespace YGOPro_Launcher
             Program.ServerConnection.UpdateRoomStatus += new NetClient.ServerResponse(OnRoomStarted);
             Program.ServerConnection.UpdateRoomPlayers += new NetClient.ServerResponse(OnRoomPlayersUpdate);
             Program.ServerConnection.UserInfoUpdate += new NetClient.ServerResponse(UpdateUserInfo);
-            LauncherHelper.GameClosed += new LauncherHelper.UpdateUserInfo(RequestUserWLD);
+            //LauncherHelper.GameClosed += new LauncherHelper.UpdateUserInfo(RequestUserWLD);
+            LauncherHelper.DeckEditClosed += new LauncherHelper.UpdateUserInfo(RefreshDeckList);
             RankedList.DrawItem += new DrawItemEventHandler(GameListBox_DrawItem);
             UnrankedList.DrawItem += new DrawItemEventHandler(GameListBox_DrawItem);
             UnrankedList.DoubleClick += new System.EventHandler(this.LoadRoom);
             RankedList.DoubleClick += new System.EventHandler(this.LoadRoom);
-
-            if (Directory.Exists(Program.Config.LauncherDir + "deck/"))
-            {
-                string[] decks = Directory.GetFiles(Program.Config.LauncherDir + "deck/");
-                foreach (string deck in decks)
-                    DeckSelect.Items.Add(Path.GetFileNameWithoutExtension(deck));
-            }
-            DeckSelect.Text = Program.Config.DefaultDeck;
+            RefreshDeckList();
             DeckSelect.SelectedIndexChanged += new EventHandler(DeckSelect_SelectedValueChanged);
 
             if (Program.UserInfo.Rank > 0)
@@ -77,12 +71,13 @@ namespace YGOPro_Launcher
             ProfileBtn.Text = Program.LanguageManager.Translation.GameBtnProfile;
             OptionsBtn.Text = Program.LanguageManager.Translation.GameBtnOption;
             QuickBtn.Text = Program.LanguageManager.Translation.GameBtnQuick;
+            RankedQuickBtn.Text = Program.LanguageManager.Translation.GameBtnQuick;
             HostBtn.Text = Program.LanguageManager.Translation.GameBtnHost;
+            RankedHostBtn.Text = Program.LanguageManager.Translation.GameBtnHost;
             OfflineBtn.Text = Program.LanguageManager.Translation.GameBtnOffline;
             LogoutBtn.Text = Program.LanguageManager.Translation.GameBtnLogout;
-            //label14.Text = Program.LanguageManager.Translation.GameLabWLD;
-            //label13.Text = Program.LanguageManager.Translation.GameLabDeck;
-            //label11.Text = Program.LanguageManager.Translation.GameLabUser;
+            groupBox2.Text = Program.LanguageManager.Translation.GameTabUnranked;
+            groupBox3.Text = Program.LanguageManager.Translation.GameTabRanked;
 
         }
 
@@ -144,6 +139,26 @@ namespace YGOPro_Launcher
         public void RequestUserWLD()
         {
             Program.ServerConnection.SendPacket("WLD");
+        }
+
+        public void RefreshDeckList()
+        {
+
+            if (InvokeRequired)
+            {
+                Invoke(new Action(RefreshDeckList));
+            }
+            else
+            {
+                DeckSelect.Items.Clear();
+                if (Directory.Exists(Program.Config.LauncherDir + "deck/"))
+                {
+                    string[] decks = Directory.GetFiles(Program.Config.LauncherDir + "deck/");
+                    foreach (string deck in decks)
+                        DeckSelect.Items.Add(Path.GetFileNameWithoutExtension(deck));
+                }
+                DeckSelect.Text = Program.Config.DefaultDeck;
+            }
         }
 
         private void DeckSelect_SelectedValueChanged(object sender, EventArgs e)
@@ -239,7 +254,7 @@ namespace YGOPro_Launcher
             form.CheckDeck.Checked = Program.Config.DisableCheckDeck;
             form.ShuffleDeck.Checked = Program.Config.DisableShuffleDeck;
             form.LifePoints.Text = Program.Config.Lifepoints;
-            form.GameName.Text = LauncherHelper.GenerateString().Substring(0, 5);
+            form.GameName = LauncherHelper.GenerateString().Substring(0, 5);
             form.BanList.SelectedItem = Program.Config.BanList;
             form.TimeLimit.SelectedItem = Program.Config.TimeLimit;
 
@@ -291,7 +306,7 @@ namespace YGOPro_Launcher
             if (MatchedRooms.Count > 0)
             {
                 int selectroom = random.Next(MatchedRooms.Count);
-                form.GameName.Text = MatchedRooms[selectroom].RoomName;
+                form.GameName = MatchedRooms[selectroom].RoomName;
             }
 
             LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), isranked));
@@ -667,9 +682,9 @@ namespace YGOPro_Launcher
 
             Rectangle Bounds = list.GetItemRectangle(index);
             SizeF GameNamesize = e.Graphics.MeasureString((info == null) ? "???" : info.RoomName, e.Font);
-            SizeF Timersize = e.Graphics.MeasureString((info == null) ? "?? mins" : (info.Timer == 0) ? "3 mins" : "5 mins", e.Font);
+            SizeF Rulesize = e.Graphics.MeasureString((info == null) ? "???" : RoomInfos.GameRule(info.Rule), e.Font);
             SizeF playersSize = e.Graphics.MeasureString(playerstring, e.Font);
-            SizeF infoListsize = e.Graphics.MeasureString((info == null) ? "???/???/???" : RoomInfos.GameMode(info.Mode) + "/" + RoomInfos.GameRule(info.Rule) + "/" + LauncherHelper.GetBanListFromInt(info.BanList), e.Font);
+            SizeF infoListsize = e.Graphics.MeasureString((info == null) ? "???/???/???" : RoomInfos.GameMode(info.Mode) + " / " + LauncherHelper.GetBanListFromInt(info.BanList) + " / " +(info.Timer == 0 ? "3 mins" : "5 mins") , e.Font);
             bool illegal = true;
             SolidBrush backgroundcolor = null;
 
@@ -696,11 +711,11 @@ namespace YGOPro_Launcher
             g.DrawLines((selected) ? new Pen(Brushes.Purple, 5) : new Pen(Brushes.Black, 5),
                 new Point[] { new Point(Bounds.X, Bounds.Y), new Point(Bounds.X + Bounds.Width, Bounds.Y), new Point(Bounds.X + Bounds.Width, Bounds.Y + Bounds.Height), new Point(Bounds.X, Bounds.Y + Bounds.Height), new Point(Bounds.X, Bounds.Y) });
             //toplet
-            g.DrawString((info == null) ? "???/???/???" : RoomInfos.GameMode(info.Mode) + "/" + RoomInfos.GameRule(info.Rule) + "/" + LauncherHelper.GetBanListFromInt(info.BanList), e.Font, Brushes.Black,
+            g.DrawString((info == null) ? "???/???/???" : RoomInfos.GameMode(info.Mode) + " / " + LauncherHelper.GetBanListFromInt(info.BanList) + " / " + (info.Timer == 0 ? "3 mins" : "5 mins"), e.Font, Brushes.Black,
                 list.GetItemRectangle(index).Location + offset);
             //topright
-            g.DrawString((info == null) ? "?? mins" : (info.Timer == 0) ? "3 mins" : "5 mins", e.Font, Brushes.Black,
-                new Rectangle(Bounds.X + (Bounds.Width - (int)Timersize.Width) - offset.Width, Bounds.Y + offset.Height, Bounds.Width, Bounds.Height));
+            g.DrawString((info == null) ? "???" : RoomInfos.GameRule(info.Rule), e.Font, Brushes.Black,
+                new Rectangle(Bounds.X + (Bounds.Width - (int)Rulesize.Width) - offset.Width, Bounds.Y + offset.Height, Bounds.Width, Bounds.Height));
             ////bottomright
             //g.DrawString("", e.Font, (selected) ? Brushes.White : Brushes.Black,
             //    new Rectangle(Bounds.X + (Bounds.Width - (int)Timersize.Width), Bounds.Y + (Bounds.Height - (int)Timersize.Height), Bounds.Width, Bounds.Height));

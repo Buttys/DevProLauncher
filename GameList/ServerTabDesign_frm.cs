@@ -276,7 +276,7 @@ namespace YGOPro_Launcher
             form.CheckDeck.Checked = Program.Config.DisableCheckDeck;
             form.ShuffleDeck.Checked = Program.Config.DisableShuffleDeck;
             form.LifePoints.Text = Program.Config.Lifepoints;
-            form.GameName.Text = LauncherHelper.GenerateString().Substring(0,5);
+            form.GameName = LauncherHelper.GenerateString().Substring(0,5);
             form.BanList.SelectedItem = Program.Config.BanList;
             form.TimeLimit.SelectedItem = Program.Config.TimeLimit;
             
@@ -315,7 +315,7 @@ namespace YGOPro_Launcher
             if (MatchedRooms.Count > 0)
             {
                 int selectroom = random.Next(MatchedRooms.Count);
-                form.GameName.Text = MatchedRooms[selectroom].RoomName;
+                form.GameName = MatchedRooms[selectroom].RoomName;
             }
 
             LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (ServerTabs.SelectedTab.Name == "Ranked") ? true : false));

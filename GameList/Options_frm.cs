@@ -176,7 +176,6 @@ namespace YGOPro_Launcher
                 Program.Config.DisableCheckDeck = form.CheckDeck.Checked;
                 Program.Config.DisableShuffleDeck = form.ShuffleDeck.Checked;
                 Program.Config.Lifepoints = form.LifePoints.Text;
-                Program.Config.GameName = form.GameName.Text;
                 Program.Config.BanList = form.BanList.Text;
                 Program.Config.TimeLimit = form.TimeLimit.Text;
             }
@@ -202,7 +201,6 @@ namespace YGOPro_Launcher
                 Program.Config.chtDisableCheckDeck = form.CheckDeck.Checked;
                 Program.Config.chtDisableShuffleDeck = form.ShuffleDeck.Checked;
                 Program.Config.chtLifepoints = form.LifePoints.Text;
-                Program.Config.chtGameName = form.GameName.Text;
                 Program.Config.chtBanList = form.BanList.Text;
                 Program.Config.chtTimeLimit = form.TimeLimit.Text;
             }

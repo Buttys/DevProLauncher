@@ -12,7 +12,7 @@ namespace YGOPro_Launcher
 {
     public partial class Host : Form
     {
-       
+        public string GameName;
 
         public Host(bool options, bool isranked)
         {
@@ -23,7 +23,7 @@ namespace YGOPro_Launcher
                 TimeLimit.SelectedItem = Program.Config.TimeLimit;
                 BanList.SelectedItem = Program.Config.BanList;
                 Mode.SelectedItem = Program.Config.Mode;
-                GameName.Text = Program.Config.GameName;
+                GameName = LauncherHelper.GenerateString().Substring(0, 5);
                 CardRules.SelectedItem = Program.Config.CardRules;
                 Priority.Checked = Program.Config.EnablePrority;
                 ShuffleDeck.Checked = Program.Config.DisableShuffleDeck;
@@ -38,7 +38,7 @@ namespace YGOPro_Launcher
                 TimeLimit.SelectedIndex = 0;
                 CardRules.SelectedIndex = 0;
                 Mode.SelectedIndex = 0;
-                GameName.Text = LauncherHelper.GenerateString().Substring(0, 5);
+                GameName = LauncherHelper.GenerateString().Substring(0, 5);
                 BanList.Items.AddRange(LauncherHelper.GetBanListArray());
                 if (BanList.Items.Count > 0)
                     BanList.SelectedIndex = 0;
@@ -58,7 +58,7 @@ namespace YGOPro_Launcher
             TimeLimit.SelectedItem = Program.Config.chtTimeLimit;
             BanList.SelectedItem = Program.Config.chtBanList;
             Mode.SelectedItem = Program.Config.chtMode;
-            GameName.Text = Program.Config.chtGameName;
+            GameName = LauncherHelper.GenerateString().Substring(0,5);
             CardRules.SelectedItem = Program.Config.chtCardRules;
             Priority.Checked = Program.Config.chtEnablePrority;
             ShuffleDeck.Checked = Program.Config.chtDisableShuffleDeck;
@@ -91,7 +91,6 @@ namespace YGOPro_Launcher
                 CheckDeck.Text = Program.LanguageManager.Translation.hostCheckDeck;
                 ShuffleDeck.Text = Program.LanguageManager.Translation.hostShuffle;
                 label1.Text = Program.LanguageManager.Translation.hostLifep;
-                label2.Text = Program.LanguageManager.Translation.hostGameN;
                 HostBtn.Text = Program.LanguageManager.Translation.hostBtnHost;
                 CancelBtn.Text = Program.LanguageManager.Translation.hostBtnCancel;
             }
@@ -161,7 +160,7 @@ namespace YGOPro_Launcher
             else
                 gamestring = gamestring + "O";
 
-            gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U") + "," + GameName.Text;
+            gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U") + "," + GameName;
 
             return "ygopro:/" + server + "/" + port + "/" + gamestring;
         }
@@ -205,7 +204,7 @@ namespace YGOPro_Launcher
             else
                 gamestring = gamestring + "O";
 
-            gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U") + "," + GameName.Text;
+            gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U") + "," + GameName;
 
             return gamestring;
         }

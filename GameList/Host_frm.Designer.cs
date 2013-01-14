@@ -38,9 +38,7 @@
             this.ShuffleDeck = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.LifePoints = new System.Windows.Forms.TextBox();
-            this.GameName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.BanList = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -75,7 +73,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(297, 351);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(297, 319);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // groupBox1
@@ -84,7 +82,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(291, 312);
+            this.groupBox1.Size = new System.Drawing.Size(291, 280);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Settings";
@@ -102,17 +100,17 @@
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.77578F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.22422F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 78F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(285, 293);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(285, 261);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 110);
+            this.groupBox2.Location = new System.Drawing.Point(3, 116);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(279, 101);
+            this.groupBox2.Size = new System.Drawing.Size(279, 109);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Additional Options";
@@ -131,7 +129,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(273, 82);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(273, 90);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // Priority
@@ -165,7 +163,7 @@
             this.ShuffleDeck.AutoSize = true;
             this.ShuffleDeck.BackColor = System.Drawing.Color.Transparent;
             this.ShuffleDeck.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ShuffleDeck.Location = new System.Drawing.Point(3, 57);
+            this.ShuffleDeck.Location = new System.Drawing.Point(3, 61);
             this.ShuffleDeck.Name = "ShuffleDeck";
             this.ShuffleDeck.Size = new System.Drawing.Size(267, 17);
             this.ShuffleDeck.TabIndex = 2;
@@ -178,16 +176,13 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.55914F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.44086F));
             this.tableLayoutPanel4.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.LifePoints, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.GameName, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 217);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 231);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(279, 73);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(279, 27);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // label1
@@ -195,20 +190,10 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 25);
+            this.label1.Size = new System.Drawing.Size(95, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "Lifepoints";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 48);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "GameName";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LifePoints
             // 
@@ -218,14 +203,6 @@
             this.LifePoints.Size = new System.Drawing.Size(138, 20);
             this.LifePoints.TabIndex = 2;
             this.LifePoints.Text = "8000";
-            // 
-            // GameName
-            // 
-            this.GameName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.GameName.Location = new System.Drawing.Point(120, 39);
-            this.GameName.Name = "GameName";
-            this.GameName.Size = new System.Drawing.Size(139, 20);
-            this.GameName.TabIndex = 3;
             // 
             // tableLayoutPanel5
             // 
@@ -248,7 +225,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(279, 101);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(279, 107);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // BanList
@@ -329,7 +306,7 @@
             this.TimeLimit.Items.AddRange(new object[] {
             "3 minutes",
             "5 minutes"});
-            this.TimeLimit.Location = new System.Drawing.Point(121, 78);
+            this.TimeLimit.Location = new System.Drawing.Point(121, 80);
             this.TimeLimit.Name = "TimeLimit";
             this.TimeLimit.Size = new System.Drawing.Size(138, 21);
             this.TimeLimit.TabIndex = 7;
@@ -339,7 +316,7 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Location = new System.Drawing.Point(3, 75);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 26);
+            this.label6.Size = new System.Drawing.Size(96, 32);
             this.label6.TabIndex = 8;
             this.label6.Text = "Time Limit";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -350,7 +327,7 @@
             this.flowLayoutPanel1.Controls.Add(this.HostBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 321);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 289);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(291, 27);
             this.flowLayoutPanel1.TabIndex = 1;
@@ -379,7 +356,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(297, 351);
+            this.ClientSize = new System.Drawing.Size(297, 319);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -412,9 +389,7 @@
         public System.Windows.Forms.CheckBox ShuffleDeck;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         public System.Windows.Forms.TextBox LifePoints;
-        public System.Windows.Forms.TextBox GameName;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         public System.Windows.Forms.ComboBox CardRules;
         public System.Windows.Forms.ComboBox Mode;
