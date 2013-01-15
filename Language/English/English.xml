@@ -16,6 +16,7 @@
   <LoginMsb1>Not connected to the server.</LoginMsb1>
   <LoginMsb2>Please enter username.</LoginMsb2>
   <LoginMsb3>Please enter password.</LoginMsb3>
+  <LoginBtnOffline>Offline Mode</LoginBtnOffline>
   <RegistLbUser>Username</RegistLbUser>
   <RegistLbPw>Password</RegistLbPw>
   <RegistLbPw2>Confirm Password</RegistLbPw2>
@@ -53,6 +54,8 @@
   <GameLabWLD>Win/Lose/Draw</GameLabWLD>
   <GameLabDeck>Deck:</GameLabDeck>
   <GameLabUser>Username:</GameLabUser>
+  <GameBtnOffline>Offline</GameBtnOffline>
+  <GameBtnLogout>Logout</GameBtnLogout>
   <optionGb1>User Settings</optionGb1>
   <optionGb2>Game Settings</optionGb2>
   <optionGb3>Font Settings</optionGb3>
