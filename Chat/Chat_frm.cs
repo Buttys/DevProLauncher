@@ -116,7 +116,7 @@ namespace YGOPro_Launcher.Chat
 
         public void Connect()
         {
-            if (server.Connect(Program.Config.ServerAddress, Program.Config.ChatPort))
+            if (server.Connect(Program.Config.ChatServerAddress, Program.Config.ChatPort))
             {
                 server.SendPacket("LOGIN||" + Program.UserInfo.Username + "||" + Program.Config.Password + "||" + LauncherHelper.GetUID());
             }

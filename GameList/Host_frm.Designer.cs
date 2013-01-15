@@ -181,7 +181,7 @@
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 231);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(279, 27);
             this.tableLayoutPanel4.TabIndex = 1;
             // 

@@ -67,6 +67,7 @@ namespace YGOPro_Launcher
             if (Config.DebugMode)
             {
                 Config.ServerAddress = "86.0.24.143";
+                Config.ChatServerAddress = "86.0.24.143";
                 Config.GamePort = 7911;
                 Config.ServerPort = 7922;
                 Config.ChatPort = 6666;
@@ -134,7 +135,8 @@ namespace YGOPro_Launcher
 
             if (UserInfo.Username != "" && UserInfo.LoginKey != "")
             {
-                LoadConfig(ConfigurationFilename);
+                if(forcelogin)
+                    LoadConfig(ConfigurationFilename);
                 Application.Run(new Main_frm());
             }
             else
@@ -212,6 +214,7 @@ namespace YGOPro_Launcher
                 Config.ServerPort = Convert.ToInt32(infos[2]);
                 Config.GamePort = Convert.ToInt32(infos[3]);
                 Config.ChatPort = Convert.ToInt32(infos[4]);
+                Config.ChatServerAddress = infos[5];
             }
             catch
             {
