@@ -16,7 +16,7 @@
   <LoginMsb1>Non connecté au serveur.</LoginMsb1>
   <LoginMsb2>Veuillez entrer votre profil.</LoginMsb2>
   <LoginMsb3>Veuillez entrer votre mot de passe.</LoginMsb3>
-  <LoginBtnOffline>Mode hors ligne</LoginBtnOffline>
+  <LoginBtnOffline>Mode Classic</LoginBtnOffline>
   <RegistLbUser>Profil :</RegistLbUser>
   <RegistLbPw>Mot de passe :</RegistLbPw>
   <RegistLbPw2>Confirmer-le :</RegistLbPw2>
@@ -55,7 +55,7 @@
   <GameLabDeck>Deck:</GameLabDeck>
   <GameLabUser>Profil:</GameLabUser>
   <GameBtnOffline>Hors Ligne</GameBtnOffline>
-  <GameBtnLogout>Déconnexion</GameBtnLogout>
+  <GameBtnLogout>Accueil</GameBtnLogout>
   <optionGb1>Paramètres Utilisateurs</optionGb1>
   <optionGb2>Paramètres Jeu</optionGb2>
   <optionGb3>Paramètres Police</optionGb3>
