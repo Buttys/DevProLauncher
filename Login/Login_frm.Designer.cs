@@ -44,6 +44,8 @@
             this.LanguageSelect = new System.Windows.Forms.ComboBox();
             this.AutoLoginCheckBox = new System.Windows.Forms.CheckBox();
             this.LoginTimeOut = new System.Windows.Forms.Timer(this.components);
+            this.ServerSelect = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -60,10 +62,10 @@
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.7479F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.2521F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(263, 151);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.84663F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.15337F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(263, 174);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -73,9 +75,9 @@
             this.flowLayoutPanel1.Controls.Add(this.LoginBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 86);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 114);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(257, 30);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(257, 31);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // OfflineBtn
@@ -119,14 +121,17 @@
             this.tableLayoutPanel4.Controls.Add(this.PasswordInput, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.LanguageSelect, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.ServerSelect, 1, 3);
+            this.tableLayoutPanel4.Controls.Add(this.label4, 0, 3);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowCount = 4;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(257, 77);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(257, 105);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // label1
@@ -134,7 +139,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 25);
+            this.label1.Size = new System.Drawing.Size(77, 27);
             this.label1.TabIndex = 2;
             this.label1.Text = "Username";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -142,9 +147,9 @@
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 25);
+            this.label2.Location = new System.Drawing.Point(3, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 25);
+            this.label2.Size = new System.Drawing.Size(77, 27);
             this.label2.TabIndex = 3;
             this.label2.Text = "Password";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -161,7 +166,7 @@
             // PasswordInput
             // 
             this.PasswordInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PasswordInput.Location = new System.Drawing.Point(86, 28);
+            this.PasswordInput.Location = new System.Drawing.Point(86, 30);
             this.PasswordInput.MaxLength = 15;
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.Size = new System.Drawing.Size(168, 20);
@@ -171,7 +176,7 @@
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 50);
+            this.label3.Location = new System.Drawing.Point(3, 54);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 27);
             this.label3.TabIndex = 6;
@@ -183,7 +188,7 @@
             this.LanguageSelect.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LanguageSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LanguageSelect.FormattingEnabled = true;
-            this.LanguageSelect.Location = new System.Drawing.Point(86, 53);
+            this.LanguageSelect.Location = new System.Drawing.Point(86, 57);
             this.LanguageSelect.Name = "LanguageSelect";
             this.LanguageSelect.Size = new System.Drawing.Size(168, 21);
             this.LanguageSelect.TabIndex = 7;
@@ -192,7 +197,7 @@
             // 
             this.AutoLoginCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.AutoLoginCheckBox.AutoSize = true;
-            this.AutoLoginCheckBox.Location = new System.Drawing.Point(41, 126);
+            this.AutoLoginCheckBox.Location = new System.Drawing.Point(41, 152);
             this.AutoLoginCheckBox.Name = "AutoLoginCheckBox";
             this.AutoLoginCheckBox.Size = new System.Drawing.Size(181, 17);
             this.AutoLoginCheckBox.TabIndex = 2;
@@ -203,11 +208,32 @@
             // 
             this.LoginTimeOut.Interval = 5000;
             // 
+            // ServerSelect
+            // 
+            this.ServerSelect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ServerSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ServerSelect.FormattingEnabled = true;
+            this.ServerSelect.Location = new System.Drawing.Point(86, 84);
+            this.ServerSelect.Name = "ServerSelect";
+            this.ServerSelect.Size = new System.Drawing.Size(168, 21);
+            this.ServerSelect.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(3, 81);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 24);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Server";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Login_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(263, 151);
+            this.ClientSize = new System.Drawing.Size(263, 174);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -241,6 +267,8 @@
         private System.Windows.Forms.CheckBox AutoLoginCheckBox;
         public System.Windows.Forms.Timer LoginTimeOut;
         private System.Windows.Forms.Button OfflineBtn;
+        private System.Windows.Forms.ComboBox ServerSelect;
+        private System.Windows.Forms.Label label4;
 
     }
 }

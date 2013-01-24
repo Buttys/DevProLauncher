@@ -9,12 +9,13 @@ using YGOPro_Launcher.Login;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace YGOPro_Launcher
 {
     static class Program
     {
-        public const string Version = "172100";
+        public const string Version = "173100";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -22,6 +23,7 @@ namespace YGOPro_Launcher
         public const string ConfigurationFilename = "launcher.conf";
         public static Login_frm LoginWindow;
         public static Authenticator LoginService;
+        public static List<Server> ServerList = new List<Server>();
 
         /// <summary>
         /// The main entry point for the application.
@@ -57,7 +59,7 @@ namespace YGOPro_Launcher
             Config = new Configuration();
             LoadConfig(Program.ConfigurationFilename);
             if (!Config.DebugMode)
-                AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+                //AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
             if (forcelogin)
             {
@@ -66,20 +68,8 @@ namespace YGOPro_Launcher
 
             if (Config.DebugMode)
             {
-                Config.ServerAddress = "86.0.24.143";
-                Config.ChatServerAddress = "86.0.24.143";
-                Config.GamePort = 7911;
-                Config.ServerPort = 7922;
-                Config.ChatPort = 6666;
-                Config.ServerName = "Debug";
-            }
-
-            if (File.Exists("ygopro_vs.exe") && !File.Exists("devpro.dll"))
-            {
-                File.Copy("ygopro_vs.exe", "devpro.dll");
-                File.Delete("ygopro_vs.exe");
-                Config.GameExe = "devpro.dll";
-                SaveConfig(ConfigurationFilename,Config);
+               ServerList.Add(new Server()
+               { ServerName = "Debug", ServerAddress = "86.0.24.143", ServerPort = 7911, GamePort = 7922, ChatAddress =  "86.0.24.143", ChatPort = 6666});
             }
 
             LanguageManager = new LanguageManager();
@@ -104,18 +94,30 @@ namespace YGOPro_Launcher
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            LoginService = new Authenticator(Config.DefaultUsername, Config.Password, ServerConnection, UserInfo);
+            Server serverinfo = null;
 
-            if(!ServerConnection.Connect(Config.ServerAddress, Config.ServerPort))
+            foreach (Server server in ServerList)
             {
-                MessageBox.Show(LanguageManager.Translation.pMsbErrorToServer);
+                if (server.ServerName == Config.DefaultServer)
+                    serverinfo = server;
             }
 
-            if (Config.AutoLogin && Config.DefaultUsername.Length < 15)
-            {           
 
-                LoginService.Authenticate();
-                Thread.Sleep(2000);
+            LoginService = new Authenticator(Config.DefaultUsername, Config.Password, ServerConnection, UserInfo);
+            
+            if (serverinfo != null)
+            {
+                if (!ServerConnection.Connect(Config.ServerAddress, Config.ServerPort))
+                {
+                    MessageBox.Show(LanguageManager.Translation.pMsbErrorToServer);
+                }
+
+                if (Config.AutoLogin && Config.DefaultUsername.Length < 15)
+                {
+
+                    LoginService.Authenticate();
+                    Thread.Sleep(2000);
+                }
             }
 
             if (UserInfo.Username == "" && UserInfo.LoginKey == "")
@@ -200,7 +202,9 @@ namespace YGOPro_Launcher
             }
             catch
             {
-                Console.WriteLine("Unable to connect to update server");
+                ServerList.Add(new Server()
+                { ServerName = Config.ServerName, ServerAddress = Config.ServerAddress, ServerPort = Config.ServerPort, 
+                    GamePort = Config.GamePort, ChatAddress = Config.ChatServerAddress, ChatPort = Config.ChatPort });
                 return false;
             }
             if (result == "KO")
@@ -208,13 +212,14 @@ namespace YGOPro_Launcher
 
             try
             {
-                string[] infos = result.Split(',');
-                Config.ServerName = infos[0];
-                Config.ServerAddress = infos[1];
-                Config.ServerPort = Convert.ToInt32(infos[2]);
-                Config.GamePort = Convert.ToInt32(infos[3]);
-                Config.ChatPort = Convert.ToInt32(infos[4]);
-                Config.ChatServerAddress = infos[5];
+                string[] servers = result.Split(';');
+                foreach (string server in servers)
+                {
+                    string[] infos = server.Split(',');
+                    ServerList.Add(new Server()
+                    { ServerName = infos[0], ServerAddress = infos[1], ServerPort = Convert.ToInt32(infos[2]), 
+                        GamePort = Convert.ToInt32(infos[3]), ChatAddress = infos[5], ChatPort = Convert.ToInt32(infos[4]) });
+                }
             }
             catch
             {
@@ -272,5 +277,14 @@ namespace YGOPro_Launcher
                 MessageBox.Show("Error Loading " + filename);
             }
         }
+    }
+    public class Server
+    {
+        public string ServerName;
+        public string ServerAddress;
+        public int ServerPort;
+        public int GamePort;
+        public string ChatAddress;
+        public int ChatPort;
     }
 }

@@ -13,6 +13,7 @@ namespace YGOPro_Launcher.Config
         public string UpdaterAddress = "http://dev.ygopro-online.net/launcher/checkversion.php";
         public string ServerInfoAddress = "http://dev.ygopro-online.net/launcher/serverinfo.php";
         public int ServerPort = 6922;
+        public string DefaultServer = "";
         
         public int GamePort = 6911;
         public int ChatPort = 6666;

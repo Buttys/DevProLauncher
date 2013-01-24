@@ -46,8 +46,14 @@ namespace YGOPro_Launcher
                 LanguageSelect.SelectedIndex = 0;
             }
 
+            foreach (Server server in Program.ServerList)
+            {
+                ServerSelect.Items.Add(server.ServerName);
+            }
+            ServerSelect.SelectedItem = Program.Config.DefaultServer;
             LoginTimeOut.Tick += new EventHandler(LoginTimeOut_Tick);
             UsernameInput.KeyDown += new KeyEventHandler(UsernameInput_KeyDown);
+            ServerSelect.SelectedIndexChanged += new EventHandler(ServerSelect_SelectedIndexChanged);
 
             ApplyTranslation();
             //FormStyler.ApplyStlye(this, new StyleInfo());
@@ -87,6 +93,21 @@ namespace YGOPro_Launcher
                 {
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
+            }
+        }
+
+        private void ServerSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!IsDisposed)
+            {
+                if (ServerSelect.SelectedIndex == -1)
+                    return;
+                Server info = null;
+                foreach (Server server in Program.ServerList)
+                    if (server.ServerName == ServerSelect.SelectedItem.ToString())
+                        info = server;
+                if (info == null)
+                    return;
             }
         }
 
