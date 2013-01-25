@@ -176,8 +176,10 @@
   <chatViewProfile>Profil</chatViewProfile>
   <chatRemoveFriend>Retirer ami</chatRemoveFriend>
   <chatRemoveIgnore>Retirer</chatRemoveIgnore>
+  <chatAutoScroll>Défil. Auto</chatAutoScroll>
   <MainFormTitle>Lanceur YgoPro Online </MainFormTitle>
   <MainChatTab>Chat (Beta)</MainChatTab>
+  <MainRankingTab>Classement</MainRankingTab>
   <MainTornyTab>Salon des Tournois</MainTornyTab>
   <MainYoutubeTab>Youtube</MainYoutubeTab>
   <MainFileManagerTab>Gestion des fichiers</MainFileManagerTab>
@@ -185,4 +187,8 @@
   <MainFileReplayTab>Replays</MainFileReplayTab>
   <MainCustomizeTab>Personnaliser</MainCustomizeTab>
   <MainAboutTab>A propos</MainAboutTab>
+  <DuelReqestMessage> vous défie en Duel classé ! Acceptez-vous ce challenge ?</DuelReqestMessage>
+  <DuelRequestBanlist> Restriction: </DuelRequestBanlist>
+  <DuelRequestRules> Règles de jeu: </DuelRequestRules>
+  <DuelRequestMode> Type: </DuelRequestMode>
 </LanguageInfo>
