@@ -281,18 +281,22 @@ namespace YGOPro_Launcher
             }
             catch (OutOfMemoryException)
             {
-                if (MessageBox.Show(imagename + " failed to load and could have a bad format. Can i delete it to prevent future errors?", 
+                if (MessageBox.Show(imagename + " failed to load and could have a bad format. Can i delete it to prevent future errors?",
                     "Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     try
                     {
                         File.Delete(path);
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         MessageBox.Show(e.Message);
                     }
                 }
+            }
+            catch
+            {
+                Console.WriteLine("Somthing when wrong.");
             }
         }
         void AddIconImage(ImageList type, string path)

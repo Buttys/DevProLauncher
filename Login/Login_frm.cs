@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using YGOPro_Launcher.Config;
 using YGOPro_Launcher.Login;
+using System.Diagnostics;
 
 namespace YGOPro_Launcher
 {
@@ -108,6 +109,14 @@ namespace YGOPro_Launcher
                         info = server;
                 if (info == null)
                     return;
+
+                Program.Config.DefaultServer = info.ServerName;
+                Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
+                Process process = new Process();
+                ProcessStartInfo startInfos = new ProcessStartInfo(Application.ExecutablePath, "-r");
+                process.StartInfo = startInfos;
+                process.Start();
+                Application.Exit();
             }
         }
 
@@ -159,11 +168,16 @@ namespace YGOPro_Launcher
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
+            if (ServerSelect.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please Select a server.");
+                return;
+            }
             LoginBtn.Enabled = false;
             LoginTimeOut.Enabled = true;
             if (!_connection.IsConnected)
             {
-                if (!Program.ServerConnection.Connect(Program.Config.ServerAddress, Program.Config.ServerPort))
+                if (!Program.ServerConnection.Connect(Program.Config.ServerName, Program.Config.ServerAddress, Program.Config.ServerPort))
                 {
                     MessageBox.Show(Program.LanguageManager.Translation.pMsbErrorToServer);
                     ResetTimeOut();
@@ -188,6 +202,7 @@ namespace YGOPro_Launcher
                 _configuration.DefaultUsername = UsernameInput.Text;
                 _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
                 _configuration.AutoLogin = AutoLoginCheckBox.Checked;
+                _configuration.DefaultServer = ServerSelect.SelectedItem.ToString();
                 Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
             }
             _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);

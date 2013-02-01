@@ -9,6 +9,7 @@ namespace YGOPro_Launcher
 {
     public class NetClient
     {
+        public string Name { get; private set; }
         public bool IsConnected { get; private set; }
 
         private TcpClient m_client;
@@ -56,10 +57,11 @@ namespace YGOPro_Launcher
             MessageBox.Show(message);
         }
 
-        public bool Connect(string address, int port)
+        public bool Connect(string ServerName, string address, int port)
         {
             try
             {
+                Name = ServerName;
                 m_client = new TcpClient();
                 m_client.Connect(address, port);
                 m_reader = new StreamReader(m_client.GetStream());
@@ -78,7 +80,8 @@ namespace YGOPro_Launcher
         public void Disconnect()
         {
             OnDisconnected();
-            m_client.Close();
+            if(m_client != null)
+                m_client.Close();
         }
 
         public void SendPacket(string packet)

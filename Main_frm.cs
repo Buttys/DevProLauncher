@@ -47,10 +47,7 @@ namespace YGOPro_Launcher
             ChatTab.Controls.Add(new Chat_frm());
 
             ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,
-                CreateBrowserWindow("Ranking", Program.LanguageManager.Translation.MainRankingTab), 
             ChatTab,
-            CreateBrowserWindow("Tournament Room",Program.LanguageManager.Translation.MainTornyTab),
-            CreateBrowserWindow("Youtube",Program.LanguageManager.Translation.MainYoutubeTab),
             FileManager, CustomizeTab, AboutTab });
 
             Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);
