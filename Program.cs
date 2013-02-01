@@ -15,7 +15,7 @@ namespace YGOPro_Launcher
 {
     static class Program
     {
-        public const string Version = "173100";
+        public const string Version = "174000";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -59,7 +59,7 @@ namespace YGOPro_Launcher
             Config = new Configuration();
             LoadConfig(Program.ConfigurationFilename);
             if (!Config.DebugMode)
-                //AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+                AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
             if (forcelogin)
             {
@@ -99,7 +99,11 @@ namespace YGOPro_Launcher
             foreach (Server server in ServerList)
             {
                 if (server.ServerName == Config.DefaultServer)
+                {
                     serverinfo = server;
+                     Config.ServerAddress = serverinfo.ServerAddress; Config.GamePort = serverinfo.GamePort; Config.ServerPort = serverinfo.ServerPort;
+                     Config.ChatServerAddress = serverinfo.ChatAddress; Config.ChatPort = serverinfo.ChatPort; Config.ServerName = serverinfo.ServerName;
+                }
             }
 
 
@@ -107,7 +111,7 @@ namespace YGOPro_Launcher
             
             if (serverinfo != null)
             {
-                if (!ServerConnection.Connect(Config.ServerAddress, Config.ServerPort))
+                if (!ServerConnection.Connect(Config.ServerName,Config.ServerAddress, Config.ServerPort))
                 {
                     MessageBox.Show(LanguageManager.Translation.pMsbErrorToServer);
                 }
