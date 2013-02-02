@@ -42,7 +42,7 @@ namespace YGOPro_Launcher.Login
         private void LoginResponse(string message)
         {
             if (message == "") return;
-            string[] args = message.Split('|');
+            string[] args = message.Split(new string[] { "||" }, StringSplitOptions.None);
           
             if (args[0] == "Banned")
             {               

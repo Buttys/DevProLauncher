@@ -34,7 +34,6 @@ namespace YGOPro_Launcher
         public ServerResponse ServerMessage;
         public ServerResponse ProfileMessage;
         public ServerRooms AddRooms;
-        public ServerRooms AddRoom;
 
         public NetClient()
         {
@@ -157,13 +156,6 @@ namespace YGOPro_Launcher
                 if (AddRooms != null)
                     AddRooms(rooms.ToArray());
             }
-            else if (cmd == "+ROOM")
-            {
-                string[] infos = args[1].Split(';');
-                RoomInfos room = RoomInfos.FromName(infos[0], infos[1], infos[2] == "1");
-                if (AddRoom != null)
-                    AddRoom(new RoomInfos[] { room });
-            }
             else if (cmd == "-ROOM")
             {
                 if (RemoveRoom != null)
@@ -172,7 +164,7 @@ namespace YGOPro_Launcher
             else if (cmd == "PLAYERS")
             {
                 if (UpdateRoomPlayers != null)
-                    UpdateRoomPlayers(args[1] + "|" + args[2]);
+                    UpdateRoomPlayers(args[1] + "||" + args[2]+ "||" + args[3]);
             }
             else if (cmd == "START")
             {
@@ -187,7 +179,7 @@ namespace YGOPro_Launcher
             else if (cmd == "LOGIN")
             {
                 if (LoginReply != null)
-                    LoginReply(args[1] + (args.Length > 2 ? "|" + args[2] : ""));
+                    LoginReply(args[1] + (args.Length > 2 ? "||" + args[2] : ""));
             }
             else if (cmd == "WLD")
             {

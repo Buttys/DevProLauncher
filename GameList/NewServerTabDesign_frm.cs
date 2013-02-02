@@ -11,9 +11,6 @@ namespace YGOPro_Launcher
 
         public Dictionary<string, RoomInfos> m_rooms;
 
-        //private GameListBox UnrankedList;
-        //private GameListBox RankedList;
-
         public NewServerInterface_frm(string ServerName)
         {
             InitializeComponent();
@@ -28,12 +25,10 @@ namespace YGOPro_Launcher
             FilterActive.CheckedChanged += new EventHandler(FilterGames);
             FilterTextBox.TextChanged += new EventHandler(FilterGames);
             Program.ServerConnection.AddRooms += new NetClient.ServerRooms(OnRoomsList);
-            Program.ServerConnection.AddRoom += new NetClient.ServerRooms(OnRoomCreated);
             Program.ServerConnection.RemoveRoom += new NetClient.ServerResponse(OnRoomRemoved);
             Program.ServerConnection.UpdateRoomStatus += new NetClient.ServerResponse(OnRoomStarted);
             Program.ServerConnection.UpdateRoomPlayers += new NetClient.ServerResponse(OnRoomPlayersUpdate);
             Program.ServerConnection.UserInfoUpdate += new NetClient.ServerResponse(UpdateUserInfo);
-            //LauncherHelper.GameClosed += new LauncherHelper.UpdateUserInfo(RequestUserWLD);
             LauncherHelper.DeckEditClosed += new LauncherHelper.UpdateUserInfo(RefreshDeckList);
             RankedList.DrawItem += new DrawItemEventHandler(GameListBox_DrawItem);
             UnrankedList.DrawItem += new DrawItemEventHandler(GameListBox_DrawItem);
@@ -509,9 +504,18 @@ namespace YGOPro_Launcher
 
         public void OnRoomPlayersUpdate(string message)
         {
-            string[] roomdata = message.Split('|');
+            string[] roomdata = message.Split(new string[] { "||" }, StringSplitOptions.None);
 
-            Invoke(new Action<string, string>(InternalRoomPlayersUpdate), roomdata[0], (roomdata.Length > 1) ? roomdata[1] : "");
+            if (m_rooms.ContainsKey(roomdata[0]))
+            {
+                Invoke(new Action<string, string>(InternalRoomPlayersUpdate), roomdata[0], (roomdata.Length > 1) ? roomdata[1] : "");
+            }
+            else
+            {
+                string[] infos = roomdata[2].Split(';');
+                Invoke(new Action<RoomInfos>(InternalRoomCreated), RoomInfos.FromName(infos[0], infos[1], infos[2] == "1"));
+            }
+            
 
         }
 

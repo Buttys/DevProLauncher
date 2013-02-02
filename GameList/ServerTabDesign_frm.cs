@@ -25,7 +25,6 @@ namespace YGOPro_Launcher
             FilterActive.CheckedChanged += new EventHandler(FilterGames);
             FilterTextBox.TextChanged += new EventHandler(FilterGames);
             Program.ServerConnection.AddRooms += new NetClient.ServerRooms(OnRoomsList);
-            Program.ServerConnection.AddRoom += new NetClient.ServerRooms(OnRoomCreated);
             Program.ServerConnection.RemoveRoom += new NetClient.ServerResponse(OnRoomRemoved);
             Program.ServerConnection.UpdateRoomStatus += new NetClient.ServerResponse(OnRoomStarted);
             Program.ServerConnection.UpdateRoomPlayers += new NetClient.ServerResponse(OnRoomPlayersUpdate);
