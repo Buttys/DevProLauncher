@@ -270,7 +270,7 @@ namespace YGOPro_Launcher
             {
                 if(Program.Config.Lifepoints != ((mode == "Tag") ? "16000":"8000"))
                 {
-                    if (MessageBox.Show("Your quick host settings does not follow the reccomend lifepoints rule, do you want to change this to the defualt?", "LifePoints", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show(Program.LanguageManager.Translation.GameLPChange, Program.LanguageManager.Translation.hostLifep, MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         if (mode == "Tag")
                             form.LifePoints.Text = "16000";
@@ -289,7 +289,6 @@ namespace YGOPro_Launcher
             {
                 if (!m_rooms.ContainsKey(room.ToString()))
                     continue;
-
                 RoomInfos info = m_rooms[room.ToString()];
                 if (!RoomInfos.CompareRoomInfo(userinfo, info))
                     continue;
@@ -335,6 +334,12 @@ namespace YGOPro_Launcher
 
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+
+                if (m_rooms.ContainsKey(form.PasswordInput.Text))
+                {
+                    MessageBox.Show(Program.LanguageManager.Translation.GamePasswordExsists);
+                    return;
+                }
                 LauncherHelper.GenerateConfig(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), (button.Name == "RankedHostBtn") ? true : false));
                 LauncherHelper.RunGame("-j");
             }
@@ -543,6 +548,22 @@ namespace YGOPro_Launcher
                 return;
 
             RoomInfos item = m_rooms[rooms.SelectedItem.ToString()];
+            if (item.isLocked)
+            {
+                Input_frm form = new Input_frm("", Program.LanguageManager.Translation.GameEnterPassword, Program.LanguageManager.Translation.QuickHostBtn, Program.LanguageManager.Translation.optionBtnCancel);
+                form.InputBox.MaxLength = 4;
+                if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    if (form.InputBox.Text != item.RoomName)
+                    {
+                        MessageBox.Show(Program.LanguageManager.Translation.GameWrongPassword);
+                        return;
+                    }
+                }
+                else
+                { return; }
+            }
+
             if (item.Started)
             {
                 MessageBox.Show("Spectating games in progress is unavailable.. Please join them before they start.");
@@ -693,6 +714,7 @@ namespace YGOPro_Launcher
             SizeF Rulesize = e.Graphics.MeasureString((info == null) ? "???" : RoomInfos.GameRule(info.Rule), e.Font);
             SizeF playersSize = e.Graphics.MeasureString(playerstring, e.Font);
             SizeF infoListsize = e.Graphics.MeasureString((info == null) ? "???/???/???" : RoomInfos.GameMode(info.Mode) + " / " + LauncherHelper.GetBanListFromInt(info.BanList) + " / " +(info.Timer == 0 ? "3 mins" : "5 mins") , e.Font);
+            SizeF lockedsize = e.Graphics.MeasureString((info == null) ? "???" : (info.isLocked ? Program.LanguageManager.Translation.GameLocked : Program.LanguageManager.Translation.GameOpen), e.Font);
             bool illegal = true;
             SolidBrush backgroundcolor = null;
 
@@ -725,8 +747,9 @@ namespace YGOPro_Launcher
             g.DrawString((info == null) ? "???" : RoomInfos.GameRule(info.Rule), e.Font, Brushes.Black,
                 new Rectangle(Bounds.X + (Bounds.Width - (int)Rulesize.Width) - offset.Width, Bounds.Y + offset.Height, Bounds.Width, Bounds.Height));
             ////bottomright
-            //g.DrawString("", e.Font, (selected) ? Brushes.White : Brushes.Black,
-            //    new Rectangle(Bounds.X + (Bounds.Width - (int)Timersize.Width), Bounds.Y + (Bounds.Height - (int)Timersize.Height), Bounds.Width, Bounds.Height));
+            g.DrawString((info == null) ? "???" : (info.isLocked ? Program.LanguageManager.Translation.GameLocked:Program.LanguageManager.Translation.GameOpen), 
+                e.Font, Brushes.Black,
+                new Rectangle(Bounds.X + (Bounds.Width - (int)lockedsize.Width) - offset.Width, Bounds.Y + (Bounds.Height - (int)lockedsize.Height) - offset.Height, Bounds.Width, Bounds.Height));
             ////bottomleft
             //g.DrawString("", e.Font, (selected) ? Brushes.White : Brushes.Black,
             //    new Rectangle(Bounds.X, Bounds.Y + (Bounds.Height - (int)Modesize.Height), Bounds.Width, Bounds.Height));

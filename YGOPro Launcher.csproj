@@ -153,12 +153,6 @@
     <Compile Include="GameList\Profile_frm.Designer.cs">
       <DependentUpon>Profile_frm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameList\ServerTabDesign_frm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameList\ServerTabDesign_frm.Designer.cs">
-      <DependentUpon>ServerTabDesign_frm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Input_frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,9 +258,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameList\Profile_frm.resx">
       <DependentUpon>Profile_frm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GameList\ServerTabDesign_frm.resx">
-      <DependentUpon>ServerTabDesign_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Input_frm.resx">
       <DependentUpon>Input_frm.cs</DependentUpon>

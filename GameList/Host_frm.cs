@@ -93,6 +93,7 @@ namespace YGOPro_Launcher
                 label1.Text = Program.LanguageManager.Translation.hostLifep;
                 HostBtn.Text = Program.LanguageManager.Translation.hostBtnHost;
                 CancelBtn.Text = Program.LanguageManager.Translation.hostBtnCancel;
+                label2.Text = Program.LanguageManager.Translation.hostpassword;
             }
         }
 
@@ -160,7 +161,7 @@ namespace YGOPro_Launcher
             else
                 gamestring = gamestring + "O";
 
-            gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U") + "," + GameName;
+            gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U")+ (PasswordInput.Text == "" ? "":"L") + "," +(PasswordInput.Text == "" ? GameName:PasswordInput.Text);
 
             return "ygopro:/" + server + "/" + port + "/" + gamestring;
         }

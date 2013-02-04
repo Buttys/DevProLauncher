@@ -56,6 +56,12 @@
   <GameLabUser>Username:</GameLabUser>
   <GameBtnOffline>Offline</GameBtnOffline>
   <GameBtnLogout>Logout</GameBtnLogout>
+  <GamePasswordExsists>A room with that password already exists.</GamePasswordExsists>
+  <GameLocked>Locked</GameLocked>
+  <GameOpen>Open</GameOpen>
+  <GameLPChange>Your quick host settings does not follow the recommend lifepoints rule, do you want to change this to the default?</GameLPChange>
+  <GameEnterPassword>Enter password</GameEnterPassword>
+  <GameWrongPassword>Incorrect password</GameWrongPassword>
   <optionGb1>User Settings</optionGb1>
   <optionGb2>Game Settings</optionGb2>
   <optionGb3>Font Settings</optionGb3>
@@ -92,6 +98,7 @@
   <hostGameN>Game Name</hostGameN>
   <hostBtnHost>Host</hostBtnHost>
   <hostBtnCancel>Cancel</hostBtnCancel>
+  <hostpassword>Password</hostpassword>
   <fileBtnRename>Rename</fileBtnRename>
   <fileBtnDelete>Delete</fileBtnDelete>
   <fileBtnFolder>Open Folder</fileBtnFolder>

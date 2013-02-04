@@ -12,6 +12,7 @@ namespace YGOPro_Launcher
         public bool NoCheckDeck;
         public bool NoShuffleDeck;
         public bool isRanked;
+        public bool isLocked;
 
         public int StartLp;
         public int StartHand;
@@ -53,8 +54,13 @@ namespace YGOPro_Launcher
             infos.StartHand = 5;
             infos.DrawCount = 1;
 
-            if (list[1] == "R") infos.isRanked = true; 
-            else infos.isRanked = false;
+            if (list[1] == "RL" || list[1] == "UL")
+                infos.isLocked = true;
+
+            if (list[1] == "R" || list[1] == "RL") 
+                infos.isRanked = true; 
+            else
+                infos.isRanked = false;
 
             infos.RoomName = list[2];
 
@@ -108,7 +114,7 @@ namespace YGOPro_Launcher
             if (playerinfo.Rule == otherroom.Rule && playerinfo.BanList == otherroom.BanList
                 && playerinfo.Mode == otherroom.Mode && playerinfo.NoCheckDeck == otherroom.NoCheckDeck
                 && playerinfo.NoShuffleDeck == otherroom.NoShuffleDeck && playerinfo.EnablePriority == otherroom.EnablePriority
-                && playerinfo.StartLp == otherroom.StartLp && playerinfo.Timer == otherroom.Timer && otherroom.Started == false)
+                && playerinfo.StartLp == otherroom.StartLp && playerinfo.Timer == otherroom.Timer && otherroom.Started == false && otherroom.isLocked == false)
             {
                 string[] players = otherroom.Players.Split(',');
                 if (GameMode(otherroom.Mode) == "Tag")

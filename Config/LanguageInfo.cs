@@ -69,6 +69,13 @@ namespace YGOPro_Launcher.Config
         public string GameLabUser = "Username:";
         public string GameBtnOffline = "Offline";
         public string GameBtnLogout = "Logout";
+        public string GamePasswordExsists = "A room with that password already exists.";
+        public string GameLocked = "Locked";
+        public string GameOpen = "Open";
+        public string GameLPChange = "Your quick host settings does not follow the recommend lifepoints rule, do you want to change this to the default?";
+        public string GameEnterPassword = "Enter password";
+        public string GameWrongPassword = "Incorrect password";
+
 
         // Option_frm.cs
         public string optionGb1 = "User Settings";
@@ -109,6 +116,7 @@ namespace YGOPro_Launcher.Config
         public string hostGameN = "Game Name";
         public string hostBtnHost = "Host";
         public string hostBtnCancel = "Cancel";
+        public string hostpassword = "Password";
 
         // FileManager_frm.cs
         public string fileBtnRename = "Rename";
@@ -227,5 +235,6 @@ namespace YGOPro_Launcher.Config
         public string DuelRequestBanlist = " Banlist: ";
         public string DuelRequestRules = " Rules: ";
         public string DuelRequestMode = " Type: ";
+
     }
 }
