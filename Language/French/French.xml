@@ -56,6 +56,12 @@
   <GameLabUser>Profil:</GameLabUser>
   <GameBtnOffline>Hors Ligne</GameBtnOffline>
   <GameBtnLogout>Accueil</GameBtnLogout>
+  <GamePasswordExsists>Un salon avec ce mot de passe existe déjà.</GamePasswordExsists>
+  <GameLocked>Verrouillé</GameLocked>
+  <GameOpen>Ouvert</GameOpen>
+  <GameLPChange>Vos paramètres de création rapide d'un salon ne suivent pas les recommandations au niveau des Life Points. Souhaitez-vous les accorder avec les règles en vigueur ?</GameLPChange>
+  <GameEnterPassword>Entrez le mot de passe</GameEnterPassword>
+  <GameWrongPassword>Mot de passe incorrect</GameWrongPassword>
   <optionGb1>Paramètres Utilisateurs</optionGb1>
   <optionGb2>Paramètres Jeu</optionGb2>
   <optionGb3>Paramètres Police</optionGb3>
@@ -92,6 +98,7 @@
   <hostGameN>Nom du Jeu :</hostGameN>
   <hostBtnHost>Créer</hostBtnHost>
   <hostBtnCancel>Annuler</hostBtnCancel>
+  <hostpassword>Mot de passe</hostpassword>
   <fileBtnRename>Renommer</fileBtnRename>
   <fileBtnDelete>Supprimer</fileBtnDelete>
   <fileBtnFolder>Ouvrir dossier</fileBtnFolder>
