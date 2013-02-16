@@ -261,6 +261,7 @@ namespace YGOPro_Launcher
                 form.CheckDeck.Checked = false;
                 form.ShuffleDeck.Checked = false;
                 form.Priority.Checked = false;
+                form.CardRules.SelectedIndex = 2;
                 if (form.Mode.Text == "Tag")
                     form.LifePoints.Text = "16000";
                 else
@@ -314,7 +315,7 @@ namespace YGOPro_Launcher
             if (button.Name == "RankedHostBtn")
             {
                 form.Mode.Items.Clear();
-                form.Mode.Items.AddRange(new object[] { "Match", "Tag" });
+                form.Mode.Items.AddRange(new object[] {"Single", "Match", "Tag" });
                 form.Mode.SelectedItem = "Match";
                 if (form.BanList.Items.Count > 0)
                     form.BanList.SelectedIndex = 0;
@@ -328,8 +329,8 @@ namespace YGOPro_Launcher
                 form.CheckDeck.Enabled = false;
                 form.LifePoints.Enabled = false;
                 form.CardRules.Items.Clear();
-                form.CardRules.Items.AddRange(new object[] { "OCG/TCG", "TCG", "OCG" });
-                form.CardRules.SelectedItem = "OCG/TCG";
+                form.CardRules.Items.AddRange(new object[] { "TCG"});
+                form.CardRules.SelectedItem = "TCG";
             }
 
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -618,7 +619,7 @@ namespace YGOPro_Launcher
 
                 if (((Button)sender).Name == "RankedQuickBtn")
                 {
-                    mnu.Items.AddRange(new ToolStripItem[] { mnuMatch, mnuTag });
+                    mnu.Items.AddRange(new ToolStripItem[] { mnuSingle, mnuMatch, mnuTag });
                 }
                 else
                 {

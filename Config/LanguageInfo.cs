@@ -170,7 +170,7 @@ namespace YGOPro_Launcher.Config
         public string profileLblDestinyLeo = "Destiny Leo";
         public string profileLblUnknown = "Unknown";
         public string profileLblUsername = "Username: ";
-        public string profileLblwld = "Win/Lose/Draw: ";
+        public string profileLblwld = "Win/Lose/Draw";
         public string profileLblRank = "Rank: ";
         public string profileLblTeam = "Team: ";
 

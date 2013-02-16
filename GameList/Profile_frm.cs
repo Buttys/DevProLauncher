@@ -30,7 +30,6 @@ namespace YGOPro_Launcher
             InitializeComponent();
             ApplyTranslation();
             Username.Text += username;
-            //wld.Text += Program.UserInfo.Wins + "/" + Program.UserInfo.Loses + "/" + Program.UserInfo.Draws;
             Program.ServerConnection.ProfileMessage += new NetClient.ServerResponse(ProfileUpdate);
 
         }
@@ -41,14 +40,15 @@ namespace YGOPro_Launcher
 
             Text = language.profileName;
             Username.Text = language.profileLblUsername;
-            wld.Text = language.profileLblwld;
+            //wld.Text = language.profileLblwld;
             rank.Text = language.profileLblRank;
             team.Text = language.profileLblTeam;
-            groupBox1.Text = language.profileGb1;
+            groupBox4.Text = language.profileLblwld;
             groupBox2.Text = language.profileGb2;
             groupBox3.Text = language.profileGb3;
-            groupBox4.Text = language.profileGb4;
-            groupBox5.Text = language.profileGb5;
+            groupBox5.Text = language.profileGb4;
+            groupBox6.Text = language.profileGb5;
+            groupBox1.Text = language.profileGb1;
             rwin.Text = language.profileWin;
             uwin.Text = language.profileWin;
             rlose.Text = language.profileLose;
@@ -85,12 +85,15 @@ namespace YGOPro_Launcher
                 {
                     string[] sections = message.Split(new string[] {"||"}, StringSplitOptions.None);
                     rank.Text += sections[0];
+                    rating.Text += sections[0];
                     if (sections[1] == "not found")
-                        wld.Text += "0/0/0";
+                        MatchWLD.Text = "0/0/0";
                     else
                     {
                         string[] values = sections[1].Split(',');
-                        wld.Text += values[0] + "/" + values[1] + "/" + values[2];
+                        MatchWLD.Text = values[0] + "/" + values[1] + "/" + values[2];
+                        SingleWLD.Text = values[3] + "/" + values[4] + "/" + values[5];
+                        TagWLD.Text = values[6] + "/" + values[7] + "/" + values[8];
                     }
                     team.Text += sections[2];
                     string[] unrankedparts = sections[3].Split(',');

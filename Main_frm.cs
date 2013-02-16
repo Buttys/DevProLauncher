@@ -46,8 +46,20 @@ namespace YGOPro_Launcher
             TabPage ChatTab = new TabPage() { Text = "Chat (Beta)", Name = Program.LanguageManager.Translation.MainChatTab};
             ChatTab.Controls.Add(new Chat_frm());
 
+            TabPage RankingTab = new TabPage() { Text = Program.LanguageManager.Translation.MainRankingTab, Name = "Ranking" };
+            RankingTab.Controls.Add(new WebBrowserTab_frm());
+
+            TabPage YoutubeTab = new TabPage() { Text = Program.LanguageManager.Translation.MainYoutubeTab, Name = "Youtube" };
+            YoutubeTab.Controls.Add(new WebBrowserTab_frm());
+
+            TabPage TornyTab = new TabPage() { Text = Program.LanguageManager.Translation.MainTornyTab, Name = "Tournament Room" };
+            TornyTab.Controls.Add(new WebBrowserTab_frm());
+
+            TabPage sponserTab = new TabPage() { Text = "Sponser", Name = "Sponser" };
+            sponserTab.Controls.Add(new WebBrowserTab_frm());
+
             ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,
-            ChatTab,
+            ChatTab, TornyTab,
             FileManager, CustomizeTab, AboutTab });
 
             Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);
@@ -128,17 +140,32 @@ namespace YGOPro_Launcher
 
             foreach (Control control in tab.Controls)
             {
-                if (control is WebBrowser)
+                if (control is WebBrowserTab_frm)
                 {
-                    WebBrowser browser = (WebBrowser)control;
-                    if (browser.Url == null)
+                    WebBrowserTab_frm browser = (WebBrowserTab_frm)control;
+                    if (tab.Name == "Tournament Room")
                     {
-                        if (tab.Name == "Tournament Room")
-                            browser.Navigate("http://dev.ygopro-online.net/launcher/tournamentchat.php");
-                        else if (tab.Name == "Youtube")
+                        if(!browser.IsLoaded())
+                            browser.Navigate("http://devpro.org/launcher/tournamentchat.php");
+                    }
+                    else if (tab.Name == "Youtube")
+                    {
+                        if (!browser.IsLoaded())
                             browser.Navigate("https://www.youtube.com/user/blub2blb");
-                        else if (tab.Name == "Ranking")
-                            browser.Navigate("http://angelofcode.com/tears/ranking/ranking.php");
+                    }
+                    else if (tab.Name == "Ranking")
+                    {
+                        if (!browser.IsLoaded())
+                        {
+                            if(Program.Config.ServerName == "DevPro USA")
+                                browser.Navigate("http://devpro.org/launcher/ranking/ranking.php");
+                            else
+                                browser.Navigate("http://dev.ygopro-online.net/launcher/ranking/");
+                        }
+                    }
+                    else if (tab.Name == "Sponser")
+                    {
+                        browser.LoadScript(Properties.Resources.code_Affili);
                     }
                 }
             }

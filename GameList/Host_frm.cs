@@ -205,7 +205,7 @@ namespace YGOPro_Launcher
             else
                 gamestring = gamestring + "O";
 
-            gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U") + "," + GameName;
+            gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U")+"L" + "," + GameName;
 
             return gamestring;
         }

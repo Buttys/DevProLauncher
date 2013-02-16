@@ -206,6 +206,12 @@
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBit.cs" />
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBitTree.cs" />
     <Compile Include="SevenZip\ICoder.cs" />
+    <Compile Include="WebBrowserTab_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebBrowserTab_frm.Designer.cs">
+      <DependentUpon>WebBrowserTab_frm.cs</DependentUpon>
+    </Compile>
     <Content Include="Language\English\English.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -215,6 +221,10 @@
     <Content Include="Language\French\strings.conf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\code_Affili.txt" />
+    <EmbeddedResource Include="WebBrowserTab_frm.resx">
+      <DependentUpon>WebBrowserTab_frm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Language\English\strings.conf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

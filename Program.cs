@@ -15,7 +15,7 @@ namespace YGOPro_Launcher
 {
     static class Program
     {
-        public const string Version = "174200";
+        public const string Version = "174300";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -66,12 +66,6 @@ namespace YGOPro_Launcher
                 Config.AutoLogin = false;
             }
 
-            //if (Config.DebugMode)
-            //{
-               ServerList.Add(new Server()
-               { ServerName = "Debug", ServerAddress = "86.0.24.143", ServerPort = 7922, GamePort = 7911, ChatAddress =  "86.0.24.143", ChatPort = 6666});
-            //}
-
             LanguageManager = new LanguageManager();
             //LanguageManager.Save("English");    
             LanguageManager.Load(Config.Language);
@@ -90,6 +84,7 @@ namespace YGOPro_Launcher
 
                 CheckServerInfo();
             }
+            ServerList.Add(new Server() { ServerName = "Debug", ServerAddress = "86.0.24.143", ServerPort = 7922, GamePort = 7911, ChatAddress = "86.0.24.143", ChatPort = 6666 });
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
