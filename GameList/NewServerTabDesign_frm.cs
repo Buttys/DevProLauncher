@@ -329,7 +329,7 @@ namespace YGOPro_Launcher
                 form.CheckDeck.Enabled = false;
                 form.LifePoints.Enabled = false;
                 form.CardRules.Items.Clear();
-                form.CardRules.Items.AddRange(new object[] { "TCG"});
+                form.CardRules.Items.AddRange(new object[] { "TCG", "OCG"});
                 form.CardRules.SelectedItem = "TCG";
             }
 
