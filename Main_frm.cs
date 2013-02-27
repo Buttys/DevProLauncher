@@ -62,6 +62,9 @@ namespace YGOPro_Launcher
             ChatTab, TornyTab,
             FileManager, CustomizeTab, AboutTab });
 
+            if (Program.Config.Language == "German")
+                ServerControl.TabPages.Add(sponserTab);
+
             Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);
             ConnectionCheck.Tick += new EventHandler(CheckConnection);
             ServerControl.SelectedIndexChanged += new EventHandler(NavigateOnClick);
@@ -165,7 +168,9 @@ namespace YGOPro_Launcher
                     }
                     else if (tab.Name == "Sponser")
                     {
-                        browser.LoadScript(Properties.Resources.code_Affili);
+                        string useruid = Program.UserInfo.Username;
+                        if (!browser.IsLoaded())
+                            browser.Navigate("http://iframe.sponsorpay.com/?appid=11433&uid=" + useruid);
                     }
                 }
             }

@@ -82,10 +82,9 @@ namespace YGOPro_Launcher.Chat
             if (!ChannelUsers.ContainsKey(CurrentChatWindow().Name))
                 ChannelUsers.Add(CurrentChatWindow().Name, new List<string>());
 
-            foreach (string user in ChannelUsers[CurrentChatWindow().Name])
-            {
-                UserList.Items.Add(user);
-            }
+            UserList.Items.AddRange(ChannelUsers[CurrentChatWindow().Name].ToArray());
+            
+
             SortUserList();
         }
 
