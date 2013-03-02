@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About_frm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -64,7 +65,7 @@
             this.StaffText = new System.Windows.Forms.Label();
             this.AboutText = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +73,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.label32);
             this.panel1.Controls.Add(this.label31);
             this.panel1.Controls.Add(this.label30);
             this.panel1.Controls.Add(this.label29);
@@ -112,6 +114,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(956, 446);
             this.panel1.TabIndex = 0;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(693, 365);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(99, 13);
+            this.label31.TabIndex = 35;
+            this.label31.Text = "Clear (Card Images)";
             // 
             // label30
             // 
@@ -425,14 +436,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "About DevPro";
             // 
-            // label31
+            // label32
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(693, 365);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(99, 13);
-            this.label31.TabIndex = 35;
-            this.label31.Text = "Clear (Card Images)";
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(416, 412);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(230, 13);
+            this.label32.TabIndex = 36;
+            this.label32.Text = "Hisachi,Amane Misa y The Terminator(Spanish)";
             // 
             // About_frm
             // 
@@ -488,6 +499,7 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
 
 
     }
