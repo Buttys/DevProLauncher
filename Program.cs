@@ -15,7 +15,7 @@ namespace YGOPro_Launcher
 {
     static class Program
     {
-        public const string Version = "180100";
+        public const string Version = "180200";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -58,6 +58,11 @@ namespace YGOPro_Launcher
 
             Config = new Configuration();
             LoadConfig(Program.ConfigurationFilename);
+
+            //new update server - Forced change to prevent resting a users config
+            Config.UpdaterAddress = "http://ygopro.de/launcher/checkversion.php";
+            Config.ServerInfoAddress = "http://ygopro.de/launcher/serverinfo.php";
+
             if (!Config.DebugMode)
                 AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
