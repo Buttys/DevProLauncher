@@ -4,9 +4,10 @@
     {
         public string Username = "";
         public string LoginKey = "";
-        public int Rank;
+        public int Rank = 0;
         public int Wins = 0;
         public int Loses = 0;
         public int Draws = 0;
+        public int LoginID = 0;
     }
 }

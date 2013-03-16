@@ -35,7 +35,9 @@ namespace YGOPro_Launcher
                 string[] languages = Directory.GetDirectories(LanguageManager.Path);
                 foreach (string language in languages)
                 {
-                    LanguageSelect.Items.Add(language.Split('/')[1]);
+                    string[] split = language.Split('/');
+                    if(split.Length > 1)
+                        LanguageSelect.Items.Add(split[1]);
                 }
 
                 LanguageSelect.SelectedItem = Program.Config.Language;
@@ -43,7 +45,7 @@ namespace YGOPro_Launcher
             }
             else
             {
-                LanguageSelect.Items.Add("Files Not Found");
+                LanguageSelect.Items.Add("English");
                 LanguageSelect.SelectedIndex = 0;
             }
 

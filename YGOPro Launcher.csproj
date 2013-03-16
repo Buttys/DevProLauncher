@@ -61,12 +61,6 @@
     <Compile Include="Chat\ChatWindow.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Chat\Chat_frm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Chat\Chat_frm.Designer.cs">
-      <DependentUpon>Chat_frm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Chat\DropBoxColorPicker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -82,6 +76,12 @@
     </Compile>
     <Compile Include="Chat\ChatClient.cs" />
     <Compile Include="Chat\FlashWindow.cs" />
+    <Compile Include="Chat\NewChat_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chat\NewChat_frm.Designer.cs">
+      <DependentUpon>NewChat_frm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Chat\PmWindow_frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +94,7 @@
     <Compile Include="Config\Configuration.cs" />
     <Compile Include="Config\LanguageInfo.cs" />
     <Compile Include="Config\LanguageManager.cs" />
+    <Compile Include="Config\SerializableColor.cs" />
     <Compile Include="Customize\Customize_frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,28 +214,22 @@
       <DependentUpon>WebBrowserTab_frm.cs</DependentUpon>
     </Compile>
     <Content Include="Language\English\English.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Language\French\cards.cdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Language\French\strings.conf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Language\French\cards.cdb" />
+    <Content Include="Language\French\strings.conf" />
     <None Include="Resources\code_Affili.txt" />
+    <EmbeddedResource Include="Chat\NewChat_frm.resx">
+      <DependentUpon>NewChat_frm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WebBrowserTab_frm.resx">
       <DependentUpon>WebBrowserTab_frm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Language\English\strings.conf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Language\English\strings.conf" />
     <None Include="Resources\btn_donate_LG.gif" />
     <None Include="System.Data.SQLite.dll" />
     <EmbeddedResource Include="About_frm.resx">
       <DependentUpon>About_frm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Chat\Chat_frm.resx">
-      <DependentUpon>Chat_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Chat\DuelRequest_frm.resx">
       <DependentUpon>DuelRequest_frm.cs</DependentUpon>
@@ -292,15 +287,9 @@
       <DependentUpon>Register_frm.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="Language\French\French.xml" />
-    <Content Include="Language\German\cards.cdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Language\German\strings.conf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Language\English\cards.cdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Language\German\cards.cdb" />
+    <Content Include="Language\German\strings.conf" />
+    <Content Include="Language\English\cards.cdb" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -321,9 +310,7 @@
     <None Include="Resources\ICSharpCode.SharpZipLib.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Language\German\German.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Language\German\German.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

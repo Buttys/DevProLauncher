@@ -15,7 +15,7 @@ namespace YGOPro_Launcher
 {
     static class Program
     {
-        public const string Version = "180200";
+        public const string Version = "181000";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -59,12 +59,27 @@ namespace YGOPro_Launcher
             Config = new Configuration();
             LoadConfig(Program.ConfigurationFilename);
 
+            if (Config.ConfigReset181000)
+            {
+                if (MessageBox.Show("Major changes were made this update and requires user settings to be reset.") == DialogResult.OK)
+                {
+                    Config = new Configuration();
+                    Config.ConfigReset181000 = false;
+                    SaveConfig(ConfigurationFilename, Config);
+                    Process process = new Process();
+                    ProcessStartInfo startInfos = new ProcessStartInfo(Application.ExecutablePath, "-r");
+                    process.StartInfo = startInfos;
+                    process.Start();
+                    Application.Exit();
+                }
+            }
+
             //new update server - Forced change to prevent resting a users config
             Config.UpdaterAddress = "http://ygopro.de/launcher/checkversion.php";
             Config.ServerInfoAddress = "http://ygopro.de/launcher/serverinfo.php";
 
             if (!Config.DebugMode)
-                AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+               AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
             if (forcelogin)
             {
@@ -170,6 +185,7 @@ namespace YGOPro_Launcher
                 Console.WriteLine("Unable to connect to update server");
                 return false;
             }
+
             if (result.Equals("OK"))
                 return false;
 
@@ -179,9 +195,14 @@ namespace YGOPro_Launcher
                     "DevPro - Update", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
+            if (result == "")
+                return false;
+            if (result.Length > 70)
+                return false;
+
             if (result.Contains("|"))
             {
-                string[] data = result.Split('|');
+                string[] data = result.Split(new string[] { "|" },StringSplitOptions.RemoveEmptyEntries);
 
                 File.WriteAllBytes(Path.Combine(Application.StartupPath, updaterName), Properties.Resources.YgoUpdater);
                 File.WriteAllBytes(Path.Combine(Application.StartupPath, dllName), Properties.Resources.ICSharpCode_SharpZipLib);
@@ -213,13 +234,17 @@ namespace YGOPro_Launcher
             }
             if (result == "KO")
                 return false;
+            if (result == "")
+                return false;
 
             try
             {
-                string[] servers = result.Split(';');
+                string[] servers = result.Split(new string[]{";"},StringSplitOptions.RemoveEmptyEntries);
                 foreach (string server in servers)
                 {
                     string[] infos = server.Split(',');
+                    if (infos.Length > 6)
+                        return false;
                     ServerList.Add(new Server()
                     { ServerName = infos[0], ServerAddress = infos[1], ServerPort = Convert.ToInt32(infos[2]), 
                         GamePort = Convert.ToInt32(infos[3]), ChatAddress = infos[5], ChatPort = Convert.ToInt32(infos[4]) });

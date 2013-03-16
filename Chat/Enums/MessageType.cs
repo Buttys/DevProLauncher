@@ -2,6 +2,7 @@
 {
     public enum MessageType
     {
+        MOTD = 0,
         Me = 1,
         FriendRequest = 2,
         System = 3,

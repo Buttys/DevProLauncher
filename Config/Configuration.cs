@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.Drawing;
 
 namespace YGOPro_Launcher.Config
 {
@@ -24,12 +25,15 @@ namespace YGOPro_Launcher.Config
         public bool EnableSound = true;
         public bool EnableMusic = true;
         public bool Enabled3D = true;
+        public bool AutoScroll = true;
         public int Antialias = 0;
         public bool AutoLogin = false;
         public bool Fullscreen = false;
         public string Password = "";
         public string GameFont = "simhei.ttf"; //only ger
+        public string ChatFont = "";
         public int FontSize = 12; //only ger
+        public decimal ChatSize = 8.25m;
         public string Language = "English"; // confirm Language
         public bool UseSkin = false;
         public bool AutoPlacing = true;
@@ -52,22 +56,21 @@ namespace YGOPro_Launcher.Config
 
         //chat settings
         public bool HideJoinLeave = true;
-        public bool PmWindows = true;
         public bool ColorBlindMode = false;
         public bool ShowTimeStamp = false;
         public bool RefuseDuelRequests = false;
 
-        public string ChatBGColor = "White";
-        public string NormalTextColor = "Black";
-        public string Level99Color = "Green";
-        public string Level2Color = "Red";
-        public string Level1Color = "RoyalBlue";
-        public string Level0Color = "Black";
-        public string ServerMsgColor = "Red";
-        public string MeMsgColor = "DeepPink";
-        public string JoinColor = "Green";
-        public string LeaveColor = "Gray";
-        public string SystemColor = "Purple";
+        public SerializableColor ChatBGColor = new SerializableColor(Color.White);
+        public SerializableColor NormalTextColor = new SerializableColor(Color.Black);
+        public SerializableColor Level99Color = new SerializableColor(Color.Green);
+        public SerializableColor Level2Color = new SerializableColor(Color.Red);
+        public SerializableColor Level1Color = new SerializableColor(Color.RoyalBlue);
+        public SerializableColor Level0Color = new SerializableColor(Color.Black);
+        public SerializableColor ServerMsgColor = new SerializableColor(Color.Red);
+        public SerializableColor MeMsgColor = new SerializableColor(Color.DeepPink);
+        public SerializableColor JoinColor = new SerializableColor(Color.Green);
+        public SerializableColor LeaveColor = new SerializableColor(Color.Gray);
+        public SerializableColor SystemColor = new SerializableColor(Color.Purple);
 
         public string chtBanList = "";
         public string chtTimeLimit = "3 minutes";
@@ -78,6 +81,7 @@ namespace YGOPro_Launcher.Config
         public bool chtDisableShuffleDeck = false;
         public string chtLifepoints = "8000";
         public string chtGameName = LauncherHelper.GenerateString().Substring(0, 5);
+        public bool ConfigReset181000 = true;
 
 
     }

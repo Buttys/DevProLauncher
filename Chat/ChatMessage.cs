@@ -39,22 +39,22 @@ namespace YGOPro_Launcher.Chat
                 switch (Type)
                 {
                     case MessageType.Message:
-                        return Color.FromName(Program.Config.NormalTextColor);
+                        return Program.Config.NormalTextColor.ToColor();
                     case MessageType.PrivateMessage:
-                        return Color.FromName(Program.Config.NormalTextColor);
+                        return Program.Config.NormalTextColor.ToColor();
                     case MessageType.Server:
-                        return Color.FromName(Program.Config.ServerMsgColor);
+                        return Program.Config.ServerMsgColor.ToColor();
                     case MessageType.System:
-                        return Color.FromName(Program.Config.SystemColor);
+                        return Program.Config.SystemColor.ToColor();
                     case MessageType.Me:
-                        return Color.FromName(Program.Config.MeMsgColor);
+                        return Program.Config.MeMsgColor.ToColor();
                     case MessageType.Join:
-                        return Color.FromName(Program.Config.JoinColor);
+                        return Program.Config.JoinColor.ToColor();
                     case MessageType.Leave:
-                        return Color.FromName(Program.Config.LeaveColor);
+                        return Program.Config.LeaveColor.ToColor();
                 }
 
-                return Color.FromName(Program.Config.NormalTextColor);
+                return Program.Config.NormalTextColor.ToColor();
             }
         }
 
@@ -65,16 +65,16 @@ namespace YGOPro_Launcher.Chat
                 switch (From.Rank)
                 {
                     case 0:
-                        return Color.FromName(Program.Config.Level0Color);
+                        return Program.Config.Level0Color.ToColor();
                     case 1:
-                        return Color.FromName(Program.Config.Level1Color);
+                        return Program.Config.Level1Color.ToColor();
                     case 2:
-                        return Color.FromName(Program.Config.Level2Color);
+                        return Program.Config.Level2Color.ToColor();
                     case 99:
-                        return Color.FromName(Program.Config.Level99Color);
+                        return Program.Config.Level99Color.ToColor();
                 }
 
-                return Color.FromName(Program.Config.Level0Color);
+                return Program.Config.Level0Color.ToColor();
             }
         }
 
@@ -83,16 +83,16 @@ namespace YGOPro_Launcher.Chat
                 switch (rank)
                 {
                     case 0:
-                        return new SolidBrush(Color.FromName(Program.Config.Level0Color));
+                        return new SolidBrush(Program.Config.Level0Color.ToColor());
                     case 1:
-                        return new SolidBrush(Color.FromName(Program.Config.Level1Color));
+                        return new SolidBrush(Program.Config.Level1Color.ToColor());
                     case 2:
-                        return new SolidBrush(Color.FromName(Program.Config.Level2Color));
+                        return new SolidBrush(Program.Config.Level2Color.ToColor());
                     case 99:
-                        return new SolidBrush(Color.FromName(Program.Config.Level99Color));
+                        return new SolidBrush(Program.Config.Level99Color.ToColor());
                 }
 
-                return new SolidBrush(Color.FromName(Program.Config.Level0Color));
+                return new SolidBrush(Program.Config.Level0Color.ToColor());
         }
     }
 }

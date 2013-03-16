@@ -45,7 +45,6 @@ namespace YGOPro_Launcher.Config
             if (!Directory.Exists(Path + language)
                 || !File.Exists(Path + language + "/" + language + ".xml"))
             {
-                MessageBox.Show("File not found");
                 return;
             }
             try

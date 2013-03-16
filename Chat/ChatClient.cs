@@ -31,6 +31,8 @@ namespace YGOPro_Launcher.Chat
         public ServerResponse FriendList;
         public ServerMessage Message;
         public ServerMessage Error;
+        public ServerResponse JoinChannel;
+        public ServerResponse LeaveChannel;
 
         public ChatClient()
         {
@@ -136,12 +138,12 @@ namespace YGOPro_Launcher.Chat
             if (cmd == "USERS")
             {
                 if (UserList != null)
-                    UserList(args[1] + "||" + args[2]);
+                    UserList(args[1]);
             }
             else if (cmd == "+USER")
             {
                 if (AddUser != null)
-                    AddUser(args[1] + "||" + args[2]);
+                    AddUser(args[1]);
             }
             else if (cmd == "-USER")
             {
@@ -152,6 +154,11 @@ namespace YGOPro_Launcher.Chat
             {
                 if (FriendList != null)
                     FriendList(args[1]);
+            }
+            else if (cmd == "JOINCHANNELACCEPT")
+            {
+                if (JoinChannel != null)
+                    JoinChannel(args[1]);
             }
             else if (cmd == "LOGIN")
             {

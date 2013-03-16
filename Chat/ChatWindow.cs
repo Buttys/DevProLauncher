@@ -48,12 +48,12 @@ namespace YGOPro_Launcher.Chat
                 if (message.Type == MessageType.Message || message.Type == MessageType.PrivateMessage)
                 {
                     if(Program.Config.ShowTimeStamp)
-                        WriteText(message.Time.ToString("[HH:mm] "),(Program.Config.ColorBlindMode ? Color.Black: Color.FromName(Program.Config.NormalTextColor)));
-                    
-                    WriteText("<", (Program.Config.ColorBlindMode ? Color.Black : Color.FromName(Program.Config.NormalTextColor)));
+                        WriteText(message.Time.ToString("[HH:mm] "), (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
+
+                    WriteText("<", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
                     WriteText((Program.Config.ColorBlindMode && message.From.Rank > 0 ? "[Admin] " + message.From.Username: message.From.Username),
                         (Program.Config.ColorBlindMode ? Color.Black : message.UserColor));
-                    WriteText("> ", (Program.Config.ColorBlindMode ? Color.Black : Color.FromName(Program.Config.NormalTextColor)));
+                    WriteText("> ", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
                     
                     WriteText(message.FormattedMessage.Trim(), (Program.Config.ColorBlindMode ? Color.Black :message.MessageColor));
 
@@ -110,7 +110,7 @@ namespace YGOPro_Launcher.Chat
 
         public void ApplyNewSettings()
         {
-            ChatLog.BackColor = (Program.Config.ColorBlindMode ? Color.White: Color.FromName(Program.Config.ChatBGColor));
+            ChatLog.BackColor = (Program.Config.ColorBlindMode ? Color.White : Program.Config.ChatBGColor.ToColor());
         }
 
     }

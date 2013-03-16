@@ -42,10 +42,10 @@
             this.PasswordInput = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.LanguageSelect = new System.Windows.Forms.ComboBox();
-            this.AutoLoginCheckBox = new System.Windows.Forms.CheckBox();
-            this.LoginTimeOut = new System.Windows.Forms.Timer(this.components);
             this.ServerSelect = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.AutoLoginCheckBox = new System.Windows.Forms.CheckBox();
+            this.LoginTimeOut = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -193,21 +193,6 @@
             this.LanguageSelect.Size = new System.Drawing.Size(168, 21);
             this.LanguageSelect.TabIndex = 7;
             // 
-            // AutoLoginCheckBox
-            // 
-            this.AutoLoginCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.AutoLoginCheckBox.AutoSize = true;
-            this.AutoLoginCheckBox.Location = new System.Drawing.Point(41, 152);
-            this.AutoLoginCheckBox.Name = "AutoLoginCheckBox";
-            this.AutoLoginCheckBox.Size = new System.Drawing.Size(181, 17);
-            this.AutoLoginCheckBox.TabIndex = 2;
-            this.AutoLoginCheckBox.Text = "Log me in automatically next time";
-            this.AutoLoginCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // LoginTimeOut
-            // 
-            this.LoginTimeOut.Interval = 5000;
-            // 
             // ServerSelect
             // 
             this.ServerSelect.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -228,6 +213,21 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Server";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // AutoLoginCheckBox
+            // 
+            this.AutoLoginCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.AutoLoginCheckBox.AutoSize = true;
+            this.AutoLoginCheckBox.Location = new System.Drawing.Point(41, 152);
+            this.AutoLoginCheckBox.Name = "AutoLoginCheckBox";
+            this.AutoLoginCheckBox.Size = new System.Drawing.Size(181, 17);
+            this.AutoLoginCheckBox.TabIndex = 2;
+            this.AutoLoginCheckBox.Text = "Log me in automatically next time";
+            this.AutoLoginCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // LoginTimeOut
+            // 
+            this.LoginTimeOut.Interval = 5000;
             // 
             // Login_frm
             // 

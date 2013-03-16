@@ -43,8 +43,8 @@ namespace YGOPro_Launcher
             TabPage AboutTab = new TabPage() { Name = "About", Text = Program.LanguageManager.Translation.MainAboutTab};
             AboutTab.Controls.Add(new About_frm());                    
             
-            TabPage ChatTab = new TabPage() { Text = "Chat (Beta)", Name = Program.LanguageManager.Translation.MainChatTab};
-            ChatTab.Controls.Add(new Chat_frm());
+            TabPage ChatTab = new TabPage() { Text = "Chat (Beta v2)", Name = Program.LanguageManager.Translation.MainChatTab};
+            ChatTab.Controls.Add(new NewChat_frm());
 
             TabPage RankingTab = new TabPage() { Text = Program.LanguageManager.Translation.MainRankingTab, Name = "Ranking" };
             RankingTab.Controls.Add(new WebBrowserTab_frm());
@@ -122,9 +122,9 @@ namespace YGOPro_Launcher
                             form.RequestUserWLD();
                             Program.ServerConnection.SendPacket("GETROOMS");
                         }
-                        if (control is Chat_frm)
+                        if (control is NewChat_frm)
                         {
-                            Chat_frm form = (Chat_frm)control;
+                            NewChat_frm form = (NewChat_frm)control;
                             Thread chatserver = new Thread(form.Connect);
                             chatserver.Name = "ChatServer";
                             chatserver.IsBackground = true;
