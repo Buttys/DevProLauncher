@@ -18,6 +18,7 @@ namespace YGOPro_Launcher.Chat
         Dictionary<string, UserData> UserData = new Dictionary<string, UserData>();
         Dictionary<string, PmWindow_frm> PMWindows = new Dictionary<string, PmWindow_frm>();
         List<string> ChannelList = new List<string>();
+        public bool autoscroll = true;
 
         public NewChat_frm()
         {
@@ -267,7 +268,7 @@ namespace YGOPro_Launcher.Chat
                     ChatRTB.SelectionStart = ChatRTB.TextLength;
                     ChatRTB.SelectionLength = 0;
 
-                    if (Program.Config.AutoScroll)
+                    if (autoscroll)
                         ChatRTB.ScrollToCaret();
                 }
             }
@@ -289,7 +290,7 @@ namespace YGOPro_Launcher.Chat
             if (UserSearch.Text == "Search")
             {
                 UserSearch.Text = "";
-                UserSearch.ForeColor = SystemColors.WindowText;
+                UserSearch.ForeColor = Program.Config.NormalTextColor.ToColor();
             }
         }
 
@@ -383,7 +384,7 @@ namespace YGOPro_Launcher.Chat
                     if(FriendList.Items.Contains(info[0]))
                         WriteMessage(new ChatMessage(MessageType.Join, Program.UserInfo, null, "Your friend " + info[0] + " has logged in.", false));
                 }
-                if (UserSearch.Text != "" || UserSearch.Text != "Search")
+                if (UserSearch.Text == "" || UserSearch.Text == "Search")
                 {
                     if (!UserList.Items.Contains(info[0]))
                         UserList.Items.Add(info[0]);
@@ -423,19 +424,13 @@ namespace YGOPro_Launcher.Chat
                         WriteMessage(new ChatMessage(MessageType.Leave, Program.UserInfo, null, "Your friend " + user + " has logged out.", false));
                 }
 
-                if (UserSearch.Text != "" || UserSearch.Text != "Search")
+                if (UserData.ContainsKey(user))
                 {
-                    if (UserList.Items.Contains(user))
-                        if(UserData[user].LoginID == Int32.Parse(parts[1]))
-                            UserList.Items.Remove(user);
-                }
-                else
-                {
-                    if (user.ToLower().Contains(UserSearch.Text.ToLower()))
+                    if (UserData[user].LoginID == Int32.Parse(parts[1]))
                     {
                         if (UserList.Items.Contains(user))
-                            if (UserData[user].LoginID == Int32.Parse(parts[1]))
-                                UserList.Items.Remove(user);
+                            UserList.Items.Remove(user);
+                        UserData.Remove(user);
                     }
                 }
 
@@ -590,6 +585,36 @@ namespace YGOPro_Launcher.Chat
                     else if (cmd == "leave")
                     {
                         LeaveChannel(ChatInput.Text.Substring(parts[0].Length).Trim());
+                    }
+                    else if (cmd == "users")
+                    {
+                        WriteMessage(new ChatMessage(MessageType.System, null, "There's " + UserData.Count + " users online."));
+                    }
+                    else if (cmd == "autoscroll")
+                    {
+                        autoscroll = !autoscroll;
+                        WriteMessage(new ChatMessage(MessageType.System, null, (autoscroll ? "AutoScroll Enabled." : "AutoScroll Disabled.")));
+                    }
+                    else if (cmd == "help")
+                    {
+                        WriteMessage(new ChatMessage(MessageType.System, null, "Did you really think i would write a list of help commands? :("));
+                    }
+                    else if (cmd == "admin")
+                    {
+
+                        string admins = "";
+                        foreach (string user in UserData.Keys)
+                        {
+                            if (UserData[user].Rank > 0)
+                            {
+                                if (admins == "")
+                                    admins = user;
+                                else
+                                    admins += ", " + user;
+                            }
+                        }
+                        WriteMessage(new ChatMessage(MessageType.System, null, "The following admins are online: " + admins + "."));
+
                     }
                     else
                     {

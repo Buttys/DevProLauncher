@@ -766,6 +766,11 @@
             this.FontSize.DecimalPlaces = 2;
             this.FontSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FontSize.Location = new System.Drawing.Point(77, 3);
+            this.FontSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.FontSize.Name = "FontSize";
             this.FontSize.Size = new System.Drawing.Size(69, 20);
             this.FontSize.TabIndex = 3;

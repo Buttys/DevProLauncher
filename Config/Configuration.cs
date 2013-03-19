@@ -25,7 +25,6 @@ namespace YGOPro_Launcher.Config
         public bool EnableSound = true;
         public bool EnableMusic = true;
         public bool Enabled3D = true;
-        public bool AutoScroll = true;
         public int Antialias = 0;
         public bool AutoLogin = false;
         public bool Fullscreen = false;
