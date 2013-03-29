@@ -11,6 +11,8 @@
     {
         private IDictionary<int, CardInfos> m_cards;
 
+        public bool Loaded = false;
+
         public CardInfos FromId(int id)
         {
             if (m_cards.ContainsKey(id))
@@ -59,6 +61,7 @@
                     }
                 }
                 connection.Close();
+                Loaded = true;
             }
             catch (Exception)
             {

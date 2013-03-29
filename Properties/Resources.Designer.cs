@@ -63,6 +63,16 @@ namespace YGOPro_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bookoflife {
+            get {
+                object obj = ResourceManager.GetObject("bookoflife", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btn_donate_LG {
             get {
                 object obj = ResourceManager.GetObject("btn_donate_LG", resourceCulture);
@@ -71,24 +81,12 @@ namespace YGOPro_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;script type=&quot;text/javascript&quot;&gt;
-        ///	// 1) Parameter initialisieren
-        ///	var vaas_shopid = &apos;c0c6d06259cf17c12f65791451917bf8&apos;;
-        ///	var vaas_transactionid = &quot;&quot;;
-        ///	var vaas_salt = Math.random(); // IE Reload Special
-        ///	// 2) Parameter übergeben
-        ///	document.write(&apos;&lt;script type=&quot;text/javascript&quot; src=&quot;&apos;
-        ///			+ document.location.protocol
-        ///			+ &apos;//api.kunden-bonus.de/&apos; 
-        ///			+ &apos;?sh=&apos; + vaas_shopid 
-        ///			+ &apos;&amp;tr=&apos; + vaas_transactionid 
-        ///			+ &apos;&amp;s=&apos; + vaas_salt 
-        ///			+ &apos;&quot;&gt;&lt;\/script&gt;&apos;);
-        ///&lt;/script&gt;.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static string code_Affili {
+        internal static System.Drawing.Bitmap desruct {
             get {
-                return ResourceManager.GetString("code_Affili", resourceCulture);
+                object obj = ResourceManager.GetObject("desruct", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -99,6 +97,56 @@ namespace YGOPro_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("ICSharpCode_SharpZipLib", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap maskchange {
+            get {
+                object obj = ResourceManager.GetObject("maskchange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap offers {
+            get {
+                object obj = ResourceManager.GetObject("offers", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rankup {
+            get {
+                object obj = ResourceManager.GetObject("rankup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spell {
+            get {
+                object obj = ResourceManager.GetObject("spell", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap trap {
+            get {
+                object obj = ResourceManager.GetObject("trap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

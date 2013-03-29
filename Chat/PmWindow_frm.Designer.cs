@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.ChatLog = new System.Windows.Forms.RichTextBox();
             this.ChatInput = new System.Windows.Forms.TextBox();
+            this.ChatLog = new YGOPro_Launcher.Chat.CustomRTB();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -38,8 +38,8 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.ChatLog, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.ChatInput, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.ChatLog, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -49,15 +49,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(525, 365);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // ChatLog
-            // 
-            this.ChatLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChatLog.Location = new System.Drawing.Point(3, 3);
-            this.ChatLog.Name = "ChatLog";
-            this.ChatLog.Size = new System.Drawing.Size(519, 334);
-            this.ChatLog.TabIndex = 0;
-            this.ChatLog.Text = "";
-            // 
             // ChatInput
             // 
             this.ChatInput.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -66,6 +57,15 @@
             this.ChatInput.Name = "ChatInput";
             this.ChatInput.Size = new System.Drawing.Size(519, 20);
             this.ChatInput.TabIndex = 1;
+            // 
+            // ChatLog
+            // 
+            this.ChatLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChatLog.Location = new System.Drawing.Point(3, 3);
+            this.ChatLog.Name = "ChatLog";
+            this.ChatLog.Size = new System.Drawing.Size(519, 334);
+            this.ChatLog.TabIndex = 2;
+            this.ChatLog.Text = "";
             // 
             // PmWindow_frm
             // 
@@ -84,7 +84,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.RichTextBox ChatLog;
         private System.Windows.Forms.TextBox ChatInput;
+        private CustomRTB ChatLog;
     }
 }

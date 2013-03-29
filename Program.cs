@@ -10,6 +10,8 @@ using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+using YGOPro_Launcher.Chat;
+using YGOPro_Launcher.FileManager;
 
 namespace YGOPro_Launcher
 {
@@ -19,11 +21,13 @@ namespace YGOPro_Launcher
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
+        public static ChatClient ChatServer = new ChatClient();
         public static UserData UserInfo;
         public const string ConfigurationFilename = "launcher.conf";
         public static Login_frm LoginWindow;
         public static Authenticator LoginService;
         public static List<Server> ServerList = new List<Server>();
+        public static Main_frm MainForm;
 
         /// <summary>
         /// The main entry point for the application.
@@ -58,21 +62,24 @@ namespace YGOPro_Launcher
 
             Config = new Configuration();
             LoadConfig(Program.ConfigurationFilename);
+#if DEBUG
+            Config.DebugMode = true;
+#endif
 
-            if (Config.ConfigReset181000)
-            {
-                if (MessageBox.Show("Major changes were made this update and requires user settings to be reset.") == DialogResult.OK)
-                {
-                    Config = new Configuration();
-                    Config.ConfigReset181000 = false;
-                    SaveConfig(ConfigurationFilename, Config);
-                    Process process = new Process();
-                    ProcessStartInfo startInfos = new ProcessStartInfo(Application.ExecutablePath, "-r");
-                    process.StartInfo = startInfos;
-                    process.Start();
-                    Application.Exit();
-                }
-            }
+            //if (Config.ConfigReset181000)
+            //{
+            //    if (MessageBox.Show("Major changes were made this update and requires user settings to be reset.") == DialogResult.OK)
+            //    {
+            //        Config = new Configuration();
+            //        Config.ConfigReset181000 = false;
+            //        SaveConfig(ConfigurationFilename, Config);
+            //        Process process = new Process();
+            //        ProcessStartInfo startInfos = new ProcessStartInfo(Application.ExecutablePath, "-r");
+            //        process.StartInfo = startInfos;
+            //        process.Start();
+            //        Application.Exit();
+            //    }
+            //}
 
             //new update server - Forced change to prevent resting a users config
             Config.UpdaterAddress = "http://ygopro.de/launcher/checkversion.php";
@@ -104,10 +111,23 @@ namespace YGOPro_Launcher
 
                 CheckServerInfo();
             }
-            ServerList.Add(new Server() { ServerName = "Debug", ServerAddress = "192.168.56.102", ServerPort = 7922, GamePort = 7911, ChatAddress = "86.0.24.143", ChatPort = 6666 });
 
+#if DEBUG
+            ServerList.Add(new Server() { ServerName = "Debug", ServerAddress = "127.0.0.1", ServerPort = 7922, GamePort = 7911, ChatAddress = "127.0.0.1", ChatPort = 6666 });
+#endif
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            if (Program.Config.NewUpdate)
+            {
+                LauncherHelper.CardManager = new CardDatabase.CardsManager();
+                LauncherHelper.CardManager.Init();
+                if (LauncherHelper.CardManager.Loaded)
+                {
+                    FileCleaner cleaner = new FileCleaner();
+                    cleaner.ShowDialog();
+                }
+            }
 
             Server serverinfo = null;
 
@@ -158,7 +178,8 @@ namespace YGOPro_Launcher
             {
                 if(forcelogin)
                     LoadConfig(ConfigurationFilename);
-                Application.Run(new Main_frm());
+                MainForm = new Main_frm();
+                Application.Run(MainForm);
             }
             else
             {
@@ -167,6 +188,12 @@ namespace YGOPro_Launcher
                 MessageBox.Show(LanguageManager.Translation.pMsbBadLog);
             }
 
+        }
+
+        public static void ChangeUsername(string username)
+        {
+            UserInfo.Username = username;
+            MainForm.UpdateUsername(username);
         }
 
         public static bool CheckUpdates()
@@ -202,6 +229,9 @@ namespace YGOPro_Launcher
 
             if (result.Contains("|"))
             {
+                Config.NewUpdate = true;
+                SaveConfig(ConfigurationFilename, Config);
+
                 string[] data = result.Split(new string[] { "|" },StringSplitOptions.RemoveEmptyEntries);
 
                 File.WriteAllBytes(Path.Combine(Application.StartupPath, updaterName), Properties.Resources.YgoUpdater);

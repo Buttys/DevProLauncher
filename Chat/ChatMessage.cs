@@ -64,6 +64,8 @@ namespace YGOPro_Launcher.Chat
             {
                 switch (From.Rank)
                 {
+                    case -1:
+                        return Program.Config.DonatorColor.ToColor();
                     case 0:
                         return Program.Config.Level0Color.ToColor();
                     case 1:
@@ -82,6 +84,8 @@ namespace YGOPro_Launcher.Chat
         {
                 switch (rank)
                 {
+                    case -1:
+                        return new SolidBrush(Program.Config.DonatorColor.ToColor());
                     case 0:
                         return new SolidBrush(Program.Config.Level0Color.ToColor());
                     case 1:

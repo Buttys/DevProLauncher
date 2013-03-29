@@ -33,6 +33,8 @@ namespace YGOPro_Launcher.Chat
         public ServerMessage Error;
         public ServerResponse JoinChannel;
         public ServerResponse LeaveChannel;
+        public ServerResponse DevPointMSG;
+        public DateTime PingRequest;
 
         public ChatClient()
         {
@@ -195,6 +197,11 @@ namespace YGOPro_Launcher.Chat
                 if (Message != null)
                     Message(new ChatMessage(MessageType.System, "DevPro", args[1] + " has accepted your duel request."));
             }
+            else if (cmd == "DEVPOINTS")
+            {
+                if (DevPointMSG != null)
+                    DevPointMSG(command);
+            }
             else if (cmd == "ADMIN")
             {
                 if (args.Length >= 3)
@@ -202,6 +209,11 @@ namespace YGOPro_Launcher.Chat
                     if (Message != null)
                         Message(new ChatMessage(MessageType.Server, "DevPro", args[2]));
                 }
+            }
+            else if (cmd == "PONG")
+            {
+                if (Message != null)
+                    Message(new ChatMessage(MessageType.Server, "DevPro","Pong!: " + -(int)PingRequest.Subtract(DateTime.Now).TotalMilliseconds + "ms"));
             }
             else
             {

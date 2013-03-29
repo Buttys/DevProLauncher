@@ -35,6 +35,8 @@ namespace YGOPro_Launcher
         public ServerResponse ProfileMessage;
         public ServerRooms AddRooms;
 
+        public DateTime pingrequest;
+
         public NetClient()
         {
             m_messageQueue = new Queue<string>();
@@ -195,6 +197,10 @@ namespace YGOPro_Launcher
             {
                 if (ServerMessage != null)
                     ServerMessage(args[1]);
+            }
+            else if (cmd == "PONG")
+            {
+                MessageBox.Show("PONG!: " + -(int)pingrequest.Subtract(DateTime.Now).TotalMilliseconds);
             }
             else
             {

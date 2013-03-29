@@ -241,7 +241,7 @@
             this.MaximizeBox = false;
             this.Name = "Login_frm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DevPro - Login";
+            this.Text = "DevPro - ";
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);

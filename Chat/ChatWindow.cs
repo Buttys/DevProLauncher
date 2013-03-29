@@ -10,6 +10,7 @@ namespace YGOPro_Launcher.Chat
     {
         CustomRTB ChatLog = new CustomRTB();
         public bool isprivate = false;
+        public bool issystemtab = false;
         public ChatWindow(string name,bool privatewindow)
         {
             this.Name = name;
@@ -40,37 +41,8 @@ namespace YGOPro_Launcher.Chat
                 this.Invoke(new Action<ChatMessage,bool>(WriteMessage), message,autoscroll);
             }
             else
-            {                   
-                
-                if (ChatLog.Text != "")//start a new line unless theres no text
-                        ChatLog.AppendText(Environment.NewLine);
-               ChatLog.Select(ChatLog.TextLength, 0);
-                if (message.Type == MessageType.Message || message.Type == MessageType.PrivateMessage)
-                {
-                    if(Program.Config.ShowTimeStamp)
-                        WriteText(message.Time.ToString("[HH:mm] "), (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
-
-                    WriteText("<", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
-                    WriteText((Program.Config.ColorBlindMode && message.From.Rank > 0 ? "[Admin] " + message.From.Username: message.From.Username),
-                        (Program.Config.ColorBlindMode ? Color.Black : message.UserColor));
-                    WriteText("> ", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
-                    
-                    WriteText(message.FormattedMessage.Trim(), (Program.Config.ColorBlindMode ? Color.Black :message.MessageColor));
-
-                }
-                else if (message.Type == MessageType.System || message.Type == MessageType.Join 
-                    || message.Type == MessageType.Leave || message.Type == MessageType.Server ||
-                    message.Type == MessageType.Me)
-                {
-                    WriteText((Program.Config.ColorBlindMode ? "[" +message.Type + "] " + message.FormattedMessage : message.FormattedMessage),
-                        (Program.Config.ColorBlindMode ? Color.Black : message.MessageColor));
-                }
-                
-                ChatLog.SelectionStart = ChatLog.TextLength;
-                ChatLog.SelectionLength = 0;
-
-                if(autoscroll)
-                    ChatLog.ScrollToCaret();
+            {
+                ChatHelper.WriteMessage(message, ChatLog, autoscroll);
             }
 
         }
@@ -111,6 +83,8 @@ namespace YGOPro_Launcher.Chat
         public void ApplyNewSettings()
         {
             ChatLog.BackColor = (Program.Config.ColorBlindMode ? Color.White : Program.Config.ChatBGColor.ToColor());
+            try { ChatLog.Font = new Font(Program.Config.ChatFont, (float)Program.Config.ChatSize); }
+            catch { }
         }
 
     }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using YGOPro_Launcher.Chat;
 using System.Threading;
+using YGOPro_Launcher.Support;
 
 namespace YGOPro_Launcher
 {
@@ -15,8 +16,11 @@ namespace YGOPro_Launcher
         {
             InitializeComponent();
 
-            LauncherHelper.CardManager = new CardDatabase.CardsManager();
-            LauncherHelper.CardManager.Init();
+            if (LauncherHelper.CardManager == null)
+            {
+                LauncherHelper.CardManager = new CardDatabase.CardsManager();
+                LauncherHelper.CardManager.Init();
+            }
 
             char[] version = Program.Version.ToCharArray();
             this.Text = Program.LanguageManager.Translation.MainFormTitle + " v" + version[0] + "." + version[1] + "." + version[2] + " - " + Program.UserInfo.Username;
@@ -57,13 +61,12 @@ namespace YGOPro_Launcher
 
             TabPage sponserTab = new TabPage() { Text = "Sponser", Name = "Sponser" };
             sponserTab.Controls.Add(new WebBrowserTab_frm());
+            TabPage supportTab = new TabPage() { Text = "Support DevPro", Name = "Support" };
+            supportTab.Controls.Add(new Support.Support_frm());
 
             ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,
-            ChatTab, TornyTab,
-            FileManager, CustomizeTab, AboutTab });
-
-            if (Program.Config.Language == "German")
-                ServerControl.TabPages.Add(sponserTab);
+            ChatTab,
+            FileManager, CustomizeTab,supportTab, AboutTab });
 
             Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);
             ConnectionCheck.Tick += new EventHandler(CheckConnection);
@@ -94,6 +97,10 @@ namespace YGOPro_Launcher
 
             }
         }
+        public void UpdateUsername(string username)
+        {
+            this.Text = Program.LanguageManager.Translation.MainFormTitle + " v" + Program.Version[0] + "." + Program.Version[1] + "." + Program.Version[2] + " - " + Program.UserInfo.Username;
+        }
 
         private void ServerMessage(string message)
         {
@@ -118,8 +125,6 @@ namespace YGOPro_Launcher
                     {
                         if (control is NewServerInterface_frm)
                         {
-                            NewServerInterface_frm form = (NewServerInterface_frm)control;
-                            form.RequestUserWLD();
                             Program.ServerConnection.SendPacket("GETROOMS");
                         }
                         if (control is NewChat_frm)

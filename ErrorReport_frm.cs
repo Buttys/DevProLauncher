@@ -16,7 +16,7 @@ namespace YGOPro_Launcher
         {
             InitializeComponent();
             label1.Text = Program.LanguageManager.Translation.pMsbException;
-            ErrorReport.Text = error.Message;
+            ErrorReport.Text += error;
         }
     }
 }

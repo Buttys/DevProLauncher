@@ -144,7 +144,7 @@
   <profileLblDestinyLeo>Destiny Leo</profileLblDestinyLeo>
   <profileLblUnknown>Unknown</profileLblUnknown>
   <profileLblUsername>Username: </profileLblUsername>
-  <profileLblwld>Win/Lose/Draw: </profileLblwld>
+  <profileLblwld>Win/Lose/Draw</profileLblwld>
   <profileLblRank>Rank: </profileLblRank>
   <profileLblTeam>Team: </profileLblTeam>
   <chatoptionsFormName>Chat Options</chatoptionsFormName>
@@ -198,4 +198,19 @@
   <DuelRequestBanlist> Banlist: </DuelRequestBanlist>
   <DuelRequestRules> Rules: </DuelRequestRules>
   <DuelRequestMode> Type: </DuelRequestMode>
+  <SupportItem1Name>Donator Status</SupportItem1Name>
+  <SupportItem1Des>Unlocks Donator status in chat with additional chat commands.</SupportItem1Des>
+  <SupportItem2Name>Change Username</SupportItem2Name>
+  <SupportItem2Des>Change your account name while retaining all your ranked stats.</SupportItem2Des>
+  <SupportItem3Name>Reset Ranking Stats</SupportItem3Name>
+  <SupportItem3Des>Reset your ranking stats.</SupportItem3Des>
+  <SupportItem4Name>Unban User</SupportItem4Name>
+  <SupportItem4Des>Unban a user who was banned.</SupportItem4Des>
+  <SupportBalance>Balance</SupportBalance>
+  <Supportgb2>Support DevPro</Supportgb2>
+  <Supportgb2text>The DevPoint system is here to reward users who help out and support DevPro. While the 2 options below will earn you DevPoints you can also earn points for helping DevPro too!  || ||- Taking part in DevPro Events  - Fixing DevPro bugs Launcher or card scripts! || - Supporting the growth of DevPro</Supportgb2text>
+  <Supportgb3>Earn DevPoints</Supportgb3>
+  <Supportgb3text>Earn points by completing offfers.</Supportgb3text>
+  <Supportgb4>Donate!</Supportgb4>
+  <Supportgb4text>Earn by donating (Paypal Only)</Supportgb4text>
 </LanguageInfo>

@@ -34,11 +34,10 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.ChatInput = new System.Windows.Forms.TextBox();
-            this.ChannelSelect = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.UserSearch = new System.Windows.Forms.TextBox();
-            this.ChatRTB = new YGOPro_Launcher.Chat.CustomRTB();
+            this.ChannelTabs = new YGOPro_Launcher.Chat.FixedTabControl();
             this.UsersControl = new YGOPro_Launcher.Chat.FixedTabControl();
             this.UsersTab = new System.Windows.Forms.TabPage();
             this.UserList = new System.Windows.Forms.ListBox();
@@ -52,6 +51,7 @@
             this.Timestampchk = new System.Windows.Forms.CheckBox();
             this.DuelRequestchk = new System.Windows.Forms.CheckBox();
             this.HideJoinLeavechk = new System.Windows.Forms.CheckBox();
+            this.pmwindowchk = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.SystemColorBtn = new System.Windows.Forms.Button();
@@ -76,6 +76,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.BackgroundColorBtn = new System.Windows.Forms.Button();
+            this.DonatorColorBtn = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -145,8 +147,8 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.ChatRTB, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.ChannelTabs, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -158,11 +160,9 @@
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.ChatInput, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.ChannelSelect, 0, 0);
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 718F));
+            this.tableLayoutPanel5.Controls.Add(this.ChatInput, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 498);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -175,21 +175,11 @@
             // 
             this.ChatInput.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ChatInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChatInput.Location = new System.Drawing.Point(109, 3);
+            this.ChatInput.Location = new System.Drawing.Point(3, 3);
             this.ChatInput.MaxLength = 250;
             this.ChatInput.Name = "ChatInput";
-            this.ChatInput.Size = new System.Drawing.Size(606, 20);
-            this.ChatInput.TabIndex = 2;
-            // 
-            // ChannelSelect
-            // 
-            this.ChannelSelect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChannelSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ChannelSelect.FormattingEnabled = true;
-            this.ChannelSelect.Location = new System.Drawing.Point(3, 3);
-            this.ChannelSelect.Name = "ChannelSelect";
-            this.ChannelSelect.Size = new System.Drawing.Size(100, 21);
-            this.ChannelSelect.TabIndex = 0;
+            this.ChatInput.Size = new System.Drawing.Size(712, 20);
+            this.ChatInput.TabIndex = 3;
             // 
             // tableLayoutPanel3
             // 
@@ -230,16 +220,16 @@
             this.UserSearch.Text = "Search";
             this.UserSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ChatRTB
+            // ChannelTabs
             // 
-            this.ChatRTB.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ChatRTB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChatRTB.Location = new System.Drawing.Point(3, 3);
-            this.ChatRTB.Name = "ChatRTB";
-            this.ChatRTB.ReadOnly = true;
-            this.ChatRTB.Size = new System.Drawing.Size(718, 489);
-            this.ChatRTB.TabIndex = 0;
-            this.ChatRTB.Text = "";
+            this.ChannelTabs.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.ChannelTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChannelTabs.Location = new System.Drawing.Point(3, 3);
+            this.ChannelTabs.Multiline = true;
+            this.ChannelTabs.Name = "ChannelTabs";
+            this.ChannelTabs.SelectedIndex = 0;
+            this.ChannelTabs.Size = new System.Drawing.Size(718, 489);
+            this.ChannelTabs.TabIndex = 2;
             // 
             // UsersControl
             // 
@@ -323,8 +313,8 @@
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 136F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 92F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(167, 457);
             this.tableLayoutPanel4.TabIndex = 0;
@@ -335,7 +325,7 @@
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox7.Location = new System.Drawing.Point(3, 3);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(161, 130);
+            this.groupBox7.Size = new System.Drawing.Size(161, 144);
             this.groupBox7.TabIndex = 2;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Settings";
@@ -348,6 +338,7 @@
             this.tableLayoutPanel14.Controls.Add(this.Timestampchk, 0, 1);
             this.tableLayoutPanel14.Controls.Add(this.DuelRequestchk, 0, 2);
             this.tableLayoutPanel14.Controls.Add(this.HideJoinLeavechk, 0, 3);
+            this.tableLayoutPanel14.Controls.Add(this.pmwindowchk, 0, 4);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
@@ -357,7 +348,7 @@
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(155, 111);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(155, 125);
             this.tableLayoutPanel14.TabIndex = 0;
             // 
             // Colorblindchk
@@ -408,6 +399,18 @@
             this.HideJoinLeavechk.Text = "Hide Join/Leave";
             this.HideJoinLeavechk.UseVisualStyleBackColor = true;
             // 
+            // pmwindowchk
+            // 
+            this.pmwindowchk.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pmwindowchk.AutoSize = true;
+            this.pmwindowchk.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.pmwindowchk.Location = new System.Drawing.Point(33, 104);
+            this.pmwindowchk.Name = "pmwindowchk";
+            this.pmwindowchk.Size = new System.Drawing.Size(89, 17);
+            this.pmwindowchk.TabIndex = 6;
+            this.pmwindowchk.Text = "PM Windows";
+            this.pmwindowchk.UseVisualStyleBackColor = true;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.tableLayoutPanel11);
@@ -423,7 +426,7 @@
             // 
             this.tableLayoutPanel11.AutoScroll = true;
             this.tableLayoutPanel11.ColumnCount = 2;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.83334F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.83333F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.16667F));
             this.tableLayoutPanel11.Controls.Add(this.SystemColorBtn, 1, 10);
             this.tableLayoutPanel11.Controls.Add(this.LeaveColorBtn, 1, 9);
@@ -447,11 +450,14 @@
             this.tableLayoutPanel11.Controls.Add(this.label15, 0, 9);
             this.tableLayoutPanel11.Controls.Add(this.label16, 0, 10);
             this.tableLayoutPanel11.Controls.Add(this.BackgroundColorBtn, 1, 0);
+            this.tableLayoutPanel11.Controls.Add(this.DonatorColorBtn, 1, 11);
+            this.tableLayoutPanel11.Controls.Add(this.label17, 0, 11);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.tableLayoutPanel11.RowCount = 12;
+            this.tableLayoutPanel11.RowCount = 13;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -687,13 +693,32 @@
             this.BackgroundColorBtn.UseVisualStyleBackColor = true;
             this.BackgroundColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
             // 
+            // DonatorColorBtn
+            // 
+            this.DonatorColorBtn.Location = new System.Drawing.Point(106, 278);
+            this.DonatorColorBtn.Name = "DonatorColorBtn";
+            this.DonatorColorBtn.Size = new System.Drawing.Size(19, 19);
+            this.DonatorColorBtn.TabIndex = 42;
+            this.DonatorColorBtn.UseVisualStyleBackColor = true;
+            this.DonatorColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
+            // 
+            // label17
+            // 
+            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label17.Location = new System.Drawing.Point(3, 275);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(97, 25);
+            this.label17.TabIndex = 43;
+            this.label17.Text = "Donator";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel7);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 139);
+            this.groupBox1.Location = new System.Drawing.Point(3, 153);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(161, 100);
+            this.groupBox1.Size = new System.Drawing.Size(161, 86);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Font Settings";
@@ -712,7 +737,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.58537F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.41463F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(155, 81);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(155, 67);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
             // label1
@@ -721,7 +746,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 17);
+            this.label1.Size = new System.Drawing.Size(149, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "Font";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -731,7 +756,7 @@
             this.FontList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FontList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FontList.FormattingEnabled = true;
-            this.FontList.Location = new System.Drawing.Point(3, 20);
+            this.FontList.Location = new System.Drawing.Point(3, 15);
             this.FontList.Name = "FontList";
             this.FontList.Size = new System.Drawing.Size(149, 21);
             this.FontList.TabIndex = 0;
@@ -743,7 +768,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.FontSize, 1, 0);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 51);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 37);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -796,7 +821,6 @@
             // 
             this.IgnoreList.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.IgnoreList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.IgnoreList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.IgnoreList.FormattingEnabled = true;
             this.IgnoreList.IntegralHeight = false;
             this.IgnoreList.Location = new System.Drawing.Point(3, 3);
@@ -847,7 +871,6 @@
         private System.Windows.Forms.TabPage FriendTab;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private CustomRTB ChatRTB;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private FixedTabControl UsersControl;
         private System.Windows.Forms.TabPage UsersTab;
@@ -883,8 +906,6 @@
         private System.Windows.Forms.Button Level99ColorBtn;
         private System.Windows.Forms.Button NormalTextColorBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.TextBox ChatInput;
-        private System.Windows.Forms.ComboBox ChannelSelect;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
         private System.Windows.Forms.CheckBox HideJoinLeavechk;
@@ -900,5 +921,10 @@
         private System.Windows.Forms.NumericUpDown FontSize;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button DonatorColorBtn;
+        private System.Windows.Forms.Label label17;
+        private FixedTabControl ChannelTabs;
+        private System.Windows.Forms.TextBox ChatInput;
+        private System.Windows.Forms.CheckBox pmwindowchk;
     }
 }

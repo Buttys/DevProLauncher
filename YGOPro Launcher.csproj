@@ -57,6 +57,7 @@
     <Compile Include="About_frm.Designer.cs">
       <DependentUpon>About_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Chat\ChatHelper.cs" />
     <Compile Include="Chat\ChatMessage.cs" />
     <Compile Include="Chat\ChatWindow.cs">
       <SubType>Component</SubType>
@@ -120,6 +121,12 @@
     <Compile Include="FileManager\Enums\CardAttribute.cs" />
     <Compile Include="FileManager\Enums\CardRace.cs" />
     <Compile Include="FileManager\Enums\CardType.cs" />
+    <Compile Include="FileManager\FileCleaner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileManager\FileCleaner.Designer.cs">
+      <DependentUpon>FileCleaner.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileManager\FileManager_frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +214,18 @@
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBit.cs" />
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBitTree.cs" />
     <Compile Include="SevenZip\ICoder.cs" />
+    <Compile Include="Support\Support_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Support\Support_frm.Designer.cs">
+      <DependentUpon>Support_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Support\Support_item.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Support\Support_item.Designer.cs">
+      <DependentUpon>Support_item.cs</DependentUpon>
+    </Compile>
     <Compile Include="WebBrowserTab_frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,9 +237,26 @@
     </Content>
     <Content Include="Language\French\cards.cdb" />
     <Content Include="Language\French\strings.conf" />
+    <None Include="Resources\YgoUpdater.exe" />
+    <None Include="Resources\images.jpg" />
+    <None Include="Resources\desruct.png" />
+    <None Include="Resources\bookoflife.png" />
+    <None Include="Resources\maskchange.png" />
+    <None Include="Resources\rankup.png" />
+    <None Include="Resources\trap.png" />
+    <None Include="Resources\spell.png" />
     <None Include="Resources\code_Affili.txt" />
     <EmbeddedResource Include="Chat\NewChat_frm.resx">
       <DependentUpon>NewChat_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileManager\FileCleaner.resx">
+      <DependentUpon>FileCleaner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Support\Support_frm.resx">
+      <DependentUpon>Support_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Support\Support_item.resx">
+      <DependentUpon>Support_item.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WebBrowserTab_frm.resx">
       <DependentUpon>WebBrowserTab_frm.cs</DependentUpon>
@@ -302,9 +338,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ygo.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\YgoUpdater.exe" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ICSharpCode.SharpZipLib.dll" />

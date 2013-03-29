@@ -236,5 +236,23 @@ namespace YGOPro_Launcher.Config
         public string DuelRequestRules = " Rules: ";
         public string DuelRequestMode = " Type: ";
 
+        //DevPro SupportTab
+        public string SupportItem1Name = "Donator Status";
+        public string SupportItem1Des = "Unlocks Donator status in chat with additional chat commands.";
+        public string SupportItem2Name = "Change Username";
+        public string SupportItem2Des = "Change your account name while retaining all your ranked stats.";
+        public string SupportItem3Name = "Reset Ranking Stats";
+        public string SupportItem3Des = "Reset your ranking stats.";
+        public string SupportItem4Name = "Unban User";
+        public string SupportItem4Des = "Unban a user who was banned.";
+
+        public string SupportBalance = "Balance";
+        public string Supportgb2 = "Support DevPro";
+        public string Supportgb2text = "The DevPoint system is here to reward users who help out and support DevPro. While the 2 options below will earn you DevPoints you can also earn points for helping DevPro too!  || ||- Taking part in DevPro Events  - Fixing DevPro bugs Launcher or card scripts! || - Supporting the growth of DevPro";
+        public string Supportgb3 = "Earn DevPoints";
+        public string Supportgb3text = "Earn points by completing offfers.";
+        public string Supportgb4 = "Donate!";
+        public string Supportgb4text = "Earn by donating (Paypal Only)";
+
     }
 }

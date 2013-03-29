@@ -14,10 +14,8 @@ namespace YGOPro_Launcher.Chat
 {
     public partial class NewChat_frm : Form
     {
-        ChatClient server = new ChatClient();
         Dictionary<string, UserData> UserData = new Dictionary<string, UserData>();
         Dictionary<string, PmWindow_frm> PMWindows = new Dictionary<string, PmWindow_frm>();
-        List<string> ChannelList = new List<string>();
         public bool autoscroll = true;
 
         public NewChat_frm()
@@ -27,22 +25,21 @@ namespace YGOPro_Launcher.Chat
             Dock = DockStyle.Fill;
             Visible = true;
             //chat packets
-            server.Login += new ChatClient.ServerResponse(LoginCheck);
-            server.UserList += new ChatClient.ServerResponse(CreateUserList);
-            server.AddUser += new ChatClient.ServerResponse(AddUser);
-            server.RemoveUser += new ChatClient.ServerResponse(RemoveUser);
-            server.FriendList += new ChatClient.ServerResponse(CreateFriendList);
-            server.JoinChannel += new ChatClient.ServerResponse(ChannelAccept);
-            server.Message += new ChatClient.ServerMessage(WriteMessage);
-            server.Error += new ChatClient.ServerMessage(WriteMessage);
-            server.DuelRequest += new ChatClient.ServerResponse(HandleDuelRequest);
+            Program.ChatServer.Login += new ChatClient.ServerResponse(LoginCheck);
+            Program.ChatServer.UserList += new ChatClient.ServerResponse(CreateUserList);
+            Program.ChatServer.AddUser += new ChatClient.ServerResponse(AddUser);
+            Program.ChatServer.RemoveUser += new ChatClient.ServerResponse(RemoveUser);
+            Program.ChatServer.FriendList += new ChatClient.ServerResponse(CreateFriendList);
+            Program.ChatServer.JoinChannel += new ChatClient.ServerResponse(ChannelAccept);
+            Program.ChatServer.Message += new ChatClient.ServerMessage(WriteMessage);
+            Program.ChatServer.Error += new ChatClient.ServerMessage(WriteMessage);
+            Program.ChatServer.DuelRequest += new ChatClient.ServerResponse(HandleDuelRequest);
 
             //form events
             UserSearch.Enter += new EventHandler(UserSearch_Enter);
             UserSearch.Leave += new EventHandler(UserSearch_Leave);
             UserSearch.TextChanged += new EventHandler(UserSearch_TextChanged);
             ChatInput.KeyPress += new KeyPressEventHandler(ChatInput_KeyPress);
-            ChatRTB.LinkClicked += new LinkClickedEventHandler(Chat_LinkClicked);
             UserList.DoubleClick += List_DoubleClick;
             FriendList.DoubleClick += List_DoubleClick;
             ApplyOptionEvents();
@@ -56,6 +53,8 @@ namespace YGOPro_Launcher.Chat
             UserList.DrawItem += new DrawItemEventHandler(UserList_DrawItem);
             FriendList.DrawItem += new DrawItemEventHandler(FriendList_DrawItem);
 
+            ChatHelper.LoadChatTags();
+            
             LoadIgnoreList();
             ApplyTranslations();
             ApplyChatSettings();
@@ -82,7 +81,6 @@ namespace YGOPro_Launcher.Chat
         }
         public void ApplyChatSettings()
         {
-            ChatRTB.BackColor = Program.Config.ChatBGColor.ToColor();
             ChatInput.BackColor = Program.Config.ChatBGColor.ToColor();
             ChatInput.ForeColor = Program.Config.NormalTextColor.ToColor();
             UserSearch.BackColor = Program.Config.ChatBGColor.ToColor();
@@ -103,14 +101,14 @@ namespace YGOPro_Launcher.Chat
             JoinColorBtn.BackColor = Program.Config.JoinColor.ToColor();
             LeaveColorBtn.BackColor = Program.Config.LeaveColor.ToColor();
             SystemColorBtn.BackColor = Program.Config.SystemColor.ToColor();
+            DonatorColorBtn.BackColor = Program.Config.DonatorColor.ToColor();
             HideJoinLeavechk.Checked = Program.Config.HideJoinLeave;
             Colorblindchk.Checked = Program.Config.ColorBlindMode;
             Timestampchk.Checked = Program.Config.ShowTimeStamp;
             DuelRequestchk.Checked = Program.Config.RefuseDuelRequests;
+            pmwindowchk.Checked = Program.Config.PMWindows;
 
-            if (Program.Config.ChatFont == "")
-                FontList.SelectedItem = ChatRTB.Font.Name;
-            else
+            if (Program.Config.ChatFont != "")
             {
                 if (FontList.Items.Contains(Program.Config.ChatFont))
                 {
@@ -119,7 +117,6 @@ namespace YGOPro_Launcher.Chat
             }
 
             FontSize.Value = Program.Config.ChatSize;
-            ChatRTB.Font = new Font(Program.Config.ChatFont, (float)Program.Config.ChatSize);
         }
 
         public void ApplyTranslations()
@@ -154,8 +151,10 @@ namespace YGOPro_Launcher.Chat
         public void Connect()
         {
             WriteMessage(new ChatMessage(MessageType.System, Program.UserInfo, "System", "Attempting to connect.", false));
-            if (server.Connect(Program.Config.ChatServerAddress, Program.Config.ChatPort))
-                server.SendPacket("LOGIN||" + Program.UserInfo.Username + "||" + Program.Config.Password + "||" + LauncherHelper.GetUID());
+            if (Program.ChatServer.Connect(Program.Config.ChatServerAddress, Program.Config.ChatPort))
+            {
+                Program.ChatServer.SendPacket("LOGIN||" + Program.UserInfo.Username + "||" + Program.Config.Password + "||" + LauncherHelper.GetUID());
+            }
             else
                 WriteMessage(new ChatMessage(MessageType.System, Program.UserInfo, "System", "Failed to connect.", false));
         }
@@ -178,21 +177,20 @@ namespace YGOPro_Launcher.Chat
                     WriteMessage(new ChatMessage(MessageType.System, Program.UserInfo, "System", "Connected to the DevPro Chat Server.", false));
 
                     JoinChannel("DevPro-" + Program.Config.Language);
+                    Program.ChatServer.SendPacket("GETDEVPOINTS");
                 }
             }
         }
         private void JoinChannel(string channel)
         {
-            server.SendPacket("JOIN||" + channel);
+            Program.ChatServer.SendPacket("JOIN||" + channel);
             WriteMessage(new ChatMessage(MessageType.System, Program.UserInfo, "System", "Join request for " + channel + " has been sent.", false));
         }
         private void LeaveChannel(string channel)
         {
-            server.SendPacket("LEAVE||" + channel);
-            if (ChannelList.Contains(channel))
-                ChannelList.Remove(channel);
-            if (ChannelSelect.Items.Contains(channel))
-                ChannelSelect.Items.Remove(channel);
+            Program.ChatServer.SendPacket("LEAVE||" + channel);
+            if (GetChatWindow(channel) != null)
+                ChannelTabs.TabPages.Remove(GetChatWindow(channel));
         }
         private void ChannelAccept(string channel)
         {
@@ -202,12 +200,10 @@ namespace YGOPro_Launcher.Chat
             }
             else
             {
-                if (!ChannelList.Contains(channel))
-                    ChannelList.Add(channel);
-                if (!ChannelSelect.Items.Contains(channel))
+                if (GetChatWindow(channel) == null)
                 {
-                    ChannelSelect.Items.Add(channel);
-                    ChannelSelect.SelectedItem = channel;
+                    ChannelTabs.TabPages.Add(new ChatWindow(channel, false));
+                    ChannelTabs.SelectedTab = GetChatWindow(channel);
                 }
                 WriteMessage(new ChatMessage(MessageType.Server, Program.UserInfo, "Server", "Join request for "+channel+" accepted.", false));
             }
@@ -215,13 +211,36 @@ namespace YGOPro_Launcher.Chat
 
         public void WriteMessage(ChatMessage message)
         {
+
             if (InvokeRequired)
             {
-                this.Invoke(new Action<ChatMessage>(WriteMessage), message);
+                Invoke(new Action<ChatMessage>(WriteMessage), message);
             }
             else
             {
-                if (message.Type == MessageType.PrivateMessage)
+                if(message.From != null)
+                    if (IgnoreList.Items.Contains(message.From.Username))
+                        return;
+
+                if (message.Type == MessageType.Server || message.Type == MessageType.System)
+                {
+                    ChatWindow window = (ChatWindow)ChannelTabs.SelectedTab;
+                    if (window == null)
+                    {
+                        ChannelTabs.TabPages.Add(new ChatWindow(message.Type.ToString(), true) { issystemtab = true});
+                        GetChatWindow(message.Type.ToString()).WriteMessage(message, autoscroll);
+                    }
+                    else
+                        window.WriteMessage(message, autoscroll);
+                }
+                else if (message.Type == MessageType.Join || message.Type == MessageType.Leave || message.Channel == null)
+                {
+                    if (GetChatWindow(message.Channel) != null)
+                    {
+                        GetChatWindow(message.Channel).WriteMessage(message, autoscroll);
+                    }
+                }
+                else if (message.Type == MessageType.PrivateMessage && Program.Config.PMWindows)
                 {
                     if (PMWindows.ContainsKey(message.Channel))
                     {
@@ -229,60 +248,36 @@ namespace YGOPro_Launcher.Chat
                     }
                     else
                     {
-                        PMWindows.Add(message.Channel, new PmWindow_frm(message.Channel, true, server));
+                        PMWindows.Add(message.Channel, new PmWindow_frm(message.Channel, true, Program.ChatServer));
                         PMWindows[message.Channel].WriteMessage(message);
                         PMWindows[message.Channel].Show();
                         PMWindows[message.Channel].FormClosed += Chat_frm_FormClosed;
                     }
                 }
+                else if (GetChatWindow(message.Channel) != null)
+                    GetChatWindow(message.Channel).WriteMessage(message, autoscroll);
                 else
                 {
-
-                    if (ChatRTB.Text != "")//start a new line unless theres no text
-                        ChatRTB.AppendText(Environment.NewLine);
-                    ChatRTB.Select(ChatRTB.TextLength, 0);
-                    if (message.Type == MessageType.Message || message.Type == MessageType.PrivateMessage)
-                    {
-                        if (Program.Config.ShowTimeStamp)
-                            WriteText(message.Time.ToString("[HH:mm] "), (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
-                        WriteText("[" + message.Channel + "]", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
-                        WriteText("[", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
-                        WriteText((Program.Config.ColorBlindMode && message.From.Rank > 0 ? "[Admin]" + message.From.Username : message.From.Username),
-                            (Program.Config.ColorBlindMode ? Color.Black : message.UserColor));
-                        WriteText("]: ", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
-
-                        WriteText(message.FormattedMessage.Trim(), (Program.Config.ColorBlindMode ? Color.Black : message.MessageColor));
-
-                    }
-                    else if (message.Type == MessageType.System || message.Type == MessageType.Server)
-                    {
-                        WriteText("[" + message.Type + "] " + message.FormattedMessage,
-                                (Program.Config.ColorBlindMode ? Color.Black : message.MessageColor));
-                    }
-                    else
-                    {
-                        WriteText((Program.Config.ColorBlindMode ? "[" + message.Type + "] " + message.FormattedMessage : message.FormattedMessage),
-                            (Program.Config.ColorBlindMode ? Color.Black : message.MessageColor));
-                    }
-
-                    ChatRTB.SelectionStart = ChatRTB.TextLength;
-                    ChatRTB.SelectionLength = 0;
-
-                    if (autoscroll)
-                        ChatRTB.ScrollToCaret();
+                    ChannelTabs.TabPages.Add(new ChatWindow(message.Channel, (message.Type == MessageType.PrivateMessage ? true : false)));
+                    GetChatWindow(message.Channel).WriteMessage(message, autoscroll);
                 }
             }
         }
+
+        private ChatWindow GetChatWindow(string name)
+        {
+            foreach (ChatWindow window in ChannelTabs.TabPages)
+            {
+                if (window.Name == name)
+                    return window;
+            }
+            return null;
+        }
+
         private void Chat_frm_FormClosed(object sender, EventArgs e)
         {
             PmWindow_frm form = (PmWindow_frm)sender;
             PMWindows.Remove(form.Name);
-        }
-        private void WriteText(string text, Color color)
-        {
-            ChatRTB.Select(ChatRTB.TextLength, 0);
-            ChatRTB.SelectionColor = color;
-            ChatRTB.AppendText(text);
         }
 
         private void UserSearch_Enter(object sender, EventArgs e)
@@ -550,6 +545,9 @@ namespace YGOPro_Launcher.Chat
                     case "NormalTextColorBtn":
                         Program.Config.NormalTextColor = new SerializableColor(selectcolor.Color);
                         break;
+                    case "DonatorColorBtn":
+                        Program.Config.DonatorColor = new SerializableColor(selectcolor.Color);
+                        break;
                 }
 
                 button.BackColor = selectcolor.Color;
@@ -571,12 +569,12 @@ namespace YGOPro_Launcher.Chat
                     string cmd = parts[0].Substring(1).ToLower();
                     if (cmd == "me")
                     {
-                        if (ChannelSelect.SelectedIndex == -1)
+                        if (ChannelTabs.SelectedTab == null)
                         {
                             WriteMessage(new ChatMessage(MessageType.System, null, "No channel Selected."));
                             return;
                         }
-                        server.SendPacket("MSG||" + ChannelSelect.SelectedItem.ToString() + "||" + (int)MessageType.Me + "||" + LauncherHelper.StringToBase64(ChatInput.Text.Substring(parts[0].Length)));
+                        Program.ChatServer.SendPacket("MSG||" + ((ChatWindow)ChannelTabs.SelectedTab).Name + "||" + (int)MessageType.Me + "||" + LauncherHelper.StringToBase64(ChatInput.Text.Substring(parts[0].Length)));
                     }
                     else if (cmd == "join")
                     {
@@ -584,11 +582,26 @@ namespace YGOPro_Launcher.Chat
                     }
                     else if (cmd == "leave")
                     {
-                        LeaveChannel(ChatInput.Text.Substring(parts[0].Length).Trim());
+                        if (((ChatWindow)ChannelTabs.SelectedTab) == null)
+                            return;
+                        if (((ChatWindow)ChannelTabs.SelectedTab).isprivate)
+                            ChannelTabs.TabPages.Remove(((ChatWindow)ChannelTabs.SelectedTab));
+                        else
+                            LeaveChannel(((ChatWindow)ChannelTabs.SelectedTab).Name);
                     }
                     else if (cmd == "users")
                     {
                         WriteMessage(new ChatMessage(MessageType.System, null, "There's " + UserData.Count + " users online."));
+                    }
+                    else if (cmd == "ping")
+                    {
+                        Program.ChatServer.PingRequest = DateTime.Now;
+                        Program.ChatServer.SendPacket("PING");
+                    }
+                    else if (cmd == "pinggame")
+                    {
+                        Program.ServerConnection.pingrequest = DateTime.Now;
+                        Program.ServerConnection.SendPacket("PING");
                     }
                     else if (cmd == "autoscroll")
                     {
@@ -618,17 +631,29 @@ namespace YGOPro_Launcher.Chat
                     }
                     else
                     {
-                        server.SendPacket("ADMIN||" + cmd.ToUpper() + "||" + ChatInput.Text.Substring(parts[0].Length).Trim());
+                        Program.ChatServer.SendPacket("ADMIN||" + cmd.ToUpper() + "||" + ChatInput.Text.Substring(parts[0].Length).Trim());
                     }
                 }
                 else
                 {
-                    if (ChannelSelect.SelectedIndex == -1)
+                    if (ChannelTabs.SelectedTab == null)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, null, "No channel Selected."));
                         return;
                     }
-                    server.SendPacket("MSG||" + ChannelSelect.SelectedItem.ToString() + "||" + (int)MessageType.Message + "||" + LauncherHelper.StringToBase64(ChatInput.Text));
+                    if (((ChatWindow)ChannelTabs.SelectedTab).issystemtab)
+                    {
+                        ChatInput.Clear();
+                        return;
+                    }
+
+                    if (((ChatWindow)ChannelTabs.SelectedTab).isprivate)
+                    {
+                        WriteMessage(new ChatMessage(MessageType.Message, Program.UserInfo, ((ChatWindow)ChannelTabs.SelectedTab).Name, ChatInput.Text, false));
+                        Program.ChatServer.SendPacket("MSG||" + ((ChatWindow)ChannelTabs.SelectedTab).Name + "||" + (int)MessageType.PrivateMessage + "||" + LauncherHelper.StringToBase64(ChatInput.Text));
+                    }
+                    else
+                    Program.ChatServer.SendPacket("MSG||" + ((ChatWindow)ChannelTabs.SelectedTab).Name + "||" + (int)MessageType.Message + "||" + LauncherHelper.StringToBase64(ChatInput.Text));
                 }
 
                 ChatInput.Clear();
@@ -652,6 +677,31 @@ namespace YGOPro_Launcher.Chat
                     break;
                 case "HideJoinLeavechk":
                     Program.Config.HideJoinLeave = check.Checked;
+                    break;
+                case "pmwindowchk":
+                    Program.Config.PMWindows = check.Checked;
+                    if (Program.Config.PMWindows)
+                    {
+                        List<ChatWindow> removelist = new List<ChatWindow>();
+                        foreach (ChatWindow window in ChannelTabs.TabPages)
+                        {
+                            if (window.isprivate)
+                                removelist.Add(window);
+                        }
+                        foreach(ChatWindow window in removelist)
+                            ChannelTabs.TabPages.Remove(window);
+                    }
+                    else
+                    {
+                        List<string> removelist = new List<string>();
+                        foreach (string window in PMWindows.Keys)
+                        {
+                            removelist.Add(window);
+                        }
+                        foreach(string window in removelist)
+                            PMWindows[window].Close();
+                    }
+                    
                     break;
             }
             Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
@@ -700,13 +750,13 @@ namespace YGOPro_Launcher.Chat
             if (UserList.SelectedItem == null)
                 return;
             if (MessageBox.Show("Are you sure you want to ban " + UserList.SelectedItem.ToString(), "Ban User", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-                server.SendPacket("ADMIN||BAN||" + UserList.SelectedItem.ToString());
+                Program.ChatServer.SendPacket("ADMIN||BAN||" + UserList.SelectedItem.ToString());
         }
         private void KickUser(object sender, EventArgs e)
         {
             if (UserList.SelectedItem == null)
                 return;
-            server.SendPacket("ADMIN||KICK||" + UserList.SelectedItem.ToString());
+            Program.ChatServer.SendPacket("ADMIN||KICK||" + UserList.SelectedItem.ToString());
         }
 
         private void AddFriend(object sender, EventArgs e)
@@ -731,7 +781,7 @@ namespace YGOPro_Launcher.Chat
 
             WriteMessage(new ChatMessage(MessageType.System, null, UserList.SelectedItem.ToString() + " has been added to your friend list."));
             FriendList.Items.Add(UserList.SelectedItem.ToString());
-            server.SendPacket("ADDFRIEND||" + UserList.SelectedItem.ToString());
+            Program.ChatServer.SendPacket("ADDFRIEND||" + UserList.SelectedItem.ToString());
         }
 
         private void IgnoreUser(object sender, EventArgs e)
@@ -783,7 +833,7 @@ namespace YGOPro_Launcher.Chat
         private void RemoveFriend(object sender, EventArgs e)
         {
             WriteMessage(new ChatMessage(MessageType.System, null, FriendList.SelectedItem.ToString() + " has been removed from your friendlist."));
-            server.SendPacket("REMOVEFRIEND||" + FriendList.SelectedItem.ToString());
+            Program.ChatServer.SendPacket("REMOVEFRIEND||" + FriendList.SelectedItem.ToString());
             FriendList.Items.Remove(FriendList.SelectedItem.ToString());
         }
         private void ViewProfile(object sender, EventArgs e)
@@ -809,7 +859,7 @@ namespace YGOPro_Launcher.Chat
             else
             {
                 Host form = new Host();
-                server.SendPacket("REQUESTDUEL||" + list.SelectedItem.ToString() + "||"
+                Program.ChatServer.SendPacket("REQUESTDUEL||" + list.SelectedItem.ToString() + "||"
                     + form.GenerateGameString(false));
                 WriteMessage(new ChatMessage(MessageType.System, null, "Duel request sent to " + list.SelectedItem.ToString() + "."));
             }
@@ -835,7 +885,7 @@ namespace YGOPro_Launcher.Chat
                 {
                     if (Program.Config.RefuseDuelRequests)
                     {
-                        server.SendPacket("REFUSEDUEL||" + args[1]);
+                        Program.ChatServer.SendPacket("REFUSEDUEL||" + args[1]);
                         return;
                     }
                     RoomInfos info = RoomInfos.FromName(args[2], "", false);
@@ -846,12 +896,12 @@ namespace YGOPro_Launcher.Chat
                     if (request.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, null, "You accepted " + args[1] + " duel request."));
-                        server.SendPacket("ACCEPTDUEL||" + args[1] + "||" + args[2]);
+                        Program.ChatServer.SendPacket("ACCEPTDUEL||" + args[1] + "||" + args[2]);
                     }
                     else
                     {
                         WriteMessage(new ChatMessage(MessageType.System, null, "You refused " + args[1] + " duel request."));
-                        server.SendPacket("REFUSEDUEL||" + args[1]);
+                        Program.ChatServer.SendPacket("REFUSEDUEL||" + args[1]);
                     }
                 }
                 else if (cmd == "REFUSE")
@@ -883,9 +933,9 @@ namespace YGOPro_Launcher.Chat
         }
         private void UnignoreUser(object sender, EventArgs e)
         {
+            WriteMessage(new ChatMessage(MessageType.System, null, UserList.SelectedItem.ToString() + " has been removed from your ignore list."));
             IgnoreList.Items.Remove(IgnoreList.SelectedItem);
             SaveIgnoreList();
-            WriteMessage(new ChatMessage(MessageType.System, null, UserList.SelectedItem.ToString() + " has been removed from your ignore list."));
         }
         private void SaveIgnoreList()
         {
@@ -913,7 +963,10 @@ namespace YGOPro_Launcher.Chat
                 NumericUpDown size = (NumericUpDown)sender;
                 Program.Config.ChatSize = size.Value;
             }
-            ChatRTB.Font = new Font(Program.Config.ChatFont, (float)Program.Config.ChatSize);
+            foreach (ChatWindow tab in ChannelTabs.TabPages)
+            {
+                tab.ApplyNewSettings();
+            }
             foreach (string form in PMWindows.Keys)
             {
                 PMWindows[form].ApplyNewSettings();
@@ -931,16 +984,30 @@ namespace YGOPro_Launcher.Chat
 
             if (list.SelectedItem == null)
                 return;
-
-            if (!PMWindows.ContainsKey(list.SelectedItem.ToString()))
+            if (Program.Config.PMWindows)
             {
-                PMWindows.Add(list.SelectedItem.ToString(), new PmWindow_frm(list.SelectedItem.ToString(), true, server));
-                PMWindows[list.SelectedItem.ToString()].Show();
-                PMWindows[list.SelectedItem.ToString()].FormClosed += Chat_frm_FormClosed;
+                if (!PMWindows.ContainsKey(list.SelectedItem.ToString()))
+                {
+                    PMWindows.Add(list.SelectedItem.ToString(), new PmWindow_frm(list.SelectedItem.ToString(), true, Program.ChatServer));
+                    PMWindows[list.SelectedItem.ToString()].Show();
+                    PMWindows[list.SelectedItem.ToString()].FormClosed += Chat_frm_FormClosed;
+                }
+                else
+                {
+                    PMWindows[list.SelectedItem.ToString()].BringToFront();
+                }
             }
             else
             {
-                PMWindows[list.SelectedItem.ToString()].BringToFront();
+                if (GetChatWindow(list.SelectedItem.ToString()) == null)
+                {
+                    ChannelTabs.TabPages.Add(new ChatWindow(list.SelectedItem.ToString(), true));
+                    ChannelTabs.SelectedTab = GetChatWindow(list.SelectedItem.ToString());
+                }
+                else
+                {
+                    ChannelTabs.SelectedTab = GetChatWindow(list.SelectedItem.ToString());
+                }
             }
         }
     }
