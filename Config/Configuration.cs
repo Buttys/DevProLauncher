@@ -24,7 +24,7 @@ namespace YGOPro_Launcher.Config
         public string DefaultDeck = "";
         public bool EnableSound = true;
         public bool EnableMusic = true;
-        public bool Enabled3D = true;
+        public bool Enabled3D = false;
         public int Antialias = 0;
         public bool AutoLogin = false;
         public bool Fullscreen = false;

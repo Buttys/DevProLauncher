@@ -170,11 +170,11 @@
             // 
             this.OfferLink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.OfferLink.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OfferLink.Image = global::YGOPro_Launcher.Properties.Resources.offers;
+            this.OfferLink.Image = global::YGOPro_Launcher.Properties.Resources.OfferWall_Btn;
             this.OfferLink.Location = new System.Drawing.Point(3, 32);
             this.OfferLink.Name = "OfferLink";
             this.OfferLink.Size = new System.Drawing.Size(154, 26);
-            this.OfferLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.OfferLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.OfferLink.TabIndex = 1;
             this.OfferLink.TabStop = false;
             // 

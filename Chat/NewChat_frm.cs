@@ -610,7 +610,46 @@ namespace YGOPro_Launcher.Chat
                     }
                     else if (cmd == "help")
                     {
-                        WriteMessage(new ChatMessage(MessageType.System, null, "Did you really think i would write a list of help commands? :("));
+                        WriteMessage(new ChatMessage(MessageType.System, null, "-- Basic Commands --"));
+                        WriteMessage(new ChatMessage(MessageType.System, null, "/admin - Get admin list"));
+                        WriteMessage(new ChatMessage(MessageType.System, null, "/users - Get user count"));
+                        WriteMessage(new ChatMessage(MessageType.System, null, "/me - Displays Username + Message"));
+                        WriteMessage(new ChatMessage(MessageType.System, null, "/join - Join a other channel"));
+                        WriteMessage(new ChatMessage(MessageType.System, null, "/leave - Leave the current channel"));
+                        WriteMessage(new ChatMessage(MessageType.System, null, "/autoscroll - Enable/Disable autoscroll"));
+                        WriteMessage(new ChatMessage(MessageType.System, null, "/ping - Ping the chat server"));
+                        WriteMessage(new ChatMessage(MessageType.System, null, "/pinggame - Ping the game server"));
+                        WriteMessage(new ChatMessage(MessageType.System, null, "/help - Displays this list your reading now"));
+                        WriteMessage(new ChatMessage(MessageType.System, null, "/uptime - Displays how long the server has been online"));
+                        if (Program.UserInfo.Rank < 0 || Program.UserInfo.Rank > 0)
+                        {
+                            WriteMessage(new ChatMessage(MessageType.System, null, "-- Donator Commands --"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "[red][/red] - Color tags, wrap your text with them to change its color"));
+                        }
+                        if (Program.UserInfo.Rank > 0)
+                        {
+                            WriteMessage(new ChatMessage(MessageType.System, null, "-- Level 1 Commands --"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "/kick - Kick a user"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "/msg - Send a server message"));
+                        }
+                        if (Program.UserInfo.Rank > 1)
+                        {
+                            WriteMessage(new ChatMessage(MessageType.System, null, "-- Level 2 Commands --"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "/ban - Ban a user"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "/unban - Unban a user"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "/ip - Get a users IP"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "/banip - Ban a IP"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "/unbanip - Unbans IP"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "/getbanlist - Get ban list"));
+                        }
+                        if (Program.UserInfo.Rank == 99)
+                        {
+                            WriteMessage(new ChatMessage(MessageType.System, null, "-- Level 99 Commands --"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "/op - Set a users level"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "/addpoints - Give a user DevPoints"));
+                            WriteMessage(new ChatMessage(MessageType.System, null, "/removepoints - Remove DevPoints from a user"));
+                        }
+
                     }
                     else if (cmd == "admin")
                     {

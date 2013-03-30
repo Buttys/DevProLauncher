@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About_frm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -65,7 +66,7 @@
             this.StaffText = new System.Windows.Forms.Label();
             this.AboutText = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +74,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.label33);
             this.panel1.Controls.Add(this.label32);
             this.panel1.Controls.Add(this.label31);
             this.panel1.Controls.Add(this.label30);
@@ -114,6 +116,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(956, 446);
             this.panel1.TabIndex = 0;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(416, 412);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(230, 13);
+            this.label32.TabIndex = 36;
+            this.label32.Text = "Hisachi,Amane Misa y The Terminator(Spanish)";
             // 
             // label31
             // 
@@ -291,7 +302,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(375, 238);
+            this.label13.Location = new System.Drawing.Point(263, 238);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(36, 13);
             this.label13.TabIndex = 15;
@@ -309,7 +320,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(261, 238);
+            this.label11.Location = new System.Drawing.Point(312, 238);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(107, 13);
             this.label11.TabIndex = 13;
@@ -436,14 +447,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "About DevPro";
             // 
-            // label32
+            // label33
             // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(416, 412);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(230, 13);
-            this.label32.TabIndex = 36;
-            this.label32.Text = "Hisachi,Amane Misa y The Terminator(Spanish)";
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(425, 238);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(61, 13);
+            this.label33.TabIndex = 37;
+            this.label33.Text = "Checkmate";
             // 
             // About_frm
             // 
@@ -500,6 +511,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label33;
 
 
     }

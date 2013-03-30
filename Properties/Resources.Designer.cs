@@ -113,9 +113,9 @@ namespace YGOPro_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap offers {
+        internal static System.Drawing.Bitmap OfferWall_Btn {
             get {
-                object obj = ResourceManager.GetObject("offers", resourceCulture);
+                object obj = ResourceManager.GetObject("OfferWall_Btn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

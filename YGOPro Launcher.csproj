@@ -237,6 +237,7 @@
     </Content>
     <Content Include="Language\French\cards.cdb" />
     <Content Include="Language\French\strings.conf" />
+    <None Include="Resources\OfferWall_Btn.png" />
     <None Include="Resources\YgoUpdater.exe" />
     <None Include="Resources\images.jpg" />
     <None Include="Resources\desruct.png" />
