@@ -198,4 +198,19 @@
   <DuelRequestBanlist> Restriction: </DuelRequestBanlist>
   <DuelRequestRules> Règles de jeu: </DuelRequestRules>
   <DuelRequestMode> Type: </DuelRequestMode>
+  <SupportItem1Name>Status de Duelliste Donneur</SupportItem1Name>
+  <SupportItem1Des>Vous octroie des commandes supplémentaires dans le chat ainsi qu'un changement de status.</SupportItem1Des>
+  <SupportItem2Name>Changement de Pseudo</SupportItem2Name>
+  <SupportItem2Des>Change votre Pseudo tout en gardant vos statistiques de Duel.</SupportItem2Des>
+  <SupportItem3Name>Réinitialisation des Stats</SupportItem3Name>
+  <SupportItem3Des>Réinitialise vos statistiques de Duel.</SupportItem3Des>
+  <SupportItem4Name>Libération d'un Duelliste</SupportItem4Name>
+  <SupportItem4Des>Débannir un Duelliste qui a été banni auparavant.</SupportItem4Des>
+  <SupportBalance>Compte</SupportBalance>
+  <Supportgb2>Supportez DevPro !</Supportgb2>
+  <Supportgb2text>Les DevPoints permettent de récompenser les Duellistes qui aident et supportent DevPro. Tandis que les 2 options ci-dessous vous font gagner des DevPoints, vous pouvez aussi en gagner en aidant la Team Devpro !  || ||- Prendre part aux Events DevPro || - Résoudre les bugs de cartes et du lanceur! || - Contribuer à la montée en charge de DevPro</Supportgb2text>
+  <Supportgb3>Complétez des offres !</Supportgb3>
+  <Supportgb3text>Gagnez des DevPoints en complétant des offres.</Supportgb3text>
+  <Supportgb4>Faites un don !</Supportgb4>
+  <Supportgb4text>Et recevez des DevPoints.</Supportgb4text>
 </LanguageInfo>
