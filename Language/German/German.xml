@@ -168,7 +168,7 @@
   <chatBtnoptions>Optionen</chatBtnoptions>
   <chatTabUsers>Benutzer</chatTabUsers>
   <chatTabFriends>Freunde</chatTabFriends>
-  <chatTabIgnore>Ignor.</chatTabIgnore>
+  <chatTabIgnore>Ignorieren.</chatTabIgnore>
   <chatUserCount>Benutzer Anzahl: </chatUserCount>
   <chatAddFriend>Zu Freuden hinzufügen</chatAddFriend>
   <chatRequestDuel>Duellanfrage</chatRequestDuel>
@@ -191,4 +191,23 @@
   <DuelRequestBanlist> Bannliste: </DuelRequestBanlist>
   <DuelRequestRules> Regeln: </DuelRequestRules>
   <DuelRequestMode> Typ: </DuelRequestMode>
+  <SupportItem1Name>Spender-Status</SupportItem1Name>
+  <SupportItem1Des>Schalte den Spender-Status im Chat frei und erhalte zusätzliche Chat-Befehle.</SupportItem1Des>
+  <SupportItem2Name>Benutzernamen ändern</SupportItem2Name>
+  <SupportItem2Des>Ändere deinen Account-Namen und behalte dabei deine Ranked-Statistik.</SupportItem2Des>
+  <SupportItem3Name>Zurücksetzen der Statistik</SupportItem3Name>
+  <SupportItem3Des>Setze deine Ranked-Statistik zurück.</SupportItem3Des>
+  <SupportItem4Name>Account-Bann aufheben</SupportItem4Name>
+  <SupportItem4Des>Ermögliche es einem gebannten Spieler sich wieder einzuloggen.</SupportItem4Des>
+  <SupportBalance>Kontostand</SupportBalance>
+  <Supportgb2>Unterstütze DevPro</Supportgb2>
+  <Supportgb2text>Das DevPoint-System soll DevPro unterstützen und den Spieler gleichzeitig belohnen. Du verdientst DevPoints durch die zwei unten genannten Möglichkeiten oder indem du dem DevPro-Team hilfst:  || ||- Nimm an DevPro-Events teil ||- Fixe-Bugs im DevPro Launcher oder in Karten-Scripts! ||- Hilf DevPro weiter zu wachsen</Supportgb2text>
+  <Supportgb3>Verdiene dir Devpoints!</Supportgb3>
+  <Supportgb3text>Verdiene Punkte durch kleine Aufträge.</Supportgb3text>
+  <Supportgb4>Spende!</Supportgb4>
+  <Supportgb4text>Erhalte Punkte, durch Spenden!</Supportgb4text>
+  <chatBtnoptions>Optionen</chatBtnoptions>
+  <chatTabUsers>Spieler</chatTabUsers>
+  <chatTabFriends>Freunde</chatTabFriends>
+  <chatTabIgnore>Ignorieren</chatTabIgnore>
 </LanguageInfo>

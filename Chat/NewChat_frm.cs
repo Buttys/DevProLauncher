@@ -47,7 +47,7 @@ namespace YGOPro_Launcher.Chat
 
             UserList.MouseUp += new MouseEventHandler(UserList_MouseUp);
             FriendList.MouseUp += new MouseEventHandler(FriendList_MouseUp);
-            IgnoreList.MouseUp += IgnoreList_MouseUp;
+            IgnoreList.MouseUp += new MouseEventHandler(IgnoreList_MouseUp);
 
             //custom form drawing
             UserList.DrawItem += new DrawItemEventHandler(UserList_DrawItem);
@@ -972,7 +972,9 @@ namespace YGOPro_Launcher.Chat
         }
         private void UnignoreUser(object sender, EventArgs e)
         {
-            WriteMessage(new ChatMessage(MessageType.System, null, UserList.SelectedItem.ToString() + " has been removed from your ignore list."));
+            if (IgnoreList.SelectedItem == null)
+                return;
+            WriteMessage(new ChatMessage(MessageType.System, null, IgnoreList.SelectedItem.ToString() + " has been removed from your ignore list."));
             IgnoreList.Items.Remove(IgnoreList.SelectedItem);
             SaveIgnoreList();
         }

@@ -138,7 +138,7 @@ namespace YGOPro_Launcher.Support
                 if(Program.Config.Language == "German")
                     Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RT24A27SHHCFL");
                 else
-                    Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZBSR9KTWRQWSA");
+                    Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QUFFXZSZGM7BC");
 
             }
             else
