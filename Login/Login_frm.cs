@@ -19,7 +19,7 @@ namespace YGOPro_Launcher
         internal Login_frm(Configuration configuration, NetClient connection, Authenticator authenticator)
         {
             InitializeComponent();
-            this.Text = Program.LanguageManager.Translation.MainFormTitle + " v" + Program.Version[0] + "." + Program.Version[1] + "." + Program.Version[2];
+            this.Text = "DevPro" + " v" + Program.Version[0] + "." + Program.Version[1] + "." + Program.Version[2]+ " r" + Program.Version[3];
             _configuration = configuration;
             _connection = connection;
             _authenticator = authenticator;

@@ -106,7 +106,7 @@ namespace YGOPro_Launcher.Chat
             Colorblindchk.Checked = Program.Config.ColorBlindMode;
             Timestampchk.Checked = Program.Config.ShowTimeStamp;
             DuelRequestchk.Checked = Program.Config.RefuseDuelRequests;
-            pmwindowchk.Checked = Program.Config.PMWindows;
+            pmwindowchk.Checked = Program.Config.PmWindows;
 
             if (Program.Config.ChatFont != "")
             {
@@ -239,8 +239,19 @@ namespace YGOPro_Launcher.Chat
                     {
                         GetChatWindow(message.Channel).WriteMessage(message, autoscroll);
                     }
+                    else
+                    {
+                        ChatWindow window = (ChatWindow)ChannelTabs.SelectedTab;
+                        if (window == null)
+                        {
+                            ChannelTabs.TabPages.Add(new ChatWindow(message.Type.ToString(), true) { issystemtab = true });
+                            GetChatWindow(message.Type.ToString()).WriteMessage(message, autoscroll);
+                        }
+                        else
+                            window.WriteMessage(message, autoscroll);
+                    }
                 }
-                else if (message.Type == MessageType.PrivateMessage && Program.Config.PMWindows)
+                else if (message.Type == MessageType.PrivateMessage && Program.Config.PmWindows)
                 {
                     if (PMWindows.ContainsKey(message.Channel))
                     {
@@ -718,8 +729,8 @@ namespace YGOPro_Launcher.Chat
                     Program.Config.HideJoinLeave = check.Checked;
                     break;
                 case "pmwindowchk":
-                    Program.Config.PMWindows = check.Checked;
-                    if (Program.Config.PMWindows)
+                    Program.Config.PmWindows = check.Checked;
+                    if (Program.Config.PmWindows)
                     {
                         List<ChatWindow> removelist = new List<ChatWindow>();
                         foreach (ChatWindow window in ChannelTabs.TabPages)
@@ -1025,7 +1036,7 @@ namespace YGOPro_Launcher.Chat
 
             if (list.SelectedItem == null)
                 return;
-            if (Program.Config.PMWindows)
+            if (Program.Config.PmWindows)
             {
                 if (!PMWindows.ContainsKey(list.SelectedItem.ToString()))
                 {

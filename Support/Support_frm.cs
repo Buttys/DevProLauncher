@@ -33,9 +33,9 @@ namespace YGOPro_Launcher.Support
         {
             LanguageInfo lang = Program.LanguageManager.Translation;
 
-            AddItem(Properties.Resources.rankup, lang.SupportItem1Name, FormatString(lang.SupportItem1Des), 50, "DEVSTATUS", false);
-            AddItem(Properties.Resources.maskchange, lang.SupportItem2Name, FormatString(lang.SupportItem2Des), 100, "DEVRENAME", true);
-            AddItem(Properties.Resources.desruct, lang.SupportItem3Name, FormatString(lang.SupportItem3Des), 20, "DEVRESETRANK", false);
+            AddItem(Properties.Resources.rankup, lang.SupportItem1Name, FormatString(lang.SupportItem1Des), 100, "DEVSTATUS", false);
+            AddItem(Properties.Resources.maskchange, lang.SupportItem2Name, FormatString(lang.SupportItem2Des), 200, "DEVRENAME", true);
+            AddItem(Properties.Resources.desruct, lang.SupportItem3Name, FormatString(lang.SupportItem3Des), 50, "DEVRESETRANK", false);
             AddItem(Properties.Resources.bookoflife, lang.SupportItem4Name, FormatString(lang.SupportItem4Des), 1000, "DEVUNBAN", true);
             groupBox4.Text = lang.SupportBalance;
             groupBox2.Text = lang.Supportgb2;
@@ -99,6 +99,7 @@ namespace YGOPro_Launcher.Support
             {
                 Input_frm form = new Input_frm("Input", "Enter Value", "Confirm", "Cancel");
                 form.InputBox.KeyDown += new KeyEventHandler(Suppress_Space);
+                form.InputBox.MaxLength = 14;
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -107,7 +108,7 @@ namespace YGOPro_Launcher.Support
                         MessageBox.Show("Input cannot be empty");
                         return;
                     }
-                    Program.ChatServer.SendPacket("DEVPOINTS||" + servercommand + "||" + form.InputBox.Text);
+                    Program.ChatServer.SendPacket("DEVPOINTS||" + servercommand + "||" + form.InputBox.Text.Trim());
                 }
             }
             else
@@ -127,20 +128,18 @@ namespace YGOPro_Launcher.Support
         private void OfferLink_Click(object sender, EventArgs e)
         {
             if (Program.Config.DefaultServer == "DevPro EU")
-                Process.Start("http://iframe.sponsorpay.com/?appid=11433&uid=" + Program.UserInfo.Username);
+                Process.Start("http://iframe.sponsorpay.com/?appid=11433&uid=" + Program.UserInfo.Username + "&pup0=eu");
+            else if (Program.Config.DefaultServer == "DevPro USA")
+                Process.Start("http://iframe.sponsorpay.com/?appid=11433&uid="+Program.UserInfo.Username+"&pup0=us");
             else
                 MessageBox.Show("Offers are not available on this server.");
         }
         private void DonateLink_Click(object sender, EventArgs e)
         {
             if (Program.Config.DefaultServer == "DevPro EU")
-            {
-                if(Program.Config.Language == "German")
-                    Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RT24A27SHHCFL");
-                else
-                    Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QUFFXZSZGM7BC");
-
-            }
+                Process.Start("https://wallapi.com/api/?key=5a7ef592b505f1e3c5cdb9d4e8614790&uid=" + Program.UserInfo.Username + "&widget=w1_1");
+            if (Program.Config.DefaultServer == "DevPro USA")
+                Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HVXKL4885X7JC");
             else
                 MessageBox.Show("Donations are not available on this server.");
         }

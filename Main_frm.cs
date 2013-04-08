@@ -23,7 +23,7 @@ namespace YGOPro_Launcher
             }
 
             char[] version = Program.Version.ToCharArray();
-            this.Text = Program.LanguageManager.Translation.MainFormTitle + " v" + version[0] + "." + version[1] + "." + version[2] + " - " + Program.UserInfo.Username;
+            this.Text = "DevPro" + " v" + version[0] + "." + version[1] + "." + version[2] + " r" + Program.Version[3] + " - " + Program.UserInfo.Username;
 
             TabPage FileManager = new TabPage(){ Name = "File Manager", Text = Program.LanguageManager.Translation.MainFileManagerTab};
             TabControl FileControl = new TabControl();
@@ -99,7 +99,7 @@ namespace YGOPro_Launcher
         }
         public void UpdateUsername(string username)
         {
-            this.Text = Program.LanguageManager.Translation.MainFormTitle + " v" + Program.Version[0] + "." + Program.Version[1] + "." + Program.Version[2] + " - " + Program.UserInfo.Username;
+            this.Text = "DevPro" + " v" + Program.Version[0] + "." + Program.Version[1] + "." + Program.Version[2] + " r" + Program.Version[3] + " - " + Program.UserInfo.Username;
         }
 
         private void ServerMessage(string message)

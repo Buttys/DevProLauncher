@@ -88,8 +88,8 @@
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 86F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(172, 405);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -97,9 +97,9 @@
             // 
             this.groupBox3.Controls.Add(this.tableLayoutPanel3);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 329);
+            this.groupBox3.Location = new System.Drawing.Point(3, 319);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(166, 73);
+            this.groupBox3.Size = new System.Drawing.Size(166, 83);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Donate!";
@@ -114,9 +114,9 @@
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.8209F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 64.17911F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(160, 54);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.4375F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.5625F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(160, 64);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // DonateLink
@@ -124,9 +124,9 @@
             this.DonateLink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.DonateLink.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DonateLink.Image = global::YGOPro_Launcher.Properties.Resources.btn_donate_LG;
-            this.DonateLink.Location = new System.Drawing.Point(3, 22);
+            this.DonateLink.Location = new System.Drawing.Point(3, 34);
             this.DonateLink.Name = "DonateLink";
-            this.DonateLink.Size = new System.Drawing.Size(154, 29);
+            this.DonateLink.Size = new System.Drawing.Size(154, 27);
             this.DonateLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.DonateLink.TabIndex = 0;
             this.DonateLink.TabStop = false;
@@ -136,7 +136,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(154, 19);
+            this.label2.Size = new System.Drawing.Size(154, 31);
             this.label2.TabIndex = 1;
             this.label2.Text = "Earn by donating (Paypal Only)";
             // 
@@ -144,9 +144,9 @@
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel4);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 243);
+            this.groupBox1.Location = new System.Drawing.Point(3, 219);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(166, 80);
+            this.groupBox1.Size = new System.Drawing.Size(166, 94);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Earn DevPoints";
@@ -154,16 +154,16 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.OfferLink, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.54099F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.45901F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(160, 61);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(160, 75);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // OfferLink
@@ -171,9 +171,9 @@
             this.OfferLink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.OfferLink.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OfferLink.Image = global::YGOPro_Launcher.Properties.Resources.OfferWall_Btn;
-            this.OfferLink.Location = new System.Drawing.Point(3, 32);
+            this.OfferLink.Location = new System.Drawing.Point(3, 39);
             this.OfferLink.Name = "OfferLink";
-            this.OfferLink.Size = new System.Drawing.Size(154, 26);
+            this.OfferLink.Size = new System.Drawing.Size(154, 33);
             this.OfferLink.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.OfferLink.TabIndex = 1;
             this.OfferLink.TabStop = false;
@@ -184,7 +184,7 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 29);
+            this.label3.Size = new System.Drawing.Size(154, 36);
             this.label3.TabIndex = 0;
             this.label3.Text = "Earn points by completing offers.";
             // 
@@ -194,7 +194,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 63);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(166, 174);
+            this.groupBox2.Size = new System.Drawing.Size(166, 150);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Support DevPro";
@@ -204,7 +204,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 155);
+            this.label1.Size = new System.Drawing.Size(160, 131);
             this.label1.TabIndex = 0;
             this.label1.Text = resources.GetString("label1.Text");
             // 

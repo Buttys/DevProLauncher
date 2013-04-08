@@ -454,6 +454,8 @@ namespace YGOPro_Launcher
                             ToolStripMenuItem mnubattlemusic = new ToolStripMenuItem("Apply to battle music");
                             ToolStripMenuItem mnuadcantagemusic = new ToolStripMenuItem("Apply to advantage battle music");
                             ToolStripMenuItem mnudisadvantagemusic = new ToolStripMenuItem("Apply to disadvantage battle music");
+                            ToolStripMenuItem mnuvictorymusic = new ToolStripMenuItem("Apply to Victory music");
+                            ToolStripMenuItem mnulosemusic = new ToolStripMenuItem("Apply to Lose music");
 
                             mnuplaymusic.Click += new EventHandler(PlayMusic);
                             mnumenumusic.Click += new EventHandler(mnumenumusic_Click);
@@ -461,6 +463,8 @@ namespace YGOPro_Launcher
                             mnubattlemusic.Click += new EventHandler(mnubattlemusic_Click);
                             mnuadcantagemusic.Click += new EventHandler(mnuadcantagemusic_Click);
                             mnudisadvantagemusic.Click += new EventHandler(mnudisadvantagemusic_Click);
+                            mnuvictorymusic.Click += new EventHandler(mnuvictorymusic_Click);
+                            mnulosemusic.Click += new EventHandler(mnulosemusic_Click);
 
                             mnu.Items.AddRange(new ToolStripItem[] { mnuplaymusic, new ToolStripSeparator(), mnumenumusic, mnudeckmusic, mnubattlemusic, mnuadcantagemusic, mnudisadvantagemusic });
                         }
@@ -514,6 +518,16 @@ namespace YGOPro_Launcher
         {
             ListViewItem item = this.ContentList.SelectedItems[0];
             installmusic(Data[contentView].AssetPath + item.Text + Data[contentView].FileType, Data[contentView].GameItem + "song-disadvantage" + Data[contentView].FileType);
+        }
+        void mnuvictorymusic_Click(object sender, EventArgs args)
+        {
+            ListViewItem item = this.ContentList.SelectedItems[0];
+            installmusic(Data[contentView].AssetPath + item.Text + Data[contentView].FileType, Data[contentView].GameItem + "duelwin" + Data[contentView].FileType);
+        }
+        void mnulosemusic_Click(object sender, EventArgs args)
+        {
+            ListViewItem item = this.ContentList.SelectedItems[0];
+            installmusic(Data[contentView].AssetPath + item.Text + Data[contentView].FileType, Data[contentView].GameItem + "duellose" + Data[contentView].FileType);
         }
 
         void PlayMusic(object sender, EventArgs args)

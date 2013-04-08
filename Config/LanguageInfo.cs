@@ -252,7 +252,7 @@ namespace YGOPro_Launcher.Config
         public string Supportgb3 = "Earn DevPoints";
         public string Supportgb3text = "Earn points by completing offfers.";
         public string Supportgb4 = "Donate!";
-        public string Supportgb4text = "Earn by donating (Paypal Only)";
+        public string Supportgb4text = "Earn by donating (Paypal, PaySafe, SMS and more)";
 
     }
 }

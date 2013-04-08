@@ -58,7 +58,7 @@ namespace YGOPro_Launcher.Config
         public bool ColorBlindMode = false;
         public bool ShowTimeStamp = false;
         public bool RefuseDuelRequests = false;
-        public bool PMWindows = false;
+        public bool PmWindows = true;
 
         public SerializableColor ChatBGColor = new SerializableColor(Color.White);
         public SerializableColor NormalTextColor = new SerializableColor(Color.Black);
