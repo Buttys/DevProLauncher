@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Support_frm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -46,6 +47,8 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.LeftItems = new System.Windows.Forms.TableLayoutPanel();
             this.RightItems = new System.Windows.Forms.TableLayoutPanel();
+            this.refreshbtn = new System.Windows.Forms.Button();
+            this.refreshtimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -71,7 +74,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(821, 411);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(938, 494);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -83,21 +86,21 @@
             this.tableLayoutPanel2.Controls.Add(this.groupBox2, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.groupBox4, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(646, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(763, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 89F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(172, 405);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(172, 488);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.tableLayoutPanel3);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 319);
+            this.groupBox3.Location = new System.Drawing.Point(3, 402);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(166, 83);
             this.groupBox3.TabIndex = 3;
@@ -144,7 +147,7 @@
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel4);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 219);
+            this.groupBox1.Location = new System.Drawing.Point(3, 302);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(166, 94);
             this.groupBox1.TabIndex = 2;
@@ -194,7 +197,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 63);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(166, 150);
+            this.groupBox2.Size = new System.Drawing.Size(166, 233);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Support DevPro";
@@ -204,7 +207,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 131);
+            this.label1.Size = new System.Drawing.Size(160, 214);
             this.label1.TabIndex = 0;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -242,7 +245,7 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(637, 405);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(754, 488);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
             // LeftItems
@@ -255,7 +258,7 @@
             this.LeftItems.RowCount = 2;
             this.LeftItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.LeftItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.LeftItems.Size = new System.Drawing.Size(312, 399);
+            this.LeftItems.Size = new System.Drawing.Size(371, 482);
             this.LeftItems.TabIndex = 0;
             // 
             // RightItems
@@ -263,19 +266,35 @@
             this.RightItems.ColumnCount = 1;
             this.RightItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 313F));
             this.RightItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightItems.Location = new System.Drawing.Point(321, 3);
+            this.RightItems.Location = new System.Drawing.Point(380, 3);
             this.RightItems.Name = "RightItems";
             this.RightItems.RowCount = 2;
             this.RightItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.RightItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.RightItems.Size = new System.Drawing.Size(313, 399);
+            this.RightItems.Size = new System.Drawing.Size(371, 482);
             this.RightItems.TabIndex = 1;
+            // 
+            // refreshbtn
+            // 
+            this.refreshbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.refreshbtn.Location = new System.Drawing.Point(874, 47);
+            this.refreshbtn.Name = "refreshbtn";
+            this.refreshbtn.Size = new System.Drawing.Size(57, 23);
+            this.refreshbtn.TabIndex = 1;
+            this.refreshbtn.Text = "Refresh";
+            this.refreshbtn.UseVisualStyleBackColor = true;
+            this.refreshbtn.Click += new System.EventHandler(this.refreshbtn_Click);
+            // 
+            // refreshtimer
+            // 
+            this.refreshtimer.Interval = 2000;
             // 
             // Support_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 411);
+            this.ClientSize = new System.Drawing.Size(938, 494);
+            this.Controls.Add(this.refreshbtn);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Support_frm";
@@ -315,5 +334,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel LeftItems;
         private System.Windows.Forms.TableLayoutPanel RightItems;
+        private System.Windows.Forms.Button refreshbtn;
+        private System.Windows.Forms.Timer refreshtimer;
     }
 }

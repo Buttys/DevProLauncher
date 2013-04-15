@@ -12,23 +12,25 @@ namespace YGOPro_Launcher.Chat
         public string Channel;
         public UserData From;
         public MessageType Type;
+        public CommandType Command;
         public DateTime Time;
-        
 
-        public ChatMessage(MessageType type, UserData user,string channel,string message,bool isencoded)
+        public ChatMessage(MessageType type,CommandType command, UserData user,string channel,string message,bool isencoded)
         {
             if (isencoded) FormattedMessage = LauncherHelper.Base64toString(message);
             else FormattedMessage = message;
             Type = type;
             From = user;
             Channel = channel;
+            Command = command;
             Time = DateTime.Now;
         }
-        public ChatMessage(MessageType type, string channel, string message)
+        public ChatMessage(MessageType type,CommandType command, string channel, string message)
         {
             FormattedMessage = message;
             Type = type;
             Channel = channel;
+            Command = command;
             Time = DateTime.Now;
         }
 
@@ -46,8 +48,6 @@ namespace YGOPro_Launcher.Chat
                         return Program.Config.ServerMsgColor.ToColor();
                     case MessageType.System:
                         return Program.Config.SystemColor.ToColor();
-                    case MessageType.Me:
-                        return Program.Config.MeMsgColor.ToColor();
                     case MessageType.Join:
                         return Program.Config.JoinColor.ToColor();
                     case MessageType.Leave:
@@ -58,14 +58,12 @@ namespace YGOPro_Launcher.Chat
             }
         }
 
-        public Color UserColor
+        public Color RankColor
         {
             get
             {
                 switch (From.Rank)
                 {
-                    case -1:
-                        return Program.Config.DonatorColor.ToColor();
                     case 0:
                         return Program.Config.Level0Color.ToColor();
                     case 1:
@@ -84,8 +82,6 @@ namespace YGOPro_Launcher.Chat
         {
                 switch (rank)
                 {
-                    case -1:
-                        return new SolidBrush(Program.Config.DonatorColor.ToColor());
                     case 0:
                         return new SolidBrush(Program.Config.Level0Color.ToColor());
                     case 1:

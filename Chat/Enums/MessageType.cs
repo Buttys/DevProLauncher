@@ -2,14 +2,13 @@
 {
     public enum MessageType
     {
-        MOTD = 0,
-        Me = 1,
-        FriendRequest = 2,
-        System = 3,
-        Server = 4,
-        Message = 5,
-        PrivateMessage = 6,
-        Join = 7,
-        Leave = 8
+        Message = 1,
+        Server = 2,
+        PrivateMessage = 3,
+        Team = 4,
+        System = 5,
+        Join = 6,
+        Leave = 7,
+        MOTD = 8
     }
 }

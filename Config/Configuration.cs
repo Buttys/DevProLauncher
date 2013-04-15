@@ -59,6 +59,8 @@ namespace YGOPro_Launcher.Config
         public bool ShowTimeStamp = false;
         public bool RefuseDuelRequests = false;
         public bool PmWindows = true;
+        public bool UsernameColors = true;
+        public bool RefuseTeamInvites = false;
 
         public SerializableColor ChatBGColor = new SerializableColor(Color.White);
         public SerializableColor NormalTextColor = new SerializableColor(Color.Black);
@@ -71,7 +73,6 @@ namespace YGOPro_Launcher.Config
         public SerializableColor JoinColor = new SerializableColor(Color.Green);
         public SerializableColor LeaveColor = new SerializableColor(Color.Gray);
         public SerializableColor SystemColor = new SerializableColor(Color.Purple);
-        public SerializableColor DonatorColor = new SerializableColor(Color.FromArgb(255,227,122,28));
 
         public string chtBanList = "";
         public string chtTimeLimit = "3 minutes";

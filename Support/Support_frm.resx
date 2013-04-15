@@ -120,4 +120,7 @@
   <data name="label1.Text" xml:space="preserve">
     <value>The DevPoint system is here to reward users who help out and support DevPro. While the 2 options below will earn you DevPoints you can also earn points for helping DevPro too!    - Taking part in DevPro Events  - Fixing DevPro bugs Launcher or card scripts!  - Supporting the growth of DevPro</value>
   </data>
+  <metadata name="refreshtimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

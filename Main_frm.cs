@@ -47,30 +47,22 @@ namespace YGOPro_Launcher
             TabPage AboutTab = new TabPage() { Name = "About", Text = Program.LanguageManager.Translation.MainAboutTab};
             AboutTab.Controls.Add(new About_frm());                    
             
-            TabPage ChatTab = new TabPage() { Text = "Chat (Beta v2)", Name = Program.LanguageManager.Translation.MainChatTab};
+            TabPage ChatTab = new TabPage() { Text = "Chat (Beta v3)", Name = Program.LanguageManager.Translation.MainChatTab};
             ChatTab.Controls.Add(new NewChat_frm());
 
-            TabPage RankingTab = new TabPage() { Text = Program.LanguageManager.Translation.MainRankingTab, Name = "Ranking" };
-            RankingTab.Controls.Add(new WebBrowserTab_frm());
 
-            TabPage YoutubeTab = new TabPage() { Text = Program.LanguageManager.Translation.MainYoutubeTab, Name = "Youtube" };
-            YoutubeTab.Controls.Add(new WebBrowserTab_frm());
-
-            TabPage TornyTab = new TabPage() { Text = Program.LanguageManager.Translation.MainTornyTab, Name = "Tournament Room" };
-            TornyTab.Controls.Add(new WebBrowserTab_frm());
-
-            TabPage sponserTab = new TabPage() { Text = "Sponser", Name = "Sponser" };
-            sponserTab.Controls.Add(new WebBrowserTab_frm());
             TabPage supportTab = new TabPage() { Text = "Support DevPro", Name = "Support" };
             supportTab.Controls.Add(new Support.Support_frm());
 
-            ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,
+            TabPage patchTab = new TabPage() { Text = "Patch Notes", Name = "Notes" };
+            patchTab.Controls.Add(new PatchNotes_frm());
+
+            ServerControl.TabPages.AddRange(new TabPage[] { ServerTab,patchTab,
             ChatTab,
             FileManager, CustomizeTab,supportTab, AboutTab });
 
             Program.ServerConnection.ServerMessage += new NetClient.ServerResponse(ServerMessage);
             ConnectionCheck.Tick += new EventHandler(CheckConnection);
-            ServerControl.SelectedIndexChanged += new EventHandler(NavigateOnClick);
 
             LauncherHelper.LoadBanlist();
 
@@ -140,46 +132,7 @@ namespace YGOPro_Launcher
 
             ConnectionCheck.Enabled = true;
         }
-
-        private void NavigateOnClick(object sender,EventArgs e)
-        {
-            TabControl tabpanel = (TabControl)sender;
-            TabPage tab = tabpanel.SelectedTab;
-
-            foreach (Control control in tab.Controls)
-            {
-                if (control is WebBrowserTab_frm)
-                {
-                    WebBrowserTab_frm browser = (WebBrowserTab_frm)control;
-                    if (tab.Name == "Tournament Room")
-                    {
-                        if(!browser.IsLoaded())
-                            browser.Navigate("http://devpro.org/launcher/tournamentchat.php");
-                    }
-                    else if (tab.Name == "Youtube")
-                    {
-                        if (!browser.IsLoaded())
-                            browser.Navigate("https://www.youtube.com/user/blub2blb");
-                    }
-                    else if (tab.Name == "Ranking")
-                    {
-                        if (!browser.IsLoaded())
-                        {
-                            if(Program.Config.ServerName == "DevPro USA")
-                                browser.Navigate("http://devpro.org/launcher/ranking/ranking.php");
-                            else
-                                browser.Navigate("http://dev.ygopro-online.net/launcher/ranking/");
-                        }
-                    }
-                    else if (tab.Name == "Sponser")
-                    {
-                        string useruid = Program.UserInfo.Username;
-                        if (!browser.IsLoaded())
-                            browser.Navigate("http://iframe.sponsorpay.com/?appid=11433&uid=" + useruid);
-                    }
-                }
-            }
-            
-        }
+  
+        
     }
 }

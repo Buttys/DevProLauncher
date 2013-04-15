@@ -199,13 +199,19 @@
   <DuelRequestRules> Rules: </DuelRequestRules>
   <DuelRequestMode> Type: </DuelRequestMode>
   <SupportItem1Name>Donator Status</SupportItem1Name>
-  <SupportItem1Des>Unlocks Donator status in chat with additional chat commands.</SupportItem1Des>
+  <SupportItem1Des>Unlocks Donator status in chat, Orange username and additional chat commands.</SupportItem1Des>
   <SupportItem2Name>Change Username</SupportItem2Name>
   <SupportItem2Des>Change your account name while retaining all your ranked stats.</SupportItem2Des>
   <SupportItem3Name>Reset Ranking Stats</SupportItem3Name>
   <SupportItem3Des>Reset your ranking stats.</SupportItem3Des>
   <SupportItem4Name>Unban User</SupportItem4Name>
   <SupportItem4Des>Unban a user who was banned.</SupportItem4Des>
+  <SupportItem5Name>Custom Username Color</SupportItem5Name>
+  <SupportItem5Des>Change the color of your username in chat.</SupportItem5Des>
+  <SupportItem6Name>Create Team</SupportItem6Name>
+  <SupportItem6Des>Create a team.</SupportItem6Des>
+  <SupportItem7Name>Send Server Message</SupportItem7Name>
+  <SupportItem7Des>Send a server message to everyone.(Limited: 3 Messages per day)</SupportItem7Des>
   <SupportBalance>Balance</SupportBalance>
   <Supportgb2>Support DevPro</Supportgb2>
   <Supportgb2text>The DevPoint system is here to reward users who help out and support DevPro. While the 2 options below will earn you DevPoints you can also earn points for helping DevPro too!  || ||- Taking part in DevPro Events  - Fixing DevPro bugs Launcher or card scripts! || - Supporting the growth of DevPro</Supportgb2text>

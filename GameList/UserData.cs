@@ -1,4 +1,5 @@
-﻿namespace YGOPro_Launcher
+﻿using System.Drawing;
+namespace YGOPro_Launcher
 {
     public class UserData
     {
@@ -9,5 +10,8 @@
         public int Loses = 0;
         public int Draws = 0;
         public int LoginID = 0;
+        public Color UserColor = Color.Black;
+        public string Team = "";
+        public int TeamRank = 0;
     }
 }

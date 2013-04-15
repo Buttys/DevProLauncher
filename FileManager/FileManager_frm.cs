@@ -205,6 +205,9 @@ namespace YGOPro_Launcher
 
         private void FileList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (FileList.SelectedIndex == -1)
+                return;
+
             if (Name == "Decks")
             {
                 ((CardInfoControl)InfoWindow).LoadDeck((Program.Config.LauncherDir == "" ? Path.GetDirectoryName(Application.ExecutablePath) + "/":"") + FileLocation +  FileList.SelectedItem.ToString() + ".ydk");

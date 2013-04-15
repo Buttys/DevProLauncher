@@ -71,6 +71,7 @@
     <Compile Include="Chat\DuelRequest_frm.Designer.cs">
       <DependentUpon>DuelRequest_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Chat\Enums\CommandType.cs" />
     <Compile Include="Chat\Enums\MessageType.cs" />
     <Compile Include="Chat\FixedTabControl.cs">
       <SubType>Component</SubType>
@@ -91,6 +92,12 @@
     </Compile>
     <Compile Include="Chat\CustomRTB.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Chat\TeamProfile_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chat\TeamProfile_frm.Designer.cs">
+      <DependentUpon>TeamProfile_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="Config\Configuration.cs" />
     <Compile Include="Config\LanguageInfo.cs" />
@@ -188,6 +195,12 @@
     <Compile Include="GameList\Options_frm.Designer.cs">
       <DependentUpon>Options_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PatchNotes_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatchNotes_frm.Designer.cs">
+      <DependentUpon>PatchNotes_frm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Login\Register_frm.cs">
@@ -226,17 +239,15 @@
     <Compile Include="Support\Support_item.Designer.cs">
       <DependentUpon>Support_item.cs</DependentUpon>
     </Compile>
-    <Compile Include="WebBrowserTab_frm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WebBrowserTab_frm.Designer.cs">
-      <DependentUpon>WebBrowserTab_frm.cs</DependentUpon>
-    </Compile>
     <Content Include="Language\English\English.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Language\French\cards.cdb" />
     <Content Include="Language\French\strings.conf" />
+    <None Include="Resources\message.png" />
+    <None Include="Resources\patchnotes.rtf" />
+    <None Include="Resources\sixsam.png" />
+    <None Include="Resources\DNA.png" />
     <None Include="Resources\OfferWall_Btn.png" />
     <None Include="Resources\YgoUpdater.exe" />
     <None Include="Resources\images.jpg" />
@@ -250,17 +261,20 @@
     <EmbeddedResource Include="Chat\NewChat_frm.resx">
       <DependentUpon>NewChat_frm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Chat\TeamProfile_frm.resx">
+      <DependentUpon>TeamProfile_frm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileManager\FileCleaner.resx">
       <DependentUpon>FileCleaner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatchNotes_frm.resx">
+      <DependentUpon>PatchNotes_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Support\Support_frm.resx">
       <DependentUpon>Support_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Support\Support_item.resx">
       <DependentUpon>Support_item.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WebBrowserTab_frm.resx">
-      <DependentUpon>WebBrowserTab_frm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Language\English\strings.conf" />
     <None Include="Resources\btn_donate_LG.gif" />

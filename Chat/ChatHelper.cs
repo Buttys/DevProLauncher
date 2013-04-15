@@ -22,19 +22,50 @@ namespace YGOPro_Launcher.Chat
             if (window.Text != "")//start a new line unless theres no text
                 window.AppendText(Environment.NewLine);
             window.Select(window.TextLength, 0);
-            if (message.Type == MessageType.Message || message.Type == MessageType.PrivateMessage)
+            
+            if (message.Command == CommandType.Me)
+            {
+                WriteText(window, message.FormattedMessage, Program.Config.MeMsgColor.ToColor());
+            }
+            else if (message.Type == MessageType.Team && message.Command == CommandType.TeamServerMessage)
+            {
+                WriteText(window, "[TeamMessage] " + message.FormattedMessage,(Program.Config.ColorBlindMode ? Color.Black : Program.Config.ServerMsgColor.ToColor()));
+            }
+            else if (message.Type == MessageType.Message || message.Type == MessageType.PrivateMessage || message.Type == MessageType.Team)
             {
                 if (Program.Config.ShowTimeStamp)
                     WriteText(window, message.Time.ToString("[HH:mm] "), (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
+                if (message.From.Rank > 0)
+                {
+                    WriteText(window, "[", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
+                    WriteText(window, "Dev", (Program.Config.ColorBlindMode ? Color.Black : message.RankColor));
+                    WriteText(window, "]", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
+                }
                 WriteText(window, "[", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
-                WriteText(window, (Program.Config.ColorBlindMode && message.From.Rank > 0 ? "[Admin]" + message.From.Username : message.From.Username),
-                    (Program.Config.ColorBlindMode ? Color.Black : message.UserColor));
+                if (Program.Config.UsernameColors)
+                {
+                    if (message.From.UserColor.ToArgb() == Color.Black.ToArgb())
+                    {
+                        WriteText(window, message.From.Username,
+                            (Program.Config.ColorBlindMode ? Color.Black : Program.Config.Level0Color.ToColor()));
+                    }
+                    else
+                    {
+                        WriteText(window, message.From.Username,
+                            (Program.Config.ColorBlindMode ? Color.Black : message.From.UserColor));
+                    }
+                }
+                else
+                {
+                    WriteText(window, message.From.Username,
+                        (Program.Config.ColorBlindMode ? Color.Black : Program.Config.Level0Color.ToColor()));
+                }
                 WriteText(window, "]: ", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
 
                 if (message.From.Rank == 0)
                     WriteText(window, message.FormattedMessage.Trim(), (Program.Config.ColorBlindMode ? Color.Black : message.MessageColor));
                 else
-                    FormatText(message.FormattedMessage.Trim(),window);
+                    FormatText(message.FormattedMessage.Trim(), window);
 
             }
             else if (message.Type == MessageType.System || message.Type == MessageType.Server)
@@ -109,6 +140,16 @@ namespace YGOPro_Launcher.Chat
                 }
             }
             return containedtags.ToArray();
+        }
+
+        public static void SendMessage(string ChatInput,string channel,bool isprivate)
+        {
+            if (isprivate)
+            {
+                Program.ChatServer.SendMessage(MessageType.PrivateMessage, CommandType.None, channel, ChatInput);
+            }
+            else
+                Program.ChatServer.SendMessage(MessageType.Message, CommandType.None, channel, ChatInput);
         }
     }
 }

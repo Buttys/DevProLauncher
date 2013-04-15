@@ -117,7 +117,6 @@
             this.Username = new System.Windows.Forms.Label();
             this.rank = new System.Windows.Forms.Label();
             this.team = new System.Windows.Forms.Label();
-            this.rating = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.TagWLD = new System.Windows.Forms.Label();
@@ -126,6 +125,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Single = new System.Windows.Forms.Label();
             this.SingleWLD = new System.Windows.Forms.Label();
+            this.UserLevel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -1120,7 +1120,7 @@
             this.tableLayoutPanel65.Controls.Add(this.Username, 0, 0);
             this.tableLayoutPanel65.Controls.Add(this.rank, 0, 1);
             this.tableLayoutPanel65.Controls.Add(this.team, 1, 0);
-            this.tableLayoutPanel65.Controls.Add(this.rating, 1, 1);
+            this.tableLayoutPanel65.Controls.Add(this.UserLevel, 1, 1);
             this.tableLayoutPanel65.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel65.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel65.Name = "tableLayoutPanel65";
@@ -1159,17 +1159,6 @@
             this.team.Size = new System.Drawing.Size(40, 13);
             this.team.TabIndex = 3;
             this.team.Text = "Team: ";
-            // 
-            // rating
-            // 
-            this.rating.AutoSize = true;
-            this.rating.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rating.Location = new System.Drawing.Point(198, 27);
-            this.rating.Name = "rating";
-            this.rating.Size = new System.Drawing.Size(190, 27);
-            this.rating.TabIndex = 4;
-            this.rating.Text = "Rating: ";
-            this.rating.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox4
             // 
@@ -1271,6 +1260,16 @@
             this.SingleWLD.TabIndex = 3;
             this.SingleWLD.Text = "0/0/0";
             this.SingleWLD.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // UserLevel
+            // 
+            this.UserLevel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UserLevel.Location = new System.Drawing.Point(198, 27);
+            this.UserLevel.Name = "UserLevel";
+            this.UserLevel.Size = new System.Drawing.Size(190, 27);
+            this.UserLevel.TabIndex = 4;
+            this.UserLevel.Text = "Lvl: 1";
+            this.UserLevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Profile_frm
             // 
@@ -1405,6 +1404,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Single;
         private System.Windows.Forms.Label SingleWLD;
-        private System.Windows.Forms.Label rating;
+        private System.Windows.Forms.Label UserLevel;
     }
 }

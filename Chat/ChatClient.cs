@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System;
 using System.Text;
 using YGOPro_Launcher.Chat.Enums;
+using System.Drawing;
 namespace YGOPro_Launcher.Chat
 {
     public class ChatClient
@@ -28,12 +29,15 @@ namespace YGOPro_Launcher.Chat
         public ServerResponse RemoveUser;
         public ServerResponse Login;
         public ServerResponse DuelRequest;
+        public ServerResponse TeamRequest;
+        public ServerResponse TeamStats;
         public ServerResponse FriendList;
         public ServerMessage Message;
         public ServerMessage Error;
         public ServerResponse JoinChannel;
         public ServerResponse LeaveChannel;
         public ServerResponse DevPointMSG;
+        public ServerResponse ProfileMessage;
         public DateTime PingRequest;
 
         public ChatClient()
@@ -82,6 +86,22 @@ namespace YGOPro_Launcher.Chat
                 return;
             try
             {
+                byte[] data = Encoding.UTF8.GetBytes(packet + "\n");
+                m_client.Client.Send(data, data.Length, SocketFlags.None);
+            }
+            catch (Exception)
+            {
+                OnDisconnected();
+            }
+        }
+
+        public void SendMessage(MessageType Type, CommandType Command, string channel, string message)
+        {
+            if (!IsConnected)
+                return;
+            try
+            {
+                string packet = "MSG||" + channel + "||" + (int)Type +"||" + (int)Command + "||" + LauncherHelper.StringToBase64(message);
                 byte[] data = Encoding.UTF8.GetBytes(packet + "\n");
                 m_client.Client.Send(data, data.Length, SocketFlags.None);
             }
@@ -162,6 +182,16 @@ namespace YGOPro_Launcher.Chat
                 if (JoinChannel != null)
                     JoinChannel(args[1]);
             }
+            else if (cmd == "TEAM")
+            {
+                if (TeamRequest != null)
+                {
+                    if (args.Length > 2)
+                        TeamRequest(args[1] + "||" + args[2]);
+                    else
+                        TeamRequest(args[1]);
+                }
+            }
             else if (cmd == "LOGIN")
             {
                 if (args[1] != "")
@@ -175,7 +205,7 @@ namespace YGOPro_Launcher.Chat
             {
                 string[] userinfo = args[1].Split(',');
                 if (Message != null)
-                    Message(new ChatMessage((MessageType)Convert.ToInt32(args[3]), new UserData() { Username = userinfo[0], Rank = Convert.ToInt32(userinfo[1]) }, args[2], args[4], true));
+                    Message(new ChatMessage((MessageType)Convert.ToInt32(args[3]), (CommandType)Convert.ToInt32(args[4]), new UserData() { Username = userinfo[0], Rank = Convert.ToInt32(userinfo[1]), UserColor = Color.FromArgb(255, Convert.ToInt32(userinfo[2]), Convert.ToInt32(userinfo[3]), Convert.ToInt32(userinfo[4])) }, args[2], args[5], true));
             }
             else if (cmd == "STARTDUEL")
             {
@@ -195,30 +225,40 @@ namespace YGOPro_Launcher.Chat
             else if (cmd == "ACCEPTDUEL")
             {
                 if (Message != null)
-                    Message(new ChatMessage(MessageType.System, "DevPro", args[1] + " has accepted your duel request."));
+                    Message(new ChatMessage(MessageType.System, CommandType.None, "DevPro", args[1] + " has accepted your duel request."));
             }
             else if (cmd == "DEVPOINTS")
             {
                 if (DevPointMSG != null)
                     DevPointMSG(command);
             }
+            else if (cmd == "STATS")
+            {
+                if (ProfileMessage != null)
+                    ProfileMessage(args[1] + "||" + args[2] + "||" + args[3] + "||" + args[4] + "||" + args[5] + "||" + args[6]);
+            }
+            else if (cmd == "TEAMSTATS")
+            {
+                if (TeamStats != null)
+                    TeamStats(args[1]);
+            }
             else if (cmd == "ADMIN")
             {
                 if (args.Length >= 3)
                 {
                     if (Message != null)
-                        Message(new ChatMessage(MessageType.Server, "DevPro", args[2]));
+                        Message(new ChatMessage(MessageType.Server, CommandType.None, "DevPro", args[2]));
                 }
             }
             else if (cmd == "PONG")
             {
                 if (Message != null)
-                    Message(new ChatMessage(MessageType.Server, "DevPro","Pong!: " + -(int)PingRequest.Subtract(DateTime.Now).TotalMilliseconds + "ms"));
+                    Message(new ChatMessage(MessageType.Server, CommandType.None, "DevPro", "Pong!: " + -(int)PingRequest.Subtract(DateTime.Now).TotalMilliseconds + "ms"));
             }
             else
             {
                 if (Error != null)
-                    Error(new ChatMessage(MessageType.System, "DevPro", "Unknown Packet - " + command));
+                    Error(new ChatMessage(MessageType.System, CommandType.None, "DevPro", "Unknown Packet - " + command));
             }
         }
 
@@ -226,7 +266,7 @@ namespace YGOPro_Launcher.Chat
         {
             if (!IsConnected) return;
             if (Error != null)
-                Error(new ChatMessage(MessageType.System, "DevPro", "Disconnected from server."));
+                Error(new ChatMessage(MessageType.System, CommandType.None, "DevPro", "Disconnected from server."));
             IsConnected = false;
             Disconnect();
         }

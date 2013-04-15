@@ -91,6 +91,16 @@ namespace YGOPro_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DNA {
+            get {
+                object obj = ResourceManager.GetObject("DNA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] ICSharpCode_SharpZipLib {
@@ -113,10 +123,35 @@ namespace YGOPro_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap message {
+            get {
+                object obj = ResourceManager.GetObject("message", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap OfferWall_Btn {
             get {
                 object obj = ResourceManager.GetObject("OfferWall_Btn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\deff0{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+        ///{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa200\sl276\slmult1\lang9\b\f0\fs36 DevPro Patch 1.8.3 r0 - Judgement of the Light\b0\fs22\par
+        ///- New Cards\par
+        ///\b - TCG\b0\par
+        ///\pard{\pntext\f1\&apos;B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\&apos;B7}}\fi-360\li720\sa200\sl276\slmult1 Mecha Phantom Beast Turtletracer\par
+        ///\pard\sa200\sl276\slmult1\b - OCG\par
+        ///\pard{\pntext\f1\&apos;B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pn [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string patchnotes {
+            get {
+                return ResourceManager.GetString("patchnotes", resourceCulture);
             }
         }
         
@@ -126,6 +161,16 @@ namespace YGOPro_Launcher.Properties {
         internal static System.Drawing.Bitmap rankup {
             get {
                 object obj = ResourceManager.GetObject("rankup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sixsam {
+            get {
+                object obj = ResourceManager.GetObject("sixsam", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

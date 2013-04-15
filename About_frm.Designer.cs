@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About_frm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.YuGiOhMoDDeR = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -66,7 +66,6 @@
             this.StaffText = new System.Windows.Forms.Label();
             this.AboutText = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,7 +88,6 @@
             this.panel1.Controls.Add(this.YuGiOhMoDDeR);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.label20);
-            this.panel1.Controls.Add(this.label19);
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.label16);
@@ -117,6 +115,15 @@
             this.panel1.Size = new System.Drawing.Size(956, 446);
             this.panel1.TabIndex = 0;
             // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(425, 238);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(61, 13);
+            this.label33.TabIndex = 37;
+            this.label33.Text = "Checkmate";
+            // 
             // label32
             // 
             this.label32.AutoSize = true;
@@ -129,7 +136,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(693, 365);
+            this.label31.Location = new System.Drawing.Point(573, 365);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(99, 13);
             this.label31.TabIndex = 35;
@@ -244,15 +251,6 @@
             this.label20.Size = new System.Drawing.Size(45, 13);
             this.label20.TabIndex = 22;
             this.label20.Text = "benblub";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(576, 365);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(100, 13);
-            this.label19.TabIndex = 21;
-            this.label19.Text = "Zeak (Anime Cards)";
             // 
             // label18
             // 
@@ -447,15 +445,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "About DevPro";
             // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(425, 238);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(61, 13);
-            this.label33.TabIndex = 37;
-            this.label33.Text = "Checkmate";
-            // 
             // About_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -497,7 +486,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label YuGiOhMoDDeR;
         private System.Windows.Forms.Label label30;

@@ -238,13 +238,19 @@ namespace YGOPro_Launcher.Config
 
         //DevPro SupportTab
         public string SupportItem1Name = "Donator Status";
-        public string SupportItem1Des = "Unlocks Donator status in chat with additional chat commands.";
+        public string SupportItem1Des = "Unlocks Donator status in chat, Orange username and additional chat commands.";
         public string SupportItem2Name = "Change Username";
         public string SupportItem2Des = "Change your account name while retaining all your ranked stats.";
         public string SupportItem3Name = "Reset Ranking Stats";
         public string SupportItem3Des = "Reset your ranking stats.";
         public string SupportItem4Name = "Unban User";
         public string SupportItem4Des = "Unban a user who was banned.";
+        public string SupportItem5Name = "Custom Username Color";
+        public string SupportItem5Des = "Change the color of your username in chat.";
+        public string SupportItem6Name = "Create Team";
+        public string SupportItem6Des = "Create a team.";
+        public string SupportItem7Name = "Send Server Message";
+        public string SupportItem7Des = "Send a server message to everyone.(Limited: 3 Messages per day)";
 
         public string SupportBalance = "Balance";
         public string Supportgb2 = "Support DevPro";

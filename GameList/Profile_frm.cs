@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using YGOPro_Launcher.Config;
+using YGOPro_Launcher.Chat;
 
 namespace YGOPro_Launcher
 {
@@ -20,7 +21,7 @@ namespace YGOPro_Launcher
             InitializeComponent();
             ApplyTranslation();
             Username.Text += Program.UserInfo.Username;
-            Program.ServerConnection.ProfileMessage += new NetClient.ServerResponse(ProfileUpdate);
+            Program.ChatServer.ProfileMessage += new ChatClient.ServerResponse(ProfileUpdate);
 
         }
 
@@ -30,7 +31,7 @@ namespace YGOPro_Launcher
             InitializeComponent();
             ApplyTranslation();
             Username.Text += username;
-            Program.ServerConnection.ProfileMessage += new NetClient.ServerResponse(ProfileUpdate);
+            Program.ChatServer.ProfileMessage += new ChatClient.ServerResponse(ProfileUpdate);
 
         }
 
@@ -85,7 +86,7 @@ namespace YGOPro_Launcher
                 {
                     string[] sections = message.Split(new string[] {"||"}, StringSplitOptions.None);
                     rank.Text += sections[0];
-                    rating.Text += sections[0];
+                    UserLevel.Text = "Lvl: " + sections[5];
                     if (sections[1] == "not found")
                         MatchWLD.Text = "0/0/0";
                     else
@@ -165,13 +166,15 @@ namespace YGOPro_Launcher
                         RLOSEUnknown.Text = rankedparts[27];
                     }
 
+                    
+
                 }
             }
         }
 
         private void Profile_frm_Load(object sender, EventArgs e)
         {
-            Program.ServerConnection.SendPacket("STATS||" + ProfileUsername);
+            Program.ChatServer.SendPacket("STATS||" + ProfileUsername);
         }
     }
 }

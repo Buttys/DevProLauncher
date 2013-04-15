@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -50,8 +49,9 @@ namespace YGOPro_Launcher.Chat
             {
                 ChatHelper.WriteMessage(message, ChatLog, true);
 
-                if(message.From.Username != Program.UserInfo.Username && !ChatInput.Focused)
-                    FlashWindow.Start(this);
+                if(message.From != null)
+                    if(message.From.Username != Program.UserInfo.Username && !ChatInput.Focused)
+                        FlashWindow.Start(this);
             }
 
         }
@@ -101,20 +101,22 @@ namespace YGOPro_Launcher.Chat
             {
                 if (ChatInput.Text == "")
                     return;
-                if (isprivate && ChatInput.Text.StartsWith("/"))
+                if (isprivate && ChatInput.Text.StartsWith("/me"))
                 {
-                    WriteMessage(new ChatMessage(MessageType.System, Name, "Commands are not supported in private windows."));
+                    WriteMessage(new ChatMessage(MessageType.Message, CommandType.Me, Program.UserInfo, Name,Program.UserInfo.Username + " " +  ChatInput.Text.Replace("/me","").Trim(), false));
+                    server.SendMessage(MessageType.PrivateMessage, CommandType.Me, Name, ChatInput.Text.Replace("/me", "").Trim());
+                }
+                else if (isprivate && ChatInput.Text.StartsWith("/"))
+                {
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Name, "Unknown Command."));
+                    ChatInput.Clear();
+                    e.Handled = true;
                     return;
                 }
-                
-                if (isprivate)
+                else if (isprivate)
                 {
-                    WriteMessage(new ChatMessage(MessageType.Message, Program.UserInfo, Name, ChatInput.Text, false));
-                    server.SendPacket("MSG||" + Name + "||" + (int)MessageType.PrivateMessage + "||" + LauncherHelper.StringToBase64(ChatInput.Text));
-                }
-                else
-                {
-                    server.SendPacket("MSG||" + Name + "||" + (int)MessageType.Message + "||" + LauncherHelper.StringToBase64(ChatInput.Text));
+                    WriteMessage(new ChatMessage(MessageType.PrivateMessage, CommandType.None, Program.UserInfo, Name, ChatInput.Text, false));
+                    server.SendMessage(MessageType.PrivateMessage, CommandType.None, Name, ChatInput.Text);
                 }
                 
                 ChatInput.Clear();

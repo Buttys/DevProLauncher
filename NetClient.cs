@@ -32,7 +32,6 @@ namespace YGOPro_Launcher
         public ServerResponse UpdateRoomPlayers;
         public ServerResponse UpdateRoomStatus;
         public ServerResponse ServerMessage;
-        public ServerResponse ProfileMessage;
         public ServerRooms AddRooms;
 
         public DateTime pingrequest;
@@ -187,11 +186,6 @@ namespace YGOPro_Launcher
             {
                 if (UserInfoUpdate != null)
                     UserInfoUpdate(args[1]);
-            }
-            else if (cmd == "STATS")
-            {
-                if (ProfileMessage != null)
-                    ProfileMessage(args[1] + "||" + args[2] + "||" + args[3] +"||" + args[4] + "||" + args[5]);
             }
             else if (cmd == "MSG")
             {

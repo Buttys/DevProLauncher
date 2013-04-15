@@ -28,6 +28,7 @@ namespace YGOPro_Launcher.Support
             RightItems.Controls.Add(new Label(), 0, LeftItems.RowStyles.Count - 1);
             OfferLink.Click += new EventHandler(OfferLink_Click);
             DonateLink.Click += new EventHandler(DonateLink_Click);
+            refreshtimer.Tick += new EventHandler(refreshtimer_Tick);
         }
         private void ApplyTranslation()
         {
@@ -37,6 +38,9 @@ namespace YGOPro_Launcher.Support
             AddItem(Properties.Resources.maskchange, lang.SupportItem2Name, FormatString(lang.SupportItem2Des), 200, "DEVRENAME", true);
             AddItem(Properties.Resources.desruct, lang.SupportItem3Name, FormatString(lang.SupportItem3Des), 50, "DEVRESETRANK", false);
             AddItem(Properties.Resources.bookoflife, lang.SupportItem4Name, FormatString(lang.SupportItem4Des), 1000, "DEVUNBAN", true);
+            AddItem(Properties.Resources.DNA, lang.SupportItem5Name, FormatString(lang.SupportItem5Des), 300, "DEVCOLOR", true);
+            AddItem(Properties.Resources.sixsam, lang.SupportItem6Name, FormatString(lang.SupportItem6Des), 500, "DEVCREATETEAM", true);
+            AddItem(Properties.Resources.message, lang.SupportItem7Name, FormatString(lang.SupportItem7Des), 150, "DEVMSG", true);
             groupBox4.Text = lang.SupportBalance;
             groupBox2.Text = lang.Supportgb2;
             label1.Text = FormatString(lang.Supportgb2text);
@@ -97,18 +101,37 @@ namespace YGOPro_Launcher.Support
 
             if (input)
             {
-                Input_frm form = new Input_frm("Input", "Enter Value", "Confirm", "Cancel");
-                form.InputBox.KeyDown += new KeyEventHandler(Suppress_Space);
-                form.InputBox.MaxLength = 14;
-
-                if (form.ShowDialog() == DialogResult.OK)
+                if (servercommand != "DEVCOLOR")
                 {
-                    if (form.InputBox.Text == "")
+                    Input_frm form = new Input_frm("Input", "Enter Value", "Confirm", "Cancel");
+                    if (servercommand != "DEVCREATETEAM" && servercommand != "DEVMSG")
+                        form.InputBox.KeyDown += new KeyEventHandler(Suppress_Space);
+
+                    if (servercommand == "DEVCREATETEAM")
+                        form.InputBox.MaxLength = 20;
+                    else if (servercommand == "DEVMSG")
+                        form.InputBox.MaxLength = 250;
+                    else
+                        form.InputBox.MaxLength = 14;
+
+                    if (form.ShowDialog() == DialogResult.OK)
                     {
-                        MessageBox.Show("Input cannot be empty");
-                        return;
+                        if (form.InputBox.Text == "")
+                        {
+                            MessageBox.Show("Input cannot be empty");
+                            return;
+                        }
+                        Program.ChatServer.SendPacket("DEVPOINTS||" + servercommand + "||" + form.InputBox.Text.Trim());
                     }
-                    Program.ChatServer.SendPacket("DEVPOINTS||" + servercommand + "||" + form.InputBox.Text.Trim());
+                }
+                else
+                {
+                    ColorDialog selectcolor = new ColorDialog();
+                    if (selectcolor.ShowDialog() == DialogResult.OK)
+                    {
+                        Program.ChatServer.SendPacket("DEVPOINTS||" + servercommand + "||" + selectcolor.Color.R + "," + selectcolor.Color.G + "," + selectcolor.Color.B);
+                    }
+
                 }
             }
             else
@@ -138,10 +161,22 @@ namespace YGOPro_Launcher.Support
         {
             if (Program.Config.DefaultServer == "DevPro EU")
                 Process.Start("https://wallapi.com/api/?key=5a7ef592b505f1e3c5cdb9d4e8614790&uid=" + Program.UserInfo.Username + "&widget=w1_1");
-            if (Program.Config.DefaultServer == "DevPro USA")
-                Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HVXKL4885X7JC");
+            else if (Program.Config.DefaultServer == "DevPro USA")
+                Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NZSA46SQDATGC");
             else
                 MessageBox.Show("Donations are not available on this server.");
+        }
+
+        private void refreshbtn_Click(object sender, EventArgs e)
+        {
+            Program.ChatServer.SendPacket("GETDEVPOINTS");
+            refreshbtn.Enabled = false;
+            refreshtimer.Start();
+        }
+        private void refreshtimer_Tick(object sender, EventArgs e)
+        {
+            refreshbtn.Enabled = true;
+            refreshtimer.Stop();
         }
     }
 }
