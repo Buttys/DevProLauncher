@@ -726,30 +726,30 @@ namespace YGOPro_Launcher.Chat
                         if (Program.UserInfo.Rank < 0 || Program.UserInfo.Rank > 0)
                         {
                             WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Donator Commands --"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "[red][/red] - Color tags, wrap your text with them to change its color"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "[red][/red] [blue][/blue] [green][/green]- Color tags, wrap your text with them to change its color"));
                         }
                         if (Program.UserInfo.Rank > 0)
                         {
                             WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 1 Commands --"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/kick - Kick a user"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/kick username reason - Kick a user"));
                             WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Send a server message"));
                         }
                         if (Program.UserInfo.Rank > 1)
                         {
                             WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 2 Commands --"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ban - Ban a user"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unban - Unban a user"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ip - Get a users IP"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banip - Ban a IP"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unbanip - Unbans IP"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ban username reason - Ban a user"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unban username - Unban a user"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ip username - Get a users IP"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banip ip - Ban a IP"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unbanip ip - Unbans IP"));
                             WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getbanlist - Get ban list"));
                         }
                         if (Program.UserInfo.Rank == 99)
                         {
                             WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 99 Commands --"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/op - Set a users level"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/addpoints - Give a user DevPoints"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/removepoints - Remove DevPoints from a user"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/op username level - Set a users level"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/addpoints amount of DevPoints - Give a user DevPoints"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/removepoints amount of DevPoints - Remove DevPoints from a user"));
                         }
                         if (Program.UserInfo.TeamRank >= 0 && Program.UserInfo.Team != string.Empty)
                         {
@@ -759,15 +759,15 @@ namespace YGOPro_Launcher.Chat
                         if (Program.UserInfo.TeamRank >= 1)
                         {
                             WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Team User Level 1 Commands --"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamadd - add a user to the team"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamremove - remove a user from the team"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamadd username - add a user to the team"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamremove username - remove a user from the team"));
                         }
                         if (Program.UserInfo.TeamRank == 99)
                         {
                             WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Team User Level 99 Commands --"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamdisband - disband the team"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamop - promote user in the team"));
-                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamchangeleader - change the leader of a team"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamdisband - disbands the team"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamop username level - promote user in the team"));
+                            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamchangeleader username - change the leader of a team"));
 
                         }
 
