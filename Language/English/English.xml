@@ -5,7 +5,7 @@
   <pmsbProgRun>Program already running</pmsbProgRun>
   <pMsbErrorToServer>Error Connecting to server</pMsbErrorToServer>
   <pMsbBadLog>Bad Login</pMsbBadLog>
-  <pMsbOldVers>You have a too old version of the launcher. Please reinstall it.</pMsbOldVers>
+  <pMsbOldVers>You have an outdated version of the launcher. Please reinstall it.</pMsbOldVers>
   <pMsbException>Oooops! Something bad happened! Software will now exit!</pMsbException>
   <LoginUserName>Username</LoginUserName>
   <LoginPassWord>Password</LoginPassWord>
@@ -59,13 +59,13 @@
   <GamePasswordExsists>A room with that password already exists.</GamePasswordExsists>
   <GameLocked>Locked</GameLocked>
   <GameOpen>Open</GameOpen>
-  <GameLPChange>Your quick host settings does not follow the recommend lifepoints rule, do you want to change this to the default?</GameLPChange>
+  <GameLPChange>Your quick host settings do not follow the recommended life points rule, do you want to change this to the default?</GameLPChange>
   <GameEnterPassword>Enter password</GameEnterPassword>
   <GameWrongPassword>Incorrect password</GameWrongPassword>
   <optionGb1>User Settings</optionGb1>
   <optionGb2>Game Settings</optionGb2>
   <optionGb3>Font Settings</optionGb3>
-  <optionGb4>Luancher Settings</optionGb4>
+  <optionGb4>Launcher Settings</optionGb4>
   <optionMsbForget>Do you really want to forget auto login credentials?</optionMsbForget>
   <optionUser>Default Username</optionUser>
   <optionDeck>Defualt Deck</optionDeck>
@@ -103,7 +103,7 @@
   <fileBtnDelete>Delete</fileBtnDelete>
   <fileBtnFolder>Open Folder</fileBtnFolder>
   <fileBtnGame>Open Game</fileBtnGame>
-  <fileMsgNoExist>does no exsist</fileMsgNoExist>
+  <fileMsgNoExist>Does not exist</fileMsgNoExist>
   <fileMsgNoSelect>Nothing selected</fileMsgNoSelect>
   <fileMsbMulti>Can't Rename multiple items</fileMsbMulti>
   <fileAskDelete>Are you sure you want to delete the following item(s) </fileAskDelete>
@@ -216,7 +216,7 @@
   <Supportgb2>Support DevPro</Supportgb2>
   <Supportgb2text>The DevPoint system is here to reward users who help out and support DevPro. While the 2 options below will earn you DevPoints you can also earn points for helping DevPro too!  || ||- Taking part in DevPro Events  - Fixing DevPro bugs Launcher or card scripts! || - Supporting the growth of DevPro</Supportgb2text>
   <Supportgb3>Earn DevPoints</Supportgb3>
-  <Supportgb3text>Earn points by completing offfers.</Supportgb3text>
+  <Supportgb3text>Earn points by completing offers.</Supportgb3text>
   <Supportgb4>Donate!</Supportgb4>
   <Supportgb4text>Earn by donating (Paypal, PaySafe, SMS and more)</Supportgb4text>
 </LanguageInfo>
