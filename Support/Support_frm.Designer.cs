@@ -126,7 +126,7 @@
             // 
             this.DonateLink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.DonateLink.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DonateLink.Image = global::YGOPro_Launcher.Properties.Resources.btn_donate_LG;
+            this.DonateLink.Image = global::YGOPro_Launcher.Properties.Resources.GetDevpoints;
             this.DonateLink.Location = new System.Drawing.Point(3, 34);
             this.DonateLink.Name = "DonateLink";
             this.DonateLink.Size = new System.Drawing.Size(154, 27);
@@ -251,7 +251,7 @@
             // LeftItems
             // 
             this.LeftItems.ColumnCount = 1;
-            this.LeftItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 316F));
+            this.LeftItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
             this.LeftItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LeftItems.Location = new System.Drawing.Point(3, 3);
             this.LeftItems.Name = "LeftItems";
@@ -264,7 +264,7 @@
             // RightItems
             // 
             this.RightItems.ColumnCount = 1;
-            this.RightItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 313F));
+            this.RightItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
             this.RightItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightItems.Location = new System.Drawing.Point(380, 3);
             this.RightItems.Name = "RightItems";

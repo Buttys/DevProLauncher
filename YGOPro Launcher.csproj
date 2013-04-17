@@ -244,6 +244,7 @@
     </Content>
     <Content Include="Language\French\cards.cdb" />
     <Content Include="Language\French\strings.conf" />
+    <None Include="Resources\GetDevpoints.png" />
     <None Include="Resources\message.png" />
     <None Include="Resources\patchnotes.rtf" />
     <None Include="Resources\sixsam.png" />

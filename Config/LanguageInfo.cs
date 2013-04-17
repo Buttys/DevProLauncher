@@ -260,5 +260,9 @@ namespace YGOPro_Launcher.Config
         public string Supportgb4 = "Donate!";
         public string Supportgb4text = "Earn by donating (Paypal, PaySafe, SMS and more)";
 
+        public string SupportRenameInput = "Enter New Username";
+        public string SupportUnbanInput = "Enter Username";
+        public string SupportTeamNameInput = "Enter Team Name";
+        public string SupportMSGInput = "Enter Message";
     }
 }

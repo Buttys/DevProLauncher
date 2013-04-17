@@ -34,10 +34,8 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.ChatInput = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.UserSearch = new System.Windows.Forms.TextBox();
             this.ChannelTabs = new YGOPro_Launcher.Chat.FixedTabControl();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.UsersControl = new YGOPro_Launcher.Chat.FixedTabControl();
             this.UsersTab = new System.Windows.Forms.TabPage();
             this.UserListTabs = new YGOPro_Launcher.Chat.FixedTabControl();
@@ -97,11 +95,12 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.FontSize = new System.Windows.Forms.NumericUpDown();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.UserSearch = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
             this.UsersControl.SuspendLayout();
             this.UsersTab.SuspendLayout();
             this.UserListTabs.SuspendLayout();
@@ -122,6 +121,7 @@
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FontSize)).BeginInit();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // UserTab
@@ -197,6 +197,17 @@
             this.ChatInput.Size = new System.Drawing.Size(712, 20);
             this.ChatInput.TabIndex = 3;
             // 
+            // ChannelTabs
+            // 
+            this.ChannelTabs.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.ChannelTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChannelTabs.Location = new System.Drawing.Point(3, 3);
+            this.ChannelTabs.Multiline = true;
+            this.ChannelTabs.Name = "ChannelTabs";
+            this.ChannelTabs.SelectedIndex = 0;
+            this.ChannelTabs.Size = new System.Drawing.Size(718, 489);
+            this.ChannelTabs.TabIndex = 2;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -211,41 +222,6 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(187, 525);
             this.tableLayoutPanel3.TabIndex = 1;
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.UserSearch, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 498);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(181, 24);
-            this.tableLayoutPanel6.TabIndex = 2;
-            // 
-            // UserSearch
-            // 
-            this.UserSearch.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.UserSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UserSearch.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.UserSearch.Location = new System.Drawing.Point(3, 3);
-            this.UserSearch.Name = "UserSearch";
-            this.UserSearch.Size = new System.Drawing.Size(175, 20);
-            this.UserSearch.TabIndex = 1;
-            this.UserSearch.Text = "Search";
-            this.UserSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // ChannelTabs
-            // 
-            this.ChannelTabs.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.ChannelTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChannelTabs.Location = new System.Drawing.Point(3, 3);
-            this.ChannelTabs.Multiline = true;
-            this.ChannelTabs.Name = "ChannelTabs";
-            this.ChannelTabs.SelectedIndex = 0;
-            this.ChannelTabs.Size = new System.Drawing.Size(718, 489);
-            this.ChannelTabs.TabIndex = 2;
             // 
             // UsersControl
             // 
@@ -965,6 +941,30 @@
             0,
             131072});
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.UserSearch, 0, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 498);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(181, 24);
+            this.tableLayoutPanel6.TabIndex = 2;
+            // 
+            // UserSearch
+            // 
+            this.UserSearch.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.UserSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UserSearch.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.UserSearch.Location = new System.Drawing.Point(3, 3);
+            this.UserSearch.Name = "UserSearch";
+            this.UserSearch.Size = new System.Drawing.Size(175, 20);
+            this.UserSearch.TabIndex = 1;
+            this.UserSearch.Text = "Search";
+            this.UserSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // NewChat_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -979,8 +979,6 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
             this.UsersControl.ResumeLayout(false);
             this.UsersTab.ResumeLayout(false);
             this.UserListTabs.ResumeLayout(false);
@@ -1004,6 +1002,8 @@
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FontSize)).EndInit();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -13,6 +13,7 @@ namespace YGOPro_Launcher.Support
 {
     public partial class Support_frm : Form
     {
+        Dictionary<string, string> descriptions = new Dictionary<string, string>();
         public Support_frm()
         {
             InitializeComponent();
@@ -41,6 +42,11 @@ namespace YGOPro_Launcher.Support
             AddItem(Properties.Resources.DNA, lang.SupportItem5Name, FormatString(lang.SupportItem5Des), 300, "DEVCOLOR", true);
             AddItem(Properties.Resources.sixsam, lang.SupportItem6Name, FormatString(lang.SupportItem6Des), 500, "DEVCREATETEAM", true);
             AddItem(Properties.Resources.message, lang.SupportItem7Name, FormatString(lang.SupportItem7Des), 150, "DEVMSG", true);
+            descriptions.Add("DEVRENAME", lang.SupportRenameInput);
+            descriptions.Add("DEVUNBAN", lang.SupportUnbanInput);
+            descriptions.Add("DEVCREATETEAM", lang.SupportTeamNameInput);
+            descriptions.Add("DEVMSG", lang.SupportMSGInput);
+
             groupBox4.Text = lang.SupportBalance;
             groupBox2.Text = lang.Supportgb2;
             label1.Text = FormatString(lang.Supportgb2text);
@@ -103,7 +109,7 @@ namespace YGOPro_Launcher.Support
             {
                 if (servercommand != "DEVCOLOR")
                 {
-                    Input_frm form = new Input_frm("Input", "Enter Value", "Confirm", "Cancel");
+                    Input_frm form = new Input_frm("Input", descriptions[servercommand], "Confirm", "Cancel");
                     if (servercommand != "DEVCREATETEAM" && servercommand != "DEVMSG")
                         form.InputBox.KeyDown += new KeyEventHandler(Suppress_Space);
 
@@ -162,7 +168,7 @@ namespace YGOPro_Launcher.Support
             if (Program.Config.DefaultServer == "DevPro EU")
                 Process.Start("https://wallapi.com/api/?key=5a7ef592b505f1e3c5cdb9d4e8614790&uid=" + Program.UserInfo.Username + "&widget=w1_1");
             else if (Program.Config.DefaultServer == "DevPro USA")
-                Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NZSA46SQDATGC");
+                Process.Start("https://wallapi.com/api/?key=245f31f2dbeb2c49178d3c2eee29cfa9&uid=" + Program.UserInfo.Username + "&widget=w1_1");
             else
                 MessageBox.Show("Donations are not available on this server.");
         }
