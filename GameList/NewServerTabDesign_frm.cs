@@ -533,9 +533,9 @@ namespace YGOPro_Launcher
             item.Players = players;
 
             if (item.isRanked)
-                RankedList.Refresh();
+                RankedList.UpdateList();
             else
-                UnrankedList.Refresh();
+                UnrankedList.UpdateList();
 
             UpdateServerInfo();
         }
