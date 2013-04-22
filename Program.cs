@@ -80,7 +80,7 @@ namespace YGOPro_Launcher
             //        Application.Exit();
             //    }
             //}
-
+            //test
             //new update server - Forced change to prevent resting a users config
             Config.UpdaterAddress = "http://ygopro.de/launcher/checkversion.php";
             Config.ServerInfoAddress = "http://ygopro.de/launcher/serverinfo.php";
