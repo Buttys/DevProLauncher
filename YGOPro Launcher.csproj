@@ -147,6 +147,9 @@
       <DependentUpon>ReplayInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="FileManager\ReplayReader.cs" />
+    <Compile Include="GameList\DoubleBufferedListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GameList\NewServerTabDesign_frm.cs">
       <SubType>Form</SubType>
     </Compile>

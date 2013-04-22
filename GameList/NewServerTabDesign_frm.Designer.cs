@@ -32,7 +32,6 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.UnrankedList = new System.Windows.Forms.ListBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.QuickBtn = new System.Windows.Forms.Button();
             this.HostBtn = new System.Windows.Forms.Button();
@@ -41,7 +40,6 @@
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.RankedQuickBtn = new System.Windows.Forms.Button();
             this.RankedHostBtn = new System.Windows.Forms.Button();
-            this.RankedList = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -67,6 +65,8 @@
             this.FilterActive = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.DeckSelect = new System.Windows.Forms.ComboBox();
+            this.UnrankedList = new YGOPro_Launcher.DoubleBufferedListBox();
+            this.RankedList = new YGOPro_Launcher.DoubleBufferedListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -138,18 +138,6 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel8.Size = new System.Drawing.Size(352, 308);
             this.tableLayoutPanel8.TabIndex = 0;
-            // 
-            // UnrankedList
-            // 
-            this.UnrankedList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UnrankedList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.UnrankedList.FormattingEnabled = true;
-            this.UnrankedList.IntegralHeight = false;
-            this.UnrankedList.ItemHeight = 50;
-            this.UnrankedList.Location = new System.Drawing.Point(3, 3);
-            this.UnrankedList.Name = "UnrankedList";
-            this.UnrankedList.Size = new System.Drawing.Size(346, 262);
-            this.UnrankedList.TabIndex = 2;
             // 
             // flowLayoutPanel2
             // 
@@ -238,18 +226,6 @@
             this.RankedHostBtn.Text = "Host";
             this.RankedHostBtn.UseVisualStyleBackColor = true;
             this.RankedHostBtn.Click += new System.EventHandler(this.HostBtn_Click);
-            // 
-            // RankedList
-            // 
-            this.RankedList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RankedList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.RankedList.FormattingEnabled = true;
-            this.RankedList.IntegralHeight = false;
-            this.RankedList.ItemHeight = 50;
-            this.RankedList.Location = new System.Drawing.Point(3, 3);
-            this.RankedList.Name = "RankedList";
-            this.RankedList.Size = new System.Drawing.Size(346, 262);
-            this.RankedList.TabIndex = 3;
             // 
             // tableLayoutPanel2
             // 
@@ -533,7 +509,7 @@
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.94702F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 92.05298F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 14F));
             this.tableLayoutPanel4.Controls.Add(this.DeckSelect, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 196);
@@ -548,10 +524,34 @@
             this.DeckSelect.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DeckSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DeckSelect.FormattingEnabled = true;
-            this.DeckSelect.Location = new System.Drawing.Point(15, 3);
+            this.DeckSelect.Location = new System.Drawing.Point(14, 3);
             this.DeckSelect.Name = "DeckSelect";
-            this.DeckSelect.Size = new System.Drawing.Size(133, 21);
+            this.DeckSelect.Size = new System.Drawing.Size(131, 21);
             this.DeckSelect.TabIndex = 14;
+            // 
+            // UnrankedList
+            // 
+            this.UnrankedList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UnrankedList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.UnrankedList.FormattingEnabled = true;
+            this.UnrankedList.IntegralHeight = false;
+            this.UnrankedList.ItemHeight = 50;
+            this.UnrankedList.Location = new System.Drawing.Point(3, 3);
+            this.UnrankedList.Name = "UnrankedList";
+            this.UnrankedList.Size = new System.Drawing.Size(346, 262);
+            this.UnrankedList.TabIndex = 2;
+            // 
+            // RankedList
+            // 
+            this.RankedList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RankedList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.RankedList.FormattingEnabled = true;
+            this.RankedList.IntegralHeight = false;
+            this.RankedList.ItemHeight = 50;
+            this.RankedList.Location = new System.Drawing.Point(3, 3);
+            this.RankedList.Name = "RankedList";
+            this.RankedList.Size = new System.Drawing.Size(346, 262);
+            this.RankedList.TabIndex = 3;
             // 
             // NewServerInterface_frm
             // 
@@ -610,7 +610,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.ListBox UnrankedList;
+        private DoubleBufferedListBox UnrankedList;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button QuickBtn;
         private System.Windows.Forms.Button HostBtn;
@@ -619,7 +619,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Button RankedQuickBtn;
         private System.Windows.Forms.Button RankedHostBtn;
-        private System.Windows.Forms.ListBox RankedList;
+        private DoubleBufferedListBox RankedList;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.ComboBox DeckSelect;
     }

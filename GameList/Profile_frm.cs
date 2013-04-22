@@ -75,6 +75,8 @@ namespace YGOPro_Launcher
 
         private void ProfileUpdate(string message)
         {
+            if (this.IsDisposed)
+                return;
             if (InvokeRequired)
             {
                 Invoke(new Action<string>(ProfileUpdate), message);

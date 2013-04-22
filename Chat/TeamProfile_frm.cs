@@ -21,6 +21,8 @@ namespace YGOPro_Launcher.Chat
 
         private void UpdateProfile(string message)
         {
+            if (this.IsDisposed)
+                return;
             if (InvokeRequired)
             {
                 Invoke(new Action<string>(UpdateProfile), message);

@@ -104,7 +104,7 @@ namespace YGOPro_Launcher.Chat
                 if (isprivate && ChatInput.Text.StartsWith("/me"))
                 {
                     WriteMessage(new ChatMessage(MessageType.Message, CommandType.Me, Program.UserInfo, Name,Program.UserInfo.Username + " " +  ChatInput.Text.Replace("/me","").Trim(), false));
-                    server.SendMessage(MessageType.PrivateMessage, CommandType.Me, Name, ChatInput.Text.Replace("/me", "").Trim());
+                    server.SendMessage(MessageType.PrivateMessage, CommandType.Me, Name, ChatInput.Text.Substring(4));
                 }
                 else if (isprivate && ChatInput.Text.StartsWith("/"))
                 {

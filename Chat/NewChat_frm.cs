@@ -43,6 +43,7 @@ namespace YGOPro_Launcher.Chat
             ChatInput.KeyPress += new KeyPressEventHandler(ChatInput_KeyPress);
             UserList.DoubleClick += List_DoubleClick;
             FriendList.DoubleClick += List_DoubleClick;
+            TeamList.DoubleClick += List_DoubleClick;
             ApplyOptionEvents();
 
 
@@ -674,9 +675,9 @@ namespace YGOPro_Launcher.Chat
                             return;
                         }
                         if(((ChatWindow)ChannelTabs.SelectedTab).Name == MessageType.Team.ToString())
-                            Program.ChatServer.SendMessage(MessageType.Team, CommandType.Me, ((ChatWindow)ChannelTabs.SelectedTab).Name, ChatInput.Text.Substring(parts[0].Length));
+                            Program.ChatServer.SendMessage(MessageType.Team, CommandType.Me, ((ChatWindow)ChannelTabs.SelectedTab).Name, ChatInput.Text.Substring(parts[0].Length + 1));
                         else
-                            Program.ChatServer.SendMessage(MessageType.Message, CommandType.Me, ((ChatWindow)ChannelTabs.SelectedTab).Name, ChatInput.Text.Substring(parts[0].Length));
+                            Program.ChatServer.SendMessage(MessageType.Message, CommandType.Me, ((ChatWindow)ChannelTabs.SelectedTab).Name, ChatInput.Text.Substring(parts[0].Length + 1));
                     }
                     else if (cmd == "join")
                     {
