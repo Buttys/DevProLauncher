@@ -250,6 +250,7 @@
             this.RankedList.Name = "RankedList";
             this.RankedList.Size = new System.Drawing.Size(346, 262);
             this.RankedList.TabIndex = 3;
+            this.RankedList.SelectedIndexChanged += new System.EventHandler(this.RankedList_SelectedIndexChanged);
             // 
             // tableLayoutPanel2
             // 

@@ -533,9 +533,9 @@ namespace YGOPro_Launcher
             item.Players = players;
 
             if (item.isRanked)
-                RankedList.Refresh();
+                RankedList.UpdateList();
             else
-                UnrankedList.Refresh();
+                UnrankedList.UpdateList();
 
             UpdateServerInfo();
         }
@@ -683,7 +683,7 @@ namespace YGOPro_Launcher
             {
                 bool istag = (info.Mode == 2);
                 string[] players = info.Players.Split(',');
-
+                
                 if (players.Length == 0)
                 {
                     playerstring = "??? vs ???";
@@ -754,13 +754,18 @@ namespace YGOPro_Launcher
             ////bottomleft
             //g.DrawString("", e.Font, (selected) ? Brushes.White : Brushes.Black,
             //    new Rectangle(Bounds.X, Bounds.Y + (Bounds.Height - (int)Modesize.Height), Bounds.Width, Bounds.Height));
-            ////top center
+            ////top center Go ahead :)
             //g.DrawString("", e.Font, (selected) ? Brushes.White : Brushes.Black,
             //    new Rectangle(Bounds.X + ((Bounds.Width / 2) - ((int)BanListsize.Width / 2)), Bounds.Y, Bounds.Width, Bounds.Height));
             //bottom center
             g.DrawString(playerstring, e.Font, Brushes.Black,
                 new Rectangle(Bounds.X + ((Bounds.Width / 2) - ((int)playersSize.Width / 2)), Bounds.Y + (Bounds.Height - (int)playersSize.Height) - offset.Height, Bounds.Width, Bounds.Height));
             e.DrawFocusRectangle();
+        }
+
+        private void RankedList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
     }
