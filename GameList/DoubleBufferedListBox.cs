@@ -50,5 +50,25 @@ namespace YGOPro_Launcher
             base.OnPaint(e);
         }
 
+        public void UpdateList()
+	    {            
+		    int i = 0;
+		    this.BeginUpdate();
+		    foreach (String item in this.Items)
+		    {
+		        if (this.Items.Count > i)
+		            this.Items[i] = item;
+			    else 
+				   this.Items.Add(item);
+				i++;
+		    }
+            while (this.Items.Count > i)
+                this.Items.Remove(i);
+
+            this.EndUpdate();
+		}
+
+     }
+
     }
 }
