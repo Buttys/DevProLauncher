@@ -26,7 +26,6 @@ namespace YGOPro_Launcher
 
             UsernameInput.Text = _configuration.DefaultUsername;
             AutoLoginCheckBox.Checked = _configuration.AutoLogin;
-            PasswordInput.KeyPress += new KeyPressEventHandler(PasswordInput_KeyPress);
             _authenticator.ResetTimeout += new Authenticator.Reset(ResetTimeOut);
           
 
@@ -152,14 +151,6 @@ namespace YGOPro_Launcher
             Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
             Program.LanguageManager.Load(LanguageSelect.SelectedItem.ToString());
             ApplyTranslation();
-        }
-
-        private void PasswordInput_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                LoginBtn_Click(null, EventArgs.Empty);
-            }
         }
 
         private void RegisterBtn_Click(object sender, EventArgs e)
