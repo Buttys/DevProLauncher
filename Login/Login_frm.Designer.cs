@@ -66,7 +66,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.15337F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(263, 174);
-            this.tableLayoutPanel3.TabIndex = 1;
+            this.tableLayoutPanel3.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
@@ -78,14 +78,14 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 114);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(257, 31);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel1.TabIndex = 1;
             // 
             // OfflineBtn
             // 
             this.OfflineBtn.Location = new System.Drawing.Point(171, 3);
             this.OfflineBtn.Name = "OfflineBtn";
             this.OfflineBtn.Size = new System.Drawing.Size(83, 27);
-            this.OfflineBtn.TabIndex = 2;
+            this.OfflineBtn.TabIndex = 6;
             this.OfflineBtn.Text = "Offline Mode";
             this.OfflineBtn.UseVisualStyleBackColor = true;
             this.OfflineBtn.Click += new System.EventHandler(this.OfflineBtn_Click);
@@ -95,7 +95,7 @@
             this.RegisterBtn.Location = new System.Drawing.Point(90, 3);
             this.RegisterBtn.Name = "RegisterBtn";
             this.RegisterBtn.Size = new System.Drawing.Size(75, 27);
-            this.RegisterBtn.TabIndex = 0;
+            this.RegisterBtn.TabIndex = 5;
             this.RegisterBtn.Text = "Register";
             this.RegisterBtn.UseVisualStyleBackColor = true;
             this.RegisterBtn.Click += new System.EventHandler(this.RegisterBtn_Click);
@@ -105,7 +105,7 @@
             this.LoginBtn.Location = new System.Drawing.Point(9, 3);
             this.LoginBtn.Name = "LoginBtn";
             this.LoginBtn.Size = new System.Drawing.Size(75, 27);
-            this.LoginBtn.TabIndex = 1;
+            this.LoginBtn.TabIndex = 4;
             this.LoginBtn.Text = "Login";
             this.LoginBtn.UseVisualStyleBackColor = true;
             this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
@@ -132,7 +132,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(257, 105);
-            this.tableLayoutPanel4.TabIndex = 1;
+            this.tableLayoutPanel4.TabIndex = 0;
             // 
             // label1
             // 
@@ -140,7 +140,7 @@
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 27);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 6;
             this.label1.Text = "Username";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -161,7 +161,7 @@
             this.UsernameInput.MaxLength = 14;
             this.UsernameInput.Name = "UsernameInput";
             this.UsernameInput.Size = new System.Drawing.Size(168, 20);
-            this.UsernameInput.TabIndex = 4;
+            this.UsernameInput.TabIndex = 0;
             // 
             // PasswordInput
             // 
@@ -170,7 +170,7 @@
             this.PasswordInput.MaxLength = 15;
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.Size = new System.Drawing.Size(168, 20);
-            this.PasswordInput.TabIndex = 5;
+            this.PasswordInput.TabIndex = 1;
             this.PasswordInput.UseSystemPasswordChar = true;
             // 
             // label3
@@ -191,7 +191,7 @@
             this.LanguageSelect.Location = new System.Drawing.Point(86, 57);
             this.LanguageSelect.Name = "LanguageSelect";
             this.LanguageSelect.Size = new System.Drawing.Size(168, 21);
-            this.LanguageSelect.TabIndex = 7;
+            this.LanguageSelect.TabIndex = 2;
             // 
             // ServerSelect
             // 
@@ -201,7 +201,7 @@
             this.ServerSelect.Location = new System.Drawing.Point(86, 84);
             this.ServerSelect.Name = "ServerSelect";
             this.ServerSelect.Size = new System.Drawing.Size(168, 21);
-            this.ServerSelect.TabIndex = 8;
+            this.ServerSelect.TabIndex = 3;
             // 
             // label4
             // 
@@ -221,7 +221,7 @@
             this.AutoLoginCheckBox.Location = new System.Drawing.Point(41, 152);
             this.AutoLoginCheckBox.Name = "AutoLoginCheckBox";
             this.AutoLoginCheckBox.Size = new System.Drawing.Size(181, 17);
-            this.AutoLoginCheckBox.TabIndex = 2;
+            this.AutoLoginCheckBox.TabIndex = 7;
             this.AutoLoginCheckBox.Text = "Log me in automatically next time";
             this.AutoLoginCheckBox.UseVisualStyleBackColor = true;
             // 
