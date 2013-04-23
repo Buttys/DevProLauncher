@@ -71,4 +71,3 @@ namespace YGOPro_Launcher
      }
 
     }
-}
