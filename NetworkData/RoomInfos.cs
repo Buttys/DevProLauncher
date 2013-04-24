@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-namespace YGOPro_Launcher
+namespace YgoServer.NetworkData
 {
     public class RoomInfos
     {
@@ -11,23 +11,24 @@ namespace YGOPro_Launcher
         public bool EnablePriority;
         public bool NoCheckDeck;
         public bool NoShuffleDeck;
-        public bool isRanked;
-        public bool isLocked;
+        public bool IsLocked;
+        public bool IsRanked;
+        public bool IsAnimeMode;
+        public bool IsIllegal;
+        public bool IsStarted;
 
         public int StartLp;
         public int StartHand;
         public int DrawCount;
 
         public string RoomName;
-
-        public string Players;
-        public bool Started;
+        public string[] Players;
 
         public static RoomInfos FromName(string roomname, string players, bool started)
         {
             RoomInfos infos = new RoomInfos();
 
-           // if (roomname.Length < 15) return null;
+            // if (roomname.Length < 15) return null;
 
             string rules = roomname.Substring(0, 7);
 
@@ -55,24 +56,31 @@ namespace YGOPro_Launcher
             infos.DrawCount = 1;
 
             if (list[1] == "RL" || list[1] == "UL")
-                infos.isLocked = true;
+                infos.IsLocked = true;
 
-            if (list[1] == "R" || list[1] == "RL") 
-                infos.isRanked = true; 
+            if (list[1] == "R" || list[1] == "RL")
+                infos.IsRanked = true;
             else
-                infos.isRanked = false;
+                infos.IsRanked = false;
 
             infos.RoomName = list[2];
 
-            infos.Players = players;
-            infos.Started = started;
+            //infos.Players = players;
+            infos.IsStarted = started;
 
             return infos;
+        }
+        public bool Contains(string name)
+        {
+            foreach (string player in Players)
+                if (player == name)
+                    return true;
+            return false;
         }
 
         public string GenerateURI(string server, int port)
         {
-            return "ygpro:/" + server + "/" + port + "/" + Rule + Mode + BanList + Timer + (EnablePriority ? 1 : 0) + (NoCheckDeck ? 1 : 0) + (NoShuffleDeck ? 1 : 0) + StartLp + "," + (isRanked ? "R" : "U") + "," + RoomName;
+            return "ygpro:/" + server + "/" + port + "/" + Rule + Mode + BanList + Timer + (EnablePriority ? 1 : 0) + (NoCheckDeck ? 1 : 0) + (NoShuffleDeck ? 1 : 0) + StartLp + "," + (IsRanked ? "R" : "U") + "," + RoomName;
         }
 
         public static string GameRule(int rule)
@@ -114,9 +122,9 @@ namespace YGOPro_Launcher
             if (playerinfo.Rule == otherroom.Rule && playerinfo.BanList == otherroom.BanList
                 && playerinfo.Mode == otherroom.Mode && playerinfo.NoCheckDeck == otherroom.NoCheckDeck
                 && playerinfo.NoShuffleDeck == otherroom.NoShuffleDeck && playerinfo.EnablePriority == otherroom.EnablePriority
-                && playerinfo.StartLp == otherroom.StartLp && playerinfo.Timer == otherroom.Timer && otherroom.Started == false && otherroom.isLocked == false)
+                && playerinfo.StartLp == otherroom.StartLp && playerinfo.Timer == otherroom.Timer && otherroom.IsStarted == false && otherroom.IsLocked == false)
             {
-                string[] players = otherroom.Players.Split(',');
+                string[] players = otherroom.Players;
                 if (GameMode(otherroom.Mode) == "Tag")
                 {
                     if (players.Length < 4)

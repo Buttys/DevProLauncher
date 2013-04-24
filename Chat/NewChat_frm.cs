@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using YGOPro_Launcher.Chat.Enums;
 using YGOPro_Launcher.Config;
 using System.Diagnostics;
+using YgoServer.NetworkData;
 
 namespace YGOPro_Launcher.Chat
 {

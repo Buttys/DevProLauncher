@@ -40,6 +40,9 @@
     <StartupObject>YGOPro_Launcher.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Visual Studio 2010\Projects\DevProServer\DevProServer\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.82.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
@@ -99,6 +102,7 @@
     <Compile Include="Chat\TeamProfile_frm.Designer.cs">
       <DependentUpon>TeamProfile_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NetworkData\ClientPackets.cs" />
     <Compile Include="Config\Configuration.cs" />
     <Compile Include="Config\LanguageInfo.cs" />
     <Compile Include="Config\LanguageManager.cs" />
@@ -177,6 +181,7 @@
     <Compile Include="Input_frm.designer.cs">
       <DependentUpon>Input_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NetworkData\LoginData.cs" />
     <Compile Include="Login\Authenticator.cs" />
     <Compile Include="Main_frm.cs">
       <SubType>Form</SubType>
@@ -198,6 +203,8 @@
     <Compile Include="GameList\Options_frm.Designer.cs">
       <DependentUpon>Options_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NetworkData\LoginRequest.cs" />
+    <Compile Include="NetworkData\UnicodeConverter.cs" />
     <Compile Include="PatchNotes_frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,9 +219,10 @@
     <Compile Include="Login\Register_frm.Designer.cs">
       <DependentUpon>Register_frm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameList\RoomInfos.cs" />
+    <Compile Include="NetworkData\RoomInfos.cs" />
     <Compile Include="GameList\UserData.cs" />
     <Compile Include="RegEditor.cs" />
+    <Compile Include="NetworkData\ServerPackets.cs" />
     <Compile Include="SevenZip\Common\CommandLineParser.cs" />
     <Compile Include="SevenZip\Common\CRC.cs" />
     <Compile Include="SevenZip\Common\InBuffer.cs" />
