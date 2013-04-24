@@ -27,7 +27,7 @@ namespace YGOPro_Launcher
             UsernameInput.Text = _configuration.DefaultUsername;
             AutoLoginCheckBox.Checked = _configuration.AutoLogin;
             _authenticator.ResetTimeout += new Authenticator.Reset(ResetTimeOut);
-          
+            _authenticator.NotifyLogin += new Authenticator.Done(LoginDone);
 
             if (Directory.Exists(LanguageManager.Path))
             {
@@ -98,6 +98,17 @@ namespace YGOPro_Launcher
             }
         }
 
+        private void LoginDone()
+        {
+            if (!IsDisposed)
+            {
+                if (Program.UserInfo.Username != "" && Program.UserInfo.LoginKey != "")
+                {
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
+        }
+
         private void ServerSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsDisposed)
@@ -140,7 +151,7 @@ namespace YGOPro_Launcher
                 if (!IsDisposed)
                 {
                     LoginTimeOut.Enabled = false;
-                    LoginBtn.Enabled = true;
+                    this.Enabled = true;
                 }
             }
         }
@@ -166,7 +177,7 @@ namespace YGOPro_Launcher
                 MessageBox.Show("Please Select a server.");
                 return;
             }
-            LoginBtn.Enabled = false;
+            this.Enabled = false;
             LoginTimeOut.Enabled = true;
             if (!_connection.IsConnected)
             {
