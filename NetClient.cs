@@ -23,13 +23,14 @@ namespace YGOPro_Launcher
         private Thread m_parserThread;
 
         public delegate void ServerResponse(string message);
+        public delegate void ClientPacket(ClientPackets packet);
         public delegate void LoginResponse(ClientPackets type, LoginData data);
         public delegate void ServerRooms(RoomInfos[] rooms);
         public delegate void GameRoomUpdate(RoomInfos room);
         public delegate void ServerDisconnected();
         public ServerDisconnected Disconnected;
         public LoginResponse LoginReply;
-        public ServerResponse RegisterReply;
+        public ClientPacket RegisterReply;
         public ServerResponse OnFatalError;
         public ServerResponse RemoveRoom;
         public GameRoomUpdate UpdateRoomPlayers;
@@ -134,21 +135,6 @@ namespace YGOPro_Launcher
             }
         }
 
-        public void SendPacket(string packet)
-        {
-            if (!IsConnected)
-                return;
-            try
-            {
-                byte[] data = Encoding.Default.GetBytes(packet + "\n");
-                m_client.Client.Send(data, data.Length, SocketFlags.None);
-            }
-            catch (Exception)
-            {
-                OnDisconnected();
-            }
-        }
-
         private void Receive()
         {
             try
@@ -209,12 +195,13 @@ namespace YGOPro_Launcher
             }
             else if (cmd == ClientPackets.RegisterAccept)
             {
-                //if (RegisterReply != null)
-                //    RegisterReply(args[1]);
+                if (RegisterReply != null)
+                    RegisterReply(cmd);
             }
             else if (cmd == ClientPackets.RegisterFailed)
             {
-
+                if (RegisterReply != null)
+                    RegisterReply(cmd);
             }
             else if (cmd == ClientPackets.GameList)
             {
@@ -250,59 +237,6 @@ namespace YGOPro_Launcher
                 if (OnFatalError != null)
                     OnFatalError("Unknown packet received.");
             }
-        }
-
-        private void OnCommand(string command)
-        {
-            string[] args = command.Split(new string[]{"||"},StringSplitOptions.None);
-            string cmd = args[0];
-
-            //if (cmd == "ROOMS")
-            //{
-            //    List<RoomInfos> rooms = new List<RoomInfos>();
-            //    for (int i = 1; i < args.Length; ++i)
-            //    {
-            //        string[] infos = args[i].Split(';');
-            //        RoomInfos room = RoomInfos.FromName(infos[0], infos[1], infos[2] == "1");
-            //        if (room != null) rooms.Add(room);
-            //    }
-            //    //if (AddRooms != null)
-            //    //    AddRooms(rooms.ToArray());
-            //}
-            ////else if (cmd == "-ROOM")
-            ////{
-            ////    if (RemoveRoom != null)
-            ////        RemoveRoom(args[1]);
-            ////}
-            ////else if (cmd == "PLAYERS")
-            ////{
-            ////    if (UpdateRoomPlayers != null)
-            ////        UpdateRoomPlayers(args[1] + "||" + args[2]+ "||" + args[3]);
-            ////}
-            ////else if (cmd == "START")
-            ////{
-            ////    if (UpdateRoomStatus != null)
-            ////        UpdateRoomStatus(args[1]);
-            ////}
-            //else if (cmd == "REGISTER")
-            //{
-            //    if (RegisterReply != null)
-            //        RegisterReply(args[1]);
-            //}
-            //else if (cmd == "MSG")
-            //{
-            //    if (ServerMessage != null)
-            //        ServerMessage(args[1]);
-            //}
-            //else if (cmd == "PONG")
-            //{
-            //    MessageBox.Show("PONG!: " + -(int)pingrequest.Subtract(DateTime.Now).TotalMilliseconds);
-            //}
-            //else
-            //{
-            //    if (OnFatalError != null)
-            //        OnFatalError("Unknown packet received.");
-            //}
         }
 
         private void OnDisconnected()

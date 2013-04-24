@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Diagnostics;
 using YgoServer.NetworkData;
+using YgoServer.Helpers;
 namespace YGOPro_Launcher
 {
     public partial class NewServerInterface_frm : Form
@@ -121,19 +122,14 @@ namespace YGOPro_Launcher
         private void DisconnectUser(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            Program.ServerConnection.SendPacket("ADMIN||GKICK||" + item.Text.Replace("Disconnect:", "").Trim());
+            Program.ServerConnection.SendPacket(ServerPackets.Kick,UnicodeConverter.GetBytes(item.Text.Substring(12).Trim()));
 
         }
 
         private void KillRoom(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            Program.ServerConnection.SendPacket("ADMIN||KILL||" + item.Text.Replace("Kill: ", "").Trim());
-        }
-
-        public void RequestUserWLD()
-        {
-            Program.ServerConnection.SendPacket("WLD");
+            Program.ServerConnection.SendPacket(ServerPackets.Kill, UnicodeConverter.GetBytes(item.Text.Substring(6).Trim()));
         }
 
         public void RefreshDeckList()
@@ -254,7 +250,7 @@ namespace YGOPro_Launcher
                 }
             }
 
-            RoomInfos userinfo = RoomInfos.FromName(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), isranked).Split('/')[3], "", false);
+            RoomInfos userinfo = RoomInfos.FromName(form.GenerateURI(Program.Config.ServerAddress, Program.Config.GamePort.ToString(), isranked).Split('/')[3], false);
 
             List<RoomInfos> MatchedRooms = new List<RoomInfos>();
 

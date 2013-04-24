@@ -24,7 +24,7 @@ namespace YgoServer.NetworkData
         public string RoomName;
         public string[] Players;
 
-        public static RoomInfos FromName(string roomname, string players, bool started)
+        public static RoomInfos FromName(string roomname, bool started)
         {
             RoomInfos infos = new RoomInfos();
 
@@ -73,7 +73,7 @@ namespace YgoServer.NetworkData
         public bool Contains(string name)
         {
             foreach (string player in Players)
-                if (player == name)
+                if (player.ToLower().Contains(name.ToLower()))
                     return true;
             return false;
         }

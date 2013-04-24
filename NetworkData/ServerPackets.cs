@@ -3,7 +3,7 @@
     public enum ServerPackets
     {
         GameList = 0,
-        Ban = 1,
+        Kill = 1,
         Kick = 2,
         Ping = 3,
         Login = 4,
