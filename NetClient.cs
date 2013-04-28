@@ -92,14 +92,14 @@ namespace YGOPro_Launcher
         {
             MemoryStream stream = new MemoryStream();
             BinaryWriter writer = new BinaryWriter(stream);
-            writer.Write((short)(data.Length + 1));
             writer.Write((byte)type);
+            writer.Write((short)(data.Length));
             writer.Write(data);
             SendPacket(stream.ToArray());
         }
         public void SendPacket(ServerPackets type)
         {
-            SendPacket(new byte[] { 0x01, 0x00, (byte)type });
+            SendPacket(new byte[] { (byte)type });
         }
 
         private void SendPacket(byte[] packet)
@@ -123,26 +123,55 @@ namespace YGOPro_Launcher
             }
         }
 
+        private bool isLargePacket(ClientPackets packet)
+        {
+            return packet == ClientPackets.GameList;
+        }
+
+        private bool isOneByte(ClientPackets packet)
+        {
+            return (packet == ClientPackets.Banned || packet == ClientPackets.LoginFailed ||
+                    packet == ClientPackets.RegisterAccept || packet == ClientPackets.RegisterFailed ||
+                    packet == ClientPackets.Pong || packet == ClientPackets.Kicked);
+        }
+
         private void Receive()
         {
             try
             {
                 while (IsConnected)
                 {
-                    int len = m_reader.ReadInt16();
-                    byte[] content = m_reader.ReadBytes(len);
-                    if (content != null)
+
+                    ClientPackets packet = (ClientPackets)m_reader.ReadByte();
+                    int len = 0;
+                    byte[] content = null;
+                    if (!isOneByte(packet))
                     {
-                        lock (m_lock)
+                        if (isLargePacket(packet))
                         {
-                            BinaryReader reader = new BinaryReader(new MemoryStream(content));
-                            m_messageQueue.Enqueue(new MessageReceived(content,reader));
+                            len = m_reader.ReadInt32();
+                            content = m_reader.ReadBytes(len);
+                        }
+                        else
+                        {
+                            len = m_reader.ReadInt16();
+                            content = m_reader.ReadBytes(len);
                         }
                     }
-                    else
+
+                    lock (m_lock)
                     {
-                      OnDisconnected();
+                        if (len > 0)
+                        {
+                            BinaryReader reader = new BinaryReader(new MemoryStream(content));
+                            m_messageQueue.Enqueue(new MessageReceived(packet, content, reader));
+                        }
+                        else
+                        {
+                            m_messageQueue.Enqueue(new MessageReceived(packet, null, null));
+                        }
                     }
+
                     Thread.Sleep(1);
                 }
             }
@@ -170,55 +199,54 @@ namespace YGOPro_Launcher
 
         private void OnCommand(MessageReceived e)
         {
-            ClientPackets cmd = (ClientPackets)e.Reader.ReadByte();
-            if (cmd == ClientPackets.LoginAccepted)
+            if (e.Packet == ClientPackets.LoginAccepted)
             {
                 if (LoginReply != null)
-                    LoginReply(cmd, JsonConvert.DeserializeObject<LoginData>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length - 1))));
+                    LoginReply(e.Packet, JsonConvert.DeserializeObject<LoginData>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
             }
-            else if (cmd == ClientPackets.LoginFailed)
+            else if (e.Packet == ClientPackets.LoginFailed)
             {
                 if (LoginReply != null)
-                    LoginReply(cmd, null);
+                    LoginReply(e.Packet, null);
             }
-            else if (cmd == ClientPackets.RegisterAccept)
+            else if (e.Packet == ClientPackets.RegisterAccept)
             {
                 if (RegisterReply != null)
-                    RegisterReply(cmd);
+                    RegisterReply(e.Packet);
             }
-            else if (cmd == ClientPackets.RegisterFailed)
+            else if (e.Packet == ClientPackets.RegisterFailed)
             {
                 if (RegisterReply != null)
-                    RegisterReply(cmd);
+                    RegisterReply(e.Packet);
             }
-            else if (cmd == ClientPackets.GameList)
+            else if (e.Packet == ClientPackets.GameList)
             {
                 if (AddRooms != null)
-                    AddRooms(JsonConvert.DeserializeObject<RoomInfos[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length - 1))));
+                    AddRooms(JsonConvert.DeserializeObject<RoomInfos[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
             }
-            else if (cmd == ClientPackets.RemoveRoom)
+            else if (e.Packet == ClientPackets.RemoveRoom)
             {
                 if (RemoveRoom != null)
-                    RemoveRoom(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length - 1)));
+                    RemoveRoom(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
             }
-            else if (cmd == ClientPackets.UpdatePlayers)
+            else if (e.Packet == ClientPackets.UpdatePlayers)
             {
                 if (UpdateRoomPlayers != null)
-                    UpdateRoomPlayers(JsonConvert.DeserializeObject<RoomInfos>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length - 1))));
+                    UpdateRoomPlayers(JsonConvert.DeserializeObject<RoomInfos>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
             }
-            else if (cmd == ClientPackets.RoomStart)
+            else if (e.Packet == ClientPackets.RoomStart)
             {
                 if (UpdateRoomStatus != null)
-                    UpdateRoomStatus(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length - 1)));
+                    UpdateRoomStatus(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
             }
-            else if (cmd == ClientPackets.Pong)
+            else if (e.Packet == ClientPackets.Pong)
             {
                 MessageBox.Show("PONG!: " + -(int)pingrequest.Subtract(DateTime.Now).TotalMilliseconds);
             }
-            else if (cmd == ClientPackets.ServerMessage)
+            else if (e.Packet == ClientPackets.ServerMessage)
             {
                 if (ServerMessage != null)
-                    ServerMessage(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length - 1)));
+                    ServerMessage(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
             }
             else
             {

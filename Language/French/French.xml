@@ -207,14 +207,14 @@
   <SupportItem4Name>Libération d'un Duelliste</SupportItem4Name>
   <SupportItem4Des>Débannir un Duelliste qui a été banni auparavant.</SupportItem4Des>
   <SupportItem5Name>Couleur du Pseudo</SupportItem5Name>
-  <SupportItem5Des>Change la couleur de votre Pseudo dans le chat.</SupportItem5Des>
+  <SupportItem5Des>Change la coleur de votre Pseudo dans le chat.</SupportItem5Des>
   <SupportItem6Name>Création d'une Equipe</SupportItem6Name>
-  <SupportItem6Des>Créée une Equipe de Duellistes.</SupportItem6Des>
+  <SupportItem6Des>Crée une Equipe de Duellistes.</SupportItem6Des>
   <SupportItem7Name>Envoie de Messages Serveur</SupportItem7Name>
   <SupportItem7Des>Permet d'envoyer des Messages Serveur à tout le monde (dans la limite de 3 Messages par jour)</SupportItem7Des>
   <SupportBalance>Compte</SupportBalance>
   <Supportgb2>Supportez DevPro !</Supportgb2>
-  <Supportgb2text>Les DevPoints permettent de récompenser les Duellistes qui aident et supportent DevPro. Tandis que les 2 options ci-dessous vous font gagner des DevPoints, vous pouvez aussi en gagner en aidant la Team Devpro !  ||- Prendre part aux Events DevPro || - Résoudre les bugs de cartes et du lanceur! || - Contribuer à la montée en charge de DevPro</Supportgb2text>
+  <Supportgb2text>Les DevPoints permettent de récompenser les Duellistes qui aident et supportent DevPro. Tandis que les 2 options ci-dessous vous font gagner des DevPoints, vous pouvez aussi en gagner en aidant la Team Devpro !  || ||- Prendre part aux Events DevPro || - Résoudre les bugs de cartes et du lanceur! || - Contribuer à la montée en charge de DevPro</Supportgb2text>
   <Supportgb3>Complétez des offres !</Supportgb3>
   <Supportgb3text>Gagnez des DevPoints en complétant des offres.</Supportgb3text>
   <Supportgb4>Faites un don !</Supportgb4>
