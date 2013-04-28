@@ -5,6 +5,7 @@ using System.IO;
 using YGOPro_Launcher.Chat;
 using System.Threading;
 using YGOPro_Launcher.Support;
+using YgoServer.NetworkData;
 
 namespace YGOPro_Launcher
 {
@@ -117,7 +118,7 @@ namespace YGOPro_Launcher
                     {
                         if (control is NewServerInterface_frm)
                         {
-                            Program.ServerConnection.SendPacket("GETROOMS");
+                            Program.ServerConnection.SendPacket(ServerPackets.GameList);
                         }
                         if (control is NewChat_frm)
                         {

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using YGOPro_Launcher.Chat.Enums;
 using YGOPro_Launcher.Config;
 using System.Diagnostics;
+using YgoServer.NetworkData;
 
 namespace YGOPro_Launcher.Chat
 {
@@ -704,7 +705,7 @@ namespace YGOPro_Launcher.Chat
                     else if (cmd == "pinggame")
                     {
                         Program.ServerConnection.pingrequest = DateTime.Now;
-                        Program.ServerConnection.SendPacket("PING");
+                        Program.ServerConnection.SendPacket(ServerPackets.Ping);
                     }
                     else if (cmd == "autoscroll")
                     {
@@ -1108,9 +1109,9 @@ namespace YGOPro_Launcher.Chat
                         Program.ChatServer.SendPacket("REFUSEDUEL||" + args[1]);
                         return;
                     }
-                    RoomInfos info = RoomInfos.FromName(args[2], "", false);
+                    RoomInfos info = RoomInfos.FromName(args[2], false);
                     DuelRequest_frm request = new DuelRequest_frm(args[1] + Program.LanguageManager.Translation.DuelReqestMessage + Environment.NewLine +
-                        Program.LanguageManager.Translation.DuelRequestMode + RoomInfos.GameMode(info.Mode) + Program.LanguageManager.Translation.DuelRequestRules + RoomInfos.GameRule(info.Rule) + Program.LanguageManager.Translation.DuelRequestBanlist + LauncherHelper.GetBanListFromInt(info.BanList));
+                        Program.LanguageManager.Translation.DuelRequestMode + RoomInfos.GameMode(info.mode) + Program.LanguageManager.Translation.DuelRequestRules + RoomInfos.GameRule(info.rule) + Program.LanguageManager.Translation.DuelRequestBanlist + LauncherHelper.GetBanListFromInt(info.banListType));
 
 
                     if (request.ShowDialog() == System.Windows.Forms.DialogResult.Yes)

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using YgoServer.NetworkData;
+using Newtonsoft.Json;
 
 namespace YGOPro_Launcher
 {
@@ -16,7 +18,7 @@ namespace YGOPro_Launcher
         {
             InitializeComponent();
             ApplyTranslation();
-            Program.ServerConnection.RegisterReply += new NetClient.ServerResponse(RegisterResponse);
+            Program.ServerConnection.RegisterReply += new NetClient.ClientPacket(RegisterResponse);
             UsernameInput.KeyDown += new KeyEventHandler(UsernameInput_KeyDown);
         }
 
@@ -65,21 +67,28 @@ namespace YGOPro_Launcher
                 MessageBox.Show(Program.LanguageManager.Translation.RegistMsb6);
                 return;
             }
-           Program.ServerConnection.SendPacket("REGISTER||" + UsernameInput.Text + "||" + LauncherHelper.EncodePassword(PasswordInput.Text) + "||" + LauncherHelper.GetUID());
+            Program.ServerConnection.SendPacket(ServerPackets.Register,Encoding.UTF8.GetBytes(
+                JsonConvert.SerializeObject(
+                new LoginRequest()
+                { 
+                    Username = UsernameInput.Text, 
+                    Password= LauncherHelper.EncodePassword(PasswordInput.Text), 
+                    UID= LauncherHelper.GetUID()
+                })));
         }
 
-        private void RegisterResponse(string message)
+        private void RegisterResponse(ClientPackets packet)
         {
             if (!this.IsDisposed)
             {
-                if (message == "OK")
+                if (packet == ClientPackets.RegisterAccept)
                 {
                     if (MessageBox.Show(Program.LanguageManager.Translation.RegistMsb4) == System.Windows.Forms.DialogResult.OK)
                     {
                         DialogResult = System.Windows.Forms.DialogResult.OK;
                     }
                 }
-                else if (message == "USERNAME_EXISTS")
+                else if (packet == ClientPackets.RegisterFailed)
                 {
                     MessageBox.Show(Program.LanguageManager.Translation.RegistMsb5);
                 }

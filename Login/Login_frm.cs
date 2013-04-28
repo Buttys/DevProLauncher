@@ -9,7 +9,7 @@ namespace YGOPro_Launcher
 {
     public partial class Login_frm : Form
     {
-        
+
         private readonly Configuration _configuration;
 
         private readonly NetClient _connection;
@@ -19,7 +19,7 @@ namespace YGOPro_Launcher
         internal Login_frm(Configuration configuration, NetClient connection, Authenticator authenticator)
         {
             InitializeComponent();
-            this.Text = "DevPro" + " v" + Program.Version[0] + "." + Program.Version[1] + "." + Program.Version[2]+ " r" + Program.Version[3];
+            this.Text = "DevPro" + " v" + Program.Version[0] + "." + Program.Version[1] + "." + Program.Version[2] + " r" + Program.Version[3];
             _configuration = configuration;
             _connection = connection;
             _authenticator = authenticator;
@@ -35,7 +35,7 @@ namespace YGOPro_Launcher
                 foreach (string language in languages)
                 {
                     string[] split = language.Split('/');
-                    if(split.Length > 1)
+                    if (split.Length > 1)
                         LanguageSelect.Items.Add(split[1]);
                 }
 
@@ -89,7 +89,7 @@ namespace YGOPro_Launcher
                 if (Program.UserInfo.Username == "" && Program.UserInfo.LoginKey == "")
                 {
                     ResetTimeOut();
-                    MessageBox.Show("Login Timeout");    
+                    MessageBox.Show("Login Timeout");
                 }
                 else
                 {
@@ -136,7 +136,7 @@ namespace YGOPro_Launcher
         {
             base.OnFormClosing(e);
             if (e.CloseReason == CloseReason.WindowsShutDown) return;
-            if(DialogResult != DialogResult.OK)
+            if (DialogResult != DialogResult.OK)
                 Application.Exit();
         }
 
@@ -159,7 +159,7 @@ namespace YGOPro_Launcher
         private void LanguageSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.Config.Language = LanguageSelect.SelectedItem.ToString();
-            Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
+            Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
             Program.LanguageManager.Load(LanguageSelect.SelectedItem.ToString());
             ApplyTranslation();
         }
@@ -207,7 +207,7 @@ namespace YGOPro_Launcher
                 _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
                 _configuration.AutoLogin = AutoLoginCheckBox.Checked;
                 _configuration.DefaultServer = ServerSelect.SelectedItem.ToString();
-                Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
+                Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
             }
             _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
         }

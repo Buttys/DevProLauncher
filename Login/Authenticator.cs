@@ -1,6 +1,9 @@
 ﻿using System.Security.Authentication;
 using System;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using System.Text;
+using YgoServer.NetworkData;
 
 namespace YGOPro_Launcher.Login
 {
@@ -21,7 +24,7 @@ namespace YGOPro_Launcher.Login
             _userInfo = userData;
             _encodedPassword = encodedPassword;
             _connection = connection;
-            _connection.LoginReply += new NetClient.ServerResponse(LoginResponse);
+            _connection.LoginReply += new NetClient.LoginResponse(LoginResponse);
         }
 
         public void Authenticate()
@@ -37,38 +40,30 @@ namespace YGOPro_Launcher.Login
             }
 
             _username = username;
-           
-            _connection.SendPacket("LOGIN||" + username + "||" + password + "||" + LauncherHelper.GetUID());
+
+            _connection.SendPacket(ServerPackets.Login,Encoding.UTF8.GetBytes(
+                JsonConvert.SerializeObject(new LoginRequest() { Username = username, Password = password, UID = LauncherHelper.GetUID() })));
         }
 
-        private void LoginResponse(string message)
+        private void LoginResponse(ClientPackets type, LoginData data)
         {
-            if (message == "") return;
-            string[] args = message.Split(new string[] { "||" }, StringSplitOptions.None);
-          
-            if (args[0] == "Banned")
-            {               
+            if (type == ClientPackets.Banned)
+            {
                 if (ResetTimeout != null)
                     ResetTimeout();
                 MessageBox.Show("You are banned.");
             }
-            else if (args[0] == "Failed")
-            {    
+            else if (type == ClientPackets.LoginFailed)
+            {
                 if (ResetTimeout != null)
                     ResetTimeout();
                 MessageBox.Show("Incorrect Password or Username.");
             }
-            else if (args[0] == "LoginDown")
-            {
-                if (ResetTimeout != null)
-                    ResetTimeout();
-                MessageBox.Show("Login Server is down.");
-            }
             else
             {
                 _userInfo.Username = _username;
-                _userInfo.Rank = Int32.Parse(args[1]);
-                _userInfo.LoginKey = args[0];
+                _userInfo.LoginKey = data.LoginKey.ToString();
+                _userInfo.Rank = data.UserRank;
 
                 if (NotifyLogin != null)
                     NotifyLogin();

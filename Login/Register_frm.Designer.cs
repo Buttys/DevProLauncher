@@ -111,7 +111,7 @@
             this.RegisterBtn.Location = new System.Drawing.Point(3, 3);
             this.RegisterBtn.Name = "RegisterBtn";
             this.RegisterBtn.Size = new System.Drawing.Size(72, 23);
-            this.RegisterBtn.TabIndex = 4;
+            this.RegisterBtn.TabIndex = 0;
             this.RegisterBtn.Text = "Register";
             this.RegisterBtn.UseVisualStyleBackColor = true;
             this.RegisterBtn.Click += new System.EventHandler(this.RegisterBtn_Click);
@@ -122,7 +122,7 @@
             this.CancelBtn.Location = new System.Drawing.Point(81, 3);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(72, 23);
-            this.CancelBtn.TabIndex = 5;
+            this.CancelBtn.TabIndex = 1;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
             // 
@@ -133,7 +133,7 @@
             this.UsernameInput.MaxLength = 14;
             this.UsernameInput.Name = "UsernameInput";
             this.UsernameInput.Size = new System.Drawing.Size(160, 20);
-            this.UsernameInput.TabIndex = 0;
+            this.UsernameInput.TabIndex = 7;
             // 
             // PasswordInput
             // 
@@ -142,7 +142,7 @@
             this.PasswordInput.MaxLength = 15;
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.Size = new System.Drawing.Size(160, 20);
-            this.PasswordInput.TabIndex = 1;
+            this.PasswordInput.TabIndex = 8;
             this.PasswordInput.UseSystemPasswordChar = true;
             // 
             // ConfirmInput
@@ -152,7 +152,7 @@
             this.ConfirmInput.MaxLength = 15;
             this.ConfirmInput.Name = "ConfirmInput";
             this.ConfirmInput.Size = new System.Drawing.Size(160, 20);
-            this.ConfirmInput.TabIndex = 3;
+            this.ConfirmInput.TabIndex = 9;
             this.ConfirmInput.UseSystemPasswordChar = true;
             // 
             // Register_frm

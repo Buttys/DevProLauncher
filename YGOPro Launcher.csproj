@@ -40,6 +40,10 @@
     <StartupObject>YGOPro_Launcher.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.82.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
@@ -198,6 +202,12 @@
     <Compile Include="GameList\Options_frm.Designer.cs">
       <DependentUpon>Options_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NetworkData\ClientPackets.cs" />
+    <Compile Include="NetworkData\LoginData.cs" />
+    <Compile Include="NetworkData\LoginRequest.cs" />
+    <Compile Include="NetworkData\MessageReceived.cs" />
+    <Compile Include="NetworkData\RoomInfos.cs" />
+    <Compile Include="NetworkData\ServerPackets.cs" />
     <Compile Include="PatchNotes_frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,7 +222,6 @@
     <Compile Include="Login\Register_frm.Designer.cs">
       <DependentUpon>Register_frm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameList\RoomInfos.cs" />
     <Compile Include="GameList\UserData.cs" />
     <Compile Include="RegEditor.cs" />
     <Compile Include="SevenZip\Common\CommandLineParser.cs" />
@@ -247,6 +256,7 @@
     </Content>
     <Content Include="Language\French\cards.cdb" />
     <Content Include="Language\French\strings.conf" />
+    <Content Include="Newtonsoft.Json.dll" />
     <None Include="Resources\GetDevpoints.png" />
     <None Include="Resources\message.png" />
     <None Include="Resources\patchnotes.rtf" />
