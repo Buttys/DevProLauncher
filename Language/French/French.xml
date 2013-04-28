@@ -219,4 +219,8 @@
   <Supportgb3text>Gagnez des DevPoints en complétant des offres.</Supportgb3text>
   <Supportgb4>Faites un don !</Supportgb4>
   <Supportgb4text>Et recevez des DevPoints.</Supportgb4text>
+  <SupportRenameInput>Entrez votre nouveau Pseudo</SupportRenameInput>
+  <SupportUnbanInput>Entrez votre Pseudo</SupportUnbanInput>
+  <SupportTeamNameInput>Entrez le nom de votre Equipe</SupportTeamNameInput>
+  <SupportMSGInput>Entrez votre message</SupportMSGInput>
 </LanguageInfo>
