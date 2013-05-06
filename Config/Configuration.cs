@@ -6,6 +6,8 @@ using System.Drawing;
 
 namespace YGOPro_Launcher.Config
 {
+    using System.Collections.Generic;
+
     public class Configuration
     {
         public string ServerName;
@@ -86,6 +88,6 @@ namespace YGOPro_Launcher.Config
         public bool ConfigReset181000 = true;
         public bool NewUpdate = false;
 
-
+        public List<string> ChatChannels = new List<string>();
     }
 }
