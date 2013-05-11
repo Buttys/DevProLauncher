@@ -270,6 +270,7 @@ namespace YGOPro_Launcher.Chat
                     window = new ChatWindow(message.Type.ToString(), true) { issystemtab = true};
                     ChannelTabs.TabPages.Add(window);
                 }
+                else window.WriteMessage(message, autoscroll);
             }
             else if (message.Type == MessageType.Join || message.Type == MessageType.Leave || message.Channel == null)
             {
@@ -303,15 +304,17 @@ namespace YGOPro_Launcher.Chat
                     ChannelTabs.TabPages.Add(window);
                 }
             }
-            
-            window = window ?? GetChatWindow(message.Channel);
-            if(window == null)
+            else
             {
-                window = new ChatWindow(message.Channel, message.Type == MessageType.PrivateMessage);
-                ChannelTabs.TabPages.Add(window);
-            }
+                window = window ?? GetChatWindow(message.Channel);
+                if (window == null)
+                {
+                    window = new ChatWindow(message.Channel, message.Type == MessageType.PrivateMessage);
+                    ChannelTabs.TabPages.Add(window);
+                }
 
-            window.WriteMessage(message, autoscroll);
+                window.WriteMessage(message, autoscroll);
+            }
         }
 
         private ChatWindow GetChatWindow(string name)
@@ -390,14 +393,11 @@ namespace YGOPro_Launcher.Chat
 
             string[] info = parts[0].Split(',');
 
-            // _userData[info[0]] = new UserData() and _userData.Add(info[0], new UserData()) will behave exactly the same if the key doesn't already
-            // exists, so the below check is unnecessary.
-            ////if (!_userData.ContainsKey(info[0]))
-            ////    _userData.Add(info[0], new UserData { Username = info[0], Rank = Int32.Parse(info[1]), LoginID = Int32.Parse(info[2]), UserColor = Color.FromArgb(255, Convert.ToInt32(info[3]), Convert.ToInt32(info[4]), Convert.ToInt32(info[5])) });
-            ////else
-            ////    _userData[info[0]] = new UserData { Username = info[0], Rank = Int32.Parse(info[1]), LoginID = Int32.Parse(info[2]), UserColor = Color.FromArgb(255, Convert.ToInt32(info[3]), Convert.ToInt32(info[4]), Convert.ToInt32(info[5])) };
-            _userData.Add(info[0], new UserData { Username = info[0], Rank = int.Parse(info[1]), LoginID = int.Parse(info[2]), UserColor = Color.FromArgb(255, Convert.ToInt32(info[3]), Convert.ToInt32(info[4]), Convert.ToInt32(info[5])) });
-
+            if (!_userData.ContainsKey(info[0]))
+                _userData.Add(info[0], new UserData { Username = info[0], Rank = Int32.Parse(info[1]), LoginID = Int32.Parse(info[2]), UserColor = Color.FromArgb(255, Convert.ToInt32(info[3]), Convert.ToInt32(info[4]), Convert.ToInt32(info[5])) });
+            else
+                _userData[info[0]] = new UserData { Username = info[0], Rank = Int32.Parse(info[1]), LoginID = Int32.Parse(info[2]), UserColor = Color.FromArgb(255, Convert.ToInt32(info[3]), Convert.ToInt32(info[4]), Convert.ToInt32(info[5])) };
+            
             if (info[0] == Program.UserInfo.Username)
             {
                 var user = _userData[info[0]];
