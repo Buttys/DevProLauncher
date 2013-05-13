@@ -303,6 +303,7 @@ namespace YGOPro_Launcher.Chat
                     window = new ChatWindow(message.Type.ToString(), message.Type == MessageType.PrivateMessage);
                     ChannelTabs.TabPages.Add(window);
                 }
+                else window.WriteMessage(message, autoscroll);
             }
             else
             {
@@ -369,13 +370,10 @@ namespace YGOPro_Launcher.Chat
 
                 foreach (string[] info in users.Select(user => user.Split(',')))
                 {
-                    // _userData[info[0]] = new UserData() and _userData.Add(info[0], new UserData()) will behave exactly the same if the key doesn't already
-                    // exists, so the below check is unnecessary.
-                    ////if (_userData.ContainsKey(info[0]))
-                    ////    _userData[info[0]] = new UserData { Username = info[0], Rank = Int32.Parse(info[1]), LoginID = Int32.Parse(info[2]) };
-                    ////else
-                    ////    _userData.Add(info[0], new UserData { Username = info[0], Rank = Int32.Parse(info[1]), LoginID = Int32.Parse(info[2]) });
-                    _userData[info[0]] = new UserData { Username = info[0], Rank = Int32.Parse(info[1]), LoginID = Int32.Parse(info[2]) };
+                    if (_userData.ContainsKey(info[0]))
+                        _userData[info[0]] = new UserData { Username = info[0], Rank = Int32.Parse(info[1]), LoginID = Int32.Parse(info[2]) };
+                    else
+                        _userData.Add(info[0], new UserData { Username = info[0], Rank = Int32.Parse(info[1]), LoginID = Int32.Parse(info[2]) });
                 }
 
                 UserList.Items.AddRange(_userData.Keys.ToArray<object>());
