@@ -11,7 +11,7 @@
   <LoginPassWord>Passwort</LoginPassWord>
   <LoginLanguage>Sprache</LoginLanguage>
   <LoginLoginButton>Login</LoginLoginButton>
-  <LoginRegisterButton>Register</LoginRegisterButton>
+  <LoginRegisterButton>Registrieren</LoginRegisterButton>
   <LoginAutoLogin>automatisch einloggen</LoginAutoLogin>
   <LoginMsb1>Nicht mit dem Server verbunden.</LoginMsb1>
   <LoginMsb2>Bitte Benutzernamen eingeben.</LoginMsb2>
@@ -20,13 +20,13 @@
   <RegistLbUser>Benutzername</RegistLbUser>
   <RegistLbPw>Passwort</RegistLbPw>
   <RegistLbPw2>Passwort bestätigen</RegistLbPw2>
-  <RegistBtnRegister>Register</RegistBtnRegister>
+  <RegistBtnRegister>Registrieren</RegistBtnRegister>
   <RegistBtnCancel>Abbrechen</RegistBtnCancel>
   <RegistMsb1>Bitte Passwort bestätigen</RegistMsb1>
   <RegistMsb2>Bitte Passwort eingeben.</RegistMsb2>
   <RegistMsb3>Bitte Benutzernamen eingeben.</RegistMsb3>
-  <RegistMsb4>Registrierung Erfolgreich!</RegistMsb4>
-  <RegistMsb5>Benutzername existiert schon</RegistMsb5>
+  <RegistMsb4>Registrierung erfolgreich!</RegistMsb4>
+  <RegistMsb5>Benutzername existiert bereits</RegistMsb5>
   <RegistMsb6>Benutzername akzeptiert keine Sonderzeichen</RegistMsb6>
   <GameServerInfo>Server Infos</GameServerInfo>
   <GameTabRanked>Ranked</GameTabRanked>
@@ -35,7 +35,7 @@
   <GameofUnranked>an Unranked</GameofUnranked>
   <GameofRanked>an Ranked</GameofRanked>
   <GameofOpenRooms>offene Räume</GameofOpenRooms>
-  <GameofPlayers>Zahl an Spielern</GameofPlayers>
+  <GameofPlayers>Spieleranzahl</GameofPlayers>
   <GameFilterActive>Aktive Spiele filtern</GameFilterActive>
   <GameColumnRoomName>Raumnamen</GameColumnRoomName>
   <GameColumnType>Type</GameColumnType>
@@ -48,29 +48,35 @@
   <GameBtnDeck>Deck bearbeiten</GameBtnDeck>
   <GameBtnReplay>Replays</GameBtnReplay>
   <GameBtnOption>Optionen</GameBtnOption>
-  <GameBtnProfile>Profile</GameBtnProfile>
-  <GameBtnHost>Host</GameBtnHost>
+  <GameBtnProfile>Profil</GameBtnProfile>
+  <GameBtnHost>Hosten</GameBtnHost>
   <GameBtnQuick>Schnell</GameBtnQuick>
   <GameLabWLD>Win/Lose/Draw</GameLabWLD>
   <GameLabDeck>Deck:</GameLabDeck>
   <GameLabUser>Benutzername:</GameLabUser>
   <GameBtnOffline>Offline</GameBtnOffline>
   <GameBtnLogout>Logout</GameBtnLogout>
+  <GamePasswordExsists>Ein Raum mit diesem Passwort existiert bereits.</GamePasswordExsists>
+  <GameLocked>Passwort</GameLocked>
+  <GameOpen>Offen</GameOpen>
+  <GameLPChange>Deine Schnellhost Einstellungen entsprechen nicht den empfohlenen Lebenspunkte Einstellungen. Möchtest du diese zu den Standart Einstellungen ändern?</GameLPChange>
+  <GameEnterPassword>Passwort</GameEnterPassword>
+  <GameWrongPassword>Falsches Passwort</GameWrongPassword>
   <optionGb1>Benutzer Einstellung</optionGb1>
   <optionGb2>Spiel Einstellungen</optionGb2>
   <optionGb3>Schrift Einstellungen</optionGb3>
   <optionGb4>Launcher Einstellungen</optionGb4>
-  <optionMsbForget>Willst du Auto-Login abstellen?</optionMsbForget>
-  <optionUser>Default Username</optionUser>
-  <optionDeck>Default Deck</optionDeck>
+<optionMsbForget>Willst du Auto-Login abstellen?</optionMsbForget>
+  <optionUser>Benutzername</optionUser>
+  <optionDeck>Ausgewähltes Deck</optionDeck>
   <optionBtnAutoLogin>Auto-Login gelöscht.</optionBtnAutoLogin>
   <optionAntialias>Kantenglätung</optionAntialias>
   <optionCbSound>Sound an</optionCbSound>
   <optionCbMusic>Musik an</optionCbMusic>
   <optionCbDirect>Directx an</optionCbDirect>
-  <optionCbFull>Vollbildschirm</optionCbFull>
+  <optionCbFull>Vollbildmodus</optionCbFull>
   <optionTexts>Schriftgröße</optionTexts>
-  <optionTextf>Schrift im Spiel</optionTextf>
+  <optionTextf>Schriftfont</optionTextf>
   <optionBtnQuick>Schnell-Host Einstellungen</optionBtnQuick>
   <optionBtnSave>Speichern</optionBtnSave>
   <optionBtnCancel>Abbrechen</optionBtnCancel>
@@ -92,9 +98,10 @@
   <hostGameN>Spielname</hostGameN>
   <hostBtnHost>Host</hostBtnHost>
   <hostBtnCancel>Abbrechen</hostBtnCancel>
+  <hostpassword>Passwort</hostpassword>
   <fileBtnRename>Umbennen</fileBtnRename>
   <fileBtnDelete>Löschen</fileBtnDelete>
-  <fileBtnFolder>Open Folder</fileBtnFolder>
+  <fileBtnFolder>Ordner öffnen</fileBtnFolder>
   <fileBtnGame>Replay starten</fileBtnGame>
   <fileMsgNoExist>Existiert nicht</fileMsgNoExist>
   <fileMsgNoSelect>Nichts ausgewählt</fileMsgNoSelect>
@@ -103,7 +110,7 @@
   <fileNewName>Neuen Namen eingeben</fileNewName>
   <fileInputConfirm>Umbenennen</fileInputConfirm>
   <fileBtnRefresh>Aktualisieren</fileBtnRefresh>
-  <fileBtnImport>Import</fileBtnImport>
+  <fileBtnImport>Importieren</fileBtnImport>
   <aboutLabel1>Über DevPro</aboutLabel1>
   <aAboutText>The YGOPro Online Development Group is a rag tag team of programmers, philanthropist, and generally knowledgeable people in the YGOPro community that seek to better and progress the Yu-Gi-Oh! Online community as a whole by providing services and software to allow duelist to grow by dueling and forming lasting friendships.</aAboutText>
   <aboutLabel5>DevPro Mitwirkende</aboutLabel5>
@@ -114,7 +121,7 @@
   <cusBackup>Sichern</cusBackup>
   <cusLabelTheme>Thema</cusLabelTheme>
   <cusLabelCont>Inhalt</cusLabelCont>
-  <profileName>Profil</profileName>
+ <profileName>Profil</profileName>
   <profileWin>Win</profileWin>
   <profileLose>Lose</profileLose>
   <profileGb1>Benutzer Info</profileGb1>
@@ -135,7 +142,7 @@
   <profileLblDestinyBoard>Schicksalstafeln</profileLblDestinyBoard>
   <profileLblLastTurn>Letzter Spielzug</profileLblLastTurn>
   <profileLblDestinyLeo>Destiny Leo</profileLblDestinyLeo>
-  <profileLblUnknown>Umbekannt</profileLblUnknown>
+  <profileLblUnknown>Unbekannt</profileLblUnknown>
   <profileLblUsername>Benutzername: </profileLblUsername>
   <profileLblwld>Win/Lose/Draw: </profileLblwld>
   <profileLblRank>Rank: </profileLblRank>
@@ -146,10 +153,10 @@
   <chatoptionsGb3>Farben Stil</chatoptionsGb3>
   <chatoptionsGb4>Channel Einstellungen</chatoptionsGb4>
   <chatoptionsLblHideJoinLeave>Rein/Raus verstecken</chatoptionsLblHideJoinLeave>
-  <chatoptionsLblPmWindows>PM Fenster</chatoptionsLblPmWindows>
+  <chatoptionsLblPmWindows>PN Fenster</chatoptionsLblPmWindows>
   <chatoptionsLblColorBlindMode>Farblos-Modus</chatoptionsLblColorBlindMode>
   <chatoptionsLblShowTimeStamp>Zeit-Anzeige</chatoptionsLblShowTimeStamp>
-  <chatoptionsLblRefuseDuelRequests>Refuse Duel Requests</chatoptionsLblRefuseDuelRequests>
+  <chatoptionsLblRefuseDuelRequests>Duellanfragen ablehnen</chatoptionsLblRefuseDuelRequests>
   <chatoptionsLblChatBackground>Chat Hintergrund</chatoptionsLblChatBackground>
   <chatoptionsLblNormalText>Normaler Text</chatoptionsLblNormalText>
   <chatoptionsLblLevel99>Level 99</chatoptionsLblLevel99>
@@ -170,24 +177,24 @@
   <chatTabFriends>Freunde</chatTabFriends>
   <chatTabIgnore>Ignorieren.</chatTabIgnore>
   <chatUserCount>Benutzer Anzahl: </chatUserCount>
-  <chatAddFriend>Zu Freuden hinzufügen</chatAddFriend>
-  <chatRequestDuel>Duellanfrage</chatRequestDuel>
+  <chatAddFriend>Zu Freunden hinzufügen</chatAddFriend>
+  <chatRequestDuel>Duellanfrage schicken</chatRequestDuel>
   <chatIgnoreUser>Benutzer ignorieren</chatIgnoreUser>
-  <chatViewProfile>Profil angucken</chatViewProfile>
+  <chatViewProfile>Profil anschauen</chatViewProfile>
   <chatRemoveFriend>Freund entfernen</chatRemoveFriend>
   <chatRemoveIgnore>Entfernen</chatRemoveIgnore>
   <chatAutoScroll>Auto-Scroll</chatAutoScroll>
   <MainFormTitle>YGOPro Launcher </MainFormTitle>
-  <MainChatTab>Chat (Beta)</MainChatTab>
+  <MainChatTab>Chat</MainChatTab>
   <MainRankingTab>Ranking</MainRankingTab>
   <MainTornyTab>Turnier Raum</MainTornyTab>
   <MainYoutubeTab>Youtube</MainYoutubeTab>
-  <MainFileManagerTab>Dateien Manager</MainFileManagerTab>
+  <MainFileManagerTab>Datei Manager</MainFileManagerTab>
   <MainFileDeckTab>Decks</MainFileDeckTab>
   <MainFileReplayTab>Replays</MainFileReplayTab>
   <MainCustomizeTab>Customize</MainCustomizeTab>
   <MainAboutTab>Über</MainAboutTab>
-  <DuelReqestMessage> fordert dich zu einem Ranked Spiel herraus! Nimmst du an?</DuelReqestMessage>
+  <DuelReqestMessage> fordert dich zu einem Spiel herraus! Nimmst du an?</DuelReqestMessage>
   <DuelRequestBanlist> Bannliste: </DuelRequestBanlist>
   <DuelRequestRules> Regeln: </DuelRequestRules>
   <DuelRequestMode> Typ: </DuelRequestMode>
@@ -199,15 +206,21 @@
   <SupportItem3Des>Setze deine Ranked-Statistik zurück.</SupportItem3Des>
   <SupportItem4Name>Account-Bann aufheben</SupportItem4Name>
   <SupportItem4Des>Ermögliche es einem gebannten Spieler sich wieder einzuloggen.</SupportItem4Des>
+  <SupportItem5Name>Benutzernamen-Farbe</SupportItem5Name>
+  <SupportItem5Des>Ändere die Farbe deines Benutzernamens im Chat.</SupportItem5Des>
+  <SupportItem6Name>Gründe ein Team</SupportItem6Name>
+  <SupportItem6Des>Gründe dein eigenes Team.</SupportItem6Des>
+  <SupportItem7Name>Server Nachrichten</SupportItem7Name>
+  <SupportItem7Des>Sende eine Server Nachricht an Alle. (Limit: 3 Nachrichten pro Tag)</SupportItem7Des>
   <SupportBalance>Kontostand</SupportBalance>
   <Supportgb2>Unterstütze DevPro</Supportgb2>
   <Supportgb2text>Das DevPoint-System soll DevPro unterstützen und den Spieler gleichzeitig belohnen. Du verdientst DevPoints durch die zwei unten genannten Möglichkeiten oder indem du dem DevPro-Team hilfst:  || ||- Nimm an DevPro-Events teil ||- Fixe-Bugs im DevPro Launcher oder in Karten-Scripts! ||- Hilf DevPro weiter zu wachsen</Supportgb2text>
   <Supportgb3>Verdiene dir Devpoints!</Supportgb3>
   <Supportgb3text>Verdiene Punkte durch kleine Aufträge.</Supportgb3text>
   <Supportgb4>Spende!</Supportgb4>
-  <Supportgb4text>Erhalte Punkte, durch Spenden!</Supportgb4text>
-  <chatBtnoptions>Optionen</chatBtnoptions>
-  <chatTabUsers>Spieler</chatTabUsers>
-  <chatTabFriends>Freunde</chatTabFriends>
-  <chatTabIgnore>Ignorieren</chatTabIgnore>
+  <Supportgb4text>Erhalte DevPoints durch Spenden!</Supportgb4text>t>
+  <SupportRenameInput>Neuer Benutzername</SupportRenameInput>
+  <SupportUnbanInput>Benutzername</SupportUnbanInput>
+  <SupportTeamNameInput>Team Name</SupportTeamNameInput>
+  <SupportMSGInput>Server Nachricht</SupportMSGInput>
 </LanguageInfo>
