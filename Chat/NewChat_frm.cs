@@ -648,7 +648,7 @@ namespace YGOPro_Launcher.Chat
                     }
                     
                     var isTeam = selectedTab.Name == MessageType.Team.ToString();
-                    Program.ChatServer.SendMessage(isTeam ? MessageType.Team : MessageType.Message, CommandType.Me, selectedTab.Name, ChatInput.Text.Substring(part.Length + 1));
+                    Program.ChatServer.SendMessage(isTeam ? MessageType.Team : MessageType.Message, CommandType.Me, selectedTab.Name, ChatInput.Text.Substring(part.Length).Trim());
                     break;
                 case "join":
                     JoinChannel(ChatInput.Text.Substring(part.Length).Trim());
@@ -778,12 +778,6 @@ namespace YGOPro_Launcher.Chat
             }
             
             string[] parts = ChatInput.Text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-            // Here, parts could only be empty if the whole input would be whitespace, which is already checked above.
-            ////if (parts.Length == 0)
-            ////{
-            ////    return;
-            ////}
 
             var selectedTab = (ChatWindow)ChannelTabs.SelectedTab;
             if (parts[0].StartsWith("/"))

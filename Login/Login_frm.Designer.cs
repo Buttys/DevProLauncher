@@ -44,7 +44,6 @@
             this.LanguageSelect = new System.Windows.Forms.ComboBox();
             this.ServerSelect = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.AutoLoginCheckBox = new System.Windows.Forms.CheckBox();
             this.LoginTimeOut = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -57,7 +56,6 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.AutoLoginCheckBox, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -214,17 +212,6 @@
             this.label4.Text = "Server";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // AutoLoginCheckBox
-            // 
-            this.AutoLoginCheckBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.AutoLoginCheckBox.AutoSize = true;
-            this.AutoLoginCheckBox.Location = new System.Drawing.Point(41, 152);
-            this.AutoLoginCheckBox.Name = "AutoLoginCheckBox";
-            this.AutoLoginCheckBox.Size = new System.Drawing.Size(181, 17);
-            this.AutoLoginCheckBox.TabIndex = 2;
-            this.AutoLoginCheckBox.Text = "Log me in automatically next time";
-            this.AutoLoginCheckBox.UseVisualStyleBackColor = true;
-            // 
             // LoginTimeOut
             // 
             this.LoginTimeOut.Interval = 5000;
@@ -244,7 +231,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DevPro - ";
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
@@ -265,7 +251,6 @@
         private System.Windows.Forms.TextBox PasswordInput;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox LanguageSelect;
-        private System.Windows.Forms.CheckBox AutoLoginCheckBox;
         public System.Windows.Forms.Timer LoginTimeOut;
         private System.Windows.Forms.Button OfflineBtn;
         private System.Windows.Forms.ComboBox ServerSelect;

@@ -25,7 +25,7 @@ namespace YGOPro_Launcher
             _authenticator = authenticator;
 
             UsernameInput.Text = _configuration.DefaultUsername;
-            AutoLoginCheckBox.Checked = _configuration.AutoLogin;
+            //AutoLoginCheckBox.Checked = _configuration.AutoLogin;
             _authenticator.ResetTimeout += new Authenticator.Reset(ResetTimeOut);
             _authenticator.NotifyLogin += new Authenticator.Done(LoginDone);
 
@@ -71,7 +71,7 @@ namespace YGOPro_Launcher
                 label3.Text = Program.LanguageManager.Translation.LoginLanguage;
                 LoginBtn.Text = Program.LanguageManager.Translation.LoginLoginButton;
                 RegisterBtn.Text = Program.LanguageManager.Translation.LoginRegisterButton;
-                AutoLoginCheckBox.Text = Program.LanguageManager.Translation.LoginAutoLogin;
+                //AutoLoginCheckBox.Text = Program.LanguageManager.Translation.LoginAutoLogin;
                 OfflineBtn.Text = Program.LanguageManager.Translation.LoginBtnOffline;
             }
         }
@@ -201,14 +201,14 @@ namespace YGOPro_Launcher
 
             _authenticator.Authenticate(UsernameInput.Text, LauncherHelper.EncodePassword(PasswordInput.Text));
 
-            if (AutoLoginCheckBox.Checked)
-            {
-                _configuration.DefaultUsername = UsernameInput.Text;
-                _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
-                _configuration.AutoLogin = AutoLoginCheckBox.Checked;
-                _configuration.DefaultServer = ServerSelect.SelectedItem.ToString();
-                Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
-            }
+            //if (AutoLoginCheckBox.Checked)
+            //{
+            //    _configuration.DefaultUsername = UsernameInput.Text;
+            //    _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
+            //    _configuration.AutoLogin = AutoLoginCheckBox.Checked;
+            //    _configuration.DefaultServer = ServerSelect.SelectedItem.ToString();
+            //    Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
+            //}
             _configuration.Password = LauncherHelper.EncodePassword(PasswordInput.Text);
         }
 

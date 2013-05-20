@@ -17,7 +17,7 @@ namespace YGOPro_Launcher
 {
     static class Program
     {
-        public const string Version = "185000";
+        public const string Version = "186100";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static NetClient ServerConnection;
@@ -150,12 +150,12 @@ namespace YGOPro_Launcher
                     MessageBox.Show(LanguageManager.Translation.pMsbErrorToServer);
                 }
 
-                if (Config.AutoLogin && Config.DefaultUsername.Length < 15)
-                {
+                //if (Config.AutoLogin && Config.DefaultUsername.Length < 15)
+                //{
 
-                    LoginService.Authenticate();
-                    Thread.Sleep(2000);
-                }
+                //    LoginService.Authenticate();
+                //    Thread.Sleep(2000);
+                //}
             }
 
             if (UserInfo.Username == "" && UserInfo.LoginKey == "")
