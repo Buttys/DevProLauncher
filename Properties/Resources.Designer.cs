@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace YGOPro_Launcher.Properties {
+namespace DevProLauncher.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace YGOPro_Launcher.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("YGOPro_Launcher.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DevProLauncher.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -137,21 +137,6 @@ namespace YGOPro_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("OfferWall_Btn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {\rtf1\ansi\deff0{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
-        ///{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa200\sl276\slmult1\lang9\b\f0\fs36 DevPro Patch 1.8.3 r0 - Judgement of the Light\b0\fs22\par
-        ///- New Cards\par
-        ///\b - TCG\b0\par
-        ///\pard{\pntext\f1\&apos;B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\&apos;B7}}\fi-360\li720\sa200\sl276\slmult1 Mecha Phantom Beast Turtletracer\par
-        ///\pard\sa200\sl276\slmult1\b - OCG\par
-        ///\pard{\pntext\f1\&apos;B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pn [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string patchnotes {
-            get {
-                return ResourceManager.GetString("patchnotes", resourceCulture);
             }
         }
         

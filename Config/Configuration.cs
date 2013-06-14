@@ -4,9 +4,10 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.Drawing;
 
-namespace YGOPro_Launcher.Config
+namespace DevProLauncher.Config
 {
     using System.Collections.Generic;
+    using DevProLauncher.Helpers;
 
     public class Configuration
     {

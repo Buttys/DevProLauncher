@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace YGOPro_Launcher.Config
+namespace DevProLauncher.Config
 {
     public struct SerializableColor
     {

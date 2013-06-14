@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0AA95A58-BF1A-4AD7-983A-4D9FCA052C68}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevProLauncher</RootNamespace>
+    <AssemblyName>DevPro</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DevProLauncher.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\ygo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>.\ServiceStack.Text.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>.\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\Configuration.cs" />
+    <Compile Include="Config\LanguageInfo.cs" />
+    <Compile Include="Config\LanguageManager.cs" />
+    <Compile Include="Config\SerializableColor.cs" />
+    <Compile Include="Helpers\CardInfo.cs" />
+    <Compile Include="Helpers\CardManager.cs" />
+    <Compile Include="Helpers\ChatHelper.cs" />
+    <Compile Include="Helpers\Enums\CardAttribute.cs" />
+    <Compile Include="Helpers\Enums\CardRace.cs" />
+    <Compile Include="Helpers\Enums\CardType.cs" />
+    <Compile Include="Helpers\ImageResizer.cs" />
+    <Compile Include="Helpers\LauncherHelper.cs" />
+    <Compile Include="Helpers\RegEditor.cs" />
+    <Compile Include="Helpers\ReplayReader.cs" />
+    <Compile Include="Network\DuelServerClient.cs" />
+    <Compile Include="Network\Data\ChannelData.cs" />
+    <Compile Include="Network\Data\DuelRequest.cs" />
+    <Compile Include="Network\Data\LoginData.cs" />
+    <Compile Include="Network\Data\LoginRequest.cs" />
+    <Compile Include="Network\Data\LogoutData.cs" />
+    <Compile Include="Network\Data\PacketCommand.cs" />
+    <Compile Include="Network\Data\RoomInfos.cs" />
+    <Compile Include="Network\Data\ServerInfo.cs" />
+    <Compile Include="Network\Data\UserData.cs" />
+    <Compile Include="Network\Enums\DevClientPackets.cs" />
+    <Compile Include="Network\Enums\DevServerPackets.cs" />
+    <Compile Include="Network\ChatClient.cs" />
+    <Compile Include="Network\MessageReceived.cs" />
+    <Compile Include="Network\Data\ChatMessage.cs" />
+    <Compile Include="SevenZip\Common\CommandLineParser.cs" />
+    <Compile Include="SevenZip\Common\CRC.cs" />
+    <Compile Include="SevenZip\Common\InBuffer.cs" />
+    <Compile Include="SevenZip\Common\OutBuffer.cs" />
+    <Compile Include="SevenZip\Compress\LZMA\LzmaBase.cs" />
+    <Compile Include="SevenZip\Compress\LZMA\LzmaDecoder.cs" />
+    <Compile Include="SevenZip\Compress\LZMA\LzmaEncoder.cs" />
+    <Compile Include="SevenZip\Compress\LZ\IMatchFinder.cs" />
+    <Compile Include="SevenZip\Compress\LZ\LzBinTree.cs" />
+    <Compile Include="SevenZip\Compress\LZ\LzInWindow.cs" />
+    <Compile Include="SevenZip\Compress\LZ\LzOutWindow.cs" />
+    <Compile Include="SevenZip\Compress\RangeCoder\RangeCoder.cs" />
+    <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBit.cs" />
+    <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBitTree.cs" />
+    <Compile Include="SevenZip\ICoder.cs" />
+    <Compile Include="Windows\Components\CardInfoControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Components\CardInfoControl.Designer.cs">
+      <DependentUpon>CardInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Components\ChatWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\Components\CustomRTB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\Components\DoubleBufferedListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\Components\FixedTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\Components\FlashWindow.cs" />
+    <Compile Include="Windows\Components\ReplayInfoControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Components\ReplayInfoControl.Designer.cs">
+      <DependentUpon>ReplayInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Components\Support_item.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Components\Support_item.Designer.cs">
+      <DependentUpon>Support_item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Customize_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Customize_frm.Designer.cs">
+      <DependentUpon>Customize_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Enums\CommandType.cs" />
+    <Compile Include="Windows\Enums\ContentType.cs" />
+    <Compile Include="Windows\Enums\MessageType.cs" />
+    <Compile Include="Windows\Components\FileManagerControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Components\FileManagerControl.Designer.cs">
+      <DependentUpon>FileManagerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FileManager_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FileManager_frm.Designer.cs">
+      <DependentUpon>FileManager_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Login_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Login_frm.Designer.cs">
+      <DependentUpon>Login_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Main_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Main_frm.Designer.cs">
+      <DependentUpon>Main_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Windows\GameList_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\GameList_frm.designer.cs">
+      <DependentUpon>GameList_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\ChannelList_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\ChannelList_frm.Designer.cs">
+      <DependentUpon>ChannelList_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\DuelRequest_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\DuelRequest_frm.Designer.cs">
+      <DependentUpon>DuelRequest_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\ErrorReport_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\ErrorReport_frm.designer.cs">
+      <DependentUpon>ErrorReport_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Host_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Host_frm.designer.cs">
+      <DependentUpon>Host_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Input_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Input_frm.designer.cs">
+      <DependentUpon>Input_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Options_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Options_frm.designer.cs">
+      <DependentUpon>Options_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\PmWindow_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\PmWindow_frm.Designer.cs">
+      <DependentUpon>PmWindow_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Profile_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Profile_frm.designer.cs">
+      <DependentUpon>Profile_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Register_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Register_frm.Designer.cs">
+      <DependentUpon>Register_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Chat_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Chat_frm.Designer.cs">
+      <DependentUpon>Chat_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\TeamProfile_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\TeamProfile_frm.Designer.cs">
+      <DependentUpon>TeamProfile_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Support_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Support_frm.Designer.cs">
+      <DependentUpon>Support_frm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Windows\Components\CardInfoControl.resx">
+      <DependentUpon>CardInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Components\ReplayInfoControl.resx">
+      <DependentUpon>ReplayInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Components\Support_item.resx">
+      <DependentUpon>Support_item.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Components\FileManagerControl.resx">
+      <DependentUpon>FileManagerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Customize_frm.resx">
+      <DependentUpon>Customize_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FileManager_frm.resx">
+      <DependentUpon>FileManager_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Login_frm.resx">
+      <DependentUpon>Login_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Main_frm.resx">
+      <DependentUpon>Main_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Windows\GameList_frm.resx">
+      <DependentUpon>GameList_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MessageBoxs\ChannelList_frm.resx">
+      <DependentUpon>ChannelList_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MessageBoxs\DuelRequest_frm.resx">
+      <DependentUpon>DuelRequest_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MessageBoxs\ErrorReport_frm.resx">
+      <DependentUpon>ErrorReport_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MessageBoxs\Host_frm.resx">
+      <DependentUpon>Host_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MessageBoxs\Input_frm.resx">
+      <DependentUpon>Input_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MessageBoxs\Options_frm.resx">
+      <DependentUpon>Options_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MessageBoxs\PmWindow_frm.resx">
+      <DependentUpon>PmWindow_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MessageBoxs\Profile_frm.resx">
+      <DependentUpon>Profile_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MessageBoxs\Register_frm.resx">
+      <DependentUpon>Register_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Chat_frm.resx">
+      <DependentUpon>Chat_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MessageBoxs\TeamProfile_frm.resx">
+      <DependentUpon>TeamProfile_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Support_frm.resx">
+      <DependentUpon>Support_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YgoUpdater.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ServiceStack.Text.dll" />
+    <None Include="System.Data.SQLite.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sixsam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rankup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OfferWall_Btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maskchange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ICSharpCode.SharpZipLib.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GetDevpoints.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DNA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desruct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_donate_LG.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookoflife.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ygo.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

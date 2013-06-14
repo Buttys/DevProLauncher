@@ -7,7 +7,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Reflection;
 
-namespace YGOPro_Launcher.Config
+namespace DevProLauncher.Config
 {
     public class LanguageManager
     {

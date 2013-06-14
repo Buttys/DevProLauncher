@@ -1,5 +1,5 @@
 ﻿using System;
-namespace YGOPro_Launcher.Config
+namespace DevProLauncher.Config
 {
     [Serializable]
     public class LanguageInfo
