@@ -42,6 +42,7 @@ function c80600030.spop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetLabel(tc:GetFieldID())
 		e1:SetReset(RESET_PHASE+PHASE_END)
 		Duel.RegisterEffect(e1,tp)
+		Duel.SpecialSummonComplete()
 	end
 end
 
