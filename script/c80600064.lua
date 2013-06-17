@@ -1,4 +1,4 @@
---マドルチェ・シャトー
+--ヴァンパイア帝国
 function c80600064.initial_effect(c)
   --Activate
 	local e1=Effect.CreateEffect(c)
