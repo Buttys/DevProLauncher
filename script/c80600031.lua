@@ -11,6 +11,7 @@ function c80600031.initial_effect(c)
 	e1:SetTarget(c80600031.sptg)
 	e1:SetOperation(c80600031.spop)
 	c:RegisterEffect(e1)
+	--To Grave
 	local e2=Effect.CreateEffect(c)
 	e2:SetCategory(CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_IGNITION)
