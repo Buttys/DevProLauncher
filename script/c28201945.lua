@@ -36,7 +36,7 @@ function c28201945.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.RegisterFlagEffect(tp,28201945,RESET_PHASE+PHASE_END,0,1)
 end
 function c28201945.filter(c,e,tp,ft)
-	return c:IsSetCard(0x108a) and c:GetCode()~=28201945 and (c:IsAbleToHand() or (ft>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false)))
+	return c:IsSetCard(0x89) and c:IsType(TYPE_MONSTER) and  c:GetCode()~=28201945 and (c:IsAbleToHand() or (ft>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false)))
 end
 function c28201945.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
