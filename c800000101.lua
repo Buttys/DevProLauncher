@@ -34,7 +34,6 @@ function c800000101.activate(e,tp,eg,ep,ev,re,r,rp)
 	if tc:IsRelateToEffect(e) and tc:IsFaceup() and c:IsRelateToEffect(e) then
 		c:CancelToGrave()
 		Duel.Overlay(tc,Group.FromCards(c))
-		Duel.Overlay(tc,Group.FromCards(c))
 		tc1:RemoveOverlayCard(tp,tc1:GetOverlayCount(),tc1:GetOverlayCount(),REASON_EFFECT)
 	end
 end
