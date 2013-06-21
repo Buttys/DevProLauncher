@@ -1,6 +1,6 @@
---ヴァンパイア帝国
+--マドルチェ・シャトー
 function c80600064.initial_effect(c)
-  --Activate
+	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_TODECK)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
@@ -30,8 +30,7 @@ function c80600064.initial_effect(c)
 end
 
 function c80600064.cfilter(c)
-	--TODO change Setcode
-	return c:IsAttribute(ATTRIBUTE_DARK) and c:IsSetCode(0x1234) 
+	return c:IsAttribute(ATTRIBUTE_DARK) and c:IsSetCode(0x92) 
 	and c:IsAbleToGraveAsCost()
 end
 

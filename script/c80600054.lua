@@ -1,6 +1,6 @@
 --零鳥姫リオート・ハルピュイア
 function c80600054.initial_effect(c)
-  --xyz summon
+	--xyz summon
 	aux.AddXyzProcedure(c,aux.XyzFilterFunctionF(c,aux.FilterBoolFunction(Card.IsRace,RACE_ZOMBIE),5),2)
 	c:EnableReviveLimit()
 	--Special Summon

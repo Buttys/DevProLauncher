@@ -4,12 +4,26 @@ function c80600050.initial_effect(c)
 	aux.AddXyzProcedure(c,aux.XyzFilterFunctionF(c,aux.FilterBoolFunction(Card.IsRace,RACE_DRAGON),8),2)
 	c:EnableReviveLimit()
 	--spsummon
+	--local e1=Effect.CreateEffect(c)
+	--e1:SetDescription(aux.Stringid(80600050,0))
+	--e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	--e1:SetType(EFFECT_TYPE_IGNITION)
+	--e1:SetRange(LOCATION_MZONE)
+	--e1:SetCode(EVENT_FREE_CHAIN)
+	--e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	--e1:SetCountLimit(1)
+	--e1:SetCondition(c80600050.condition)
+	--e1:SetCost(c80600050.cost)
+	--e1:SetTarget(c80600050.sptg)
+	--e1:SetOperation(c80600050.spop)
+	--c:RegisterEffect(e1)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(80600050,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
-	e1:SetType(EFFECT_TYPE_IGNITION)
+	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e1:SetRange(LOCATION_MZONE)
-	e1:SetCountLimit(1)
+	e1:SetType(EFFECT_TYPE_IGNITION)
+	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCondition(c80600050.condition)
 	e1:SetCost(c80600050.cost)
 	e1:SetTarget(c80600050.sptg)
@@ -51,17 +65,17 @@ function c80600050.spfilter(c,e,tp)
 	return c:IsRace(RACE_DRAGON) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c80600050.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chkc then return chkc:IsLocation(LOCATION_HAND) and c80600050.spfilter(chkc,e,tp) end
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.IsExistingMatchingCard(c80600050.spfilter,tp,LOCATION_HAND,0,1,nil,e,tp) end
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)
+		and Duel.IsExistingTarget(c80600050.spfilter,tp,LOCATION_HAND,0,1,nil,e,tp) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+	local g=Duel.SelectTarget(tp,c80600050.spfilter,tp,LOCATION_HAND,0,1,1,nil,e,tp)
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,g,1,0,0)
 end
 function c80600050.spop(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectMatchingCard(tp,c80600050.spfilter,tp,LOCATION_HAND,0,1,1,nil,e,tp)
-	local tc=g:GetFirst()
-	if tc  then
-        Duel.SpecialSummonStep(g:GetFirst(),0,tp,tp,false,false,POS_FACEUP)
+	local tc=Duel.GetFirstTarget()
+	if tc:IsRelateToEffect(e) then
+		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
 	end
 end
 function c80600050.confilter(c,e,tp)

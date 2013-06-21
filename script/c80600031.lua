@@ -1,6 +1,6 @@
---繝ｴ繧｡繝ｳ繝代う繧｢繝ｻ繧ｰ繝ｬ繧､繧ｹ
+--ヴァンパイア・グレイス
 function c80600031.initial_effect(c)
-  --spsummon
+	--spsummon
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
@@ -11,7 +11,6 @@ function c80600031.initial_effect(c)
 	e1:SetTarget(c80600031.sptg)
 	e1:SetOperation(c80600031.spop)
 	c:RegisterEffect(e1)
-	--To Grave
 	local e2=Effect.CreateEffect(c)
 	e2:SetCategory(CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_IGNITION)
@@ -22,8 +21,7 @@ function c80600031.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80600031.cfilter(c,tp)
-	--TODO change setcode
-	return c:IsFaceup() and c:IsControler(tp)-- and c:IsSetCard(0x1234)
+	return c:IsFaceup() and c:IsControler(tp) and c:IsSetCard(0x92)
 end
 function c80600031.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(c80600031.cfilter,1,nil,tp)

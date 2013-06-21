@@ -1,6 +1,6 @@
 --ヴァンパイア・ソーサラー
 function c80600029.initial_effect(c)
-  --to grave
+	--to grave
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
@@ -24,8 +24,7 @@ end
 function c80600029.filter(c)
 	return (
 			c:IsRace(RACE_ZOMBIE)or 
-			--TODO replace setcode
-			c:IsSetCard(0x1234) and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) 
+			c:IsSetCard(0x92) and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) 
 			) 
 			and c:IsAbleToHand()
 end
@@ -61,6 +60,5 @@ local e1=Effect.CreateEffect(e:GetHandler())
 end
 
 function c80600029.rfilter(e,c)
-	--TODO replace setcode
-	return c:IsSetCard(0x79)
+	return c:IsSetCard(0x92)
 end
