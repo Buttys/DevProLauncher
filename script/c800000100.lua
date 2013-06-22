@@ -49,7 +49,7 @@ function c800000100.initial_effect(c)
 	--Destroy
 	local e7=Effect.CreateEffect(c)
 	e7:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
-	e7:SetCode(EVENT_TO_GRAVE)
+	e7:SetCode(EVENT_LEAVE_FIELD)
 	e7:SetCondition(c800000100.descon)
 	e7:SetOperation(c800000100.desop)
 	c:RegisterEffect(e7)
@@ -96,7 +96,7 @@ end
 function c800000100.descon(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local tc=c:GetFirstCardTarget()
-	if tc and tc:IsLocation(LOCATION_MZONE) and tc:IsFaceup() then
+	if tc and tc:IsLocation(LOCATION_MZONE) and tc:IsFaceup() and c:IsLocation(LOCATION_GRAVE) then
 		e:SetLabelObject(tc)
 		tc:CreateEffectRelation(e)
 		return true
@@ -104,7 +104,8 @@ function c800000100.descon(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 end
 function c800000100.desop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=e:GetHandler():GetFirstCardTarget()
+	local c=e:GetHandler()
+	local tc=e:GetLabelObject()
 	if tc and tc:IsLocation(LOCATION_MZONE) then
 		Duel.Destroy(tc,REASON_EFFECT)
 	end
