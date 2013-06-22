@@ -19,11 +19,11 @@ function c80600029.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80600029.condition(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():IsReason(REASON_BATTLE)
+	return e:GetHandler():IsReason(REASON_DESTROY)
 end
 function c80600029.filter(c)
 	return (
-			c:IsRace(RACE_ZOMBIE)or 
+			c:IsAttribute(ATTRIBUTE_DARK) and c:IsSetCard(0x92) or 
 			c:IsSetCard(0x92) and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) 
 			) 
 			and c:IsAbleToHand()

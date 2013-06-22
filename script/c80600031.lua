@@ -21,10 +21,12 @@ function c80600031.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80600031.cfilter(c,tp)
-	return c:IsFaceup() and c:IsControler(tp) and c:IsSetCard(0x92)
+
+	return c:IsFaceup() and c:IsControler(tp) and c:IsRace(RACE_ZOMBIE) and c:GetLevel()>4
 end
 function c80600031.spcon(e,tp,eg,ep,ev,re,r,rp)
-	return eg:IsExists(c80600031.cfilter,1,nil,tp)
+	local rc=re:GetHandler()
+	return eg:IsExists(c80600031.cfilter,1,nil,tp) and rc:IsRace(RACE_ZOMBIE)
 end
 function c80600031.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,80600031)==0  and Duel.CheckLPCost(tp,2000) end
@@ -45,8 +47,8 @@ end
 
 function c80600031.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
-	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(80600031,4))
-	local op=Duel.SelectOption(tp,aux.Stringid(80600031,1),aux.Stringid(80600031,2),aux.Stringid(80600031,3))
+	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(80600031,3))
+	local op=Duel.SelectOption(tp,aux.Stringid(80600031,0),aux.Stringid(80600031,1),aux.Stringid(80600031,2))
 	e:SetLabel(op)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,1-tp,LOCATION_DECK)
 end

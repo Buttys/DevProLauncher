@@ -99,15 +99,9 @@ function c80700001.spop2(e,tp,eg,ep,ev,re,r,rp,c)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetCost(c80700001.rmcost)
-	e1:SetTarget(c80700001.target)
 	e1:SetOperation(c80700001.operation)
 	e1:SetReset(RESET_EVENT+0xff0000)
 	c:RegisterEffect(e1)
-end
-function c80700001.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetFlagEffect(tp,80700001)==0 end
-	Duel.RegisterFlagEffect(tp,80700001,RESET_PHASE+PHASE_END,0,1)
-	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,1-tp,LOCATION_HAND)
 end
 function c80700001.operation(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(Card.IsAbleToRemove,tp,0,LOCATION_HAND,nil)
