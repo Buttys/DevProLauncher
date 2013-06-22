@@ -5,7 +5,7 @@ function c80600029.initial_effect(c)
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
-	e1:SetCode(EVENT_BATTLE_DESTROYED)
+	e1:SetCode(EVENT_TO_GRAVE)
 	e1:SetCondition(c80600029.condition)
 	e1:SetTarget(c80600029.target)
 	e1:SetOperation(c80600029.operation)
@@ -19,7 +19,8 @@ function c80600029.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80600029.condition(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():IsReason(REASON_DESTROY)
+	return e:GetHandler():IsReason(REASON_DESTROY) and e:GetHandler():GetReasonPlayer()~=tp
+		and e:GetHandler():GetPreviousControler()==tp
 end
 function c80600029.filter(c)
 	return (
