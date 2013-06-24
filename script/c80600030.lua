@@ -1,6 +1,6 @@
---シャドウ・ヴァンパイア
+--繧ｷ繝｣繝峨え繝ｻ繝ｴ繧｡繝ｳ繝代う繧｢
 function c80600030.initial_effect(c)
-	--spsummon
+  --spsummon
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(80600030,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
@@ -17,8 +17,8 @@ function c80600030.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80600030.filter(c,e,tp)
-	return 	c:IsSetCard(0x92) and 
-	c:IsAttribute(ATTRIBUTE_DARK) 
+	--TODO change setcode
+	return 	c:IsSetCard(0x1234) and c:IsAttribute(ATTRIBUTE_DARK) 
 			and not c:IsCode(80600030)
 			and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end

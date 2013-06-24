@@ -1,6 +1,6 @@
 --零鳥姫リオート・ハルピュイア
 function c80600054.initial_effect(c)
-	--xyz summon
+  --xyz summon
 	aux.AddXyzProcedure(c,aux.XyzFilterFunctionF(c,aux.FilterBoolFunction(Card.IsRace,RACE_ZOMBIE),5),2)
 	c:EnableReviveLimit()
 	--Special Summon
@@ -40,7 +40,7 @@ function c80600054.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function c80600054.operation(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc:IsRelateToEffect(e) then
+	if tc:IsRelateToEffect(e) and tc:IsRace(RACE_DRAGON) then
 		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
 	end
 end

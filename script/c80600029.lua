@@ -1,11 +1,11 @@
 --ヴァンパイア・ソーサラー
 function c80600029.initial_effect(c)
-	--to grave
+  --to grave
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
-	e1:SetCode(EVENT_TO_GRAVE)
+	e1:SetCode(EVENT_BATTLE_DESTROYED)
 	e1:SetCondition(c80600029.condition)
 	e1:SetTarget(c80600029.target)
 	e1:SetOperation(c80600029.operation)
@@ -19,13 +19,13 @@ function c80600029.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80600029.condition(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():IsReason(REASON_DESTROY) and e:GetHandler():GetReasonPlayer()~=tp
-		and e:GetHandler():GetPreviousControler()==tp
+	return e:GetHandler():IsReason(REASON_BATTLE)
 end
 function c80600029.filter(c)
 	return (
-			c:IsAttribute(ATTRIBUTE_DARK) and c:IsSetCard(0x92) or 
-			c:IsSetCard(0x92) and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) 
+			c:IsRace(RACE_ZOMBIE)or 
+			--TODO replace setcode
+			c:IsSetCard(0x1234) and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) 
 			) 
 			and c:IsAbleToHand()
 end
@@ -61,5 +61,6 @@ local e1=Effect.CreateEffect(e:GetHandler())
 end
 
 function c80600029.rfilter(e,c)
-	return c:IsSetCard(0x92)
+	--TODO replace setcode
+	return c:IsSetCard(0x79)
 end

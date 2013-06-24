@@ -1,70 +1,65 @@
 --ヴァンパイア帝国
 function c80600064.initial_effect(c)
-	--activate
+  --Activate
 	local e1=Effect.CreateEffect(c)
+	e1:SetCategory(CATEGORY_TODECK)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	c:RegisterEffect(e1)
-	--Atk up
+	--atkup
 	local e2=Effect.CreateEffect(c)
-	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-	e2:SetCode(EVENT_DAMAGE_CALCULATING)
+	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetRange(LOCATION_SZONE)
-	e2:SetOperation(c80600064.adval)
+	e2:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
+	e2:SetCode(EFFECT_UPDATE_ATTACK)
+	e2:SetTarget(aux.TargetBoolFunction(Card.IsRace,RACE_ZOMBIE))
+	e2:SetValue(500)
 	c:RegisterEffect(e2)
 	--destroy
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(80600064,0))
-	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
-	e3:SetCategory(CATEGORY_TOGRAVE+CATEGORY_DESTROY)
-	e3:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
-	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e3:SetRange(LOCATION_SZONE)
+	e3:SetCategory(CATEGORY_DESTROY)
 	e3:SetCode(EVENT_TO_GRAVE)
 	e3:SetCountLimit(1)
-	e3:SetRange(LOCATION_SZONE)
-	e3:SetCondition(c80600064.condtion)
+	e3:SetCondition(c80600064.condition)
+	e3:SetCost(c80600064.cost)
 	e3:SetTarget(c80600064.target)
 	e3:SetOperation(c80600064.operation)
 	c:RegisterEffect(e3)
 end
-function c80600064.adval(e,tp,eg,ep,ev,re,r,rp)
-	local a=Duel.GetAttacker()
-	local d=Duel.GetAttackTarget()
-	c80600064.atkup(a,e:GetHandler())
-	c80600064.atkup(d,e:GetHandler())
+
+function c80600064.cfilter(c)
+	--TODO change Setcode
+	return c:IsAttribute(ATTRIBUTE_DARK) and c:IsSetCode(0x1234) 
+	and c:IsAbleToGraveAsCost()
 end
-function c80600064.atkup(c,oc)
-	if not c or not c:IsRace(RACE_ZOMBIE) then return end
-	local e1=Effect.CreateEffect(oc)
-	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetCode(EFFECT_UPDATE_ATTACK)
-	e1:SetReset(RESET_PHASE+RESET_DAMAGE_CAL)
-	e1:SetValue(500)
-	c:RegisterEffect(e1)
+
+function c80600064.filter(c,tp)
+	local pl=c:GetPreviousLocation()
+	return c:IsPreviousLocation(LOCATION_DECK) and c:IsLocation(LOCATION_GRAVE) and c:GetControler()~=tp
 end
-function c80600064.cfilter(c,tp)
-	return c:IsPreviousLocation(LOCATION_DECK) and c:GetPreviousControler()==tp
+function c80600064.condition(e,tp,eg,ep,ev,re,r,rp)
+	return eg:IsExists(c80600064.filter,1,nil,tp)
 end
-function c80600064.condtion(e,tp,eg,ep,ev,re,r,rp)
-	return eg:IsExists(c80600064.cfilter,1,nil,1-tp)
+
+function c80600064.cost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(c80600064.cfilter,tp,LOCATION_DECK+LOCATION_HAND,0,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
+	local g=Duel.SelectMatchingCard(tp,c80600064.cfilter,tp,LOCATION_DECK+LOCATION_HAND,0,1,1,nil)
+	Duel.SendtoGrave(g,REASON_COST)
 end
-function c80600064.filter(c,e,tp)
-	return c:IsSetCard(0x92) and c:IsAttribute(ATTRIBUTE_DARK) and c:IsAbleToGrave()
-end
-function c80600064.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(c80600064.filter,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil) and Duel.IsExistingTarget(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_HAND+LOCATION_DECK)
+
+function c80600064.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chkc then return chkc:IsOnField() and chkc:IsDestructable() end
+	if chk==0 then return Duel.IsExistingTarget(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,e:GetHandler()) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local g2=Duel.SelectTarget(tp,Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
-	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g2,1,0,0)
+	local g=Duel.SelectTarget(tp,Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,e:GetHandler())
+	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
 end
 function c80600064.operation(e,tp,eg,ep,ev,re,r,rp)
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
-	local g=Duel.SelectMatchingCard(tp,c80600064.filter,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil)
-	if g:GetCount()>0 and Duel.SendtoGrave(g,REASON_EFFECT) then
-		local tc=Duel.GetFirstTarget()
-		if tc:IsRelateToEffect(e) then
-			Duel.Destroy(tc,REASON_EFFECT)
-		end
+	local tc=Duel.GetFirstTarget()
+	if tc:IsRelateToEffect(e) then
+		Duel.Destroy(tc,REASON_EFFECT)
 	end
 end

@@ -1,6 +1,6 @@
---ヴァンパイア・グレイス
+--繝ｴ繧｡繝ｳ繝代う繧｢繝ｻ繧ｰ繝ｬ繧､繧ｹ
 function c80600031.initial_effect(c)
-	--spsummon
+  --spsummon
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
@@ -11,6 +11,7 @@ function c80600031.initial_effect(c)
 	e1:SetTarget(c80600031.sptg)
 	e1:SetOperation(c80600031.spop)
 	c:RegisterEffect(e1)
+	--To Grave
 	local e2=Effect.CreateEffect(c)
 	e2:SetCategory(CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_IGNITION)
@@ -21,12 +22,11 @@ function c80600031.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80600031.cfilter(c,tp)
-
-	return c:IsFaceup() and c:IsControler(tp) and c:IsRace(RACE_ZOMBIE) and c:GetLevel()>4
+	--TODO change setcode
+	return c:IsFaceup() and c:IsControler(tp)-- and c:IsSetCard(0x1234)
 end
 function c80600031.spcon(e,tp,eg,ep,ev,re,r,rp)
-	local rc=re:GetHandler()
-	return eg:IsExists(c80600031.cfilter,1,nil,tp) and rc:IsRace(RACE_ZOMBIE)
+	return eg:IsExists(c80600031.cfilter,1,nil,tp)
 end
 function c80600031.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,80600031)==0  and Duel.CheckLPCost(tp,2000) end
@@ -47,8 +47,8 @@ end
 
 function c80600031.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
-	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(80600031,3))
-	local op=Duel.SelectOption(tp,aux.Stringid(80600031,0),aux.Stringid(80600031,1),aux.Stringid(80600031,2))
+	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(80600031,4))
+	local op=Duel.SelectOption(tp,aux.Stringid(80600031,1),aux.Stringid(80600031,2),aux.Stringid(80600031,3))
 	e:SetLabel(op)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,1-tp,LOCATION_DECK)
 end

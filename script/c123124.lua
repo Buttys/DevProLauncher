@@ -38,8 +38,8 @@ function c123124.initial_effect(c)
 	local e5=Effect.CreateEffect(c)
 	e5:SetDescription(aux.Stringid(123124,0))
 	e5:SetCategory(CATEGORY_DESTROY)
-	e5:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
-	e5:SetCode(EVENT_ATTACK_ANNOUNCE)
+	e5:SetType(EFFECT_TYPE_QUICK_O)
+	e5:SetCode(EVENT_FREE_CHAIN)
 	e5:SetRange(LOCATION_MZONE)
 	e5:SetCondition(c123124.descon)
 	e5:SetCost(c123124.descost)
@@ -47,6 +47,8 @@ function c123124.initial_effect(c)
 	e5:SetOperation(c123124.desop)
 	c:RegisterEffect(e5)	
 end
+c123124.material_count=2
+c123124.material={44095762,12393}
 function c123124.splimit(e,se,sp,st)
 	return e:GetHandler():GetLocation()~=LOCATION_EXTRA
 end
@@ -91,6 +93,7 @@ function c123124.shcon(e,tp,eg,ep,ev,re,r,rp)
 end
 
 function c123124.filter(c,e,tp)
+		local code=c:GetCode()
 	return c:IsCode(44095762) and c:IsAbleToHand()
 end
 function c123124.shtg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -109,14 +112,14 @@ function c123124.shop(e,tp,eg,ep,ev,re,r,rp)
 end
 
 function c123124.descon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetTurnPlayer()~=tp
+	return Duel.GetTurnPlayer()~=tp and Duel.GetCurrentPhase()==PHASE_BATTLE
 end
 function c123124.descost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return e:GetHandler():IsReleasable() end
+	if chk==0 then return e:GetHandler():IsReleaseable() end
 	Duel.Release(e:GetHandler(),REASON_COST)
 end
 function c123124.dfilter(c)
-	return  c:IsAttackPos()  and c:IsDestructable()
+	return c:IsAttack() and c:IsDestructable()
 end
 function c123124.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c123124.dfilter,tp,0,LOCATION_MZONE,1,nil) end
