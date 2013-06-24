@@ -1,6 +1,6 @@
 --ヴァンパイア・シフト
 function c80600075.initial_effect(c)
-  --Activate
+	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
@@ -37,8 +37,7 @@ function c80600075.target(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 
 function c80600075.spfilter(c,atk,e,tp)
-	--TODO change setcode
-	return  c:IsSetCard(0x1234) and 
+	return  c:IsSetCard(0x92) and 
 	c:IsAttribute(ATTRIBUTE_DARK) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 
