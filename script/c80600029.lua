@@ -19,15 +19,15 @@ function c80600029.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80600029.condition(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():IsReason(REASON_DESTROY) and e:GetHandler():GetReasonPlayer()~=tp
-		and e:GetHandler():GetPreviousControler()==tp
+	return rp~=tp
 end
 function c80600029.filter(c)
 	return (
-			c:IsAttribute(ATTRIBUTE_DARK) and c:IsSetCard(0x92) or 
-			c:IsSetCard(0x92) and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) 
+			c:IsAttribute(ATTRIBUTE_DARK) or 
+			c:IsType(TYPE_SPELL) or 
+			c:IsType(TYPE_TRAP)
 			) 
-			and c:IsAbleToHand()
+			and c:IsAbleToHand()  and c:IsSetCard(0x92)
 end
 function c80600029.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c80600029.filter,tp,LOCATION_DECK,0,1,nil) end
