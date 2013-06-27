@@ -43,7 +43,7 @@ function c80600041.otop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.Release(sg, REASON_SUMMON+REASON_MATERIAL)
 end
 function c80600041.filter(c)
-	return bit.band(c:GetSummonType(),SUMMON_TYPE_ADVANCE)~=0
+	return c:GetSummonType()==SUMMON_TYPE_ADVANCE
 end
 function c80600041.drawcon(e,tp,eg,ep,ev,re,r,rp)
 	local g=e:GetHandler():GetMaterial()
