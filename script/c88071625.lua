@@ -7,7 +7,7 @@ function c88071625.initial_effect(c)
 	e1:SetCode(EFFECT_SPSUMMON_CONDITION)
 	e1:SetValue(aux.FALSE)
 	c:RegisterEffect(e1)
-	--summon with 1 tribute
+	--summon/set with 1 tribute
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(88071625,0))
 	e2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
@@ -17,22 +17,32 @@ function c88071625.initial_effect(c)
 	e2:SetOperation(c88071625.otop)
 	e2:SetValue(SUMMON_TYPE_ADVANCE)
 	c:RegisterEffect(e2)
-	--atk
-	local e3=Effect.CreateEffect(c)
-	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
-	e3:SetCode(EVENT_SUMMON_SUCCESS)
-	e3:SetOperation(c88071625.atkop)
+	local e3=e2:Clone()
+	e3:SetCode(EFFECT_SET_PROC)
 	c:RegisterEffect(e3)
-	--copy
+	--tribute check
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(88071625,1))
-	e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
-	e4:SetProperty(EFFECT_FLAG_CARD_TARGET)
-	e4:SetCode(EVENT_SUMMON_SUCCESS)
-	e4:SetCondition(c88071625.copycon)
-	e4:SetTarget(c88071625.copytg)
-	e4:SetOperation(c88071625.copyop)
+	e4:SetType(EFFECT_TYPE_SINGLE)
+	e4:SetCode(EFFECT_MATERIAL_CHECK)
+	e4:SetValue(c88071625.valcheck)
 	c:RegisterEffect(e4)
+	--give atk effect only when  summon
+	local e5=Effect.CreateEffect(c)
+	e5:SetType(EFFECT_TYPE_SINGLE)
+	e5:SetCode(EFFECT_SUMMON_COST)
+	e5:SetOperation(c88071625.facechk)
+	e5:SetLabelObject(e4)
+	c:RegisterEffect(e5)
+	--copy
+	local e6=Effect.CreateEffect(c)
+	e6:SetDescription(aux.Stringid(88071625,1))
+	e6:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
+	e6:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e6:SetCode(EVENT_SUMMON_SUCCESS)
+	e6:SetCondition(c88071625.copycon)
+	e6:SetTarget(c88071625.copytg)
+	e6:SetOperation(c88071625.copyop)
+	c:RegisterEffect(e6)
 end
 function c88071625.otcon(e,c)
 	if c==nil then return true end
@@ -43,34 +53,37 @@ function c88071625.otop(e,tp,eg,ep,ev,re,r,rp,c)
 	c:SetMaterial(sg)
 	Duel.Release(sg, REASON_SUMMON+REASON_MATERIAL)
 end
-function c88071625.atkop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	if c:GetMaterialCount()==0 then return end
-	local e1=Effect.CreateEffect(c)
-	local mg=c:GetMaterial()
-	local tc=mg:GetFirst()
+function c88071625.valcheck(e,c)
+	local g=c:GetMaterial()
+	local tc=g:GetFirst()
 	local atk=0
 	local def=0
 	while tc do
 		local catk=tc:GetTextAttack()
 		local cdef=tc:GetTextDefence()
-		if catk<0 then catk=0 end
-		if cdef<0 then cdef=0 end
-		atk=atk+catk
-		def=def+cdef
-		tc=mg:GetNext()
+		atk=atk+(catk>=0 and catk or 0)
+		def=def+(cdef>=0 and cdef or 0)
+		tc=g:GetNext()
 	end
-	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetCode(EFFECT_UPDATE_ATTACK)
-	e1:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
-	e1:SetRange(LOCATION_MZONE)
-	e1:SetValue(atk)
-	e1:SetReset(RESET_EVENT+0x1ff0000)
-	c:RegisterEffect(e1)
-	local e2=e1:Clone()
-	e2:SetCode(EFFECT_UPDATE_DEFENCE)
-	e2:SetValue(def)
-	c:RegisterEffect(e2)
+	if e:GetLabel()==1 then
+		--atk continuous effect
+		local e1=Effect.CreateEffect(c)
+		e1:SetType(EFFECT_TYPE_SINGLE)
+		e1:SetCode(EFFECT_UPDATE_ATTACK)
+		e1:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+		e1:SetRange(LOCATION_MZONE)
+		e1:SetValue(atk)
+		e1:SetReset(RESET_EVENT+0xff0000)
+		c:RegisterEffect(e1)
+		--def continuous effect
+		local e2=e1:Clone()
+		e2:SetCode(EFFECT_UPDATE_DEFENCE)
+		e2:SetValue(def)
+		c:RegisterEffect(e2)
+	end
+end
+function c88071625.facechk(e,tp,eg,ep,ev,re,r,rp)
+	e:GetLabelObject():SetLabel(1)
 end
 function c88071625.copycon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetSummonType()==SUMMON_TYPE_ADVANCE
