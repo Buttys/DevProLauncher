@@ -70,7 +70,7 @@ function c80600035.retop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c80600035.filter(c)
-	return c:IsType(TYPE_SPIRIT) and c:IsAbleToHand()
+	return c:IsType(TYPE_SPIRIT) and c:IsAbleToHand() and not c:IsCode(80600035)
 end
 function c80600035.sretcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingTarget(c80600035.filter,tp,LOCATION_DECK,0,1,nil)

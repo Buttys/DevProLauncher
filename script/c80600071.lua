@@ -10,7 +10,7 @@ function c80600071.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c80600071.filter1(c)
-	return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:GetOverlayCount()==0
+	return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:GetOverlayCount()==0 and c:IsSetCard(0x48)
 end
 function c80600071.filter2(c)
 	return c:IsType(TYPE_MONSTER)
