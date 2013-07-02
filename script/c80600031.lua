@@ -1,4 +1,4 @@
---ƒ”ƒ@ƒ“ƒpƒCƒAEƒOƒŒƒCƒX
+--ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½pï¿½Cï¿½Aï¿½Eï¿½Oï¿½ï¿½ï¿½Cï¿½X
 function c80600031.initial_effect(c)
 	--spsummon
 	local e1=Effect.CreateEffect(c)
@@ -22,7 +22,7 @@ function c80600031.initial_effect(c)
 end
 function c80600031.cfilter(c,tp)
 
-	return c:IsFaceup() and c:IsControler(tp) and c:IsRace(RACE_ZOMBIE) and c:GetLevel()>4
+	return c:IsFaceup() and c:IsControler(tp) and c:IsRace(RACE_ZOMBIE) and c:GetLevel()>4 and c:GetReason()==REASON_EFFECT
 end
 function c80600031.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
