@@ -1,4 +1,4 @@
---���@���p�C�A�E�O���C�X
+--ヴァンパイア・グレイス
 function c80600031.initial_effect(c)
 	--spsummon
 	local e1=Effect.CreateEffect(c)
