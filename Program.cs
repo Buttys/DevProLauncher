@@ -18,7 +18,7 @@ namespace DevProLauncher
 {
     static class Program
     {
-        public const string Version = "192100";
+        public const string Version = "192200";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;
@@ -53,7 +53,7 @@ namespace DevProLauncher
             }
 
             Config = new Configuration();
-            LoadConfig(Program.ConfigurationFilename);
+            LoadConfig(ConfigurationFilename);
 #if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 #endif
@@ -78,9 +78,12 @@ namespace DevProLauncher
             if (CheckUpdates())
                 return;
             CheckServerInfo();
-
-            Config.ServerAddress = "91.250.84.118";
-            Server = new ServerInfo("DevPro", "91.250.84.118", Server.serverPort);
+#if DEBUG
+            Config.ServerAddress = "86.0.24.143";
+            Config.ChatPort = 9999;
+            Config.GamePort = 6666;
+            Server = new ServerInfo("DevPro", "86.0.24.143", 3333);
+#endif
 
             MainForm = new Main_frm();
             Application.Run(MainForm);
