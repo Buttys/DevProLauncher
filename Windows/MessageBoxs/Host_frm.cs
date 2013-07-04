@@ -150,7 +150,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             else
                 gamestring += LauncherHelper.GetBanListValue(BanList.SelectedItem.ToString());
 
-            gamestring += TimeLimit.SelectedIndex;
+            gamestring += (TimeLimit.SelectedIndex == -1 ? "0" : TimeLimit.SelectedIndex.ToString());
 
             if ((Priority.Checked))
                 gamestring = gamestring + "T";
