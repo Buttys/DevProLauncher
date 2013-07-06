@@ -34,7 +34,7 @@ function c80600055.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RegisterFlagEffect(80600055,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
-function c80600055.gvcon(e)
+function c80600055.gvcon(e,tp)
 	return Duel.IsExistingMatchingCard(c80600055.gvfilter,tp,LOCATION_DECK,0,1,nil)
 end
 function c80600055.sscon(e,tp,eg,ep,ev,re,r,rp)

@@ -39,7 +39,7 @@ function c53839837.spr(e,tp,eg,ep,ev,re,r,rp)
 end
 function c53839837.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	return e:GetLabelObject():GetLabel()~=Duel.GetTurnCount() and tp==Duel.GetTurnPlayer() and c:GetFlagEffect(53839837)>0
+	return e:GetLabel()~=Duel.GetTurnCount() and tp==Duel.GetTurnPlayer() and c:GetFlagEffect(53839837)>0
 end
 function c53839837.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
