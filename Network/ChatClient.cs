@@ -14,12 +14,12 @@ namespace DevProLauncher.Network
 {
     public class ChatClient
     {
-        bool _isConnected;
-        private TcpClient _mClient;
-        private BinaryReader _mReader;
-        private readonly Thread _mReceiveThread;
-        private readonly object _mLock;
-        private DateTime _pingrequest;
+        bool m_isConnected;
+        private TcpClient m_client;
+        private BinaryReader m_reader;
+        private readonly Thread m_receiveThread;
+        private readonly object m_lock;
+        private DateTime m_pingRequest;
 
         public delegate void ServerResponse(string message);
         public delegate void Command(PacketCommand command);
@@ -68,8 +68,8 @@ namespace DevProLauncher.Network
 
         public ChatClient()
         {
-            _mLock = new object();
-            _mReceiveThread = new Thread(Receive) { IsBackground = true };
+            m_lock = new object();
+            m_receiveThread = new Thread(Receive) { IsBackground = true };
             OnFatalError += FatalError;
         }
 
@@ -77,11 +77,11 @@ namespace DevProLauncher.Network
         {
             try
             {
-                _mClient = new TcpClient();
-                _mClient.Connect(address, port);
-                _mReader = new BinaryReader(_mClient.GetStream());
-                _isConnected = true;
-                _mReceiveThread.Start();
+                m_client = new TcpClient();
+                m_client.Connect(address, port);
+                m_reader = new BinaryReader(m_client.GetStream());
+                m_isConnected = true;
+                m_receiveThread.Start();
 
                 return true;
             }
@@ -92,11 +92,11 @@ namespace DevProLauncher.Network
         }
         public void Disconnect()
         {
-            if (_isConnected)
+            if (m_isConnected)
             {
-                _isConnected = !_isConnected;
-                if (_mClient != null)
-                    _mClient.Close();
+                m_isConnected = !m_isConnected;
+                if (m_client != null)
+                    m_client.Close();
             }
         }
         public void SendPacket(DevServerPackets type, string data)
@@ -115,7 +115,7 @@ namespace DevProLauncher.Network
         }
         public void SendPacket(DevServerPackets type)
         {
-            if (type == DevServerPackets.Ping) _pingrequest = DateTime.Now;
+            if (type == DevServerPackets.Ping) m_pingRequest = DateTime.Now;
             SendPacket(new[] { (byte)type });
         }
         public void SendMessage(MessageType type, CommandType command, string channel, string message)
@@ -126,13 +126,13 @@ namespace DevProLauncher.Network
 
         private void SendPacket(byte[] packet)
         {
-            if (!_isConnected)
+            if (!m_isConnected)
                 return;
             try
             {
                 try
                 {
-                    _mClient.Client.Send(packet, packet.Length, SocketFlags.None);
+                    m_client.Client.Send(packet, packet.Length, SocketFlags.None);
                 }
                 catch (Exception)
                 {
@@ -191,27 +191,27 @@ namespace DevProLauncher.Network
         {
             try
             {
-                while (_isConnected)
+                while (m_isConnected)
                 {
 
-                    var packet = (DevClientPackets)_mReader.ReadByte();
+                    var packet = (DevClientPackets)m_reader.ReadByte();
                     int len = 0;
                     byte[] content = null;
                     if (!isOneByte(packet))
                     {
                         if (isLargePacket(packet))
                         {
-                            len = _mReader.ReadInt32();
-                            content = _mReader.ReadBytes(len);
+                            len = m_reader.ReadInt32();
+                            content = m_reader.ReadBytes(len);
                         }
                         else
                         {
-                            len = _mReader.ReadInt16();
-                            content = _mReader.ReadBytes(len);
+                            len = m_reader.ReadInt16();
+                            content = m_reader.ReadBytes(len);
                         }
                     }
 
-                    lock (_mLock)
+                    lock (m_lock)
                     {
                         if(len>0)
                         {
@@ -265,7 +265,7 @@ namespace DevProLauncher.Network
                         TeamStats(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
                     break;
                 case DevClientPackets.Pong:
-                    MessageBox.Show("PONG!: " + -(int)_pingrequest.Subtract(DateTime.Now).TotalMilliseconds);
+                    MessageBox.Show("PONG!: " + -(int)m_pingRequest.Subtract(DateTime.Now).TotalMilliseconds);
                     break;
                 case DevClientPackets.ServerMessage:                
                     if (serverMessage != null)
@@ -364,7 +364,7 @@ namespace DevProLauncher.Network
         }
         public bool Connected()
         {
-            return _mClient.Connected;
+            return m_client.Connected;
         }
 
         private void FatalError(string message)

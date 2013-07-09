@@ -14,7 +14,7 @@ namespace DevProLauncher.Windows
 {
     public sealed partial class LoginFrm : Form
     {
-        private readonly Timer _loginTimeOut = new Timer();
+        private readonly Timer m_loginTimeOut = new Timer();
         public LoginFrm()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace DevProLauncher.Windows
             Dock = DockStyle.Fill;
             Visible = true;
 
-            _loginTimeOut.Interval = 3000;
+            m_loginTimeOut.Interval = 3000;
             usernameInput.Text = Program.Config.DefaultUsername;
 
             if (Directory.Exists(LanguageManager.Path))
@@ -44,7 +44,7 @@ namespace DevProLauncher.Windows
                 languageSelect.SelectedIndex = 0;
             }
 
-            _loginTimeOut.Tick += LoginTimeOut_Tick;
+            m_loginTimeOut.Tick += LoginTimeOut_Tick;
             usernameInput.KeyDown += UsernameInput_KeyDown;
             passwordInput.KeyDown += PasswordInput_KeyDown;
 
@@ -95,6 +95,7 @@ namespace DevProLauncher.Windows
                                     ? "http://ygopro.de/patches/"
                                     : "http://ygopro.de/patches/?lang=en");
             ApplyTranslation();
+            Program.MainForm.ReLoadLanguage();
         }
 
         public void Connected()
@@ -129,7 +130,7 @@ namespace DevProLauncher.Windows
             {
                 if (!IsDisposed)
                 {
-                    _loginTimeOut.Enabled = false;
+                    m_loginTimeOut.Enabled = false;
                     Enabled = true;
                     loginBtn.Enabled = true;
                 }
@@ -139,7 +140,7 @@ namespace DevProLauncher.Windows
         private void loginBtn_Click(object sender, EventArgs e)
         {
             loginBtn.Enabled = false;
-            _loginTimeOut.Enabled = true;
+            m_loginTimeOut.Enabled = true;
             if (usernameInput.Text == "")
             {
                 MessageBox.Show(Program.LanguageManager.Translation.LoginMsb2);

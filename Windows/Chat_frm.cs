@@ -17,8 +17,8 @@ namespace DevProLauncher.Windows
 {
     public sealed partial class ChatFrm : Form
     {
-        private readonly Dictionary<string, UserData> _userData = new Dictionary<string, UserData>();
-        private readonly Dictionary<string, PmWindowFrm> _pmWindows = new Dictionary<string, PmWindowFrm>();
+        private readonly Dictionary<string, UserData> m_userData = new Dictionary<string, UserData>();
+        private readonly Dictionary<string, PmWindowFrm> m_pmWindows = new Dictionary<string, PmWindowFrm>();
         public bool Autoscroll = true;
         public bool Joinchannel = false;
 
@@ -257,16 +257,16 @@ namespace DevProLauncher.Windows
             }
             else if ((MessageType)message.type == MessageType.PrivateMessage && Program.Config.PmWindows)
             {
-                if (_pmWindows.ContainsKey(message.channel))
+                if (m_pmWindows.ContainsKey(message.channel))
                 {
-                    _pmWindows[message.channel].WriteMessage(message);
+                    m_pmWindows[message.channel].WriteMessage(message);
                 }
                 else
                 {
-                    _pmWindows.Add(message.channel, new PmWindowFrm(message.channel, true));
-                    _pmWindows[message.channel].WriteMessage(message);
-                    _pmWindows[message.channel].Show();
-                    _pmWindows[message.channel].FormClosed += Chat_frm_FormClosed;
+                    m_pmWindows.Add(message.channel, new PmWindowFrm(message.channel, true));
+                    m_pmWindows[message.channel].WriteMessage(message);
+                    m_pmWindows[message.channel].Show();
+                    m_pmWindows[message.channel].FormClosed += Chat_frm_FormClosed;
                 }
             }
             else if ((MessageType)message.type == MessageType.Team)
@@ -305,7 +305,7 @@ namespace DevProLauncher.Windows
 
         private void Chat_frm_FormClosed(object sender, EventArgs e)
         {
-            _pmWindows.Remove(((PmWindowFrm)sender).Name);
+            m_pmWindows.Remove(((PmWindowFrm)sender).Name);
         }
 
         private void UserSearch_Enter(object sender, EventArgs e)
@@ -327,7 +327,7 @@ namespace DevProLauncher.Windows
         }
         private void UserSearch_TextChanged(object sender, EventArgs e)
         {
-            IEnumerable<string> users = _userData.Keys;
+            IEnumerable<string> users = m_userData.Keys;
             if (UserSearch.Text != "" && UserSearch.Text != "Search")
             {
                 users = users.Where(user => user.ToLower().Contains(UserSearch.Text.ToLower()));
@@ -347,15 +347,15 @@ namespace DevProLauncher.Windows
             {
                 foreach (UserData user in userlist)
                 {
-                    if (_userData.ContainsKey(user.username))
-                        _userData[user.username] = user;
+                    if (m_userData.ContainsKey(user.username))
+                        m_userData[user.username] = user;
                     else
-                        _userData.Add(user.username, user);
+                        m_userData.Add(user.username, user);
                 }
                 UserList.Items.Clear();
 // ReSharper disable CoVariantArrayConversion
-                if (_userData != null) 
-                    UserList.Items.AddRange(_userData.Keys.ToArray());
+                if (m_userData != null) 
+                    UserList.Items.AddRange(m_userData.Keys.ToArray());
 // ReSharper restore CoVariantArrayConversion
             }
         }
@@ -367,10 +367,10 @@ namespace DevProLauncher.Windows
             }
             else
             {
-                if (!_userData.ContainsKey(userinfo.username))
-                    _userData.Add(userinfo.username, userinfo);
+                if (!m_userData.ContainsKey(userinfo.username))
+                    m_userData.Add(userinfo.username, userinfo);
                 else
-                    _userData[userinfo.username] = userinfo;
+                    m_userData[userinfo.username] = userinfo;
 
                 if (userinfo.username == Program.UserInfo.username)
                 {
@@ -456,13 +456,13 @@ namespace DevProLauncher.Windows
                         WriteMessage(new ChatMessage(MessageType.Leave, CommandType.None, null, "Your friend " + userinfo.Username + " has logged out."));
                 }
 
-                if (_userData.ContainsKey(userinfo.Username))
+                if (m_userData.ContainsKey(userinfo.Username))
                 {
-                    if (_userData[userinfo.Username].loginID == userinfo.LoginID)
+                    if (m_userData[userinfo.Username].loginID == userinfo.LoginID)
                     {
                         if (UserList.Items.Contains(userinfo.Username))
                             UserList.Items.Remove(userinfo.Username);
-                        _userData.Remove(userinfo.Username);
+                        m_userData.Remove(userinfo.Username);
                     }
                 }
 
@@ -508,7 +508,7 @@ namespace DevProLauncher.Windows
             
             string text = UserList.Items[index].ToString();
             Graphics g = e.Graphics;
-            if (!_userData.ContainsKey(text))
+            if (!m_userData.ContainsKey(text))
             {
                 g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
                 g.DrawString(text, e.Font, (selected) ? Brushes.White : Brushes.Black, UserList.GetItemRectangle(index).Location);
@@ -518,37 +518,37 @@ namespace DevProLauncher.Windows
 
             g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
 
-            if (_userData[text].rank > 0)
+            if (m_userData[text].rank > 0)
             {
                 // Print text
                 g.DrawString("[", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
                     UserList.GetItemRectangle(index).Location);
 
-                if (_userData[text].rank == 1 || _userData[text].rank == 4)
-                    g.DrawString("Dev", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(_userData[text].rank)),
+                if (m_userData[text].rank == 1 || m_userData[text].rank == 4)
+                    g.DrawString("Dev", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(m_userData[text].rank)),
                       new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[", e.Font).Width - 1, UserList.GetItemRectangle(index).Location.Y));
-                else if (_userData[text].rank == 2 || _userData[text].rank == 3)
-                    g.DrawString("Mod", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(_userData[text].rank)),
+                else if (m_userData[text].rank == 2 || m_userData[text].rank == 3)
+                    g.DrawString("Mod", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(m_userData[text].rank)),
                       new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[", e.Font).Width - 1, UserList.GetItemRectangle(index).Location.Y));
-                else if (_userData[text].rank == 99)
-                    g.DrawString("Dev", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(_userData[text].rank)),
+                else if (m_userData[text].rank == 99)
+                    g.DrawString("Dev", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(m_userData[text].rank)),
                       new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[",e.Font).Width - 1 ,UserList.GetItemRectangle(index).Location.Y));
                 g.DrawString("]", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
                     new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev", e.Font).Width, UserList.GetItemRectangle(index).Location.Y));
-                if (_userData[text].getUserColor().ToArgb() == Color.Black.ToArgb())
+                if (m_userData[text].getUserColor().ToArgb() == Color.Black.ToArgb())
                 {
                     g.DrawString(text, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
                         new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev]", e.Font).Width, UserList.GetItemRectangle(index).Location.Y));
                 }
                 else
                 {
-                    g.DrawString(text, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(_userData[text].getUserColor())),
+                    g.DrawString(text, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(m_userData[text].getUserColor())),
                         new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev]", e.Font).Width, UserList.GetItemRectangle(index).Location.Y));
                 }
             }
             else
             {
-                if (_userData[text].getUserColor().ToArgb() == Color.Black.ToArgb())
+                if (m_userData[text].getUserColor().ToArgb() == Color.Black.ToArgb())
                 {
                     // Print text
                     g.DrawString(text, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
@@ -557,7 +557,7 @@ namespace DevProLauncher.Windows
                 else
                 {
                     // Print text
-                    g.DrawString(text, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(_userData[text].getUserColor())),
+                    g.DrawString(text, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(m_userData[text].getUserColor())),
                         UserList.GetItemRectangle(index).Location);
                 }
                 
@@ -582,8 +582,8 @@ namespace DevProLauncher.Windows
                 g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
 
                 //// Print text
-                g.DrawString((Program.Config.ColorBlindMode ? (_userData.ContainsKey(text) ? text + " (Online)" : text + " (Offline)") : text), e.Font,
-                    (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : (_userData.ContainsKey(text) ? Brushes.Green : Brushes.Red)),
+                g.DrawString((Program.Config.ColorBlindMode ? (m_userData.ContainsKey(text) ? text + " (Online)" : text + " (Offline)") : text), e.Font,
+                    (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : (m_userData.ContainsKey(text) ? Brushes.Green : Brushes.Red)),
                     list.GetItemRectangle(index).Location);
             }
 
@@ -679,7 +679,7 @@ namespace DevProLauncher.Windows
                     
                     break;
                 case "users":
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "There's " + _userData.Count + " users online."));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "There's " + m_userData.Count + " users online."));
                     break;
                 case "ping":
                     Program.ChatServer.SendPacket(DevServerPackets.Ping);
@@ -769,7 +769,7 @@ namespace DevProLauncher.Windows
                     
                     break;
                 case "admin":
-                    string admins = string.Join(", ", _userData.Where(x => x.Value.rank > 0).Select(x => x.Key));
+                    string admins = string.Join(", ", m_userData.Where(x => x.Value.rank > 0).Select(x => x.Key));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "The following admins are online: " + admins + "."));
                     break;
                 default:
@@ -862,7 +862,7 @@ namespace DevProLauncher.Windows
                     }
                     else
                     {
-                        _pmWindows.Values.ToList().ForEach(x => x.Close());
+                        m_pmWindows.Values.ToList().ForEach(x => x.Close());
                     }
                     
                     break;
@@ -1166,8 +1166,8 @@ namespace DevProLauncher.Windows
             {
                 case "JOIN":
                     string team;
-                    if (_userData.ContainsKey(command.Data))
-                        team = _userData[command.Data].team;
+                    if (m_userData.ContainsKey(command.Data))
+                        team = m_userData[command.Data].team;
                     else
                         return;
 
@@ -1216,10 +1216,10 @@ namespace DevProLauncher.Windows
                         TeamList.Items.Clear();
                         ChannelTabs.TabPages.Remove(GetChatWindow(MessageType.Team.ToString()));
                     }
-                    foreach (string user in _userData.Keys.Where(user => _userData[user].team == command.Data))
+                    foreach (string user in m_userData.Keys.Where(user => m_userData[user].team == command.Data))
                     {
-                        _userData[user].team = string.Empty;
-                        _userData[user].teamRank = 0;
+                        m_userData[user].team = string.Empty;
+                        m_userData[user].teamRank = 0;
                     }
 
                     break;
@@ -1292,7 +1292,7 @@ namespace DevProLauncher.Windows
                 tab.ApplyNewSettings();
             }
 
-            foreach (var form in _pmWindows.Values)
+            foreach (var form in m_pmWindows.Values)
             {
                 form.ApplyNewSettings();
             }
@@ -1311,15 +1311,15 @@ namespace DevProLauncher.Windows
 
             if (Program.Config.PmWindows)
             {
-                if (!_pmWindows.ContainsKey(list.SelectedItem.ToString()))
+                if (!m_pmWindows.ContainsKey(list.SelectedItem.ToString()))
                 {
-                    _pmWindows.Add(list.SelectedItem.ToString(), new PmWindowFrm(list.SelectedItem.ToString(), true));
-                    _pmWindows[list.SelectedItem.ToString()].Show();
-                    _pmWindows[list.SelectedItem.ToString()].FormClosed += Chat_frm_FormClosed;
+                    m_pmWindows.Add(list.SelectedItem.ToString(), new PmWindowFrm(list.SelectedItem.ToString(), true));
+                    m_pmWindows[list.SelectedItem.ToString()].Show();
+                    m_pmWindows[list.SelectedItem.ToString()].FormClosed += Chat_frm_FormClosed;
                 }
                 else
                 {
-                    _pmWindows[list.SelectedItem.ToString()].BringToFront();
+                    m_pmWindows[list.SelectedItem.ToString()].BringToFront();
                 }
             }
             else

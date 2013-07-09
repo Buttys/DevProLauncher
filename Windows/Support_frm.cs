@@ -15,7 +15,7 @@ namespace DevProLauncher.Windows
 {
     public sealed partial class SupportFrm : Form
     {
-        readonly Dictionary<string, string> _descriptions = new Dictionary<string, string>();
+        readonly Dictionary<string, string> m_descriptions = new Dictionary<string, string>();
         public SupportFrm()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace DevProLauncher.Windows
             DonateLink.Click += DonateLink_Click;
             refreshtimer.Tick += refreshtimer_Tick;
         }
-        private void ApplyTranslation()
+        public void ApplyTranslation()
         {
             LanguageInfo lang = Program.LanguageManager.Translation;
 
@@ -44,10 +44,10 @@ namespace DevProLauncher.Windows
             AddItem(Properties.Resources.DNA, lang.SupportItem5Name, FormatString(lang.SupportItem5Des), 300, "DEVCOLOR", true);
             AddItem(Properties.Resources.sixsam, lang.SupportItem6Name, FormatString(lang.SupportItem6Des), 500, "DEVCREATETEAM", true);
             AddItem(Properties.Resources.message, lang.SupportItem7Name, FormatString(lang.SupportItem7Des), 150, "DEVMSG", true);
-            _descriptions.Add("DEVRENAME", lang.SupportRenameInput);
-            _descriptions.Add("DEVUNBAN", lang.SupportUnbanInput);
-            _descriptions.Add("DEVCREATETEAM", lang.SupportTeamNameInput);
-            _descriptions.Add("DEVMSG", lang.SupportMSGInput);
+            m_descriptions.Add("DEVRENAME", lang.SupportRenameInput);
+            m_descriptions.Add("DEVUNBAN", lang.SupportUnbanInput);
+            m_descriptions.Add("DEVCREATETEAM", lang.SupportTeamNameInput);
+            m_descriptions.Add("DEVMSG", lang.SupportMSGInput);
 
             groupBox4.Text = lang.SupportBalance;
             groupBox2.Text = lang.Supportgb2;
@@ -104,7 +104,7 @@ namespace DevProLauncher.Windows
             {
                 if (servercommand != "DEVCOLOR")
                 {
-                    var form = new InputFrm("Input", _descriptions[servercommand], "Confirm", "Cancel");
+                    var form = new InputFrm("Input", m_descriptions[servercommand], "Confirm", "Cancel");
                     if (servercommand != "DEVCREATETEAM" && servercommand != "DEVMSG")
                         form.InputBox.KeyDown += Suppress_Space;
 

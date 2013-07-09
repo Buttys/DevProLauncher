@@ -5,6 +5,8 @@ namespace DevProLauncher.Windows
 {
     public sealed partial class FileManagerFrm : Form
     {
+        private readonly FileManagerControl m_deckTab;
+        private readonly FileManagerControl m_replayTab;
         public FileManagerFrm()
         {
             InitializeComponent();
@@ -12,15 +14,21 @@ namespace DevProLauncher.Windows
             Dock = DockStyle.Fill;
             Visible = true;
 
-            var deckcontrol = new FileManagerControl("Decks", "deck/", ".ydk");
+            m_deckTab = new FileManagerControl("Decks", "deck/", ".ydk");
             var decktab = new TabPage("Decks");
-            decktab.Controls.Add(deckcontrol);
+            decktab.Controls.Add(m_deckTab);
             fileTabs.TabPages.Add(decktab);
 
-            var replaycontrol = new FileManagerControl("Replays", "replay/", ".yrp");
+            m_replayTab = new FileManagerControl("Replays", "replay/", ".yrp");
             var replaytab = new TabPage("Replays");
-            replaytab.Controls.Add(replaycontrol);
+            replaytab.Controls.Add(m_replayTab);
             fileTabs.TabPages.Add(replaytab);
+        }
+
+        public void ApplyTranslations()
+        {
+            m_deckTab.ApplyTranslation();
+            m_replayTab.ApplyTranslation();
         }
     }
 }

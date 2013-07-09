@@ -11,14 +11,14 @@ namespace DevProLauncher.Windows.MessageBoxs
 {
     public partial class PmWindowFrm : Form
     {
-        public bool Isprivate = false;
+        public bool IsPrivate = false;
 
         public PmWindowFrm(string name, bool privatewindow)
         {
             InitializeComponent();            
             Name = name;
             Text = name;
-            Isprivate = privatewindow;
+            IsPrivate = privatewindow;
 
             ChatLog.Font = new Font(Program.Config.ChatFont, (float)Program.Config.ChatSize);
             ChatLog.ReadOnly = true;
@@ -97,19 +97,19 @@ namespace DevProLauncher.Windows.MessageBoxs
             {
                 if (ChatInput.Text == "")
                     return;
-                if (Isprivate && ChatInput.Text.StartsWith("/me"))
+                if (IsPrivate && ChatInput.Text.StartsWith("/me"))
                 {
                     WriteMessage(new ChatMessage(MessageType.Message, CommandType.Me, Program.UserInfo, Name,Program.UserInfo.username + " " +  ChatInput.Text.Replace("/me","").Trim()));
                     Program.ChatServer.SendMessage(MessageType.PrivateMessage, CommandType.Me, Name, ChatInput.Text.Substring(4));
                 }
-                else if (Isprivate && ChatInput.Text.StartsWith("/"))
+                else if (IsPrivate && ChatInput.Text.StartsWith("/"))
                 {
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Name, "Unknown Command."));
                     ChatInput.Clear();
                     e.Handled = true;
                     return;
                 }
-                else if (Isprivate)
+                else if (IsPrivate)
                 {
                     WriteMessage(new ChatMessage(MessageType.PrivateMessage, CommandType.None, Program.UserInfo, Name, ChatInput.Text));
                     Program.ChatServer.SendMessage(MessageType.PrivateMessage, CommandType.None, Name, ChatInput.Text);

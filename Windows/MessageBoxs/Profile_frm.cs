@@ -7,11 +7,11 @@ namespace DevProLauncher.Windows.MessageBoxs
 {
     public partial class ProfileFrm : Form
     {
-        private readonly string _profileUsername;
+        private readonly string m_profileUsername;
 
         public ProfileFrm()
         {
-            _profileUsername = Program.UserInfo.username;
+            m_profileUsername = Program.UserInfo.username;
             InitializeComponent();
             ApplyTranslation();
             Username.Text += Program.UserInfo.username;
@@ -22,7 +22,7 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         public ProfileFrm(string username)
         {
-            _profileUsername = username;
+            m_profileUsername = username;
             InitializeComponent();
             ApplyTranslation();
             Username.Text += username;
@@ -175,7 +175,7 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         private void Profile_frm_Load(object sender, EventArgs e)
         {
-            Program.ChatServer.SendPacket(DevServerPackets.Stats, _profileUsername);
+            Program.ChatServer.SendPacket(DevServerPackets.Stats, m_profileUsername);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DevProLauncher.Windows
     public sealed partial class GameListFrm : Form
     {
 
-        public Dictionary<string, RoomInfos> MRooms;
+        private readonly Dictionary<string, RoomInfos> m_rooms;
 
         public GameListFrm(string serverName)
         {
@@ -27,7 +27,7 @@ namespace DevProLauncher.Windows
             Text = serverName;
 
 
-            MRooms = new Dictionary<string, RoomInfos>();
+            m_rooms = new Dictionary<string, RoomInfos>();
             FilterActive.CheckedChanged += FilterGames;
             FilterTextBox.TextChanged += FilterGames;
             Program.DuelServer.AddRooms += OnRoomsList;
@@ -195,7 +195,7 @@ namespace DevProLauncher.Windows
 
             RoomInfos userinfo = RoomInfos.FromName(form.GenerateURI(isranked));
 
-            var matchedRooms = (from object room in list.Items where MRooms.ContainsKey(room.ToString()) select MRooms[room.ToString()] into info where RoomInfos.CompareRoomInfo(userinfo, info) select info).ToList();
+            var matchedRooms = (from object room in list.Items where m_rooms.ContainsKey(room.ToString()) select m_rooms[room.ToString()] into info where RoomInfos.CompareRoomInfo(userinfo, info) select info).ToList();
 
             if (matchedRooms.Count > 0)
             {
@@ -235,7 +235,7 @@ namespace DevProLauncher.Windows
             if (form.ShowDialog() == DialogResult.OK)
             {
 
-                if (MRooms.ContainsKey(form.PasswordInput.Text))
+                if (m_rooms.ContainsKey(form.PasswordInput.Text))
                 {
                     MessageBox.Show(Program.LanguageManager.Translation.GamePasswordExsists);
                     return;
@@ -254,7 +254,7 @@ namespace DevProLauncher.Windows
 
         private void InternalRoomsList(RoomInfos[] rooms)
         {
-            MRooms.Clear();
+            m_rooms.Clear();
             UnrankedList.Items.Clear();
             RankedList.Items.Clear();
             foreach (RoomInfos room in rooms)
@@ -273,17 +273,17 @@ namespace DevProLauncher.Windows
         private void InternalRoomCreated(RoomInfos room)
         {
             string roomname = room.roomName;
-            if (MRooms.ContainsKey(roomname))
+            if (m_rooms.ContainsKey(roomname))
                 return;
-            MRooms.Add(roomname, room);
+            m_rooms.Add(roomname, room);
             ListBox rooms = (room.isRanked ? RankedList : UnrankedList);
 
             if (FilterActive.Checked)
             {
-                if (!MRooms[roomname].hasStarted)
+                if (!m_rooms[roomname].hasStarted)
                 {
-                    if (MRooms[roomname].Contains(FilterTextBox.Text.ToLower()) ||
-                        MRooms[roomname].roomName.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                    if (m_rooms[roomname].Contains(FilterTextBox.Text.ToLower()) ||
+                        m_rooms[roomname].roomName.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                         FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                     {
                         rooms.Items.Add(roomname);
@@ -292,8 +292,8 @@ namespace DevProLauncher.Windows
             }
             else
             {
-                if (MRooms[roomname].Contains(FilterTextBox.Text.ToLower()) ||
-                        MRooms[roomname].roomName.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                if (m_rooms[roomname].Contains(FilterTextBox.Text.ToLower()) ||
+                        m_rooms[roomname].roomName.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                         FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                     {
                         rooms.Items.Add(roomname);
@@ -312,13 +312,13 @@ namespace DevProLauncher.Windows
             {
                 if (FilterActive.Checked)
                 {
-                    if (!MRooms[item].hasStarted)
+                    if (!m_rooms[item].hasStarted)
                     {
-                        if (MRooms[item].Contains(FilterTextBox.Text.ToLower()) ||
-                            MRooms[item].roomName.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                        if (m_rooms[item].Contains(FilterTextBox.Text.ToLower()) ||
+                            m_rooms[item].roomName.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                             FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                         {
-                            if (MRooms[item].isRanked)
+                            if (m_rooms[item].isRanked)
                                 RankedList.Items.Add(item);
                             else
                                 UnrankedList.Items.Add(item);
@@ -327,11 +327,11 @@ namespace DevProLauncher.Windows
                 }
                 else
                 {
-                        if (MRooms[item].Contains(FilterTextBox.Text.ToLower()) ||
-                            MRooms[item].roomName.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
+                        if (m_rooms[item].Contains(FilterTextBox.Text.ToLower()) ||
+                            m_rooms[item].roomName.ToLower().Contains(FilterTextBox.Text.ToLower()) ||
                             FilterTextBox.Text == "Search" || FilterTextBox.Text == "")
                         {
-                            if (MRooms[item].isRanked)
+                            if (m_rooms[item].isRanked)
                                 RankedList.Items.Add(item);
                             else
                                 UnrankedList.Items.Add(item);
@@ -343,7 +343,7 @@ namespace DevProLauncher.Windows
 
         public List<object> ObjectKeys()
         {
-            return MRooms.Keys.Cast<object>().ToList();
+            return m_rooms.Keys.Cast<object>().ToList();
         }
 
         public string GameData(out string numberofrooms, out string openrooms, out string numberofplayers, out string ranked, out string unranked)
@@ -355,10 +355,10 @@ namespace DevProLauncher.Windows
             int unrankedrooms = 0;
             foreach (string item in ObjectKeys())
             {
-                string[] players = MRooms[item].playerList;
+                string[] players = m_rooms[item].playerList;
                 playercount = playercount + players.Length;
-                if (!MRooms[item].hasStarted) openroom++;
-                if (MRooms[item].isRanked) rankedrooms++; else unrankedrooms++;
+                if (!m_rooms[item].hasStarted) openroom++;
+                if (m_rooms[item].isRanked) rankedrooms++; else unrankedrooms++;
                 rooms++;
             }
             numberofrooms = rooms.ToString(CultureInfo.InvariantCulture);
@@ -375,9 +375,9 @@ namespace DevProLauncher.Windows
 
         private void InternalRoomStarted(string roomname)
         {
-            if (!MRooms.ContainsKey(roomname)) return;
+            if (!m_rooms.ContainsKey(roomname)) return;
             
-            RoomInfos item = MRooms[roomname];
+            RoomInfos item = m_rooms[roomname];
             ListBox rooms = (item.isRanked ? RankedList : UnrankedList);
             item.hasStarted = true;
             if (FilterActive.Checked) rooms.Items.Remove(roomname);
@@ -390,19 +390,19 @@ namespace DevProLauncher.Windows
 
         private void InternalRoomRemoved(string roomname)
         {
-            if (!MRooms.ContainsKey(roomname)) return;
-            RoomInfos room = MRooms[roomname];
+            if (!m_rooms.ContainsKey(roomname)) return;
+            RoomInfos room = m_rooms[roomname];
             if (room.isRanked)
                 RankedList.Items.Remove(roomname);
             else
                 UnrankedList.Items.Remove(roomname);
-            MRooms.Remove(roomname);
+            m_rooms.Remove(roomname);
             UpdateServerInfo();
         }
 
         public void OnRoomCreate(RoomInfos room)
         {
-            if (!MRooms.ContainsKey(room.roomName))
+            if (!m_rooms.ContainsKey(room.roomName))
             {
                 Invoke(new Action<RoomInfos>(InternalRoomCreated), room);
             }
@@ -410,7 +410,7 @@ namespace DevProLauncher.Windows
 
         public void OnRoomPlayersUpdate(PacketCommand data)
         {
-            if (MRooms.ContainsKey(data.Command))
+            if (m_rooms.ContainsKey(data.Command))
             {
                 Invoke(new Action<string,string[]>(InternalRoomPlayersUpdate),data.Command, ((object)data.Data.Split(',')));
             }
@@ -419,8 +419,8 @@ namespace DevProLauncher.Windows
         private void InternalRoomPlayersUpdate(string room,string[] data)
         {
             string roomname = room;
-            if (!MRooms.ContainsKey(roomname)) return;
-            RoomInfos item = MRooms[roomname];
+            if (!m_rooms.ContainsKey(roomname)) return;
+            RoomInfos item = m_rooms[roomname];
 
             item.playerList = data;
 
@@ -437,10 +437,10 @@ namespace DevProLauncher.Windows
             var rooms = (ListBox)sender;
             if (rooms.SelectedIndex == -1)
                 return;
-            if (!MRooms.ContainsKey(rooms.SelectedItem.ToString()))
+            if (!m_rooms.ContainsKey(rooms.SelectedItem.ToString()))
                 return;
 
-            RoomInfos item = MRooms[rooms.SelectedItem.ToString()];
+            RoomInfos item = m_rooms[rooms.SelectedItem.ToString()];
             if (item.isLocked)
             {
                 var form = new InputFrm(string.Empty, Program.LanguageManager.Translation.GameEnterPassword, Program.LanguageManager.Translation.QuickHostBtn, Program.LanguageManager.Translation.optionBtnCancel)
@@ -558,8 +558,8 @@ namespace DevProLauncher.Windows
             var selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
             var g = e.Graphics;
             RoomInfos info = null;
-            if (MRooms.ContainsKey(room))
-                info = MRooms[room];
+            if (m_rooms.ContainsKey(room))
+                info = m_rooms[room];
 
             //item info
 

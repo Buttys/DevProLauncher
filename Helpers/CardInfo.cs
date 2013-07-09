@@ -5,8 +5,8 @@
 
     public class CardInfos: ICloneable
     {
-        private string _mCardRace;
-        private string _mCardTypes;
+        private string m_cardRace;
+        private string m_cardTypes;
 
         public CardInfos(int id)
         {
@@ -15,9 +15,9 @@
 
         public string GetCardRace()
         {
-            if (_mCardRace != null)
+            if (m_cardRace != null)
             {
-                return _mCardRace;
+                return m_cardRace;
             }
             var raceArray = new[] { 
                 CardRace.Warrior, CardRace.SpellCaster, CardRace.Fairy, CardRace.Fiend, CardRace.Zombie, CardRace.Machine, CardRace.Aqua, CardRace.Pyro, CardRace.Rock, CardRace.WindBeast, CardRace.Plant, CardRace.Insect, CardRace.Thunder, CardRace.Dragon, CardRace.Beast, CardRace.BestWarrior, 
@@ -27,21 +27,21 @@
             foreach (CardRace race in raceArray)
             {
                 if ((Race & (int) race) == 0) continue;
-                _mCardRace = race.ToString();
+                m_cardRace = race.ToString();
                 break;
             }
             foreach (CardAttribute attribute in attributeArray)
             {
                 if ((Attribute & (int) attribute) == 0) continue;
-                _mCardRace = _mCardRace + " - " + attribute;
+                m_cardRace = m_cardRace + " - " + attribute;
                 break;
             }
-            return (_mCardRace ?? (_mCardRace = ""));
+            return (m_cardRace ?? (m_cardRace = ""));
         }
 
         public string GetCardTypes()
         {
-            if (_mCardTypes == null)
+            if (m_cardTypes == null)
             {
                 var typeArray = new[] { 
                     CardType.Monster, CardType.Spell, CardType.Trap, CardType.Normal, CardType.Effect, CardType.Fusion, CardType.Ritual, CardType.TrapMonster, CardType.Spirit, CardType.Union, CardType.Dual, CardType.Tuner, CardType.Synchro, CardType.Token, CardType.QuickPlay, CardType.Continuous, 
@@ -50,18 +50,18 @@
                 foreach (CardType type in typeArray)
                 {
                     if (((Type & (int) type) == 0)) continue;
-                    if (_mCardTypes == null)
+                    if (m_cardTypes == null)
                     {
-                        _mCardTypes = type.ToString();
+                        m_cardTypes = type.ToString();
                     }
                     else
                     {
-                        _mCardTypes = _mCardTypes + " / " + type;
+                        m_cardTypes = m_cardTypes + " / " + type;
                     }
                 }
-                _mCardTypes = "[" + _mCardTypes + "]";
+                m_cardTypes = "[" + m_cardTypes + "]";
             }
-            return _mCardTypes;
+            return m_cardTypes;
         }
 
         public bool HasType(CardType type)

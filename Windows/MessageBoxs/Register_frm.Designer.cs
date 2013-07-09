@@ -155,7 +155,7 @@
             this.ConfirmInput.TabIndex = 9;
             this.ConfirmInput.UseSystemPasswordChar = true;
             // 
-            // Register_frm
+            // RegisterFrm
             // 
             this.AcceptButton = this.RegisterBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);

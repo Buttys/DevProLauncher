@@ -7,15 +7,15 @@
 
     public class CardsManager
     {
-        private IDictionary<int, CardInfos> _mCards;
+        private IDictionary<int, CardInfos> m_cards;
 
         public bool Loaded = false;
 
         public CardInfos FromId(int id)
         {
-            if (_mCards.ContainsKey(id))
+            if (m_cards.ContainsKey(id))
             {
-                return _mCards[id];
+                return m_cards[id];
             }
             return null;
         }
@@ -24,7 +24,7 @@
         {
             try
             {
-                _mCards = new Dictionary<int, CardInfos>();
+                m_cards = new Dictionary<int, CardInfos>();
                 string str2 = Path.Combine(Program.Config.LauncherDir, "cards.cdb");
                 if (!File.Exists(str2)) return;
                 var connection = new SQLiteConnection("Data Source=" + str2);
@@ -43,18 +43,18 @@
                         Atk = reader.GetInt32(6),
                         Def = reader.GetInt32(7)
                     };
-                    _mCards.Add(id, infos);
+                    m_cards.Add(id, infos);
                 }
                 reader.Close();
                 reader = new SQLiteCommand("SELECT id, name, desc FROM texts", connection).ExecuteReader();
                 while (reader.Read())
                 {
                     int key = reader.GetInt32(0);
-                    if (_mCards.ContainsKey(key))
+                    if (m_cards.ContainsKey(key))
                     {
-                        _mCards[key].Name = reader.GetString(1);
-                        _mCards[key].CleanedName = _mCards[key].Name.Trim().ToLower().Replace("-", " ").Replace("'", " ").Replace("   ", " ").Replace("  ", " ");
-                        _mCards[key].Description = reader.GetString(2);
+                        m_cards[key].Name = reader.GetString(1);
+                        m_cards[key].CleanedName = m_cards[key].Name.Trim().ToLower().Replace("-", " ").Replace("'", " ").Replace("   ", " ").Replace("  ", " ");
+                        m_cards[key].Description = reader.GetString(2);
                     }
                 }
                 connection.Close();

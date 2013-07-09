@@ -31,7 +31,7 @@ namespace DevProLauncher.Windows.MessageBoxs
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ChatInput = new System.Windows.Forms.TextBox();
-            this.ChatLog = new CustomRTB();
+            this.ChatLog = new DevProLauncher.Windows.Components.CustomRTB();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +68,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             this.ChatLog.TabIndex = 2;
             this.ChatLog.Text = "";
             // 
-            // PmWindow_frm
+            // PmWindowFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

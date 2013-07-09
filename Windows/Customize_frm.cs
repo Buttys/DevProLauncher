@@ -17,7 +17,7 @@ namespace DevProLauncher.Windows
 
         public Dictionary<ContentType, Content> Data = new Dictionary<ContentType, Content>();
         public ContentType ContentView = ContentType.Covers;
-        readonly Dictionary<string, Theme> _themes = new Dictionary<string, Theme>();
+        readonly Dictionary<string, Theme> m_themes = new Dictionary<string, Theme>();
         public string SelectedTheme = "None";
 
         public CustomizeFrm()
@@ -75,8 +75,8 @@ namespace DevProLauncher.Windows
         public void SaveTheme(string themename)
         {
             var serializer = new XmlSerializer(typeof(Theme));
-            TextWriter textWriter = new StreamWriter("Assets/Themes/" + _themes[themename].ThemeName + ".YGOTheme");
-            serializer.Serialize(textWriter, _themes[themename]);
+            TextWriter textWriter = new StreamWriter("Assets/Themes/" + m_themes[themename].ThemeName + ".YGOTheme");
+            serializer.Serialize(textWriter, m_themes[themename]);
             textWriter.Close();
         }
 
@@ -87,7 +87,7 @@ namespace DevProLauncher.Windows
 
         public List<object> ThemeKeys()
         {
-            return _themes.Keys.Cast<object>().ToList();
+            return m_themes.Keys.Cast<object>().ToList();
         }
 
         void LoadThemeFiles()
@@ -114,19 +114,20 @@ namespace DevProLauncher.Windows
         }
 
         void LoadTheme(string filepath)
-        {
+        {       
+            var deserializer = new XmlSerializer(typeof(Theme));
+            TextReader textReader = new StreamReader(filepath);
             try
             {
-                var deserializer = new XmlSerializer(typeof(Theme));
-                TextReader textReader = new StreamReader(filepath);
     // ReSharper disable AssignNullToNotNullAttribute
-                if (!_themes.ContainsKey(Path.GetFileNameWithoutExtension(filepath)))
-                    _themes[Path.GetFileNameWithoutExtension(filepath)] = (Theme)deserializer.Deserialize(textReader);
+                if (!m_themes.ContainsKey(Path.GetFileNameWithoutExtension(filepath)))
+                    m_themes[Path.GetFileNameWithoutExtension(filepath)] = (Theme)deserializer.Deserialize(textReader);
     // ReSharper restore AssignNullToNotNullAttribute
                 textReader.Close();
             }
             catch (Exception)
             {
+                textReader.Close();
                 if(File.Exists(filepath))
                     File.Delete(filepath);
             }
@@ -134,18 +135,18 @@ namespace DevProLauncher.Windows
         }
         public ThemeObject GetThemeObject(ContentType type)
         {
-            if (_themes.ContainsKey(SelectedTheme))
+            if (m_themes.ContainsKey(SelectedTheme))
             {
-                return _themes[SelectedTheme].GetThemeObject(type);
+                return m_themes[SelectedTheme].GetThemeObject(type);
             }
             return null;
         }
 
         public void AddTheme(string themeName)
         {
-            if (!_themes.ContainsKey(themeName))
+            if (!m_themes.ContainsKey(themeName))
             {
-                _themes.Add(themeName, new Theme { ThemeName = themeName });
+                m_themes.Add(themeName, new Theme { ThemeName = themeName });
                 SaveTheme(themeName);
             }
             else
@@ -155,12 +156,12 @@ namespace DevProLauncher.Windows
         }
         public bool ThemeExists(string name)
         {
-            return _themes.ContainsKey(name);
+            return m_themes.ContainsKey(name);
         }
 
         public void AddThemeItem(ContentType type, string path, string filename)
         {
-            _themes[SelectedTheme].AddItem(type, path, filename);
+            m_themes[SelectedTheme].AddItem(type, path, filename);
         }
 
         public Content GetCurrentItemSet()
@@ -366,7 +367,7 @@ namespace DevProLauncher.Windows
                 //if (ApplyTheme != null) ApplyTheme(Data[contentView].AssetPath + item.Text + Data[contentView].FileType);
                 if (SelectedTheme == "None") if (MessageBox.Show("No theme selected", "No theme") == DialogResult.OK) return;
 
-                _themes[SelectedTheme].AddItem(ContentView, Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType, item.Text);
+                m_themes[SelectedTheme].AddItem(ContentView, Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType, item.Text);
                 SaveTheme(SelectedTheme);
                 RefreshList();
                 RefreshInstalledThemeItems();
@@ -381,7 +382,7 @@ namespace DevProLauncher.Windows
                 //if (ApplyTheme != null) ApplyTheme(Data[contentView].AssetPath + item.Text + Data[contentView].FileType);
                 if (SelectedTheme == "None") if (MessageBox.Show("No theme selected", "No theme") == DialogResult.OK) return;
 
-                _themes[SelectedTheme].RemoveItem(ContentView);
+                m_themes[SelectedTheme].RemoveItem(ContentView);
                 SaveTheme(SelectedTheme);
                 RefreshList();
                 RefreshInstalledThemeItems();
@@ -391,7 +392,7 @@ namespace DevProLauncher.Windows
         public void DealteTheme(string themename)
         {
             if (File.Exists("Assets/Themes/" + themename + ".YGOTheme")) File.Delete("Assets/Themes/" + themename + ".YGOTheme");
-            _themes.Remove(themename);
+            m_themes.Remove(themename);
         }
 
         private void OnListViewMouseUp(object sender, MouseEventArgs e)
@@ -619,7 +620,7 @@ namespace DevProLauncher.Windows
 
         public void ApplyTheme(string themename)
         {
-            foreach (ThemeObject themeobject in _themes[themename].Items)
+            foreach (ThemeObject themeobject in m_themes[themename].Items)
             {
                 InstallAsset(themeobject.Type, themeobject.Filepath);
             }
@@ -637,7 +638,7 @@ namespace DevProLauncher.Windows
            
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (_themes.ContainsKey(form.InputBox.Text))
+                if (m_themes.ContainsKey(form.InputBox.Text))
                 {
                     MessageBox.Show("Theme already exsists!", "Error", MessageBoxButtons.OK);
                     return;
@@ -655,7 +656,7 @@ namespace DevProLauncher.Windows
                 == DialogResult.Yes)
             {
                 File.Delete("Assets/Themes/" + ThemeSelect.SelectedItem + ".YGOTheme");
-                _themes.Remove(ThemeSelect.SelectedItem.ToString());
+                m_themes.Remove(ThemeSelect.SelectedItem.ToString());
                 ThemeSelect.Items.Remove(ThemeSelect.SelectedItem);
                 
             }

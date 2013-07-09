@@ -11,9 +11,9 @@ namespace DevProLauncher.Windows.Components
 {
     public sealed partial class FileManagerControl : Form
     {
-        private readonly string _fileLocation;
-        private readonly string _fileType;
-        private readonly object _infoWindow;
+        private readonly string m_fileLocation;
+        private readonly string m_fileType;
+        private readonly object m_infoWindow;
 
 
         public FileManagerControl(string name, string dir, string filetype)
@@ -22,20 +22,20 @@ namespace DevProLauncher.Windows.Components
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
-            _fileLocation = dir;
-            _fileType = filetype;
+            m_fileLocation = dir;
+            m_fileType = filetype;
             RefreshFileList();
             Name = name;
             if (name == "Decks")
             {
-                    _infoWindow = new CardInfoControl();
-                    tableLayoutPanel1.Controls.Add((CardInfoControl)_infoWindow, 1, 0);
+                    m_infoWindow = new CardInfoControl();
+                    tableLayoutPanel1.Controls.Add((CardInfoControl)m_infoWindow, 1, 0);
                 
             }
             else if (name == "Replays")
             {
-                _infoWindow = new ReplayInfoControl();
-                tableLayoutPanel1.Controls.Add((ReplayInfoControl)_infoWindow, 1, 0);
+                m_infoWindow = new ReplayInfoControl();
+                tableLayoutPanel1.Controls.Add((ReplayInfoControl)m_infoWindow, 1, 0);
             }
 
             FileList.MouseUp += OnListMouseUp;
@@ -43,7 +43,7 @@ namespace DevProLauncher.Windows.Components
             ApplyTranslation();
         }
 
-        private void ApplyTranslation()
+        public void ApplyTranslation()
         {
             if (Program.LanguageManager.Loaded)
             {
@@ -58,12 +58,12 @@ namespace DevProLauncher.Windows.Components
 
         private void OpenBtn_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(Program.Config.LauncherDir + _fileLocation))
+            if (Directory.Exists(Program.Config.LauncherDir + m_fileLocation))
 // ReSharper disable AssignNullToNotNullAttribute
-                Process.Start(Path.GetDirectoryName(Program.Config.LauncherDir + _fileLocation));
+                Process.Start(Path.GetDirectoryName(Program.Config.LauncherDir + m_fileLocation));
 // ReSharper restore AssignNullToNotNullAttribute
             else
-                MessageBox.Show(Program.Config.LauncherDir + _fileLocation + Program.LanguageManager.Translation.fileMsgNoExist);
+                MessageBox.Show(Program.Config.LauncherDir + m_fileLocation + Program.LanguageManager.Translation.fileMsgNoExist);
         }
 
         private void GameBtn_Click(object sender, EventArgs e)
@@ -79,7 +79,7 @@ namespace DevProLauncher.Windows.Components
                     MessageBox.Show("Choose a replay first!");
                     return;
                 }
-                string replayDir = Program.Config.LauncherDir + _fileLocation;
+                string replayDir = Program.Config.LauncherDir + m_fileLocation;
                 if (!Directory.Exists(replayDir))
                 {
                     MessageBox.Show("Replay directory doesn't exist!");
@@ -117,8 +117,8 @@ namespace DevProLauncher.Windows.Components
                 {
                     try
                     {
-                        File.Copy(Program.Config.LauncherDir + _fileLocation + FileList.Items[FileList.SelectedIndex] + _fileType, Program.Config.LauncherDir + _fileLocation + input.InputBox.Text + _fileType);
-                        File.Delete(Program.Config.LauncherDir + _fileLocation + FileList.Items[FileList.SelectedIndex] + _fileType);
+                        File.Copy(Program.Config.LauncherDir + m_fileLocation + FileList.Items[FileList.SelectedIndex] + m_fileType, Program.Config.LauncherDir + m_fileLocation + input.InputBox.Text + m_fileType);
+                        File.Delete(Program.Config.LauncherDir + m_fileLocation + FileList.Items[FileList.SelectedIndex] + m_fileType);
                         RefreshFileList();
                     }
                     catch (Exception ex)
@@ -148,7 +148,7 @@ namespace DevProLauncher.Windows.Components
                 {
                     foreach (string fileitem in FileList.SelectedItems)
                     {
-                        File.Delete(Program.Config.LauncherDir + _fileLocation + fileitem.ToString(CultureInfo.InvariantCulture) + _fileType);
+                        File.Delete(Program.Config.LauncherDir + m_fileLocation + fileitem.ToString(CultureInfo.InvariantCulture) + m_fileType);
                     }
                     RefreshFileList();
                 }
@@ -163,12 +163,12 @@ namespace DevProLauncher.Windows.Components
         public void RefreshFileList()
         {
             FileList.Items.Clear();
-            if ((Directory.Exists(Program.Config.LauncherDir + _fileLocation)))
+            if ((Directory.Exists(Program.Config.LauncherDir + m_fileLocation)))
             {
-                string[] files = Directory.GetFiles(Program.Config.LauncherDir + _fileLocation);
+                string[] files = Directory.GetFiles(Program.Config.LauncherDir + m_fileLocation);
                 foreach (string item in files)
                 {
-                    if(item.EndsWith(_fileType))
+                    if(item.EndsWith(m_fileType))
 // ReSharper disable AssignNullToNotNullAttribute
                         FileList.Items.Add(Path.GetFileNameWithoutExtension(item));
 // ReSharper restore AssignNullToNotNullAttribute
@@ -205,24 +205,24 @@ namespace DevProLauncher.Windows.Components
 
             if (Name == "Decks")
             {
-                ((CardInfoControl)_infoWindow).LoadDeck(Program.Config.LauncherDir + _fileLocation +  FileList.SelectedItem + ".ydk");
+                ((CardInfoControl)m_infoWindow).LoadDeck(Program.Config.LauncherDir + m_fileLocation +  FileList.SelectedItem + ".ydk");
             }
             else if (Name == "Replays")
             {
-                ((ReplayInfoControl)_infoWindow).ReadReplay(Program.Config.LauncherDir + _fileLocation + FileList.SelectedItem + ".yrp");
+                ((ReplayInfoControl)m_infoWindow).ReadReplay(Program.Config.LauncherDir + m_fileLocation + FileList.SelectedItem + ".yrp");
             }
         }
 
         private void ImportBtn_Click(object sender, EventArgs e)
         {
-            string[] importfiles = LauncherHelper.OpenFileWindow("Import " + Text, "", "(*" + _fileType + ")|*" + _fileType + ";", true);
+            string[] importfiles = LauncherHelper.OpenFileWindow("Import " + Text, "", "(*" + m_fileType + ")|*" + m_fileType + ";", true);
             if (importfiles != null)
             {
                 foreach (string file in importfiles)
                 {
                     try
                     {
-                        File.Copy(file, Program.Config.LauncherDir + _fileLocation + Path.GetFileNameWithoutExtension(file) + _fileType);
+                        File.Copy(file, Program.Config.LauncherDir + m_fileLocation + Path.GetFileNameWithoutExtension(file) + m_fileType);
                     }
                     catch (Exception ex)
                     {
@@ -243,7 +243,7 @@ namespace DevProLauncher.Windows.Components
         {
             var decklist = new StringBuilder();
 
-            var window = _infoWindow as CardInfoControl;
+            var window = m_infoWindow as CardInfoControl;
             if (window != null)
             {
                 if (window.DeckList.Items.Count == 0)
@@ -262,7 +262,7 @@ namespace DevProLauncher.Windows.Components
             }
             else
             {
-                var control = _infoWindow as ReplayInfoControl;
+                var control = m_infoWindow as ReplayInfoControl;
                 if (control != null)
                 {
                     if (control.DeckList.Items.Count == 0)
