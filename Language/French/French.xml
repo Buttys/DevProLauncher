@@ -3,7 +3,7 @@
   <QuickHostSetting>Paramètres Jeu Rapide</QuickHostSetting>
   <QuickHostBtn>Sauver</QuickHostBtn>
   <pmsbProgRun>Programme déjà en cours d'exécution.</pmsbProgRun>
-  <pMsbErrorToServer>Erreur de connection au serveur.</pMsbErrorToServer>
+  <pMsbErrorToServer>Erreur de connexion au serveur.</pMsbErrorToServer>
   <pMsbBadLog>Mauvais profil et/ou mot de passe.</pMsbBadLog>
   <pMsbOldVers>Votre version du lanceur est trop ancienne. Veuillez le réinstaller.</pMsbOldVers>
   <pMsbException>Oooops! Une erreur est survenue! Le programme va fermer!</pMsbException>
@@ -16,10 +16,10 @@
   <LoginMsb1>Non connecté au serveur.</LoginMsb1>
   <LoginMsb2>Veuillez entrer votre profil.</LoginMsb2>
   <LoginMsb3>Veuillez entrer votre mot de passe.</LoginMsb3>
-  <LoginBtnOffline>Mode Classic</LoginBtnOffline>
+  <LoginBtnOffline>Mode Classique</LoginBtnOffline>
   <RegistLbUser>Profil :</RegistLbUser>
   <RegistLbPw>Mot de passe :</RegistLbPw>
-  <RegistLbPw2>Confirmer-le :</RegistLbPw2>
+  <RegistLbPw2>Confirmez-le :</RegistLbPw2>
   <RegistBtnRegister>S'inscrire</RegistBtnRegister>
   <RegistBtnCancel>Annuler</RegistBtnCancel>
   <RegistMsb1>Veuillez confirmer votre mot de passe.</RegistMsb1>
@@ -59,17 +59,17 @@
   <GamePasswordExsists>Un salon avec ce mot de passe existe déjà.</GamePasswordExsists>
   <GameLocked>Verrouillé</GameLocked>
   <GameOpen>Ouvert</GameOpen>
-  <GameLPChange>Vos paramètres de création rapide d'un salon ne suivent pas les recommandations au niveau des Life Points. Souhaitez-vous les accorder avec les règles en vigueur ?</GameLPChange>
+  <GameLPChange>Vos paramètres de création rapide d'un salon ne suivent pas les recommandations au niveau des poins de vie. Souhaitez-vous les accorder avec les règles en vigueur ?</GameLPChange>
   <GameEnterPassword>Entrez le mot de passe</GameEnterPassword>
   <GameWrongPassword>Mot de passe incorrect</GameWrongPassword>
-  <optionGb1>Paramètres Utilisateurs</optionGb1>
+  <optionGb1>Paramètres Utilisateur</optionGb1>
   <optionGb2>Paramètres Jeu</optionGb2>
   <optionGb3>Paramètres Police</optionGb3>
   <optionGb4>Paramètres Lanceur</optionGb4>
-  <optionMsbForget>Souhaitez-vous vraiment oublier la connexion automatique au lancement du lanceur?</optionMsbForget>
+  <optionMsbForget>Souhaitez-vous vraiment désactiver la connexion automatique au lancement ?</optionMsbForget>
   <optionUser>Profil par défaut</optionUser>
   <optionDeck>Deck par défaut</optionDeck>
-  <optionBtnAutoLogin>Oublier connexion auto</optionBtnAutoLogin>
+  <optionBtnAutoLogin>Désactiver connexion auto</optionBtnAutoLogin>
   <optionAntialias>Anti-aliasing</optionAntialias>
   <optionCbSound>Activer les sons</optionCbSound>
   <optionCbMusic>Activer les musiques</optionCbMusic>
@@ -93,8 +93,8 @@
   <hostMode>Type de Duel :</hostMode>
   <hostPrio>Activer la priorité</hostPrio>
   <hostCheckDeck>Désactiver vérification Deck</hostCheckDeck>
-  <hostShuffle>Désactiver mélanger Deck</hostShuffle>
-  <hostLifep>Life Points :</hostLifep>
+  <hostShuffle>Désactiver mélange Deck</hostShuffle>
+  <hostLifep>Points de Vie :</hostLifep>
   <hostGameN>Nom du Jeu :</hostGameN>
   <hostBtnHost>Créer</hostBtnHost>
   <hostBtnCancel>Annuler</hostBtnCancel>
@@ -112,7 +112,7 @@
   <fileBtnRefresh>Actualiser</fileBtnRefresh>
   <fileBtnImport>Importer</fileBtnImport>
   <aboutLabel1>A propos de DevPro</aboutLabel1>
-  <aAboutText>The YGOPro Online Development Group is a rag tag team of programmers, philanthropist, and generally knowledgeable people in the YGOPro community that seek to better and progress the Yu-Gi-Oh! Online community as a whole by providing services and software to allow duelist to grow by dueling and forming lasting friendships.</aAboutText>
+  <aAboutText>Le groupe de développement YGOPro Online est une équipe hétéroclite de programmeurs philanthropes, ainsi que des membres (généralement) avertis de la communauté YGOPro, qui visent à la développer et l'améliorer pleinement, en proposant des services et logiciels pour permettre aux duellistes de progresser et de partager leur passion avec d'autres membres. </aAboutText>
   <aboutLabel5>Contributeurs DevPro</aboutLabel5>
   <cusRemoveBtn>Retirer</cusRemoveBtn>
   <cusAddThemeBtn>Ajouter</cusAddThemeBtn>
@@ -129,19 +129,19 @@
   <profileGb3>Classé</profileGb3>
   <profileGb4>Stats Gagnés</profileGb4>
   <profileGb5>Stats Perdus</profileGb5>
-  <profileLblLP>LP à 0</profileLblLP>
+  <profileLblLP>PV à 0</profileLblLP>
   <profileLblSurrendered>Abandon</profileLblSurrendered>
   <profileLbl0Cards>Plus de cartes</profileLbl0Cards>
   <profileLblTimeLimit>Temps limite atteint</profileLblTimeLimit>
   <profileLblDisconnect>Déconnexion-RQ</profileLblDisconnect>
   <profileLblExodia>Exodia</profileLblExodia>
   <profileLblFinalCountdown>Compte à Rebours Final</profileLblFinalCountdown>
-  <profileLblVennominaga>Vennominaga</profileLblVennominaga>
+  <profileLblVenominaga>Vennominaga</profileLblVennominaga>
   <profileLblHorakhty>Horakhty</profileLblHorakhty>
   <profileLblExodius>Exodius</profileLblExodius>
   <profileLblDestinyBoard>Tableau de la Destinée</profileLblDestinyBoard>
   <profileLblLastTurn>Dernier Tour</profileLblLastTurn>
-  <profileLblDestinyLeo>Destiny Leo</profileLblDestinyLeo>
+  <profileLblDestinyLeo>Lion de la Destinée</profileLblDestinyLeo>
   <profileLblUnknown>Autre</profileLblUnknown>
   <profileLblUsername>Duelliste: </profileLblUsername>
   <profileLblwld>Gagné/Perdu/Nul: </profileLblwld>
@@ -154,10 +154,10 @@
   <chatoptionsGb4>Paramètres du Canal</chatoptionsGb4>
   <chatoptionsLblHideJoinLeave>Cacher Joindre/Quitter</chatoptionsLblHideJoinLeave>
   <chatoptionsLblPmWindows>Fenêtre des MP</chatoptionsLblPmWindows>
-  <chatoptionsLblColorBlindMode>Mode pour daltoniens</chatoptionsLblColorBlindMode>
+  <chatoptionsLblColorBlindMode>Mode Daltonien</chatoptionsLblColorBlindMode>
   <chatoptionsLblShowTimeStamp>Montrer l'horodatage</chatoptionsLblShowTimeStamp>
-  <chatoptionsLblRefuseDuelRequests>Refuser Requête Duel</chatoptionsLblRefuseDuelRequests>
-  <chatoptionsLblChatBackground>Fond du Chat</chatoptionsLblChatBackground>
+  <chatoptionsLblRefuseDuelRequests>Refuser Duel</chatoptionsLblRefuseDuelRequests>
+  <chatoptionsLblChatBackground>Arrière-plan du Chat</chatoptionsLblChatBackground>
   <chatoptionsLblNormalText>Texte Normal</chatoptionsLblNormalText>
   <chatoptionsLblLevel99>Niveau 99</chatoptionsLblLevel99>
   <chatoptionsLblLevel2>Niveau 2</chatoptionsLblLevel2>
@@ -195,11 +195,11 @@
   <MainCustomizeTab>Personnaliser</MainCustomizeTab>
   <MainAboutTab>A propos</MainAboutTab>
   <DuelReqestMessage> vous défie en Duel classé ! Acceptez-vous ce challenge ?</DuelReqestMessage>
-  <DuelRequestBanlist> Restriction: </DuelRequestBanlist>
+  <DuelRequestBanlist> Restrictions: </DuelRequestBanlist>
   <DuelRequestRules> Règles de jeu: </DuelRequestRules>
   <DuelRequestMode> Type: </DuelRequestMode>
-  <SupportItem1Name>Status de Duelliste Donneur</SupportItem1Name>
-  <SupportItem1Des>Vous octroie des commandes supplémentaires dans le chat ainsi qu'un changement de status.</SupportItem1Des>
+  <SupportItem1Name>Statut de Duelliste Donneur</SupportItem1Name>
+  <SupportItem1Des>Vous octroie des commandes supplémentaires dans le chat ainsi qu'un changement de statut.</SupportItem1Des>
   <SupportItem2Name>Changement de Pseudo</SupportItem2Name>
   <SupportItem2Des>Change votre Pseudo tout en gardant vos statistiques de Duel.</SupportItem2Des>
   <SupportItem3Name>Réinitialisation des Stats</SupportItem3Name>
