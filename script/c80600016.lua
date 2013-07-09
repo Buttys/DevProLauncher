@@ -52,15 +52,10 @@ end
 function c80600016.negtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsCanBeSpecialSummoned(e,0,tp,false,false) end
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 end
-	local g=Duel.GetAttacker()
-	Duel.SetTargetCard(g)
 	Duel.SetOperationInfo(0,CATEGORY_NEGATE,tg,1,0,0)
 end
 function c80600016.negop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=Duel.GetFirstTarget()
-	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		if Duel.NegateAttack() and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) then
-			Duel.SpecialSummon(e:GetHandler(),0,tp,tp,false,false,POS_FACEDOWN_DEFENCE)
-		end
+	if Duel.NegateAttack() and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) then
+		Duel.SpecialSummon(e:GetHandler(),0,tp,tp,false,false,POS_FACEDOWN_DEFENCE)
 	end
 end
