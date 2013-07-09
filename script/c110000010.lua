@@ -132,12 +132,12 @@ function c110000010.op(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local b2=Duel.IsExistingMatchingCard(c110000010.filter,tp,LOCATION_MZONE,LOCATION_MZONE,1,e:GetHandler())
 
 	if Duel.CheckLPCost(tp,1000) then
-		if b1 and b2 then op=Duel.SelectOption(tp,aux.Stringid(10000010,0),aux.Stringid(10000010,1))
+		if b1 and b2 then op=Duel.SelectOption(tp,aux.Stringid(110000010,0),aux.Stringid(110000010,1))
 	end
 
 	
-	elseif b1 then op=Duel.SelectOption(tp,aux.Stringid(10000010,0))
-	elseif b2 then Duel.SelectOption(tp,aux.Stringid(10000010,1)) op=1
+	elseif b1 then op=Duel.SelectOption(tp,aux.Stringid(110000010,0))
+	elseif b2 then Duel.SelectOption(tp,aux.Stringid(110000010,1)) op=1
 	else return end
 	if op==0 then
 		if chk==0 then return Duel.GetLP(tp)>1 end
