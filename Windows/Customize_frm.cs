@@ -115,13 +115,22 @@ namespace DevProLauncher.Windows
 
         void LoadTheme(string filepath)
         {
-            var deserializer = new XmlSerializer(typeof(Theme));
-            TextReader textReader = new StreamReader(filepath);
-// ReSharper disable AssignNullToNotNullAttribute
-            if (!_themes.ContainsKey(Path.GetFileNameWithoutExtension(filepath)))
-                _themes[Path.GetFileNameWithoutExtension(filepath)] = (Theme)deserializer.Deserialize(textReader);
-// ReSharper restore AssignNullToNotNullAttribute
-            textReader.Close();
+            try
+            {
+                var deserializer = new XmlSerializer(typeof(Theme));
+                TextReader textReader = new StreamReader(filepath);
+    // ReSharper disable AssignNullToNotNullAttribute
+                if (!_themes.ContainsKey(Path.GetFileNameWithoutExtension(filepath)))
+                    _themes[Path.GetFileNameWithoutExtension(filepath)] = (Theme)deserializer.Deserialize(textReader);
+    // ReSharper restore AssignNullToNotNullAttribute
+                textReader.Close();
+            }
+            catch (Exception)
+            {
+                if(File.Exists(filepath))
+                    File.Delete(filepath);
+            }
+
         }
         public ThemeObject GetThemeObject(ContentType type)
         {

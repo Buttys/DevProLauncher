@@ -554,7 +554,7 @@ namespace DevProLauncher.Windows
             this.DeckSelect.Size = new System.Drawing.Size(115, 21);
             this.DeckSelect.TabIndex = 14;
             // 
-            // GameList_frm
+            // GameListFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
