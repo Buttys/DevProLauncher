@@ -1,95 +1,86 @@
 ﻿namespace DevProLauncher.Helpers
 {
     using System;
-    using System.IO;
-    using System.Runtime.CompilerServices;
-    using System.Text;
-    using DevProLauncher.Helpers.Enums;
+    using Enums;
 
     public class CardInfos: ICloneable
     {
-        private string m_cardRace;
-        private string m_cardTypes;
+        private string _mCardRace;
+        private string _mCardTypes;
 
         public CardInfos(int id)
         {
-            this.Id = id;
+            Id = id;
         }
 
         public string GetCardRace()
         {
-            if (this.m_cardRace != null)
+            if (_mCardRace != null)
             {
-                return this.m_cardRace;
+                return _mCardRace;
             }
-            CardRace[] raceArray = new CardRace[] { 
+            var raceArray = new[] { 
                 CardRace.Warrior, CardRace.SpellCaster, CardRace.Fairy, CardRace.Fiend, CardRace.Zombie, CardRace.Machine, CardRace.Aqua, CardRace.Pyro, CardRace.Rock, CardRace.WindBeast, CardRace.Plant, CardRace.Insect, CardRace.Thunder, CardRace.Dragon, CardRace.Beast, CardRace.BestWarrior, 
                 CardRace.Dinosaur, CardRace.Fish, CardRace.SeaSerpent, CardRace.Reptile, CardRace.Psycho, CardRace.DivineBeast
              };
-            CardAttribute[] attributeArray = new CardAttribute[] { CardAttribute.Dark, CardAttribute.Divine, CardAttribute.Earth, CardAttribute.Fire, CardAttribute.Light, CardAttribute.Water, CardAttribute.Wind };
+            var attributeArray = new[] { CardAttribute.Dark, CardAttribute.Divine, CardAttribute.Earth, CardAttribute.Fire, CardAttribute.Light, CardAttribute.Water, CardAttribute.Wind };
             foreach (CardRace race in raceArray)
             {
-                if ((this.Race & (int)race) != 0)
-                {
-                    this.m_cardRace = race.ToString();
-                    break;
-                }
+                if ((Race & (int) race) == 0) continue;
+                _mCardRace = race.ToString();
+                break;
             }
             foreach (CardAttribute attribute in attributeArray)
             {
-                if ((this.Attribute & (int)attribute) != 0)
-                {
-                    this.m_cardRace = this.m_cardRace + " - " + attribute;
-                    break;
-                }
+                if ((Attribute & (int) attribute) == 0) continue;
+                _mCardRace = _mCardRace + " - " + attribute;
+                break;
             }
-            return (this.m_cardRace ?? (this.m_cardRace = ""));
+            return (_mCardRace ?? (_mCardRace = ""));
         }
 
         public string GetCardTypes()
         {
-            if (this.m_cardTypes == null)
+            if (_mCardTypes == null)
             {
-                CardType[] typeArray = new CardType[] { 
+                var typeArray = new[] { 
                     CardType.Monster, CardType.Spell, CardType.Trap, CardType.Normal, CardType.Effect, CardType.Fusion, CardType.Ritual, CardType.TrapMonster, CardType.Spirit, CardType.Union, CardType.Dual, CardType.Tuner, CardType.Synchro, CardType.Token, CardType.QuickPlay, CardType.Continuous, 
                     CardType.Equip, CardType.Field, CardType.Counter, CardType.Flip, CardType.Toon, CardType.Xyz
                  };
                 foreach (CardType type in typeArray)
                 {
-                    if (((this.Type & (int)type) != 0))
+                    if (((Type & (int) type) == 0)) continue;
+                    if (_mCardTypes == null)
                     {
-                        if (this.m_cardTypes == null)
-                        {
-                            this.m_cardTypes = type.ToString();
-                        }
-                        else
-                        {
-                            this.m_cardTypes = this.m_cardTypes + " / " + type;
-                        }
+                        _mCardTypes = type.ToString();
+                    }
+                    else
+                    {
+                        _mCardTypes = _mCardTypes + " / " + type;
                     }
                 }
-                this.m_cardTypes = "[" + this.m_cardTypes + "]";
+                _mCardTypes = "[" + _mCardTypes + "]";
             }
-            return this.m_cardTypes;
+            return _mCardTypes;
         }
 
         public bool HasType(CardType type)
         {
-            return ((this.Type & (int)type) != 0);
+            return ((Type & (int)type) != 0);
         }
 
         public bool IsExtraCard()
         {
-            if (!this.HasType(CardType.Fusion) && !this.HasType(CardType.Synchro))
+            if (!HasType(CardType.Fusion) && !HasType(CardType.Synchro))
             {
-                return this.HasType(CardType.Xyz);
+                return HasType(CardType.Xyz);
             }
             return true;
         }
 
         public object Clone()
         {
-            return  (CardInfos)this.MemberwiseClone();
+            return  MemberwiseClone();
         }
 
         public int AliasId { get; set; }

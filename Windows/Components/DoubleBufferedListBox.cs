@@ -1,47 +1,46 @@
 ﻿using System.Windows.Forms;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System;
 namespace DevProLauncher.Windows.Components
 {
     
-    public class DoubleBufferedListBox : ListBox
+    public sealed class DoubleBufferedListBox : ListBox
     {
         public DoubleBufferedListBox()
         {
-            this.SetStyle(
+            SetStyle(
                 ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.ResizeRedraw |
                 ControlStyles.UserPaint,
                 true);
-            this.DrawMode = DrawMode.OwnerDrawFixed;
+            DrawMode = DrawMode.OwnerDrawFixed;
         }
         protected override void OnPaint(PaintEventArgs e)
         {
-            Region iRegion = new Region(e.ClipRectangle);
-            e.Graphics.FillRegion(new SolidBrush(this.BackColor), iRegion);
-            if (this.Items.Count > 0)
+            var iRegion = new Region(e.ClipRectangle);
+            e.Graphics.FillRegion(new SolidBrush(BackColor), iRegion);
+            if (Items.Count > 0)
             {
-                for (int i = 0; i < this.Items.Count; ++i)
+                for (int i = 0; i < Items.Count; ++i)
                 {
-                    System.Drawing.Rectangle irect = this.GetItemRectangle(i);
+                    Rectangle irect = GetItemRectangle(i);
                     if (e.ClipRectangle.IntersectsWith(irect))
                     {
-                        if ((this.SelectionMode == SelectionMode.One && this.SelectedIndex == i)
-                                    || (this.SelectionMode == SelectionMode.MultiSimple && this.SelectedIndices.Contains(i))
-                                    || (this.SelectionMode == SelectionMode.MultiExtended && this.SelectedIndices.Contains(i)))
+                        if ((SelectionMode == SelectionMode.One && SelectedIndex == i)
+                                    || (SelectionMode == SelectionMode.MultiSimple && SelectedIndices.Contains(i))
+                                    || (SelectionMode == SelectionMode.MultiExtended && SelectedIndices.Contains(i)))
                         {
-                            OnDrawItem(new DrawItemEventArgs(e.Graphics, this.Font,
+                            OnDrawItem(new DrawItemEventArgs(e.Graphics, Font,
                                 irect, i,
-                                DrawItemState.Selected, this.ForeColor,
-                                this.BackColor));
+                                DrawItemState.Selected, ForeColor,
+                                BackColor));
                         }
                         else
                         {
-                            OnDrawItem(new DrawItemEventArgs(e.Graphics, this.Font,
+                            OnDrawItem(new DrawItemEventArgs(e.Graphics, Font,
                                 irect, i,
-                                DrawItemState.Default, this.ForeColor,
-                                this.BackColor));
+                                DrawItemState.Default, ForeColor,
+                                BackColor));
                         }
                         iRegion.Complement(irect);
                     }
@@ -53,19 +52,19 @@ namespace DevProLauncher.Windows.Components
         public void UpdateList()
 	    {            
 		    int i = 0;
-		    this.BeginUpdate();
-		    foreach (String item in this.Items)
+		    BeginUpdate();
+		    foreach (String item in Items)
 		    {
-		        if (this.Items.Count > i)
-		            this.Items[i] = item;
+		        if (Items.Count > i)
+		            Items[i] = item;
 			    else 
-				   this.Items.Add(item);
+				   Items.Add(item);
 				i++;
 		    }
-            while (this.Items.Count > i)
-                this.Items.Remove(i);
+            while (Items.Count > i)
+                Items.Remove(i);
 
-            this.EndUpdate();
+            EndUpdate();
 		}
 
      }

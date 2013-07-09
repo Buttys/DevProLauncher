@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -18,15 +16,15 @@ namespace DevProLauncher.Helpers
 
             if (width > 0 && height > 0)
             {
-                Image.GetThumbnailImageAbort myCallback =
+                var myCallback =
                 new Image.GetThumbnailImageAbort(ThumbnailCallback);
-                Image imageToSave = originalImage.GetThumbnailImage
+                var imageToSave = originalImage.GetThumbnailImage
                     (width, height, myCallback, IntPtr.Zero);
-                imageToSave.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                imageToSave.Save(filePath, ImageFormat.Jpeg);
             }
             else
             {
-                originalImage.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                originalImage.Save(filePath, ImageFormat.Jpeg);
             }
         }
 
@@ -37,15 +35,15 @@ namespace DevProLauncher.Helpers
 
             if (size.Width > 0 && size.Height > 0)
             {
-                Image.GetThumbnailImageAbort myCallback =
+                var myCallback =
                 new Image.GetThumbnailImageAbort(ThumbnailCallback);
-                Image imageToSave = originalImage.GetThumbnailImage
+                var imageToSave = originalImage.GetThumbnailImage
                     (size.Width, size.Height, myCallback, IntPtr.Zero);
                 imageToSave.Save(filePath, format);
             }
             else
             {
-                originalImage.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                originalImage.Save(filePath, ImageFormat.Jpeg);
             }
         }
 
@@ -56,15 +54,15 @@ namespace DevProLauncher.Helpers
 
             if (width > 0 && height > 0)
             {
-                Image.GetThumbnailImageAbort myCallback =
+                var myCallback =
                 new Image.GetThumbnailImageAbort(ThumbnailCallback);
-                Image imageToSave = originalImage.GetThumbnailImage
+                var imageToSave = originalImage.GetThumbnailImage
                     (width, height, myCallback, IntPtr.Zero);
-                imageToSave.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                imageToSave.Save(filePath, ImageFormat.Jpeg);
             }
             else
             {
-                originalImage.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                originalImage.Save(filePath, ImageFormat.Jpeg);
             }
         }
 
@@ -72,19 +70,21 @@ namespace DevProLauncher.Helpers
 
         public static byte[] ImageToBinary(string imagePath)
         {
-            FileStream fileStream = new FileStream(imagePath, FileMode.Open, FileAccess.Read);
-            byte[] buffer = new byte[fileStream.Length];
+            var fileStream = new FileStream(imagePath, FileMode.Open, FileAccess.Read);
+            var buffer = new byte[fileStream.Length];
             fileStream.Read(buffer, 0, (int)fileStream.Length);
             fileStream.Close();
             return buffer;
         }
         public static string OpenFileWindow(string title, string startpath, string filefilter)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = startpath;
-            dialog.Title = title;
-            dialog.Filter = filefilter;
-            dialog.Multiselect = true;
+            var dialog = new OpenFileDialog
+                {
+                    InitialDirectory = startpath,
+                    Title = title,
+                    Filter = filefilter,
+                    Multiselect = true
+                };
             if ((dialog.ShowDialog() == DialogResult.OK))
             {
                 return dialog.FileName;

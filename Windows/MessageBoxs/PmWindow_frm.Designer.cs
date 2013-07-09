@@ -1,7 +1,7 @@
 ﻿using DevProLauncher.Windows.Components;
 namespace DevProLauncher.Windows.MessageBoxs
 {
-    partial class PmWindow_frm
+    partial class PmWindowFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -74,7 +74,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(525, 365);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "PmWindow_frm";
+            this.Name = "PmWindowFrm";
             this.Text = "PmWindow_frm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

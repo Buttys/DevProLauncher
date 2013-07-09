@@ -1,13 +1,9 @@
-using System;
-using System.IO;
-using System.Windows.Forms;
-using System.Xml.Serialization;
 using System.Drawing;
 
 namespace DevProLauncher.Config
 {
     using System.Collections.Generic;
-    using DevProLauncher.Helpers;
+    using Helpers;
 
     public class Configuration
     {

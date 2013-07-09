@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows.Components
 {
-    partial class Support_item
+    sealed partial class SupportItem
     {
         /// <summary>
         /// Required designer variable.
@@ -156,7 +156,7 @@
             this.ClientSize = new System.Drawing.Size(309, 179);
             this.Controls.Add(this.ItemName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Support_item";
+            this.Name = "SupportItem";
             this.Text = "Support_item";
             this.ItemName.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

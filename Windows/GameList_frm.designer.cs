@@ -1,7 +1,7 @@
 ﻿using DevProLauncher.Windows.Components;
 namespace DevProLauncher.Windows
 {
-    partial class GameList_frm
+    sealed partial class GameListFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -561,7 +561,7 @@ namespace DevProLauncher.Windows
             this.ClientSize = new System.Drawing.Size(909, 383);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "GameList_frm";
+            this.Name = "GameListFrm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.GameServerSelect.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

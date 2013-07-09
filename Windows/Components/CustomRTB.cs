@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Drawing;
@@ -14,7 +13,6 @@ namespace DevProLauncher.Windows.Components
         private const int WM_MOUSEWHEEL = 0x20A;
         private const int WM_USER = 0x400;
         private const int SB_VERT = 1;
-        private const int EM_SETSCROLLPOS = WM_USER + 222;
         private const int EM_GETSCROLLPOS = WM_USER + 221;
 
         [DllImport("user32.dll")]
@@ -27,13 +25,13 @@ namespace DevProLauncher.Windows.Components
         {
             int minScroll;
             int maxScroll;
-            GetScrollRange(this.Handle, SB_VERT, out minScroll, out maxScroll);
+            GetScrollRange(Handle, SB_VERT, out minScroll, out maxScroll);
             Point rtfPoint = Point.Empty;
-            SendMessage(this.Handle, EM_GETSCROLLPOS, 0, ref rtfPoint);
+            SendMessage(Handle, EM_GETSCROLLPOS, 0, ref rtfPoint);
 
             int safezone = maxScroll / 100 * 20;
 
-            return (rtfPoint.Y + this.ClientSize.Height >= maxScroll - safezone);
+            return (rtfPoint.Y + ClientSize.Height >= maxScroll - safezone);
         }
         protected virtual void OnScrolledToBottom(EventArgs e)
         {

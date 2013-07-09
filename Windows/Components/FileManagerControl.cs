@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using DevProLauncher.Helpers;
 using DevProLauncher.Windows.MessageBoxs;
-using DevProLauncher.Windows.Components;
 
-namespace DevProLauncher.Windows
+namespace DevProLauncher.Windows.Components
 {
-    public partial class FileManagerControl : Form
+    public sealed partial class FileManagerControl : Form
     {
-        private string FileLocation;
-        private string FileType;
-        private object InfoWindow;
+        private readonly string _fileLocation;
+        private readonly string _fileType;
+        private readonly object _infoWindow;
 
 
         public FileManagerControl(string name, string dir, string filetype)
@@ -27,24 +22,24 @@ namespace DevProLauncher.Windows
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
-            FileLocation = dir;
-            FileType = filetype;
+            _fileLocation = dir;
+            _fileType = filetype;
             RefreshFileList();
             Name = name;
             if (name == "Decks")
             {
-                    InfoWindow = new CardInfoControl();
-                    tableLayoutPanel1.Controls.Add((CardInfoControl)InfoWindow, 1, 0);
+                    _infoWindow = new CardInfoControl();
+                    tableLayoutPanel1.Controls.Add((CardInfoControl)_infoWindow, 1, 0);
                 
             }
             else if (name == "Replays")
             {
-                InfoWindow = new ReplayInfoControl();
-                tableLayoutPanel1.Controls.Add((ReplayInfoControl)InfoWindow, 1, 0);
+                _infoWindow = new ReplayInfoControl();
+                tableLayoutPanel1.Controls.Add((ReplayInfoControl)_infoWindow, 1, 0);
             }
 
-            this.FileList.MouseUp += new MouseEventHandler(this.OnListMouseUp);
-            this.FileList.SelectedIndexChanged +=new EventHandler(FileList_SelectedIndexChanged);
+            FileList.MouseUp += OnListMouseUp;
+            FileList.SelectedIndexChanged +=FileList_SelectedIndexChanged;
             ApplyTranslation();
         }
 
@@ -63,10 +58,12 @@ namespace DevProLauncher.Windows
 
         private void OpenBtn_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(Program.Config.LauncherDir + FileLocation))
-                Process.Start(Path.GetDirectoryName(Program.Config.LauncherDir + FileLocation));
+            if (Directory.Exists(Program.Config.LauncherDir + _fileLocation))
+// ReSharper disable AssignNullToNotNullAttribute
+                Process.Start(Path.GetDirectoryName(Program.Config.LauncherDir + _fileLocation));
+// ReSharper restore AssignNullToNotNullAttribute
             else
-                MessageBox.Show(Program.Config.LauncherDir + FileLocation + Program.LanguageManager.Translation.fileMsgNoExist);
+                MessageBox.Show(Program.Config.LauncherDir + _fileLocation + Program.LanguageManager.Translation.fileMsgNoExist);
         }
 
         private void GameBtn_Click(object sender, EventArgs e)
@@ -82,7 +79,7 @@ namespace DevProLauncher.Windows
                     MessageBox.Show("Choose a replay first!");
                     return;
                 }
-                string replayDir = Program.Config.LauncherDir + FileLocation;
+                string replayDir = Program.Config.LauncherDir + _fileLocation;
                 if (!Directory.Exists(replayDir))
                 {
                     MessageBox.Show("Replay directory doesn't exist!");
@@ -112,7 +109,7 @@ namespace DevProLauncher.Windows
                 MessageBox.Show(Program.LanguageManager.Translation.fileMsgNoSelect);
                 return;
             }
-            Input_frm input = new Input_frm("Rename", Program.LanguageManager.Translation.fileNewName, Program.LanguageManager.Translation.fileInputConfirm, "Cancel");
+            var input = new InputFrm("Rename", Program.LanguageManager.Translation.fileNewName, Program.LanguageManager.Translation.fileInputConfirm, "Cancel");
             if ((!(FileList.SelectedItems.Count > 1)))
             {
 
@@ -120,8 +117,8 @@ namespace DevProLauncher.Windows
                 {
                     try
                     {
-                        File.Copy(Program.Config.LauncherDir + FileLocation + FileList.Items[FileList.SelectedIndex].ToString() + FileType, Program.Config.LauncherDir + FileLocation + input.InputBox.Text + FileType);
-                        File.Delete(Program.Config.LauncherDir + FileLocation + FileList.Items[FileList.SelectedIndex].ToString() + FileType);
+                        File.Copy(Program.Config.LauncherDir + _fileLocation + FileList.Items[FileList.SelectedIndex] + _fileType, Program.Config.LauncherDir + _fileLocation + input.InputBox.Text + _fileType);
+                        File.Delete(Program.Config.LauncherDir + _fileLocation + FileList.Items[FileList.SelectedIndex] + _fileType);
                         RefreshFileList();
                     }
                     catch (Exception ex)
@@ -145,13 +142,13 @@ namespace DevProLauncher.Windows
                 return;
             }
 
-            if ((MessageBox.Show(Program.LanguageManager.Translation.fileAskDelete, "Delete " + this.Name, MessageBoxButtons.YesNo) == DialogResult.Yes))
+            if ((MessageBox.Show(Program.LanguageManager.Translation.fileAskDelete, "Delete " + Name, MessageBoxButtons.YesNo) == DialogResult.Yes))
             {
                 try
                 {
                     foreach (string fileitem in FileList.SelectedItems)
                     {
-                        File.Delete(Program.Config.LauncherDir + FileLocation + fileitem.ToString() + FileType);
+                        File.Delete(Program.Config.LauncherDir + _fileLocation + fileitem.ToString(CultureInfo.InvariantCulture) + _fileType);
                     }
                     RefreshFileList();
                 }
@@ -166,13 +163,15 @@ namespace DevProLauncher.Windows
         public void RefreshFileList()
         {
             FileList.Items.Clear();
-            if ((Directory.Exists(Program.Config.LauncherDir + FileLocation)))
+            if ((Directory.Exists(Program.Config.LauncherDir + _fileLocation)))
             {
-                string[] files = Directory.GetFiles(Program.Config.LauncherDir + FileLocation);
+                string[] files = Directory.GetFiles(Program.Config.LauncherDir + _fileLocation);
                 foreach (string item in files)
                 {
-                    if(item.EndsWith(FileType))
+                    if(item.EndsWith(_fileType))
+// ReSharper disable AssignNullToNotNullAttribute
                         FileList.Items.Add(Path.GetFileNameWithoutExtension(item));
+// ReSharper restore AssignNullToNotNullAttribute
                 }
             }
         }
@@ -185,11 +184,11 @@ namespace DevProLauncher.Windows
                 FileList.SelectedIndex = FileList.IndexFromPoint(e.X, e.Y);
                 if (((FileList.SelectedItem != null)))
                 {
-                    ContextMenuStrip strip = new ContextMenuStrip();
-                    ToolStripMenuItem item2 = new ToolStripMenuItem("Rename");
-                    ToolStripMenuItem item3 = new ToolStripMenuItem("Delete");
-                    item2.Click += new EventHandler(this.RenameItem);
-                    item3.Click += new EventHandler(this.DeleteItem);
+                    var strip = new ContextMenuStrip();
+                    var item2 = new ToolStripMenuItem("Rename");
+                    var item3 = new ToolStripMenuItem("Delete");
+                    item2.Click += RenameItem;
+                    item3.Click += DeleteItem;
                     strip.Items.AddRange(new ToolStripItem[] {
 					item2,
 					item3
@@ -206,24 +205,24 @@ namespace DevProLauncher.Windows
 
             if (Name == "Decks")
             {
-                ((CardInfoControl)InfoWindow).LoadDeck(Program.Config.LauncherDir + FileLocation +  FileList.SelectedItem.ToString() + ".ydk");
+                ((CardInfoControl)_infoWindow).LoadDeck(Program.Config.LauncherDir + _fileLocation +  FileList.SelectedItem + ".ydk");
             }
             else if (Name == "Replays")
             {
-                ((ReplayInfoControl)InfoWindow).ReadReplay(Program.Config.LauncherDir + FileLocation + FileList.SelectedItem.ToString() + ".yrp");
+                ((ReplayInfoControl)_infoWindow).ReadReplay(Program.Config.LauncherDir + _fileLocation + FileList.SelectedItem + ".yrp");
             }
         }
 
         private void ImportBtn_Click(object sender, EventArgs e)
         {
-            string[] importfiles = LauncherHelper.OpenFileWindow("Import " + Text, "", "(*" + FileType + ")|*" + FileType + ";", true);
+            string[] importfiles = LauncherHelper.OpenFileWindow("Import " + Text, "", "(*" + _fileType + ")|*" + _fileType + ";", true);
             if (importfiles != null)
             {
                 foreach (string file in importfiles)
                 {
                     try
                     {
-                        File.Copy(file, Program.Config.LauncherDir + FileLocation + Path.GetFileNameWithoutExtension(file) + FileType);
+                        File.Copy(file, Program.Config.LauncherDir + _fileLocation + Path.GetFileNameWithoutExtension(file) + _fileType);
                     }
                     catch (Exception ex)
                     {
@@ -242,42 +241,47 @@ namespace DevProLauncher.Windows
 
         private void CopyDeckBtn_Click(object sender, EventArgs e)
         {
-            StringBuilder Decklist = new StringBuilder();
+            var decklist = new StringBuilder();
 
-            if (InfoWindow is CardInfoControl)
+            var window = _infoWindow as CardInfoControl;
+            if (window != null)
             {
-                if (((CardInfoControl)InfoWindow).DeckList.Items.Count == 0)
+                if (window.DeckList.Items.Count == 0)
                     return;
-                foreach (object item in ((CardInfoControl)InfoWindow).DeckList.Items)
+                foreach (object item in window.DeckList.Items)
                 {
                     if (item.ToString().StartsWith("--"))
                     {
-                        Decklist.AppendLine(item.ToString());
+                        decklist.AppendLine(item.ToString());
                     }
                     else
                     {
-                        Decklist.AppendLine(item.ToString() + " x" + ((CardInfoControl)InfoWindow).CardList[item.ToString()].Amount);
+                        decklist.AppendLine(item + " x" + window.CardList[item.ToString()].Amount);
                     }
                 }
             }
-            else if (InfoWindow is ReplayInfoControl)
+            else
             {
-                if (((ReplayInfoControl)InfoWindow).DeckList.Items.Count == 0)
-                    return;
-                foreach (object item in ((ReplayInfoControl)InfoWindow).DeckList.Items)
+                var control = _infoWindow as ReplayInfoControl;
+                if (control != null)
                 {
-                    if (item.ToString().StartsWith("--"))
+                    if (control.DeckList.Items.Count == 0)
+                        return;
+                    foreach (object item in control.DeckList.Items)
                     {
-                        Decklist.AppendLine(item.ToString());
-                    }
-                    else
-                    {
-                        Decklist.AppendLine(item.ToString() + " x" + ((ReplayInfoControl)InfoWindow).CardList[item.ToString()].Amount);
+                        if (item.ToString().StartsWith("--"))
+                        {
+                            decklist.AppendLine(item.ToString());
+                        }
+                        else
+                        {
+                            decklist.AppendLine(item + " x" + control.CardList[item.ToString()].Amount);
+                        }
                     }
                 }
             }
 
-            Clipboard.SetText(Decklist.ToString());
+            Clipboard.SetText(decklist.ToString());
         }
         
     }

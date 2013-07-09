@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
 using DevProLauncher.Helpers;
 using System.IO;
@@ -12,7 +9,7 @@ using DevProLauncher.Helpers.Enums;
 
 namespace DevProLauncher.Windows.Components
 {
-    public partial class CardInfoControl : Form
+    public sealed partial class CardInfoControl : Form
     {
 
         public Dictionary<string, CardInfos> CardList;
@@ -25,8 +22,8 @@ namespace DevProLauncher.Windows.Components
             Visible = true;
             CardList = new Dictionary<string, CardInfos>();
            
-            DeckList.DrawItem +=new DrawItemEventHandler(DeckList_DrawItem);
-            DeckList.SelectedIndexChanged += new EventHandler(DeckList_SelectedIndexChanged);
+            DeckList.DrawItem +=DeckList_DrawItem;
+            DeckList.SelectedIndexChanged += DeckList_SelectedIndexChanged;
 
         }
 
@@ -136,7 +133,7 @@ namespace DevProLauncher.Windows.Components
             CardInfos card = CardList[DeckList.SelectedItem.ToString()];
             if (card == null) return;
             CardName.Text = card.Name;
-            CardID.Text = card.Id.ToString();
+            CardID.Text = card.Id.ToString(CultureInfo.InvariantCulture);
             
             CardDetails.Text = "";
             CardDetails.Text += card.GetCardTypes() + " ";
@@ -151,7 +148,7 @@ namespace DevProLauncher.Windows.Components
                 CardDetails.Text += card.GetCardRace() + Environment.NewLine +
                     (card.HasType(CardType.Xyz) ? "Rank " : "Level ") + card.Level + " " +
                     "[" + level + "] " + ((card.Atk == -2) ? "?" : 
-                     card.Atk.ToString()) + "/" + ((card.Def == -2) ? "?" : card.Def.ToString()) + Environment.NewLine;
+                     card.Atk.ToString(CultureInfo.InvariantCulture)) + "/" + ((card.Def == -2) ? "?" : card.Def.ToString(CultureInfo.InvariantCulture)) + Environment.NewLine;
             }
             else
             {

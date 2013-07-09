@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DevProLauncher.Network.Enums;
 using DevProLauncher.Network.Data;
 
 namespace DevProLauncher.Windows.MessageBoxs
 {
-    public partial class ChannelList_frm : Form
+    public partial class ChannelListFrm : Form
     {
-        public ChannelList_frm()
+        public ChannelListFrm()
         {
             InitializeComponent();
-            this.FormClosed += RemoveEvents;
+            FormClosed += RemoveEvents;
             ChannelList.DrawItem += DrawList_Channels;
             Program.ChatServer.ChannelRequest += GenerateChannelList;
             Program.ChatServer.SendPacket(DevServerPackets.ChannelList);
@@ -37,8 +32,10 @@ namespace DevProLauncher.Windows.MessageBoxs
         }
         public void RemoveEvents(object sender, EventArgs e)
         {
-            this.FormClosed -= RemoveEvents;
-            Program.ChatServer.ChannelRequest -= GenerateChannelList;
+            FormClosed -= RemoveEvents;
+// ReSharper disable DelegateSubtraction
+            if (Program.ChatServer.ChannelRequest != null) Program.ChatServer.ChannelRequest -= GenerateChannelList;
+// ReSharper restore DelegateSubtraction
         }
 
         private void DrawList_Channels(object sender, DrawItemEventArgs e)
@@ -51,7 +48,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             int index = e.Index;
             if (index >= 0 && index < list.Items.Count)
             {
-                ChannelData channel = (ChannelData)list.Items[index];
+                var channel = (ChannelData)list.Items[index];
                 Graphics g = e.Graphics;
 
                 g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
@@ -76,8 +73,8 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         private void CreateBtn_Click(object sender, EventArgs e)
         {
-            Input_frm input = new Input_frm("Create Channel", "Enter Channel Name", "Create", "Cancel");
-            if (input.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            var input = new InputFrm("Create Channel", "Enter Channel Name", "Create", "Cancel");
+            if (input.ShowDialog() == DialogResult.OK)
             {
                 Program.ChatServer.SendPacket(DevServerPackets.JoinChannel, input.InputBox.Text);
                 DialogResult = DialogResult.OK;

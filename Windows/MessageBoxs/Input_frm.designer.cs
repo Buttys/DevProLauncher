@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows.MessageBoxs
 {
-    partial class Input_frm
+    partial class InputFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -129,7 +129,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Input_frm";
+            this.Name = "InputFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "InputForm";
             this.tableLayoutPanel1.ResumeLayout(false);

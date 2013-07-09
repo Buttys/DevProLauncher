@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
 using DevProLauncher.Helpers;
 using DevProLauncher.Helpers.Enums;
 
 namespace DevProLauncher.Windows.Components
 {
-    public partial class ReplayInfoControl : Form
+    public sealed partial class ReplayInfoControl : Form
     {
         public Dictionary<string, CardInfos> CardList = new Dictionary<string,CardInfos>();
 
@@ -21,13 +18,13 @@ namespace DevProLauncher.Windows.Components
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
-            DeckList.DrawItem += new DrawItemEventHandler(DeckList_DrawItem);
+            DeckList.DrawItem += DeckList_DrawItem;
         }
         public void ReadReplay(string fileName)
         {
             try
             {
-                ReplayReader.YgoReplay replay = new ReplayReader.YgoReplay();
+                var replay = new ReplayReader.YgoReplay();
                 if (!replay.FromFile(fileName))
                 {
                     ReplayInfo.Text = "Error opening replay.";
@@ -55,7 +52,7 @@ namespace DevProLauncher.Windows.Components
                     drawcount = replay.DataReader.ReadInt32();
                 }
 
-                int opt = replay.DataReader.ReadInt32();
+                replay.DataReader.ReadInt32();
                 if (replay.Tag)
                 {
                     VSText.Text = hostname + ", " + clientname + " vs " + player3 + ", " + player4;
@@ -81,27 +78,25 @@ namespace DevProLauncher.Windows.Components
                 if (!replay.Tag)
                 {
                     bool playerfound = false;
-                    string[] players = null;
-                    if (!replay.Tag)
-                        players = new string[] { hostname, clientname };
-                    else
-                        players = new string[] { hostname, clientname, player3, player4 };
+                    string[] players = !replay.Tag ? new[] { hostname, clientname } : new[] { hostname, clientname, player3, player4 };
 
                     foreach (string player in players)
                     {
-                        List<string> cardnumbers = new List<string>();
-                        cardnumbers.Add("#main");
-                        int count = replay.DataReader.ReadInt32();
-                        for (int i = 0; i < count; ++i)
+                        var cardnumbers = new List<string> {"#main"};
+                        if (replay.DataReader != null)
                         {
-                            cardnumbers.Add(replay.DataReader.ReadInt32().ToString());
-                        }
+                            int count = replay.DataReader.ReadInt32();
+                            for (var i = 0; i < count; ++i)
+                            {
+                                cardnumbers.Add(replay.DataReader.ReadInt32().ToString(CultureInfo.InvariantCulture));
+                            }
 
-                        count = replay.DataReader.ReadInt32();
-                        cardnumbers.Add("#extra");
-                        for (int i = 0; i < count; ++i)
-                        {
-                            cardnumbers.Add(replay.DataReader.ReadInt32().ToString());
+                            count = replay.DataReader.ReadInt32();
+                            cardnumbers.Add("#extra");
+                            for (int i = 0; i < count; ++i)
+                            {
+                                cardnumbers.Add(replay.DataReader.ReadInt32().ToString(CultureInfo.InvariantCulture));
+                            }
                         }
                         if (player == Program.UserInfo.username)
                         {
@@ -162,8 +157,7 @@ namespace DevProLauncher.Windows.Components
         {
             if (name.Contains("]"))
                 return name.Split(']')[1];
-            else
-                return name;
+            return name;
         }
 
         private void DeckList_DrawItem(object sender, DrawItemEventArgs e)

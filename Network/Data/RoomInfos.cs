@@ -73,8 +73,6 @@ namespace DevProLauncher.Network.Data
             if (infos.enablePriority || infos.isNoCheckDeck || infos.isNoShuffleDeck ||
                 (infos.mode == 2) ? infos.startLp != 16000 : infos.startLp != 8000 || infos.startHand != 5 || infos.drawCount != 1)
                 infos.isIllegal = true;
-            else
-                infos.isIllegal = false;
 
             return infos;
         }

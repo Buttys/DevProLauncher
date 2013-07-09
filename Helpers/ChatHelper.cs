@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
+using System.Linq;
 using DevProLauncher.Windows.Components;
 using DevProLauncher.Windows.Enums;
 using DevProLauncher.Network.Data;
@@ -106,7 +105,7 @@ namespace DevProLauncher.Helpers
             window.Select(window.Text.Length - message.Length, message.Length);
             string strRTF = window.SelectedRtf;
 
-            int iCTableStart = strRTF.IndexOf("colortbl;");
+            int iCTableStart = strRTF.IndexOf("colortbl;", StringComparison.Ordinal);
 
             if (iCTableStart != -1)
             {
@@ -118,14 +117,14 @@ namespace DevProLauncher.Helpers
             }
             else
             {
-                int iRTFLoc = strRTF.IndexOf("\\rtf");
+                int iRTFLoc = strRTF.IndexOf("\\rtf", StringComparison.Ordinal);
                 int iInsertLoc = strRTF.IndexOf('{', iRTFLoc);
                 if (iInsertLoc == -1) iInsertLoc = strRTF.IndexOf('}', iRTFLoc) - 1;
 
                 strRTF = strRTF.Insert(iInsertLoc,
                     "{\\colortbl ;\\red" + Program.Config.NormalTextColor.R + "\\green" + Program.Config.NormalTextColor.G + "\\blue" + Program.Config.NormalTextColor.B + ";\\red128\\green0\\blue0;\\red0\\green128\\blue0;\\red0\\green0\\blue255;}");
             }
-            string[] tags = GetMessageTags(strRTF);
+            IEnumerable<string> tags = GetMessageTags(strRTF);
 
             foreach (string tag in tags)
             {
@@ -137,28 +136,15 @@ namespace DevProLauncher.Helpers
 
             window.SelectedRtf = strRTF;
         }
-        private static string[] GetMessageTags(string message)
+        private static IEnumerable<string> GetMessageTags(string message)
         {
-            List<string> containedtags = new List<string>();
-            foreach (string tag in ChatTags.Keys)
-            {
-                if (message.Contains("[" + tag + "]") || message.Contains("[" + tag.ToLower() + "]"))
-                {
-                    if (message.Contains("[/" + tag + "]") || message.Contains("[/" + tag.ToLower() + "]"))
-                        containedtags.Add(tag);
-                }
-            }
-            return containedtags.ToArray();
+            return ChatTags.Keys.Where(tag => message.Contains("[" + tag + "]") || message.Contains("[" + tag.ToLower() + "]")).Where(tag => message.Contains("[/" + tag + "]") || message.Contains("[/" + tag.ToLower() + "]")).ToArray();
         }
 
-        public static void SendMessage(string ChatInput,string channel,bool isprivate)
+        public static void SendMessage(string chatInput,string channel,bool isprivate)
         {
-            if (isprivate)
-            {
-                Program.ChatServer.SendMessage(MessageType.PrivateMessage, CommandType.None, channel, ChatInput);
-            }
-            else
-                Program.ChatServer.SendMessage(MessageType.Message, CommandType.None, channel, ChatInput);
+            Program.ChatServer.SendMessage(isprivate ? MessageType.PrivateMessage : MessageType.Message,
+                                           CommandType.None, channel, chatInput);
         }
     }
 }

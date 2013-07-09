@@ -1,43 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DevProLauncher.Config;
 using DevProLauncher.Network.Enums;
 
 namespace DevProLauncher.Windows.MessageBoxs
 {
-    public partial class Profile_frm : Form
+    public partial class ProfileFrm : Form
     {
-        private string ProfileUsername;
+        private readonly string _profileUsername;
 
-        public Profile_frm()
+        public ProfileFrm()
         {
-            ProfileUsername = Program.UserInfo.username;
+            _profileUsername = Program.UserInfo.username;
             InitializeComponent();
             ApplyTranslation();
             Username.Text += Program.UserInfo.username;
-            Program.ChatServer.userStats += ProfileUpdate;
-            this.FormClosed += OnClose;
+            Program.ChatServer.UserStats += ProfileUpdate;
+            FormClosed += OnClose;
 
         }
 
-        public Profile_frm(string username)
+        public ProfileFrm(string username)
         {
-            ProfileUsername = username;
+            _profileUsername = username;
             InitializeComponent();
             ApplyTranslation();
             Username.Text += username;
-            Program.ChatServer.userStats += ProfileUpdate;
+            Program.ChatServer.UserStats += ProfileUpdate;
 
         }
         public void OnClose(object sender, EventArgs e)
         {
-            Program.ChatServer.userStats -= ProfileUpdate;
+            if (Program.ChatServer.UserStats != null) 
+// ReSharper disable DelegateSubtraction
+                Program.ChatServer.UserStats -= ProfileUpdate;
+// ReSharper restore DelegateSubtraction
         }
 
         public void ApplyTranslation()
@@ -88,7 +85,7 @@ namespace DevProLauncher.Windows.MessageBoxs
 
                 if (!IsDisposed)
                 {
-                    string[] sections = message.Split(new string[] {"||"}, StringSplitOptions.None);
+                    string[] sections = message.Split(new[] {"||"}, StringSplitOptions.None);
                     rank.Text += sections[0];
                     UserLevel.Text = "Lvl: " + sections[5];
                     if (sections[1] == "not found")
@@ -178,7 +175,7 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         private void Profile_frm_Load(object sender, EventArgs e)
         {
-            Program.ChatServer.SendPacket(DevServerPackets.Stats, ProfileUsername);
+            Program.ChatServer.SendPacket(DevServerPackets.Stats, _profileUsername);
         }
     }
 }

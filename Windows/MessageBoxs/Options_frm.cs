@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
 using System.IO;
 using DevProLauncher.Config;
-using DevProLauncher.Network.Data;
 
 namespace DevProLauncher.Windows.MessageBoxs
 {
@@ -19,7 +13,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             InitializeComponent();
             Username.Text = Program.Config.DefaultUsername;
             
-            Antialias.Text = Program.Config.Antialias.ToString();
+            Antialias.Text = Program.Config.Antialias.ToString(CultureInfo.InvariantCulture);
             EnableMusic.Checked = Program.Config.EnableMusic;
             EnableSound.Checked = Program.Config.EnableSound;
             Enabled3d.Checked = Program.Config.Enabled3D;
@@ -35,10 +29,12 @@ namespace DevProLauncher.Windows.MessageBoxs
             {
                 string[] decks = Directory.GetFiles(Program.Config.LauncherDir + "deck/");
                 foreach (string deck in decks)
+// ReSharper disable AssignNullToNotNullAttribute
                     DefualtDeck.Items.Add(Path.GetFileNameWithoutExtension(deck));
+// ReSharper restore AssignNullToNotNullAttribute
             }
             DefualtDeck.Text = Program.Config.DefaultDeck;
-            UseSkin.CheckedChanged += new EventHandler(UseSkin_CheckedChanged);
+            UseSkin.CheckedChanged += UseSkin_CheckedChanged;
 
             ApplyTranslation();
         }
@@ -112,11 +108,13 @@ namespace DevProLauncher.Windows.MessageBoxs
         private void QuickSettingsBtn_Click(object sender, EventArgs e)
         {
 
-            Host form = new Host(null,true, false);
-            form.Text = Program.LanguageManager.Translation.QuickHostSetting;
-            form.HostBtn.Text = Program.LanguageManager.Translation.QuickHostBtn;
+            var form = new Host(true, false)
+                {
+                    Text = Program.LanguageManager.Translation.QuickHostSetting,
+                    HostBtn = {Text = Program.LanguageManager.Translation.QuickHostBtn}
+                };
 
-            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (form.ShowDialog() == DialogResult.OK)
             {
                 Program.Config.CardRules = form.CardRules.Text;
                 Program.Config.Mode = form.Mode.Text;
@@ -132,26 +130,26 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         private void RequestSettingsbtn_Click(object sender, EventArgs e)
         {
-            Host form = new Host(null);
-            form.Text = Program.LanguageManager.Translation.chatoptionsRequestFormText;
-            form.HostBtn.Text = Program.LanguageManager.Translation.chatoptionsBtnSave;
-            form.ShuffleDeck.Enabled = false;
-            form.CheckDeck.Enabled = false;
-            form.Priority.Enabled = false;
-            form.LifePoints.Enabled = false;
+            var form = new Host
+                {
+                    Text = Program.LanguageManager.Translation.chatoptionsRequestFormText,
+                    HostBtn = {Text = Program.LanguageManager.Translation.chatoptionsBtnSave},
+                    ShuffleDeck = {Enabled = false},
+                    CheckDeck = {Enabled = false},
+                    Priority = {Enabled = false},
+                    LifePoints = {Enabled = false}
+                };
             form.Mode.Items.Remove("Tag");
 
-            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                Program.Config.chtCardRules = form.CardRules.Text;
-                Program.Config.chtMode = form.Mode.Text;
-                Program.Config.chtEnablePrority = form.Priority.Checked;
-                Program.Config.chtDisableCheckDeck = form.CheckDeck.Checked;
-                Program.Config.chtDisableShuffleDeck = form.ShuffleDeck.Checked;
-                Program.Config.chtLifepoints = form.LifePoints.Text;
-                Program.Config.chtBanList = form.BanList.Text;
-                Program.Config.chtTimeLimit = form.TimeLimit.Text;
-            }
+            if (form.ShowDialog() != DialogResult.OK) return;
+            Program.Config.chtCardRules = form.CardRules.Text;
+            Program.Config.chtMode = form.Mode.Text;
+            Program.Config.chtEnablePrority = form.Priority.Checked;
+            Program.Config.chtDisableCheckDeck = form.CheckDeck.Checked;
+            Program.Config.chtDisableShuffleDeck = form.ShuffleDeck.Checked;
+            Program.Config.chtLifepoints = form.LifePoints.Text;
+            Program.Config.chtBanList = form.BanList.Text;
+            Program.Config.chtTimeLimit = form.TimeLimit.Text;
         }
 
         private void ForgetAutoLoginButton_Click(object sender, EventArgs e)

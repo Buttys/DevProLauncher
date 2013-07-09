@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -15,7 +16,7 @@ namespace DevProLauncher.Helpers
     public static class LauncherHelper
     {
 
-        private static Dictionary<string, int> Banlists = new Dictionary<string, int>();
+        private static readonly Dictionary<string, int> Banlists = new Dictionary<string, int>();
 
         public static CardsManager CardManager = new CardsManager();
 
@@ -38,42 +39,34 @@ namespace DevProLauncher.Helpers
 
         public static string[] GetBanListArray()
         {
-            List<string> keys = new List<string>();
-            foreach (string key in Banlists.Keys)
-            {
-                keys.Add(key);
-            }
-
-            return keys.ToArray();
+            return Banlists.Keys.ToArray();
         }
 
         public static string GetBanListFromInt(int value)
         {
-            foreach (string key in GetBanListArray())
+            foreach (string key in GetBanListArray().Where(key => Banlists[key] == value))
             {
-                if (Banlists[key] == value)
-                    return key;
+                return key;
             }
             return "Unknown";
         }
 
         public static int GetBanListValue(string key)
         {
-            if (Banlists.ContainsKey(key))
-                return Banlists[key];
-            else
-                return 0;
+            return Banlists.ContainsKey(key) ? Banlists[key] : 0;
         }
 
         public static string RequestWebData(string url)
         {
             try
             {
-                HttpWebRequest webrequest = (HttpWebRequest)WebRequest.Create(url);
-                HttpWebResponse webresponse = (HttpWebResponse)webrequest.GetResponse();
-                using (StreamReader Reader = new StreamReader(webresponse.GetResponseStream()))
+                var webrequest = (HttpWebRequest)WebRequest.Create(url);
+                var webresponse = (HttpWebResponse)webrequest.GetResponse();
+// ReSharper disable AssignNullToNotNullAttribute
+                using (var reader = new StreamReader(webresponse.GetResponseStream()))
+// ReSharper restore AssignNullToNotNullAttribute
                 {
-                    return Reader.ReadToEnd();
+                    return reader.ReadToEnd();
                 }
             }
             catch (WebException ex)
@@ -85,8 +78,8 @@ namespace DevProLauncher.Helpers
 
         public static string EncodePassword(string password)
         {
-            var salt = System.Text.Encoding.UTF8.GetBytes("&^%£$Ugdsgs:;");
-            var userpassword = System.Text.Encoding.UTF8.GetBytes(password);
+            var salt = Encoding.UTF8.GetBytes("&^%£$Ugdsgs:;");
+            var userpassword = Encoding.UTF8.GetBytes(password);
 
             var hmacMD5 = new HMACMD5(salt);
             var saltedHash = hmacMD5.ComputeHash(userpassword);
@@ -99,11 +92,11 @@ namespace DevProLauncher.Helpers
         public static string StringToBinary(string s)
         {
             string output = "";
-            foreach (char c in s.ToCharArray())
+            foreach (char c in s)
             {
                 for (int i = 128; i >= 1; i /= 2)
                 {
-                    if (((int)c & i) > 0)
+                    if ((c & i) > 0)
                     {
                         output += "1";
                     }
@@ -121,7 +114,7 @@ namespace DevProLauncher.Helpers
         public static string BinaryToString(string binary)
         {
                 int numOfBytes = binary.Length / 8;
-                byte[] bytes = new byte[numOfBytes];
+                var bytes = new byte[numOfBytes];
                 for (int i = 0; i < numOfBytes; ++i)
                 {
                     bytes[i] = Convert.ToByte(binary.Substring(8 * i, 8), 2);
@@ -136,7 +129,7 @@ namespace DevProLauncher.Helpers
                 return Convert.ToBase64String(bytes);
         }
 
-        public static string Base64toString(string text)
+        public static string Base64ToString(string text)
         {
                 byte[] bytes = Convert.FromBase64String(text);
                 return Encoding.UTF8.GetString(bytes);
@@ -144,11 +137,13 @@ namespace DevProLauncher.Helpers
 
         public static string[] OpenFileWindow(string title, string startpath, string filefilter, bool multiselect)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = startpath;
-            dialog.Title = title;
-            dialog.Filter = filefilter;
-            dialog.Multiselect = true;
+            var dialog = new OpenFileDialog
+                {
+                    InitialDirectory = startpath,
+                    Title = title,
+                    Filter = filefilter,
+                    Multiselect = true
+                };
             if ((dialog.ShowDialog() == DialogResult.OK))
             {
                 return dialog.FileNames;
@@ -166,19 +161,19 @@ namespace DevProLauncher.Helpers
         {
             try
             {
-                Process process = new Process();
-                ProcessStartInfo startInfos = new ProcessStartInfo(Program.Config.LauncherDir + Program.Config.GameExe, arg);
+                var process = new Process();
+                var startInfos = new ProcessStartInfo(Program.Config.LauncherDir + Program.Config.GameExe, arg);
                 process.StartInfo = startInfos;
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
                 process.StartInfo.WorkingDirectory = Program.Config.LauncherDir;
                 if(arg == "-j")
-                    process.Exited += new EventHandler(UpdateInfo);
+                    process.Exited += UpdateInfo;
                 if(arg == "-d")
-                    process.Exited += new EventHandler(RefreshDeckList);
+                    process.Exited += RefreshDeckList;
                 if (onExit != null)
                 {
-                    process.Exited += new EventHandler(onExit);
+                    process.Exited += onExit;
                 }
                 process.EnableRaisingEvents = true;
                 process.Start();
@@ -201,31 +196,11 @@ namespace DevProLauncher.Helpers
                 DeckEditClosed();
         }
 
-        private static bool InstantExsists(string processname)
+        public static bool CheckInstance()
         {
-            Process[] pname = Process.GetProcessesByName(processname);
-            if (pname.Length == 0)
-                return true;
-            else
-                return false;
-
-        }
-
-        public static bool checkInstance()
-        {
-            Process cProcess = Process.GetCurrentProcess();
-            Process[] aProcesses = Process.GetProcessesByName(cProcess.ProcessName);
-            int count = 0;
-            foreach (Process process in aProcesses)
-            {
-                if (process.Id != cProcess.Id)
-                {
-                    if (Assembly.GetExecutingAssembly().Location == cProcess.MainModule.FileName)
-                    {
-                        count++;
-                    }
-                }
-            }
+            var cProcess = Process.GetCurrentProcess();
+            var aProcesses = Process.GetProcessesByName(cProcess.ProcessName);
+            int count = aProcesses.Where(process => process.Id != cProcess.Id).Count(process => Assembly.GetExecutingAssembly().Location == cProcess.MainModule.FileName);
             return (count > 0);
         }
 
@@ -235,9 +210,8 @@ namespace DevProLauncher.Helpers
             {
                 File.Delete(Program.Config.LauncherDir + "system.CONF");
             }
-            string GameName = roominfo;
-            string[] GameNameParts = GameName.Split(',');
-            StreamWriter writer = new StreamWriter(Program.Config.LauncherDir + "system.CONF");
+            string gameName = roominfo;
+            var writer = new StreamWriter(Program.Config.LauncherDir + "system.CONF");
             writer.WriteLine("#config file");
             writer.WriteLine("#nickname & gamename should be less than 20 characters");
             writer.WriteLine("#Generated using " + roominfo);
@@ -245,7 +219,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine(("antialias = " + Program.Config.Antialias));
             writer.WriteLine("errorlog = 1");
             writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.UserInfo.loginKey));
-            writer.WriteLine("gamename = " + GameName);
+            writer.WriteLine("gamename = " + gameName);
             writer.WriteLine(("roompass ="));
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
             writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
@@ -269,7 +243,7 @@ namespace DevProLauncher.Helpers
             {
                 File.Delete(Program.Config.LauncherDir + "system.CONF");
             }
-            StreamWriter writer = new StreamWriter(Program.Config.LauncherDir + "system.CONF");
+            var writer = new StreamWriter(Program.Config.LauncherDir + "system.CONF");
             writer.WriteLine("#config file");
             writer.WriteLine("#nickname & gamename should be less than 20 characters");
             writer.WriteLine("use_d3d = " + Convert.ToInt32(Program.Config.Enabled3D));
@@ -293,14 +267,14 @@ namespace DevProLauncher.Helpers
 
         public static string GetMacAddress()
         {
-            const int MIN_MAC_ADDR_LENGTH = 12;
+            const int minMacAddrLength = 12;
             string macAddress = "";
             long maxSpeed = -1;
 
             foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
             {
                 string tempMac = nic.GetPhysicalAddress().ToString();
-                if (nic.Speed > maxSpeed && !String.IsNullOrEmpty(tempMac) && tempMac.Length >= MIN_MAC_ADDR_LENGTH)
+                if (nic.Speed > maxSpeed && !String.IsNullOrEmpty(tempMac) && tempMac.Length >= minMacAddrLength)
                 {
                     maxSpeed = nic.Speed;
                     macAddress = tempMac;
@@ -311,12 +285,12 @@ namespace DevProLauncher.Helpers
 
         public static string GenerateString()
         {
-            Guid g = Guid.NewGuid();
-            string GuidString = Convert.ToBase64String(g.ToByteArray());
-            GuidString = GuidString.Replace("=", "");
-            GuidString = GuidString.Replace("+", "");
-            GuidString = GuidString.Replace("/", "");
-            return GuidString;
+            var g = Guid.NewGuid();
+            var guidString = Convert.ToBase64String(g.ToByteArray());
+            guidString = guidString.Replace("=", "");
+            guidString = guidString.Replace("+", "");
+            guidString = guidString.Replace("/", "");
+            return guidString;
         }
 
         public static string GetUID()
@@ -325,12 +299,10 @@ namespace DevProLauncher.Helpers
             {
                 return RegEditor.Read("Software\\devpro\\", "UID");
             }
-            else
-            {
-                RegEditor.CreateDirectory("Software\\devpro\\");
-                RegEditor.Write("Software\\devpro\\", "UID", GenerateString());
-                return RegEditor.Read("Software\\devpro\\", "UID");
-            }
+
+            RegEditor.CreateDirectory("Software\\devpro\\");
+            RegEditor.Write("Software\\devpro\\", "UID", GenerateString());
+            return RegEditor.Read("Software\\devpro\\", "UID");
         }
     }
 }

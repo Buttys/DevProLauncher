@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows.Components
 {
-    partial class ReplayInfoControl
+    sealed partial class ReplayInfoControl
     {
         /// <summary>
         /// Required designer variable.

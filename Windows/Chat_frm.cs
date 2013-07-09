@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using System.Diagnostics;
 using DevProLauncher.Network.Data;
 using DevProLauncher.Windows.Enums;
 using DevProLauncher.Windows.Components;
@@ -15,14 +15,14 @@ using ServiceStack.Text;
 
 namespace DevProLauncher.Windows
 {
-    public partial class Chat_frm : Form
+    public sealed partial class ChatFrm : Form
     {
         private readonly Dictionary<string, UserData> _userData = new Dictionary<string, UserData>();
-        private readonly Dictionary<string, PmWindow_frm> _pmWindows = new Dictionary<string, PmWindow_frm>();
-        public bool autoscroll = true;
-        public bool joinchannel = false;
+        private readonly Dictionary<string, PmWindowFrm> _pmWindows = new Dictionary<string, PmWindowFrm>();
+        public bool Autoscroll = true;
+        public bool Joinchannel = false;
 
-        public Chat_frm()
+        public ChatFrm()
         {
             InitializeComponent();
             TopLevel = false;
@@ -33,7 +33,7 @@ namespace DevProLauncher.Windows
             Program.ChatServer.AddUser += AddUser;
             Program.ChatServer.RemoveUser += RemoveUser;
             Program.ChatServer.FriendList += CreateFriendList;
-            Program.ChatServer.teamList += CreateTeamList;
+            Program.ChatServer.TeamList += CreateTeamList;
             Program.ChatServer.JoinChannel += ChannelAccept;
             Program.ChatServer.Message += WriteMessage;
             Program.ChatServer.DuelRequest += HandleDuelRequest;
@@ -69,6 +69,11 @@ namespace DevProLauncher.Windows
 
             WriteSystemMessage("Welcome to the DevPro chat system!");
             WriteSystemMessage("To join a channel please click the channel list button.");
+
+            if (!string.IsNullOrEmpty(Program.UserInfo.team))
+            {
+                LoadTeamWindow();
+            }
         }
 
         private void ApplyOptionEvents()
@@ -204,9 +209,9 @@ namespace DevProLauncher.Windows
 
             WriteMessage(new ChatMessage(MessageType.Server, CommandType.None, Program.UserInfo, "Server", "Join request for " + channel + " accepted."));
             
-            if (!joinchannel)
+            if (!Joinchannel)
             {
-                joinchannel = true;
+                Joinchannel = true;
                 if (GetChatWindow(MessageType.System.ToString()) != null)
                 {
                     ChannelTabs.TabPages.Remove(GetChatWindow(MessageType.System.ToString()));
@@ -227,28 +232,28 @@ namespace DevProLauncher.Windows
                 return;
             }
 
-            ChatWindow window = null;
+            ChatWindow window;
             if ((MessageType)message.type == MessageType.Server || (MessageType)message.type == MessageType.System)
             {
                 window = (ChatWindow)ChannelTabs.SelectedTab;
                 if (window == null)
                 {
-                    window = new ChatWindow(((MessageType)message.type).ToString(), true) { issystemtab = true };
+                    window = new ChatWindow(((MessageType)message.type).ToString(), true) { IsSystemtab = true };
                     ChannelTabs.TabPages.Add(window);
-                    window.WriteMessage(message, autoscroll);
+                    window.WriteMessage(message, Autoscroll);
                 }
-                else window.WriteMessage(message, autoscroll);
+                else window.WriteMessage(message, Autoscroll);
             }
             else if ((MessageType)message.type == MessageType.Join || (MessageType)message.type == MessageType.Leave || message.channel == null)
             {
                 window = GetChatWindow(message.channel) ?? (ChatWindow)ChannelTabs.SelectedTab;
                 if (window == null)
                 {
-                    window = new ChatWindow(message.type.ToString(), true) { issystemtab = true };
+                    window = new ChatWindow(message.type.ToString(CultureInfo.InvariantCulture), true) { IsSystemtab = true };
                     ChannelTabs.TabPages.Add(window);
-                    window.WriteMessage(message, autoscroll);
+                    window.WriteMessage(message, Autoscroll);
                 }
-                else window.WriteMessage(message, autoscroll);
+                else window.WriteMessage(message, Autoscroll);
             }
             else if ((MessageType)message.type == MessageType.PrivateMessage && Program.Config.PmWindows)
             {
@@ -258,7 +263,7 @@ namespace DevProLauncher.Windows
                 }
                 else
                 {
-                    _pmWindows.Add(message.channel, new PmWindow_frm(message.channel, true));
+                    _pmWindows.Add(message.channel, new PmWindowFrm(message.channel, true));
                     _pmWindows[message.channel].WriteMessage(message);
                     _pmWindows[message.channel].Show();
                     _pmWindows[message.channel].FormClosed += Chat_frm_FormClosed;
@@ -271,20 +276,20 @@ namespace DevProLauncher.Windows
                 {
                     window = new ChatWindow(((MessageType)message.type).ToString(), (MessageType)message.type == MessageType.PrivateMessage);
                     ChannelTabs.TabPages.Add(window);
-                    window.WriteMessage(message, autoscroll);
+                    window.WriteMessage(message, Autoscroll);
                 }
-                else window.WriteMessage(message, autoscroll);
+                else window.WriteMessage(message, Autoscroll);
             }
             else
             {
-                window = window ?? GetChatWindow(message.channel);
+                window = GetChatWindow(message.channel);
                 if (window == null)
                 {
                     window = new ChatWindow(message.channel, (MessageType)message.type == MessageType.PrivateMessage);
                     ChannelTabs.TabPages.Add(window);
                 }
 
-                window.WriteMessage(message, autoscroll);
+                window.WriteMessage(message, Autoscroll);
             }
         }
 
@@ -300,7 +305,7 @@ namespace DevProLauncher.Windows
 
         private void Chat_frm_FormClosed(object sender, EventArgs e)
         {
-            _pmWindows.Remove(((PmWindow_frm)sender).Name);
+            _pmWindows.Remove(((PmWindowFrm)sender).Name);
         }
 
         private void UserSearch_Enter(object sender, EventArgs e)
@@ -348,7 +353,10 @@ namespace DevProLauncher.Windows
                         _userData.Add(user.username, user);
                 }
                 UserList.Items.Clear();
-                UserList.Items.AddRange(_userData.Keys.ToArray());
+// ReSharper disable CoVariantArrayConversion
+                if (_userData != null) 
+                    UserList.Items.AddRange(_userData.Keys.ToArray());
+// ReSharper restore CoVariantArrayConversion
             }
         }
         private void AddUser(UserData userinfo)
@@ -369,12 +377,7 @@ namespace DevProLauncher.Windows
                     Program.UserInfo = userinfo;
                     if (!string.IsNullOrEmpty(Program.UserInfo.team))
                     {
-                        if (GetChatWindow(MessageType.Team.ToString()) == null)
-                        {
-                            ChannelTabs.TabPages.Add(new ChatWindow(MessageType.Team.ToString(), false));
-                            TeamNameLabel.Text = "Team: " + Program.UserInfo.team;
-                            Program.ChatServer.SendPacket(DevServerPackets.TeamList);
-                        }
+                        LoadTeamWindow();
                     }
                 }
 
@@ -393,11 +396,11 @@ namespace DevProLauncher.Windows
 
                 if (!Program.Config.HideJoinLeave)
                 {
-                    if (FriendList.Items.Contains(userinfo.username))
-                        WriteMessage(new ChatMessage(MessageType.Join, CommandType.None, null, "Your friend " + userinfo.username + " has joined the channel."));
-                    else
-                        WriteMessage(new ChatMessage(MessageType.Join, CommandType.None, null, userinfo.username + " has joined the channel."));
-
+                    WriteMessage(FriendList.Items.Contains(userinfo.username)
+                                     ? new ChatMessage(MessageType.Join, CommandType.None, null,
+                                                       "Your friend " + userinfo.username + " has joined the channel.")
+                                     : new ChatMessage(MessageType.Join, CommandType.None, null,
+                                                       userinfo.username + " has joined the channel."));
                 }
                 else
                 {
@@ -420,6 +423,16 @@ namespace DevProLauncher.Windows
             }
         }
 
+        private void LoadTeamWindow()
+        {
+            if (GetChatWindow(MessageType.Team.ToString()) == null)
+            {
+                ChannelTabs.TabPages.Add(new ChatWindow(MessageType.Team.ToString(), false));
+                TeamNameLabel.Text = "Team: " + Program.UserInfo.team;
+                Program.ChatServer.SendPacket(DevServerPackets.TeamList);
+            }
+        }
+
         private void RemoveUser(LogoutData userinfo)
         {
             if (InvokeRequired)
@@ -431,11 +444,11 @@ namespace DevProLauncher.Windows
 
                 if (!Program.Config.HideJoinLeave)
                 {
-                    if (FriendList.Items.Contains(userinfo.Username))
-                        WriteMessage(new ChatMessage(MessageType.Leave, CommandType.None, null, "Your friend " + userinfo.Username + " has left the channel."));
-                    else
-                        WriteMessage(new ChatMessage(MessageType.Leave, CommandType.None, null, userinfo.Username + " has left the channel."));
-
+                    WriteMessage(FriendList.Items.Contains(userinfo.Username)
+                                     ? new ChatMessage(MessageType.Leave, CommandType.None, null,
+                                                       "Your friend " + userinfo.Username + " has left the channel.")
+                                     : new ChatMessage(MessageType.Leave, CommandType.None, null,
+                                                       userinfo.Username + " has left the channel."));
                 }
                 else
                 {
@@ -456,7 +469,7 @@ namespace DevProLauncher.Windows
             }
         }
 
-        public void CreateFriendList(string[] friends)
+        public void CreateFriendList(object[] friends)
         {
             if (InvokeRequired)
             {
@@ -468,7 +481,7 @@ namespace DevProLauncher.Windows
             FriendList.Items.AddRange(friends);
         }
 
-        public void CreateTeamList(string[] users)
+        public void CreateTeamList(object[] users)
         {
             if (InvokeRequired)
             {
@@ -655,7 +668,7 @@ namespace DevProLauncher.Windows
                         return false;
                     }
                     
-                    if (selectedTab.isprivate)
+                    if (selectedTab.IsPrivate)
                     {
                         ChannelTabs.TabPages.Remove(selectedTab);
                     }
@@ -672,8 +685,8 @@ namespace DevProLauncher.Windows
                     Program.ChatServer.SendPacket(DevServerPackets.Ping);
                     break;
                 case "autoscroll":
-                    autoscroll = !autoscroll;
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, (autoscroll ? "AutoScroll Enabled." : "AutoScroll Disabled.")));
+                    Autoscroll = !Autoscroll;
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, (Autoscroll ? "AutoScroll Enabled." : "AutoScroll Disabled.")));
                     break;
                 case "help":
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Basic Commands --"));
@@ -693,22 +706,29 @@ namespace DevProLauncher.Windows
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "[red][/red] [blue][/blue] [green][/green]- Color tags, wrap your text with them to change its color"));
                     }
 
-                    if (Program.UserInfo.rank > 0)
-                    {
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 1 Commands --"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/kick username reason - Kick a user"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Send a server message"));
-                    }
+                    if(Program.UserInfo.rank == 1)
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, " -- Level 1 users are classed as helpers and gain no additonal commands."));
 
                     if (Program.UserInfo.rank > 1)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 2 Commands --"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/kick username reason - Kick a user"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Send a server message"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute - Prevents a user from talking"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute - Allows a muted user to talk again"));
+                    }
+
+                    if (Program.UserInfo.rank > 2)
+                    {
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 3 Commands --"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ban username reason - Ban a user"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unban username - Unban a user"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ip username - Get a users IP"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banip ip - Ban a IP"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unbanip ip - Unbans IP"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getbanlist - Get ban list"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/roomowner - Get the creator of a channel"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/killroom - force a chat channel to close"));
                     }
 
                     if (Program.UserInfo.rank == 99)
@@ -744,7 +764,7 @@ namespace DevProLauncher.Windows
                 case "teamdisband":
                     if (MessageBox.Show("Are you sure?", "Confirm team disband", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString<PacketCommand>(new PacketCommand() { Command = cmd.ToUpper(), Data = ChatInput.Text.Substring(part.Length).Trim() }));
+                        Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString(new PacketCommand { Command = cmd.ToUpper(), Data = ChatInput.Text.Substring(part.Length).Trim() }));
                     }
                     
                     break;
@@ -753,7 +773,7 @@ namespace DevProLauncher.Windows
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "The following admins are online: " + admins + "."));
                     break;
                 default:
-                    Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString<PacketCommand>(new PacketCommand() { Command = cmd.ToUpper(), Data = ChatInput.Text.Substring(part.Length).Trim() }));
+                    Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString(new PacketCommand { Command = cmd.ToUpper(), Data = ChatInput.Text.Substring(part.Length).Trim() }));
                     break;
             }
 
@@ -785,13 +805,13 @@ namespace DevProLauncher.Windows
                     return;
                 }
                 
-                if (selectedTab.issystemtab)
+                if (selectedTab.IsSystemtab)
                 {
                     ChatInput.Clear();
                     return;
                 }
 
-                if (selectedTab.isprivate)
+                if (selectedTab.IsPrivate)
                 {
                     WriteMessage(new ChatMessage(MessageType.Message, CommandType.None, Program.UserInfo, selectedTab.Name, ChatInput.Text));
                     Program.ChatServer.SendMessage(MessageType.PrivateMessage, CommandType.None, selectedTab.Name, ChatInput.Text);
@@ -836,7 +856,7 @@ namespace DevProLauncher.Windows
                     {
                         ChannelTabs.TabPages
                                    .Cast<ChatWindow>()
-                                   .Where(x => x.isprivate)
+                                   .Where(x => x.IsPrivate)
                                    .ToList()
                                    .ForEach(window => ChannelTabs.TabPages.Remove(window));
                     }
@@ -899,8 +919,8 @@ namespace DevProLauncher.Windows
         {
             if (UserList.SelectedItem != null && MessageBox.Show("Are you sure you want to ban " + UserList.SelectedItem, "Ban User", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString<PacketCommand>(
-                    new PacketCommand() { Command = "BAN", Data = UserList.SelectedItem.ToString() }));
+                Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString(
+                    new PacketCommand { Command = "BAN", Data = UserList.SelectedItem.ToString() }));
             }
         }
 
@@ -910,8 +930,8 @@ namespace DevProLauncher.Windows
             {
                 return;
             }
-            Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString<PacketCommand>(
-                new PacketCommand() { Command = "KICK", Data = UserList.SelectedItem.ToString() }));
+            Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString(
+                new PacketCommand { Command = "KICK", Data = UserList.SelectedItem.ToString() }));
         }
 
         private void AddFriend(object sender, EventArgs e)
@@ -1038,7 +1058,7 @@ namespace DevProLauncher.Windows
             if (MessageBox.Show("Are you sure?", "Remove User", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Program.ChatServer.SendPacket(DevServerPackets.ChatCommand,
-                    JsonSerializer.SerializeToString<PacketCommand>(new PacketCommand() { Command = "TEAMREMOVE", Data = TeamList.SelectedItem.ToString() }));
+                    JsonSerializer.SerializeToString(new PacketCommand { Command = "TEAMREMOVE", Data = TeamList.SelectedItem.ToString() }));
             }
 
         }
@@ -1056,7 +1076,7 @@ namespace DevProLauncher.Windows
             if (list.SelectedItem == null)
                 return;
 
-            var profile = new Profile_frm(list.SelectedItem.ToString());
+            var profile = new ProfileFrm(list.SelectedItem.ToString());
             profile.ShowDialog();
         }
 
@@ -1075,10 +1095,11 @@ namespace DevProLauncher.Windows
             }
             else
             {
-                var form = new Host(null);
+                var form = new Host();
                 Program.ChatServer.SendPacket(DevServerPackets.RequestDuel,
-                    JsonSerializer.SerializeToString<DuelRequest>(
-                    new DuelRequest() { 
+                    JsonSerializer.SerializeToString(
+                    new DuelRequest
+                        { 
                         username = list.SelectedItem.ToString(), 
                         duelformatstring = form.GenerateGameString(false)}));
                 WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "Duel request sent to " + list.SelectedItem + "."));
@@ -1100,7 +1121,7 @@ namespace DevProLauncher.Windows
             }
 
             RoomInfos info = RoomInfos.FromName(command.duelformatstring);
-            var request = new DuelRequest_frm(
+            var request = new DuelRequestFrm(
                 command.username
                 + Program.LanguageManager.Translation.DuelReqestMessage
                 + Environment.NewLine
@@ -1153,7 +1174,7 @@ namespace DevProLauncher.Windows
                     if (Program.Config.RefuseTeamInvites)
                     {
                         Program.ChatServer.SendPacket(DevServerPackets.TeamCommand,
-                            JsonSerializer.SerializeToString<PacketCommand>(new PacketCommand() { Command = "AUTOREFUSE"}));
+                            JsonSerializer.SerializeToString(new PacketCommand { Command = "AUTOREFUSE"}));
                         return;
                     }
 
@@ -1161,13 +1182,13 @@ namespace DevProLauncher.Windows
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Program.UserInfo.username, "You have accepted the team invite to join " + team));
                         Program.ChatServer.SendPacket(DevServerPackets.TeamCommand,
-                            JsonSerializer.SerializeToString<PacketCommand>(new PacketCommand() { Command = "ACCEPT"}));
+                            JsonSerializer.SerializeToString(new PacketCommand { Command = "ACCEPT"}));
                     }
                     else
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Program.UserInfo.username, "You have refused the team invite to join " + team));
                         Program.ChatServer.SendPacket(DevServerPackets.TeamCommand,
-                            JsonSerializer.SerializeToString<PacketCommand>(new PacketCommand() { Command = "REFUSE"}));
+                            JsonSerializer.SerializeToString(new PacketCommand { Command = "REFUSE"}));
                     }
                     break;
                 case "LEAVE":
@@ -1242,8 +1263,10 @@ namespace DevProLauncher.Windows
 
         private void SaveIgnoreList()
         {
-            string[] ignoredusers = new string[IgnoreList.Items.Count];
+            var ignoredusers = new string[IgnoreList.Items.Count];
+// ReSharper disable CoVariantArrayConversion
             IgnoreList.Items.CopyTo(ignoredusers, 0);
+// ReSharper restore CoVariantArrayConversion
             string ignorestring = string.Join(",", ignoredusers);
             Program.Config.IgnoreList = ignorestring;
             Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
@@ -1290,7 +1313,7 @@ namespace DevProLauncher.Windows
             {
                 if (!_pmWindows.ContainsKey(list.SelectedItem.ToString()))
                 {
-                    _pmWindows.Add(list.SelectedItem.ToString(), new PmWindow_frm(list.SelectedItem.ToString(), true));
+                    _pmWindows.Add(list.SelectedItem.ToString(), new PmWindowFrm(list.SelectedItem.ToString(), true));
                     _pmWindows[list.SelectedItem.ToString()].Show();
                     _pmWindows[list.SelectedItem.ToString()].FormClosed += Chat_frm_FormClosed;
                 }
@@ -1327,13 +1350,12 @@ namespace DevProLauncher.Windows
                 return;
             }
             
-            var form = new Input_frm("Add Team Member","Enter Users name","Send","Cancel");
-            form.InputBox.MaxLength = 14;
+            var form = new InputFrm("Add Team Member","Enter Users name","Send","Cancel") {InputBox = {MaxLength = 14}};
 
             if(form.ShowDialog() == DialogResult.OK)
             {
                 Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, 
-                    JsonSerializer.SerializeToString<PacketCommand>(new PacketCommand() { Command = "TEAMADD", Data = form.InputBox.Text }));
+                    JsonSerializer.SerializeToString(new PacketCommand { Command = "TEAMADD", Data = form.InputBox.Text }));
             }
 
         }
@@ -1346,13 +1368,13 @@ namespace DevProLauncher.Windows
                 return;
             }
 
-            var form = new TeamProfile_frm(Program.UserInfo.team);
+            var form = new TeamProfileFrm(Program.UserInfo.team);
             form.Show();
         }
 
         private void ChannelListBtn_Click(object sender, EventArgs e)
         {
-            ChannelList_frm channellist = new ChannelList_frm();
+            var channellist = new ChannelListFrm();
             channellist.ShowDialog();
         }
 
@@ -1360,8 +1382,8 @@ namespace DevProLauncher.Windows
         {
             if (ChannelTabs.SelectedIndex != -1)
             {
-                ChatWindow selectedTab = (ChatWindow)ChannelTabs.SelectedTab;
-                if (selectedTab.isprivate)
+                var selectedTab = (ChatWindow)ChannelTabs.SelectedTab;
+                if (selectedTab.IsPrivate)
                 {
                     ChannelTabs.TabPages.Remove(selectedTab);
                 }

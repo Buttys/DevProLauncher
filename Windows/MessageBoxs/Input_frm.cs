@@ -1,30 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DevProLauncher.Windows.MessageBoxs
 {
-    public partial class Input_frm : Form
+    public partial class InputFrm : Form
     {
-        public Input_frm(string title, string message, string confirmbtn, string cancelbtn)
+        public InputFrm(string title, string message, string confirmbtn, string cancelbtn)
         {
-            this.InitializeComponent();
-            this.Text = title;
-            this.msglabel.Text = message;
-            this.Confirmbtn.Text = confirmbtn;
-            this.Cancelbtn.Text = cancelbtn;
-            InputBox.KeyPress += new KeyPressEventHandler(KeyPress_Enter);
+            InitializeComponent();
+            Text = title;
+            msglabel.Text = message;
+            Confirmbtn.Text = confirmbtn;
+            Cancelbtn.Text = cancelbtn;
+            InputBox.KeyPress += KeyPress_Enter;
+        }
+
+        public override sealed string Text
+        {
+            get { return base.Text; }
+            set { base.Text = value; }
         }
 
         private void Confirmbtn_Click(object sender, EventArgs e)
         {
             if (InputBox.Text == "") MessageBox.Show("Input box is empty.", "Error", MessageBoxButtons.OK);
             else
-            DialogResult = System.Windows.Forms.DialogResult.OK;
+            DialogResult = DialogResult.OK;
         }
         private void KeyPress_Enter(object sender, KeyPressEventArgs e)
         {
@@ -33,7 +34,7 @@ namespace DevProLauncher.Windows.MessageBoxs
                 if (InputBox.Text == "")
                     return;
 
-                DialogResult = System.Windows.Forms.DialogResult.OK;
+                DialogResult = DialogResult.OK;
             }
         }
     }

@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using DevProLauncher.Network.Enums;
@@ -15,39 +9,45 @@ using DevProLauncher.Network.Data;
 
 namespace DevProLauncher.Windows
 {
-    public partial class Main_frm : Form
+    public partial class MainFrm : Form
     {
-        public GameList_frm gameWindow;
-        
-        Login_frm loginWindow;
-        Chat_frm chatWindow;
-        Support_frm devpointWindow;
-        FileManager_frm filemanagerWindow;
-        Customize_frm customizerWindow;
+        public GameListFrm GameWindow;
 
-        public Main_frm()
+        readonly LoginFrm _loginWindow;
+        readonly ChatFrm _chatWindow;
+        readonly SupportFrm _devpointWindow;
+        readonly FileManagerFrm _filemanagerWindow;
+        readonly CustomizeFrm _customizerWindow;
+
+        public MainFrm()
         {
             InitializeComponent();
 
-            char[] version = Program.Version.ToCharArray();
-            this.Text = "DevPro" + " v" + version[0] + "." + version[1] + "." + version[2] + " r" + Program.Version[3];
+            var version = Program.Version.ToCharArray();
+            Text = "DevPro" + " v" + version[0] + "." + version[1] + "." + version[2] + " r" + Program.Version[3];
 
             LauncherHelper.LoadBanlist();
 
-            TabPage loginTab = new TabPage("Login");
-            loginWindow = new Login_frm();
-            loginTab.Controls.Add(loginWindow);
+            var loginTab = new TabPage("Login");
+            _loginWindow = new LoginFrm();
+            loginTab.Controls.Add(_loginWindow);
             mainTabs.TabPages.Add(loginTab);
 
-            chatWindow = new Chat_frm();
-            gameWindow = new GameList_frm("DevPro");
-            devpointWindow = new Support_frm();
-            filemanagerWindow = new FileManager_frm();
-            customizerWindow = new Customize_frm();
+            _chatWindow = new ChatFrm();
+            GameWindow = new GameListFrm("DevPro");
+            _devpointWindow = new SupportFrm();
+            _filemanagerWindow = new FileManagerFrm();
+            _customizerWindow = new CustomizeFrm();
             LauncherHelper.CardManager.Init();
 
-            Thread connectThread = new Thread(Loaded);
+            var connectThread = new Thread(Loaded);
             connectThread.Start();
+        }
+
+        public override sealed string Text
+        {
+            get { return base.Text; }
+            set { base.Text = value; }
         }
 
         private void Loaded()
@@ -55,7 +55,7 @@ namespace DevProLauncher.Windows
             if (!Program.ChatServer.Connect(Program.Config.ServerAddress, Program.Config.ChatPort))
                 MessageBox.Show(Program.LanguageManager.Translation.pMsbErrorToServer);
             else
-                loginWindow.Connected();
+                _loginWindow.Connected();
         }
         public void Login()
         {
@@ -67,34 +67,34 @@ namespace DevProLauncher.Windows
 
             mainTabs.TabPages.Remove(mainTabs.SelectedTab);
 
-            TabPage gamelistTab = new TabPage("GameList");
-            gamelistTab.Controls.Add(gameWindow);
+            var gamelistTab = new TabPage("GameList");
+            gamelistTab.Controls.Add(GameWindow);
             mainTabs.TabPages.Add(gamelistTab);
 
-            TabPage chatTab = new TabPage("Chat (Beta v4)");
-            chatTab.Controls.Add(chatWindow);
+            var chatTab = new TabPage("Chat (Beta v4)");
+            chatTab.Controls.Add(_chatWindow);
             mainTabs.TabPages.Add(chatTab);
 
-            TabPage filemanagerTab = new TabPage("File Manager");
-            filemanagerTab.Controls.Add(filemanagerWindow);
+            var filemanagerTab = new TabPage("File Manager");
+            filemanagerTab.Controls.Add(_filemanagerWindow);
             mainTabs.TabPages.Add(filemanagerTab);
 
-            TabPage cuztomizerTab = new TabPage("Customizer");
-            cuztomizerTab.Controls.Add(customizerWindow);
+            var cuztomizerTab = new TabPage("Customizer");
+            cuztomizerTab.Controls.Add(_customizerWindow);
             mainTabs.TabPages.Add(cuztomizerTab);
 
-            TabPage devpointTab = new TabPage("Support DevPro");
-            devpointTab.Controls.Add(devpointWindow);
+            var devpointTab = new TabPage("Support DevPro");
+            devpointTab.Controls.Add(_devpointWindow);
             mainTabs.TabPages.Add(devpointTab);
                 
             ConnectionCheck.Enabled = true;
-            ConnectionCheck.Tick += new EventHandler(CheckConnection);
+            ConnectionCheck.Tick += CheckConnection;
             
             UpdateUsername();
             if (Program.DuelServer.Connect(Program.Config.ServerAddress, Program.Config.GamePort))
             {
-                Program.DuelServer.SendPacket(DevServerPackets.Login,JsonSerializer.SerializeToString<LoginRequest>(
-                    new LoginRequest() { Username = Program.UserInfo.username, Password = Program.Config.Password, UID = LauncherHelper.GetUID() }));
+                Program.DuelServer.SendPacket(DevServerPackets.Login,JsonSerializer.SerializeToString(
+                    new LoginRequest { Username = Program.UserInfo.username, Password = Program.Config.Password, UID = LauncherHelper.GetUID() }));
             }
             Program.ChatServer.SendPacket(DevServerPackets.UserList);
             Program.ChatServer.SendPacket(DevServerPackets.FriendList);
@@ -104,20 +104,20 @@ namespace DevProLauncher.Windows
 
         public void UpdateUsername()
         {
-            this.Text = "DevPro" + " v" + Program.Version[0] + "." + Program.Version[1] + "." + Program.Version[2] + " r" + Program.Version[3] + " - " + Program.UserInfo.username;
+            Text = "DevPro" + " v" + Program.Version[0] + "." + Program.Version[1] + "." + Program.Version[2] + " r" + Program.Version[3] + " - " + Program.UserInfo.username;
         }
 
         private void CheckConnection(object sender, EventArgs e)
         {
             if (!Program.ChatServer.Connected())
             {
-                System.Windows.Forms.Timer ConnectionCheck = (System.Windows.Forms.Timer)sender;
-                this.Hide();
-                ConnectionCheck.Enabled = false;
+                var connectionCheck = (System.Windows.Forms.Timer)sender;
+                Hide();
+                connectionCheck.Enabled = false;
                 if (MessageBox.Show("Disconnected from server.", "Server", MessageBoxButtons.OK) == DialogResult.OK)
                 {
-                    Process process = new Process();
-                    ProcessStartInfo startInfos = new ProcessStartInfo(Application.ExecutablePath, "-r");
+                    var process = new Process();
+                    var startInfos = new ProcessStartInfo(Application.ExecutablePath, "-r");
                     process.StartInfo = startInfos;
                     process.Start();
                     Application.Exit();

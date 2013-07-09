@@ -1,26 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
-using System.IO;
 using DevProLauncher.Helpers;
-using DevProLauncher.Network.Data;
 
 namespace DevProLauncher.Windows.MessageBoxs
 {
     public partial class Host : Form
     {
         public string GameName;
-        ServerInfo server;
 
-        public Host(ServerInfo server, bool options, bool isranked)
+        public Host(bool options, bool isranked)
         {
             InitializeComponent();
-            this.server = server;
             if (options)
             {
                 TimeLimit.SelectedItem = Program.Config.TimeLimit;
@@ -31,7 +22,9 @@ namespace DevProLauncher.Windows.MessageBoxs
                 Priority.Checked = Program.Config.EnablePrority;
                 ShuffleDeck.Checked = Program.Config.DisableShuffleDeck;
                 CheckDeck.Checked = Program.Config.DisableCheckDeck;
+// ReSharper disable CoVariantArrayConversion
                 BanList.Items.AddRange(LauncherHelper.GetBanListArray());
+// ReSharper restore CoVariantArrayConversion
                 BanList.SelectedItem = Program.Config.BanList;
                 if (BanList.SelectedItem == null && BanList.Items.Count > 0)
                     BanList.SelectedIndex = 0;
@@ -42,7 +35,9 @@ namespace DevProLauncher.Windows.MessageBoxs
                 CardRules.SelectedIndex = 0;
                 Mode.SelectedIndex = 0;
                 GameName = LauncherHelper.GenerateString().Substring(0, 5);
+// ReSharper disable CoVariantArrayConversion
                 BanList.Items.AddRange(LauncherHelper.GetBanListArray());
+// ReSharper restore CoVariantArrayConversion
                 if (BanList.Items.Count > 0)
                     BanList.SelectedIndex = 0;
                 
@@ -50,14 +45,13 @@ namespace DevProLauncher.Windows.MessageBoxs
             }
             Mode.SelectedIndexChanged += DuelModeChanged;
             if(!isranked)
-                CardRules.SelectedIndexChanged += new EventHandler(CardRulesChanged);
+                CardRules.SelectedIndexChanged += CardRulesChanged;
             ApplyTranslation();
         }
 
-        public Host(ServerInfo server)
+        public Host()
         {
             InitializeComponent();
-            this.server = server;
 
             TimeLimit.SelectedItem = Program.Config.chtTimeLimit;
             BanList.SelectedItem = Program.Config.chtBanList;
@@ -67,7 +61,9 @@ namespace DevProLauncher.Windows.MessageBoxs
             Priority.Checked = Program.Config.chtEnablePrority;
             ShuffleDeck.Checked = Program.Config.chtDisableShuffleDeck;
             CheckDeck.Checked = Program.Config.chtDisableCheckDeck;
+// ReSharper disable CoVariantArrayConversion
             BanList.Items.AddRange(LauncherHelper.GetBanListArray());
+// ReSharper restore CoVariantArrayConversion
             if (BanList.Items.Count > 0)
             {
                 if (BanList.Items.Contains(Program.Config.chtBanList))
@@ -117,30 +113,27 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         private void DuelModeChanged(object sender, EventArgs e)
         {
-            if ((Mode.SelectedItem.ToString() == "Tag"))
-                LifePoints.Text = "16000";
-            else
-                LifePoints.Text = "8000";
+            LifePoints.Text = (Mode.SelectedItem.ToString() == "Tag") ? "16000" : "8000";
         }
 
         public string GenerateURI(bool isranked)
         {
-            string gamestring = null;
-            if ((this.CardRules.Text == "OCG"))
+            string gamestring;
+            if (CardRules.Text == "OCG")
                 gamestring = "0";
-            else if ((this.CardRules.Text == "TCG"))
+            else if (CardRules.Text == "TCG")
                 gamestring = "1";
-            else if ((this.CardRules.Text == "OCG/TCG"))
+            else if (CardRules.Text == "OCG/TCG")
                 gamestring = "2";
-            else if ((this.CardRules.Text == "Anime"))
+            else if (CardRules.Text == "Anime")
                 gamestring = "4";
-            else if ((this.CardRules.Text == "Turbo Duel"))
+            else if (CardRules.Text == "Turbo Duel")
                 gamestring = "5";
             else
                 gamestring = "3";
-            if ((this.Mode.Text == "Single"))
+            if (Mode.Text == "Single")
                 gamestring = gamestring + "0";
-            else if ((this.Mode.Text == "Match"))
+            else if (Mode.Text == "Match")
                 gamestring = gamestring + "1";
             else
                 gamestring = gamestring + "2";
@@ -150,7 +143,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             else
                 gamestring += LauncherHelper.GetBanListValue(BanList.SelectedItem.ToString());
 
-            gamestring += (TimeLimit.SelectedIndex == -1 ? "0" : TimeLimit.SelectedIndex.ToString());
+            gamestring += (TimeLimit.SelectedIndex == -1 ? "0" : TimeLimit.SelectedIndex.ToString(CultureInfo.InvariantCulture));
 
             if ((Priority.Checked))
                 gamestring = gamestring + "T";
@@ -172,29 +165,29 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         public string GenerateGameString(bool isranked)
         {
-            string gamestring = null;
-            if ((this.CardRules.Text == "OCG"))
+            string gamestring;
+            if (CardRules.Text == "OCG")
                 gamestring = "0";
-            else if ((this.CardRules.Text == "TCG"))
+            else if (CardRules.Text == "TCG")
                 gamestring = "1";
-            else if ((this.CardRules.Text == "OCG/TCG"))
+            else if (CardRules.Text == "OCG/TCG")
                 gamestring = "2";
-            else if ((this.CardRules.Text == "Anime"))
+            else if (CardRules.Text == "Anime")
                 gamestring = "4";
-            else if ((this.CardRules.Text == "Turbo Duel"))
+            else if (CardRules.Text == "Turbo Duel")
                 gamestring = "5";
             else
                 gamestring = "3";
-            if ((this.Mode.Text == "Single"))
+            if (Mode.Text == "Single")
                 gamestring = gamestring + "0";
-            else if ((this.Mode.Text == "Match"))
+            else if (Mode.Text == "Match")
                 gamestring = gamestring + "1";
             else
                 gamestring = gamestring + "2";
 
             gamestring += LauncherHelper.GetBanListValue((BanList.SelectedItem == null ? "0": BanList.SelectedItem.ToString()));
 
-            gamestring += (TimeLimit.SelectedIndex == -1 ? "0":TimeLimit.SelectedIndex.ToString());
+            gamestring += (TimeLimit.SelectedIndex == -1 ? "0":TimeLimit.SelectedIndex.ToString(CultureInfo.InvariantCulture));
 
             if ((Priority.Checked))
                 gamestring = gamestring + "T";

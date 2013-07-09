@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DevProLauncher.Network.Enums;
+﻿using DevProLauncher.Network.Enums;
 using System.IO;
 
 namespace DevProLauncher.Network

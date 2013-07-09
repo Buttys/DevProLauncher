@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows
 {
-    partial class Login_frm
+    sealed partial class LoginFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,7 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.PatchNotes = new System.Windows.Forms.WebBrowser();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.usernameInput = new System.Windows.Forms.TextBox();
@@ -37,7 +38,6 @@
             this.passwordInput = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.languageSelect = new System.Windows.Forms.ComboBox();
-            this.PatchNotes = new System.Windows.Forms.WebBrowser();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.loginBtn = new System.Windows.Forms.Button();
             this.registerBtn = new System.Windows.Forms.Button();
@@ -69,8 +69,8 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.PatchNotes, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -79,6 +79,15 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.039338F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(881, 483);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // PatchNotes
+            // 
+            this.PatchNotes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PatchNotes.Location = new System.Drawing.Point(3, 3);
+            this.PatchNotes.MinimumSize = new System.Drawing.Size(20, 20);
+            this.PatchNotes.Name = "PatchNotes";
+            this.PatchNotes.Size = new System.Drawing.Size(875, 443);
+            this.PatchNotes.TabIndex = 1;
             // 
             // tableLayoutPanel3
             // 
@@ -164,15 +173,6 @@
             this.languageSelect.Size = new System.Drawing.Size(128, 21);
             this.languageSelect.TabIndex = 5;
             // 
-            // PatchNotes
-            // 
-            this.PatchNotes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PatchNotes.Location = new System.Drawing.Point(3, 3);
-            this.PatchNotes.MinimumSize = new System.Drawing.Size(20, 20);
-            this.PatchNotes.Name = "PatchNotes";
-            this.PatchNotes.Size = new System.Drawing.Size(875, 443);
-            this.PatchNotes.TabIndex = 1;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.loginBtn);
@@ -239,14 +239,14 @@
             this.aboutBtn.UseVisualStyleBackColor = true;
             this.aboutBtn.Click += new System.EventHandler(this.aboutBtn_Click);
             // 
-            // Login_frm
+            // LoginFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(976, 489);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Login_frm";
+            this.Name = "LoginFrm";
             this.Text = "Login_frm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

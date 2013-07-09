@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DevProLauncher.Network.Enums;
@@ -14,15 +8,15 @@ using DevProLauncher.Helpers;
 
 namespace DevProLauncher.Windows.MessageBoxs
 {
-    public partial class Register_frm : Form
+    public partial class RegisterFrm : Form
     {
-        public Register_frm()
+        public RegisterFrm()
         {
             InitializeComponent();
             ApplyTranslation();
-            Program.ChatServer.registerReply += RegisterResponse;
+            Program.ChatServer.RegisterReply += RegisterResponse;
             UsernameInput.KeyDown += UsernameInput_KeyDown;
-            this.FormClosing += ResetEvents;
+            FormClosing += ResetEvents;
         }
 
         public void ApplyTranslation()
@@ -70,9 +64,9 @@ namespace DevProLauncher.Windows.MessageBoxs
                 MessageBox.Show(Program.LanguageManager.Translation.RegistMsb6);
                 return;
             }
-            Program.ChatServer.SendPacket(DevServerPackets.Register, JsonSerializer.SerializeToString<LoginRequest>(
-                new LoginRequest()
-                { 
+            Program.ChatServer.SendPacket(DevServerPackets.Register, JsonSerializer.SerializeToString(
+                new LoginRequest
+                    { 
                     Username = UsernameInput.Text, 
                     Password= LauncherHelper.EncodePassword(PasswordInput.Text), 
                     UID= LauncherHelper.GetUID()
@@ -82,13 +76,13 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         private void RegisterResponse(DevClientPackets packet)
         {
-            if (!this.IsDisposed)
+            if (!IsDisposed)
             {
                 if (packet == DevClientPackets.RegisterAccept)
                 {
-                    if (MessageBox.Show(Program.LanguageManager.Translation.RegistMsb4) == System.Windows.Forms.DialogResult.OK)
+                    if (MessageBox.Show(Program.LanguageManager.Translation.RegistMsb4) == DialogResult.OK)
                     {
-                        DialogResult = System.Windows.Forms.DialogResult.OK;
+                        DialogResult = DialogResult.OK;
                     }
                 }
                 else if (packet == DevClientPackets.RegisterFailed)
@@ -102,7 +96,9 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         private void ResetEvents(object sender, EventArgs e)
         {
-            Program.ChatServer.registerReply -= RegisterResponse;
+// ReSharper disable DelegateSubtraction
+            Program.ChatServer.RegisterReply -= RegisterResponse;
+// ReSharper restore DelegateSubtraction
         }
     }
 }

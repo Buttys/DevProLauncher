@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 using System.IO;
 using System.Windows.Forms;
-using System.Reflection;
 
 namespace DevProLauncher.Config
 {
@@ -29,7 +25,7 @@ namespace DevProLauncher.Config
                 Directory.CreateDirectory(Path + language);
             try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(LanguageInfo));
+                var serializer = new XmlSerializer(typeof(LanguageInfo));
                 TextWriter textWriter = new StreamWriter("../../"+ Path + language + "/" + language + ".xml");
                 serializer.Serialize(textWriter, Translation);
                 textWriter.Close();
@@ -49,7 +45,7 @@ namespace DevProLauncher.Config
             }
             try
             {
-                XmlSerializer deserializer = new XmlSerializer(typeof(LanguageInfo));
+                var deserializer = new XmlSerializer(typeof(LanguageInfo));
                 TextReader textReader = new StreamReader(Path + language + "/" + language + ".xml");
                 Translation = (LanguageInfo)deserializer.Deserialize(textReader);
                 textReader.Close();

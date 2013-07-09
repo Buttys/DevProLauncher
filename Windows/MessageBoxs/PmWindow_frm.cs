@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DevProLauncher.Windows.Components;
 using DevProLauncher.Helpers;
@@ -13,26 +9,32 @@ using DevProLauncher.Network.Data;
 
 namespace DevProLauncher.Windows.MessageBoxs
 {
-    public partial class PmWindow_frm : Form
+    public partial class PmWindowFrm : Form
     {
-        public bool isprivate = false;
+        public bool Isprivate = false;
 
-        public PmWindow_frm(string name, bool privatewindow)
+        public PmWindowFrm(string name, bool privatewindow)
         {
             InitializeComponent();            
-            this.Name = name;
-            this.Text = name;
-            isprivate = privatewindow;
+            Name = name;
+            Text = name;
+            Isprivate = privatewindow;
 
-            ChatLog.Font = new System.Drawing.Font(Program.Config.ChatFont, (float)Program.Config.ChatSize);
+            ChatLog.Font = new Font(Program.Config.ChatFont, (float)Program.Config.ChatSize);
             ChatLog.ReadOnly = true;
 
-            ChatLog.MouseUp += new MouseEventHandler(Chat_MouseUp);
-            ChatLog.LinkClicked += new LinkClickedEventHandler(ChatLog_LinkClicked);
-            ChatInput.KeyPress += new KeyPressEventHandler(ChatInput_KeyPress);
+            ChatLog.MouseUp += Chat_MouseUp;
+            ChatLog.LinkClicked += ChatLog_LinkClicked;
+            ChatInput.KeyPress += ChatInput_KeyPress;
             
-            this.Activated += new EventHandler(ChatInput_Click);
+            Activated += ChatInput_Click;
             ApplyNewSettings();
+        }
+
+        public override sealed string Text
+        {
+            get { return base.Text; }
+            set { base.Text = value; }
         }
 
         private void ChatInput_Click(object sender, EventArgs e)
@@ -44,7 +46,7 @@ namespace DevProLauncher.Windows.MessageBoxs
         {
             if (InvokeRequired)
             {
-                this.Invoke(new Action<ChatMessage>(WriteMessage), message);
+                Invoke(new Action<ChatMessage>(WriteMessage), message);
             }
             else
             {
@@ -57,22 +59,15 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         }
 
-        private void WriteText(string text, Color color)
-        {
-            ChatLog.Select(ChatLog.TextLength, 0);
-            ChatLog.SelectionColor = color;
-            ChatLog.AppendText(text);
-        }
-
         private void Chat_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
                 if (ChatLog.SelectedText == "") return;
-                ContextMenuStrip mnu = new ContextMenuStrip();
-                ToolStripMenuItem mnucopy = new ToolStripMenuItem("Copy");
+                var mnu = new ContextMenuStrip();
+                var mnucopy = new ToolStripMenuItem("Copy");
 
-                mnucopy.Click += new EventHandler(CopyText);
+                mnucopy.Click += CopyText;
 
                 mnu.Items.Add(mnucopy);
 
@@ -102,19 +97,19 @@ namespace DevProLauncher.Windows.MessageBoxs
             {
                 if (ChatInput.Text == "")
                     return;
-                if (isprivate && ChatInput.Text.StartsWith("/me"))
+                if (Isprivate && ChatInput.Text.StartsWith("/me"))
                 {
                     WriteMessage(new ChatMessage(MessageType.Message, CommandType.Me, Program.UserInfo, Name,Program.UserInfo.username + " " +  ChatInput.Text.Replace("/me","").Trim()));
                     Program.ChatServer.SendMessage(MessageType.PrivateMessage, CommandType.Me, Name, ChatInput.Text.Substring(4));
                 }
-                else if (isprivate && ChatInput.Text.StartsWith("/"))
+                else if (Isprivate && ChatInput.Text.StartsWith("/"))
                 {
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Name, "Unknown Command."));
                     ChatInput.Clear();
                     e.Handled = true;
                     return;
                 }
-                else if (isprivate)
+                else if (Isprivate)
                 {
                     WriteMessage(new ChatMessage(MessageType.PrivateMessage, CommandType.None, Program.UserInfo, Name, ChatInput.Text));
                     Program.ChatServer.SendMessage(MessageType.PrivateMessage, CommandType.None, Name, ChatInput.Text);

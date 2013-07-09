@@ -1,6 +1,5 @@
 ﻿namespace DevProLauncher.Helpers.Enums
 {
-    using System;
 
     public enum CardType
     {

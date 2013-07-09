@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Diagnostics;
 using DevProLauncher.Config;
@@ -16,25 +13,25 @@ using ServiceStack.Text;
 
 namespace DevProLauncher.Windows
 {
-    public partial class Support_frm : Form
+    public sealed partial class SupportFrm : Form
     {
-        Dictionary<string, string> descriptions = new Dictionary<string, string>();
-        public Support_frm()
+        readonly Dictionary<string, string> _descriptions = new Dictionary<string, string>();
+        public SupportFrm()
         {
             InitializeComponent();
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
-            Program.ChatServer.DevPointMSG += HandlePackets;
+            Program.ChatServer.DevPointMsg += HandlePackets;
 
             ApplyTranslation();
 
             //prevents the last items auto sizing
             LeftItems.Controls.Add(new Label(), 0, LeftItems.RowStyles.Count-1);
             RightItems.Controls.Add(new Label(), 0, LeftItems.RowStyles.Count - 1);
-            OfferLink.Click += new EventHandler(OfferLink_Click);
-            DonateLink.Click += new EventHandler(DonateLink_Click);
-            refreshtimer.Tick += new EventHandler(refreshtimer_Tick);
+            OfferLink.Click += OfferLink_Click;
+            DonateLink.Click += DonateLink_Click;
+            refreshtimer.Tick += refreshtimer_Tick;
         }
         private void ApplyTranslation()
         {
@@ -47,10 +44,10 @@ namespace DevProLauncher.Windows
             AddItem(Properties.Resources.DNA, lang.SupportItem5Name, FormatString(lang.SupportItem5Des), 300, "DEVCOLOR", true);
             AddItem(Properties.Resources.sixsam, lang.SupportItem6Name, FormatString(lang.SupportItem6Des), 500, "DEVCREATETEAM", true);
             AddItem(Properties.Resources.message, lang.SupportItem7Name, FormatString(lang.SupportItem7Des), 150, "DEVMSG", true);
-            descriptions.Add("DEVRENAME", lang.SupportRenameInput);
-            descriptions.Add("DEVUNBAN", lang.SupportUnbanInput);
-            descriptions.Add("DEVCREATETEAM", lang.SupportTeamNameInput);
-            descriptions.Add("DEVMSG", lang.SupportMSGInput);
+            _descriptions.Add("DEVRENAME", lang.SupportRenameInput);
+            _descriptions.Add("DEVUNBAN", lang.SupportUnbanInput);
+            _descriptions.Add("DEVCREATETEAM", lang.SupportTeamNameInput);
+            _descriptions.Add("DEVMSG", lang.SupportMSGInput);
 
             groupBox4.Text = lang.SupportBalance;
             groupBox2.Text = lang.Supportgb2;
@@ -63,11 +60,6 @@ namespace DevProLauncher.Windows
         private string FormatString(string text)
         {
             return text.Replace("||", Environment.NewLine);
-        }
-
-        private void RequestDevPointsBalence()
-        {
-            Program.ChatServer.SendPacket(DevServerPackets.DevPoints);
         }
 
         private void HandlePackets(PacketCommand command)
@@ -94,27 +86,27 @@ namespace DevProLauncher.Windows
            TableLayoutPanel panel = (LeftItems.RowStyles.Count <= RightItems.RowStyles.Count ? LeftItems:RightItems);
            int row = panel.RowStyles.Count - 1;
            
-           Support_item item = new Support_item(image, name, des, cost);
-           item.button1.Click += new EventHandler(Getitem);
+           var item = new SupportItem(image, name, des, cost);
+           item.button1.Click += Getitem;
            item.button1.Name = (input ? "1":"0") + servercode;
      
            panel.Controls.Add(item, 0, row - 1);
-           panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+           panel.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
            
         }
 
         private void Getitem(object handler, EventArgs e)
         {
-            bool input = (((Button)handler).Name[0].ToString() == "1" ? true:false);
+            bool input = (((Button)handler).Name[0].ToString(CultureInfo.InvariantCulture) == "1");
             string servercommand = ((Button)handler).Name.Substring(1);
 
             if (input)
             {
                 if (servercommand != "DEVCOLOR")
                 {
-                    Input_frm form = new Input_frm("Input", descriptions[servercommand], "Confirm", "Cancel");
+                    var form = new InputFrm("Input", _descriptions[servercommand], "Confirm", "Cancel");
                     if (servercommand != "DEVCREATETEAM" && servercommand != "DEVMSG")
-                        form.InputBox.KeyDown += new KeyEventHandler(Suppress_Space);
+                        form.InputBox.KeyDown += Suppress_Space;
 
                     if (servercommand == "DEVCREATETEAM")
                         form.InputBox.MaxLength = 20;
@@ -131,21 +123,22 @@ namespace DevProLauncher.Windows
                             return;
                         }
                         Program.ChatServer.SendPacket(DevServerPackets.DevPointCommand,
-                            JsonSerializer.SerializeToString<PacketCommand>(
-                            new PacketCommand() { Command = servercommand,
+                            JsonSerializer.SerializeToString(
+                            new PacketCommand
+                                { Command = servercommand,
                                                   Data = form.InputBox.Text.Trim()
                         }));
                     }
                 }
                 else
                 {
-                    ColorDialog selectcolor = new ColorDialog();
+                    var selectcolor = new ColorDialog();
                     if (selectcolor.ShowDialog() == DialogResult.OK)
                     {
                         Program.ChatServer.SendPacket(DevServerPackets.DevPointCommand,
-                            JsonSerializer.SerializeToString<PacketCommand>(
-                            new PacketCommand()
-                            {
+                            JsonSerializer.SerializeToString(
+                            new PacketCommand
+                                {
                                 Command = servercommand,
                                 Data = selectcolor.Color.R + "," + selectcolor.Color.G + "," + selectcolor.Color.B
                             }));
@@ -158,9 +151,9 @@ namespace DevProLauncher.Windows
                 if(MessageBox.Show("Confirm","Are you sure?",MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     Program.ChatServer.SendPacket(DevServerPackets.DevPointCommand,
-                            JsonSerializer.SerializeToString<PacketCommand>(
-                            new PacketCommand()
-                            {
+                            JsonSerializer.SerializeToString(
+                            new PacketCommand
+                                {
                                 Command = servercommand
                             }));
                 } 

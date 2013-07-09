@@ -1,7 +1,7 @@
 ﻿using DevProLauncher.Windows.Components;
 namespace DevProLauncher.Windows
 {
-    partial class Chat_frm
+    sealed partial class ChatFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -992,14 +992,14 @@ namespace DevProLauncher.Windows
             this.UserSearch.Text = "Search";
             this.UserSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // Chat_frm
+            // ChatFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 531);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Chat_frm";
+            this.Name = "ChatFrm";
             this.Text = "NewChat_frm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

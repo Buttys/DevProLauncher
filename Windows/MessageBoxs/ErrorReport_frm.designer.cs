@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows.MessageBoxs
 {
-    partial class ErrorReport_frm
+    partial class ErrorReportFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -91,7 +91,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "ErrorReport_frm";
+            this.Name = "ErrorReportFrm";
             this.Text = "Error";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

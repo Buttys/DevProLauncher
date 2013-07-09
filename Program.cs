@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using DevProLauncher.Windows;
 using DevProLauncher.Network;
@@ -12,13 +11,12 @@ using System.Net;
 using System.Diagnostics;
 using DevProLauncher.Windows.MessageBoxs;
 using DevProLauncher.Helpers;
-using System.Threading;
 
 namespace DevProLauncher
 {
     static class Program
     {
-        public const string Version = "192200";
+        public const string Version = "192500";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;
@@ -26,32 +24,12 @@ namespace DevProLauncher
         public static UserData UserInfo;
         public const string ConfigurationFilename = "launcher.conf";
         public static Dictionary<string, ServerInfo> ServerList = new Dictionary<string, ServerInfo>();
-        public static Main_frm MainForm;
+        public static MainFrm MainForm;
         public static ServerInfo Server;
 
         [STAThread]
-        static void Main(string[] args)
+        static void Main()
         {
-            foreach (string arg in args)
-            {
-                if (arg == "-r")
-                {
-                    int timeout = 0;
-                    while (LauncherHelper.checkInstance())
-                    {
-                        if (timeout == 3)
-                        {
-                            if (MessageBox.Show(LanguageManager.Translation.pmsbProgRun) == DialogResult.OK)
-                            {
-                                return;
-                            }
-                        }
-                        Thread.Sleep(500);
-                        timeout++;
-                    }
-                }
-            }
-
             Config = new Configuration();
             LoadConfig(ConfigurationFilename);
 #if !DEBUG
@@ -65,7 +43,7 @@ namespace DevProLauncher
             //LanguageManager.Save("English");    
             LanguageManager.Load(Config.Language);
 
-            if (LauncherHelper.checkInstance())
+            if (LauncherHelper.CheckInstance())
                 if (MessageBox.Show(LanguageManager.Translation.pmsbProgRun) == DialogResult.OK)
                     return;
 
@@ -85,7 +63,7 @@ namespace DevProLauncher
             Server = new ServerInfo("DevPro", "86.0.24.143", 3333);
 #endif
 
-            MainForm = new Main_frm();
+            MainForm = new MainFrm();
             Application.Run(MainForm);
         }
 
@@ -93,7 +71,7 @@ namespace DevProLauncher
         {
             try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(Configuration));
+                var serializer = new XmlSerializer(typeof(Configuration));
                 TextWriter textWriter = new StreamWriter(filename);
                 serializer.Serialize(textWriter, config);
                 textWriter.Close();
@@ -112,9 +90,9 @@ namespace DevProLauncher
             }
             try
             {
-                XmlSerializer deserializer = new XmlSerializer(typeof(Configuration));
+                var deserializer = new XmlSerializer(typeof(Configuration));
                 TextReader textReader = new StreamReader(filename);
-                Program.Config = (Configuration)deserializer.Deserialize(textReader);
+                Config = (Configuration)deserializer.Deserialize(textReader);
                 textReader.Close();
             }
             catch (Exception)
@@ -128,8 +106,8 @@ namespace DevProLauncher
             string updateLink = Config.UpdaterAddress;
             const string updaterName = "YgoUpdater.exe";
             const string dllName = "ICSharpCode.SharpZipLib.dll";
-            WebClient client = new WebClient { Proxy = null };
-            string result = "";
+            var client = new WebClient { Proxy = null };
+            string result;
             try
             {
                 result = client.DownloadString(updateLink + "?v=" + Version);
@@ -162,14 +140,21 @@ namespace DevProLauncher
                 Config.NewUpdate = true;
                 SaveConfig(ConfigurationFilename, Config);
 
-                string[] data = result.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+                string[] data = result.Split(new [] { "|" }, StringSplitOptions.RemoveEmptyEntries);
 
                 File.WriteAllBytes(Path.Combine(Application.StartupPath, updaterName), Properties.Resources.YgoUpdater);
                 File.WriteAllBytes(Path.Combine(Application.StartupPath, dllName), Properties.Resources.ICSharpCode_SharpZipLib);
 
-                Process updateProcess = new Process();
-                updateProcess.StartInfo.FileName = Path.Combine(Application.StartupPath, updaterName);
-                updateProcess.StartInfo.Arguments = data[1] + " " + Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                var updateProcess = new Process
+                    {
+                        StartInfo =
+                            {
+                                FileName = Path.Combine(Application.StartupPath, updaterName),
+                                Arguments =
+                                    data[1] + " " +
+                                    Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetExecutingAssembly().Location)
+                            }
+                    };
                 updateProcess.Start();
             }
 
@@ -179,8 +164,8 @@ namespace DevProLauncher
         public static bool CheckServerInfo()
         {
             string updateLink = Config.ServerInfoAddress;
-            WebClient client = new WebClient { Proxy = null };
-            string result = "";
+            var client = new WebClient { Proxy = null };
+            string result;
             try
             {
                 result = client.DownloadString(updateLink + "?v=" + Version);
@@ -197,7 +182,7 @@ namespace DevProLauncher
 
             try
             {
-                string[] serverinfo = result.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+                string[] serverinfo = result.Split(new [] { "|" }, StringSplitOptions.RemoveEmptyEntries);
                 Config.ServerAddress = serverinfo[1];
                 Config.ChatPort = int.Parse(serverinfo[2]);
                 Config.GamePort = int.Parse(serverinfo[3]);
@@ -224,7 +209,7 @@ namespace DevProLauncher
 
             File.WriteAllText("crash_" + DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss") + ".txt", exception.ToString());
 
-            ErrorReport_frm error = new ErrorReport_frm(exception);
+            var error = new ErrorReportFrm(exception);
             error.ShowDialog();
 
             Console.WriteLine(exception.ToString());

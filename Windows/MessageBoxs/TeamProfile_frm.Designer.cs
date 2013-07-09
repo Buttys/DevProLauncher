@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows.MessageBoxs
 {
-    partial class TeamProfile_frm
+    partial class TeamProfileFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -871,7 +871,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(352, 503);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "TeamProfile_frm";
+            this.Name = "TeamProfileFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Team Profile";
             this.tableLayoutPanel1.ResumeLayout(false);

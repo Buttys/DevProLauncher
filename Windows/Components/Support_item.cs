@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace DevProLauncher.Windows.Components
 {
-    public partial class Support_item : Form
+    public sealed partial class SupportItem : Form
     {
-        public Support_item(Image image,string name,string des, int cost)
+        public SupportItem(Image image,string name,string des, int cost)
         {
             InitializeComponent();
             TopLevel = false;

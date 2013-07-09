@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows
 {
-    partial class Main_frm
+    partial class MainFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_frm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrm));
             this.mainTabs = new System.Windows.Forms.TabControl();
             this.ConnectionCheck = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
@@ -54,7 +54,7 @@
             this.ClientSize = new System.Drawing.Size(918, 453);
             this.Controls.Add(this.mainTabs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Main_frm";
+            this.Name = "MainFrm";
             this.Text = "DevPro Launcher";
             this.ResumeLayout(false);
 

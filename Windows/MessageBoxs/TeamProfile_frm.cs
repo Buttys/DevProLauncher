@@ -1,28 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DevProLauncher.Network.Enums;
 
 namespace DevProLauncher.Windows.MessageBoxs
 {
-    public partial class TeamProfile_frm : Form
+    public partial class TeamProfileFrm : Form
     {
-        public TeamProfile_frm(string team)
+        public TeamProfileFrm(string team)
         {
             InitializeComponent();
             TeamName.Text = "Team: " + team;
-            Program.ChatServer.teamStats += UpdateProfile;
+            Program.ChatServer.TeamStats += UpdateProfile;
             Program.ChatServer.SendPacket(DevServerPackets.TeamStats, team);
         }
 
         private void UpdateProfile(string message)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
             if (InvokeRequired)
             {

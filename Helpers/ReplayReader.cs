@@ -23,8 +23,8 @@ namespace DevProLauncher.Helpers
             public const int ReplaySize = 32;
 
             public ReplayHeader Header;
-            private byte[] m_fileContent;
-            private byte[] m_data;
+            private byte[] _mFileContent;
+            private byte[] _mData;
 
             public BinaryReader DataReader;
 
@@ -42,8 +42,8 @@ namespace DevProLauncher.Helpers
             {
                 try
                 {
-                    m_fileContent = File.ReadAllBytes(fileName);
-                    BinaryReader reader = new BinaryReader(new MemoryStream(m_fileContent));
+                    _mFileContent = File.ReadAllBytes(fileName);
+                    var reader = new BinaryReader(new MemoryStream(_mFileContent));
                     HandleHeader(reader);
                     HandleData(reader);
                     reader.Close();
@@ -58,8 +58,8 @@ namespace DevProLauncher.Helpers
 
             public string ReadString(int length)
             {
-                string value = Encoding.Unicode.GetString(DataReader.ReadBytes(length));
-                return value.Substring(0, value.IndexOf("\0"));
+                var value = Encoding.Unicode.GetString(DataReader.ReadBytes(length));
+                return value.Substring(0, value.IndexOf("\0", StringComparison.Ordinal));
             }
 
             private void HandleHeader(BinaryReader reader)
@@ -75,24 +75,24 @@ namespace DevProLauncher.Helpers
 
             private void HandleData(BinaryReader reader)
             {
-                int compressedSize = m_fileContent.Length - ReplaySize;
+                int compressedSize = _mFileContent.Length - ReplaySize;
                 if (!Compressed)
                 {
-                    m_data = reader.ReadBytes(compressedSize);
-                    DataReader = new BinaryReader(new MemoryStream(m_data));
+                    _mData = reader.ReadBytes(compressedSize);
+                    DataReader = new BinaryReader(new MemoryStream(_mData));
                     return;
                 }
 
-                byte[] inData = new byte[compressedSize];
-                Array.Copy(m_fileContent, ReplaySize, inData, 0, compressedSize);
-                byte[] outData = new byte[Header.DataSize];
+                var inData = new byte[compressedSize];
+                Array.Copy(_mFileContent, ReplaySize, inData, 0, compressedSize);
+                var outData = new byte[Header.DataSize];
 
-                Decoder lzma = new Decoder();
+                var lzma = new Decoder();
                 lzma.SetDecoderProperties(Header.Props);
                 lzma.Code(new MemoryStream(inData), new MemoryStream(outData), compressedSize, Header.DataSize, null);
 
-                m_data = outData;
-                DataReader = new BinaryReader(new MemoryStream(m_data));
+                _mData = outData;
+                DataReader = new BinaryReader(new MemoryStream(_mData));
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows.MessageBoxs
 {
-    partial class DuelRequest_frm
+    partial class DuelRequestFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -100,7 +100,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "DuelRequest_frm";
+            this.Name = "DuelRequestFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Duel Request";
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Win32;
 
 namespace DevProLauncher.Helpers
@@ -16,7 +13,7 @@ namespace DevProLauncher.Helpers
                 RegistryKey rk = Registry.CurrentUser;
                 RegistryKey sk1 = rk.CreateSubKey(path);
                 // Save the value
-                sk1.SetValue(key, value);
+                if (sk1 != null) sk1.SetValue(key, value);
 
                 return true;
             }
@@ -32,7 +29,7 @@ namespace DevProLauncher.Helpers
             try
             {
                 RegistryKey rk = Registry.CurrentUser;
-                RegistryKey newpath = rk.CreateSubKey(path);
+                if (rk != null) rk.CreateSubKey(path);
                 return true;
             }
             catch (Exception e)
@@ -71,17 +68,14 @@ namespace DevProLauncher.Helpers
             {
                 return null;
             }
-            else
+            try
             {
-                try
-                {
-                    return (string)sk1.GetValue(key);
-                }
-                catch (Exception e)
-                {
-                    Console.Write(e.Message);
-                    return null;
-                }
+                return (string)sk1.GetValue(key);
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+                return null;
             }
         }
     }

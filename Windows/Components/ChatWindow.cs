@@ -9,71 +9,43 @@ namespace DevProLauncher.Windows.Components
 {
     public class ChatWindow : TabPage
     {
-        CustomRTB ChatLog = new CustomRTB();
-        public bool isprivate = false;
-        public bool issystemtab = false;
+        readonly CustomRTB _chatLog = new CustomRTB();
+        public bool IsPrivate = false;
+        public bool IsSystemtab = false;
         public ChatWindow(string name,bool privatewindow)
         {
-            this.Name = name;
-            this.Text = name;
-            this.Controls.Add(ChatLog);
-            ChatLog.Dock = DockStyle.Fill;
-            isprivate = privatewindow;
+            Name = name;
+            Text = name;
+            Controls.Add(_chatLog);
+            _chatLog.Dock = DockStyle.Fill;
+            IsPrivate = privatewindow;
 
-            ChatLog.Font = new System.Drawing.Font("Arial", 12);
+            _chatLog.Font = new Font("Arial", 12);
 
-            ChatLog.LinkClicked += new LinkClickedEventHandler(ChatLog_LinkClicked);
-            ChatLog.ReadOnly = true;
+            _chatLog.LinkClicked += ChatLog_LinkClicked;
+            _chatLog.ReadOnly = true;
             ApplyNewSettings();
-            ChatLog.TabStop = false;
+            _chatLog.TabStop = false;
 
         }
 
-        private void ChatLog_KeyDown(object sender, KeyEventArgs e)
+        public override sealed string Text
         {
-            e.Handled = true;
-            e.SuppressKeyPress = true;
+            get { return base.Text; }
+            set { base.Text = value; }
         }
 
         public void WriteMessage(ChatMessage message, bool autoscroll)
         {
             if (InvokeRequired)
             {
-                this.Invoke(new Action<ChatMessage,bool>(WriteMessage), message,autoscroll);
+                Invoke(new Action<ChatMessage,bool>(WriteMessage), message,autoscroll);
             }
             else
             {
-                ChatHelper.WriteMessage(message, ChatLog, autoscroll);
+                ChatHelper.WriteMessage(message, _chatLog, autoscroll);
             }
 
-        }
-
-        private void WriteText(string text, Color color)
-        {
-            ChatLog.Select(ChatLog.TextLength, 0);
-            ChatLog.SelectionColor = color;
-            ChatLog.AppendText(text);
-        }
-
-        private void Chat_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                if (ChatLog.SelectedText == "") return;
-                ContextMenuStrip mnu = new ContextMenuStrip();
-                ToolStripMenuItem mnucopy = new ToolStripMenuItem("Copy");
-
-                mnucopy.Click += new EventHandler(CopyText);
-
-                mnu.Items.Add(mnucopy);
-
-                mnu.Show(ChatLog, e.Location);
-            }
-        }
-
-        private void CopyText(object sender, EventArgs e)
-        {
-            Clipboard.SetText(ChatLog.SelectedText);
         }
 
         private void ChatLog_LinkClicked(object sender, LinkClickedEventArgs e)
@@ -83,9 +55,8 @@ namespace DevProLauncher.Windows.Components
 
         public void ApplyNewSettings()
         {
-            ChatLog.BackColor = (Program.Config.ColorBlindMode ? Color.White : Program.Config.ChatBGColor.ToColor());
-            try { ChatLog.Font = new Font(Program.Config.ChatFont, (float)Program.Config.ChatSize); }
-            catch { }
+            _chatLog.BackColor = (Program.Config.ColorBlindMode ? Color.White : Program.Config.ChatBGColor.ToColor());
+            _chatLog.Font = new Font(Program.Config.ChatFont, (float)Program.Config.ChatSize);
         }
 
     }

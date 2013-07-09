@@ -1,6 +1,6 @@
-﻿namespace DevProLauncher.Windows
+﻿namespace DevProLauncher.Windows.Components
 {
-    partial class FileManagerControl
+    sealed partial class FileManagerControl
     {
         /// <summary>
         /// Required designer variable.
@@ -161,7 +161,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FileManager_frm";
+            this.Name = "FileManagerFrm";
             this.Text = "FileManagerDesign";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);

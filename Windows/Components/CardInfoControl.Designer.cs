@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows.Components
 {
-    partial class CardInfoControl
+    sealed partial class CardInfoControl
     {
         /// <summary>
         /// Required designer variable.

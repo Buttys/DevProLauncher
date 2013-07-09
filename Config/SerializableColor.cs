@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace DevProLauncher.Config
 {
@@ -12,10 +11,10 @@ namespace DevProLauncher.Config
 
         public SerializableColor(Color color)
         {
-            this.A = color.A;
-            this.R = color.R;
-            this.G = color.G;
-            this.B = color.B;
+            A = color.A;
+            R = color.R;
+            G = color.G;
+            B = color.B;
         }
 
         public static SerializableColor FromColor(Color color)

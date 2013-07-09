@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml.Serialization;
@@ -15,52 +12,52 @@ using DevProLauncher.Windows.MessageBoxs;
 
 namespace DevProLauncher.Windows
 {
-    public partial class Customize_frm : Form
+    public sealed partial class CustomizeFrm : Form
     {
 
         public Dictionary<ContentType, Content> Data = new Dictionary<ContentType, Content>();
-        public ContentType contentView = ContentType.Covers;
-        Dictionary<string, Theme> Themes = new Dictionary<string, Theme>();
+        public ContentType ContentView = ContentType.Covers;
+        readonly Dictionary<string, Theme> _themes = new Dictionary<string, Theme>();
         public string SelectedTheme = "None";
 
-        public Customize_frm()
+        public CustomizeFrm()
         {
             InitializeComponent();
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
             ViewSelect.SelectedIndex = 0;
-            this.Data.Add(ContentType.Covers, new Content { AssetPath = "Assets/Covers/", IconSize = new Size(177, 252), GameItem = "textures\\cover.jpg", FileType = ".jpg", ImageSize = new Size(178,254) });
-            this.Data.Add(ContentType.Backgrounds, new Content { AssetPath = "Assets/Backgrounds/", IconSize = new Size(256, 256), GameItem = "textures\\bg.jpg", FileType = ".jpg", ImageSize = new Size(1024, 640) });
-            this.Data.Add(ContentType.Field, new Content { AssetPath = "Assets/Field/", IconSize = new Size(256, 256), GameItem = "textures\\field.png", FileType = ".png", ImageSize = new Size(256, 256) });
-            this.Data.Add(ContentType.FieldTransparent, new Content { AssetPath = "Assets/FieldTransparent/", IconSize = new Size(256, 256), GameItem = "textures\\field-transparent.png", FileType = ".png", ImageSize = new Size(256, 256) });
-            this.Data.Add(ContentType.Numbers, new Content { AssetPath = "Assets/Numbers/", IconSize = new Size(256, 256), GameItem = "textures\\number.png", FileType = ".png", ImageSize = new Size(320, 256) });
-            this.Data.Add(ContentType.Mask, new Content { AssetPath = "Assets/Mask/", IconSize = new Size(254, 254), GameItem = "textures\\mask.png", FileType = ".png", ImageSize = new Size(254, 254) });
-            this.Data.Add(ContentType.Attack_Icon, new Content { AssetPath = "Assets/AttackIcon/", IconSize = new Size(128, 128), GameItem = "textures\\attack.png", FileType = ".png", ImageSize = new Size(128, 128) });
-            this.Data.Add(ContentType.Activate_Circle, new Content { AssetPath = "Assets/ActivateCircle/", IconSize = new Size(128, 128), GameItem = "textures\\\\act.png", FileType = ".png", ImageSize = new Size(128, 128) });
-            this.Data.Add(ContentType.Chain, new Content { AssetPath = "Assets/ChainIcon/", IconSize = new Size(128, 128), GameItem = "textures\\chain.png", FileType = ".png", ImageSize = new Size(128, 128) });
-            this.Data.Add(ContentType.Target, new Content { AssetPath = "Assets/TargetIcon/", IconSize = new Size(34, 34), GameItem = "textures\\target.png", FileType = ".png", ImageSize = new Size(34, 34) });
-            this.Data.Add(ContentType.Equip, new Content { AssetPath = "Assets/EquipIcon/", IconSize = new Size(34, 34), GameItem = "textures\\equip.png", FileType = ".png", ImageSize = new Size(34, 34) });
-            this.Data.Add(ContentType.Rock, new Content { AssetPath = "Assets/Rock/", IconSize = new Size(89, 128), GameItem = "textures\\f2.jpg", FileType = ".jpg", ImageSize = new Size(89, 128) });
-            this.Data.Add(ContentType.Paper, new Content { AssetPath = "Assets/Paper/", IconSize = new Size(89, 128), GameItem = "textures\\f3.jpg", FileType = ".jpg", ImageSize = new Size(89, 128) });
-            this.Data.Add(ContentType.Scissors, new Content { AssetPath = "Assets/Scissors/", IconSize = new Size(89, 128), GameItem = "textures\\f1.jpg", FileType = ".jpg", ImageSize = new Size(89, 128) });
-            this.Data.Add(ContentType.LifePoints_Color, new Content { AssetPath = "Assets/LPColor/", IconSize = new Size(16, 16), GameItem = "textures\\lp.png", FileType = ".png", ImageSize = new Size(16, 16) });
-            this.Data.Add(ContentType.LifePoints_Bar, new Content { AssetPath = "Assets/LPBar/", IconSize = new Size(200, 20), GameItem = "textures\\lpf.png", FileType = ".png", ImageSize = new Size(200, 20) });
-            this.Data.Add(ContentType.Negated, new Content { AssetPath = "Assets/Negated/", IconSize = new Size(128, 128), GameItem = "textures\\negated.png", FileType = ".png", ImageSize = new Size(128, 128) });
-            this.Data.Add(ContentType.Music, new Content { AssetPath = "Assets/Music/", IconSize = new Size(40, 40), GameItem = "sound\\", FileType = ".mp3" });
-            this.Data.Add(ContentType.Sound_Effects, new Content { AssetPath = "Assets/SoundEffects/", IconSize = new Size(40, 40), GameItem = "sound\\", FileType = ".wav" });
+            Data.Add(ContentType.Covers, new Content { AssetPath = "Assets/Covers/", IconSize = new Size(177, 252), GameItem = "textures\\cover.jpg", FileType = ".jpg", ImageSize = new Size(178,254) });
+            Data.Add(ContentType.Backgrounds, new Content { AssetPath = "Assets/Backgrounds/", IconSize = new Size(256, 256), GameItem = "textures\\bg.jpg", FileType = ".jpg", ImageSize = new Size(1024, 640) });
+            Data.Add(ContentType.Field, new Content { AssetPath = "Assets/Field/", IconSize = new Size(256, 256), GameItem = "textures\\field.png", FileType = ".png", ImageSize = new Size(256, 256) });
+            Data.Add(ContentType.FieldTransparent, new Content { AssetPath = "Assets/FieldTransparent/", IconSize = new Size(256, 256), GameItem = "textures\\field-transparent.png", FileType = ".png", ImageSize = new Size(256, 256) });
+            Data.Add(ContentType.Numbers, new Content { AssetPath = "Assets/Numbers/", IconSize = new Size(256, 256), GameItem = "textures\\number.png", FileType = ".png", ImageSize = new Size(320, 256) });
+            Data.Add(ContentType.Mask, new Content { AssetPath = "Assets/Mask/", IconSize = new Size(254, 254), GameItem = "textures\\mask.png", FileType = ".png", ImageSize = new Size(254, 254) });
+            Data.Add(ContentType.AttackIcon, new Content { AssetPath = "Assets/AttackIcon/", IconSize = new Size(128, 128), GameItem = "textures\\attack.png", FileType = ".png", ImageSize = new Size(128, 128) });
+            Data.Add(ContentType.ActivateCircle, new Content { AssetPath = "Assets/ActivateCircle/", IconSize = new Size(128, 128), GameItem = "textures\\\\act.png", FileType = ".png", ImageSize = new Size(128, 128) });
+            Data.Add(ContentType.Chain, new Content { AssetPath = "Assets/ChainIcon/", IconSize = new Size(128, 128), GameItem = "textures\\chain.png", FileType = ".png", ImageSize = new Size(128, 128) });
+            Data.Add(ContentType.Target, new Content { AssetPath = "Assets/TargetIcon/", IconSize = new Size(34, 34), GameItem = "textures\\target.png", FileType = ".png", ImageSize = new Size(34, 34) });
+            Data.Add(ContentType.Equip, new Content { AssetPath = "Assets/EquipIcon/", IconSize = new Size(34, 34), GameItem = "textures\\equip.png", FileType = ".png", ImageSize = new Size(34, 34) });
+            Data.Add(ContentType.Rock, new Content { AssetPath = "Assets/Rock/", IconSize = new Size(89, 128), GameItem = "textures\\f2.jpg", FileType = ".jpg", ImageSize = new Size(89, 128) });
+            Data.Add(ContentType.Paper, new Content { AssetPath = "Assets/Paper/", IconSize = new Size(89, 128), GameItem = "textures\\f3.jpg", FileType = ".jpg", ImageSize = new Size(89, 128) });
+            Data.Add(ContentType.Scissors, new Content { AssetPath = "Assets/Scissors/", IconSize = new Size(89, 128), GameItem = "textures\\f1.jpg", FileType = ".jpg", ImageSize = new Size(89, 128) });
+            Data.Add(ContentType.LifePointsColor, new Content { AssetPath = "Assets/LPColor/", IconSize = new Size(16, 16), GameItem = "textures\\lp.png", FileType = ".png", ImageSize = new Size(16, 16) });
+            Data.Add(ContentType.LifePointsBar, new Content { AssetPath = "Assets/LPBar/", IconSize = new Size(200, 20), GameItem = "textures\\lpf.png", FileType = ".png", ImageSize = new Size(200, 20) });
+            Data.Add(ContentType.Negated, new Content { AssetPath = "Assets/Negated/", IconSize = new Size(128, 128), GameItem = "textures\\negated.png", FileType = ".png", ImageSize = new Size(128, 128) });
+            Data.Add(ContentType.Music, new Content { AssetPath = "Assets/Music/", IconSize = new Size(40, 40), GameItem = "sound\\", FileType = ".mp3" });
+            Data.Add(ContentType.SoundEffects, new Content { AssetPath = "Assets/SoundEffects/", IconSize = new Size(40, 40), GameItem = "sound\\", FileType = ".wav" });
 
 
 
-            this.ContentList.View = System.Windows.Forms.View.LargeIcon;
+            ContentList.View = View.LargeIcon;
             LoadAssets();
             LoadThemeFiles();
 
-            this.ContentList.MouseUp += new MouseEventHandler(OnListViewMouseUp);
-            ViewSelect.SelectedIndexChanged += new EventHandler(SelectedIndex_Changed);
-            ThemeSelect.SelectedIndexChanged += new EventHandler(SelectedTheme_Changed);
+            ContentList.MouseUp += OnListViewMouseUp;
+            ViewSelect.SelectedIndexChanged += SelectedIndex_Changed;
+            ThemeSelect.SelectedIndexChanged += SelectedTheme_Changed;
 
-            contentView = ContentType.Covers;
+            ContentView = ContentType.Covers;
             ApplyTranslation();
         }
 
@@ -77,35 +74,20 @@ namespace DevProLauncher.Windows
 
         public void SaveTheme(string themename)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Theme));
-            TextWriter textWriter = new StreamWriter("Assets/Themes/" + Themes[themename].ThemeName + ".YGOTheme");
-            serializer.Serialize(textWriter, Themes[themename]);
+            var serializer = new XmlSerializer(typeof(Theme));
+            TextWriter textWriter = new StreamWriter("Assets/Themes/" + _themes[themename].ThemeName + ".YGOTheme");
+            serializer.Serialize(textWriter, _themes[themename]);
             textWriter.Close();
         }
 
         public List<object> ItemKeys()
         {
-            List<object> keydata = new List<object>();
-
-            foreach (ContentType key in Data.Keys)
-            {
-                keydata.Add(key);
-            }
-
-            return keydata;
-
+            return Data.Keys.Cast<object>().ToList();
         }
 
         public List<object> ThemeKeys()
         {
-            List<object> keydata = new List<object>();
-
-            foreach (string key in Themes.Keys)
-            {
-                keydata.Add(key);
-            }
-
-            return keydata;
+            return _themes.Keys.Cast<object>().ToList();
         }
 
         void LoadThemeFiles()
@@ -123,7 +105,9 @@ namespace DevProLauncher.Windows
                 if (file.Contains(".YGOTheme"))
                 {
                     LoadTheme(file);
+// ReSharper disable AssignNullToNotNullAttribute
                     ThemeSelect.Items.Add(Path.GetFileNameWithoutExtension(file));
+// ReSharper restore AssignNullToNotNullAttribute
                 }
             }
 
@@ -131,29 +115,29 @@ namespace DevProLauncher.Windows
 
         void LoadTheme(string filepath)
         {
-            XmlSerializer deserializer = new XmlSerializer(typeof(Theme));
+            var deserializer = new XmlSerializer(typeof(Theme));
             TextReader textReader = new StreamReader(filepath);
-            Themes[Path.GetFileNameWithoutExtension(filepath)] = (Theme)deserializer.Deserialize(textReader);
+// ReSharper disable AssignNullToNotNullAttribute
+            if (!_themes.ContainsKey(Path.GetFileNameWithoutExtension(filepath)))
+                _themes[Path.GetFileNameWithoutExtension(filepath)] = (Theme)deserializer.Deserialize(textReader);
+// ReSharper restore AssignNullToNotNullAttribute
             textReader.Close();
         }
-        public ThemeObject getThemeObject(ContentType type)
+        public ThemeObject GetThemeObject(ContentType type)
         {
-            if (Themes.ContainsKey(SelectedTheme))
+            if (_themes.ContainsKey(SelectedTheme))
             {
-                return Themes[SelectedTheme].getThemeObject(type);
+                return _themes[SelectedTheme].GetThemeObject(type);
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
-        public void AddTheme(string ThemeName)
+        public void AddTheme(string themeName)
         {
-            if (!Themes.ContainsKey(ThemeName))
+            if (!_themes.ContainsKey(themeName))
             {
-                Themes.Add(ThemeName, new Theme() { ThemeName = ThemeName });
-                SaveTheme(ThemeName);
+                _themes.Add(themeName, new Theme { ThemeName = themeName });
+                SaveTheme(themeName);
             }
             else
             {
@@ -162,17 +146,17 @@ namespace DevProLauncher.Windows
         }
         public bool ThemeExists(string name)
         {
-            if (!Themes.ContainsKey(name)) return false; else return true;
+            return _themes.ContainsKey(name);
         }
 
         public void AddThemeItem(ContentType type, string path, string filename)
         {
-            Themes[SelectedTheme].AddItem(type, path, filename);
+            _themes[SelectedTheme].AddItem(type, path, filename);
         }
 
         public Content GetCurrentItemSet()
         {
-            return Data[contentView];
+            return Data[ContentView];
         }
 
         void LoadAssets()
@@ -182,13 +166,15 @@ namespace DevProLauncher.Windows
             {
                 if (!Directory.Exists(Data[key].AssetPath)) Directory.CreateDirectory(Data[key].AssetPath);
                 string[] itempath = Directory.GetFiles(Data[key].AssetPath);
-                Data[key].Images = new ImageList();
-                Data[key].Images.TransparentColor = Color.Transparent;
-                Data[key].Images.ColorDepth = ColorDepth.Depth16Bit;
-                Data[key].Images.ImageSize = Data[key].IconSize;
+                Data[key].Images = new ImageList
+                    {
+                        TransparentColor = Color.Transparent,
+                        ColorDepth = ColorDepth.Depth16Bit,
+                        ImageSize = Data[key].IconSize
+                    };
                 foreach (string item in itempath)
                 {
-                    if (key == ContentType.Music || key == ContentType.Sound_Effects)
+                    if (key == ContentType.Music || key == ContentType.SoundEffects)
                     {
                         AddIconImage(Data[key].Images, item);
                     }
@@ -213,38 +199,38 @@ namespace DevProLauncher.Windows
 
         void ChangeImageView()
         {
-            this.ContentList.Items.Clear();
-            this.ContentList.LargeImageList = Data[contentView].Images;
-            string[] itempaths = Directory.GetFiles(Data[contentView].AssetPath);
+            ContentList.Items.Clear();
+            ContentList.LargeImageList = Data[ContentView].Images;
+            string[] itempaths = Directory.GetFiles(Data[ContentView].AssetPath);
             foreach (string item in itempaths)
             {
-                string imagename = Path.GetFileNameWithoutExtension(item);
-                this.ContentList.Items.Add(imagename, imagename);
+                var imagename = Path.GetFileNameWithoutExtension(item);
+                ContentList.Items.Add(imagename, imagename);
             }
         }
 
         public void SelectedIndex_Changed(object sender, EventArgs e)
         {
-            ComboBox control = (ComboBox)sender;
-            if (control.Text == "Covers") contentView = ContentType.Covers;
-            if (control.Text == "Backgrounds") contentView = ContentType.Backgrounds;
-            if (control.Text == "Attack") contentView = ContentType.Attack_Icon;
-            if (control.Text == "Activate") contentView = ContentType.Activate_Circle;
-            if (control.Text == "Chain") contentView = ContentType.Chain;
-            if (control.Text == "Equip") contentView = ContentType.Equip;
-            if (control.Text == "Rock") contentView = ContentType.Rock;
-            if (control.Text == "Paper") contentView = ContentType.Paper;
-            if (control.Text == "Sissors") contentView = ContentType.Scissors;
-            if (control.Text == "Life Points Color") contentView = ContentType.LifePoints_Color;
-            if (control.Text == "Life Points Bar") contentView = ContentType.LifePoints_Bar;
-            if (control.Text == "Target") contentView = ContentType.Target;
-            if (control.Text == "Negated") contentView = ContentType.Negated;
-            if (control.Text == "Music") contentView = ContentType.Music;
-            if (control.Text == "SoundEffects") contentView = ContentType.Sound_Effects;
-            if (control.Text == "Field") contentView = ContentType.Field;
-            if (control.Text == "FieldTransparent") contentView = ContentType.FieldTransparent;
-            if (control.Text == "Mask") contentView = ContentType.Mask;
-            if (control.Text == "Numbers") contentView = ContentType.Numbers;
+            var control = (ComboBox)sender;
+            if (control.Text == "Covers") ContentView = ContentType.Covers;
+            if (control.Text == "Backgrounds") ContentView = ContentType.Backgrounds;
+            if (control.Text == "Attack") ContentView = ContentType.AttackIcon;
+            if (control.Text == "Activate") ContentView = ContentType.ActivateCircle;
+            if (control.Text == "Chain") ContentView = ContentType.Chain;
+            if (control.Text == "Equip") ContentView = ContentType.Equip;
+            if (control.Text == "Rock") ContentView = ContentType.Rock;
+            if (control.Text == "Paper") ContentView = ContentType.Paper;
+            if (control.Text == "Sissors") ContentView = ContentType.Scissors;
+            if (control.Text == "Life Points Color") ContentView = ContentType.LifePointsColor;
+            if (control.Text == "Life Points Bar") ContentView = ContentType.LifePointsBar;
+            if (control.Text == "Target") ContentView = ContentType.Target;
+            if (control.Text == "Negated") ContentView = ContentType.Negated;
+            if (control.Text == "Music") ContentView = ContentType.Music;
+            if (control.Text == "SoundEffects") ContentView = ContentType.SoundEffects;
+            if (control.Text == "Field") ContentView = ContentType.Field;
+            if (control.Text == "FieldTransparent") ContentView = ContentType.FieldTransparent;
+            if (control.Text == "Mask") ContentView = ContentType.Mask;
+            if (control.Text == "Numbers") ContentView = ContentType.Numbers;
 
             ChangeImageView();
             RefreshInstalledThemeItems();
@@ -252,7 +238,7 @@ namespace DevProLauncher.Windows
 
         public void SelectedTheme_Changed(object sender, EventArgs e)
         {
-            ComboBox box = (ComboBox)sender;
+            var box = (ComboBox)sender;
             SelectedTheme = box.Text;
             RefreshList();
             RefreshInstalledThemeItems();
@@ -260,11 +246,11 @@ namespace DevProLauncher.Windows
 
         public void RefreshInstalledThemeItems()
         {
-            foreach (ListViewItem item in this.ContentList.Items)
+            foreach (ListViewItem item in ContentList.Items)
             {
-                if (getThemeObject(contentView) != null)
+                if (GetThemeObject(ContentView) != null)
                 {
-                    if (item.Text == getThemeObject(contentView).Filename)
+                    if (item.Text == GetThemeObject(ContentView).Filename)
                     {
                         item.BackColor = Color.Green;
                         item.ForeColor = Color.White;
@@ -275,7 +261,7 @@ namespace DevProLauncher.Windows
 
         void AddImage(ImageList type, string path)
         {
-            string imagename = Path.GetFileNameWithoutExtension(path);
+            var imagename = Path.GetFileNameWithoutExtension(path);
             try
             {
                 type.Images.Add(imagename, Image.FromStream(new MemoryStream(File.ReadAllBytes(path))));
@@ -302,23 +288,21 @@ namespace DevProLauncher.Windows
         }
         void AddIconImage(ImageList type, string path)
         {
-            string imagename = Path.GetFileNameWithoutExtension(path);
-            Icon iconforFile = SystemIcons.WinLogo;
-
-            iconforFile = Icon.ExtractAssociatedIcon(path);
-            type.Images.Add(imagename, iconforFile);
+            var imagename = Path.GetFileNameWithoutExtension(path);
+            var iconforFile = Icon.ExtractAssociatedIcon(path);
+            type.Images.Add(imagename, iconforFile ?? SystemIcons.WinLogo);
 
         }
 
         public void InstallAsset(object sender, EventArgs args)
         {
-            ListViewItem item = this.ContentList.SelectedItems[0];
-            string itempath = Data[contentView].AssetPath + item.Text;
-            if (File.Exists(itempath + Data[contentView].FileType))
+            ListViewItem item = ContentList.SelectedItems[0];
+            string itempath = Data[ContentView].AssetPath + item.Text;
+            if (File.Exists(itempath + Data[ContentView].FileType))
             {
                 try
                 {
-                    File.Copy(Data[contentView].AssetPath + item.Text + Data[contentView].FileType, Data[contentView].GameItem, true);
+                    File.Copy(Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType, Data[ContentView].GameItem, true);
                 }
                 catch (Exception e)
                 {
@@ -344,7 +328,6 @@ namespace DevProLauncher.Windows
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
-                    return;
                 }
             }
 
@@ -357,24 +340,24 @@ namespace DevProLauncher.Windows
         public void DealteAsset(object sender, EventArgs args)
         {
 
-            ListViewItem item = this.ContentList.SelectedItems[0];
+            ListViewItem item = ContentList.SelectedItems[0];
             if (MessageBox.Show("Are you sure you want to delete " + item.Text, "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Data[contentView].Images.Images.RemoveByKey(item.Text);
-                this.ContentList.Items.Remove(item);
-                File.Delete(Data[contentView].AssetPath + item.Text + Data[contentView].FileType);
+                Data[ContentView].Images.Images.RemoveByKey(item.Text);
+                ContentList.Items.Remove(item);
+                File.Delete(Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType);
             }
 
         }
         void ApplyToTheme(object sender, EventArgs args)
         {
-            ListViewItem item = this.ContentList.SelectedItems[0];
+            ListViewItem item = ContentList.SelectedItems[0];
             if (MessageBox.Show("Apply " + item.Text + "  to current theme?  ", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 //if (ApplyTheme != null) ApplyTheme(Data[contentView].AssetPath + item.Text + Data[contentView].FileType);
                 if (SelectedTheme == "None") if (MessageBox.Show("No theme selected", "No theme") == DialogResult.OK) return;
 
-                Themes[SelectedTheme].AddItem(contentView, Data[contentView].AssetPath + item.Text + Data[contentView].FileType, item.Text);
+                _themes[SelectedTheme].AddItem(ContentView, Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType, item.Text);
                 SaveTheme(SelectedTheme);
                 RefreshList();
                 RefreshInstalledThemeItems();
@@ -383,13 +366,13 @@ namespace DevProLauncher.Windows
 
         void RemoveFromTheme(object sender, EventArgs args)
         {
-            ListViewItem item = this.ContentList.SelectedItems[0];
+            var item = ContentList.SelectedItems[0];
             if (MessageBox.Show("Remove " + item.Text + "  from current theme?  ", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 //if (ApplyTheme != null) ApplyTheme(Data[contentView].AssetPath + item.Text + Data[contentView].FileType);
                 if (SelectedTheme == "None") if (MessageBox.Show("No theme selected", "No theme") == DialogResult.OK) return;
 
-                Themes[SelectedTheme].RemoveItem(contentView);
+                _themes[SelectedTheme].RemoveItem(ContentView);
                 SaveTheme(SelectedTheme);
                 RefreshList();
                 RefreshInstalledThemeItems();
@@ -399,144 +382,143 @@ namespace DevProLauncher.Windows
         public void DealteTheme(string themename)
         {
             if (File.Exists("Assets/Themes/" + themename + ".YGOTheme")) File.Delete("Assets/Themes/" + themename + ".YGOTheme");
-            Themes.Remove(themename);
-        }
-        void AddAsset(string path)
-        {
-            AddImage(Data[contentView].Images, path);
+            _themes.Remove(themename);
         }
 
         private void OnListViewMouseUp(object sender, MouseEventArgs e)
         {
-            ListView listView = sender as ListView;
+            var listView = sender as ListView;
 
             if (e.Button == MouseButtons.Right)
             {
-                ListViewItem item = listView.GetItemAt(e.X, e.Y);
-                if (item != null)
+                if (listView != null)
                 {
-                    ContextMenuStrip mnu = new ContextMenuStrip();
-                    if (contentView != ContentType.Music && contentView != ContentType.Sound_Effects)
+                    var item = listView.GetItemAt(e.X, e.Y);
+                    if (item != null)
                     {
-                        ToolStripMenuItem mnuInstall = new ToolStripMenuItem("Install");
-                        ToolStripMenuItem mnuApplyTheme = new ToolStripMenuItem("Set to current theme");
-                        ToolStripMenuItem mnuRemoveFromTheme = new ToolStripMenuItem("Remove from current theme");
-                        ToolStripMenuItem mnuDealte = new ToolStripMenuItem("Delete");
-
-                        mnuInstall.Click += new EventHandler(InstallAsset);
-                        mnuApplyTheme.Click += new EventHandler(ApplyToTheme);
-                        mnuDealte.Click += new EventHandler(DealteAsset);
-                        mnuRemoveFromTheme.Click += new EventHandler(RemoveFromTheme);
-
-                        if (SelectedTheme == "None")
+                        var mnu = new ContextMenuStrip();
+                        if (ContentView != ContentType.Music && ContentView != ContentType.SoundEffects)
                         {
-                            mnu.Items.AddRange(new ToolStripItem[] { mnuInstall, mnuDealte });
+                            var mnuInstall = new ToolStripMenuItem("Install");
+                            var mnuApplyTheme = new ToolStripMenuItem("Set to current theme");
+                            var mnuRemoveFromTheme = new ToolStripMenuItem("Remove from current theme");
+                            var mnuDealte = new ToolStripMenuItem("Delete");
+
+                            mnuInstall.Click += InstallAsset;
+                            mnuApplyTheme.Click += ApplyToTheme;
+                            mnuDealte.Click += DealteAsset;
+                            mnuRemoveFromTheme.Click += RemoveFromTheme;
+
+                            if (SelectedTheme == "None")
+                            {
+                                mnu.Items.AddRange(new ToolStripItem[] { mnuInstall, mnuDealte });
+                            }
+                            else
+                            {
+                                if (item.BackColor != Color.Green)
+                                {
+                                    mnu.Items.AddRange(new ToolStripItem[] { mnuInstall, mnuApplyTheme, mnuDealte });
+                                }
+                            }
+
+                            if (item.BackColor == Color.Green)
+                            {
+                                mnu.Items.AddRange(new ToolStripItem[] { mnuInstall, mnuRemoveFromTheme, mnuDealte });
+                            }
                         }
                         else
                         {
-                            if (item.BackColor != Color.Green)
+                            if (ContentView == ContentType.Music)
                             {
-                                mnu.Items.AddRange(new ToolStripItem[] { mnuInstall, mnuApplyTheme, mnuDealte });
+                                var mnuplaymusic = new ToolStripMenuItem("Play");
+                                var mnumenumusic = new ToolStripMenuItem("Apply to menu music");
+                                var mnudeckmusic = new ToolStripMenuItem("Apply to deck editor music");
+                                var mnubattlemusic = new ToolStripMenuItem("Apply to battle music");
+                                var mnuadcantagemusic = new ToolStripMenuItem("Apply to advantage battle music");
+                                var mnudisadvantagemusic = new ToolStripMenuItem("Apply to disadvantage battle music");
+                                var mnuvictorymusic = new ToolStripMenuItem("Apply to Victory music");
+                                var mnulosemusic = new ToolStripMenuItem("Apply to Lose music");
+
+                                mnuplaymusic.Click += PlayMusic;
+                                mnumenumusic.Click += mnumenumusic_Click;
+                                mnudeckmusic.Click += mnudeckmusic_Click;
+                                mnubattlemusic.Click += mnubattlemusic_Click;
+                                mnuadcantagemusic.Click += mnuadcantagemusic_Click;
+                                mnudisadvantagemusic.Click += mnudisadvantagemusic_Click;
+                                mnuvictorymusic.Click += mnuvictorymusic_Click;
+                                mnulosemusic.Click += mnulosemusic_Click;
+
+                                mnu.Items.AddRange(new ToolStripItem[] { mnuplaymusic, new ToolStripSeparator(), mnumenumusic, mnudeckmusic, mnubattlemusic, mnuadcantagemusic, mnudisadvantagemusic });
                             }
                         }
-
-                        if (item.BackColor == Color.Green)
+                        if (ContentView == ContentType.SoundEffects)
                         {
-                            mnu.Items.AddRange(new ToolStripItem[] { mnuInstall, mnuRemoveFromTheme, mnuDealte });
+                            var mnuplaymusic = new ToolStripMenuItem("Play");
+
+                            mnuplaymusic.Click += PlayMusic;
+
+                            mnu.Items.AddRange(new ToolStripItem[] { mnuplaymusic, new ToolStripSeparator() });
                         }
+
+                        mnu.Show(this, e.Location);
+
                     }
                     else
                     {
-                        if (contentView == ContentType.Music)
-                        {
-                            ToolStripMenuItem mnuplaymusic = new ToolStripMenuItem("Play");
-                            ToolStripMenuItem mnumenumusic = new ToolStripMenuItem("Apply to menu music");
-                            ToolStripMenuItem mnudeckmusic = new ToolStripMenuItem("Apply to deck editor music");
-                            ToolStripMenuItem mnubattlemusic = new ToolStripMenuItem("Apply to battle music");
-                            ToolStripMenuItem mnuadcantagemusic = new ToolStripMenuItem("Apply to advantage battle music");
-                            ToolStripMenuItem mnudisadvantagemusic = new ToolStripMenuItem("Apply to disadvantage battle music");
-                            ToolStripMenuItem mnuvictorymusic = new ToolStripMenuItem("Apply to Victory music");
-                            ToolStripMenuItem mnulosemusic = new ToolStripMenuItem("Apply to Lose music");
+                        var mnu = new ContextMenuStrip();
+                        var mnuAdd = new ToolStripMenuItem("Add");
 
-                            mnuplaymusic.Click += new EventHandler(PlayMusic);
-                            mnumenumusic.Click += new EventHandler(mnumenumusic_Click);
-                            mnudeckmusic.Click += new EventHandler(mnudeckmusic_Click);
-                            mnubattlemusic.Click += new EventHandler(mnubattlemusic_Click);
-                            mnuadcantagemusic.Click += new EventHandler(mnuadcantagemusic_Click);
-                            mnudisadvantagemusic.Click += new EventHandler(mnudisadvantagemusic_Click);
-                            mnuvictorymusic.Click += new EventHandler(mnuvictorymusic_Click);
-                            mnulosemusic.Click += new EventHandler(mnulosemusic_Click);
+                        mnuAdd.Click += AddNewAsset;
 
-                            mnu.Items.AddRange(new ToolStripItem[] { mnuplaymusic, new ToolStripSeparator(), mnumenumusic, mnudeckmusic, mnubattlemusic, mnuadcantagemusic, mnudisadvantagemusic });
-                        }
+                        mnu.Items.AddRange(new ToolStripItem[] { mnuAdd });
+                        mnu.Show(this, e.Location);
                     }
-                    if (contentView == ContentType.Sound_Effects)
-                    {
-                        ToolStripMenuItem mnuplaymusic = new ToolStripMenuItem("Play");
-
-                        mnuplaymusic.Click += new EventHandler(PlayMusic);
-
-                        mnu.Items.AddRange(new ToolStripItem[] { mnuplaymusic, new ToolStripSeparator() });
-                    }
-
-                    mnu.Show(this, e.Location);
-
-                }
-                else
-                {
-                    ContextMenuStrip mnu = new ContextMenuStrip();
-                    ToolStripMenuItem mnuAdd = new ToolStripMenuItem("Add");
-
-                    mnuAdd.Click += new EventHandler(AddNewAsset);
-
-                    mnu.Items.AddRange(new ToolStripItem[] { mnuAdd });
-                    mnu.Show(this, e.Location);
                 }
             }
         }
 
         void mnumenumusic_Click(object sender, EventArgs args)
         {
-            ListViewItem item = this.ContentList.SelectedItems[0];
-            installmusic(Data[contentView].AssetPath + item.Text + Data[contentView].FileType, Data[contentView].GameItem + "menu" + Data[contentView].FileType);
+            var item = ContentList.SelectedItems[0];
+            installmusic(Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType, Data[ContentView].GameItem + "menu" + Data[ContentView].FileType);
         }
         void mnudeckmusic_Click(object sender, EventArgs args)
         {
-            ListViewItem item = this.ContentList.SelectedItems[0];
-            installmusic(Data[contentView].AssetPath + item.Text + Data[contentView].FileType, Data[contentView].GameItem + "deck" + Data[contentView].FileType);
+            var item = ContentList.SelectedItems[0];
+            installmusic(Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType, Data[ContentView].GameItem + "deck" + Data[ContentView].FileType);
         }
         void mnubattlemusic_Click(object sender, EventArgs args)
         {
-            ListViewItem item = this.ContentList.SelectedItems[0];
-            installmusic(Data[contentView].AssetPath + item.Text + Data[contentView].FileType, Data[contentView].GameItem + "song" + Data[contentView].FileType);
+            var item = ContentList.SelectedItems[0];
+            installmusic(Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType, Data[ContentView].GameItem + "song" + Data[ContentView].FileType);
         }
         void mnuadcantagemusic_Click(object sender, EventArgs args)
         {
-            ListViewItem item = this.ContentList.SelectedItems[0];
-            installmusic(Data[contentView].AssetPath + item.Text + Data[contentView].FileType, Data[contentView].GameItem + "song-advantage" + Data[contentView].FileType);
+            var item = ContentList.SelectedItems[0];
+            installmusic(Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType, Data[ContentView].GameItem + "song-advantage" + Data[ContentView].FileType);
         }
         void mnudisadvantagemusic_Click(object sender, EventArgs args)
         {
-            ListViewItem item = this.ContentList.SelectedItems[0];
-            installmusic(Data[contentView].AssetPath + item.Text + Data[contentView].FileType, Data[contentView].GameItem + "song-disadvantage" + Data[contentView].FileType);
+            var item = ContentList.SelectedItems[0];
+            installmusic(Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType, Data[ContentView].GameItem + "song-disadvantage" + Data[ContentView].FileType);
         }
         void mnuvictorymusic_Click(object sender, EventArgs args)
         {
-            ListViewItem item = this.ContentList.SelectedItems[0];
-            installmusic(Data[contentView].AssetPath + item.Text + Data[contentView].FileType, Data[contentView].GameItem + "duelwin" + Data[contentView].FileType);
+            var item = ContentList.SelectedItems[0];
+            installmusic(Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType, Data[ContentView].GameItem + "duelwin" + Data[ContentView].FileType);
         }
         void mnulosemusic_Click(object sender, EventArgs args)
         {
-            ListViewItem item = this.ContentList.SelectedItems[0];
-            installmusic(Data[contentView].AssetPath + item.Text + Data[contentView].FileType, Data[contentView].GameItem + "duellose" + Data[contentView].FileType);
+            var item = ContentList.SelectedItems[0];
+            installmusic(Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType, Data[ContentView].GameItem + "duellose" + Data[ContentView].FileType);
         }
 
         void PlayMusic(object sender, EventArgs args)
         {
-            ListViewItem item = this.ContentList.SelectedItems[0];
+            ListViewItem item = ContentList.SelectedItems[0];
             string combinepath = Path.Combine(Application.ExecutablePath, "../");
             string fullpath = Path.GetFullPath(combinepath);
-            string musicpath = Path.GetFullPath(fullpath + Data[contentView].AssetPath + item.Text + Data[contentView].FileType);
+            string musicpath = Path.GetFullPath(fullpath + Data[ContentView].AssetPath + item.Text + Data[ContentView].FileType);
             if (File.Exists(musicpath))
             {
                 MessageBox.Show("Not Implemented.");
@@ -560,7 +542,7 @@ namespace DevProLauncher.Windows
 
         public string OpenFileWindow(string title, string filefilter)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog();
+            var fileDialog = new OpenFileDialog();
 
             // Default to the directory which contains our content files.
             string assemblyLocation = Application.ExecutablePath;
@@ -584,29 +566,29 @@ namespace DevProLauncher.Windows
         public void AddNewAsset(object sender, EventArgs args)
         {
 
-            string filetoadd = OpenFileWindow("Add " + contentView.ToString(), Data[contentView].FileType.ToUpper() + "(*" + Data[contentView].FileType + ")|*" + Data[contentView].FileType + ";");
+            string filetoadd = OpenFileWindow("Add " + ContentView.ToString(), Data[ContentView].FileType.ToUpper() + "(*" + Data[ContentView].FileType + ")|*" + Data[ContentView].FileType + ";");
 
             if (filetoadd == null) return;
             try
             {
-                string filename = Path.GetFileNameWithoutExtension(filetoadd);
-                if (Data[contentView].FileType == ".png" || Data[contentView].FileType == ".jpg")
+                var filename = Path.GetFileNameWithoutExtension(filetoadd);
+                if (Data[ContentView].FileType == ".png" || Data[ContentView].FileType == ".jpg")
                 {
                     if (MessageBox.Show("Resize image to the correct size?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        ImageResizer.SaveImage(filetoadd, Data[contentView].AssetPath + filename + Data[contentView].FileType,
-                            (Data[contentView].FileType == ".png" ? ImageFormat.Png : ImageFormat.Jpeg), Data[contentView].ImageSize);
+                        ImageResizer.SaveImage(filetoadd, Data[ContentView].AssetPath + filename + Data[ContentView].FileType,
+                            (Data[ContentView].FileType == ".png" ? ImageFormat.Png : ImageFormat.Jpeg), Data[ContentView].ImageSize);
                     }
                     else
                     {
-                        File.Copy(filetoadd, Data[contentView].AssetPath + filename + Data[contentView].FileType);
+                        File.Copy(filetoadd, Data[ContentView].AssetPath + filename + Data[ContentView].FileType);
                     }
 
 
                 }
                 else
                 {
-                    File.Copy(filetoadd, Data[contentView].AssetPath + filename + Data[contentView].FileType);
+                    File.Copy(filetoadd, Data[ContentView].AssetPath + filename + Data[ContentView].FileType);
                 }
                 RefreshList();
             }
@@ -619,7 +601,7 @@ namespace DevProLauncher.Windows
             try
             {
                 string filename = Path.GetFileNameWithoutExtension(path);
-                File.Copy(path, Data[contentView].AssetPath + filename + Data[contentView].FileType);
+                File.Copy(path, Data[ContentView].AssetPath + filename + Data[ContentView].FileType);
                 RefreshList();
             }
             catch (Exception ex)
@@ -628,7 +610,7 @@ namespace DevProLauncher.Windows
 
         public void ApplyTheme(string themename)
         {
-            foreach (ThemeObject themeobject in Themes[themename].Items)
+            foreach (ThemeObject themeobject in _themes[themename].Items)
             {
                 InstallAsset(themeobject.Type, themeobject.Filepath);
             }
@@ -642,11 +624,11 @@ namespace DevProLauncher.Windows
 
         private void AddThemeBtn_Click(object sender, EventArgs e)
         {
-            Input_frm form = new Input_frm("Add Theme", "Enter theme name", "Add", "Cancel");
+            var form = new InputFrm("Add Theme", "Enter theme name", "Add", "Cancel");
            
-            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                if (Themes.ContainsKey(form.InputBox.Text))
+                if (_themes.ContainsKey(form.InputBox.Text))
                 {
                     MessageBox.Show("Theme already exsists!", "Error", MessageBoxButtons.OK);
                     return;
@@ -660,11 +642,11 @@ namespace DevProLauncher.Windows
         private void RemoveThemeBtn_Click(object sender, EventArgs e)
         {
             if (ThemeSelect.Text == "") return;
-            if (MessageBox.Show("Are you sure you want to remove " + ThemeSelect.SelectedItem.ToString(), "Remove theme", MessageBoxButtons.YesNo) 
+            if (MessageBox.Show("Are you sure you want to remove " + ThemeSelect.SelectedItem, "Remove theme", MessageBoxButtons.YesNo) 
                 == DialogResult.Yes)
             {
-                File.Delete("Assets/Themes/" + ThemeSelect.SelectedItem.ToString() + ".YGOTheme");
-                Themes.Remove(ThemeSelect.SelectedItem.ToString());
+                File.Delete("Assets/Themes/" + ThemeSelect.SelectedItem + ".YGOTheme");
+                _themes.Remove(ThemeSelect.SelectedItem.ToString());
                 ThemeSelect.Items.Remove(ThemeSelect.SelectedItem);
                 
             }
@@ -677,7 +659,7 @@ namespace DevProLauncher.Windows
 
         private void BackUpBtn_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to back up the current game Textures?", "Backup Textures", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            if (MessageBox.Show("Do you want to back up the current game Textures?", "Backup Textures", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 if (!ThemeExists("Backup Theme")) AddTheme("Backup Theme");
                 SelectedTheme = "Backup Theme";
@@ -685,13 +667,13 @@ namespace DevProLauncher.Windows
 
                 foreach (ContentType type in ItemKeys())
                 {
-                    if (type != ContentType.Music && type != ContentType.Sound_Effects)
+                    if (type != ContentType.Music && type != ContentType.SoundEffects)
                     {
                         try
                         {
-                            string GeneratedString = LauncherHelper.GenerateString();
-                            File.Copy(Data[type].GameItem, Data[type].AssetPath + GeneratedString + Data[type].FileType);
-                            AddThemeItem(type, Data[type].AssetPath + GeneratedString + Data[type].FileType, GeneratedString);
+                            var generatedString = LauncherHelper.GenerateString();
+                            File.Copy(Data[type].GameItem, Data[type].AssetPath + generatedString + Data[type].FileType);
+                            AddThemeItem(type, Data[type].AssetPath + generatedString + Data[type].FileType, generatedString);
                         }
                         catch (Exception ex)
                         {
@@ -735,7 +717,7 @@ namespace DevProLauncher.Windows
                     return;
                 }
             }
-            Items.Add(new ThemeObject() { Type = type, Filepath = filepath, Filename = filename });
+            Items.Add(new ThemeObject { Type = type, Filepath = filepath, Filename = filename });
         }
 
         public void RemoveItem(ContentType type)
@@ -750,16 +732,9 @@ namespace DevProLauncher.Windows
             }
         }
 
-        public ThemeObject getThemeObject(ContentType type)
+        public ThemeObject GetThemeObject(ContentType type)
         {
-            foreach (ThemeObject item in Items)
-            {
-                if (item.Type == type)
-                {
-                    return item;
-                }
-            }
-            return null;
+            return Items.FirstOrDefault(item => item.Type == type);
         }
     }
     [Serializable]

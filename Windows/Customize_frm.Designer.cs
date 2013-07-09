@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows
 {
-    partial class Customize_frm
+    sealed partial class CustomizeFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -229,7 +229,7 @@
             this.ClientSize = new System.Drawing.Size(802, 384);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Customize_frm";
+            this.Name = "CustomizeFrm";
             this.Text = "Customize_frm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

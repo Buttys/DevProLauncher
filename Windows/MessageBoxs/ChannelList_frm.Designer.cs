@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows.MessageBoxs
 {
-    partial class ChannelList_frm
+    partial class ChannelListFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -111,7 +111,7 @@
             this.ClientSize = new System.Drawing.Size(235, 227);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "ChannelList_frm";
+            this.Name = "ChannelListFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Channel List";
             this.tableLayoutPanel1.ResumeLayout(false);

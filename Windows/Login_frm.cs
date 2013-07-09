@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DevProLauncher.Helpers;
 using System.Diagnostics;
@@ -17,17 +12,17 @@ using DevProLauncher.Windows.MessageBoxs;
 
 namespace DevProLauncher.Windows
 {
-    public partial class Login_frm : Form
+    public sealed partial class LoginFrm : Form
     {
-        private Timer loginTimeOut = new Timer();
-        public Login_frm()
+        private readonly Timer _loginTimeOut = new Timer();
+        public LoginFrm()
         {
             InitializeComponent();
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
 
-            loginTimeOut.Interval = 3000;
+            _loginTimeOut.Interval = 3000;
             usernameInput.Text = Program.Config.DefaultUsername;
 
             if (Directory.Exists(LanguageManager.Path))
@@ -49,15 +44,15 @@ namespace DevProLauncher.Windows
                 languageSelect.SelectedIndex = 0;
             }
 
-            loginTimeOut.Tick += LoginTimeOut_Tick;
+            _loginTimeOut.Tick += LoginTimeOut_Tick;
             usernameInput.KeyDown += UsernameInput_KeyDown;
             passwordInput.KeyDown += PasswordInput_KeyDown;
 
-            if(languageSelect.SelectedItem.ToString() == "German")
-                PatchNotes.Navigate("http://ygopro.de/patches/");
-            else
-                PatchNotes.Navigate("http://ygopro.de/patches/?lang=en");
+            PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
+                                    ? "http://ygopro.de/patches/"
+                                    : "http://ygopro.de/patches/?lang=en");
             PatchNotes.Navigating += WebRedirect;
+
 
             ApplyTranslation();
         }
@@ -78,10 +73,10 @@ namespace DevProLauncher.Windows
         private void WebRedirect(object sender, CancelEventArgs e)
         {
             var webbrowser = (WebBrowser)sender;
-            if (!webbrowser.StatusText.ToString().StartsWith("http://ygopro.de"))
+            if (!webbrowser.StatusText.StartsWith("http://ygopro.de"))
             {
                 e.Cancel = true;
-                Process.Start(webbrowser.StatusText.ToString());
+                Process.Start(webbrowser.StatusText);
             }
         }
 
@@ -96,10 +91,9 @@ namespace DevProLauncher.Windows
             Program.Config.Language = languageSelect.SelectedItem.ToString();
             Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
             Program.LanguageManager.Load(languageSelect.SelectedItem.ToString());
-            if (languageSelect.SelectedItem.ToString() == "German")
-                PatchNotes.Navigate("http://ygopro.de/patches/");
-            else
-                PatchNotes.Navigate("http://ygopro.de/patches/?lang=en");
+            PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
+                                    ? "http://ygopro.de/patches/"
+                                    : "http://ygopro.de/patches/?lang=en");
             ApplyTranslation();
         }
 
@@ -113,7 +107,7 @@ namespace DevProLauncher.Windows
 
             loginBtn.Enabled = true;
             registerBtn.Enabled = true;
-            Program.ChatServer.loginReply += LoginResponse;
+            Program.ChatServer.LoginReply += LoginResponse;
         }
 
         private void LoginTimeOut_Tick(object sender, EventArgs e)
@@ -135,8 +129,8 @@ namespace DevProLauncher.Windows
             {
                 if (!IsDisposed)
                 {
-                    loginTimeOut.Enabled = false;
-                    this.Enabled = true;
+                    _loginTimeOut.Enabled = false;
+                    Enabled = true;
                     loginBtn.Enabled = true;
                 }
             }
@@ -145,7 +139,7 @@ namespace DevProLauncher.Windows
         private void loginBtn_Click(object sender, EventArgs e)
         {
             loginBtn.Enabled = false;
-            loginTimeOut.Enabled = true;
+            _loginTimeOut.Enabled = true;
             if (usernameInput.Text == "")
             {
                 MessageBox.Show(Program.LanguageManager.Translation.LoginMsb2);
@@ -157,12 +151,12 @@ namespace DevProLauncher.Windows
                 return;
             }
             Program.ChatServer.SendPacket(DevServerPackets.Login,
-            JsonSerializer.SerializeToString<LoginRequest>(
-            new LoginRequest(){ Username = usernameInput.Text, Password = LauncherHelper.EncodePassword(passwordInput.Text), UID = LauncherHelper.GetUID() }));
+            JsonSerializer.SerializeToString(
+            new LoginRequest { Username = usernameInput.Text, Password = LauncherHelper.EncodePassword(passwordInput.Text), UID = LauncherHelper.GetUID() }));
             Program.Config.Password = LauncherHelper.EncodePassword(passwordInput.Text);
         }
 
-        private void LoginResponse(DevClientPackets type, LoginData data)
+        private void LoginResponse(DevClientPackets type, UserData data)
         {
             if (type == DevClientPackets.Banned)
             {
@@ -175,7 +169,7 @@ namespace DevProLauncher.Windows
             }
             else
             {
-                Program.UserInfo = new UserData() { username = usernameInput.Text, loginKey = data.LoginKey, rank = data.UserRank};
+                Program.UserInfo = data;
                 ResetTimeOut();
                 Program.MainForm.Login();
             }
@@ -183,7 +177,7 @@ namespace DevProLauncher.Windows
 
         private void registerBtn_Click(object sender, EventArgs e)
         {
-            Register_frm form = new Register_frm();
+            var form = new RegisterFrm();
             form.ShowDialog();
         }
 

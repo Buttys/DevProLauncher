@@ -1,6 +1,6 @@
 ﻿namespace DevProLauncher.Windows
 {
-    partial class FileManager_frm
+    sealed partial class FileManagerFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -47,7 +47,7 @@
             this.ClientSize = new System.Drawing.Size(749, 387);
             this.Controls.Add(this.fileTabs);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FileManager_frm";
+            this.Name = "FileManagerFrm";
             this.Text = "FileManager_frm";
             this.ResumeLayout(false);
 
