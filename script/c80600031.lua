@@ -21,12 +21,12 @@ function c80600031.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80600031.cfilter(c,tp)
-
-	return c:IsFaceup() and c:IsControler(tp) and c:IsRace(RACE_ZOMBIE) and c:GetLevel()>4 and c:GetReason()==REASON_EFFECT
+	return c:IsFaceup() and c:IsControler(tp) and c:IsRace(RACE_ZOMBIE) and c:GetLevel()>4 
 end
 function c80600031.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
-	return eg:IsExists(c80600031.cfilter,1,nil,tp) and rc:IsRace(RACE_ZOMBIE)
+	local ex=Duel.GetOperationInfo(re,CATEGORY_SPECIAL_SUMMON)
+	return eg:IsExists(c80600031.cfilter,1,nil,tp) and rc:IsRace(RACE_ZOMBIE) and ex
 end
 function c80600031.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,80600031)==0  and Duel.CheckLPCost(tp,2000) end
