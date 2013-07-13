@@ -12,24 +12,24 @@ function c88754763.initial_effect(c)
 	e1:SetValue(1)
 	c:RegisterEffect(e1)
 	--draw
-	local e1=Effect.CreateEffect(c)
-	e1:SetCategory(CATEGORY_DRAW+CATEGORY_DAMAGE)
-	e1:SetType(EFFECT_TYPE_IGNITION)
-	e1:SetRange(LOCATION_MZONE)
-	e1:SetCountLimit(1)
-	e1:SetCondition(c88754763.condition)
-	e1:SetCost(c88754763.cost)
-	e1:SetTarget(c88754763.target)
-	e1:SetOperation(c88754763.operation)
-	c:RegisterEffect(e1)
+	local e2=Effect.CreateEffect(c)
+	e2:SetCategory(CATEGORY_DRAW+CATEGORY_DAMAGE)
+	e2:SetType(EFFECT_TYPE_IGNITION)
+	e2:SetRange(LOCATION_MZONE)
+	e2:SetCountLimit(1)
+	e2:SetCondition(c88754763.condition)
+	e2:SetCost(c88754763.cost)
+	e2:SetTarget(c88754763.target)
+	e2:SetOperation(c88754763.operation)
+	c:RegisterEffect(e2)
 end
 
-function c800000040.condition(e,tp,eg,ep,ev,re,r,rp)
+function c88754763.condition(e)
 	return e:GetHandler():GetOverlayGroup():IsExists(Card.IsType,1,nil,TYPE_XYZ)
 end
 
 function c88754763.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
+	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
 function c88754763.target(e,tp,eg,ep,ev,re,r,rp,chk)
