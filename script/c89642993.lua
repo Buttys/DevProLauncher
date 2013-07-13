@@ -17,7 +17,7 @@ function c89642993.initial_effect(c)
 	--Recover
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(89642993,1))
-	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e2:SetCategory(CATEGORY_RECOVER)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetCountLimit(1)
