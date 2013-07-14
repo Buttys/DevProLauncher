@@ -1,7 +1,7 @@
 --Number 87: Queen of the Night
 function c89516305.initial_effect(c)
   --xyz summon
-	aux.AddXyzProcedure(c,aux.XyzFilterFunction(c,1),2)
+	aux.AddXyzProcedure(c,aux.XyzFilterFunction(c,8),3)
 	c:EnableReviveLimit()
 	--actlimit
 	local e1=Effect.CreateEffect(c)
