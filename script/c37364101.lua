@@ -76,12 +76,28 @@ function c37364101.operation(e,tp,eg,ep,ev,re,r,rp)
 		c:SetCardTarget(tc)
 	end
 end
+
+function c37364101.atkfilter(c)
+	return c:GetOverlayCount()>0
+end
+
 function c37364101.atkval(e,c)
-	return c:GetOverlayCount()*600
+	local g=Duel.GetMatchingGroup(c37364101.atkfilter,tp,LOCATION_MZONE,0,nil)
+	local val = 0
+	local gc=g:GetFirst()
+	
+	while gc do
+		val = val + gc:GetOverlayCount()
+		gc=g:GetNext()
+	end
+	
+	return val*600
 end
 function c37364101.dcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler():GetEquipTarget()
-	return (Duel.GetAttackTarget()==c or Duel.GetAttacker()==c)
+	local at = Duel.GetAttackTarget()
+	local a = Duel.GetAttacker()
+	return at and a and c:IsControler(tp) and (at==c or a==c)
 end
 function c37364101.dop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeBattleDamage(1-tp,ev*2)
