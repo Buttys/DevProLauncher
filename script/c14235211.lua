@@ -10,7 +10,7 @@ function c14235211.initial_effect(c)
 	e1:SetTarget(c14235211.eqtg)
 	e1:SetOperation(c14235211.eqop)
 	c:RegisterEffect(e1)
-	--
+	--Pierce
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_EQUIP)
 	e2:SetCode(EFFECT_PIERCE)
@@ -24,7 +24,7 @@ function c14235211.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c14235211.filter(c)
-	return c:IsFaceup() and c:IsRace(RACE_DRAGON) and c:IsType(TYPE_NORMAL)
+	return c:IsFaceup() and c:IsType(TYPE_NORMAL) and c:IsRace(RACE_DRAGON)
 end
 function c14235211.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c14235211.filter(chkc) end
@@ -36,9 +36,8 @@ end
 function c14235211.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) then return end
-	if c:IsLocation(LOCATION_MZONE) and c:IsFacedown() then return end
 	local tc=Duel.GetFirstTarget()
-	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or tc:GetControler()~=tp or tc:IsFacedown() or not tc:IsRelateToEffect(e) then
+	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or tc:GetControler()~=tp or tc:IsFacedown() or not tc:IsRelateToEffect(e) or not c:CheckUniqueOnField(tp) then
 		Duel.SendtoGrave(c,REASON_EFFECT)
 		return
 	end
@@ -51,5 +50,5 @@ function c14235211.eqop(e,tp,eg,ep,ev,re,r,rp)
 	c:RegisterEffect(e1)
 end
 function c14235211.eqlimit(e,c)
-	return c:IsRace(RACE_DRAGON) and c:IsType(TYPE_NORMAL)
+	return c:IsType(TYPE_NORMAL) and c:IsRace(RACE_DRAGON)
 end

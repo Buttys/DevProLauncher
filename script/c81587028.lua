@@ -45,26 +45,17 @@ function c81587028.spop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	Duel.SpecialSummonStep(tc1,0,tp,tp,false,false,POS_FACEUP_DEFENCE)
 	Duel.SpecialSummonStep(tc2,0,tp,tp,false,false,POS_FACEUP_DEFENCE)
+	tc1:RegisterFlagEffect(81587028,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
+	tc2:RegisterFlagEffect(81587028,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
 	Duel.SpecialSummonComplete()
 	sg:KeepAlive()
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 	e1:SetCode(EVENT_PHASE+PHASE_END)
+	e1:SetReset(RESET_PHASE+PHASE_END)
 	e1:SetCountLimit(1)
 	e1:SetLabelObject(sg)
-	e1:SetCondition(c81587028.descon)
 	e1:SetOperation(c81587028.desop)
-	if Duel.GetCurrentPhase()==PHASE_END and Duel.GetTurnPlayer()==tp then
-		e1:SetLabel(1)
-		e1:SetReset(RESET_PHASE+PHASE_END+RESET_SELF_TURN,2)
-		tc1:RegisterFlagEffect(81587028,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END+RESET_SELF_TURN,0,2)
-		tc2:RegisterFlagEffect(81587028,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END+RESET_SELF_TURN,0,2)
-	else
-		e1:SetReset(RESET_PHASE+PHASE_END+RESET_SELF_TURN)
-		tc1:RegisterFlagEffect(81587028,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END+RESET_SELF_TURN,0,1)
-		tc2:RegisterFlagEffect(81587028,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END+RESET_SELF_TURN,0,1)
-	end
 	Duel.RegisterEffect(e1,tp)
 	local e2=Effect.CreateEffect(e:GetHandler())
 	e2:SetType(EFFECT_TYPE_SINGLE)
@@ -75,19 +66,13 @@ function c81587028.spop(e,tp,eg,ep,ev,re,r,rp)
 	tc1:RegisterEffect(e2,true)
 	tc2:RegisterEffect(e2,true)
 end
-function c81587028.descon(e,tp)
-	return Duel.GetTurnPlayer()==tp
-end
+
 function c81587028.desfilter(c)
 	return c:GetFlagEffect(81587028)>0
 end
 function c81587028.desop(e,tp,eg,ep,ev,re,r,rp)
-	if e:GetLabel()==0 then
-		local g=e:GetLabelObject()
-		local tg=g:Filter(c81587028.desfilter,nil)
-		g:DeleteGroup()
-		Duel.Destroy(tg,REASON_EFFECT)
-	else
-		e:SetLabel(0)
-	end
+	local g=e:GetLabelObject()
+	local tg=g:Filter(c81587028.desfilter,nil)
+	g:DeleteGroup()
+	Duel.Destroy(tg,REASON_EFFECT)
 end

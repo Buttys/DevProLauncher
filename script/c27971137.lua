@@ -62,27 +62,13 @@ function c27971137.operation(e,tp,eg,ep,ev,re,r,rp)
 		e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 		e3:SetRange(LOCATION_MZONE)
 		e3:SetCode(EVENT_PHASE+PHASE_END)
-		e3:SetCountLimit(1)
-		e3:SetCondition(c27971137.descon)
 		e3:SetOperation(c27971137.desop)
-		if Duel.GetCurrentPhase()==PHASE_END and Duel.GetTurnPlayer()==tp then
-		e3:SetLabel(1)
-		e3:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END+RESET_SELF_TURN,2)
-		else
-		e3:SetLabel(0)
-		e3:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END+RESET_SELF_TURN)
-		end
+		e3:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
+		e3:SetCountLimit(1)
 		tc:RegisterEffect(e3)
 		Duel.SpecialSummonComplete()
 	end
 end
-function c27971137.descon(e,tp)
-	return Duel.GetTurnPlayer()==tp
-end
 function c27971137.desop(e,tp,eg,ep,ev,re,r,rp)
-	if e:GetLabel()==0 then
-		Duel.Destroy(e:GetHandler(),REASON_EFFECT)
-	else 
-		e:SetLabel(0)
-	end
+	Duel.Destroy(e:GetHandler(),REASON_EFFECT)
 end
