@@ -43,7 +43,7 @@ function c80600022.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local tc=eg:GetFirst()
 	while tc do
 		if tc:IsReason(REASON_DESTROY) and tc:IsSetCard(0x88) and tc:IsRace(RACE_BEASTWARRIOR) 
-		and tc:GetControler(e:GetHandler():GetControler())
+		and tc:IsControler(e:GetHandler():GetControler())
 		then
 			return e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false)
 		end
