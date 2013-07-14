@@ -30,7 +30,7 @@ function c49202331.atcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local bc=c:GetBattleTarget()
 	return c==Duel.GetAttacker() and c:IsChainAttackable()
-		and bc:IsLocation(LOCATION_GRAVE) and bc:IsReason(REASON_BATTLE) and c:GetOverlayGroup():IsExists(Card.IsCode,1,nil,800000045)
+		and bc:IsLocation(LOCATION_GRAVE) and bc:IsReason(REASON_BATTLE) and c:GetOverlayGroup():IsExists(Card.IsCode,1,nil,3814632)
 end
 function c49202331.atcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end

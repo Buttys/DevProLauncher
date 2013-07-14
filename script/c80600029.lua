@@ -19,7 +19,7 @@ function c80600029.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80600029.condition(e,tp,eg,ep,ev,re,r,rp)
-	return rp~=tp and (r==REASON_EFFECT or r==REASON_BATTLE)
+	return rp~=tp and (e:GetHandler():IsReason(REASON_EFFECT) or e:GetHandler():IsReason(REASON_BATTLE))
 end
 function c80600029.filter(c)
 	return (
