@@ -24,7 +24,6 @@ function c80600036.initial_effect(c)
 	e4:SetProperty(EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DAMAGE_STEP)
 	e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e4:SetCode(EVENT_SUMMON_SUCCESS)
-	e4:SetCondition(c80600036.sretcon)
 	e4:SetTarget(c80600036.srettg)
 	e4:SetOperation(c80600036.sretop)
 	c:RegisterEffect(e4)
@@ -75,12 +74,11 @@ end
 function c80600036.sfilter(c)
 	return c:IsType(TYPE_SPIRIT) and not c:IsCode(80600036)
 end
-function c80600036.sretcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.IsExistingTarget(c80600036.sfilter,tp,LOCATION_HAND,0,1,nil) and Duel.IsExistingTarget(c80600036.filter,tp,0,LOCATION_ONFIELD,1,nil)
-end
 function c80600036.srettg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and chkc:IsControler(1-tp) and c80600036.filter(chkc) end
-	if chk==0 then return Duel.IsExistingTarget(c80600036.filter,tp,0,LOCATION_ONFIELD,1,nil) end
+	if chk==0 then return Duel.IsExistingTarget(c80600036.filter,tp,0,LOCATION_MZONE,1,nil) 
+		and Duel.IsExistingMatchingCard(c80600036.sfilter,tp,LOCATION_HAND,0,1,nil)
+	end
 	
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
 	local g1=Duel.GetMatchingGroup(c80600036.sfilter,tp,LOCATION_HAND,0,nil)

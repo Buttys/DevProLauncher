@@ -43,7 +43,7 @@ function c41309158.activate(e,tp,eg,ep,ev,re,r,rp)
 end
 
 function c41309158.damcon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():GetOverlayGroup():IsExists(Card.IsCode,1,nil,41309158)
+	return e:GetHandler():GetOverlayGroup():IsExists(Card.IsCode,1,nil,15914410)
 end
 function c41309158.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
