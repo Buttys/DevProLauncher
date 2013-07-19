@@ -29,7 +29,7 @@ function c41147577.efilter(e,te)
 	return te:IsActiveType(TYPE_EFFECT)
 end
 function c41147577.damcon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():GetOverlayGroup():IsExists(Card.IsCode,1,nil,800000039)
+	return e:GetHandler():GetOverlayGroup():IsExists(Card.IsCode,1,nil,14152862)
 end
 function c41147577.poscost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
