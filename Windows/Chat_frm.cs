@@ -729,6 +729,8 @@ namespace DevProLauncher.Windows
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getbanlist - Get ban list"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/roomowner - Get the creator of a channel"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/killroom - force a chat channel to close"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getuid username - Gets the UID of a username"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getuidaccounts uid - Gets the accnount names registered under the UID"));
                     }
 
                     if (Program.UserInfo.rank == 99)
