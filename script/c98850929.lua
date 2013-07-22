@@ -48,7 +48,6 @@ function c98850929.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc==0 then return true end
 	if chk==0 then return true end
 	local count=c98850929.count()
-	Debug.ShowHint(count)
 	if count>1 and 
 	( 
 		chk==1 or Duel.IsExistingTarget(c98850929.filter,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,TYPE_MONSTER)
