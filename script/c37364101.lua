@@ -81,8 +81,8 @@ function c37364101.atkfilter(c)
 	return c:GetOverlayCount()>0
 end
 
-function c37364101.atkval(e,c)
-	local g=Duel.GetMatchingGroup(c37364101.atkfilter,tp,LOCATION_MZONE,0,nil)
+function c37364101.atkval(e)
+	local g=Duel.GetMatchingGroup(c37364101.atkfilter,e:GetHandlerPlayer(),LOCATION_MZONE,0,nil)
 	local val = 0
 	local gc=g:GetFirst()
 	
