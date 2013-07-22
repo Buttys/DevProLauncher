@@ -1,4 +1,4 @@
--- 繝繧ｹ繝医Φ縺ｮ繝｢繝�繝�
+-- ダストンのモップ
 function c24845628.initial_effect(c)
 	c:SetUniqueOnField(1,0,24845628)
 	--Activate
