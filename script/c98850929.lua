@@ -1,86 +1,96 @@
 --聖蛇の息吹
 function c98850929.initial_effect(c)
-	--Activate
 	local e1=Effect.CreateEffect(c)
+	e1:SetDescription(aux.Stringid(98850929,0))
 	e1:SetCategory(CATEGORY_TOHAND)
+	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
-	e1:SetProperty(EFFECT_FLAG_TARGET)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCondition(c98850929.condition)
-	e1:SetTarget(c98850929.target)
-	e1:SetOperation(c98850929.activate)
+	e1:SetCondition(c98850929.condition1)
+	e1:SetCost(c98850929.cost)
+	e1:SetTarget(c98850929.target1)
+	e1:SetOperation(c98850929.operation)
 	c:RegisterEffect(e1)
+	local e2=Effect.CreateEffect(c)
+	e2:SetDescription(aux.Stringid(98850929,1))
+	e2:SetCategory(CATEGORY_TOHAND)
+	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e2:SetType(EFFECT_TYPE_ACTIVATE)
+	e2:SetCode(EVENT_FREE_CHAIN)
+	e2:SetCondition(c98850929.condition2)
+	e2:SetCost(c98850929.cost)
+	e2:SetTarget(c98850929.target2)
+	e2:SetOperation(c98850929.operation)
+	c:RegisterEffect(e2)
+	local e3=Effect.CreateEffect(c)
+	e3:SetDescription(aux.Stringid(98850929,2))
+	e3:SetCategory(CATEGORY_TOHAND)
+	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e3:SetType(EFFECT_TYPE_ACTIVATE)
+	e3:SetCode(EVENT_FREE_CHAIN)
+	e3:SetCondition(c98850929.condition3)
+	e3:SetCost(c98850929.cost)
+	e3:SetTarget(c98850929.target3)
+	e3:SetOperation(c98850929.operation)
+	c:RegisterEffect(e3)
 end
-
-function c98850929.count()
-	local g=Duel.GetMatchingGroup(Card.IsType,tp,LOCATION_MZONE,0,nil,TYPE_MONSTER)
-	local c=g:GetFirst()
-	local fus=0
-	local syn=0
-	local rit=0
-	local xyz=0
-	while c do
-		if c:IsType(TYPE_FUSION) then
-			fus=1
-		end
-		if c:IsType(TYPE_SYNCHRO) then
-			syn=1
-		end
-		if c:IsType(TYPE_RITUAL) then
-			rit=1
-		end
-		if c:IsType(TYPE_XYZ) then
-			xyz=1
-		end
-		c=g:GetNext()
-	end
-	return fus+syn+rit+xyz
+function c98850929.cfilter(c)
+	return c:IsFaceup() and c:IsType(TYPE_FUSION+TYPE_RITUAL+TYPE_SYNCHRO+TYPE_XYZ)
 end
-
-function c98850929.condition(e,tp,eg,ep,ev,re,r,rp)
-	return c98850929.count()>1
+function c98850929.typecast(c)
+	return bit.band(c:GetType(),TYPE_FUSION+TYPE_RITUAL+TYPE_SYNCHRO+TYPE_XYZ)
 end
-function c98850929.filter(c,t)
-	return c:IsType(t) and c:IsAbleToHand() and not c:IsCode(98850929)
+function c98850929.condition1(e,tp,eg,ep,ev,re,r,rp)
+	local g=Duel.GetMatchingGroup(c98850929.cfilter,tp,LOCATION_MZONE,0,nil)
+	return g:GetClassCount(c98850929.typecast)>=2
 end
-
-function c98850929.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc==0 then return true end
-	if chk==0 then return true end
-	local count=c98850929.count()
-	if count>1 and 
-	( 
-		chk==1 or Duel.IsExistingTarget(c98850929.filter,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,TYPE_MONSTER)
-	)
-	then
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
-		local g=Duel.SelectTarget(tp,c98850929.filter,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil,TYPE_MONSTER)
-		Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,g:GetCount(),0,0)
-	end
-	if count>2 and 
-	( 
-		chk==1 or Duel.IsExistingTarget(c98850929.filter,tp,LOCATION_GRAVE,0,1,nil,TYPE_TRAP)
-	)
-	then
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
-		local g1=Duel.SelectTarget(tp,c98850929.filter,tp,LOCATION_GRAVE,0,1,1,nil,TYPE_TRAP)
-		Duel.SetOperationInfo(0,CATEGORY_TOHAND,g1,g1:GetCount(),0,0)
-	end
-	if count==4 and 
-	( 
-		chk==1 or Duel.IsExistingTarget(c98850929.filter,tp,LOCATION_GRAVE,0,1,nil,TYPE_SPELL)
-	)
-	then
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
-		local g2=Duel.SelectTarget(tp,c98850929.filter,tp,LOCATION_GRAVE,0,1,1,nil,TYPE_SPELL)
-		Duel.SetOperationInfo(0,CATEGORY_TOHAND,g2,g2:GetCount(),0,0)
-	end
+function c98850929.cost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.GetFlagEffect(tp,98850929)==0 end
+	Duel.RegisterFlagEffect(tp,98850929,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
+	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
 end
-function c98850929.activate(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
-	local tg=g:Filter(Card.IsRelateToEffect,nil,e)
-	if tg:GetCount()>0 then
-		Duel.SendtoHand(tg,nil,REASON_EFFECT)
-		Duel.ConfirmCards(1-tp,tg)
+function c98850929.filter1(c)
+	return c:IsFaceup() and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
+end
+function c98850929.target1(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chkc then return chkc:IsLocation(LOCATION_GRAVE+LOCATION_REMOVED) and chkc:IsControler(tp) and c98850929.filter1(chkc) end
+	if chk==0 then return Duel.IsExistingTarget(c98850929.filter1,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
+	local g=Duel.SelectTarget(tp,c98850929.filter1,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil)
+	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,g:GetCount(),0,0)
+end
+function c98850929.condition2(e,tp,eg,ep,ev,re,r,rp)
+	local g=Duel.GetMatchingGroup(c98850929.cfilter,tp,LOCATION_MZONE,0,nil)
+	return g:GetClassCount(c98850929.typecast)>=3
+end
+function c98850929.filter2(c)
+	return c:IsType(TYPE_TRAP) and c:IsAbleToHand()
+end
+function c98850929.target2(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and chkc:IsControler(tp) and c98850929.filter2(chkc) end
+	if chk==0 then return Duel.IsExistingTarget(c98850929.filter2,tp,LOCATION_GRAVE,0,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
+	local g=Duel.SelectTarget(tp,c98850929.filter2,tp,LOCATION_GRAVE,0,1,1,nil)
+	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,g:GetCount(),0,0)
+end
+function c98850929.condition3(e,tp,eg,ep,ev,re,r,rp)
+	local g=Duel.GetMatchingGroup(c98850929.cfilter,tp,LOCATION_MZONE,0,nil)
+	return g:GetClassCount(c98850929.typecast)>=4
+end
+function c98850929.filter3(c)
+	return c:IsType(TYPE_SPELL) and c:GetCode()~=98850929 and c:IsAbleToHand()
+end
+function c98850929.target3(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and chkc:IsControler(tp) and c98850929.filter3(chkc) end
+	if chk==0 then return Duel.IsExistingTarget(c98850929.filter3,tp,LOCATION_GRAVE,0,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
+	local g=Duel.SelectTarget(tp,c98850929.filter3,tp,LOCATION_GRAVE,0,1,1,nil)
+	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,g:GetCount(),0,0)
+end
+function c98850929.operation(e,tp,eg,ep,ev,re,r,rp)
+	local tc=Duel.GetFirstTarget()
+	if tc and tc:IsRelateToEffect(e) then
+		Duel.SendtoHand(tc,nil,REASON_EFFECT)
+		Duel.ConfirmCards(1-tp,tc)
 	end
 end
