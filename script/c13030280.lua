@@ -32,7 +32,7 @@ function c13030280.damcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local bc=c:GetBattleTarget()
 	return c:IsRelateToBattle()	and bc:IsLocation(LOCATION_GRAVE) and bc:IsReason(REASON_BATTLE) 
-	and c:GetOverlayGroup():IsExists(Card.IsCode,1,nil,800000041)
+	and c:GetOverlayGroup():IsExists(Card.IsCode,1,nil,77631175)
 end
 function c13030280.damtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
