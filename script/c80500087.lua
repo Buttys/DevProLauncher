@@ -17,52 +17,48 @@ function c80500087.initial_effect(c)
 	e2:SetCode(EVENT_REMOVE)
 	e2:SetOperation(c80500087.regop)
 	c:RegisterEffect(e2)
+	--Special Summon
+	local e3=Effect.CreateEffect(c)
+	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
+	e3:SetCode(EVENT_PHASE+PHASE_STANDBY)
+	e3:SetRange(LOCATION_REMOVED)
+	e3:SetLabelObject(e2)
+	e3:SetCondition(c80500087.spcon)
+	e3:SetCost(c80500087.spcost)
+	e3:SetTarget(c80500087.sptg)
+	e3:SetOperation(c80500087.spop)
+	c:RegisterEffect(e3)
 end
 function c80500087.atkval(e,c)
 	return Duel.GetFieldGroupCount(c:GetControler(),0,LOCATION_REMOVED)*100
 end
 function c80500087.regop(e,tp,eg,ep,ev,re,r,rp)
-	local e1=Effect.CreateEffect(e:GetHandler())
-	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-	e1:SetCode(EVENT_PHASE+PHASE_STANDBY)
-	e1:SetCountLimit(1)
-	e1:SetLabel(Duel.GetTurnCount())
-	e1:SetCondition(c80500087.spcon1)
-	e1:SetOperation(c80500087.spop1)
-	e1:SetReset(RESET_PHASE+PHASE_END,2)
-	Duel.RegisterEffect(e1,tp)
-end
-function c80500087.spcon1(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetTurnCount()~=e:GetLabel()
-end
-function c80500087.spcon2(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():GetLocation()==LOCATION_REMOVED
-end
-function c80500087.spop1(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and c:IsCanBeSpecialSummoned(e,0,tp,false,false) then
-		local e1=Effect.CreateEffect(c)
-		e1:SetDescription(aux.Stringid(80500087,2))
-		e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
-		e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
-		e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
-		e1:SetCode(EVENT_PHASE+PHASE_STANDBY)
-		e1:SetCountLimit(1)
-		e1:SetCost(c80500087.spcost)
-		e1:SetCondition(c80500087.spcon2)
-		e1:SetOperation(c80500087.spop2)
-		e1:SetReset(RESET_PHASE+PHASE_END)
-		Duel.RegisterEffect(e1,tp)
+	if Duel.GetCurrentPhase()==PHASE_STANDBY then
+		e:SetLabel(Duel.GetTurnCount())
+		e:GetHandler():RegisterFlagEffect(80500087,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_STANDBY,0,2)
+	else
+		e:SetLabel(0)
+		e:GetHandler():RegisterFlagEffect(80500087,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_STANDBY,0,1)
 	end
 end
-function c80500087.spop2(e,tp,eg,ep,ev,re,r,rp)
-	local tc=e:GetHandler()
-	if tc then
-		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
-	end
+function c80500087.spcon(e,tp,eg,ep,ev,re,r,rp)
+	return e:GetLabelObject():GetLabel()~=Duel.GetTurnCount() and
+	e:GetHandler():GetFlagEffect(80500087)~=0 and
+	e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c80500087.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,80500087)==0 end
 	Duel.RegisterFlagEffect(tp,80500087,RESET_PHASE+PHASE_END,0,1)
+end
+function c80500087.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)
+end
+
+function c80500087.spop(e,tp,eg,ep,ev,re,r,rp)
+	local c=e:GetHandler()
+	if c:IsRelateToEffect(e) then
+		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
+	end
 end

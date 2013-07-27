@@ -17,7 +17,6 @@ function c80500084.initial_effect(c)
 	c:RegisterEffect(e2)
 	--destroy
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(43366227,0))
 	e3:SetCategory(CATEGORY_DESTROY)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
@@ -38,26 +37,30 @@ function c80500084.tgvalue(e,re,rp)
 	return rp~=e:GetHandlerPlayer()
 end
 function c80500084.target(e,c)
-	return c:IsFaceup() and c:GetAttack()<1800 and c:GetCode()~=80500084
+	return c:IsFaceup() and c:GetAttack()<1800 and c~=e:GetHandler()
 end
-function c80500084.descon(e)
-	local eg=e:GetHandler():GetEquipGroup()
+function c80500084.descon(e,tp,eg)
 	return eg and eg:IsExists(Card.IsSetCard,1,nil,0x207a)
 end
 function c80500084.descost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,80500084)==0 end
 	Duel.RegisterFlagEffect(tp,80500084,RESET_PHASE+PHASE_END,0,1)
 end
+
+function c80500084.desfilter(c)
+	return c:IsFaceup() and c:IsDestructable() 
+end
 function c80500084.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_ONFIELD) and chkc:IsDestructable() end
+	if chkc then return chkc:IsLocation(LOCATION_ONFIELD) 
+	and c80500084.desfilter(chkc) end
 	if chk==0 then return true end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local g=Duel.SelectTarget(tp,Card.IsDestructable,tp,0,LOCATION_ONFIELD,1,1,nil)
+	local g=Duel.SelectTarget(tp,c80500084.desfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,g:GetCount(),0,0)
 end
 function c80500084.desop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) then
+	if tc and tc:IsRelateToEffect(e) and tc:IsFaceup() then
 		Duel.Destroy(tc,REASON_EFFECT)
 	end
 end
