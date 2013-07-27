@@ -16,7 +16,7 @@
   <LoginMsb1>Non connecté au serveur.</LoginMsb1>
   <LoginMsb2>Veuillez entrer votre profil.</LoginMsb2>
   <LoginMsb3>Veuillez entrer votre mot de passe.</LoginMsb3>
-  <LoginBtnOffline>Mode Classic</LoginBtnOffline>
+  <LoginBtnOffline>Hors Ligne</LoginBtnOffline>
   <RegistLbUser>Profil :</RegistLbUser>
   <RegistLbPw>Mot de passe :</RegistLbPw>
   <RegistLbPw2>Confirmer-le :</RegistLbPw2>
@@ -125,10 +125,10 @@
   <profileWin>Gagné</profileWin>
   <profileLose>Perdu</profileLose>
   <profileGb1>Info Duelliste</profileGb1>
-  <profileGb2>Non classé</profileGb2>
-  <profileGb3>Classé</profileGb3>
-  <profileGb4>Stats Gagnés</profileGb4>
-  <profileGb5>Stats Perdus</profileGb5>
+  <profileGb2>Classement</profileGb2>
+  <profileGb3>Raison</profileGb3>
+  <profileGb4>Classé</profileGb4>
+  <profileGb5>Non classé</profileGb5>
   <profileLblLP>LP à 0</profileLblLP>
   <profileLblSurrendered>Abandon</profileLblSurrendered>
   <profileLbl0Cards>Plus de cartes</profileLbl0Cards>
