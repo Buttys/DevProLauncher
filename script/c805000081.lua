@@ -13,7 +13,7 @@ function c805000081.initial_effect(c)
 	e2:SetCountLimit(1)
 	e2:SetCode(EVENT_CHAINING)
 	e2:SetCondition(c805000081.condition)
---	e2:SetCost(c805000081.cost)
+	e2:SetCost(c805000081.cost)
 	e2:SetTarget(c805000081.target)
 	e2:SetOperation(c805000081.operation)
 	c:RegisterEffect(e2)
@@ -24,12 +24,12 @@ function c805000081.condition(e,tp,eg,ep,ev,re,r,rp,chk)
 		and (loc==LOCATION_SZONE or loc==LOCATION_MZONE)
 		and e:GetHandler():GetOverlayGroup():IsExists(Card.IsSetCard,1,nil,0x48)
 end
---[[
+
 function c805000081.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
-]]
+
 function c805000081.filter(c)
 	return c:IsFaceup() and not c:IsType(TYPE_NORMAL)
 end
