@@ -35,6 +35,7 @@ function c80800007.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) then
 		if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP) then
+			Duel.BreakEffect()
 			local g=Duel.GetAttacker()
 			if c:GetDefence()>g:GetAttack() then
 				Duel.Destroy(g,REASON_EFFECT)
@@ -56,7 +57,7 @@ function c80800007.efop(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetCode(EFFECT_INDESTRUCTABLE_COUNT)
 	e1:SetCountLimit(1)
 	e1:SetValue(c80800007.valcon)
-	c:RegisterEffect(e1)
+	rc:RegisterEffect(e1)
 end
 function c80800007.valcon(e,re,r,rp)
 	return bit.band(r,REASON_BATTLE)~=0

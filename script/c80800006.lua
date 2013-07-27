@@ -57,12 +57,9 @@ function c80800006.desop(e,tp,eg,ep,ev,re,r,rp)
 	local hc=e:GetLabelObject()
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	local tc=g:GetFirst()
-	if tc==hc then tc=g:GetNext() end
-	local tg=g:Filter(Card.IsRelateToEffect,nil,e)
-	if tg:GetCount()>0 and hc:IsFaceup() then
+	local tc1=g:GetNext()
+	if tc:IsRelateToEffect(e) and tc:IsFaceup() and tc1:IsRelateToEffect(e) and tc1:IsFacedown() then
 		Duel.Destroy(hc,REASON_EFFECT)
-	end
-	if tg:GetCount()>0 and tc:IsFacedown() then
 		Duel.Destroy(tc,REASON_EFFECT)
 	end
 end
