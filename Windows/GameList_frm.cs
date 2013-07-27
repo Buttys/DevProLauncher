@@ -447,22 +447,19 @@ namespace DevProLauncher.Windows
                     {
                         InputBox = {MaxLength = 4}
                     };
-                if (form.ShowDialog() == DialogResult.OK)
+                if (!item.hasStarted)
                 {
-                    if (form.InputBox.Text != item.roomName)
+                    if (form.ShowDialog() == DialogResult.OK)
                     {
-                        MessageBox.Show(Program.LanguageManager.Translation.GameWrongPassword);
-                        return;
+                        if (form.InputBox.Text != item.roomName)
+                        {
+                            MessageBox.Show(Program.LanguageManager.Translation.GameWrongPassword);
+                            return;
+                        }
                     }
+                    else
+                        return;
                 }
-                else
-                { return; }
-            }
-
-            if (item.hasStarted)
-            {
-                MessageBox.Show("Spectating games in progress is unavailable.. Please join them before they start.");
-                return;
             }
 
             LauncherHelper.GenerateConfig(Program.Server, item.GenerateURI());
