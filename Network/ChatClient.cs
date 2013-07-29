@@ -66,6 +66,7 @@ namespace DevProLauncher.Network
         public ServerResponse AddGameServer;
         public ServerResponse RemoveGameServer;
 
+
         public ChatClient()
         {
             m_lock = new object();
@@ -354,6 +355,26 @@ namespace DevProLauncher.Network
                 case DevClientPackets.TeamRequest:
                     if (TeamRequest != null)
                         TeamRequest(JsonSerializer.DeserializeFromString<PacketCommand>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                    break;
+                case DevClientPackets.GameList:
+                    if (AddRooms != null)
+                        AddRooms(JsonSerializer.DeserializeFromString<RoomInfos[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                    break;
+                case DevClientPackets.CreateRoom:
+                    if (CreateRoom != null)
+                        CreateRoom(JsonSerializer.DeserializeFromString<RoomInfos>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                    break;
+                case DevClientPackets.RemoveRoom:
+                    if (RemoveRoom != null)
+                        RemoveRoom(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
+                    break;
+                case DevClientPackets.UpdatePlayers:
+                    if (UpdateRoomPlayers != null)
+                        UpdateRoomPlayers(JsonSerializer.DeserializeFromString<PacketCommand>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                    break;
+                case DevClientPackets.RoomStart:
+                    if (UpdateRoomStatus != null)
+                        UpdateRoomStatus(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
                     break;
                 default:                
                     if (OnFatalError != null)

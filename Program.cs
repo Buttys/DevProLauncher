@@ -20,12 +20,12 @@ namespace DevProLauncher
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;
-        public static DuelServerClient DuelServer;
         public static UserData UserInfo;
         public const string ConfigurationFilename = "launcher.conf";
         public static Dictionary<string, ServerInfo> ServerList = new Dictionary<string, ServerInfo>();
         public static MainFrm MainForm;
         public static ServerInfo Server;
+        public static Random Rand = new Random();
 
         [STAThread]
         static void Main()
@@ -49,7 +49,6 @@ namespace DevProLauncher
 
             UserInfo = new UserData();
             ChatServer = new ChatClient();
-            DuelServer = new DuelServerClient();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -57,9 +56,9 @@ namespace DevProLauncher
                 return;
             CheckServerInfo();
 #if DEBUG
-            Config.ServerAddress = "86.0.24.143";
-            Config.ChatPort = 9999;
-            Config.GamePort = 6666;
+            Config.ServerAddress = "127.0.0.1";
+            Config.ChatPort = 8933;
+            //Config.GamePort = 6666;
             Server = new ServerInfo("DevPro", "86.0.24.143", 3333);
 #endif
 

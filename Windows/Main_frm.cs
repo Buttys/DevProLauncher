@@ -90,11 +90,7 @@ namespace DevProLauncher.Windows
             ConnectionCheck.Tick += CheckConnection;
             
             UpdateUsername();
-            if (Program.DuelServer.Connect(Program.Config.ServerAddress, Program.Config.GamePort))
-            {
-                Program.DuelServer.SendPacket(DevServerPackets.Login,JsonSerializer.SerializeToString(
-                    new LoginRequest { Username = Program.UserInfo.username, Password = Program.Config.Password, UID = LauncherHelper.GetUID() }));
-            }
+
             Program.ChatServer.SendPacket(DevServerPackets.UserList);
             Program.ChatServer.SendPacket(DevServerPackets.FriendList);
             Program.ChatServer.SendPacket(DevServerPackets.DevPoints);

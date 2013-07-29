@@ -74,7 +74,6 @@
     <Compile Include="Helpers\LauncherHelper.cs" />
     <Compile Include="Helpers\RegEditor.cs" />
     <Compile Include="Helpers\ReplayReader.cs" />
-    <Compile Include="Network\DuelServerClient.cs" />
     <Compile Include="Network\Data\ChannelData.cs" />
     <Compile Include="Network\Data\DuelRequest.cs" />
     <Compile Include="Network\Data\LoginData.cs" />
