@@ -26,15 +26,17 @@ namespace DevProLauncher.Windows
             Name = serverName;
             Text = serverName;
 
-
             m_rooms = new Dictionary<string, RoomInfos>();
             FilterActive.CheckedChanged += FilterGames;
             FilterTextBox.TextChanged += FilterGames;
-            Program.DuelServer.AddRooms += OnRoomsList;
-            Program.DuelServer.CreateRoom += OnRoomCreate;
-            Program.DuelServer.RemoveRoom += OnRoomRemoved;
-            Program.DuelServer.UpdateRoomStatus += OnRoomStarted;
-            Program.DuelServer.UpdateRoomPlayers += OnRoomPlayersUpdate;
+            Program.ChatServer.AddRooms += OnRoomsList;
+            Program.ChatServer.CreateRoom += OnRoomCreate;
+            Program.ChatServer.RemoveRoom += OnRoomRemoved;
+            Program.ChatServer.UpdateRoomStatus += OnRoomStarted;
+            Program.ChatServer.UpdateRoomPlayers += OnRoomPlayersUpdate;
+            Program.ChatServer.AddGameServer += AddServer;
+            Program.ChatServer.RemoveGameServer += RemoveServer;
+
             LauncherHelper.DeckEditClosed += RefreshDeckList;
             RankedList.DrawItem += GameListBox_DrawItem;
             UnrankedList.DrawItem += GameListBox_DrawItem;
@@ -47,6 +49,7 @@ namespace DevProLauncher.Windows
 
             QuickBtn.MouseUp += QuickBtn_MouseUp;
             RankedQuickBtn.MouseUp += QuickBtn_MouseUp;
+            ServerList.SelectedIndex = 0;
         }
 
         public void ApplyTranslation()
@@ -102,6 +105,34 @@ namespace DevProLauncher.Windows
         {
             Program.Config.DefaultDeck = DeckSelect.SelectedItem.ToString();
             Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
+        }
+
+        private void AddServer(string server)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<string>(AddServer), server);
+                return;
+            }
+            if (!ServerList.Items.Contains(server))
+                ServerList.Items.Add(server);
+
+        }
+
+        private void RemoveServer(string server)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<string>(RemoveServer), server);
+                return;
+            }
+
+            if (ServerList.Items.Contains(server))
+            {
+                ServerList.Items.Remove(server);
+                if(ServerList.SelectedIndex == -1)
+                    ServerList.SelectedIndex = 0;
+            }
         }
 
     
@@ -196,15 +227,25 @@ namespace DevProLauncher.Windows
             RoomInfos userinfo = RoomInfos.FromName(form.GenerateURI(isranked));
 
             var matchedRooms = (from object room in list.Items where m_rooms.ContainsKey(room.ToString()) select m_rooms[room.ToString()] into info where RoomInfos.CompareRoomInfo(userinfo, info) select info).ToList();
-
+            string server = string.Empty;
             if (matchedRooms.Count > 0)
             {
                 var selectroom = ran.Next(matchedRooms.Count);
                 form.GameName = matchedRooms[selectroom].roomName;
+                server = matchedRooms[selectroom].server;
             }
 
-            LauncherHelper.GenerateConfig(Program.Server,form.GenerateURI(isranked));
-            LauncherHelper.RunGame("-j");
+            if (string.IsNullOrEmpty(server))
+            {
+                LauncherHelper.GenerateConfig(GetServer(),form.GenerateURI(isranked));
+                LauncherHelper.RunGame("-j");
+            }
+            else
+            {
+                LauncherHelper.GenerateConfig(Program.ServerList[server],form.GenerateURI(isranked));
+                LauncherHelper.RunGame("-j");
+            }
+
         }
         private void HostBtn_Click(object sender, EventArgs e)
         {
@@ -240,9 +281,43 @@ namespace DevProLauncher.Windows
                     MessageBox.Show(Program.LanguageManager.Translation.GamePasswordExsists);
                     return;
                 }
-                LauncherHelper.GenerateConfig(Program.Server,form.GenerateURI((button.Name == "RankedHostBtn")));
+                if (Program.ServerList.Count == 0)
+                {
+                    MessageBox.Show("No Servers are Available.");
+                    return;
+                }
+
+                LauncherHelper.GenerateConfig(GetServer(), form.GenerateURI((button.Name == "RankedHostBtn")));
                 LauncherHelper.RunGame("-j");
+        }
+        }
+
+        public ServerInfo GetServer()
+        {
+            ServerInfo server;
+            if (ServerList.SelectedIndex == 0)
+            {
+                int serverselect = Program.Rand.Next(1, ServerList.Items.Count);
+
+                if (Program.ServerList.ContainsKey(ServerList.Items[serverselect].ToString()))
+                    server = Program.ServerList[ServerList.Items[serverselect].ToString()];
+                else
+                {
+                    MessageBox.Show("Server not found.");
+                    return null;
+                }
             }
+            else
+            {
+                if (Program.ServerList.ContainsKey(ServerList.SelectedItem.ToString()))
+                    server = Program.ServerList[ServerList.SelectedItem.ToString()];
+                else
+                {
+                    MessageBox.Show("Server not found.");
+                    return null;
+                }
+            }
+            return server;
         }
 
 
@@ -272,7 +347,7 @@ namespace DevProLauncher.Windows
 
         private void InternalRoomCreated(RoomInfos room)
         {
-            string roomname = room.roomName;
+            string roomname = room.GetRoomName();
             if (m_rooms.ContainsKey(roomname))
                 return;
             m_rooms.Add(roomname, room);
@@ -402,7 +477,7 @@ namespace DevProLauncher.Windows
 
         public void OnRoomCreate(RoomInfos room)
         {
-            if (!m_rooms.ContainsKey(room.roomName))
+            if (!m_rooms.ContainsKey(room.GetRoomName()))
             {
                 Invoke(new Action<RoomInfos>(InternalRoomCreated), room);
             }
@@ -462,7 +537,7 @@ namespace DevProLauncher.Windows
                 }
             }
 
-            LauncherHelper.GenerateConfig(Program.Server, item.GenerateURI());
+            LauncherHelper.GenerateConfig(Program.ServerList[item.server], item.GenerateURI());
             LauncherHelper.RunGame("-j");
         }
 

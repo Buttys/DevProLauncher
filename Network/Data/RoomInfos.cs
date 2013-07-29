@@ -164,5 +164,10 @@ namespace DevProLauncher.Network.Data
                 return false;
             }
         }
+
+        public string GetRoomName()
+        {
+            return server + "-" + roomName;
+        }
     }
 }
