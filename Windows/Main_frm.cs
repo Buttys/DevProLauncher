@@ -94,6 +94,7 @@ namespace DevProLauncher.Windows
             Program.ChatServer.SendPacket(DevServerPackets.UserList);
             Program.ChatServer.SendPacket(DevServerPackets.FriendList);
             Program.ChatServer.SendPacket(DevServerPackets.DevPoints);
+            Program.ChatServer.SendPacket(DevServerPackets.GameList);
 
         }
 
