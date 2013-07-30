@@ -23,7 +23,7 @@ function c100000027.ffilter1(c)
 	return c:IsRace(RACE_ROCK) and c:GetOwner()==Duel.GetTurnPlayer()
 end
 function c100000027.ffilter2(c)
-	return (c:GetLevel()==4 or c:GetLevel()==6) and c:GetOwner()~=Duel.GetTurnPlayer() and not c:IsType(TYPE_XYZ)
+	return (c:GetLevel()==5 or c:GetLevel()==6) and c:GetOwner()~=Duel.GetTurnPlayer() and not c:IsType(TYPE_XYZ)
 end
 function c100000027.atcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler()==Duel.GetAttacker() and e:GetHandler():IsChainAttackable()
