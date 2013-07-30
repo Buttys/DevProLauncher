@@ -1098,12 +1098,20 @@ namespace DevProLauncher.Windows
             else
             {
                 var form = new Host();
+                ServerInfo server = Program.MainForm.GetSelectedServer();
+                if (server == null)
+                {
+                    MessageBox.Show("No Server Available.");
+                    return;
+                }
+
                 Program.ChatServer.SendPacket(DevServerPackets.RequestDuel,
                     JsonSerializer.SerializeToString(
                     new DuelRequest
                         { 
                         username = list.SelectedItem.ToString(), 
-                        duelformatstring = form.GenerateGameString(false)}));
+                        duelformatstring = form.GenerateGameString(false),
+                        server = server.serverName}));
                 WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "Duel request sent to " + list.SelectedItem + "."));
             }
         }

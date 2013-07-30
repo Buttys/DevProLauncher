@@ -111,6 +111,13 @@ namespace DevProLauncher.Windows
             m_chatWindow.ApplyTranslations();
         }
 
+        public ServerInfo GetSelectedServer()
+        {
+            if(m_gameWindow != null)
+                return m_gameWindow.GetServer();
+            return null;
+        }
+
         private void CheckConnection(object sender, EventArgs e)
         {
             if (!Program.ChatServer.Connected())
