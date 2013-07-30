@@ -132,7 +132,31 @@ namespace DevProLauncher.Windows
                 ServerList.Items.Remove(server);
                 if(ServerList.SelectedIndex == -1)
                     ServerList.SelectedIndex = 0;
+                RemoveServerRooms(server);
             }
+        }
+
+        private void RemoveServerRooms(string server)
+        {
+            List<string> removerooms = new List<string>();
+
+            foreach (string room in m_rooms.Keys)
+            {
+                if (m_rooms.ContainsKey(room))
+                {
+                    if(m_rooms[room].server == server)
+                        removerooms.Add(room);
+                }
+            }
+
+            foreach (string removeroom in removerooms)
+            {
+                if (m_rooms.ContainsKey(removeroom))
+                    m_rooms.Remove(removeroom);
+            }
+
+            FilterGames(null,EventArgs.Empty);
+            UpdateServerInfo();
         }
 
     
