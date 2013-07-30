@@ -1156,8 +1156,14 @@ namespace DevProLauncher.Windows
 
         public void StartDuelRequest(DuelRequest request)
         {
-                LauncherHelper.GenerateConfig(Program.Server,request.duelformatstring);
+            ServerInfo server = null;
+            if (Program.ServerList.ContainsKey(request.server))
+                server = Program.ServerList[request.server];
+            if (server != null)
+            {
+                LauncherHelper.GenerateConfig(server, request.duelformatstring);
                 LauncherHelper.RunGame("-j");
+            }
         }
 
         public void DuelRequestRefused()
