@@ -34,11 +34,10 @@ function c80500087.atkval(e,c)
 	return Duel.GetFieldGroupCount(c:GetControler(),0,LOCATION_REMOVED)*100
 end
 function c80500087.regop(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetCurrentPhase()==PHASE_STANDBY then
-		e:SetLabel(Duel.GetTurnCount())
+	e:SetLabel(Duel.GetTurnCount())
+	if Duel.GetCurrentPhase()<=PHASE_STANDBY then
 		e:GetHandler():RegisterFlagEffect(80500087,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_STANDBY,0,2)
 	else
-		e:SetLabel(0)
 		e:GetHandler():RegisterFlagEffect(80500087,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_STANDBY,0,1)
 	end
 end

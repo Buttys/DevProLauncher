@@ -1,4 +1,5 @@
 --王家の眠る谷－ネクロバレー
+--TCG version
 function c47355498.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -80,7 +81,11 @@ function c47355498.discheck(ev,category,re,im0,im1,targets)
 	if not ex then return false end
 	if tg and tg:GetCount()>0 then
 		if targets then
-			return tg:IsExists(c47355498.disfilter1,1,nil,im0,im1,targets)
+			if targets:GetCount()==1 then
+				return targets:GetFirst()~=re:GetHandler()
+			else
+				return tg:IsExists(c47355498.disfilter1,1,nil,im0,im1,targets)
+			end 
 		else
 			return tg:IsExists(c47355498.disfilter2,1,re:GetHandler(),im0,im1)
 		end
