@@ -1,11 +1,11 @@
 --ゴーストリック・アウト
 function c50527144.initial_effect(c)
-	--Activate
+	--
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCost(c50527144.cost)
-	e1:SetOperation(c50527144.op)
+	e1:SetOperation(c50527144.activate)
 	c:RegisterEffect(e1)
 end
 function c50527144.cfilter(c)
@@ -18,9 +18,8 @@ function c50527144.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.ConfirmCards(1-tp,g)
 	Duel.ShuffleHand(tp)
 end
-function c50527144.op(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	local g=Duel.GetMatchingGroup(c50527144.indtg,tp,LOCATION_ONFIELD,0,nil)
+function c50527144.activate(e,tp,eg,ep,ev,re,r,rp)
+	local g=Duel.GetMatchingGroup(c50527144.tgfilter,tp,LOCATION_ONFIELD,0,nil)
 	local tc=g:GetFirst()
 	while tc do
 		local e1=Effect.CreateEffect(e:GetHandler())
@@ -35,7 +34,6 @@ function c50527144.op(e,tp,eg,ep,ev,re,r,rp)
 		tc=g:GetNext()
 	end
 end
-function c50527144.indtg(c)
-	return (c:IsFacedown() and c:IsLocation(LOCATION_MZONE)) 
-		or (c:IsSetCard(0x8d) and c:IsFaceup())
+function c50527144.tgfilter(c)
+	return (c:IsFaceup() and c:IsSetCard(0x8d)) or (c:IsFacedown() and c:IsLocation(LOCATION_MZONE))
 end
