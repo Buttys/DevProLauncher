@@ -82,7 +82,7 @@ function c47355498.discheck(ev,category,re,im0,im1,targets)
 	if tg and tg:GetCount()>0 then
 		if targets then
 			if targets:GetCount()==1 then
-				return targets:GetFirst()~=re:GetHandler()
+				return targets:GetFirst()~=re:GetHandler() and targets:GetFirst():GetLocation()==LOCATION_GRAVE
 			else
 				return tg:IsExists(c47355498.disfilter1,1,nil,im0,im1,targets)
 			end 
