@@ -80,7 +80,7 @@ function c83438826.desop(e,tp,eg,ep,ev,re,r,rp)
 	if not c:IsRelateToEffect(e) or not tc:IsRelateToEffect(e) or tc:IsFaceup() or  
 	not eq:IsAttackAbove(500)
 	then return end
-	local atk=eq:GetAttack()
+	
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_UPDATE_ATTACK)
