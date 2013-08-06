@@ -23,10 +23,12 @@ function c100000346.rettg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function c100000346.retop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local g=Duel.SelectMatchingCard(tp,c100000346.filter,tp,LOCATION_DECK,0,1,1,nil)
-	Duel.SendtoDeck(g,nil,1,REASON_EFFECT)
+	local g=Duel.SelectMatchingCard(tp,c100000346.filter,tp,LOCATION_HAND,0,1,1,nil)
+	if g:GetCount()>0 then
+	Duel.SendtoDeck(g,nil,1,REASON_EFFECT) 
 	local ct=g:GetFirst()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local dg=Duel.SelectMatchingCard(tp,c100000346.filter2,tp,LOCATION_DECK,0,1,1,nil,ct:GetCode())
-	Duel.SendtoDeck(dg,nil,1,REASON_EFFECT)
+	Duel.SendtoHand(dg,nil,1,REASON_EFFECT)
+	end
 end

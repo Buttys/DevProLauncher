@@ -47,19 +47,17 @@ function c80800006.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 		and Duel.IsExistingTarget(c80800006.filter2,tp,0,LOCATION_SZONE,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g1=Duel.SelectTarget(tp,c80800006.filter1,tp,0,LOCATION_MZONE,1,1,nil)
-	e:SetLabelObject(g1:GetFirst())
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g2=Duel.SelectTarget(tp,c80800006.filter2,tp,0,LOCATION_SZONE,1,1,nil)
 	g1:Merge(g2)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g1,2,0,0)
 end
 function c80800006.desop(e,tp,eg,ep,ev,re,r,rp)
-	local hc=e:GetLabelObject()
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	local tc=g:GetFirst()
 	local tc1=g:GetNext()
 	if tc:IsRelateToEffect(e) and tc:IsFaceup() and tc1:IsRelateToEffect(e) and tc1:IsFacedown() then
-		Duel.Destroy(hc,REASON_EFFECT)
 		Duel.Destroy(tc,REASON_EFFECT)
+		Duel.Destroy(tc1,REASON_EFFECT)
 	end
 end
