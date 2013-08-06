@@ -22,7 +22,7 @@ function c65743242.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local at=Duel.GetAttackTarget()
 	if chk==0 then return ag:IsExists(c65743242.filter,1,at,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
-	local g=ag:FilterSelect(tp,c65743242.filter,1,1,at,e)
+	local g=ag:FilterSelect(tp,c65743242.filter,1,1,nil,e)
 	Duel.SetTargetCard(g)
 end
 function c65743242.activate(e,tp,eg,ep,ev,re,r,rp)
