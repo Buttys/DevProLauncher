@@ -45,7 +45,7 @@ function c16943770.indcon(e)
 	return Duel.IsExistingMatchingCard(Card.IsType,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil,TYPE_TOKEN)
 end
 function c16943770.rfilter(c)
-	return c:IsSetCard(0x101b) and c:IsAbleToRemoveAsCost()
+	return c:IsSetCard(0x101b) and c:IsAbleToRemoveAsCost() and c:GetCode()~=16943770
 end
 function c16943770.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c16943770.rfilter,tp,LOCATION_GRAVE,0,1,nil) end
