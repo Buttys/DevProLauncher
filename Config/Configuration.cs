@@ -86,5 +86,9 @@ namespace DevProLauncher.Config
         public bool NewUpdate = false;
 
         public List<string> ChatChannels = new List<string>();
+
+        // DropBox Settings
+        public string AppKey = "xxvyeb0w8ndl3kz";
+        public string AppSecret = "sn6ggwgxk3zdsc6";
     }
 }
