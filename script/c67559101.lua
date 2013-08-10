@@ -1,4 +1,4 @@
---先史遺産マッドゴーレム－シャコウキ
+--先史遺産マッドゴーレム・シャコウキ
 function c67559101.initial_effect(c)
 	--pierce
 	local e1=Effect.CreateEffect(c)

@@ -17,11 +17,11 @@ function c35307484.initial_effect(c)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e2)
 end
-function c35307484.cfilter(c)
-	return c:IsFaceup() and c:IsSetCard(0x8b) and c:GetCode()~=35307484
+function c35307484.cfilter(c,tp)
+	return c:IsFaceup() and c:IsControler(tp) and c:IsSetCard(0x8b) and c:GetCode()~=35307484
 end
 function c35307484.condition(e,tp,eg,ep,ev,re,r,rp)
-	return not eg:IsContains(e:GetHandler()) and eg:IsExists(c35307484.cfilter,1,nil)
+	return not eg:IsContains(e:GetHandler()) and eg:IsExists(c35307484.cfilter,1,nil,tp)
 end
 function c35307484.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,35307484)==0 end

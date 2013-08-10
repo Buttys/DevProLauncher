@@ -1,9 +1,9 @@
---ＣＸ 熱血指導神アルティメットレーナー
+--CX 熱血指導神アルティメットレーナー
 function c88754763.initial_effect(c)
-  --xyz summon
+	--xyz summon
 	aux.AddXyzProcedure(c,aux.XyzFilterFunction(c,9),4)
 	c:EnableReviveLimit()
-	--cannot be target
+	--
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_CANNOT_BE_EFFECT_TARGET)
@@ -14,6 +14,7 @@ function c88754763.initial_effect(c)
 	--draw
 	local e2=Effect.CreateEffect(c)
 	e2:SetCategory(CATEGORY_DRAW+CATEGORY_DAMAGE)
+	e2:SetDescription(aux.Stringid(88754763,0))
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetCountLimit(1)
@@ -23,11 +24,9 @@ function c88754763.initial_effect(c)
 	e2:SetOperation(c88754763.operation)
 	c:RegisterEffect(e2)
 end
-
-function c88754763.condition(e)
+function c88754763.condition(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetOverlayGroup():IsExists(Card.IsType,1,nil,TYPE_XYZ)
 end
-
 function c88754763.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
