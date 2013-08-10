@@ -41,9 +41,6 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.loginBtn = new System.Windows.Forms.Button();
             this.registerBtn = new System.Windows.Forms.Button();
-            this.offlineBtn = new System.Windows.Forms.Button();
-            this.siteBtn = new System.Windows.Forms.Button();
-            this.aboutBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -75,8 +72,8 @@
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.96066F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.039338F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.92547F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.074534F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(881, 483);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -86,7 +83,7 @@
             this.PatchNotes.Location = new System.Drawing.Point(3, 3);
             this.PatchNotes.MinimumSize = new System.Drawing.Size(20, 20);
             this.PatchNotes.Name = "PatchNotes";
-            this.PatchNotes.Size = new System.Drawing.Size(875, 443);
+            this.PatchNotes.Size = new System.Drawing.Size(875, 438);
             this.PatchNotes.TabIndex = 1;
             // 
             // tableLayoutPanel3
@@ -106,11 +103,11 @@
             this.tableLayoutPanel3.Controls.Add(this.label3, 5, 0);
             this.tableLayoutPanel3.Controls.Add(this.languageSelect, 6, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 452);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 447);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(875, 28);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(875, 33);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // label1
@@ -119,7 +116,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(114, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 28);
+            this.label1.Size = new System.Drawing.Size(103, 33);
             this.label1.TabIndex = 0;
             this.label1.Text = "Username";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -138,7 +135,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(371, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 28);
+            this.label2.Size = new System.Drawing.Size(103, 33);
             this.label2.TabIndex = 2;
             this.label2.Text = "Password";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -158,7 +155,7 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Location = new System.Drawing.Point(628, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 28);
+            this.label3.Size = new System.Drawing.Size(110, 33);
             this.label3.TabIndex = 4;
             this.label3.Text = "Language";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -177,9 +174,6 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.loginBtn);
             this.flowLayoutPanel1.Controls.Add(this.registerBtn);
-            this.flowLayoutPanel1.Controls.Add(this.offlineBtn);
-            this.flowLayoutPanel1.Controls.Add(this.siteBtn);
-            this.flowLayoutPanel1.Controls.Add(this.aboutBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(890, 3);
@@ -208,36 +202,6 @@
             this.registerBtn.Text = "Register";
             this.registerBtn.UseVisualStyleBackColor = true;
             this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
-            // 
-            // offlineBtn
-            // 
-            this.offlineBtn.Location = new System.Drawing.Point(3, 399);
-            this.offlineBtn.Name = "offlineBtn";
-            this.offlineBtn.Size = new System.Drawing.Size(75, 23);
-            this.offlineBtn.TabIndex = 2;
-            this.offlineBtn.Text = "Offline Mode";
-            this.offlineBtn.UseVisualStyleBackColor = true;
-            this.offlineBtn.Click += new System.EventHandler(this.offlineBtn_Click);
-            // 
-            // siteBtn
-            // 
-            this.siteBtn.Location = new System.Drawing.Point(3, 370);
-            this.siteBtn.Name = "siteBtn";
-            this.siteBtn.Size = new System.Drawing.Size(75, 23);
-            this.siteBtn.TabIndex = 3;
-            this.siteBtn.Text = "Site";
-            this.siteBtn.UseVisualStyleBackColor = true;
-            this.siteBtn.Click += new System.EventHandler(this.siteBtn_Click);
-            // 
-            // aboutBtn
-            // 
-            this.aboutBtn.Location = new System.Drawing.Point(3, 341);
-            this.aboutBtn.Name = "aboutBtn";
-            this.aboutBtn.Size = new System.Drawing.Size(75, 23);
-            this.aboutBtn.TabIndex = 4;
-            this.aboutBtn.Text = "About";
-            this.aboutBtn.UseVisualStyleBackColor = true;
-            this.aboutBtn.Click += new System.EventHandler(this.aboutBtn_Click);
             // 
             // LoginFrm
             // 
@@ -271,9 +235,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.Button registerBtn;
-        private System.Windows.Forms.Button offlineBtn;
-        private System.Windows.Forms.Button siteBtn;
-        private System.Windows.Forms.Button aboutBtn;
         private System.Windows.Forms.WebBrowser PatchNotes;
     }
 }

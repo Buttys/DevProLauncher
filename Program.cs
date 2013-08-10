@@ -16,7 +16,7 @@ namespace DevProLauncher
 {
     static class Program
     {
-        public const string Version = "193800";
+        public const string Version = "194500";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;
@@ -56,7 +56,7 @@ namespace DevProLauncher
                 return;
             CheckServerInfo();
 #if DEBUG
-            Config.ServerAddress = "127.0.0.1";
+            Config.ServerAddress = "86.0.24.143";
             Config.ChatPort = 8933;
             //Config.GamePort = 6666;
             Server = new ServerInfo("DevPro", "86.0.24.143", 3333);
