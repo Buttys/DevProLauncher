@@ -4,14 +4,13 @@ using System.Threading;
 using DevProLauncher.Network.Enums;
 using DevProLauncher.Helpers;
 using System.Diagnostics;
-using ServiceStack.Text;
-using DevProLauncher.Network.Data;
+using DevProLauncher.Windows.MessageBoxs;
 
 namespace DevProLauncher.Windows
 {
     public partial class MainFrm : Form
     {
-        readonly GameListFrm m_gameWindow;
+        public readonly HubGameList_frm GameWindow;
         readonly LoginFrm m_loginWindow;
         readonly ChatFrm m_chatWindow;
         readonly SupportFrm m_devpointWindow;
@@ -33,13 +32,13 @@ namespace DevProLauncher.Windows
             mainTabs.TabPages.Add(loginTab);
 
             m_chatWindow = new ChatFrm();
-            m_gameWindow = new GameListFrm("DevPro");
+            GameWindow = new HubGameList_frm();
             m_devpointWindow = new SupportFrm();
             m_filemanagerWindow = new FileManagerFrm();
             m_customizerWindow = new CustomizeFrm();
             LauncherHelper.CardManager.Init();
 
-            var connectThread = new Thread(Loaded);
+            var connectThread = new Thread(Loaded) { IsBackground = true};
             connectThread.Start();
         }
 
@@ -67,7 +66,7 @@ namespace DevProLauncher.Windows
             mainTabs.TabPages.Remove(mainTabs.SelectedTab);
 
             var gamelistTab = new TabPage("GameList");
-            gamelistTab.Controls.Add(m_gameWindow);
+            gamelistTab.Controls.Add(GameWindow);
             mainTabs.TabPages.Add(gamelistTab);
 
             var chatTab = new TabPage("Chat (Beta v4)");
@@ -91,10 +90,11 @@ namespace DevProLauncher.Windows
             
             UpdateUsername();
 
+            ProfileBtn.Enabled = true;
+
             Program.ChatServer.SendPacket(DevServerPackets.UserList);
             Program.ChatServer.SendPacket(DevServerPackets.FriendList);
             Program.ChatServer.SendPacket(DevServerPackets.DevPoints);
-            Program.ChatServer.SendPacket(DevServerPackets.GameList);
 
         }
 
@@ -105,17 +105,10 @@ namespace DevProLauncher.Windows
 
         public void ReLoadLanguage()
         {
-            m_gameWindow.ApplyTranslation();
+            //m_gameWindow.ApplyTranslation();
             m_filemanagerWindow.ApplyTranslations();
             m_customizerWindow.ApplyTranslation();
             m_chatWindow.ApplyTranslations();
-        }
-
-        public ServerInfo GetSelectedServer()
-        {
-            if(m_gameWindow != null)
-                return m_gameWindow.GetServer();
-            return null;
         }
 
         private void CheckConnection(object sender, EventArgs e)
@@ -139,6 +132,45 @@ namespace DevProLauncher.Windows
                 }
 
             }
+        }
+
+        private void OfflineBtn_Click(object sender, EventArgs e)
+        {
+            LauncherHelper.RunGame("");
+        }
+
+        private void siteBtn_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://devpro.org");
+        }
+
+        private void aboutBtn_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://devpro.org/staff/");
+        }
+
+        private void DeckBtn_Click(object sender, EventArgs e)
+        {
+            LauncherHelper.GenerateConfig();
+            LauncherHelper.RunGame("-d");
+        }
+        private void ReplaysBtn_Click(object sender, EventArgs e)
+        {
+            LauncherHelper.GenerateConfig();
+            LauncherHelper.RunGame("-r");
+        }
+
+        private void ProfileBtn_Click(object sender, EventArgs e)
+        {
+            var profile = new ProfileFrm();
+            profile.ShowDialog();
+        }
+
+        private void OptionsBtn_Click(object sender, EventArgs e)
+        {
+            var settings = new Settings();
+            settings.ShowDialog();
+
         }
     }
 }

@@ -1098,7 +1098,7 @@ namespace DevProLauncher.Windows
             else
             {
                 var form = new Host();
-                ServerInfo server = Program.MainForm.GetSelectedServer();
+                ServerInfo server = Program.MainForm.GameWindow.GetServer();
                 if (server == null)
                 {
                     MessageBox.Show("No Server Available.");

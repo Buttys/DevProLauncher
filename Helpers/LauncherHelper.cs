@@ -230,7 +230,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine(("fullscreen = " + Convert.ToInt32(Program.Config.Fullscreen)));
             writer.WriteLine(("enable_sound = " + Convert.ToInt32(Program.Config.EnableSound)));
             writer.WriteLine(("enable_music = " + Convert.ToInt32(Program.Config.EnableMusic)));
-            writer.WriteLine("use_skin = " + Convert.ToInt32(Program.Config.UseSkin));
+            writer.WriteLine("skin_index = " + Convert.ToInt32(Program.Config.Skin));
             writer.WriteLine("auto_card_placing = " + Convert.ToInt32(Program.Config.AutoPlacing));
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
@@ -257,11 +257,42 @@ namespace DevProLauncher.Helpers
             writer.WriteLine(("fullscreen = " + Convert.ToInt32(Program.Config.Fullscreen)));
             writer.WriteLine(("enable_sound = " + Convert.ToInt32(Program.Config.EnableSound)));
             writer.WriteLine(("enable_music = " + Convert.ToInt32(Program.Config.EnableMusic)));
-            writer.WriteLine("use_skin = " + Convert.ToInt32(Program.Config.UseSkin));
+            writer.WriteLine("skin_index = " + Convert.ToInt32(Program.Config.Skin));
             writer.WriteLine("auto_card_placing = " + Convert.ToInt32(Program.Config.AutoPlacing));
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
+            writer.Close();
+        }
+        public static void GenerateConfig(bool isreplay, string file = "")
+        {
+            if ((File.Exists(Program.Config.LauncherDir + "system.CONF")))
+            {
+                File.Delete(Program.Config.LauncherDir + "system.CONF");
+            }
+            var writer = new StreamWriter(Program.Config.LauncherDir + "system.CONF");
+            writer.WriteLine("#config file");
+            writer.WriteLine("#nickname & gamename should be less than 20 characters");
+            writer.WriteLine("use_d3d = " + Convert.ToInt32(Program.Config.Enabled3D));
+            writer.WriteLine(("antialias = " + Program.Config.Antialias));
+            writer.WriteLine("errorlog = 1");
+            writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.UserInfo.loginKey));
+            writer.WriteLine(("roompass ="));
+            writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
+            writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
+            writer.WriteLine("numfont = fonts/arialbd.ttf");
+            writer.WriteLine(("fullscreen = " + Convert.ToInt32(Program.Config.Fullscreen)));
+            writer.WriteLine(("enable_sound = " + Convert.ToInt32(Program.Config.EnableSound)));
+            writer.WriteLine(("enable_music = " + Convert.ToInt32(Program.Config.EnableMusic)));
+            writer.WriteLine("skin_index = " + Convert.ToInt32(Program.Config.Skin));
+            writer.WriteLine("auto_card_placing = " + Convert.ToInt32(Program.Config.AutoPlacing));
+            writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
+            writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
+            writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
+            if (isreplay)
+                writer.WriteLine("lastreplay = " + file);
+            else
+                writer.WriteLine("lastpuzzle = " + file);
             writer.Close();
         }
 

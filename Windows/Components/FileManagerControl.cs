@@ -28,8 +28,8 @@ namespace DevProLauncher.Windows.Components
             Name = name;
             if (name == "Decks")
             {
-                    m_infoWindow = new CardInfoControl();
-                    tableLayoutPanel1.Controls.Add((CardInfoControl)m_infoWindow, 1, 0);
+               m_infoWindow = new CardInfoControl();
+               tableLayoutPanel1.Controls.Add((CardInfoControl)m_infoWindow, 1, 0);
                 
             }
             else if (name == "Replays")
@@ -40,6 +40,7 @@ namespace DevProLauncher.Windows.Components
 
             FileList.MouseUp += OnListMouseUp;
             FileList.SelectedIndexChanged +=FileList_SelectedIndexChanged;
+            FileList.DoubleClick += GameBtn_Click;
             ApplyTranslation();
         }
 
@@ -68,9 +69,9 @@ namespace DevProLauncher.Windows.Components
 
         private void GameBtn_Click(object sender, EventArgs e)
         {
-            LauncherHelper.GenerateConfig();
             if (Name == "Decks")
             {
+                LauncherHelper.GenerateConfig();
                 LauncherHelper.RunGame("-d");    
             } else
             {
@@ -91,13 +92,8 @@ namespace DevProLauncher.Windows.Components
                     MessageBox.Show("Selected file does not exist!");
                     return;
                 }
-                string tempFile = replayDir + "000000000000000000000000000000000000000000000.yrp";
-                if (File.Exists(tempFile))
-                {
-                    File.Delete(tempFile);
-                }
-                File.Copy(fileName, tempFile);
-                LauncherHelper.RunGame("-r", (evSender, evArgs) => File.Delete(tempFile));
+                LauncherHelper.GenerateConfig(true, FileList.SelectedItem + ".yrp");
+                LauncherHelper.RunGame("-r");
             }
             
         }

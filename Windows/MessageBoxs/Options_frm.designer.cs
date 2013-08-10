@@ -40,18 +40,19 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.Enabled3d = new System.Windows.Forms.CheckBox();
-            this.Fullscreen = new System.Windows.Forms.CheckBox();
-            this.EnableMusic = new System.Windows.Forms.CheckBox();
-            this.EnableSound = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.Antialias = new System.Windows.Forms.NumericUpDown();
+            this.Enabled3d = new System.Windows.Forms.CheckBox();
+            this.Fullscreen = new System.Windows.Forms.CheckBox();
+            this.SkinList = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.NoDelay = new System.Windows.Forms.CheckBox();
-            this.UseSkin = new System.Windows.Forms.CheckBox();
             this.AutoPlacing = new System.Windows.Forms.CheckBox();
             this.RandomPlacing = new System.Windows.Forms.CheckBox();
+            this.EnableMusic = new System.Windows.Forms.CheckBox();
             this.AutoChain = new System.Windows.Forms.CheckBox();
+            this.EnableSound = new System.Windows.Forms.CheckBox();
+            this.NoDelay = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -67,7 +68,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DefualtDeck = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.ForgetAutoLoginButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.OptionTabControl.SuspendLayout();
@@ -224,12 +224,12 @@
             this.tableLayoutPanel8.ColumnCount = 2;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.Enabled3d, 0, 2);
-            this.tableLayoutPanel8.Controls.Add(this.Fullscreen, 1, 2);
-            this.tableLayoutPanel8.Controls.Add(this.EnableMusic, 1, 1);
-            this.tableLayoutPanel8.Controls.Add(this.EnableSound, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.Antialias, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.Enabled3d, 0, 1);
+            this.tableLayoutPanel8.Controls.Add(this.Fullscreen, 1, 1);
+            this.tableLayoutPanel8.Controls.Add(this.SkinList, 1, 2);
+            this.tableLayoutPanel8.Controls.Add(this.label4, 0, 2);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(291, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -239,54 +239,6 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel8.Size = new System.Drawing.Size(282, 94);
             this.tableLayoutPanel8.TabIndex = 2;
-            // 
-            // Enabled3d
-            // 
-            this.Enabled3d.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Enabled3d.AutoSize = true;
-            this.Enabled3d.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Enabled3d.Location = new System.Drawing.Point(43, 63);
-            this.Enabled3d.Name = "Enabled3d";
-            this.Enabled3d.Size = new System.Drawing.Size(95, 17);
-            this.Enabled3d.TabIndex = 2;
-            this.Enabled3d.Text = "Enable Directx";
-            this.Enabled3d.UseVisualStyleBackColor = true;
-            // 
-            // Fullscreen
-            // 
-            this.Fullscreen.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Fullscreen.AutoSize = true;
-            this.Fullscreen.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Fullscreen.Location = new System.Drawing.Point(187, 63);
-            this.Fullscreen.Name = "Fullscreen";
-            this.Fullscreen.Size = new System.Drawing.Size(92, 17);
-            this.Fullscreen.TabIndex = 3;
-            this.Fullscreen.Text = "Fullscreen      ";
-            this.Fullscreen.UseVisualStyleBackColor = true;
-            // 
-            // EnableMusic
-            // 
-            this.EnableMusic.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.EnableMusic.AutoSize = true;
-            this.EnableMusic.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.EnableMusic.Location = new System.Drawing.Point(189, 29);
-            this.EnableMusic.Name = "EnableMusic";
-            this.EnableMusic.Size = new System.Drawing.Size(90, 17);
-            this.EnableMusic.TabIndex = 1;
-            this.EnableMusic.Text = "Enable Music";
-            this.EnableMusic.UseVisualStyleBackColor = true;
-            // 
-            // EnableSound
-            // 
-            this.EnableSound.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.EnableSound.AutoSize = true;
-            this.EnableSound.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.EnableSound.Location = new System.Drawing.Point(45, 29);
-            this.EnableSound.Name = "EnableSound";
-            this.EnableSound.Size = new System.Drawing.Size(93, 17);
-            this.EnableSound.TabIndex = 0;
-            this.EnableSound.Text = "Enable Sound";
-            this.EnableSound.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -313,16 +265,63 @@
             this.Antialias.TabIndex = 5;
             this.Antialias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // Enabled3d
+            // 
+            this.Enabled3d.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Enabled3d.AutoSize = true;
+            this.Enabled3d.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Enabled3d.Location = new System.Drawing.Point(43, 29);
+            this.Enabled3d.Name = "Enabled3d";
+            this.Enabled3d.Size = new System.Drawing.Size(95, 17);
+            this.Enabled3d.TabIndex = 2;
+            this.Enabled3d.Text = "Enable Directx";
+            this.Enabled3d.UseVisualStyleBackColor = true;
+            // 
+            // Fullscreen
+            // 
+            this.Fullscreen.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Fullscreen.AutoSize = true;
+            this.Fullscreen.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Fullscreen.Location = new System.Drawing.Point(187, 29);
+            this.Fullscreen.Name = "Fullscreen";
+            this.Fullscreen.Size = new System.Drawing.Size(92, 17);
+            this.Fullscreen.TabIndex = 3;
+            this.Fullscreen.Text = "Fullscreen      ";
+            this.Fullscreen.UseVisualStyleBackColor = true;
+            // 
+            // SkinList
+            // 
+            this.SkinList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.SkinList.FormattingEnabled = true;
+            this.SkinList.Items.AddRange(new object[] {
+            "Default"});
+            this.SkinList.Location = new System.Drawing.Point(144, 61);
+            this.SkinList.Name = "SkinList";
+            this.SkinList.Size = new System.Drawing.Size(135, 21);
+            this.SkinList.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(3, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(135, 44);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Skin";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 2;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Controls.Add(this.NoDelay, 0, 2);
-            this.tableLayoutPanel7.Controls.Add(this.UseSkin, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.AutoPlacing, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.RandomPlacing, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.AutoChain, 1, 1);
+            this.tableLayoutPanel7.Controls.Add(this.AutoPlacing, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.RandomPlacing, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.EnableMusic, 1, 2);
+            this.tableLayoutPanel7.Controls.Add(this.AutoChain, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.EnableSound, 0, 2);
+            this.tableLayoutPanel7.Controls.Add(this.NoDelay, 1, 1);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
@@ -333,36 +332,12 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(282, 94);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
-            // NoDelay
-            // 
-            this.NoDelay.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.NoDelay.AutoSize = true;
-            this.NoDelay.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.NoDelay.Location = new System.Drawing.Point(23, 63);
-            this.NoDelay.Name = "NoDelay";
-            this.NoDelay.Size = new System.Drawing.Size(115, 17);
-            this.NoDelay.TabIndex = 6;
-            this.NoDelay.Text = "No Delay for Chain";
-            this.NoDelay.UseVisualStyleBackColor = true;
-            // 
-            // UseSkin
-            // 
-            this.UseSkin.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.UseSkin.AutoSize = true;
-            this.UseSkin.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.UseSkin.Location = new System.Drawing.Point(31, 4);
-            this.UseSkin.Name = "UseSkin";
-            this.UseSkin.Size = new System.Drawing.Size(107, 17);
-            this.UseSkin.TabIndex = 2;
-            this.UseSkin.Text = "Use Custom Skin";
-            this.UseSkin.UseVisualStyleBackColor = true;
-            // 
             // AutoPlacing
             // 
             this.AutoPlacing.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.AutoPlacing.AutoSize = true;
             this.AutoPlacing.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.AutoPlacing.Location = new System.Drawing.Point(168, 4);
+            this.AutoPlacing.Location = new System.Drawing.Point(27, 4);
             this.AutoPlacing.Name = "AutoPlacing";
             this.AutoPlacing.Size = new System.Drawing.Size(111, 17);
             this.AutoPlacing.TabIndex = 3;
@@ -374,24 +349,60 @@
             this.RandomPlacing.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.RandomPlacing.AutoSize = true;
             this.RandomPlacing.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.RandomPlacing.Location = new System.Drawing.Point(9, 29);
+            this.RandomPlacing.Location = new System.Drawing.Point(150, 4);
             this.RandomPlacing.Name = "RandomPlacing";
             this.RandomPlacing.Size = new System.Drawing.Size(129, 17);
             this.RandomPlacing.TabIndex = 4;
             this.RandomPlacing.Text = "Random Card Placing";
             this.RandomPlacing.UseVisualStyleBackColor = true;
             // 
+            // EnableMusic
+            // 
+            this.EnableMusic.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.EnableMusic.AutoSize = true;
+            this.EnableMusic.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.EnableMusic.Location = new System.Drawing.Point(189, 63);
+            this.EnableMusic.Name = "EnableMusic";
+            this.EnableMusic.Size = new System.Drawing.Size(90, 17);
+            this.EnableMusic.TabIndex = 1;
+            this.EnableMusic.Text = "Enable Music";
+            this.EnableMusic.UseVisualStyleBackColor = true;
+            // 
             // AutoChain
             // 
             this.AutoChain.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.AutoChain.AutoSize = true;
             this.AutoChain.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.AutoChain.Location = new System.Drawing.Point(172, 29);
+            this.AutoChain.Location = new System.Drawing.Point(31, 29);
             this.AutoChain.Name = "AutoChain";
             this.AutoChain.Size = new System.Drawing.Size(107, 17);
             this.AutoChain.TabIndex = 5;
             this.AutoChain.Text = "Auto Chain Order";
             this.AutoChain.UseVisualStyleBackColor = true;
+            // 
+            // EnableSound
+            // 
+            this.EnableSound.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.EnableSound.AutoSize = true;
+            this.EnableSound.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.EnableSound.Location = new System.Drawing.Point(45, 63);
+            this.EnableSound.Name = "EnableSound";
+            this.EnableSound.Size = new System.Drawing.Size(93, 17);
+            this.EnableSound.TabIndex = 0;
+            this.EnableSound.Text = "Enable Sound";
+            this.EnableSound.UseVisualStyleBackColor = true;
+            // 
+            // NoDelay
+            // 
+            this.NoDelay.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.NoDelay.AutoSize = true;
+            this.NoDelay.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.NoDelay.Location = new System.Drawing.Point(164, 29);
+            this.NoDelay.Name = "NoDelay";
+            this.NoDelay.Size = new System.Drawing.Size(115, 17);
+            this.NoDelay.TabIndex = 6;
+            this.NoDelay.Text = "No Delay for Chain";
+            this.NoDelay.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
             // 
@@ -529,7 +540,6 @@
             this.tableLayoutPanel9.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.DefualtDeck, 1, 1);
             this.tableLayoutPanel9.Controls.Add(this.label5, 0, 1);
-            this.tableLayoutPanel9.Controls.Add(this.ForgetAutoLoginButton, 1, 2);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
@@ -577,16 +587,6 @@
             this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "Default Deck";
-            // 
-            // ForgetAutoLoginButton
-            // 
-            this.ForgetAutoLoginButton.Location = new System.Drawing.Point(139, 56);
-            this.ForgetAutoLoginButton.Name = "ForgetAutoLoginButton";
-            this.ForgetAutoLoginButton.Size = new System.Drawing.Size(130, 23);
-            this.ForgetAutoLoginButton.TabIndex = 5;
-            this.ForgetAutoLoginButton.Text = "Forget Auto Login";
-            this.ForgetAutoLoginButton.UseVisualStyleBackColor = true;
-            this.ForgetAutoLoginButton.Click += new System.EventHandler(this.ForgetAutoLoginButton_Click);
             // 
             // Settings
             // 
@@ -647,7 +647,6 @@
         private System.Windows.Forms.NumericUpDown Antialias;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.CheckBox NoDelay;
-        private System.Windows.Forms.CheckBox UseSkin;
         private System.Windows.Forms.CheckBox AutoPlacing;
         private System.Windows.Forms.CheckBox RandomPlacing;
         private System.Windows.Forms.CheckBox AutoChain;
@@ -666,7 +665,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox DefualtDeck;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button ForgetAutoLoginButton;
+        private System.Windows.Forms.ComboBox SkinList;
+        private System.Windows.Forms.Label label4;
 
 
     }
