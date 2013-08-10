@@ -44,6 +44,7 @@
             this.offlineBtn = new System.Windows.Forms.Button();
             this.siteBtn = new System.Windows.Forms.Button();
             this.aboutBtn = new System.Windows.Forms.Button();
+            this.cloudBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -180,6 +181,7 @@
             this.flowLayoutPanel1.Controls.Add(this.offlineBtn);
             this.flowLayoutPanel1.Controls.Add(this.siteBtn);
             this.flowLayoutPanel1.Controls.Add(this.aboutBtn);
+            this.flowLayoutPanel1.Controls.Add(this.cloudBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(890, 3);
@@ -239,6 +241,16 @@
             this.aboutBtn.UseVisualStyleBackColor = true;
             this.aboutBtn.Click += new System.EventHandler(this.aboutBtn_Click);
             // 
+            // cloudBtn
+            // 
+            this.cloudBtn.Location = new System.Drawing.Point(3, 312);
+            this.cloudBtn.Name = "cloudBtn";
+            this.cloudBtn.Size = new System.Drawing.Size(75, 23);
+            this.cloudBtn.TabIndex = 5;
+            this.cloudBtn.Text = "Deck Cloud";
+            this.cloudBtn.UseVisualStyleBackColor = true;
+            this.cloudBtn.Click += new System.EventHandler(this.cloudBtn_Click);
+            // 
             // LoginFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -275,5 +287,6 @@
         private System.Windows.Forms.Button siteBtn;
         private System.Windows.Forms.Button aboutBtn;
         private System.Windows.Forms.WebBrowser PatchNotes;
+        private System.Windows.Forms.Button cloudBtn;
     }
 }

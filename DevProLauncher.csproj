@@ -40,6 +40,14 @@
     <ApplicationIcon>Resources\ygo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DropNet, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\DropNet.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>.\ServiceStack.Text.dll</HintPath>
       <Private>True</Private>
@@ -64,6 +72,7 @@
     <Compile Include="Config\LanguageInfo.cs" />
     <Compile Include="Config\LanguageManager.cs" />
     <Compile Include="Config\SerializableColor.cs" />
+    <Compile Include="Controller\DropBoxController.cs" />
     <Compile Include="Helpers\CardInfo.cs" />
     <Compile Include="Helpers\CardManager.cs" />
     <Compile Include="Helpers\ChatHelper.cs" />
@@ -104,6 +113,12 @@
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBit.cs" />
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBitTree.cs" />
     <Compile Include="SevenZip\ICoder.cs" />
+    <Compile Include="Windows\Browser_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Browser_frm.Designer.cs">
+      <DependentUpon>Browser_frm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Components\CardInfoControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +155,12 @@
     </Compile>
     <Compile Include="Windows\Customize_frm.Designer.cs">
       <DependentUpon>Customize_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DropBoxSynch_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\DropBoxSynch_frm.Designer.cs">
+      <DependentUpon>DropBoxSynch_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\Enums\CommandType.cs" />
     <Compile Include="Windows\Enums\ContentType.cs" />
@@ -248,6 +269,9 @@
     <Compile Include="Windows\Support_frm.Designer.cs">
       <DependentUpon>Support_frm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Windows\Browser_frm.resx">
+      <DependentUpon>Browser_frm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Windows\Components\CardInfoControl.resx">
       <DependentUpon>CardInfoControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Customize_frm.resx">
       <DependentUpon>Customize_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\DropBoxSynch_frm.resx">
+      <DependentUpon>DropBoxSynch_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\FileManager_frm.resx">
       <DependentUpon>FileManager_frm.cs</DependentUpon>
@@ -321,6 +348,7 @@
     <EmbeddedResource Include="Windows\Support_frm.resx">
       <DependentUpon>Support_frm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -383,7 +411,10 @@
   <ItemGroup>
     <None Include="Resources\ygo.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DropNet.dll" />
+    <Content Include="RestSharp.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
