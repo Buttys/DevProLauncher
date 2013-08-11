@@ -190,5 +190,12 @@ namespace DevProLauncher.Windows
                 else
                     MessageBox.Show("Not connected to server.");
         }
+
+        private void cloudBtn_Click(object sender, EventArgs e)
+        {
+            DropBoxSynch_frm dbsfrm = new DropBoxSynch_frm();
+
+            dbsfrm.ShowDialog();
+        }
     }
 }
