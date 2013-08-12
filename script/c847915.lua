@@ -50,7 +50,7 @@ function c847915.indes(e,c)
 	return not c:IsSetCard(0x48)
 end
 function c847915.cfilter(c,tp)
-	return c:GetPreviousControler()==tp and c:IsReason(REASON_DESTROY) and c:IsSetCard(0x48) 
+	return c:GetPreviousControler()==tp and c:IsReason(REASON_DESTROY) and c:IsSetCard(0x48)
 	and c:IsType(TYPE_MONSTER)
 end
 function c847915.descon2(e,tp,eg,ep,ev,re,r,rp)
