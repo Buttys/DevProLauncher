@@ -1098,12 +1098,20 @@ namespace DevProLauncher.Windows
             else
             {
                 var form = new Host();
+                ServerInfo server = Program.MainForm.GameWindow.GetServer();
+                if (server == null)
+                {
+                    MessageBox.Show("No Server Available.");
+                    return;
+                }
+
                 Program.ChatServer.SendPacket(DevServerPackets.RequestDuel,
                     JsonSerializer.SerializeToString(
                     new DuelRequest
                         { 
                         username = list.SelectedItem.ToString(), 
-                        duelformatstring = form.GenerateGameString(false)}));
+                        duelformatstring = form.GenerateGameString(false),
+                        server = server.serverName}));
                 WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "Duel request sent to " + list.SelectedItem + "."));
             }
         }
@@ -1148,8 +1156,14 @@ namespace DevProLauncher.Windows
 
         public void StartDuelRequest(DuelRequest request)
         {
-                LauncherHelper.GenerateConfig(Program.Server,request.duelformatstring);
+            ServerInfo server = null;
+            if (Program.ServerList.ContainsKey(request.server))
+                server = Program.ServerList[request.server];
+            if (server != null)
+            {
+                LauncherHelper.GenerateConfig(server, request.duelformatstring);
                 LauncherHelper.RunGame("-j");
+            }
         }
 
         public void DuelRequestRefused()

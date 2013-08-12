@@ -20,11 +20,23 @@ namespace DevProLauncher.Windows.MessageBoxs
             Fullscreen.Checked = Program.Config.Fullscreen;
             GameFont.Text = Program.Config.GameFont;
             FontSize.Value = Program.Config.FontSize;
-            UseSkin.Checked = Program.Config.UseSkin;
             AutoPlacing.Checked = Program.Config.AutoPlacing;
             RandomPlacing.Checked = Program.Config.RandomPlacing;
             AutoChain.Checked = Program.Config.AutoChain;
             NoDelay.Checked = Program.Config.NoChainDelay;
+
+            if (Directory.Exists(Program.Config.LauncherDir + "skins/"))
+            {
+                string[] folders = Directory.GetDirectories(Path.Combine(Program.Config.LauncherDir ,"skins\\"));
+                foreach (var folder in folders)
+                    // ReSharper disable AssignNullToNotNullAttribute
+                    SkinList.Items.Add(Path.GetFileName(folder));
+                    // ReSharper restore AssignNullToNotNullAttribute
+            }            
+            
+            if(SkinList.Items.Count  > Program.Config.Skin + 1)
+                SkinList.SelectedIndex = Program.Config.Skin + 1;
+
             if (Directory.Exists(Program.Config.LauncherDir + "deck/"))
             {
                 string[] decks = Directory.GetFiles(Program.Config.LauncherDir + "deck/");
@@ -34,7 +46,6 @@ namespace DevProLauncher.Windows.MessageBoxs
 // ReSharper restore AssignNullToNotNullAttribute
             }
             DefualtDeck.Text = Program.Config.DefaultDeck;
-            UseSkin.CheckedChanged += UseSkin_CheckedChanged;
 
             ApplyTranslation();
         }
@@ -49,7 +60,6 @@ namespace DevProLauncher.Windows.MessageBoxs
                 groupBox4.Text = Program.LanguageManager.Translation.optionGb4;
                 label1.Text = Program.LanguageManager.Translation.optionUser;
                 label5.Text = Program.LanguageManager.Translation.optionDeck;
-                ForgetAutoLoginButton.Text = Program.LanguageManager.Translation.optionBtnAutoLogin;
                 label6.Text = Program.LanguageManager.Translation.optionAntialias;
                 EnableSound.Text = Program.LanguageManager.Translation.optionCbSound;
                 EnableMusic.Text = Program.LanguageManager.Translation.optionCbMusic;
@@ -60,7 +70,6 @@ namespace DevProLauncher.Windows.MessageBoxs
                 QuickSettingsBtn.Text = Program.LanguageManager.Translation.optionBtnQuick;
                 SaveBtn.Text = Program.LanguageManager.Translation.optionBtnSave;
                 CancelBtn.Text = Program.LanguageManager.Translation.optionBtnCancel;
-                UseSkin.Text = Program.LanguageManager.Translation.optionCbCustomSkin;
                 AutoPlacing.Text = Program.LanguageManager.Translation.optionCbAutoPlacing;
                 RandomPlacing.Text = Program.LanguageManager.Translation.optionCbRandomPlacing;
                 AutoChain.Text = Program.LanguageManager.Translation.optionCbAutoChain;
@@ -75,14 +84,6 @@ namespace DevProLauncher.Windows.MessageBoxs
             }
         }
 
-        private void UseSkin_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!Enabled3d.Checked)
-            {
-                Enabled3d.Checked = true;
-            }
-        }
-
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             Program.Config.DefaultDeck = DefualtDeck.Text;
@@ -94,7 +95,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             Program.Config.Fullscreen = Fullscreen.Checked;
             Program.Config.FontSize = (int)FontSize.Value;
             Program.Config.GameFont = GameFont.Text;
-            Program.Config.UseSkin = UseSkin.Checked;
+            Program.Config.Skin = SkinList.SelectedIndex == -1 ? -1: SkinList.SelectedIndex - 1;
             Program.Config.AutoPlacing = AutoPlacing.Checked;
             Program.Config.RandomPlacing = RandomPlacing.Checked;
             Program.Config.AutoChain = AutoChain.Checked;

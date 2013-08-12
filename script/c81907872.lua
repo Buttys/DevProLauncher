@@ -47,9 +47,8 @@ function c81907872.posop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c81907872.cfilter(c,tp)
-	return c:GetPreviousControler()==tp and c:IsSetCard(0x8d) and c:IsReason(REASON_DESTROY) 
+	return c:IsControler(tp) and c:IsPreviousPosition(POS_FACEUP) and c:IsSetCard(0x8d) and c:IsReason(REASON_DESTROY) and c:IsType(TYPE_MONSTER)
 		and (not c:IsReason(REASON_BATTLE) or c==Duel.GetAttackTarget())
-		and c:IsType(TYPE_MONSTER)
 end
 function c81907872.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return rp~=tp and eg:IsExists(c81907872.cfilter,1,nil,tp)

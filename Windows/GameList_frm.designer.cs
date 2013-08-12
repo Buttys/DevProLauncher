@@ -68,6 +68,9 @@ namespace DevProLauncher.Windows
             this.FilterActive = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.DeckSelect = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.ServerList = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.GameServerSelect.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -82,6 +85,7 @@ namespace DevProLauncher.Windows
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -261,6 +265,7 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.FilterActive, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(737, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -534,7 +539,7 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.94702F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 92.05298F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel4.Controls.Add(this.DeckSelect, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 240);
@@ -549,10 +554,47 @@ namespace DevProLauncher.Windows
             this.DeckSelect.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DeckSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DeckSelect.FormattingEnabled = true;
-            this.DeckSelect.Location = new System.Drawing.Point(13, 3);
+            this.DeckSelect.Location = new System.Drawing.Point(11, 3);
             this.DeckSelect.Name = "DeckSelect";
-            this.DeckSelect.Size = new System.Drawing.Size(113, 21);
+            this.DeckSelect.Size = new System.Drawing.Size(89, 21);
             this.DeckSelect.TabIndex = 14;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.ServerList, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.label6, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 167);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(163, 46);
+            this.tableLayoutPanel5.TabIndex = 13;
+            // 
+            // ServerList
+            // 
+            this.ServerList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ServerList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ServerList.FormattingEnabled = true;
+            this.ServerList.Items.AddRange(new object[] {
+            "Random"});
+            this.ServerList.Location = new System.Drawing.Point(3, 19);
+            this.ServerList.Name = "ServerList";
+            this.ServerList.Size = new System.Drawing.Size(157, 21);
+            this.ServerList.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Server List";
             // 
             // GameListFrm
             // 
@@ -578,6 +620,8 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -623,5 +667,8 @@ namespace DevProLauncher.Windows
         private DoubleBufferedListBox RankedList;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.ComboBox DeckSelect;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.ComboBox ServerList;
+        private System.Windows.Forms.Label label6;
     }
 }

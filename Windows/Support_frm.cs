@@ -29,6 +29,10 @@ namespace DevProLauncher.Windows
             //prevents the last items auto sizing
             LeftItems.Controls.Add(new Label(), 0, LeftItems.RowStyles.Count-1);
             RightItems.Controls.Add(new Label(), 0, LeftItems.RowStyles.Count - 1);
+            LeftItems.HorizontalScroll.Enabled = false;
+            LeftItems.HorizontalScroll.Visible = false;
+            RightItems.HorizontalScroll.Enabled = false;
+            RightItems.HorizontalScroll.Visible = false;
             OfferLink.Click += OfferLink_Click;
             DonateLink.Click += DonateLink_Click;
             refreshtimer.Tick += refreshtimer_Tick;

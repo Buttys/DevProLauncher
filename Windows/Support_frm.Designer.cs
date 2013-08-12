@@ -44,11 +44,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.DevPointCount = new System.Windows.Forms.Label();
+            this.refreshbtn = new System.Windows.Forms.Button();
+            this.refreshtimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.LeftItems = new System.Windows.Forms.TableLayoutPanel();
             this.RightItems = new System.Windows.Forms.TableLayoutPanel();
-            this.refreshbtn = new System.Windows.Forms.Button();
-            this.refreshtimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -67,8 +67,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 178F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -234,47 +234,6 @@
             this.DevPointCount.Text = "0";
             this.DevPointCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.LeftItems, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.RightItems, 1, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(754, 488);
-            this.tableLayoutPanel5.TabIndex = 1;
-            // 
-            // LeftItems
-            // 
-            this.LeftItems.ColumnCount = 1;
-            this.LeftItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
-            this.LeftItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LeftItems.Location = new System.Drawing.Point(3, 3);
-            this.LeftItems.Name = "LeftItems";
-            this.LeftItems.RowCount = 2;
-            this.LeftItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.LeftItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.LeftItems.Size = new System.Drawing.Size(371, 482);
-            this.LeftItems.TabIndex = 0;
-            // 
-            // RightItems
-            // 
-            this.RightItems.ColumnCount = 1;
-            this.RightItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
-            this.RightItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightItems.Location = new System.Drawing.Point(380, 3);
-            this.RightItems.Name = "RightItems";
-            this.RightItems.RowCount = 2;
-            this.RightItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.RightItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.RightItems.Size = new System.Drawing.Size(371, 482);
-            this.RightItems.TabIndex = 1;
-            // 
             // refreshbtn
             // 
             this.refreshbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -290,7 +249,52 @@
             // 
             this.refreshtimer.Interval = 2000;
             // 
-            // Support_frm
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.LeftItems, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.RightItems, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(754, 488);
+            this.tableLayoutPanel5.TabIndex = 3;
+            // 
+            // LeftItems
+            // 
+            this.LeftItems.AutoScroll = true;
+            this.LeftItems.ColumnCount = 1;
+            this.LeftItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
+            this.LeftItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LeftItems.Location = new System.Drawing.Point(3, 3);
+            this.LeftItems.Name = "LeftItems";
+            this.LeftItems.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.LeftItems.RowCount = 2;
+            this.LeftItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.LeftItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.LeftItems.Size = new System.Drawing.Size(371, 482);
+            this.LeftItems.TabIndex = 0;
+            // 
+            // RightItems
+            // 
+            this.RightItems.AutoScroll = true;
+            this.RightItems.ColumnCount = 1;
+            this.RightItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
+            this.RightItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightItems.Location = new System.Drawing.Point(380, 3);
+            this.RightItems.Name = "RightItems";
+            this.RightItems.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.RightItems.RowCount = 2;
+            this.RightItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.RightItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.RightItems.Size = new System.Drawing.Size(371, 482);
+            this.RightItems.TabIndex = 1;
+            // 
+            // SupportFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -332,10 +336,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.PictureBox OfferLink;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button refreshbtn;
+        private System.Windows.Forms.Timer refreshtimer;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel LeftItems;
         private System.Windows.Forms.TableLayoutPanel RightItems;
-        private System.Windows.Forms.Button refreshbtn;
-        private System.Windows.Forms.Timer refreshtimer;
     }
 }

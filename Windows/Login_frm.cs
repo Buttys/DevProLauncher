@@ -66,7 +66,7 @@ namespace DevProLauncher.Windows
                 label3.Text = Program.LanguageManager.Translation.LoginLanguage;
                 loginBtn.Text = Program.LanguageManager.Translation.LoginLoginButton;
                 registerBtn.Text = Program.LanguageManager.Translation.LoginRegisterButton;
-                offlineBtn.Text = Program.LanguageManager.Translation.LoginBtnOffline;
+                //offlineBtn.Text = Program.LanguageManager.Translation.LoginBtnOffline;
             }
         }
 
@@ -182,20 +182,6 @@ namespace DevProLauncher.Windows
             form.ShowDialog();
         }
 
-        private void offlineBtn_Click(object sender, EventArgs e)
-        {
-            LauncherHelper.RunGame("");
-        }
-
-        private void siteBtn_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://devpro.org");
-        }
-
-        private void aboutBtn_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://devpro.org/staff/");
-        }
         private void PasswordInput_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

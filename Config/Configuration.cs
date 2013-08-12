@@ -33,7 +33,7 @@ namespace DevProLauncher.Config
         public int FontSize = 12; //only ger
         public decimal ChatSize = 8.25m;
         public string Language = "English"; // confirm Language
-        public bool UseSkin = false;
+        public int Skin = -1;
         public bool AutoPlacing = true;
         public bool RandomPlacing = false;
         public bool AutoChain = true;

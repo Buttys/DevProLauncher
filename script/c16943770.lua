@@ -25,8 +25,8 @@ function c16943770.initial_effect(c)
 	e4:SetDescription(aux.Stringid(16943770,0))
 	e4:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOKEN)
 	e4:SetType(EFFECT_TYPE_IGNITION)
-	e4:SetCountLimit(1)
 	e4:SetRange(LOCATION_MZONE)
+	e4:SetCountLimit(1)
 	e4:SetCost(c16943770.spcost)
 	e4:SetTarget(c16943770.sptg)
 	e4:SetOperation(c16943770.spop)
@@ -44,13 +44,13 @@ end
 function c16943770.indcon(e)
 	return Duel.IsExistingMatchingCard(Card.IsType,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil,TYPE_TOKEN)
 end
-function c16943770.rfilter(c)
-	return c:IsSetCard(0x101b) and c:IsAbleToRemoveAsCost()
+function c16943770.cfilter(c)
+	return c:IsSetCard(0x101b) and not c:IsCode(16943770) and c:IsAbleToRemoveAsCost()
 end
 function c16943770.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(c16943770.rfilter,tp,LOCATION_GRAVE,0,1,nil) end
+	if chk==0 then return Duel.IsExistingMatchingCard(c16943770.cfilter,tp,LOCATION_GRAVE,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local g=Duel.SelectMatchingCard(tp,c16943770.rfilter,tp,LOCATION_GRAVE,0,1,1,nil)
+	local g=Duel.SelectMatchingCard(tp,c16943770.cfilter,tp,LOCATION_GRAVE,0,1,1,nil)
 	Duel.Remove(g,POS_FACEUP,REASON_COST)
 end
 function c16943770.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
