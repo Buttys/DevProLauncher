@@ -153,13 +153,13 @@ namespace DevProLauncher.Windows.MessageBoxs
             Program.Config.chtTimeLimit = form.TimeLimit.Text;
         }
 
-        private void ForgetAutoLoginButton_Click(object sender, EventArgs e)
+        private void ForgetPasswordButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(Program.LanguageManager.Translation.optionMsbForget, "Confirmation required", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                Program.Config.Password = "";
-                Program.Config.AutoLogin = false;
-                Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
+                Program.Config.SavedUsername = "";
+                Program.Config.SavedPassword = "";
+                Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
             }
         }
     }

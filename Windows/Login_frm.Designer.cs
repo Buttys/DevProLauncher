@@ -41,6 +41,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.loginBtn = new System.Windows.Forms.Button();
             this.registerBtn = new System.Windows.Forms.Button();
+            this.savePassCheckBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -88,20 +89,23 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 7;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 148F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 148F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 134F));
+            this.tableLayoutPanel3.ColumnCount = 9;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
             this.tableLayoutPanel3.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.usernameInput, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.label2, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.passwordInput, 4, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label3, 5, 0);
-            this.tableLayoutPanel3.Controls.Add(this.languageSelect, 6, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 7, 0);
+            this.tableLayoutPanel3.Controls.Add(this.languageSelect, 8, 0);
+            this.tableLayoutPanel3.Controls.Add(this.savePassCheckBox, 6, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 447);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -114,9 +118,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(114, 0);
+            this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 33);
+            this.label1.Size = new System.Drawing.Size(59, 33);
             this.label1.TabIndex = 0;
             this.label1.Text = "Username";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -124,18 +128,18 @@
             // usernameInput
             // 
             this.usernameInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.usernameInput.Location = new System.Drawing.Point(223, 3);
+            this.usernameInput.Location = new System.Drawing.Point(68, 3);
             this.usernameInput.Name = "usernameInput";
-            this.usernameInput.Size = new System.Drawing.Size(142, 20);
+            this.usernameInput.Size = new System.Drawing.Size(154, 20);
             this.usernameInput.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(371, 0);
+            this.label2.Location = new System.Drawing.Point(228, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 33);
+            this.label2.Size = new System.Drawing.Size(59, 33);
             this.label2.TabIndex = 2;
             this.label2.Text = "Password";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -143,9 +147,9 @@
             // passwordInput
             // 
             this.passwordInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.passwordInput.Location = new System.Drawing.Point(480, 3);
+            this.passwordInput.Location = new System.Drawing.Point(293, 3);
             this.passwordInput.Name = "passwordInput";
-            this.passwordInput.Size = new System.Drawing.Size(142, 20);
+            this.passwordInput.Size = new System.Drawing.Size(154, 20);
             this.passwordInput.TabIndex = 3;
             this.passwordInput.UseSystemPasswordChar = true;
             // 
@@ -153,9 +157,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(628, 0);
+            this.label3.Location = new System.Drawing.Point(588, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 33);
+            this.label3.Size = new System.Drawing.Size(59, 33);
             this.label3.TabIndex = 4;
             this.label3.Text = "Language";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -165,9 +169,9 @@
             this.languageSelect.Dock = System.Windows.Forms.DockStyle.Fill;
             this.languageSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.languageSelect.FormattingEnabled = true;
-            this.languageSelect.Location = new System.Drawing.Point(744, 3);
+            this.languageSelect.Location = new System.Drawing.Point(653, 3);
             this.languageSelect.Name = "languageSelect";
-            this.languageSelect.Size = new System.Drawing.Size(128, 21);
+            this.languageSelect.Size = new System.Drawing.Size(219, 21);
             this.languageSelect.TabIndex = 5;
             // 
             // flowLayoutPanel1
@@ -203,6 +207,16 @@
             this.registerBtn.UseVisualStyleBackColor = true;
             this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
             // 
+            // savePassCheckBox
+            // 
+            this.savePassCheckBox.AutoSize = true;
+            this.savePassCheckBox.Location = new System.Drawing.Point(473, 3);
+            this.savePassCheckBox.Name = "savePassCheckBox";
+            this.savePassCheckBox.Size = new System.Drawing.Size(105, 17);
+            this.savePassCheckBox.TabIndex = 6;
+            this.savePassCheckBox.Text = "Save password?";
+            this.savePassCheckBox.UseVisualStyleBackColor = true;
+            // 
             // LoginFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,5 +250,6 @@
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.Button registerBtn;
         private System.Windows.Forms.WebBrowser PatchNotes;
+        private System.Windows.Forms.CheckBox savePassCheckBox;
     }
 }

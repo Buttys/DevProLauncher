@@ -28,6 +28,8 @@ namespace DevProLauncher.Config
         public bool AutoLogin = false;
         public bool Fullscreen = false;
         public string Password = "";
+        public string SavedPassword = "";
+        public string SavedUsername = "";
         public string GameFont = "simhei.ttf"; //only ger
         public string ChatFont = "";
         public int FontSize = 12; //only ger
