@@ -66,7 +66,6 @@ namespace DevProLauncher.Windows
                 label3.Text = Program.LanguageManager.Translation.LoginLanguage;
                 loginBtn.Text = Program.LanguageManager.Translation.LoginLoginButton;
                 registerBtn.Text = Program.LanguageManager.Translation.LoginRegisterButton;
-                //offlineBtn.Text = Program.LanguageManager.Translation.LoginBtnOffline;
             }
         }
 

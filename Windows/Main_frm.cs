@@ -105,7 +105,7 @@ namespace DevProLauncher.Windows
 
         public void ReLoadLanguage()
         {
-            //m_gameWindow.ApplyTranslation();
+            GameWindow.ApplyTranslation();
             m_filemanagerWindow.ApplyTranslations();
             m_customizerWindow.ApplyTranslation();
             m_chatWindow.ApplyTranslations();

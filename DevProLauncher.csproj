@@ -197,12 +197,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Windows\GameList_frm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Windows\GameList_frm.designer.cs">
-      <DependentUpon>GameList_frm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Windows\MessageBoxs\ChannelList_frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -318,9 +312,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Windows\GameList_frm.resx">
-      <DependentUpon>GameList_frm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Windows\MessageBoxs\ChannelList_frm.resx">
       <DependentUpon>ChannelList_frm.cs</DependentUpon>
     </EmbeddedResource>

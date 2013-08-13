@@ -175,7 +175,6 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.loginBtn);
             this.flowLayoutPanel1.Controls.Add(this.registerBtn);
-
             this.flowLayoutPanel1.Controls.Add(this.cloudBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
@@ -208,7 +207,7 @@
             // 
             // cloudBtn
             // 
-            this.cloudBtn.Location = new System.Drawing.Point(3, 312);
+            this.cloudBtn.Location = new System.Drawing.Point(3, 399);
             this.cloudBtn.Name = "cloudBtn";
             this.cloudBtn.Size = new System.Drawing.Size(75, 23);
             this.cloudBtn.TabIndex = 5;
