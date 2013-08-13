@@ -55,6 +55,9 @@ namespace DevProLauncher.Windows
 
 
             ApplyTranslation();
+
+            passwordInput.Text = Program.Config.SavedPassword;
+            usernameInput.Text = Program.Config.SavedUsername;
         }
 
         public void ApplyTranslation()
@@ -150,6 +153,12 @@ namespace DevProLauncher.Windows
             {
                 MessageBox.Show(Program.LanguageManager.Translation.LoginMsb3);
                 return;
+            }
+            if (savePassCheckBox.Checked)
+            {
+                Program.Config.SavedUsername = usernameInput.Text;
+                Program.Config.SavedPassword = passwordInput.Text;
+                Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
             }
             Program.ChatServer.SendPacket(DevServerPackets.Login,
             JsonSerializer.SerializeToString(
