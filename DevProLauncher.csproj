@@ -87,7 +87,6 @@
     <Compile Include="Network\Data\DuelRequest.cs" />
     <Compile Include="Network\Data\LoginData.cs" />
     <Compile Include="Network\Data\LoginRequest.cs" />
-    <Compile Include="Network\Data\LogoutData.cs" />
     <Compile Include="Network\Data\PacketCommand.cs" />
     <Compile Include="Network\Data\RoomInfos.cs" />
     <Compile Include="Network\Data\SearchRequest.cs" />

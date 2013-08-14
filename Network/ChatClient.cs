@@ -30,7 +30,6 @@ namespace DevProLauncher.Network
         public delegate void ServerDisconnected();        
         public delegate void UserInfo(UserData user);
         public delegate void UserList(UserData[] users);
-        public delegate void Logout(LogoutData user);
         public delegate void ServerMessage(ChatMessage message);
         public delegate void UserDuelRequest(DuelRequest data);
         public delegate void DuelRequestRefused();
@@ -53,7 +52,7 @@ namespace DevProLauncher.Network
         public Command DevPointMsg;
         public UserInfo AddUser;
         public UserList AddUsers;
-        public Logout RemoveUser;
+        public ServerResponse RemoveUser;
         public StringList FriendList;
         public ServerResponse JoinChannel;
         public ServerMessage Message;
@@ -278,7 +277,7 @@ namespace DevProLauncher.Network
                     break;
                 case DevClientPackets.RemoveUser:                
                     if (RemoveUser != null)
-                        RemoveUser(JsonSerializer.DeserializeFromString<LogoutData>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                        RemoveUser(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
                     break;
                 case DevClientPackets.UserList:                
                     if (AddUsers != null)

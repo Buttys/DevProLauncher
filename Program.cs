@@ -48,7 +48,6 @@ namespace DevProLauncher
                 if (MessageBox.Show(LanguageManager.Translation.pmsbProgRun) == DialogResult.OK)
                     return;
 
-            UserInfo = new UserData();
             ChatServer = new ChatClient();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
