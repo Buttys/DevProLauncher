@@ -185,7 +185,6 @@
             // 
             // loginBtn
             // 
-            this.loginBtn.Enabled = false;
             this.loginBtn.Location = new System.Drawing.Point(3, 457);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(75, 23);
@@ -196,7 +195,6 @@
             // 
             // registerBtn
             // 
-            this.registerBtn.Enabled = false;
             this.registerBtn.Location = new System.Drawing.Point(3, 428);
             this.registerBtn.Name = "registerBtn";
             this.registerBtn.Size = new System.Drawing.Size(75, 23);

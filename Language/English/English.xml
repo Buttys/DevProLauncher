@@ -16,7 +16,6 @@
   <LoginMsb1>Not connected to the server.</LoginMsb1>
   <LoginMsb2>Please enter username.</LoginMsb2>
   <LoginMsb3>Please enter password.</LoginMsb3>
-  <LoginBtnOffline>Offline Mode</LoginBtnOffline>
   <RegistLbUser>Username</RegistLbUser>
   <RegistLbPw>Password</RegistLbPw>
   <RegistLbPw2>Confirm Password</RegistLbPw2>
@@ -28,34 +27,24 @@
   <RegistMsb4>Registering Complete!</RegistMsb4>
   <RegistMsb5>Username Exists</RegistMsb5>
   <RegistMsb6>Username cannot contain special characters</RegistMsb6>
-  <GameServerInfo>Server Details</GameServerInfo>
-  <GameTabRanked>Ranked</GameTabRanked>
-  <GameTabUnranked>Unranked</GameTabUnranked>
-  <GameofRooms>of Rooms</GameofRooms>
-  <GameofUnranked>of Unranked</GameofUnranked>
-  <GameofRanked>of Ranked</GameofRanked>
-  <GameofOpenRooms>of Open Rooms</GameofOpenRooms>
-  <GameofPlayers>of Players</GameofPlayers>
-  <GameFilterActive>Filter Active Games</GameFilterActive>
-  <GameColumnRoomName>Room Name</GameColumnRoomName>
-  <GameColumnType>Type</GameColumnType>
-  <GameColumnRules>Rules</GameColumnRules>
-  <GameColumnMode>Mode</GameColumnMode>
-  <GameColumnState>State</GameColumnState>
-  <GameColumnPlayers>Players</GameColumnPlayers>
-  <GameColumnBanList>Banlist</GameColumnBanList>
-  <GameColumnTimer>Timer</GameColumnTimer>
-  <GameBtnDeck>Deck Edit</GameBtnDeck>
-  <GameBtnReplay>Replays</GameBtnReplay>
-  <GameBtnOption>Options</GameBtnOption>
-  <GameBtnProfile>Profile</GameBtnProfile>
+  <GameRanked>Ranked</GameRanked>
+  <GameUnranked>Unranked</GameUnranked>
+  <GameDefualtDeck>Default Deck</GameDefualtDeck>
+  <GameSearch>Search</GameSearch>
+  <GameFormat>Format</GameFormat>
+  <GameType>Game Type</GameType>
+  <GameBanList>Banlist</GameBanList>
+  <GameTimeLimit>Time Limit</GameTimeLimit>
+  <GameActive>Active Games</GameActive>
+  <GameIlligal>Illigal Games</GameIlligal>
+  <GameUserFilter>User Filter</GameUserFilter>
+  <GameBtnSearch>Search</GameBtnSearch>
   <GameBtnHost>Host</GameBtnHost>
   <GameBtnQuick>Quick</GameBtnQuick>
-  <GameLabWLD>Win/Lose/Draw</GameLabWLD>
-  <GameLabDeck>Deck:</GameLabDeck>
-  <GameLabUser>Username:</GameLabUser>
-  <GameBtnOffline>Offline</GameBtnOffline>
-  <GameBtnLogout>Logout</GameBtnLogout>
+  <GameNotUpdating>Status: Not Updating</GameNotUpdating>
+  <GameUpdating1>Status: Updating for </GameUpdating1>
+  <GameUpdating2> seconds.</GameUpdating2>
+  <GameNoServers>No servers are available.</GameNoServers>
   <GamePasswordExsists>A room with that password already exists.</GamePasswordExsists>
   <GameLocked>Locked</GameLocked>
   <GameOpen>Open</GameOpen>
@@ -194,6 +183,12 @@
   <MainFileReplayTab>Replays</MainFileReplayTab>
   <MainCustomizeTab>Customize</MainCustomizeTab>
   <MainAboutTab>About</MainAboutTab>
+  <MainAboutBtn>About</MainAboutBtn>
+  <MainSiteBtn>Site</MainSiteBtn>
+  <MainDeckBtn>Deck Edit</MainDeckBtn>
+  <MainReplaysBtn>Replays</MainReplaysBtn>
+  <MainOfflineBtn>Offline</MainOfflineBtn>
+  <MainProfileBtn>Profile</MainProfileBtn>
   <DuelReqestMessage> has challenged you to a ranked duel! Do you accept?</DuelReqestMessage>
   <DuelRequestBanlist> Banlist: </DuelRequestBanlist>
   <DuelRequestRules> Rules: </DuelRequestRules>

@@ -21,6 +21,7 @@ namespace DevProLauncher
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;
         public static UserData UserInfo;
+        public static int LoginKey = 0;
         public const string ConfigurationFilename = "launcher.conf";
         public static Dictionary<string, ServerInfo> ServerList = new Dictionary<string, ServerInfo>();
         public static MainFrm MainForm;
@@ -52,9 +53,13 @@ namespace DevProLauncher
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            if (CheckUpdates())
-                return;
-            CheckServerInfo();
+            if (LauncherHelper.TestConnection())
+            {
+                if (CheckUpdates())
+                    return;
+                CheckServerInfo();
+            }
+            else MessageBox.Show("An internet connection is required to play online.");
 #if DEBUG
             Config.ServerAddress = "86.0.24.143";
             Config.ChatPort = 8933;

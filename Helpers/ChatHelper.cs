@@ -68,10 +68,10 @@ namespace DevProLauncher.Helpers
                 }
                 WriteText(window, "]: ", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
 
-                if (message.from.rank == 0)
+                //if (message.from.rank == 0)
                     WriteText(window, message.message.Trim(), (Program.Config.ColorBlindMode ? Color.Black : message.MessageColor()));
-                else
-                    FormatText(message.message.Trim(), window);
+                //else
+                //    FormatText(message.message.Trim(), window);
 
             }
             else if ((MessageType)message.type == MessageType.System || (MessageType)message.type == MessageType.Server)
@@ -87,8 +87,8 @@ namespace DevProLauncher.Helpers
                     (Program.Config.ColorBlindMode ? Color.Black : message.MessageColor()));
             }
 
-            window.SelectionStart = window.TextLength;
-            window.SelectionLength = 0;
+            //window.SelectionStart = window.TextLength;
+            //window.SelectionLength = 0;
 
             if (autoscroll)
                 window.ScrollToCaret();

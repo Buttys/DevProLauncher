@@ -458,12 +458,9 @@ namespace DevProLauncher.Windows
 
                 if (m_userData.ContainsKey(userinfo.Username))
                 {
-                    if (m_userData[userinfo.Username].loginID == userinfo.LoginID)
-                    {
                         if (UserList.Items.Contains(userinfo.Username))
                             UserList.Items.Remove(userinfo.Username);
                         m_userData.Remove(userinfo.Username);
-                    }
                 }
 
             }

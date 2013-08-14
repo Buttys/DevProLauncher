@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using DevProLauncher.Helpers;
 using DropNet;
 using System.Net.NetworkInformation;
 using DevProLauncher.Config;
@@ -101,29 +102,8 @@ namespace DevProLauncher.Controller
 
             //Testing Connection
 
-            try
-            {
-                Ping pSender = new Ping();
-
-                PingReply pResult = pSender.Send("8.8.8.8");
-
-                if (pResult.Status == IPStatus.Success)
-                {
-                    Console.WriteLine("Internet available");
-                }
-                else
-                {
-                    Exception exc = new Exception("no internetconnection");
-
-                    throw exc;
-                }
-
-            }
-            catch (Exception)
-            {
-                
+            if (!LauncherHelper.TestConnection())
                 return;
-            }
 
 
             if (String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken))
@@ -133,10 +113,12 @@ namespace DevProLauncher.Controller
 
             }
 
-            DropNetClient dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret, Properties.Settings.Default.DropBoxUserToken, Properties.Settings.Default.DropBoxUserSecret);
-            dbClient.UseSandbox = true;
+            DropNetClient dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret, Properties.Settings.Default.DropBoxUserToken, Properties.Settings.Default.DropBoxUserSecret)
+                {
+                    UseSandbox = true
+                };
 
-            DropNet.Models.MetaData meta = null;
+            DropNet.Models.MetaData meta;
 
             try
             {

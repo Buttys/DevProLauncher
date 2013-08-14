@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Threading;
+using DevProLauncher.Config;
 using DevProLauncher.Network.Enums;
 using DevProLauncher.Helpers;
 using System.Diagnostics;
@@ -38,8 +38,21 @@ namespace DevProLauncher.Windows
             m_customizerWindow = new CustomizeFrm();
             LauncherHelper.CardManager.Init();
 
-            var connectThread = new Thread(Loaded) { IsBackground = true};
-            connectThread.Start();
+            ApplyTranslation();
+        }
+
+        public void ApplyTranslation()
+        {
+            LanguageInfo info = Program.LanguageManager.Translation;
+
+            OptionsBtn.Text = info.MainOfflineBtn;
+            ProfileBtn.Text = info.MainProfileBtn;
+            DeckBtn.Text = info.MainDeckBtn;
+            ReplaysBtn.Text = info.MainReplaysBtn;
+            OfflineBtn.Text = info.MainOfflineBtn;
+            aboutBtn.Text = info.MainAboutBtn;
+            siteBtn.Text = info.MainSiteBtn;
+
         }
 
         public override sealed string Text
@@ -48,13 +61,6 @@ namespace DevProLauncher.Windows
             set { base.Text = value; }
         }
 
-        private void Loaded()
-        {
-            if (!Program.ChatServer.Connect(Program.Config.ServerAddress, Program.Config.ChatPort))
-                MessageBox.Show(Program.LanguageManager.Translation.pMsbErrorToServer);
-            else
-                m_loginWindow.Connected();
-        }
         public void Login()
         {
             if (InvokeRequired)

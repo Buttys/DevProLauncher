@@ -6,9 +6,7 @@ namespace DevProLauncher.Network.Data
     public class UserData
     {
         public string username { get; set; }
-        public int loginKey { get; set; }
         public int rank { get; set; }
-        public int loginID { get; set; }
         public int a { get; set; }
         public int r { get; set; }
         public int g{ get; set; }

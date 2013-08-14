@@ -58,11 +58,11 @@
             this.DeckSelect = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.RankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.SearchReset = new System.Windows.Forms.Timer(this.components);
             this.GameListUpdateTimer = new System.Windows.Forms.Timer(this.components);
-            this.RankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
-            this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -443,25 +443,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ranked";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.UnrankedList);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(323, 473);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Unranked";
-            // 
-            // SearchReset
-            // 
-            this.SearchReset.Interval = 1000;
-            // 
-            // GameListUpdateTimer
-            // 
-            this.GameListUpdateTimer.Interval = 1000;
-            // 
             // RankedList
             // 
             this.RankedList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -474,6 +455,17 @@
             this.RankedList.Size = new System.Drawing.Size(318, 454);
             this.RankedList.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.UnrankedList);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(323, 473);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Unranked";
+            // 
             // UnrankedList
             // 
             this.UnrankedList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -485,6 +477,14 @@
             this.UnrankedList.Name = "UnrankedList";
             this.UnrankedList.Size = new System.Drawing.Size(317, 454);
             this.UnrankedList.TabIndex = 0;
+            // 
+            // SearchReset
+            // 
+            this.SearchReset.Interval = 1000;
+            // 
+            // GameListUpdateTimer
+            // 
+            this.GameListUpdateTimer.Interval = 1000;
             // 
             // HubGameList_frm
             // 

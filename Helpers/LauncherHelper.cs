@@ -20,6 +20,23 @@ namespace DevProLauncher.Helpers
 
         public static CardsManager CardManager = new CardsManager();
 
+        public static bool TestConnection()
+        {
+            try
+            {
+                Ping pSender = new Ping();
+
+                PingReply pResult = pSender.Send("8.8.8.8");
+
+                return pResult != null && pResult.Status == IPStatus.Success;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
         public static void LoadBanlist()
         {
             if (!File.Exists(Program.Config.LauncherDir + "lflist.conf"))
@@ -218,7 +235,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("use_d3d = " + Convert.ToInt32(Program.Config.Enabled3D));
             writer.WriteLine(("antialias = " + Program.Config.Antialias));
             writer.WriteLine("errorlog = 1");
-            writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.UserInfo.loginKey));
+            writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.LoginKey));
             writer.WriteLine("gamename = " + gameName);
             writer.WriteLine(("roompass ="));
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
@@ -249,7 +266,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("use_d3d = " + Convert.ToInt32(Program.Config.Enabled3D));
             writer.WriteLine(("antialias = " + Program.Config.Antialias));
             writer.WriteLine("errorlog = 1");
-            writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.UserInfo.loginKey));
+            writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.LoginKey));
             writer.WriteLine(("roompass ="));
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
             writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
@@ -276,7 +293,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("use_d3d = " + Convert.ToInt32(Program.Config.Enabled3D));
             writer.WriteLine(("antialias = " + Program.Config.Antialias));
             writer.WriteLine("errorlog = 1");
-            writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.UserInfo.loginKey));
+            writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.LoginKey));
             writer.WriteLine(("roompass ="));
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
             writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
