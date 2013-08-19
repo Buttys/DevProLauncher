@@ -27,7 +27,7 @@ namespace DevProLauncher.Config
         public int Antialias = 0;
         public bool AutoLogin = false;
         public bool Fullscreen = false;
-        public string Password = "";
+        public bool SavePassword = false;
         public string SavedPassword = "";
         public string SavedUsername = "";
         public string GameFont = "simhei.ttf"; //only ger
@@ -88,5 +88,9 @@ namespace DevProLauncher.Config
         public bool NewUpdate = false;
 
         public List<string> ChatChannels = new List<string>();
+
+        // DropBox Settings
+        public string AppKey = "xxvyeb0w8ndl3kz";
+        public string AppSecret = "sn6ggwgxk3zdsc6";
     }
 }

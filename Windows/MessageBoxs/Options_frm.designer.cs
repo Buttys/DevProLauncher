@@ -68,7 +68,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DefualtDeck = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.forgetPasswordButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.OptionTabControl.SuspendLayout();
@@ -541,7 +540,6 @@
             this.tableLayoutPanel9.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.DefualtDeck, 1, 1);
             this.tableLayoutPanel9.Controls.Add(this.label5, 0, 1);
-            this.tableLayoutPanel9.Controls.Add(this.forgetPasswordButton, 1, 2);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
@@ -589,16 +587,6 @@
             this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "Default Deck";
-            // 
-            // forgetPasswordButton
-            // 
-            this.forgetPasswordButton.Location = new System.Drawing.Point(139, 56);
-            this.forgetPasswordButton.Name = "forgetPasswordButton";
-            this.forgetPasswordButton.Size = new System.Drawing.Size(131, 35);
-            this.forgetPasswordButton.TabIndex = 5;
-            this.forgetPasswordButton.Text = "Forget Password";
-            this.forgetPasswordButton.UseVisualStyleBackColor = true;
-            this.forgetPasswordButton.Click += new System.EventHandler(this.ForgetPasswordButton_Click);
             // 
             // Settings
             // 
@@ -679,7 +667,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox SkinList;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button forgetPasswordButton;
 
 
     }

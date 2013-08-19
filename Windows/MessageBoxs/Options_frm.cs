@@ -152,15 +152,5 @@ namespace DevProLauncher.Windows.MessageBoxs
             Program.Config.chtBanList = form.BanList.Text;
             Program.Config.chtTimeLimit = form.TimeLimit.Text;
         }
-
-        private void ForgetPasswordButton_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(Program.LanguageManager.Translation.optionMsbForget, "Confirmation required", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {
-                Program.Config.SavedUsername = "";
-                Program.Config.SavedPassword = "";
-                Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
-            }
-        }
     }
 }

@@ -80,7 +80,7 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 452F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 542F));
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -102,14 +102,14 @@
             this.flowLayoutPanel1.Controls.Add(this.aboutBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(463, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(373, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(446, 28);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(536, 28);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // OptionsBtn
             // 
-            this.OptionsBtn.Location = new System.Drawing.Point(377, 3);
+            this.OptionsBtn.Location = new System.Drawing.Point(467, 3);
             this.OptionsBtn.Name = "OptionsBtn";
             this.OptionsBtn.Size = new System.Drawing.Size(66, 23);
             this.OptionsBtn.TabIndex = 9;
@@ -119,7 +119,7 @@
             // 
             // OfflineBtn
             // 
-            this.OfflineBtn.Location = new System.Drawing.Point(305, 3);
+            this.OfflineBtn.Location = new System.Drawing.Point(395, 3);
             this.OfflineBtn.Name = "OfflineBtn";
             this.OfflineBtn.Size = new System.Drawing.Size(66, 23);
             this.OfflineBtn.TabIndex = 10;
@@ -129,7 +129,7 @@
             // 
             // DeckBtn
             // 
-            this.DeckBtn.Location = new System.Drawing.Point(233, 3);
+            this.DeckBtn.Location = new System.Drawing.Point(323, 3);
             this.DeckBtn.Name = "DeckBtn";
             this.DeckBtn.Size = new System.Drawing.Size(66, 23);
             this.DeckBtn.TabIndex = 2;
@@ -139,7 +139,7 @@
             // 
             // ReplaysBtn
             // 
-            this.ReplaysBtn.Location = new System.Drawing.Point(161, 3);
+            this.ReplaysBtn.Location = new System.Drawing.Point(251, 3);
             this.ReplaysBtn.Name = "ReplaysBtn";
             this.ReplaysBtn.Size = new System.Drawing.Size(66, 23);
             this.ReplaysBtn.TabIndex = 3;
@@ -150,7 +150,7 @@
             // ProfileBtn
             // 
             this.ProfileBtn.Enabled = false;
-            this.ProfileBtn.Location = new System.Drawing.Point(89, 3);
+            this.ProfileBtn.Location = new System.Drawing.Point(179, 3);
             this.ProfileBtn.Name = "ProfileBtn";
             this.ProfileBtn.Size = new System.Drawing.Size(66, 23);
             this.ProfileBtn.TabIndex = 8;
@@ -160,7 +160,7 @@
             // 
             // siteBtn
             // 
-            this.siteBtn.Location = new System.Drawing.Point(8, 3);
+            this.siteBtn.Location = new System.Drawing.Point(98, 3);
             this.siteBtn.Name = "siteBtn";
             this.siteBtn.Size = new System.Drawing.Size(75, 23);
             this.siteBtn.TabIndex = 11;
@@ -170,7 +170,7 @@
             // 
             // aboutBtn
             // 
-            this.aboutBtn.Location = new System.Drawing.Point(368, 32);
+            this.aboutBtn.Location = new System.Drawing.Point(17, 3);
             this.aboutBtn.Name = "aboutBtn";
             this.aboutBtn.Size = new System.Drawing.Size(75, 23);
             this.aboutBtn.TabIndex = 12;
@@ -184,7 +184,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(454, 34);
+            this.label1.Size = new System.Drawing.Size(364, 34);
             this.label1.TabIndex = 0;
             this.label1.Text = "Experimental Client: Report Issues to Buttys - Thanks";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

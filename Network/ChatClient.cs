@@ -24,13 +24,12 @@ namespace DevProLauncher.Network
         public delegate void ServerResponse(string message);
         public delegate void Command(PacketCommand command);
         public delegate void ClientPacket(DevClientPackets packet);
-        public delegate void LoginResponse(DevClientPackets type, UserData data);
+        public delegate void LoginResponse(DevClientPackets type, LoginData data);
         public delegate void ServerRooms(RoomInfos[] rooms);
         public delegate void GameRoomUpdate(RoomInfos room);
         public delegate void ServerDisconnected();        
         public delegate void UserInfo(UserData user);
         public delegate void UserList(UserData[] users);
-        public delegate void Logout(LogoutData user);
         public delegate void ServerMessage(ChatMessage message);
         public delegate void UserDuelRequest(DuelRequest data);
         public delegate void DuelRequestRefused();
@@ -53,7 +52,7 @@ namespace DevProLauncher.Network
         public Command DevPointMsg;
         public UserInfo AddUser;
         public UserList AddUsers;
-        public Logout RemoveUser;
+        public ServerResponse RemoveUser;
         public StringList FriendList;
         public ServerResponse JoinChannel;
         public ServerMessage Message;
@@ -69,6 +68,7 @@ namespace DevProLauncher.Network
 
         public ChatClient()
         {
+            m_client = new TcpClient();
             m_lock = new object();
             m_receiveThread = new Thread(Receive) { IsBackground = true };
             OnFatalError += FatalError;
@@ -78,7 +78,6 @@ namespace DevProLauncher.Network
         {
             try
             {
-                m_client = new TcpClient();
                 m_client.Connect(address, port);
                 m_reader = new BinaryReader(m_client.GetStream());
                 m_isConnected = true;
@@ -240,7 +239,7 @@ namespace DevProLauncher.Network
             {
                 case DevClientPackets.LoginAccepted:
                     if (LoginReply != null)
-                        LoginReply(e.Packet, JsonSerializer.DeserializeFromString<UserData>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                        LoginReply(e.Packet, JsonSerializer.DeserializeFromString<LoginData>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
                     break;
                 case DevClientPackets.LoginFailed:
                     if (LoginReply != null)
@@ -278,7 +277,7 @@ namespace DevProLauncher.Network
                     break;
                 case DevClientPackets.RemoveUser:                
                     if (RemoveUser != null)
-                        RemoveUser(JsonSerializer.DeserializeFromString<LogoutData>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                        RemoveUser(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
                     break;
                 case DevClientPackets.UserList:                
                     if (AddUsers != null)

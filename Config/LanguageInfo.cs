@@ -25,7 +25,6 @@ namespace DevProLauncher.Config
         public string LoginMsb1 = "Not connected to the server.";
         public string LoginMsb2 = "Please enter username.";
         public string LoginMsb3 = "Please enter password.";
-        public string LoginBtnOffline = "Offline Mode";
 
         // Register_frm.cs
         public string RegistLbUser = "Username";
@@ -40,35 +39,29 @@ namespace DevProLauncher.Config
         public string RegistMsb5 = "Username Exists";
         public string RegistMsb6 = "Username cannot contain special characters";
 
-        // ServerTabDesign_frm
-        public string GameServerInfo = "Server Details";
-        public string GameTabRanked = "Ranked";
-        public string GameTabUnranked = "Unranked";
-        public string GameofRooms = "of Rooms";
-        public string GameofUnranked = "of Unranked";
-        public string GameofRanked = "of Ranked";
-        public string GameofOpenRooms = "of Open Rooms";
-        public string GameofPlayers = "of Players";
-        public string GameFilterActive = "Filter Active Games";
-        public string GameColumnRoomName = "Room Name";
-        public string GameColumnType = "Type";
-        public string GameColumnRules = "Rules";
-        public string GameColumnMode = "Mode";
-        public string GameColumnState = "State";
-        public string GameColumnPlayers = "Players";
-        public string GameColumnBanList = "Banlist";
-        public string GameColumnTimer = "Timer";
-        public string GameBtnDeck = "Deck Edit"; 
-        public string GameBtnReplay = "Replays";
-        public string GameBtnOption = "Options";
-        public string GameBtnProfile = "Profile";
+        // HubGameList_frm
+
+        public string GameRanked = "Ranked";
+        public string GameUnranked = "Unranked";
+        public string GameDefualtDeck = "Default Deck";
+        public string GameSearch = "Search";
+        public string GameFormat = "Format";
+        public string GameType = "Game Type";
+        public string GameBanList = "Banlist";
+        public string GameTimeLimit = "Time Limit";
+        public string GameActive = "Active Games";
+        public string GameIlligal = "Illigal Games";
+        public string GameUserFilter = "User Filter";
+        public string GameBtnSearch = "Search";
         public string GameBtnHost = "Host";
         public string GameBtnQuick = "Quick";
-        public string GameLabWLD = "Win/Lose/Draw";
-        public string GameLabDeck = "Deck:";
-        public string GameLabUser = "Username:";
-        public string GameBtnOffline = "Offline";
-        public string GameBtnLogout = "Logout";
+        public string GameNotUpdating = "Status: Not Updating";
+        public string GameUpdating1 = "Status: Updating for ";
+        public string GameUpdating2 = " seconds.";
+
+        public string GameNoServers = "No servers are available.";
+
+
         public string GamePasswordExsists = "A room with that password already exists.";
         public string GameLocked = "Locked";
         public string GameOpen = "Open";
@@ -229,6 +222,13 @@ namespace DevProLauncher.Config
         public string MainFileReplayTab = "Replays";
         public string MainCustomizeTab = "Customize";
         public string MainAboutTab = "About";
+
+        public string MainAboutBtn = "About";
+        public string MainSiteBtn = "Site";
+        public string MainDeckBtn = "Deck Edit";
+        public string MainReplaysBtn = "Replays";
+        public string MainOfflineBtn = "Offline";
+        public string MainProfileBtn = "Profile";
 
         //DuelRequest_frm
         public string DuelReqestMessage = " has challenged you to a ranked duel! Do you accept?";

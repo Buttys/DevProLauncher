@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
-using DevProLauncher.Network.Data;
+﻿using System.Drawing;
 using DevProLauncher.Windows.Enums;
-using DevProLauncher.Helpers;
 namespace DevProLauncher.Network.Data
 {
     public class ChatMessage

@@ -69,11 +69,6 @@ namespace DevProLauncher.Windows
 
             WriteSystemMessage("Welcome to the DevPro chat system!");
             WriteSystemMessage("To join a channel please click the channel list button.");
-
-            if (!string.IsNullOrEmpty(Program.UserInfo.team))
-            {
-                LoadTeamWindow();
-            }
         }
 
         private void ApplyOptionEvents()
@@ -433,37 +428,34 @@ namespace DevProLauncher.Windows
             }
         }
 
-        private void RemoveUser(LogoutData userinfo)
+        private void RemoveUser(string username)
         {
             if (InvokeRequired)
             {
-                Invoke(new Action<LogoutData>(RemoveUser), userinfo);
+                Invoke(new Action<string>(RemoveUser), username);
             }
             else
             {
 
                 if (!Program.Config.HideJoinLeave)
                 {
-                    WriteMessage(FriendList.Items.Contains(userinfo.Username)
+                    WriteMessage(FriendList.Items.Contains(username)
                                      ? new ChatMessage(MessageType.Leave, CommandType.None, null,
-                                                       "Your friend " + userinfo.Username + " has left the channel.")
+                                                       "Your friend " + username + " has left the channel.")
                                      : new ChatMessage(MessageType.Leave, CommandType.None, null,
-                                                       userinfo.Username + " has left the channel."));
+                                                       username + " has left the channel."));
                 }
                 else
                 {
-                    if (FriendList.Items.Contains(userinfo.Username))
-                        WriteMessage(new ChatMessage(MessageType.Leave, CommandType.None, null, "Your friend " + userinfo.Username + " has logged out."));
+                    if (FriendList.Items.Contains(username))
+                        WriteMessage(new ChatMessage(MessageType.Leave, CommandType.None, null, "Your friend " + username + " has logged out."));
                 }
 
-                if (m_userData.ContainsKey(userinfo.Username))
+                if (m_userData.ContainsKey(username))
                 {
-                    if (m_userData[userinfo.Username].loginID == userinfo.LoginID)
-                    {
-                        if (UserList.Items.Contains(userinfo.Username))
-                            UserList.Items.Remove(userinfo.Username);
-                        m_userData.Remove(userinfo.Username);
-                    }
+                    if (UserList.Items.Contains(username))
+                        UserList.Items.Remove(username);
+                    m_userData.Remove(username);
                 }
 
             }

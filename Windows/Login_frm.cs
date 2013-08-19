@@ -22,6 +22,8 @@ namespace DevProLauncher.Windows
             Dock = DockStyle.Fill;
             Visible = true;
 
+            Program.ChatServer.LoginReply += LoginResponse;
+
             m_loginTimeOut.Interval = 3000;
             usernameInput.Text = Program.Config.DefaultUsername;
 
@@ -56,8 +58,18 @@ namespace DevProLauncher.Windows
 
             ApplyTranslation();
 
-            passwordInput.Text = Program.Config.SavedPassword;
-            usernameInput.Text = Program.Config.SavedUsername;
+            if (Program.Config.SavePassword)
+            {
+                passwordInput.Text = Program.Config.SavedPassword;
+                usernameInput.Text = Program.Config.SavedUsername;
+            }
+
+        }
+
+        public bool Connect()
+        {
+            return Program.ChatServer.Connect(Program.Config.ServerAddress, Program.Config.ChatPort);
+
         }
 
         public void ApplyTranslation()
@@ -69,7 +81,6 @@ namespace DevProLauncher.Windows
                 label3.Text = Program.LanguageManager.Translation.LoginLanguage;
                 loginBtn.Text = Program.LanguageManager.Translation.LoginLoginButton;
                 registerBtn.Text = Program.LanguageManager.Translation.LoginRegisterButton;
-                //offlineBtn.Text = Program.LanguageManager.Translation.LoginBtnOffline;
             }
         }
 
@@ -101,19 +112,6 @@ namespace DevProLauncher.Windows
             Program.MainForm.ReLoadLanguage();
         }
 
-        public void Connected()
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action(Connected));
-                return;
-            }
-
-            loginBtn.Enabled = true;
-            registerBtn.Enabled = true;
-            Program.ChatServer.LoginReply += LoginResponse;
-        }
-
         private void LoginTimeOut_Tick(object sender, EventArgs e)
         {
             if (!IsDisposed)
@@ -142,6 +140,15 @@ namespace DevProLauncher.Windows
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
+            if (!Program.ChatServer.Connected())
+            {
+                if (!Connect())
+                {
+                    MessageBox.Show(Program.LanguageManager.Translation.pMsbErrorToServer);
+                    return;
+                }
+            }
+
             loginBtn.Enabled = false;
             m_loginTimeOut.Enabled = true;
             if (usernameInput.Text == "")
@@ -156,17 +163,25 @@ namespace DevProLauncher.Windows
             }
             if (savePassCheckBox.Checked)
             {
+                Program.Config.SavePassword = true;
                 Program.Config.SavedUsername = usernameInput.Text;
                 Program.Config.SavedPassword = passwordInput.Text;
                 Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
             }
+            else
+            {
+                if (Program.Config.SavePassword)
+                {
+                    Program.Config.SavePassword = false;
+                    Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
+                }
+            }
             Program.ChatServer.SendPacket(DevServerPackets.Login,
             JsonSerializer.SerializeToString(
             new LoginRequest { Username = usernameInput.Text, Password = LauncherHelper.EncodePassword(passwordInput.Text), UID = LauncherHelper.GetUID() }));
-            Program.Config.Password = LauncherHelper.EncodePassword(passwordInput.Text);
         }
 
-        private void LoginResponse(DevClientPackets type, UserData data)
+        private void LoginResponse(DevClientPackets type, LoginData data)
         {
             if (type == DevClientPackets.Banned)
             {
@@ -179,14 +194,33 @@ namespace DevProLauncher.Windows
             }
             else
             {
-                Program.UserInfo = data;
-                ResetTimeOut();
-                Program.MainForm.Login();
+                if (Program.UserInfo == null)
+                {
+                    Program.UserInfo = new UserData
+                        {
+                            rank = data.UserRank,
+                            username = data.Username,
+                            team = data.Team,
+                            teamRank = data.TeamRank
+                        };
+                    Program.LoginKey = data.LoginKey;
+                    ResetTimeOut();
+                    Program.MainForm.Login();
+                }
             }
         }
 
         private void registerBtn_Click(object sender, EventArgs e)
         {
+            if (!Program.ChatServer.Connected())
+            {
+                if (!Connect())
+                {
+                    MessageBox.Show(Program.LanguageManager.Translation.pMsbErrorToServer);
+                    return;
+                }
+            }
+
             var form = new RegisterFrm();
             form.ShowDialog();
         }

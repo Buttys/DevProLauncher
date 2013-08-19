@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using DevProLauncher.Config;
 using DevProLauncher.Helpers;
 using DevProLauncher.Network.Data;
 using DevProLauncher.Network.Enums;
@@ -51,6 +52,29 @@ namespace DevProLauncher.Windows
             RefreshDeckList();
             DeckSelect.SelectedIndexChanged += DeckSelect_SelectedValueChanged;
 
+            ApplyTranslation();
+
+        }
+
+        public void ApplyTranslation()
+        {
+            LanguageInfo info = Program.LanguageManager.Translation;
+
+            groupBox1.Text = info.GameUnranked;
+            groupBox3.Text = info.GameRanked;
+            groupBox2.Text = info.GameSearch;
+            label6.Text = info.GameDefualtDeck;
+            label4.Text = info.GameFormat;
+            label3.Text = info.GameType;
+            label2.Text = info.GameBanList;
+            label5.Text = info.GameTimeLimit;
+            ActiveGames.Text = info.GameActive;
+            IlligalGames.Text = info.GameIlligal;
+            label1.Text = info.GameUserFilter;
+            SearchRequest_Btn.Text = info.GameBtnSearch;
+            Host_btn.Text = info.GameBtnHost;
+            Quick_Btn.Text = info.GameBtnQuick;
+            UpdateLabel.Text = info.GameNotUpdating;
         }
 
         public void RefreshDeckList()
@@ -94,14 +118,14 @@ namespace DevProLauncher.Windows
 
             if (value == 0)
             {
-                UpdateLabel.Text = "Status: Not Updating";
+                UpdateLabel.Text = Program.LanguageManager.Translation.GameNotUpdating;
                 GameListUpdateTimer.Enabled = false;
                 RankedList.Items.Clear();
                 UnrankedList.Items.Clear();
             }
             else
             {
-                UpdateLabel.Text = "Status: Updating for " + (value -1) + " seconds.";
+                UpdateLabel.Text = Program.LanguageManager.Translation.GameUpdating1 + (value -1) + Program.LanguageManager.Translation.GameUpdating2;
             }
         }
 
@@ -116,7 +140,7 @@ namespace DevProLauncher.Windows
             if (SearchRequest_Btn.Text == "0")
             {
                 SearchRequest_Btn.Enabled = true;
-                SearchRequest_Btn.Text = "Search";
+                SearchRequest_Btn.Text = Program.LanguageManager.Translation.GameBtnSearch;
                 SearchReset.Enabled = false;
             }
             else
@@ -190,7 +214,7 @@ namespace DevProLauncher.Windows
             {
                 InternalRoomCreated(room);
             }
-            UpdateLabel.Text = "Status: Updating for " + 60 + " seconds.";
+            UpdateLabel.Text = Program.LanguageManager.Translation.GameUpdating1 + 60 + Program.LanguageManager.Translation.GameUpdating2;
             GameListUpdateTimer.Enabled = true;
         }
 
@@ -332,7 +356,7 @@ namespace DevProLauncher.Windows
                 }
                 if (Program.ServerList.Count == 0)
                 {
-                    MessageBox.Show("No Servers are Available.");
+                    MessageBox.Show(Program.LanguageManager.Translation.GameNoServers);
                     return;
                 }
 
@@ -511,7 +535,7 @@ namespace DevProLauncher.Windows
                 server = Program.ServerList[ServerList[serverselect]];
             else
             {
-                MessageBox.Show("Server not found.");
+                MessageBox.Show(Program.LanguageManager.Translation.GameNoServers);
                 return null;
             }
 
