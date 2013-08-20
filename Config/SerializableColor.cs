@@ -24,7 +24,7 @@ namespace DevProLauncher.Config
 
         public Color ToColor()
         {
-            return Color.FromArgb(A, R, G, B);
+            return Color.FromArgb(R, G, B);
         }
     }
 }
