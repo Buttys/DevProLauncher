@@ -16,7 +16,6 @@
   <LoginMsb1>Non connecté au serveur.</LoginMsb1>
   <LoginMsb2>Veuillez entrer votre profil.</LoginMsb2>
   <LoginMsb3>Veuillez entrer votre mot de passe.</LoginMsb3>
-  <LoginBtnOffline>Hors Ligne</LoginBtnOffline>
   <RegistLbUser>Profil :</RegistLbUser>
   <RegistLbPw>Mot de passe :</RegistLbPw>
   <RegistLbPw2>Confirmer-le :</RegistLbPw2>
@@ -28,34 +27,24 @@
   <RegistMsb4>Enregistrement réussi!</RegistMsb4>
   <RegistMsb5>Profil déjà existant.</RegistMsb5>
   <RegistMsb6>Le profil ne peut contenir de caractères spéciaux.</RegistMsb6>
-  <GameServerInfo>Détails du serveur</GameServerInfo>
-  <GameTabRanked>Classé</GameTabRanked>
-  <GameTabUnranked>Non classé</GameTabUnranked>
-  <GameofRooms>Salons</GameofRooms>
-  <GameofUnranked>Sans classement</GameofUnranked>
-  <GameofRanked>Avec classement</GameofRanked>
-  <GameofOpenRooms>Salons ouverts</GameofOpenRooms>
-  <GameofPlayers>Joueurs en ligne</GameofPlayers>
-  <GameFilterActive>Afficher que les disponibles.</GameFilterActive>
-  <GameColumnRoomName>Nom du salon</GameColumnRoomName>
-  <GameColumnType>Type</GameColumnType>
-  <GameColumnRules>Règles</GameColumnRules>
-  <GameColumnMode>Mode</GameColumnMode>
-  <GameColumnState>Etat</GameColumnState>
-  <GameColumnPlayers>Joueurs</GameColumnPlayers>
-  <GameColumnBanList>Restriction</GameColumnBanList>
-  <GameColumnTimer>Temps limite</GameColumnTimer>
-  <GameBtnDeck>Decks</GameBtnDeck>
-  <GameBtnReplay>Replays</GameBtnReplay>
-  <GameBtnOption>Options</GameBtnOption>
-  <GameBtnProfile>Profil</GameBtnProfile>
+  <GameRanked>Classé</GameTabRanked>
+  <GameUnranked>Non classé</GameTabUnranked>
+  <GameDefualtDeck>Deck par défaut</GameDefualtDeck>
+  <GameSearch>Filtre</GameSearch>
+  <GameFormat>Format</GameFormat>
+  <GameType>Type</GameType>
+  <GameBanList>Banlist</GameBanList>
+  <GameTimeLimit>Limite de temps</GameTimeLimit>
+  <GameActive>Jeux actifs</GameActive>
+  <GameIlligal>Jeux illégaux</GameIlligal>
+  <GameUserFilter>Rechercher un duelliste :</GameUserFilter>
+  <GameBtnSearch>Filtrer</GameBtnSearch>
   <GameBtnHost>Hôte</GameBtnHost>
   <GameBtnQuick>Rapide</GameBtnQuick>
-  <GameLabWLD>Gagné/Perdu/Nul</GameLabWLD>
-  <GameLabDeck>Deck:</GameLabDeck>
-  <GameLabUser>Profil:</GameLabUser>
-  <GameBtnOffline>Hors Ligne</GameBtnOffline>
-  <GameBtnLogout>Accueil</GameBtnLogout>
+  <GameNotUpdating>Status : Filtre suspendu</GameNotUpdating>
+  <GameUpdating1>Status : Filtrage en cours pour </GameUpdating1>
+  <GameUpdating2> secondes.</GameUpdating2>
+  <GameNoServers>Aucun serveur disponible.</GameNoServers>
   <GamePasswordExsists>Un salon avec ce mot de passe existe déjà.</GamePasswordExsists>
   <GameLocked>Verrouillé</GameLocked>
   <GameOpen>Ouvert</GameOpen>
@@ -194,6 +183,12 @@
   <MainFileReplayTab>Replays</MainFileReplayTab>
   <MainCustomizeTab>Personnaliser</MainCustomizeTab>
   <MainAboutTab>A propos</MainAboutTab>
+  <MainSyncBtn>Synchro Dropbox</MainSyncBtn>
+  <MainSiteBtn>Site</MainSiteBtn>
+  <MainDeckBtn>Decks</MainDeckBtn>
+  <MainReplaysBtn>Replays</MainReplaysBtn>
+  <MainOfflineBtn>Hors-Ligne</MainOfflineBtn>
+  <MainProfileBtn>Profil</MainProfileBtn>
   <DuelReqestMessage> vous défie en Duel classé ! Acceptez-vous ce challenge ?</DuelReqestMessage>
   <DuelRequestBanlist> Restriction: </DuelRequestBanlist>
   <DuelRequestRules> Règles de jeu: </DuelRequestRules>
