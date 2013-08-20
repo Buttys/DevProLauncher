@@ -699,7 +699,10 @@ namespace DevProLauncher.Windows
                     }
 
                     if(Program.UserInfo.rank == 1)
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, " -- Level 1 users are classed as helpers and gain no additonal commands."));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, " -- Level 1 users are classed as helpers and don't need any extra commands"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Send a server message"));
+
+                        
 
                     if (Program.UserInfo.rank > 1)
                     {
@@ -708,6 +711,7 @@ namespace DevProLauncher.Windows
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Send a server message"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute - Prevents a user from talking"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute - Allows a muted user to talk again"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/smsg - Sends a server message as a popup box"));
                     }
 
                     if (Program.UserInfo.rank > 2)
@@ -718,8 +722,8 @@ namespace DevProLauncher.Windows
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ip username - Get a users IP"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banip ip - Ban a IP"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unbanip ip - Unbans IP"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getbanlist - Get ban list"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/roomowner - Get the creator of a channel"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getbanlist roomname - Get ban list"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/roomowner roomname - Get the creator of a channel"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/killroom - force a chat channel to close"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getuid username - Gets the UID of a username"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getuidaccounts uid - Gets the accnount names registered under the UID"));
