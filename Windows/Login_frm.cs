@@ -163,10 +163,13 @@ namespace DevProLauncher.Windows
             }
             if (savePassCheckBox.Checked)
             {
-                Program.Config.SavePassword = true;
-                Program.Config.SavedUsername = usernameInput.Text;
-                Program.Config.SavedPassword = passwordInput.Text;
-                Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
+                if (!Program.Config.SavePassword)
+                {
+                    Program.Config.SavePassword = true;
+                    Program.Config.SavedUsername = usernameInput.Text;
+                    Program.Config.SavedPassword = passwordInput.Text;
+                    Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
+                }
             }
             else
             {
