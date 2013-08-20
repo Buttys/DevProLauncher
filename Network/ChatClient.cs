@@ -30,7 +30,7 @@ namespace DevProLauncher.Network
         public delegate void ServerDisconnected();        
         public delegate void UserInfo(UserData user);
         public delegate void UserList(UserData[] users);
-        public delegate void ServerMessage(ChatMessage message);
+        public delegate void Message(ChatMessage message);
         public delegate void UserDuelRequest(DuelRequest data);
         public delegate void DuelRequestRefused();
         public delegate void ChannelList(ChannelData[] channels);
@@ -45,9 +45,7 @@ namespace DevProLauncher.Network
         public Command UpdateRoomPlayers;
         public GameRoomUpdate CreateRoom;
         public ServerResponse UpdateRoomStatus;
-// ReSharper disable InconsistentNaming
-        public ServerResponse serverMessage;
-// ReSharper restore InconsistentNaming
+        public ServerResponse ServerMessage;
         public ServerRooms AddRooms;
         public Command DevPointMsg;
         public UserInfo AddUser;
@@ -55,7 +53,7 @@ namespace DevProLauncher.Network
         public ServerResponse RemoveUser;
         public StringList FriendList;
         public ServerResponse JoinChannel;
-        public ServerMessage Message;
+        public Message ChatMessage;
         public UserDuelRequest DuelRequest;
         public UserDuelRequest DuelAccepted;
         public DuelRequestRefused DuelRefused;
@@ -64,6 +62,8 @@ namespace DevProLauncher.Network
         public ChannelList ChannelRequest;
         public ServerResponse AddGameServer;
         public ServerResponse RemoveGameServer;
+        public ServerResponse Kicked;
+        public ServerResponse Banned;
 
 
         public ChatClient()
@@ -168,8 +168,6 @@ namespace DevProLauncher.Network
 
             switch (packet)
             {
-                case DevClientPackets.Banned:
-                    return true;
                 case DevClientPackets.LoginFailed:
                     return true;
                 case DevClientPackets.RegisterAccept:
@@ -177,8 +175,6 @@ namespace DevProLauncher.Network
                 case DevClientPackets.RegisterFailed:
                     return true;
                 case DevClientPackets.Pong:
-                    return true;
-                case DevClientPackets.Kicked:
                     return true;
                 case DevClientPackets.RefuseDuelRequest:
                     return true;
@@ -246,7 +242,18 @@ namespace DevProLauncher.Network
                         LoginReply(e.Packet, null);
                     break;
                 case DevClientPackets.Banned:
-                    MessageBox.Show("You are banned.");
+                    string message = Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length));
+                    if (string.IsNullOrEmpty(message))
+                    {
+                        if (Banned != null)
+                            Banned("You are banned.");
+                    }
+                    else
+                    {
+                        if (Banned != null)
+                            Banned(message);
+                    }
+
                     break;
                 case DevClientPackets.RegisterAccept:                
                     if (RegisterReply != null)
@@ -267,9 +274,9 @@ namespace DevProLauncher.Network
                 case DevClientPackets.Pong:
                     MessageBox.Show("PONG!: " + -(int)m_pingRequest.Subtract(DateTime.Now).TotalMilliseconds);
                     break;
-                case DevClientPackets.ServerMessage:                
-                    if (serverMessage != null)
-                        serverMessage(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
+                case DevClientPackets.ServerMessage:
+                    if (ServerMessage != null)
+                        ServerMessage(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
                     break;
                 case DevClientPackets.AddUser:                
                     if (AddUser != null)
@@ -326,9 +333,9 @@ namespace DevProLauncher.Network
                     if (TeamList != null)
                         TeamList(JsonSerializer.DeserializeFromString<string[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
                     break;
-                case DevClientPackets.Message:                
-                    if (Message != null)
-                        Message(JsonSerializer.DeserializeFromString<ChatMessage>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                case DevClientPackets.Message:
+                    if (ChatMessage != null)
+                        ChatMessage(JsonSerializer.DeserializeFromString<ChatMessage>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
                     break;
                 case DevClientPackets.DevPoints:                
                     if (DevPointMsg != null)
@@ -340,8 +347,8 @@ namespace DevProLauncher.Network
                     break;
                 case DevClientPackets.AcceptDuelRequest:
                     string user = Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length));
-                    if(Message != null)
-                        Message(new ChatMessage(MessageType.Server,CommandType.None,null,user + " has accepted your duel request."));
+                    if (ChatMessage != null)
+                        ChatMessage(new ChatMessage(MessageType.Server, CommandType.None, null, user + " has accepted your duel request."));
                     break;
                 case DevClientPackets.StartDuel:                    
                     if(DuelAccepted != null)
@@ -374,6 +381,10 @@ namespace DevProLauncher.Network
                 case DevClientPackets.RoomStart:
                     if (UpdateRoomStatus != null)
                         UpdateRoomStatus(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
+                    break;
+                case DevClientPackets.Kicked:
+                    if (Kicked != null)
+                        Kicked(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
                     break;
                 default:                
                     if (OnFatalError != null)

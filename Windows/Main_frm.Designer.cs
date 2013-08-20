@@ -42,7 +42,7 @@
             this.ProfileBtn = new System.Windows.Forms.Button();
             this.siteBtn = new System.Windows.Forms.Button();
             this.aboutBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.MessageLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -82,7 +82,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 542F));
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.MessageLabel, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 416);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -178,16 +178,16 @@
             this.aboutBtn.UseVisualStyleBackColor = true;
             this.aboutBtn.Click += new System.EventHandler(this.aboutBtn_Click);
             // 
-            // label1
+            // MessageLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(364, 34);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Experimental Client: Report Issues to Buttys - Thanks";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.MessageLabel.AutoSize = true;
+            this.MessageLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MessageLabel.Location = new System.Drawing.Point(3, 0);
+            this.MessageLabel.Name = "MessageLabel";
+            this.MessageLabel.Size = new System.Drawing.Size(364, 34);
+            this.MessageLabel.TabIndex = 0;
+            this.MessageLabel.Text = "Experimental Client: Report Issues to Buttys - Thanks";
+            this.MessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainFrm
             // 
@@ -218,7 +218,7 @@
         private System.Windows.Forms.Button DeckBtn;
         private System.Windows.Forms.Button ReplaysBtn;
         private System.Windows.Forms.Button ProfileBtn;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label MessageLabel;
         private System.Windows.Forms.Button siteBtn;
         private System.Windows.Forms.Button aboutBtn;
     }

@@ -35,7 +35,7 @@ namespace DevProLauncher.Windows
             Program.ChatServer.FriendList += CreateFriendList;
             Program.ChatServer.TeamList += CreateTeamList;
             Program.ChatServer.JoinChannel += ChannelAccept;
-            Program.ChatServer.Message += WriteMessage;
+            Program.ChatServer.ChatMessage += WriteMessage;
             Program.ChatServer.DuelRequest += HandleDuelRequest;
             Program.ChatServer.TeamRequest += HandleTeamRequest;
             Program.ChatServer.DuelAccepted += StartDuelRequest;

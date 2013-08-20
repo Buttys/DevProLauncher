@@ -38,6 +38,10 @@ namespace DevProLauncher.Windows
             m_customizerWindow = new CustomizeFrm();
             LauncherHelper.CardManager.Init();
 
+            Program.ChatServer.Banned += ServerMessage;
+            Program.ChatServer.Kicked += ServerMessage;
+            Program.ChatServer.ServerMessage += ServerMessage;
+
             ApplyTranslation();
         }
 
@@ -53,6 +57,17 @@ namespace DevProLauncher.Windows
             aboutBtn.Text = info.MainAboutBtn;
             siteBtn.Text = info.MainSiteBtn;
 
+        }
+
+        private void ServerMessage(string message)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<string>(ServerMessage), message);
+                return;
+            }
+            MessageBox.Show(message,"Server Message");
+            MessageLabel.Text = message;
         }
 
         public override sealed string Text
