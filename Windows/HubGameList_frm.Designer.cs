@@ -63,6 +63,7 @@
             this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.SearchReset = new System.Windows.Forms.Timer(this.components);
             this.GameListUpdateTimer = new System.Windows.Forms.Timer(this.components);
+            this.lockedChk = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -105,7 +106,7 @@
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 285F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 306F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(244, 479);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
@@ -113,9 +114,9 @@
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel4);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 197);
+            this.groupBox2.Location = new System.Drawing.Point(3, 176);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(238, 279);
+            this.groupBox2.Size = new System.Drawing.Size(238, 300);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
@@ -132,7 +133,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(232, 260);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(232, 281);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // tableLayoutPanel5
@@ -143,7 +144,7 @@
             this.tableLayoutPanel5.Controls.Add(this.SearchRequest_Btn, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 193);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 214);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -205,13 +206,13 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(226, 184);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(226, 205);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // UserFilter
             // 
             this.UserFilter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UserFilter.Location = new System.Drawing.Point(3, 162);
+            this.UserFilter.Location = new System.Drawing.Point(3, 183);
             this.UserFilter.Name = "UserFilter";
             this.UserFilter.Size = new System.Drawing.Size(220, 20);
             this.UserFilter.TabIndex = 0;
@@ -221,7 +222,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 140);
+            this.label1.Location = new System.Drawing.Point(3, 161);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 1;
@@ -242,24 +243,26 @@
             this.tableLayoutPanel8.Controls.Add(this.BanList, 1, 3);
             this.tableLayoutPanel8.Controls.Add(this.label5, 0, 4);
             this.tableLayoutPanel8.Controls.Add(this.TimeLimit, 1, 4);
+            this.tableLayoutPanel8.Controls.Add(this.lockedChk, 0, 6);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 6;
+            this.tableLayoutPanel8.RowCount = 7;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(220, 128);
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(220, 149);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
             // ActiveGames
             // 
             this.ActiveGames.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ActiveGames.AutoSize = true;
-            this.ActiveGames.Location = new System.Drawing.Point(9, 107);
+            this.ActiveGames.Location = new System.Drawing.Point(9, 103);
             this.ActiveGames.Name = "ActiveGames";
             this.ActiveGames.Size = new System.Drawing.Size(92, 17);
             this.ActiveGames.TabIndex = 0;
@@ -270,7 +273,7 @@
             // 
             this.IlligalGames.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.IlligalGames.AutoSize = true;
-            this.IlligalGames.Location = new System.Drawing.Point(120, 107);
+            this.IlligalGames.Location = new System.Drawing.Point(120, 103);
             this.IlligalGames.Name = "IlligalGames";
             this.IlligalGames.Size = new System.Drawing.Size(89, 17);
             this.IlligalGames.TabIndex = 1;
@@ -281,7 +284,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 9);
+            this.label4.Location = new System.Drawing.Point(35, 5);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 13);
             this.label4.TabIndex = 7;
@@ -298,7 +301,7 @@
             "OCG/TCG",
             "Anime",
             "Turbo Duel"});
-            this.Format.Location = new System.Drawing.Point(113, 6);
+            this.Format.Location = new System.Drawing.Point(113, 2);
             this.Format.Name = "Format";
             this.Format.Size = new System.Drawing.Size(104, 21);
             this.Format.TabIndex = 6;
@@ -307,7 +310,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 34);
+            this.label3.Location = new System.Drawing.Point(24, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 5;
@@ -322,7 +325,7 @@
             "Single",
             "Match",
             "Tag"});
-            this.GameType.Location = new System.Drawing.Point(113, 31);
+            this.GameType.Location = new System.Drawing.Point(113, 27);
             this.GameType.Name = "GameType";
             this.GameType.Size = new System.Drawing.Size(104, 21);
             this.GameType.TabIndex = 4;
@@ -331,7 +334,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 59);
+            this.label2.Location = new System.Drawing.Point(36, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 3;
@@ -343,7 +346,7 @@
             this.BanList.FormattingEnabled = true;
             this.BanList.Items.AddRange(new object[] {
             "All"});
-            this.BanList.Location = new System.Drawing.Point(113, 56);
+            this.BanList.Location = new System.Drawing.Point(113, 52);
             this.BanList.Name = "BanList";
             this.BanList.Size = new System.Drawing.Size(104, 21);
             this.BanList.TabIndex = 2;
@@ -352,7 +355,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 84);
+            this.label5.Location = new System.Drawing.Point(28, 80);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 13);
             this.label5.TabIndex = 8;
@@ -366,7 +369,7 @@
             "All",
             "3 minutes",
             "5 minutes"});
-            this.TimeLimit.Location = new System.Drawing.Point(113, 81);
+            this.TimeLimit.Location = new System.Drawing.Point(113, 77);
             this.TimeLimit.Name = "TimeLimit";
             this.TimeLimit.Size = new System.Drawing.Size(104, 21);
             this.TimeLimit.TabIndex = 9;
@@ -375,7 +378,7 @@
             // 
             this.UpdateLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.UpdateLabel.AutoSize = true;
-            this.UpdateLabel.Location = new System.Drawing.Point(69, 181);
+            this.UpdateLabel.Location = new System.Drawing.Point(69, 160);
             this.UpdateLabel.Name = "UpdateLabel";
             this.UpdateLabel.Size = new System.Drawing.Size(106, 13);
             this.UpdateLabel.TabIndex = 2;
@@ -486,6 +489,17 @@
             // 
             this.GameListUpdateTimer.Interval = 1000;
             // 
+            // lockedChk
+            // 
+            this.lockedChk.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lockedChk.AutoSize = true;
+            this.lockedChk.Location = new System.Drawing.Point(24, 128);
+            this.lockedChk.Name = "lockedChk";
+            this.lockedChk.Size = new System.Drawing.Size(62, 17);
+            this.lockedChk.TabIndex = 10;
+            this.lockedChk.Text = "Locked";
+            this.lockedChk.UseVisualStyleBackColor = true;
+            // 
             // HubGameList_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -551,5 +565,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox DeckSelect;
+        private System.Windows.Forms.CheckBox lockedChk;
     }
 }

@@ -309,7 +309,7 @@ namespace DevProLauncher.Windows
                     (GameType.SelectedIndex == -1 ? GameType.SelectedIndex : GameType.SelectedIndex-1),
                     (BanList.SelectedIndex == -1 ? BanList.SelectedIndex : BanList.SelectedIndex-1),
                     (TimeLimit.SelectedIndex == -1 ? TimeLimit.SelectedIndex : TimeLimit.SelectedIndex-1),
-                    ActiveGames.Checked, IlligalGames.Checked, UserFilter.Text
+                    ActiveGames.Checked, IlligalGames.Checked, lockedChk.Checked, UserFilter.Text
                     )));
             SearchRequest_Btn.Enabled = false;
             SearchRequest_Btn.Text = "5";
