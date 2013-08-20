@@ -25,6 +25,7 @@ namespace DevProLauncher.Config
         public string LoginMsb1 = "Not connected to the server.";
         public string LoginMsb2 = "Please enter username.";
         public string LoginMsb3 = "Please enter password.";
+        public string LoginSavePass = "Save Password";
 
         // Register_frm.cs
         public string RegistLbUser = "Username";
