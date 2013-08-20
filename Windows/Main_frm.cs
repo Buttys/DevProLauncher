@@ -54,9 +54,9 @@ namespace DevProLauncher.Windows
             DeckBtn.Text = info.MainDeckBtn;
             ReplaysBtn.Text = info.MainReplaysBtn;
             OfflineBtn.Text = info.MainOfflineBtn;
-            aboutBtn.Text = info.MainAboutBtn;
+            DBSyncBtn.Text = info.MainSyncBtn;
             siteBtn.Text = info.MainSiteBtn;
-
+            MessageLabel.Text = info.MainServerMessage;
         }
 
         private void ServerMessage(string message)
@@ -136,7 +136,7 @@ namespace DevProLauncher.Windows
         {
             if (!Program.ChatServer.Connected())
             {
-                var connectionCheck = (System.Windows.Forms.Timer)sender;
+                var connectionCheck = (Timer)sender;
                 Hide();
                 connectionCheck.Enabled = false;
                 if (MessageBox.Show("Disconnected from server.", "Server", MessageBoxButtons.OK) == DialogResult.OK)
@@ -165,11 +165,6 @@ namespace DevProLauncher.Windows
             Process.Start("http://devpro.org");
         }
 
-        private void aboutBtn_Click(object sender, EventArgs e)
-        {
-            Process.Start("http://devpro.org/staff/");
-        }
-
         private void DeckBtn_Click(object sender, EventArgs e)
         {
             LauncherHelper.GenerateConfig();
@@ -192,6 +187,11 @@ namespace DevProLauncher.Windows
             var settings = new Settings();
             settings.ShowDialog();
 
+        }
+
+        private void DBSyncBtn_Click(object sender, EventArgs e)
+        {
+            LauncherHelper.SyncCloud(sender,e);
         }
     }
 }

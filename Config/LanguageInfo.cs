@@ -223,12 +223,13 @@ namespace DevProLauncher.Config
         public string MainCustomizeTab = "Customize";
         public string MainAboutTab = "About";
 
-        public string MainAboutBtn = "About";
+        public string MainSyncBtn = "Dropbox Sync";
         public string MainSiteBtn = "Site";
         public string MainDeckBtn = "Deck Edit";
         public string MainReplaysBtn = "Replays";
         public string MainOfflineBtn = "Offline";
         public string MainProfileBtn = "Profile";
+        public string MainServerMessage = "Server messages will spawn here.";
 
         //DuelRequest_frm
         public string DuelReqestMessage = " has challenged you to a ranked duel! Do you accept?";
