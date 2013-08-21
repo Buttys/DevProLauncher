@@ -26,14 +26,17 @@ end
 
 function c12398.atkop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	local atk=c:GetBattleTarget():GetAttack()
-	if atk>0 then
-		local e1=Effect.CreateEffect(c)
-		e1:SetType(EFFECT_TYPE_SINGLE)
-		e1:SetCode(EFFECT_UPDATE_ATTACK)
-		e1:SetReset(RESET_PHASE+RESET_DAMAGE_CAL)
-		e1:SetValue(atk)
-		c:RegisterEffect(e1)
+	local tg=c:GetBattleTarget()
+	if tg then
+		local atk=tg:GetAttack()
+		if atk>0 then
+			local e1=Effect.CreateEffect(c)
+			e1:SetType(EFFECT_TYPE_SINGLE)
+			e1:SetCode(EFFECT_UPDATE_ATTACK)
+			e1:SetReset(RESET_PHASE+RESET_DAMAGE_CAL)
+			e1:SetValue(atk)
+			c:RegisterEffect(e1)
+		end
 	end
 end
 
