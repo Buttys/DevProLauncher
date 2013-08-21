@@ -51,7 +51,7 @@ namespace DevProLauncher.Config
         public string GameBanList = "Banlist";
         public string GameTimeLimit = "Time Limit";
         public string GameActive = "Active Games";
-        public string GameIlligal = "Illigal Games";
+        public string GameIlligal = "Illegal Games";
         public string GameUserFilter = "User Filter";
         public string GameBtnSearch = "Search";
         public string GameBtnHost = "Host";
