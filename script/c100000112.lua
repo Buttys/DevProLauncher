@@ -12,7 +12,7 @@ function c100000112.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c100000112.filter(c,id,e,tp)
-	return c:IsReason(REASON_DESTROY) and c:GetTurnID()==id) and c:IsSetCard(0x3b) 
+	return c:IsReason(REASON_DESTROY) and c:GetTurnID()==id and c:IsSetCard(0x3b) 
 	 and c:IsType(TYPE_MONSTER) and c:IsCanBeSpecialSummoned(e,0,tp,true,false)
 end
 function c100000112.target(e,tp,eg,ep,ev,re,r,rp,chk)
