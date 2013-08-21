@@ -58,12 +58,12 @@
             this.DeckSelect = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.RankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.SearchReset = new System.Windows.Forms.Timer(this.components);
             this.GameListUpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.lockedChk = new System.Windows.Forms.CheckBox();
+            this.RankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
+            this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -446,18 +446,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ranked";
             // 
-            // RankedList
-            // 
-            this.RankedList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RankedList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.RankedList.FormattingEnabled = true;
-            this.RankedList.IntegralHeight = false;
-            this.RankedList.ItemHeight = 50;
-            this.RankedList.Location = new System.Drawing.Point(3, 16);
-            this.RankedList.Name = "RankedList";
-            this.RankedList.Size = new System.Drawing.Size(318, 454);
-            this.RankedList.TabIndex = 0;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.UnrankedList);
@@ -468,18 +456,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Unranked";
-            // 
-            // UnrankedList
-            // 
-            this.UnrankedList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UnrankedList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.UnrankedList.FormattingEnabled = true;
-            this.UnrankedList.IntegralHeight = false;
-            this.UnrankedList.ItemHeight = 50;
-            this.UnrankedList.Location = new System.Drawing.Point(3, 16);
-            this.UnrankedList.Name = "UnrankedList";
-            this.UnrankedList.Size = new System.Drawing.Size(317, 454);
-            this.UnrankedList.TabIndex = 0;
             // 
             // SearchReset
             // 
@@ -499,6 +475,30 @@
             this.lockedChk.TabIndex = 10;
             this.lockedChk.Text = "Locked";
             this.lockedChk.UseVisualStyleBackColor = true;
+            // 
+            // RankedList
+            // 
+            this.RankedList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RankedList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.RankedList.FormattingEnabled = true;
+            this.RankedList.IntegralHeight = false;
+            this.RankedList.ItemHeight = 50;
+            this.RankedList.Location = new System.Drawing.Point(3, 16);
+            this.RankedList.Name = "RankedList";
+            this.RankedList.Size = new System.Drawing.Size(318, 454);
+            this.RankedList.TabIndex = 0;
+            // 
+            // UnrankedList
+            // 
+            this.UnrankedList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UnrankedList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.UnrankedList.FormattingEnabled = true;
+            this.UnrankedList.IntegralHeight = false;
+            this.UnrankedList.ItemHeight = 50;
+            this.UnrankedList.Location = new System.Drawing.Point(3, 16);
+            this.UnrankedList.Name = "UnrankedList";
+            this.UnrankedList.Size = new System.Drawing.Size(317, 454);
+            this.UnrankedList.TabIndex = 0;
             // 
             // HubGameList_frm
             // 
