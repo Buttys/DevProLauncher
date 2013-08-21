@@ -27,17 +27,17 @@
   <RegistMsb4>Enregistrement réussi!</RegistMsb4>
   <RegistMsb5>Profil déjà existant.</RegistMsb5>
   <RegistMsb6>Le profil ne peut contenir de caractères spéciaux.</RegistMsb6>
-  <GameRanked>Classé</GameTabRanked>
-  <GameUnranked>Non classé</GameTabUnranked>
+  <GameRanked>Classé</GameRanked>
+  <GameUnranked>Non classé</GameUnranked>
   <GameDefualtDeck>Deck par défaut</GameDefualtDeck>
   <GameSearch>Filtre</GameSearch>
   <GameFormat>Format</GameFormat>
-  <GameType>Type</GameType>
+  <GameType>Type de jau</GameType>
   <GameBanList>Banlist</GameBanList>
   <GameTimeLimit>Limite de temps</GameTimeLimit>
   <GameActive>Jeux actifs</GameActive>
   <GameIlligal>Jeux illégaux</GameIlligal>
-  <GameUserFilter>Rechercher un duelliste :</GameUserFilter>
+  <GameUserFilter>Recherche par duelliste :</GameUserFilter>
   <GameBtnSearch>Filtrer</GameBtnSearch>
   <GameBtnHost>Hôte</GameBtnHost>
   <GameBtnQuick>Rapide</GameBtnQuick>
@@ -174,7 +174,7 @@
   <chatRemoveIgnore>Retirer</chatRemoveIgnore>
   <chatAutoScroll>Défil. Auto</chatAutoScroll>
   <MainFormTitle>Lanceur YgoPro Online </MainFormTitle>
-  <MainChatTab>Chat (Beta)</MainChatTab>
+  <MainChatTab>Chat</MainChatTab>
   <MainRankingTab>Classement</MainRankingTab>
   <MainTornyTab>Salon des Tournois</MainTornyTab>
   <MainYoutubeTab>Youtube</MainYoutubeTab>
@@ -183,7 +183,7 @@
   <MainFileReplayTab>Replays</MainFileReplayTab>
   <MainCustomizeTab>Personnaliser</MainCustomizeTab>
   <MainAboutTab>A propos</MainAboutTab>
-  <MainSyncBtn>Synchro Dropbox</MainSyncBtn>
+  <MainSyncBtn>Sync. Dropbox</MainSyncBtn>
   <MainSiteBtn>Site</MainSiteBtn>
   <MainDeckBtn>Decks</MainDeckBtn>
   <MainReplaysBtn>Replays</MainReplaysBtn>
