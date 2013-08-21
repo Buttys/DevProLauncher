@@ -127,6 +127,9 @@ Thumbs.db
 Desktop.ini
 
 
+#Links
+*.lnk
+
 #############
 ## Python
 #############

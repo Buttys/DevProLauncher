@@ -12,7 +12,7 @@ function c11111146.initial_effect(c)
 	e1:SetOperation(c11111146.activate)
 	c:RegisterEffect(e1)
 end
-function c55673611.condition(e,tp,eg,ep,ev,re,r,rp)
+function c11111146.condition(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetLP(tp)<Duel.GetLP(1-tp)
 end
 function c11111146.filter(c)
