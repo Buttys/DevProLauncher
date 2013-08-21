@@ -33,7 +33,7 @@ function c100000105.coinop(e,tp,eg,ep,ev,re,r,rp)
 			local g=Duel.SelectTarget(1-tp,Card.IsControlerCanBeChanged,1-tp,0,LOCATION_MZONE,1,1,e:GetHandler())
 			Duel.HintSelection(g)
 			Duel.BreakEffect()
-			if g then
+			if g:GetFirst() then
 				Duel.GetControl(g:GetFirst(),1-tp)
 			end
 		end
@@ -43,7 +43,7 @@ function c100000105.coinop(e,tp,eg,ep,ev,re,r,rp)
 			local g=Duel.SelectTarget(tp,Card.IsControlerCanBeChanged,tp,0,LOCATION_MZONE,1,1,nil)			
 			Duel.HintSelection(g)
 			Duel.BreakEffect()
-			if g then
+			if g:GetFirst() then
 				Duel.GetControl(g:GetFirst(),tp)
 			end
 		end
