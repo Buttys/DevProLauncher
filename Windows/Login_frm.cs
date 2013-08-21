@@ -60,6 +60,7 @@ namespace DevProLauncher.Windows
 
             if (Program.Config.SavePassword)
             {
+                savePassCheckBox.Checked = true;
                 passwordInput.Text = Program.Config.SavedPassword;
                 usernameInput.Text = Program.Config.SavedUsername;
             }
@@ -164,22 +165,17 @@ namespace DevProLauncher.Windows
             }
             if (savePassCheckBox.Checked)
             {
-                if (!Program.Config.SavePassword)
-                {
-                    Program.Config.SavePassword = true;
-                    Program.Config.SavedUsername = usernameInput.Text;
-                    Program.Config.SavedPassword = passwordInput.Text;
-                    Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
-                }
+                Program.Config.SavePassword = true;
+                Program.Config.SavedUsername = usernameInput.Text;
+                Program.Config.SavedPassword = passwordInput.Text;
+
             }
             else
             {
-                if (Program.Config.SavePassword)
-                {
-                    Program.Config.SavePassword = false;
-                    Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
-                }
+                Program.Config.SavedPassword = "";
+                Program.Config.SavePassword = false;
             }
+            Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
             Program.ChatServer.SendPacket(DevServerPackets.Login,
             JsonSerializer.SerializeToString(
             new LoginRequest { Username = usernameInput.Text, Password = LauncherHelper.EncodePassword(passwordInput.Text), UID = LauncherHelper.GetUID() }));
@@ -201,12 +197,12 @@ namespace DevProLauncher.Windows
                 if (Program.UserInfo == null)
                 {
                     Program.UserInfo = new UserData
-                        {
-                            rank = data.UserRank,
-                            username = data.Username,
-                            team = data.Team,
-                            teamRank = data.TeamRank
-                        };
+                    {
+                        rank = data.UserRank,
+                        username = data.Username,
+                        team = data.Team,
+                        teamRank = data.TeamRank
+                    };
                     Program.LoginKey = data.LoginKey;
                     ResetTimeOut();
                     Program.MainForm.Login();
