@@ -335,7 +335,6 @@ namespace DevProLauncher.Windows
                     form.BanList.SelectedIndex = 0;
                 form.CardRules.SelectedIndexChanged += form.FormatChanged;
                 form.BanList.Enabled = false;
-                form.TimeLimit.Enabled = false;
                 form.Priority.Enabled = false;
                 form.ShuffleDeck.Enabled = false;
                 form.CheckDeck.Enabled = false;
