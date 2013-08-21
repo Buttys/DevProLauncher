@@ -60,6 +60,7 @@ namespace DevProLauncher.Windows
 
             if (Program.Config.SavePassword)
             {
+                savePassCheckBox.Checked = true;
                 passwordInput.Text = Program.Config.SavedPassword;
                 usernameInput.Text = Program.Config.SavedUsername;
             }
@@ -164,11 +165,11 @@ namespace DevProLauncher.Windows
             }
             if (savePassCheckBox.Checked)
             {
-                if (!Program.Config.SavePassword)
+                if (!Program.Config.SavePassword && Program.Config.DefaultUsername != usernameInput.Text)
                 {
                     Program.Config.SavePassword = true;
                     Program.Config.SavedUsername = usernameInput.Text;
-                    Program.Config.SavedPassword = passwordInput.Text;
+                    Program.Config.SavedPassword = LauncherHelper.EncodePassword(passwordInput.Text);
                     Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
                 }
             }
@@ -177,12 +178,16 @@ namespace DevProLauncher.Windows
                 if (Program.Config.SavePassword)
                 {
                     Program.Config.SavePassword = false;
+                    Program.Config.SavedPassword = string.Empty;
                     Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
                 }
             }
+            bool encoded = (!string.IsNullOrEmpty(Program.Config.SavedPassword) &&
+                            passwordInput.Text == Program.Config.SavedPassword &&
+                            savePassCheckBox.Checked);
             Program.ChatServer.SendPacket(DevServerPackets.Login,
             JsonSerializer.SerializeToString(
-            new LoginRequest { Username = usernameInput.Text, Password = LauncherHelper.EncodePassword(passwordInput.Text), UID = LauncherHelper.GetUID() }));
+            new LoginRequest { Username = usernameInput.Text, Password = (encoded ? passwordInput.Text:LauncherHelper.EncodePassword(passwordInput.Text)), UID = LauncherHelper.GetUID() }));
         }
 
         private void LoginResponse(DevClientPackets type, LoginData data)
