@@ -2,7 +2,7 @@
 
 This is the DevPro YGOPro Launcher, software developed as a compliment to the YGOPro software to extend user control of the system. The software uses server side controls to deliver a consistant experience to it's users.
 
-##Istallation
+##Installation
 The software is provided with an installer and specialized copy of YGOPro at http://devpro.org and http://ygopro.de. The Client (compiled) is to be placed in the top level of an YGOPro installation it will look for YGPro as the file devpro.dll. When ran for the first time it will create an launcher.conffile, and Assest folder.
 
 ##Features
@@ -13,8 +13,8 @@ The software is provided with an installer and specialized copy of YGOPro at htt
   + Private message system
   + Room system
   + Team system
-  + /me statements
-  + Datestamps
+  + '/me' Actions
+  + Time stamps
   + Color blind Mode
   + Friend and Ignore list
   + Server wide messaging
