@@ -6,6 +6,7 @@ This is the DevPro YGOPro Launcher, software developed as a compliment to the YG
 DevPro YGOPro Launcher has many features, this is a list giving an overview.
 
 *Automatic update system
+
 *Realtime game listing, and search
 *Custom Chat System
   * Direct Duel Request system
