@@ -73,7 +73,9 @@ function c100000224.condition(e,tp,eg,ep,ev,re,r,rp)
 end
 function c100000224.operation(e,tp,eg,ep,ev,re,r,rp)
 	local tg=e:GetHandler():GetBattleTarget()
+	if tg then
 	tg:RegisterFlagEffect(100000224,RESET_EVENT+0x1fe0000+RESET_PHASE+RESET_END,0,1) 
+	end
 end
 function c100000224.cfilter(c,tp)
 	return c:GetFlagEffect(100000224)~=0 and c:GetControler()~=tp and c:IsFaceup() and c:IsControlerCanBeChanged()
