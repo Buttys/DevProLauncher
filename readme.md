@@ -1,6 +1,9 @@
 #DevPro YGOPro Launcher
 
-This is the DevPro YGOPro Launcher, software developed as a compliment to the YGOPro software to extend user control of the system. 
+This is the DevPro YGOPro Launcher, software developed as a compliment to the YGOPro software to extend user control of the system. The software uses server side controls to deliver a consistant experience to it's users.
+
+##Istallation
+The software is provided with an installer and specialized copy of YGOPro at http://devpro.org and http://ygopro.de. The Client (compiled) is to be placed in the top level of an YGOPro installation it will look for YGPro as the file devpro.dll
 
 ##Features
 * Automatic update system
