@@ -722,9 +722,9 @@ namespace DevProLauncher.Windows
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ip username - Get a users IP"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banip ip - Ban a IP"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unbanip ip - Unbans IP"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getbanlist roomname - Get ban list"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getbanlist - Get ban list"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/roomowner roomname - Get the creator of a channel"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/killroom - force a chat channel to close"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/killroom roomname - force a chat channel to close"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getuid username - Gets the UID of a username"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getuidaccounts uid - Gets the accnount names registered under the UID"));
                     }
