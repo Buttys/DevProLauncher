@@ -3,10 +3,12 @@
 This is the DevPro YGOPro Launcher, software developed as a compliment to the YGOPro software to extend user control of the system. 
 
 ##Features
+DevPro YGOPro Launcher has many features, this is a list giving an overview.
+
 +Automatic update system
 +Realtime game listing, and search
 +Custom Chat System
-  * Direct Duel Request system
+  + Direct Duel Request system
   * Private message system
   * Room system
   * Team system
