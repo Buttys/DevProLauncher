@@ -75,7 +75,8 @@ function c100000156.synop(e,tp,eg,ep,ev,re,r,rp,c,tuner)
 	Duel.SendtoGrave(g,REASON_MATERIAL+REASON_SYNCHRO)
 end
 function c100000156.tgcon(e,c)
-	return Duel.GetAttackTarget():GetAttack()>e:GetHandler():GetBaseAttack()
+	local at =Duel.GetAttackTarget()
+	return  at and at:GetAttack()>e:GetHandler():GetBaseAttack()
 end
 function c100000156.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
