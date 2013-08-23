@@ -13,7 +13,7 @@ function c100100123.initial_effect(c)
 end
 function c100100123.con(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFieldCard(e:GetHandler():GetControler(),LOCATION_SZONE,5)
-	return tc:GetCounter(0x91)>1
+	return tc and tc:GetCounter(0x91)>1
 end
 function c100100123.filter(c)
 	return c:IsDestructable() and Duel.IsExistingMatchingCard(Card.IsDestructable,c:GetControler(),LOCATION_ONFIELD,LOCATION_ONFIELD,1,c)
