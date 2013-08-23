@@ -166,7 +166,7 @@ namespace DevProLauncher.Windows
             }
             if (savePassCheckBox.Checked)
             {
-                if (!Program.Config.SavePassword && Program.Config.DefaultUsername != usernameInput.Text)
+                if (!Program.Config.SavePassword || Program.Config.DefaultUsername != usernameInput.Text)
                 {
                     Program.Config.SavePassword = true;
                     Program.Config.SavedUsername = usernameInput.Text;
