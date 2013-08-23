@@ -32,7 +32,7 @@
   <GameDefualtDeck>Deck par défaut</GameDefualtDeck>
   <GameSearch>Filtre</GameSearch>
   <GameFormat>Format</GameFormat>
-  <GameType>Type de jau</GameType>
+  <GameType>Type de jeu</GameType>
   <GameBanList>Banlist</GameBanList>
   <GameTimeLimit>Limite de temps</GameTimeLimit>
   <GameActive>Jeux actifs</GameActive>
