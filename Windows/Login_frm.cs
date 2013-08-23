@@ -50,9 +50,10 @@ namespace DevProLauncher.Windows
             usernameInput.KeyDown += UsernameInput_KeyDown;
             passwordInput.KeyDown += PasswordInput_KeyDown;
 
+            PatchNotes.ScriptErrorsSuppressed = true;
             PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
-                                    ? "http://ygopro.de/patches/"
-                                    : "http://ygopro.de/patches/?lang=en");
+                                    ? "http://ygopro.de/update-news/"
+                                    : "http://ygopro.de/update-news/?lang=en");
             PatchNotes.Navigating += WebRedirect;
 
 
@@ -108,8 +109,8 @@ namespace DevProLauncher.Windows
             Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
             Program.LanguageManager.Load(languageSelect.SelectedItem.ToString());
             PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
-                                    ? "http://ygopro.de/patches/"
-                                    : "http://ygopro.de/patches/?lang=en");
+                                    ? "http://ygopro.de/update-news/"
+                                    : "http://ygopro.de/update-news/?lang=en");
             ApplyTranslation();
             Program.MainForm.ReLoadLanguage();
         }
