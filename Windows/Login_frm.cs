@@ -58,10 +58,10 @@ namespace DevProLauncher.Windows
 
             ApplyTranslation();
 
-            if (Program.Config.SavePassword)
+            if (Program.Config.SavePassword && !string.IsNullOrEmpty(Program.Config.EncodedPassword))
             {
                 savePassCheckBox.Checked = true;
-                passwordInput.Text = Program.Config.SavedPassword;
+                passwordInput.Text = Program.Config.EncodedPassword;
                 usernameInput.Text = Program.Config.SavedUsername;
             }
 
@@ -169,7 +169,7 @@ namespace DevProLauncher.Windows
                 {
                     Program.Config.SavePassword = true;
                     Program.Config.SavedUsername = usernameInput.Text;
-                    Program.Config.SavedPassword = LauncherHelper.EncodePassword(passwordInput.Text);
+                    Program.Config.EncodedPassword = LauncherHelper.EncodePassword(passwordInput.Text);
                     Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
                 }
             }
@@ -178,12 +178,12 @@ namespace DevProLauncher.Windows
                 if (Program.Config.SavePassword)
                 {
                     Program.Config.SavePassword = false;
-                    Program.Config.SavedPassword = string.Empty;
+                    Program.Config.EncodedPassword = string.Empty;
                     Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
                 }
             }
-            bool encoded = (!string.IsNullOrEmpty(Program.Config.SavedPassword) &&
-                            passwordInput.Text == Program.Config.SavedPassword &&
+            bool encoded = (!string.IsNullOrEmpty(Program.Config.EncodedPassword) &&
+                            passwordInput.Text == Program.Config.EncodedPassword &&
                             savePassCheckBox.Checked);
             Program.ChatServer.SendPacket(DevServerPackets.Login,
             JsonSerializer.SerializeToString(

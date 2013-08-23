@@ -16,6 +16,7 @@
   <LoginMsb1>Not connected to the server.</LoginMsb1>
   <LoginMsb2>Please enter username.</LoginMsb2>
   <LoginMsb3>Please enter password.</LoginMsb3>
+  <LoginSavePass>Save Password</LoginSavePass>
   <RegistLbUser>Username</RegistLbUser>
   <RegistLbPw>Password</RegistLbPw>
   <RegistLbPw2>Confirm Password</RegistLbPw2>
@@ -36,7 +37,7 @@
   <GameBanList>Banlist</GameBanList>
   <GameTimeLimit>Time Limit</GameTimeLimit>
   <GameActive>Active Games</GameActive>
-  <GameIlligal>Illigal Games</GameIlligal>
+  <GameIlligal>Illegal Games</GameIlligal>
   <GameUserFilter>User Filter</GameUserFilter>
   <GameBtnSearch>Search</GameBtnSearch>
   <GameBtnHost>Host</GameBtnHost>
@@ -189,6 +190,7 @@
   <MainReplaysBtn>Replays</MainReplaysBtn>
   <MainOfflineBtn>Offline</MainOfflineBtn>
   <MainProfileBtn>Profile</MainProfileBtn>
+  <MainServerMessage>Server messages will spawn here.</MainServerMessage>
   <DuelReqestMessage> has challenged you to a ranked duel! Do you accept?</DuelReqestMessage>
   <DuelRequestBanlist> Banlist: </DuelRequestBanlist>
   <DuelRequestRules> Rules: </DuelRequestRules>

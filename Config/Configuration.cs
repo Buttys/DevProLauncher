@@ -28,7 +28,7 @@ namespace DevProLauncher.Config
         public bool AutoLogin = false;
         public bool Fullscreen = false;
         public bool SavePassword = false;
-        public string SavedPassword = "";
+        public string EncodedPassword = "";
         public string SavedUsername = "";
         public string GameFont = "simhei.ttf"; //only ger
         public string ChatFont = "";
