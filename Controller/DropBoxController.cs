@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
 using DevProLauncher.Helpers;
 using DropNet;
 using System.Net.NetworkInformation;
-using DevProLauncher.Config;
 using System.Windows.Forms;
 using DevProLauncher.Windows;
 using System.IO;
@@ -48,7 +44,9 @@ namespace DevProLauncher.Controller
 
 
             DropNetClient dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret);
+#if DEBUG
             dbClient.UseSandbox = true;
+#endif
 
             if (String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken) || resync)
             {
@@ -65,7 +63,7 @@ namespace DevProLauncher.Controller
 
                 var url = dbClient.BuildAuthorizeUrl();
 
-                Browser_frm browser = new Browser_frm(url.ToString());
+                Browser_frm browser = new Browser_frm(url);
                 browser.ShowDialog();
 
                 try
@@ -73,7 +71,7 @@ namespace DevProLauncher.Controller
 
                     var accessToken = dbClient.GetAccessToken();
 
-                    MessageBox.Show(accessToken.Token.ToString());
+                    MessageBox.Show(accessToken.Token);
 
                     Properties.Settings.Default.DropBoxUserSecret = accessToken.Secret;
                     Properties.Settings.Default.DropBoxUserToken = accessToken.Token;
@@ -113,10 +111,11 @@ namespace DevProLauncher.Controller
 
             }
 
-            DropNetClient dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret, Properties.Settings.Default.DropBoxUserToken, Properties.Settings.Default.DropBoxUserSecret)
-                {
-                    UseSandbox = true
-                };
+            DropNetClient dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret, Properties.Settings.Default.DropBoxUserToken, Properties.Settings.Default.DropBoxUserSecret);
+            
+#if DEBUG
+            dbClient.UseSandbox = true;
+#endif
 
             DropNet.Models.MetaData meta;
 
