@@ -51,4 +51,3 @@ end
 function c12345005.sumlimit(e,c,sump,sumtype,sumpos,targetp,se)
 	return c:IsLocation(LOCATION_HAND)
 end
-

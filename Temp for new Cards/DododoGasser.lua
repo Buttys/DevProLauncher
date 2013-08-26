@@ -30,7 +30,6 @@ function c12345001.thop(e,tp,eg,ep,ev,re,r,rp)
 		c:RegisterEffect(e1)
 	end
 end
-
 function c12345001.filter(c)
 	return c:IsFaceup and c:IsDestructable()
 end

@@ -47,5 +47,3 @@ end
 function c12345007.rdop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeBattleDamage(ep,ev/2)
 end
-
-
