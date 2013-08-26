@@ -162,7 +162,7 @@ namespace DevProLauncher.Windows
 
         private void siteBtn_Click(object sender, EventArgs e)
         {
-            Process.Start("http://devpro.org");
+            Process.Start("http://devpro.org/blog");
         }
 
         private void DeckBtn_Click(object sender, EventArgs e)
