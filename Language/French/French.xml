@@ -16,6 +16,7 @@
   <LoginMsb1>Non connecté au serveur.</LoginMsb1>
   <LoginMsb2>Veuillez entrer votre profil.</LoginMsb2>
   <LoginMsb3>Veuillez entrer votre mot de passe.</LoginMsb3>
+  <LoginSavePass>Mémorisez-les.</LoginSavePass>
   <RegistLbUser>Profil :</RegistLbUser>
   <RegistLbPw>Mot de passe :</RegistLbPw>
   <RegistLbPw2>Confirmer-le :</RegistLbPw2>
@@ -189,6 +190,7 @@
   <MainReplaysBtn>Replays</MainReplaysBtn>
   <MainOfflineBtn>Hors-Ligne</MainOfflineBtn>
   <MainProfileBtn>Profil</MainProfileBtn>
+  <MainServerMessage>Les messages Serveur apparaîtront ici.</MainServerMessage>
   <DuelReqestMessage> vous défie en Duel classé ! Acceptez-vous ce challenge ?</DuelReqestMessage>
   <DuelRequestBanlist> Restriction: </DuelRequestBanlist>
   <DuelRequestRules> Règles de jeu: </DuelRequestRules>
