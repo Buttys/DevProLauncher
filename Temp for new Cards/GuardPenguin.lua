@@ -1,4 +1,4 @@
---ガード・ペンギン
+--繧ｬ繝ｼ繝峨�ｻ繝壹Φ繧ｮ繝ｳ
 function c12345006.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)

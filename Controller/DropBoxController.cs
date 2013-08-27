@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
 using DevProLauncher.Helpers;
 using DropNet;
 using System.Net.NetworkInformation;
-using DevProLauncher.Config;
 using System.Windows.Forms;
 using DevProLauncher.Windows;
 using System.IO;
@@ -48,7 +44,9 @@ namespace DevProLauncher.Controller
 
 
             DropNetClient dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret);
+#if DEBUG
             dbClient.UseSandbox = true;
+#endif
 
             if (String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken) || resync)
             {
@@ -65,7 +63,7 @@ namespace DevProLauncher.Controller
 
                 var url = dbClient.BuildAuthorizeUrl();
 
-                Browser_frm browser = new Browser_frm(url.ToString());
+                Browser_frm browser = new Browser_frm(url);
                 browser.ShowDialog();
 
                 try
@@ -73,7 +71,7 @@ namespace DevProLauncher.Controller
 
                     var accessToken = dbClient.GetAccessToken();
 
-                    MessageBox.Show(accessToken.Token.ToString());
+                    MessageBox.Show(accessToken.Token);
 
                     Properties.Settings.Default.DropBoxUserSecret = accessToken.Secret;
                     Properties.Settings.Default.DropBoxUserToken = accessToken.Token;
@@ -113,10 +111,11 @@ namespace DevProLauncher.Controller
 
             }
 
-            DropNetClient dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret, Properties.Settings.Default.DropBoxUserToken, Properties.Settings.Default.DropBoxUserSecret)
-                {
-                    UseSandbox = true
-                };
+            DropNetClient dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret, Properties.Settings.Default.DropBoxUserToken, Properties.Settings.Default.DropBoxUserSecret);
+            
+#if DEBUG
+            dbClient.UseSandbox = true;
+#endif
 
             DropNet.Models.MetaData meta;
 
@@ -133,23 +132,23 @@ namespace DevProLauncher.Controller
 
             List<string> filelist = new List<string>();
 
-            if (!Directory.Exists(Application.StartupPath + "/deck/"))
+            if (!Directory.Exists(Program.Config.LauncherDir + "/deck/"))
             {
-                Directory.CreateDirectory(Application.StartupPath + "/deck/");
+                Directory.CreateDirectory(Program.Config.LauncherDir + "/deck/");
             }
 
-            if (!Directory.Exists(Application.StartupPath + "/replay/"))
+            if (!Directory.Exists(Program.Config.LauncherDir + "/replay/"))
             {
-                Directory.CreateDirectory(Application.StartupPath + "/replay/");
+                Directory.CreateDirectory(Program.Config.LauncherDir + "/replay/");
             }
-            
-            foreach (string item in Directory.GetFiles(Application.StartupPath + "/deck/"))
+
+            foreach (string item in Directory.GetFiles(Program.Config.LauncherDir + "/deck/"))
 	        {
 		        filelist.Add(item);
 	        }
 
-            
-            foreach (string item in Directory.GetFiles(Application.StartupPath + "/replay/"))
+
+            foreach (string item in Directory.GetFiles(Program.Config.LauncherDir + "/replay/"))
 	        {
 		        filelist.Add(item);
 	        }
@@ -161,17 +160,17 @@ namespace DevProLauncher.Controller
                 if (Path.GetExtension(file.Name) == ".ydk")
                 {
 
-                    if (File.Exists(Application.StartupPath + "/deck/" + file.Name))
+                    if (File.Exists(Program.Config.LauncherDir + "/deck/" + file.Name))
                     {
-                        if (DateTime.Compare(file.ModifiedDate, File.GetLastWriteTime(Application.StartupPath + "/deck/" + file.Name)) < 0)
+                        if (DateTime.Compare(file.ModifiedDate, File.GetLastWriteTime(Program.Config.LauncherDir + "/deck/" + file.Name)) < 0)
                         {
-                            FileStream fs = new FileStream(Application.StartupPath + "/deck/" + file.Name, FileMode.Create);
+                            FileStream fs = new FileStream(Program.Config.LauncherDir + "/deck/" + file.Name, FileMode.Create);
                             fs.Write(dbClient.GetFile(file.Name), 0, dbClient.GetFile(file.Name).Length);
                             fs.Close();
                         }
-                        else if (DateTime.Compare(file.ModifiedDate, File.GetLastWriteTime(Application.StartupPath + "/deck/" + file.Name)) > 0)
+                        else if (DateTime.Compare(file.ModifiedDate, File.GetLastWriteTime(Program.Config.LauncherDir + "/deck/" + file.Name)) > 0)
                         {
-                            FileStream fs = File.OpenRead(Application.StartupPath + "/deck/" + file.Name);
+                            FileStream fs = File.OpenRead(Program.Config.LauncherDir + "/deck/" + file.Name);
                             byte[] upfile = new byte[fs.Length];
                             fs.Read(upfile, 0, upfile.Length);
                             fs.Close();
@@ -180,7 +179,7 @@ namespace DevProLauncher.Controller
                     }
                     else
                     {
-                        FileStream fs = new FileStream(Application.StartupPath + "/deck/" + file.Name, FileMode.Create);
+                        FileStream fs = new FileStream(Program.Config.LauncherDir + "/deck/" + file.Name, FileMode.Create);
                         fs.Write(dbClient.GetFile(file.Name), 0, dbClient.GetFile(file.Name).Length);
                         fs.Close();
                     }
@@ -189,17 +188,17 @@ namespace DevProLauncher.Controller
                 else if (Path.GetExtension(file.Name) == ".yrp")
                 {
 
-                    if (File.Exists(Application.StartupPath + "/replay/" + file.Name))
+                    if (File.Exists(Program.Config.LauncherDir + "/replay/" + file.Name))
                     {
-                        if (DateTime.Compare(file.ModifiedDate, File.GetLastWriteTime(Application.StartupPath + "/deck/" + file.Name)) < 0)
+                        if (DateTime.Compare(file.ModifiedDate, File.GetLastWriteTime(Program.Config.LauncherDir + "/deck/" + file.Name)) < 0)
                         {
-                            FileStream fs = new FileStream(Application.StartupPath + "/replay/" + file.Name, FileMode.Create);
+                            FileStream fs = new FileStream(Program.Config.LauncherDir + "/replay/" + file.Name, FileMode.Create);
                             fs.Write(dbClient.GetFile(file.Name), 0, dbClient.GetFile(file.Name).Length);
                             fs.Close();
                         }
-                        else if (DateTime.Compare(file.ModifiedDate, File.GetLastWriteTime(Application.StartupPath + "/deck/" + file.Name)) > 0)
+                        else if (DateTime.Compare(file.ModifiedDate, File.GetLastWriteTime(Program.Config.LauncherDir + "/deck/" + file.Name)) > 0)
                         {
-                            FileStream fs = File.OpenRead(Application.StartupPath + "/replay/" + file.Name);
+                            FileStream fs = File.OpenRead(Program.Config.LauncherDir + "/replay/" + file.Name);
                             byte[] upfile = new byte[fs.Length];
                             fs.Read(upfile, 0, upfile.Length);
                             fs.Close();
@@ -208,7 +207,7 @@ namespace DevProLauncher.Controller
                     }
                     else
                     {
-                        FileStream fs = new FileStream(Application.StartupPath + "/replay/" + file.Name, FileMode.Create);
+                        FileStream fs = new FileStream(Program.Config.LauncherDir + "/replay/" + file.Name, FileMode.Create);
                         fs.Write(dbClient.GetFile(file.Name), 0, dbClient.GetFile(file.Name).Length);
                         fs.Close();
                     }
@@ -223,7 +222,7 @@ namespace DevProLauncher.Controller
                 {
                     if (Path.GetExtension(file) == ".ydk")
                     {
-                        FileStream fs = File.OpenRead(Application.StartupPath + "/deck/" + Path.GetFileName(file));
+                        FileStream fs = File.OpenRead(Program.Config.LauncherDir + "/deck/" + Path.GetFileName(file));
                         byte[] upfile = new byte[fs.Length];
                         fs.Read(upfile, 0, upfile.Length);
                         fs.Close();
@@ -231,7 +230,7 @@ namespace DevProLauncher.Controller
                     }
                     else if (Path.GetExtension(file) == ".yrp")
                     {
-                        FileStream fs = File.OpenRead(Application.StartupPath + "/replay/" + Path.GetFileName(file));
+                        FileStream fs = File.OpenRead(Program.Config.LauncherDir + "/replay/" + Path.GetFileName(file));
                         byte[] upfile = new byte[fs.Length];
                         fs.Read(upfile, 0, upfile.Length);
                         fs.Close();

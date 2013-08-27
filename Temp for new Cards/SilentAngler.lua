@@ -1,4 +1,4 @@
---サイレントアングラー
+--繧ｵ繧､繝ｬ繝ｳ繝医い繝ｳ繧ｰ繝ｩ繝ｼ
 function c12345005.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)

@@ -14,7 +14,6 @@ namespace DevProLauncher.Windows
 {
     public sealed partial class LoginFrm : Form
     {
-        private readonly Timer m_loginTimeOut = new Timer();
         public LoginFrm()
         {
             InitializeComponent();
@@ -24,7 +23,6 @@ namespace DevProLauncher.Windows
 
             Program.ChatServer.LoginReply += LoginResponse;
 
-            m_loginTimeOut.Interval = 3000;
             usernameInput.Text = Program.Config.DefaultUsername;
 
             if (Directory.Exists(LanguageManager.Path))
@@ -46,21 +44,22 @@ namespace DevProLauncher.Windows
                 languageSelect.SelectedIndex = 0;
             }
 
-            m_loginTimeOut.Tick += LoginTimeOut_Tick;
             usernameInput.KeyDown += UsernameInput_KeyDown;
             passwordInput.KeyDown += PasswordInput_KeyDown;
 
+            PatchNotes.ScriptErrorsSuppressed = true;
             PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
-                                    ? "http://ygopro.de/patches/"
-                                    : "http://ygopro.de/patches/?lang=en");
+                                    ? "http://ygopro.de/update-news/"
+                                    : "http://ygopro.de/update-news/?lang=en");
             PatchNotes.Navigating += WebRedirect;
 
 
             ApplyTranslation();
 
-            if (Program.Config.SavePassword)
+            if (Program.Config.SavePassword && !string.IsNullOrEmpty(Program.Config.EncodedPassword))
             {
-                passwordInput.Text = Program.Config.SavedPassword;
+                savePassCheckBox.Checked = true;
+                passwordInput.Text = Program.Config.EncodedPassword;
                 usernameInput.Text = Program.Config.SavedUsername;
             }
 
@@ -107,37 +106,12 @@ namespace DevProLauncher.Windows
             Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
             Program.LanguageManager.Load(languageSelect.SelectedItem.ToString());
             PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
-                                    ? "http://ygopro.de/patches/"
-                                    : "http://ygopro.de/patches/?lang=en");
+                                    ? "http://ygopro.de/update-news/"
+                                    : "http://ygopro.de/update-news/?lang=en");
             ApplyTranslation();
             Program.MainForm.ReLoadLanguage();
         }
 
-        private void LoginTimeOut_Tick(object sender, EventArgs e)
-        {
-            if (!IsDisposed)
-            {
-                ResetTimeOut();
-                MessageBox.Show("Login Timeout");
-            }
-        }
-
-        public void ResetTimeOut()
-        {
-            if (InvokeRequired)
-            {
-                Invoke(new Action(ResetTimeOut));
-            }
-            else
-            {
-                if (!IsDisposed)
-                {
-                    m_loginTimeOut.Enabled = false;
-                    Enabled = true;
-                    loginBtn.Enabled = true;
-                }
-            }
-        }
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
@@ -151,7 +125,6 @@ namespace DevProLauncher.Windows
             }
 
             loginBtn.Enabled = false;
-            m_loginTimeOut.Enabled = true;
             if (usernameInput.Text == "")
             {
                 MessageBox.Show(Program.LanguageManager.Translation.LoginMsb2);
@@ -162,38 +135,30 @@ namespace DevProLauncher.Windows
                 MessageBox.Show(Program.LanguageManager.Translation.LoginMsb3);
                 return;
             }
-            if (savePassCheckBox.Checked)
-            {
-                if (!Program.Config.SavePassword)
-                {
-                    Program.Config.SavePassword = true;
-                    Program.Config.SavedUsername = usernameInput.Text;
-                    Program.Config.SavedPassword = passwordInput.Text;
-                    Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
-                }
-            }
-            else
-            {
-                if (Program.Config.SavePassword)
-                {
-                    Program.Config.SavePassword = false;
-                    Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
-                }
-            }
+
+            bool encoded = (!string.IsNullOrEmpty(Program.Config.EncodedPassword) &&
+                            passwordInput.Text == Program.Config.EncodedPassword &&
+                            savePassCheckBox.Checked);
             Program.ChatServer.SendPacket(DevServerPackets.Login,
             JsonSerializer.SerializeToString(
-            new LoginRequest { Username = usernameInput.Text, Password = LauncherHelper.EncodePassword(passwordInput.Text), UID = LauncherHelper.GetUID() }));
+            new LoginRequest { Username = usernameInput.Text, Password = (encoded ? passwordInput.Text:LauncherHelper.EncodePassword(passwordInput.Text)), UID = LauncherHelper.GetUID() }));
         }
 
         private void LoginResponse(DevClientPackets type, LoginData data)
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<DevClientPackets, LoginData>(LoginResponse), type, data);
+                return;
+            }
+
             if (type == DevClientPackets.Banned)
             {
                 MessageBox.Show("You are banned.");
             }
             else if (type == DevClientPackets.LoginFailed)
             {
-                ResetTimeOut();
+                loginBtn.Enabled = true;
                 MessageBox.Show("Incorrect Password or Username.");
             }
             else
@@ -208,8 +173,27 @@ namespace DevProLauncher.Windows
                             teamRank = data.TeamRank
                         };
                     Program.LoginKey = data.LoginKey;
-                    ResetTimeOut();
                     Program.MainForm.Login();
+                    
+                    if (savePassCheckBox.Checked)
+                    {
+                        if (!Program.Config.SavePassword || Program.Config.SavedUsername != usernameInput.Text)
+                        {
+                            Program.Config.SavePassword = true;
+                            Program.Config.SavedUsername = usernameInput.Text;
+                            Program.Config.EncodedPassword = LauncherHelper.EncodePassword(passwordInput.Text);
+                            Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
+                        }
+                    }
+                    else
+                    {
+                        if (Program.Config.SavePassword)
+                        {
+                            Program.Config.SavePassword = false;
+                            Program.Config.EncodedPassword = string.Empty;
+                            Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
+                        }
+                    }
                 }
             }
         }

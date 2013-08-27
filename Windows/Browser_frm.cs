@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace DevProLauncher.Windows
 {
     public partial class Browser_frm : Form
     {
-        string url = null;
+        string url;
 
         public Browser_frm(string URL)
         {
@@ -19,13 +12,15 @@ namespace DevProLauncher.Windows
             url = URL;
             
             InitializeComponent();
+            browserWb.ScriptErrorsSuppressed = true;
             Init();
             
         }
 
         private void Init()
         {
-            browserWb.Navigate(url);
+            if(!string.IsNullOrEmpty(url))
+                browserWb.Navigate(url);
         }
     }
 }

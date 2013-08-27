@@ -1,4 +1,4 @@
---ドドドガッサー
+--繝峨ラ繝峨ぎ繝�繧ｵ繝ｼ
 function c12345001.initial_effect(c)
 	--atk boost
 	local e1=Effect.CreateEffect(c)

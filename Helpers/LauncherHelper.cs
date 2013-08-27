@@ -274,8 +274,8 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("use_d3d = " + Convert.ToInt32(Program.Config.Enabled3D));
             writer.WriteLine(("antialias = " + Program.Config.Antialias));
             writer.WriteLine("errorlog = 1");
-            writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.LoginKey));
-            writer.WriteLine(("roompass ="));
+            writer.WriteLine("nickname = ");
+            writer.WriteLine("roompass =");
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
             writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
             writer.WriteLine("numfont = fonts/arialbd.ttf");

@@ -101,7 +101,7 @@ namespace DevProLauncher.Windows.MessageBoxs
         {
             if (CardRules.SelectedIndex >= 3)
             {
-                BanList.SelectedIndex = 1;
+                BanList.SelectedIndex = 2;
                 BanList.Enabled = false;
             }
             else
@@ -109,6 +109,22 @@ namespace DevProLauncher.Windows.MessageBoxs
                 BanList.Enabled = true;
                 BanList.SelectedItem = Program.Config.BanList;
             }
+        }
+
+        public void FormatChanged(object sender, EventArgs e)
+        {
+            if (CardRules.SelectedItem.ToString() == "TCG")
+            {
+                if (BanList.Items.Count > 0)
+                    BanList.SelectedIndex = 0;
+            }
+            else
+            {
+                if (BanList.Items.Count > 1)
+                    BanList.SelectedIndex = 1;
+            }
+
+
         }
 
         private void DuelModeChanged(object sender, EventArgs e)

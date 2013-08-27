@@ -49,7 +49,7 @@ namespace DevProLauncher.Windows
         {
             LanguageInfo info = Program.LanguageManager.Translation;
 
-            OptionsBtn.Text = info.MainOfflineBtn;
+            OptionsBtn.Text = info.chatBtnoptions;
             ProfileBtn.Text = info.MainProfileBtn;
             DeckBtn.Text = info.MainDeckBtn;
             ReplaysBtn.Text = info.MainReplaysBtn;
@@ -162,7 +162,7 @@ namespace DevProLauncher.Windows
 
         private void siteBtn_Click(object sender, EventArgs e)
         {
-            Process.Start("http://devpro.org");
+            Process.Start("http://devpro.org/blog");
         }
 
         private void DeckBtn_Click(object sender, EventArgs e)

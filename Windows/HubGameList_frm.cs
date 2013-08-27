@@ -50,6 +50,7 @@ namespace DevProLauncher.Windows
             GameListUpdateTimer.Tick += UpdateGameListTimer;
 
             RefreshDeckList();
+            LauncherHelper.DeckEditClosed += RefreshDeckList;
             DeckSelect.SelectedIndexChanged += DeckSelect_SelectedValueChanged;
 
             ApplyTranslation();
@@ -332,11 +333,8 @@ namespace DevProLauncher.Windows
                 form.Mode.SelectedItem = "Match";
                 if (form.BanList.Items.Count > 0)
                     form.BanList.SelectedIndex = 0;
+                form.CardRules.SelectedIndexChanged += form.FormatChanged;
                 form.BanList.Enabled = false;
-                form.TimeLimit.Items.Clear();
-                form.TimeLimit.Items.Add("Server Defualt");
-                form.TimeLimit.SelectedItem = "Server Defualt";
-                form.TimeLimit.Enabled = false;
                 form.Priority.Enabled = false;
                 form.ShuffleDeck.Enabled = false;
                 form.CheckDeck.Enabled = false;

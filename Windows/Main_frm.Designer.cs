@@ -41,8 +41,8 @@
             this.ReplaysBtn = new System.Windows.Forms.Button();
             this.ProfileBtn = new System.Windows.Forms.Button();
             this.siteBtn = new System.Windows.Forms.Button();
-            this.MessageLabel = new System.Windows.Forms.Label();
             this.DBSyncBtn = new System.Windows.Forms.Button();
+            this.MessageLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -168,6 +168,16 @@
             this.siteBtn.UseVisualStyleBackColor = true;
             this.siteBtn.Click += new System.EventHandler(this.siteBtn_Click);
             // 
+            // DBSyncBtn
+            // 
+            this.DBSyncBtn.Location = new System.Drawing.Point(6, 3);
+            this.DBSyncBtn.Name = "DBSyncBtn";
+            this.DBSyncBtn.Size = new System.Drawing.Size(92, 23);
+            this.DBSyncBtn.TabIndex = 12;
+            this.DBSyncBtn.Text = "Dropbox Sync";
+            this.DBSyncBtn.UseVisualStyleBackColor = true;
+            this.DBSyncBtn.Click += new System.EventHandler(this.DBSyncBtn_Click);
+            // 
             // MessageLabel
             // 
             this.MessageLabel.AutoSize = true;
@@ -178,17 +188,6 @@
             this.MessageLabel.TabIndex = 0;
             this.MessageLabel.Text = "Server messages will spawn here.";
             this.MessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // DBSyncBtn
-            // 
-            this.DBSyncBtn.Enabled = false;
-            this.DBSyncBtn.Location = new System.Drawing.Point(6, 3);
-            this.DBSyncBtn.Name = "DBSyncBtn";
-            this.DBSyncBtn.Size = new System.Drawing.Size(92, 23);
-            this.DBSyncBtn.TabIndex = 12;
-            this.DBSyncBtn.Text = "Dropbox Sync";
-            this.DBSyncBtn.UseVisualStyleBackColor = true;
-            this.DBSyncBtn.Click += new System.EventHandler(this.DBSyncBtn_Click);
             // 
             // MainFrm
             // 
