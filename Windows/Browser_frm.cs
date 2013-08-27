@@ -12,6 +12,7 @@ namespace DevProLauncher.Windows
             url = URL;
             
             InitializeComponent();
+            browserWb.ScriptErrorsSuppressed = true;
             Init();
             
         }
