@@ -24,11 +24,10 @@ function c92223641.filter(g,tp)
 	return nil
 end
 function c92223641.cost(e,tp,eg,ep,ev,re,r,rp,chk)
+	local rc=c92223641.filter(eg,tp)
 	if chk==0 then
-		local rc=c92223641.filter(eg,tp)
 		return rc and rc:IsAbleToRemoveAsCost()
 	end
-	local rc=c92223641.filter(eg,tp)
 	e:SetLabel(rc:GetAttack())
 	Duel.Remove(rc,POS_FACEUP,REASON_EFFECT)
 end

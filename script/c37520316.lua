@@ -20,7 +20,7 @@ end
 function c37520316.activate(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if tc:IsRelateToEffect(e) then
+	if tc and tc:IsRelateToEffect(e) then
 		if not Duel.GetControl(tc,tp,PHASE_END,1) then
 			if not tc:IsImmuneToEffect(e) and tc:IsAbleToChangeControler() then
 				Duel.Destroy(tc,REASON_EFFECT)
