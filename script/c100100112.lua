@@ -14,7 +14,7 @@ end
 function c100100112.con(e,tp,eg,ep,ev,re,r,rp)
 	local tc1=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
 	local tc2=Duel.GetFieldCard(1-tp,LOCATION_SZONE,5)
-	return tc1:GetCounter(0x91)>11 and tc2:GetCounter(0x91)<6
+	return tc1 and tc2 and tc1:GetCounter(0x91)>11 and tc2:GetCounter(0x91)<6
 end
 function c100100112.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsPlayerCanDraw(tp,2) end
