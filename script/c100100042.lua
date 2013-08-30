@@ -13,7 +13,7 @@ function c100100042.initial_effect(c)
 end
 function c100100042.con(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
-	return tc:GetCounter(0x91)>1
+	return tc and tc:GetCounter(0x91)>1
 end
 function c100100042.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.CheckLPCost(tp,1000) end

@@ -12,7 +12,8 @@ function c100100105.initial_effect(c)
 end
 function c100100105.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
-	if chk==0 then return not Duel.CheckSpecialSummonActivity(1-tp) and Duel.GetFlagEffect(tp,100100105)==0 and tc:IsCanRemoveCounter(tp,0x91,3,REASON_COST) end
+	if chk==0 then return not Duel.CheckSpecialSummonActivity(1-tp) and Duel.GetFlagEffect(tp,100100105)==0 
+	and tc and tc:IsCanRemoveCounter(tp,0x91,3,REASON_COST) end
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_OATH)
