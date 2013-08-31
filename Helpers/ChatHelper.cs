@@ -38,7 +38,6 @@ namespace DevProLauncher.Helpers
                 string LogText = "";
                 if (Program.Config.ShowTimeStamp)
                 {
-                    LogText += DateTime.Now.ToString("[HH:mm] ");
                     WriteText(window, DateTime.Now.ToString("[HH:mm] "), (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
                 }
                 if (message.from.rank > 0)
@@ -86,18 +85,27 @@ namespace DevProLauncher.Helpers
                     WriteText(window, message.message.Trim(), (Program.Config.ColorBlindMode ? Color.Black : message.MessageColor()));
                 //else
                 //    FormatText(message.message.Trim(), window);
-                LogText += "[" + message.from.username + "]: " + message.message.Trim();
                 string LogFile = "";
                 string LogDirectory = @"Logs\";
                 if (!Directory.Exists(LogDirectory))
                     Directory.CreateDirectory(LogDirectory);
                 if ((MessageType)message.type == MessageType.Message)
+                {
+                    LogDirectory += @"Channel\" + DateTime.Now.ToString("MMMM_yyyy") + @"\"; ;
+                    LogText += DateTime.Now.ToString("[HH:mm]");
+                    LogFile = message.channel + DateTime.Now.ToString(".dd") + ".txt";
+                }
+                else if ((MessageType)message.type == MessageType.PrivateMessage) 
+                {
+                    LogDirectory += @"PMs\"; ;
+                    if (!Directory.Exists(LogDirectory))
+                        Directory.CreateDirectory(LogDirectory);
+                    LogText += DateTime.Now.ToString("[dd MM yy | HH:mm] ");
                     LogFile = message.channel + ".txt";
-                else if ((MessageType)message.type == MessageType.PrivateMessage)
-                    LogFile = message.channel + ".PM.txt";
+                }
                 else if ((MessageType)message.type == MessageType.Team)
                     LogFile = "Team.txt";
-
+                LogText += "[" + message.from.username + "] " + message.message.Trim();
                 if (LogFile != "")
                     File.AppendAllText(LogDirectory + LogFile, LogText + Environment.NewLine);
 
