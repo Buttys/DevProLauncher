@@ -4,22 +4,27 @@ namespace DevProLauncher.Windows
 {
     public partial class Browser_frm : Form
     {
-        string url;
-
-        public Browser_frm(string URL)
+        public Browser_frm()
         {
-
-            url = URL;
-            
             InitializeComponent();
             browserWb.ScriptErrorsSuppressed = true;
-            Init();
+            FormBorderStyle = FormBorderStyle.None;
+            TopLevel = false;
+            Dock = DockStyle.Fill;
+            Visible = true;
+        }
+
+        public Browser_frm(string URL)
+        {        
+            InitializeComponent();
+            browserWb.ScriptErrorsSuppressed = true;
+            Navigate(URL, false);
             
         }
 
-        private void Init()
+        public void Navigate(string url,bool force)
         {
-            if(!string.IsNullOrEmpty(url))
+            if (!string.IsNullOrEmpty(url) &&  browserWb.Url == null || force)
                 browserWb.Navigate(url);
         }
     }
