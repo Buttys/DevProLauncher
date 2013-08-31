@@ -98,8 +98,6 @@ namespace DevProLauncher.Helpers
                 else if ((MessageType)message.type == MessageType.PrivateMessage) 
                 {
                     LogDirectory += @"PMs\"; ;
-                    if (!Directory.Exists(LogDirectory))
-                        Directory.CreateDirectory(LogDirectory);
                     LogText += DateTime.Now.ToString("[dd MM yy | HH:mm] ");
                     LogFile = message.channel + ".txt";
                 }
@@ -107,6 +105,8 @@ namespace DevProLauncher.Helpers
                     LogFile = "Team.txt";
                 LogText += "[" + message.from.username + "] " + message.message.Trim();
                 if (LogFile != "")
+                    if (!Directory.Exists(LogDirectory))
+                        Directory.CreateDirectory(LogDirectory);
                     File.AppendAllText(LogDirectory + LogFile, LogText + Environment.NewLine);
 
             }
