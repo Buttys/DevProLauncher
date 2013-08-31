@@ -811,7 +811,7 @@ namespace DevProLauncher.Windows
 
                 if (selectedTab.IsPrivate)
                 {
-                    WriteMessage(new ChatMessage(MessageType.Message, CommandType.None, Program.UserInfo, selectedTab.Name, ChatInput.Text));
+                    WriteMessage(new ChatMessage(MessageType.PrivateMessage, CommandType.None, Program.UserInfo, selectedTab.Name, ChatInput.Text));
                     Program.ChatServer.SendMessage(MessageType.PrivateMessage, CommandType.None, selectedTab.Name, ChatInput.Text);
                 }
                 else
