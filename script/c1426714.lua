@@ -43,17 +43,16 @@ function c1426714.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
 function c1426714.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>1
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsPlayerCanSpecialSummonMonster(tp,1426715,0,0x4011,500,500,3,RACE_FIEND,ATTRIBUTE_DARK) end
 	Duel.SetOperationInfo(0,CATEGORY_TOKEN,nil,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,0,0)
 end
 function c1426714.spop(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=1 then return end
-	if Duel.IsPlayerCanSpecialSummonMonster(tp,1426715,0,0x4011,500,500,3,RACE_FIEND,ATTRIBUTE_DARK) then
-		local token=Duel.CreateToken(tp,1426715)
-		Duel.SpecialSummonStep(token,0,tp,tp,false,false,POS_FACEUP)
-	end
+	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
+		or not Duel.IsPlayerCanSpecialSummonMonster(tp,1426715,0,0x4011,500,500,3,RACE_FIEND,ATTRIBUTE_DARK) then return end
+	local token=Duel.CreateToken(tp,1426715)
+	Duel.SpecialSummon(token,0,tp,tp,false,false,POS_FACEUP)
 end
 function c1426714.con(e)
 	return Duel.IsExistingMatchingCard(Card.IsCode,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil,1426715)

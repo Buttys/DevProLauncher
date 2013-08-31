@@ -36,7 +36,7 @@ function c100000102.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.SelectTarget(tp,c100000102.filter,tp,LOCATION_MZONE,0,1,1,nil)
 end
 function c100000102.cfil(c)
-	return c:IsFaceup() and c:IsCode(89943723)
+	return c and c:IsFaceup() and c:IsCode(89943723)
 end
 function c100000102.activate(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()

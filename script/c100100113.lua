@@ -11,7 +11,7 @@ end
 function c100100113.con(e,tp,eg,ep,ev,re,r,rp)
 	local tc1=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
 	local tc2=Duel.GetFieldCard(1-tp,LOCATION_SZONE,5)
-	return tc1:GetCounter(0x91)>1 and tc2:GetCounter(0x91)>5
+	return tc1 and tc1:GetCounter(0x91)>1 and tc2 and tc2:GetCounter(0x91)>5
 end
 function c100100113.activate(e,tp,eg,ep,ev,re,r,rp)	
 	local tc=Duel.GetFieldCard(1-tp,LOCATION_SZONE,5)
