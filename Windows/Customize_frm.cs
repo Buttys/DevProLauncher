@@ -29,6 +29,7 @@ namespace DevProLauncher.Windows
             ViewSelect.SelectedIndex = 0;
             Data.Add(ContentType.Covers, new Content { AssetPath = "Assets/Covers/", IconSize = new Size(177, 252), GameItem = "textures\\cover.jpg", FileType = ".jpg", ImageSize = new Size(178,254) });
             Data.Add(ContentType.Backgrounds, new Content { AssetPath = "Assets/Backgrounds/", IconSize = new Size(256, 256), GameItem = "textures\\bg.jpg", FileType = ".jpg", ImageSize = new Size(1024, 640) });
+            Data.Add(ContentType.GameBackgrounds, new Content { AssetPath = "Assets/GameBackgrounds/", IconSize = new Size(256, 256), GameItem = "textures\\bg2.jpg", FileType = ".jpg", ImageSize = new Size(1024, 640) });
             Data.Add(ContentType.Field, new Content { AssetPath = "Assets/Field/", IconSize = new Size(256, 256), GameItem = "textures\\field.png", FileType = ".png", ImageSize = new Size(256, 256) });
             Data.Add(ContentType.FieldTransparent, new Content { AssetPath = "Assets/FieldTransparent/", IconSize = new Size(256, 256), GameItem = "textures\\field-transparent.png", FileType = ".png", ImageSize = new Size(256, 256) });
             Data.Add(ContentType.Numbers, new Content { AssetPath = "Assets/Numbers/", IconSize = new Size(256, 256), GameItem = "textures\\number.png", FileType = ".png", ImageSize = new Size(320, 256) });
@@ -224,6 +225,7 @@ namespace DevProLauncher.Windows
             var control = (ComboBox)sender;
             if (control.Text == "Covers") ContentView = ContentType.Covers;
             if (control.Text == "Backgrounds") ContentView = ContentType.Backgrounds;
+            if(control.Text == "GameBackgrounds") ContentView = ContentType.GameBackgrounds;
             if (control.Text == "Attack") ContentView = ContentType.AttackIcon;
             if (control.Text == "Activate") ContentView = ContentType.ActivateCircle;
             if (control.Text == "Chain") ContentView = ContentType.Chain;

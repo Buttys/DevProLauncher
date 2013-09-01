@@ -170,6 +170,7 @@
             // 
             // DBSyncBtn
             // 
+            this.DBSyncBtn.Enabled = false;
             this.DBSyncBtn.Location = new System.Drawing.Point(6, 3);
             this.DBSyncBtn.Name = "DBSyncBtn";
             this.DBSyncBtn.Size = new System.Drawing.Size(92, 23);
