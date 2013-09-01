@@ -16,7 +16,7 @@ namespace DevProLauncher.Windows
         readonly SupportFrm m_devpointWindow;
         readonly FileManagerFrm m_filemanagerWindow;
         readonly CustomizeFrm m_customizerWindow;
-        private readonly Browser_frm m_wcsBrowser;
+        readonly Browser_frm m_wcsBrowser;
 
         public MainFrm()
         {
@@ -31,8 +31,9 @@ namespace DevProLauncher.Windows
             m_loginWindow = new LoginFrm();
             loginTab.Controls.Add(m_loginWindow);
             mainTabs.TabPages.Add(loginTab);
+            
             m_wcsBrowser = new Browser_frm();
-
+            m_wcsBrowser.FormBorderStyle = FormBorderStyle.None;
             m_chatWindow = new ChatFrm();
             GameWindow = new HubGameList_frm();
             m_devpointWindow = new SupportFrm();
@@ -70,7 +71,6 @@ namespace DevProLauncher.Windows
                 Invoke(new Action<string>(ServerMessage), message);
                 return;
             }
-            MessageBox.Show(message,"Server Message");
             MessageLabel.Text = message;
         }
 

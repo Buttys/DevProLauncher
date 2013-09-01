@@ -63,7 +63,8 @@ namespace DevProLauncher.Controller
 
                 var url = dbClient.BuildAuthorizeUrl();
 
-                Browser_frm browser = new Browser_frm(url);
+                Browser_frm browser = new Browser_frm();
+                browser.Navigate(url,false);
                 browser.ShowDialog();
 
                 try

@@ -7,25 +7,15 @@ namespace DevProLauncher.Windows
         public Browser_frm()
         {
             InitializeComponent();
-            browserWb.ScriptErrorsSuppressed = true;
-            FormBorderStyle = FormBorderStyle.None;
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
         }
 
-        public Browser_frm(string URL)
-        {        
-            InitializeComponent();
-            browserWb.ScriptErrorsSuppressed = true;
-            Navigate(URL, false);
-            
-        }
-
         public void Navigate(string url,bool force)
         {
-            if (!string.IsNullOrEmpty(url) &&  browserWb.Url == null || force)
-                browserWb.Navigate(url);
+            if((browser.Url == null || force) && !string.IsNullOrEmpty(url))
+                browser.Navigate(url);
         }
     }
 }

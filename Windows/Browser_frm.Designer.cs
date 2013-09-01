@@ -3,14 +3,14 @@
     partial class Browser_frm
     {
         /// <summary>
-        /// Erforderliche Designervariable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Verwendete Ressourcen bereinigen.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,41 +20,40 @@
             base.Dispose(disposing);
         }
 
-        #region Vom Windows Form-Designer generierter Code
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
-        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.browserWb = new System.Windows.Forms.WebBrowser();
+            this.browser = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
-            // browserWb
+            // browser
             // 
-            this.browserWb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.browserWb.Location = new System.Drawing.Point(0, 0);
-            this.browserWb.MinimumSize = new System.Drawing.Size(20, 20);
-            this.browserWb.Name = "browserWb";
-            this.browserWb.Size = new System.Drawing.Size(583, 415);
-            this.browserWb.TabIndex = 0;
+            this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browser.Location = new System.Drawing.Point(0, 0);
+            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browser.Name = "browser";
+            this.browser.Size = new System.Drawing.Size(641, 326);
+            this.browser.TabIndex = 0;
             // 
             // Browser_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 415);
-            this.Controls.Add(this.browserWb);
+            this.ClientSize = new System.Drawing.Size(641, 326);
+            this.Controls.Add(this.browser);
             this.Name = "Browser_frm";
-            this.Text = "Browser";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Text = "Browser_frm";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.WebBrowser browserWb;
+        private System.Windows.Forms.WebBrowser browser;
     }
 }
