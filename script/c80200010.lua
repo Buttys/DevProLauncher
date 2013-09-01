@@ -31,7 +31,7 @@ function c80200010.thop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c80200010.filter(c)
-	return c:IsFaceup and c:IsDestructable()
+	return c:IsFaceup() and c:IsDestructable()
 end
 function c80200010.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and c80200010.filter(chkc) end
