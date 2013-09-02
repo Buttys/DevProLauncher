@@ -198,7 +198,7 @@ namespace DevProLauncher.Config
 
         //Chat_frm.cs
 
-        public string chatBtnoptions = "Options";
+        public string chatBtnoptions = "Settings";
         public string chatTabUsers = "Users";
         public string chatTabFriends = "Friends";
         public string chatTabIgnore = "Ignore";
