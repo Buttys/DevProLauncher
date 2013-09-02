@@ -18,7 +18,7 @@ function c80200100.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80200100.cfilter(c)
-	return c:IsFacedown() or c:GetLevel~=4
+	return c:IsFacedown() or c:GetLevel()~=4
 end
 function c80200100.spcon(e,c)
 	if c==nil then return true end
