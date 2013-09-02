@@ -6,7 +6,6 @@ function c80100024.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetTarget(c80100024.target)
-	e1:SetOperation(c80100024.activate)
 	c:RegisterEffect(e1)
 	--indes
 	local e2=Effect.CreateEffect(c)
@@ -14,17 +13,16 @@ function c80100024.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
-	e2:SetTarget(c80100024.target)
+	e2:SetTarget(c80100024.filter)
 	e2:SetValue(c80100024.efilter)
 	c:RegisterEffect(e2)
 end
 function c80100024.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
-	e:GetHandler():SetTurnCounter(0)
-	local sg=Duel.GetMatchingGroup(Card.IsFacedown,tp,0,LOCATION_MZONE,nil)
-	Duel.SetOperationInfo(0,CATEGORY_POSITION,sg,sg:GetCount(),0,0)
+	local c=e:GetHandler()
+	c:SetTurnCounter(0)
 	--destroy
-	local e1=Effect.CreateEffect(e:GetHandler())
+	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 	e1:SetCode(EVENT_PHASE+PHASE_END)
@@ -33,15 +31,8 @@ function c80100024.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	e1:SetCondition(c80100024.descon)
 	e1:SetOperation(c80100024.desop)
 	e1:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END+RESET_OPPO_TURN,3)
-	e:GetHandler():RegisterEffect(e1)
-	e:GetHandler():RegisterFlagEffect(1082946,RESET_PHASE+PHASE_END+RESET_OPPO_TURN,0,3)
-	c80100024[e:GetHandler()]=e1
-end
-function c80100024.activate(e,tp,eg,ep,ev,re,r,rp)
-	local sg=Duel.GetMatchingGroup(Card.IsFacedown,tp,0,LOCATION_MZONE,nil)
-	if sg:GetCount()>0 then
-		Duel.ChangePosition(sg,POS_FACEUP_ATTACK,POS_FACEUP_ATTACK,POS_FACEUP_DEFENCE,POS_FACEUP_DEFENCE)
-	end
+	c:RegisterEffect(e1)
+	c:RegisterFlagEffect(1082946,RESET_PHASE+PHASE_END+RESET_OPPO_TURN,0,3)
 end
 function c80100024.descon(e,tp,eg,ep,ev,re,r,rp)
 	return tp~=Duel.GetTurnPlayer()
@@ -52,10 +43,14 @@ function c80100024.desop(e,tp,eg,ep,ev,re,r,rp)
 	ct=ct+1
 	c:SetTurnCounter(ct)
 	if ct==3 then
-		Duel.Destroy(c,REASON_RULE)
+		Duel.SendtoGrave(c,REASON_RULE)
 		c:ResetFlagEffect(1082946)
 	end
 end
+function c80100024.filter(c)
+	return c:IsFaceup() and c:IsAttribute(ATTRIBUTE_WATER)
+end
+
 function c80100024.efilter(e,re)
 	return e:GetOwnerPlayer()~=re:GetOwnerPlayer()
 end
