@@ -78,7 +78,7 @@ namespace DevProLauncher.Config
         public string optionGb4 = "Launcher Settings";
         public string optionMsbForget = "Do you really want to forget auto login credentials?";
         public string optionUser = "Default Username";
-        public string optionDeck = "Defualt Deck";
+        public string optionDeck = "Default Deck";
         public string optionBtnAutoLogin = "Forget Auto Login";
         public string optionAntialias = "Antialias";
         public string optionCbSound = "Enable Sound";
