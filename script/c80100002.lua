@@ -9,24 +9,6 @@ function c80100002.initial_effect(c)
 	e1:SetCondition(c80100002.spcon)
 	e1:SetOperation(c80100002.spop)
 	c:RegisterEffect(e1)
-	if not c80100002.global_check then
-		c80100002.global_check=true
-		local ge1=Effect.CreateEffect(c)
-		ge1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-		ge1:SetCode(EVENT_SPSUMMON_SUCCESS)
-		ge1:SetOperation(c80100002.checkop)
-		Duel.RegisterEffect(ge1,0)
-	end
-end
-function c80100002.checkop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=eg:GetFirst()
-	while tc do
-		local sump=tc:GetSummonPlayer()
-		if tc:IsPreviousLocation(LOCATION_HAND) and Duel.GetFlagEffect(sump,80100002)==0 then
-			Duel.RegisterFlagEffect(sump,80100002,RESET_PHASE+PHASE_END,0,1)
-		end
-		tc=eg:GetNext()
-	end
 end
 function c80100002.filter(c)
 	return c:IsFaceup() and c:IsAttribute(ATTRIBUTE_WATER)
@@ -34,8 +16,7 @@ end
 function c80100002.spcon(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
-	return Duel.GetFlagEffect(tp,80100002)==0
-		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+	return 	Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsExistingMatchingCard(c80100002.filter,tp,LOCATION_MZONE,0,1,nil)
 end
 function c80100002.spop(e,tp,eg,ep,ev,re,r,rp,c)
@@ -48,6 +29,6 @@ function c80100002.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	e1:SetTarget(c80100002.sumlimit)
 	Duel.RegisterEffect(e1,tp)
 end
-function c80100002.sumlimit(e,c,sump,sumtype,sumpos,targetp,se)
+function c80100002.sumlimit(e,c)
 	return c:IsLocation(LOCATION_HAND)
 end
