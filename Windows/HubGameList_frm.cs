@@ -642,5 +642,11 @@ namespace DevProLauncher.Windows
             QuickBtn_MouseUp(sender, new MouseEventArgs(MouseButtons.Right, 1, 1, 1, 1));
         }
 
+        private void chkmate_btn_Click(object sender, EventArgs e)
+        {
+            LauncherHelper.GenerateCheckmateConfig(new ServerInfo("Checkmate", "173.224.211.157", 21001),string.Empty);
+            LauncherHelper.RunGame("-j");
+        }
+
     }
 }
