@@ -54,18 +54,18 @@
             this.TimeLimit = new System.Windows.Forms.ComboBox();
             this.lockedChk = new System.Windows.Forms.CheckBox();
             this.UpdateLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.SearchReset = new System.Windows.Forms.Timer(this.components);
-            this.GameListUpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.DeckSelect = new System.Windows.Forms.ComboBox();
             this.chkmate_btn = new System.Windows.Forms.Button();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.RankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
+            this.SearchReset = new System.Windows.Forms.Timer(this.components);
+            this.GameListUpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,11 +74,11 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -398,51 +398,6 @@
             this.UpdateLabel.TabIndex = 2;
             this.UpdateLabel.Text = "Status: Not Updating";
             // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.ColumnCount = 2;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Controls.Add(this.groupBox3, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(659, 479);
-            this.tableLayoutPanel7.TabIndex = 2;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.RankedList);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(332, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(324, 473);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Ranked";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.UnrankedList);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(323, 473);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Unranked";
-            // 
-            // SearchReset
-            // 
-            this.SearchReset.Interval = 1000;
-            // 
-            // GameListUpdateTimer
-            // 
-            this.GameListUpdateTimer.Interval = 1000;
-            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -505,6 +460,32 @@
             this.chkmate_btn.UseVisualStyleBackColor = true;
             this.chkmate_btn.Click += new System.EventHandler(this.chkmate_btn_Click);
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.groupBox3, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.groupBox1, 0, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(659, 479);
+            this.tableLayoutPanel7.TabIndex = 2;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.RankedList);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(332, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(324, 473);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Ranked";
+            // 
             // RankedList
             // 
             this.RankedList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -517,6 +498,17 @@
             this.RankedList.Size = new System.Drawing.Size(318, 454);
             this.RankedList.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.UnrankedList);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(323, 473);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Unranked";
+            // 
             // UnrankedList
             // 
             this.UnrankedList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -528,6 +520,14 @@
             this.UnrankedList.Name = "UnrankedList";
             this.UnrankedList.Size = new System.Drawing.Size(317, 454);
             this.UnrankedList.TabIndex = 0;
+            // 
+            // SearchReset
+            // 
+            this.SearchReset.Interval = 1000;
+            // 
+            // GameListUpdateTimer
+            // 
+            this.GameListUpdateTimer.Interval = 1000;
             // 
             // HubGameList_frm
             // 
@@ -549,12 +549,12 @@
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
