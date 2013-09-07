@@ -321,7 +321,7 @@ namespace DevProLauncher.Helpers
             writer.Close();
         }
 
-        public static void GenerateCheckmateConfig(ServerInfo server,string password)
+        public static void GenerateCheckmateConfig(ServerInfo server,string username,string password)
         {
             if ((File.Exists(Program.Config.LauncherDir + "system.CONF")))
             {
@@ -333,7 +333,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("use_d3d = " + Convert.ToInt32(Program.Config.Enabled3D));
             writer.WriteLine(("antialias = " + Program.Config.Antialias));
             writer.WriteLine("errorlog = 1");
-            writer.WriteLine("nickname = " + Program.UserInfo.username + (string.IsNullOrEmpty(password) ? "":"$" + password));
+            writer.WriteLine("nickname = " + username +"$" + password);
             writer.WriteLine("gamename =");
             writer.WriteLine("roompass =");
             writer.WriteLine("lastdeck = " + Program.Config.DefaultDeck);

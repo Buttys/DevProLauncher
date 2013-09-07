@@ -19,6 +19,7 @@ namespace DevProLauncher.Windows
 
         private readonly Dictionary<string, RoomInfos> m_rooms = new Dictionary<string, RoomInfos>();
         private List<string> ServerList = new List<string>();
+        private string checkmateusr, checkmatepass;
 
         public HubGameList_frm()
         {
@@ -644,8 +645,15 @@ namespace DevProLauncher.Windows
 
         private void chkmate_btn_Click(object sender, EventArgs e)
         {
-            LauncherHelper.GenerateCheckmateConfig(new ServerInfo("Checkmate", "173.224.211.157", 21001),string.Empty);
-            LauncherHelper.RunGame("-j");
+            Checkmate_frm form = new Checkmate_frm(string.IsNullOrEmpty(checkmateusr) ? Program.UserInfo.username:checkmateusr,
+                string.IsNullOrEmpty(checkmatepass) ? "":checkmatepass);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                checkmateusr = form.Username.Text;
+                checkmatepass = form.Password.Text;
+                LauncherHelper.GenerateCheckmateConfig(new ServerInfo("Checkmate", "173.224.211.157", 21001), checkmateusr,checkmatepass);
+                LauncherHelper.RunGame("-j");
+            }
         }
 
     }
