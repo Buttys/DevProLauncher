@@ -9,9 +9,9 @@ function c80100024.initial_effect(c)
 	c:RegisterEffect(e1)
 	--indes
 	local e2=Effect.CreateEffect(c)
-	e2:SetCode(EFFECT_INDESTRUCTABLE_EFFECT)
 	e2:SetType(EFFECT_TYPE_FIELD)
-	e2:SetRange(LOCATION_MZONE)
+	e2:SetCode(EFFECT_INDESTRUCTABLE_EFFECT)
+	e2:SetRange(LOCATION_SZONE)
 	e2:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
 	e2:SetTarget(c80100024.filter)
 	e2:SetValue(c80100024.efilter)
@@ -47,7 +47,7 @@ function c80100024.desop(e,tp,eg,ep,ev,re,r,rp)
 		c:ResetFlagEffect(1082946)
 	end
 end
-function c80100024.filter(c)
+function c80100024.filter(e,c)
 	return c:IsFaceup() and c:IsAttribute(ATTRIBUTE_WATER)
 end
 
