@@ -11,14 +11,12 @@ using System.Diagnostics;
 
 namespace DevProLauncher.Controller
 {
-
     class DropBoxController
     {
         /// <summary>
-        /// This method is binding an dropboxacc to the dropboxapp to generate a usertoken
+        /// This method is binding an dropboxacc to the dropboxapp
         /// </summary>
-        /// <param name="resync">if true, settings will be overwritten, the account will be resyncronizedd</param>
-        static public void syncAcc(bool resync)
+        static public void syncAcc()
         {
 
             //Testing Connection
@@ -54,7 +52,7 @@ namespace DevProLauncher.Controller
             dbClient.UseSandbox = true;
 #endif
 
-            if (String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken) || resync)
+            if (String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken))
             {
                 try
                 {
@@ -67,35 +65,36 @@ namespace DevProLauncher.Controller
 
 
                 var url = dbClient.BuildAuthorizeUrl();
-
-                Browser_frm browser = new Browser_frm(url);
-                browser.ShowDialog();
-
-                try
-                {
-
-                    var accessToken = dbClient.GetAccessToken();
-
-                    MessageBox.Show(accessToken.Token);
-
-                    Properties.Settings.Default.DropBoxUserSecret = accessToken.Secret;
-                    Properties.Settings.Default.DropBoxUserToken = accessToken.Token;
-                    Properties.Settings.Default.Save();
-                    MessageBox.Show("Login Saved");
-
-
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-
+                Process.Start(url.ToString());
 
             }
-            else
+        }
+
+        /// <summary>
+        /// this method will generate a useraccesstoken (if your dbaccount is already bound to the app)
+        /// </summary>
+        static public void getUserToken()
+        {
+            DropNetClient dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret);
+#if DEBUG
+            dbClient.UseSandbox = true;
+#endif
+            try
             {
-                MessageBox.Show("already synchronized");
+                var accessToken = dbClient.GetAccessToken();
+
+                MessageBox.Show(accessToken.Token);
+
+                Properties.Settings.Default.DropBoxUserSecret = accessToken.Secret;
+                Properties.Settings.Default.DropBoxUserToken = accessToken.Token;
+                Properties.Settings.Default.Save();
+                MessageBox.Show("Login Saved");
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
         }
@@ -116,7 +115,7 @@ namespace DevProLauncher.Controller
 
             if (String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken))
             {
-                syncAcc(false);
+                syncAcc();
             }
 
             if (db.Deck)
@@ -129,7 +128,7 @@ namespace DevProLauncher.Controller
             }
             if (db.Skins)
             {
-                syncFolder("skins/");  
+                syncFolder("skins/");
             }
             if (db.Sounds)
             {
@@ -139,7 +138,7 @@ namespace DevProLauncher.Controller
             {
                 syncFolder("textures/");
             }
-            
+
         }
 
         /// <summary>
@@ -157,7 +156,7 @@ namespace DevProLauncher.Controller
 
             if (String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken))
             {
-                syncAcc(false);
+                syncAcc();
             }
 
             bwSync.DoWork += new DoWorkEventHandler(bwSync_DoWork);
@@ -165,7 +164,6 @@ namespace DevProLauncher.Controller
 
             bwSync.RunWorkerAsync();
         }
-
 
         /// <summary>
         /// Will be fired when everythin is syncronized
@@ -339,7 +337,6 @@ namespace DevProLauncher.Controller
         }
     }
 }
-
 
 /// <summary>
 /// Settingsclass
@@ -563,4 +560,3 @@ public partial class dbsettings
     }
 
 }
-

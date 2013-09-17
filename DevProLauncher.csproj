@@ -113,12 +113,6 @@
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBit.cs" />
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBitTree.cs" />
     <Compile Include="SevenZip\ICoder.cs" />
-    <Compile Include="Windows\Browser_frm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Windows\Browser_frm.Designer.cs">
-      <DependentUpon>Browser_frm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Windows\Components\CardInfoControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,9 +263,6 @@
     <Compile Include="Windows\Support_frm.Designer.cs">
       <DependentUpon>Support_frm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Windows\Browser_frm.resx">
-      <DependentUpon>Browser_frm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Windows\Components\CardInfoControl.resx">
       <DependentUpon>CardInfoControl.cs</DependentUpon>
     </EmbeddedResource>

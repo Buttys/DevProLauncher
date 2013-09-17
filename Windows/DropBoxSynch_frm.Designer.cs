@@ -146,6 +146,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DropBoxSynch_frm";
             this.Text = "Synchronize with the Cloud";
+            this.Load += new System.EventHandler(this.DropBoxSynch_frm_Load);
             this.optionsGB.ResumeLayout(false);
             this.optionsGB.PerformLayout();
             this.ResumeLayout(false);

@@ -104,10 +104,16 @@ namespace DevProLauncher.Windows
         private void submitBtn_Click(object sender, EventArgs e)
         {
 
-            DropBoxController.syncAcc(false);
+            DropBoxController.syncAcc();
 
+            //DropBoxController.filesyncAsync();
+
+        }
+
+        private void DropBoxSynch_frm_Load(object sender, EventArgs e)
+        {
+            DropBoxController.getUserToken();
             DropBoxController.filesyncAsync();
-
         }
 
         #region checkboxevents
@@ -267,5 +273,7 @@ namespace DevProLauncher.Windows
 
         }
         #endregion
+
+       
     }
 }
