@@ -55,15 +55,17 @@
             this.lockedChk = new System.Windows.Forms.CheckBox();
             this.UpdateLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.DeckSelect = new System.Windows.Forms.ComboBox();
+            this.chkmate_btn = new System.Windows.Forms.Button();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.RankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.SearchReset = new System.Windows.Forms.Timer(this.components);
             this.GameListUpdateTimer = new System.Windows.Forms.Timer(this.components);
-            this.RankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
-            this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,6 +75,7 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -104,9 +107,9 @@
             this.tableLayoutPanel2.Location = new System.Drawing.Point(668, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 306F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 305F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(244, 479);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
@@ -114,9 +117,9 @@
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel4);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 176);
+            this.groupBox2.Location = new System.Drawing.Point(3, 177);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(238, 300);
+            this.groupBox2.Size = new System.Drawing.Size(238, 299);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
@@ -133,7 +136,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(232, 281);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(232, 280);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // tableLayoutPanel5
@@ -144,7 +147,7 @@
             this.tableLayoutPanel5.Controls.Add(this.SearchRequest_Btn, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 214);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 213);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -206,13 +209,13 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(226, 205);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(226, 204);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // UserFilter
             // 
             this.UserFilter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UserFilter.Location = new System.Drawing.Point(3, 183);
+            this.UserFilter.Location = new System.Drawing.Point(3, 182);
             this.UserFilter.Name = "UserFilter";
             this.UserFilter.Size = new System.Drawing.Size(220, 20);
             this.UserFilter.TabIndex = 0;
@@ -222,7 +225,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 161);
+            this.label1.Location = new System.Drawing.Point(3, 160);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 1;
@@ -255,14 +258,14 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(220, 149);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(220, 148);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
             // ActiveGames
             // 
             this.ActiveGames.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ActiveGames.AutoSize = true;
-            this.ActiveGames.Location = new System.Drawing.Point(9, 103);
+            this.ActiveGames.Location = new System.Drawing.Point(9, 102);
             this.ActiveGames.Name = "ActiveGames";
             this.ActiveGames.Size = new System.Drawing.Size(92, 17);
             this.ActiveGames.TabIndex = 0;
@@ -273,7 +276,7 @@
             // 
             this.IlligalGames.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.IlligalGames.AutoSize = true;
-            this.IlligalGames.Location = new System.Drawing.Point(120, 103);
+            this.IlligalGames.Location = new System.Drawing.Point(120, 102);
             this.IlligalGames.Name = "IlligalGames";
             this.IlligalGames.Size = new System.Drawing.Size(89, 17);
             this.IlligalGames.TabIndex = 1;
@@ -284,7 +287,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 5);
+            this.label4.Location = new System.Drawing.Point(35, 4);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 13);
             this.label4.TabIndex = 7;
@@ -301,7 +304,7 @@
             "OCG/TCG",
             "Anime",
             "Turbo Duel"});
-            this.Format.Location = new System.Drawing.Point(113, 2);
+            this.Format.Location = new System.Drawing.Point(113, 1);
             this.Format.Name = "Format";
             this.Format.Size = new System.Drawing.Size(104, 21);
             this.Format.TabIndex = 6;
@@ -310,7 +313,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 30);
+            this.label3.Location = new System.Drawing.Point(24, 29);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 5;
@@ -325,7 +328,7 @@
             "Single",
             "Match",
             "Tag"});
-            this.GameType.Location = new System.Drawing.Point(113, 27);
+            this.GameType.Location = new System.Drawing.Point(113, 26);
             this.GameType.Name = "GameType";
             this.GameType.Size = new System.Drawing.Size(104, 21);
             this.GameType.TabIndex = 4;
@@ -334,7 +337,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 55);
+            this.label2.Location = new System.Drawing.Point(36, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 3;
@@ -346,7 +349,7 @@
             this.BanList.FormattingEnabled = true;
             this.BanList.Items.AddRange(new object[] {
             "All"});
-            this.BanList.Location = new System.Drawing.Point(113, 52);
+            this.BanList.Location = new System.Drawing.Point(113, 51);
             this.BanList.Name = "BanList";
             this.BanList.Size = new System.Drawing.Size(104, 21);
             this.BanList.TabIndex = 2;
@@ -355,7 +358,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 80);
+            this.label5.Location = new System.Drawing.Point(28, 79);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 13);
             this.label5.TabIndex = 8;
@@ -369,7 +372,7 @@
             "All",
             "3 minutes",
             "5 minutes"});
-            this.TimeLimit.Location = new System.Drawing.Point(113, 77);
+            this.TimeLimit.Location = new System.Drawing.Point(113, 76);
             this.TimeLimit.Name = "TimeLimit";
             this.TimeLimit.Size = new System.Drawing.Size(104, 21);
             this.TimeLimit.TabIndex = 9;
@@ -378,7 +381,7 @@
             // 
             this.lockedChk.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lockedChk.AutoSize = true;
-            this.lockedChk.Location = new System.Drawing.Point(24, 128);
+            this.lockedChk.Location = new System.Drawing.Point(24, 127);
             this.lockedChk.Name = "lockedChk";
             this.lockedChk.Size = new System.Drawing.Size(62, 17);
             this.lockedChk.TabIndex = 10;
@@ -389,7 +392,7 @@
             // 
             this.UpdateLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.UpdateLabel.AutoSize = true;
-            this.UpdateLabel.Location = new System.Drawing.Point(69, 160);
+            this.UpdateLabel.Location = new System.Drawing.Point(69, 161);
             this.UpdateLabel.Name = "UpdateLabel";
             this.UpdateLabel.Size = new System.Drawing.Size(106, 13);
             this.UpdateLabel.TabIndex = 2;
@@ -397,18 +400,33 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.91597F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.08403F));
-            this.tableLayoutPanel3.Controls.Add(this.label6, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.DeckSelect, 1, 0);
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel9, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.chkmate_btn, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(238, 41);
-            this.tableLayoutPanel3.TabIndex = 3;
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.77778F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.22222F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(238, 66);
+            this.tableLayoutPanel3.TabIndex = 5;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 2;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.91597F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.08403F));
+            this.tableLayoutPanel9.Controls.Add(this.label6, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.DeckSelect, 1, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(232, 28);
+            this.tableLayoutPanel9.TabIndex = 4;
             // 
             // label6
             // 
@@ -416,7 +434,7 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Location = new System.Drawing.Point(3, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 41);
+            this.label6.Size = new System.Drawing.Size(86, 28);
             this.label6.TabIndex = 0;
             this.label6.Text = "Default Deck";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -426,10 +444,21 @@
             this.DeckSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.DeckSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DeckSelect.FormattingEnabled = true;
-            this.DeckSelect.Location = new System.Drawing.Point(98, 10);
+            this.DeckSelect.Location = new System.Drawing.Point(95, 3);
             this.DeckSelect.Name = "DeckSelect";
-            this.DeckSelect.Size = new System.Drawing.Size(137, 21);
+            this.DeckSelect.Size = new System.Drawing.Size(134, 21);
             this.DeckSelect.TabIndex = 1;
+            // 
+            // chkmate_btn
+            // 
+            this.chkmate_btn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkmate_btn.Location = new System.Drawing.Point(3, 37);
+            this.chkmate_btn.Name = "chkmate_btn";
+            this.chkmate_btn.Size = new System.Drawing.Size(232, 26);
+            this.chkmate_btn.TabIndex = 5;
+            this.chkmate_btn.Text = "Checkmate Server";
+            this.chkmate_btn.UseVisualStyleBackColor = true;
+            this.chkmate_btn.Click += new System.EventHandler(this.chkmate_btn_Click);
             // 
             // tableLayoutPanel7
             // 
@@ -457,25 +486,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ranked";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.UnrankedList);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(323, 473);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Unranked";
-            // 
-            // SearchReset
-            // 
-            this.SearchReset.Interval = 1000;
-            // 
-            // GameListUpdateTimer
-            // 
-            this.GameListUpdateTimer.Interval = 1000;
-            // 
             // RankedList
             // 
             this.RankedList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -488,6 +498,17 @@
             this.RankedList.Size = new System.Drawing.Size(318, 454);
             this.RankedList.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.UnrankedList);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(323, 473);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Unranked";
+            // 
             // UnrankedList
             // 
             this.UnrankedList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -499,6 +520,14 @@
             this.UnrankedList.Name = "UnrankedList";
             this.UnrankedList.Size = new System.Drawing.Size(317, 454);
             this.UnrankedList.TabIndex = 0;
+            // 
+            // SearchReset
+            // 
+            this.SearchReset.Interval = 1000;
+            // 
+            // GameListUpdateTimer
+            // 
+            this.GameListUpdateTimer.Interval = 1000;
             // 
             // HubGameList_frm
             // 
@@ -521,7 +550,8 @@
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -562,9 +592,11 @@
         private System.Windows.Forms.ComboBox BanList;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox TimeLimit;
+        private System.Windows.Forms.CheckBox lockedChk;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox DeckSelect;
-        private System.Windows.Forms.CheckBox lockedChk;
+        private System.Windows.Forms.Button chkmate_btn;
     }
 }
