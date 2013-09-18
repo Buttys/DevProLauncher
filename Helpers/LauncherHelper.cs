@@ -25,17 +25,23 @@ namespace DevProLauncher.Helpers
         {
             try
             {
-                Ping pSender = new Ping();
+                NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
 
-                PingReply pResult = pSender.Send("8.8.8.8");
-
-                return pResult != null && pResult.Status == IPStatus.Success;
+                foreach (NetworkInterface nic in nics)
+                {
+                    if (
+                        (nic.NetworkInterfaceType != NetworkInterfaceType.Loopback && nic.NetworkInterfaceType != NetworkInterfaceType.Tunnel) &&
+                        nic.OperationalStatus == OperationalStatus.Up)
+                    {
+                        return true;
+                    }
+                }
             }
             catch (Exception)
             {
                 return false;
             }
-
+            return false;
         }
 
         public static void SyncCloud(object sender, EventArgs e)

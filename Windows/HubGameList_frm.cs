@@ -651,7 +651,7 @@ namespace DevProLauncher.Windows
             {
                 checkmateusr = form.Username.Text;
                 checkmatepass = form.Password.Text;
-                LauncherHelper.GenerateCheckmateConfig(new ServerInfo("Checkmate", "173.224.211.157", 21001), checkmateusr,checkmatepass);
+                LauncherHelper.GenerateCheckmateConfig(Program.Checkmate, checkmateusr,checkmatepass);
                 LauncherHelper.RunGame("-j");
             }
         }

@@ -10,6 +10,7 @@ namespace DevProLauncher.Windows
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
+            browser.ScriptErrorsSuppressed = true;
         }
 
         public void Navigate(string url,bool force)
