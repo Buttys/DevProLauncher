@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.IO;
 using DevProLauncher.Windows.Components;
 using DevProLauncher.Windows.Enums;
 using DevProLauncher.Network.Data;
@@ -26,25 +27,86 @@ namespace DevProLauncher.Helpers
             
             if ((CommandType)message.command == CommandType.Me)
             {
-                WriteText(window, message.message, Program.Config.MeMsgColor.ToColor());
-            }
-            else if ((MessageType)message.type == MessageType.Team && (CommandType)message.command == CommandType.TeamServerMessage)
-            {
-                WriteText(window, "[TeamMessage] " + message.message,(Program.Config.ColorBlindMode ? Color.Black : Program.Config.ServerMsgColor.ToColor()));
-            }
-            else if ((MessageType)message.type == MessageType.Message || (MessageType)message.type == MessageType.PrivateMessage || (MessageType)message.type == MessageType.Team)
-            {
+                string LogFile = "";
+                string LogText = "";
+                string LogDir = @"Logs\";
+                if ((MessageType)message.type == MessageType.Message)
+                {
+                    LogFile = message.channel + DateTime.Now.ToString(".dd") + ".txt";
+                    LogText += DateTime.Now.ToString("[HH:mm] ");
+                    LogDir += @"Channel\" + DateTime.Now.ToString("MMMM_yyyy") + @"\";
+                }
+                else if ((MessageType)message.type == MessageType.PrivateMessage)
+                {
+                    LogFile = message.channel + ".txt";
+                    LogText += DateTime.Now.ToString("[dd/MM/yy | HH:mm] ");
+                    LogDir += @"PMs\";
+                }
+                else if ((MessageType)message.type == MessageType.Team)
+                {
+                    LogFile = "Team.txt";
+                    LogText += DateTime.Now.ToString("[HH:mm] ");
+                }
                 if (Program.Config.ShowTimeStamp)
+                {
                     WriteText(window, DateTime.Now.ToString("[HH:mm] "), (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
+                }
                 if (message.from.rank > 0)
                 {
                     WriteText(window, "[", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
                     if (message.from.rank == 1 || message.from.rank == 4)
+                    {
                         WriteText(window, "Dev", (Program.Config.ColorBlindMode ? Color.Black : message.RankColor()));
+                        LogText += "[Dev]";
+                    }
                     else if (message.from.rank == 2 || message.from.rank == 3)
+                    {
                         WriteText(window, "Mod", (Program.Config.ColorBlindMode ? Color.Black : message.RankColor()));
+                        LogText += "[Mod]";
+                    }
                     else if (message.from.rank == 99)
+                    {
+                        LogText += "[Dev]";
                         WriteText(window, "Dev", (Program.Config.ColorBlindMode ? Color.Black : message.RankColor()));
+                    }
+                    WriteText(window, "]", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
+                }
+                WriteText(window, message.message, Program.Config.MeMsgColor.ToColor());
+                LogText += message.message.Trim();
+                if (LogFile != "")
+                    if (!Directory.Exists(LogDir))
+                        Directory.CreateDirectory(LogDir);
+                File.AppendAllText(LogDir + LogFile, LogText + Environment.NewLine);
+            }
+            else if ((MessageType)message.type == MessageType.Team && (CommandType)message.command == CommandType.TeamServerMessage)
+            {
+                WriteText(window, DateTime.Now.ToString("[HH:mm]") + "[TeamMessage] " + message.message,(Program.Config.ColorBlindMode ? Color.Black : Program.Config.ServerMsgColor.ToColor()));
+            }
+            else if ((MessageType)message.type == MessageType.Message || (MessageType)message.type == MessageType.PrivateMessage || (MessageType)message.type == MessageType.Team)
+            {
+                string LogText = "";
+                if (Program.Config.ShowTimeStamp)
+                {
+                    WriteText(window, DateTime.Now.ToString("[HH:mm] "), (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
+                }
+                if (message.from.rank > 0)
+                {
+                    WriteText(window, "[", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
+                    if (message.from.rank == 1 || message.from.rank == 4)
+                    {
+                        WriteText(window, "Dev", (Program.Config.ColorBlindMode ? Color.Black : message.RankColor()));
+                        LogText += "[Dev]";
+                    }
+                    else if (message.from.rank == 2 || message.from.rank == 3)
+                    {
+                        WriteText(window, "Mod", (Program.Config.ColorBlindMode ? Color.Black : message.RankColor()));
+                        LogText += "[Mod]";
+                    }
+                    else if (message.from.rank == 99)
+                    {
+                        LogText += "[Dev]";
+                        WriteText(window, "Dev", (Program.Config.ColorBlindMode ? Color.Black : message.RankColor()));
+                    }
                     WriteText(window, "]", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
                 }
                 WriteText(window, "[", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
@@ -72,10 +134,35 @@ namespace DevProLauncher.Helpers
                     WriteText(window, message.message.Trim(), (Program.Config.ColorBlindMode ? Color.Black : message.MessageColor()));
                 //else
                 //    FormatText(message.message.Trim(), window);
+                string LogFile = "";
+                string LogDirectory = @"Logs\";
+                if ((MessageType)message.type == MessageType.Message)
+                {
+                    LogDirectory += @"Channel\" + DateTime.Now.ToString("MMMM_yyyy") + @"\";
+                    LogText = DateTime.Now.ToString("[HH:mm] ") + LogText;
+                    LogFile = message.channel + DateTime.Now.ToString(".dd") + ".txt";
+                }
+                else if ((MessageType)message.type == MessageType.PrivateMessage) 
+                {
+                    LogDirectory += @"PMs\"; ;
+                    LogText = DateTime.Now.ToString("[dd/MM/yy | HH:mm] ") + LogText;
+                    LogFile = message.channel + ".txt";
+                }
+                else if ((MessageType)message.type == MessageType.Team)
+                    LogFile = "Team.txt";
+                LogText += "[" + message.from.username + "] " + message.message.Trim();
+                if (LogFile != "")
+                    if (!Directory.Exists(LogDirectory))
+                        Directory.CreateDirectory(LogDirectory);
+                    File.AppendAllText(LogDirectory + LogFile, LogText + Environment.NewLine);
 
             }
             else if ((MessageType)message.type == MessageType.System || (MessageType)message.type == MessageType.Server)
             {
+                if (Program.Config.ShowTimeStamp)
+                {
+                    WriteText(window, DateTime.Now.ToString("[HH:mm] "), (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
+                }
                 WriteText(window,"[", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));
                 WriteText(window, ((MessageType)message.type).ToString() ,(Program.Config.ColorBlindMode ? Color.Black : message.MessageColor()));
                 WriteText(window, "]: ", (Program.Config.ColorBlindMode ? Color.Black : Program.Config.NormalTextColor.ToColor()));

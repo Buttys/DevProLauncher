@@ -25,17 +25,23 @@ namespace DevProLauncher.Helpers
         {
             try
             {
-                Ping pSender = new Ping();
+                NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
 
-                PingReply pResult = pSender.Send("8.8.8.8");
-
-                return pResult != null && pResult.Status == IPStatus.Success;
+                foreach (NetworkInterface nic in nics)
+                {
+                    if (
+                        (nic.NetworkInterfaceType != NetworkInterfaceType.Loopback && nic.NetworkInterfaceType != NetworkInterfaceType.Tunnel) &&
+                        nic.OperationalStatus == OperationalStatus.Up)
+                    {
+                        return true;
+                    }
+                }
             }
             catch (Exception)
             {
                 return false;
             }
-
+            return false;
         }
 
         public static void SyncCloud(object sender, EventArgs e)
@@ -318,6 +324,38 @@ namespace DevProLauncher.Helpers
                 writer.WriteLine("lastreplay = " + file);
             else
                 writer.WriteLine("lastpuzzle = " + file);
+            writer.Close();
+        }
+
+        public static void GenerateCheckmateConfig(ServerInfo server,string username,string password)
+        {
+            if ((File.Exists(Program.Config.LauncherDir + "system.CONF")))
+            {
+                File.Delete(Program.Config.LauncherDir + "system.CONF");
+            }
+            var writer = new StreamWriter(Program.Config.LauncherDir + "system.CONF");
+            writer.WriteLine("#config file");
+            writer.WriteLine("#nickname & gamename should be less than 20 characters");
+            writer.WriteLine("use_d3d = " + Convert.ToInt32(Program.Config.Enabled3D));
+            writer.WriteLine(("antialias = " + Program.Config.Antialias));
+            writer.WriteLine("errorlog = 1");
+            writer.WriteLine("nickname = " + username +"$" + password);
+            writer.WriteLine("gamename =");
+            writer.WriteLine("roompass =");
+            writer.WriteLine("lastdeck = " + Program.Config.DefaultDeck);
+            writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
+            writer.WriteLine("numfont = fonts/arialbd.ttf");
+            writer.WriteLine("serverport = " + server.serverPort);
+            writer.WriteLine("lastip = " + server.serverAddress);
+            writer.WriteLine("lastport = " + server.serverPort);
+            writer.WriteLine("fullscreen = " + Convert.ToInt32(Program.Config.Fullscreen));
+            writer.WriteLine("enable_sound = " + Convert.ToInt32(Program.Config.EnableSound));
+            writer.WriteLine("enable_music = " + Convert.ToInt32(Program.Config.EnableMusic));
+            writer.WriteLine("skin_index = " + Convert.ToInt32(Program.Config.Skin));
+            writer.WriteLine("auto_card_placing = " + Convert.ToInt32(Program.Config.AutoPlacing));
+            writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
+            writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
+            writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
             writer.Close();
         }
 

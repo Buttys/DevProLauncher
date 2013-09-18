@@ -113,6 +113,12 @@
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBit.cs" />
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBitTree.cs" />
     <Compile Include="SevenZip\ICoder.cs" />
+    <Compile Include="Windows\Browser_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Browser_frm.Designer.cs">
+      <DependentUpon>Browser_frm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Components\CardInfoControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,12 @@
     </Compile>
     <Compile Include="Windows\MessageBoxs\ChannelList_frm.Designer.cs">
       <DependentUpon>ChannelList_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Checkmate_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MessageBoxs\Checkmate_frm.Designer.cs">
+      <DependentUpon>Checkmate_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\MessageBoxs\DuelRequest_frm.cs">
       <SubType>Form</SubType>
@@ -305,6 +317,9 @@
     </Compile>
     <EmbeddedResource Include="Windows\MessageBoxs\ChannelList_frm.resx">
       <DependentUpon>ChannelList_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MessageBoxs\Checkmate_frm.resx">
+      <DependentUpon>Checkmate_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\MessageBoxs\DuelRequest_frm.resx">
       <DependentUpon>DuelRequest_frm.cs</DependentUpon>

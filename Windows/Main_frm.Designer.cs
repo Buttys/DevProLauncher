@@ -64,7 +64,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(918, 453);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(918, 469);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // mainTabs
@@ -73,7 +73,7 @@
             this.mainTabs.Location = new System.Drawing.Point(3, 3);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
-            this.mainTabs.Size = new System.Drawing.Size(912, 407);
+            this.mainTabs.Size = new System.Drawing.Size(912, 423);
             this.mainTabs.TabIndex = 3;
             // 
             // tableLayoutPanel2
@@ -84,7 +84,7 @@
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.MessageLabel, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 416);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 432);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -170,6 +170,7 @@
             // 
             // DBSyncBtn
             // 
+            this.DBSyncBtn.Enabled = false;
             this.DBSyncBtn.Location = new System.Drawing.Point(6, 3);
             this.DBSyncBtn.Name = "DBSyncBtn";
             this.DBSyncBtn.Size = new System.Drawing.Size(92, 23);
@@ -193,7 +194,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(918, 453);
+            this.ClientSize = new System.Drawing.Size(918, 469);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainFrm";

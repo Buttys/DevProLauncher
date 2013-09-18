@@ -37,7 +37,7 @@ namespace DevProLauncher.Config
         public string RegistMsb2 = "Please enter password";
         public string RegistMsb3 = "Please enter username.";
         public string RegistMsb4 = "Registering Complete!";
-        public string RegistMsb5 = "Username Exists";
+        public string RegistMsb5 = "This username has been taken.";
         public string RegistMsb6 = "Username cannot contain special characters";
 
         // HubGameList_frm
@@ -75,10 +75,10 @@ namespace DevProLauncher.Config
         public string optionGb1 = "User Settings";
         public string optionGb2 = "Game Settings";
         public string optionGb3 = "Font Settings";
-        public string optionGb4 = "Luancher Settings";
+        public string optionGb4 = "Launcher Settings";
         public string optionMsbForget = "Do you really want to forget auto login credentials?";
         public string optionUser = "Default Username";
-        public string optionDeck = "Defualt Deck";
+        public string optionDeck = "Default Deck";
         public string optionBtnAutoLogin = "Forget Auto Login";
         public string optionAntialias = "Antialias";
         public string optionCbSound = "Enable Sound";
@@ -117,7 +117,7 @@ namespace DevProLauncher.Config
         public string fileBtnDelete = "Delete";
         public string fileBtnFolder = "Open Folder";
         public string fileBtnGame = "Open Game";
-        public string fileMsgNoExist = "does no exsist";
+        public string fileMsgNoExist = "Does not exist";
         public string fileMsgNoSelect = "Nothing selected";
         public string fileMsbMulti = "Can't Rename multiple items";
         public string fileAskDelete = "Are you sure you want to delete the following item(s) ";
@@ -198,7 +198,7 @@ namespace DevProLauncher.Config
 
         //Chat_frm.cs
 
-        public string chatBtnoptions = "Options";
+        public string chatBtnoptions = "Settings";
         public string chatTabUsers = "Users";
         public string chatTabFriends = "Friends";
         public string chatTabIgnore = "Ignore";

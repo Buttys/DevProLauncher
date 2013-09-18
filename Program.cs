@@ -16,7 +16,7 @@ namespace DevProLauncher
 {
     static class Program
     {
-        public const string Version = "195600";
+        public const string Version = "196200";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;
@@ -26,6 +26,7 @@ namespace DevProLauncher
         public static Dictionary<string, ServerInfo> ServerList = new Dictionary<string, ServerInfo>();
         public static MainFrm MainForm;
         public static ServerInfo Server;
+        public static ServerInfo Checkmate;
         public static Random Rand = new Random();
 
         [STAThread]
@@ -190,6 +191,7 @@ namespace DevProLauncher
                 Config.ChatPort = int.Parse(serverinfo[2]);
                 Config.GamePort = int.Parse(serverinfo[3]);
                 Server = new ServerInfo("DevPro",serverinfo[1],int.Parse(serverinfo[4]));
+                Checkmate = new ServerInfo("Checkmate", serverinfo[5], int.Parse(serverinfo[6]));
             }
             catch
             {
