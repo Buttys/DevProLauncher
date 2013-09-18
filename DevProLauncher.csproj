@@ -113,7 +113,9 @@
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBit.cs" />
     <Compile Include="SevenZip\Compress\RangeCoder\RangeCoderBitTree.cs" />
     <Compile Include="SevenZip\ICoder.cs" />
-    <Compile Include="Windows\Browser_frm.cs" />
+    <Compile Include="Windows\Browser_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Windows\Browser_frm.Designer.cs">
       <DependentUpon>Browser_frm.cs</DependentUpon>
     </Compile>
