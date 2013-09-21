@@ -94,7 +94,7 @@ namespace DevProLauncher.Windows
             gamelistTab.Controls.Add(GameWindow);
             mainTabs.TabPages.Add(gamelistTab);
 
-            var chatTab = new TabPage("Chat (Beta v4)");
+            var chatTab = new TabPage("Chat (Beta v4.1)");
             chatTab.Controls.Add(m_chatWindow);
             mainTabs.TabPages.Add(chatTab);
 
@@ -121,7 +121,6 @@ namespace DevProLauncher.Windows
 
             ProfileBtn.Enabled = true;
 
-            Program.ChatServer.SendPacket(DevServerPackets.UserList);
             Program.ChatServer.SendPacket(DevServerPackets.FriendList);
             Program.ChatServer.SendPacket(DevServerPackets.DevPoints);
 

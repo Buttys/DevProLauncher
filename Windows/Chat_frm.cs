@@ -17,7 +17,8 @@ namespace DevProLauncher.Windows
 {
     public sealed partial class ChatFrm : Form
     {
-        private readonly Dictionary<string, UserData> m_userData = new Dictionary<string, UserData>();
+        //private readonly Dictionary<string, UserData> m_userData = new Dictionary<string, UserData>();
+        private Dictionary<string,List<UserData>> m_channelData = new Dictionary<string, List<UserData>>(); 
         private readonly Dictionary<string, PmWindowFrm> m_pmWindows = new Dictionary<string, PmWindowFrm>();
         public bool Autoscroll = true;
         public bool Joinchannel = false;
@@ -29,9 +30,8 @@ namespace DevProLauncher.Windows
             Dock = DockStyle.Fill;
             Visible = true;
             //chat packets
-            Program.ChatServer.AddUsers += CreateUserList;
-            Program.ChatServer.AddUser += AddUser;
-            Program.ChatServer.RemoveUser += RemoveUser;
+            Program.ChatServer.UserListUpdate += UpdateUserList;
+            Program.ChatServer.UpdateUserInfo += UpdateUserInfo;
             Program.ChatServer.FriendList += CreateFriendList;
             Program.ChatServer.TeamList += CreateTeamList;
             Program.ChatServer.JoinChannel += ChannelAccept;
@@ -40,26 +40,32 @@ namespace DevProLauncher.Windows
             Program.ChatServer.TeamRequest += HandleTeamRequest;
             Program.ChatServer.DuelAccepted += StartDuelRequest;
             Program.ChatServer.DuelRefused += DuelRequestRefused;
+            Program.ChatServer.ChannelUserList += UpdateOrAddChannelList;
+            Program.ChatServer.AddUserToChannel += AddChannelUser;
+            Program.ChatServer.RemoveUserFromChannel += RemoveChannelUser;
 
             //form events
+            ChannelTabs.SelectedIndexChanged += UpdateChannelList;
             UserSearch.Enter += UserSearch_Enter;
             UserSearch.Leave += UserSearch_Leave;
             UserSearch.TextChanged += UserSearch_TextChanged;
             ChatInput.KeyPress += ChatInput_KeyPress;
-            UserList.DoubleClick += List_DoubleClick;
+            ChannelList.DoubleClick += List_DoubleClick;
             FriendList.DoubleClick += List_DoubleClick;
             TeamList.DoubleClick += List_DoubleClick;
             ApplyOptionEvents();
 
+            ChannelList.MouseUp += UserList_MouseUp;
             UserList.MouseUp += UserList_MouseUp;
             FriendList.MouseUp += FriendList_MouseUp;
             TeamList.MouseUp += TeamList_MouseUp;
             IgnoreList.MouseUp += IgnoreList_MouseUp;
 
             //custom form drawing
+            ChannelList.DrawItem += UserList_DrawItem;
             UserList.DrawItem += UserList_DrawItem;
-            FriendList.DrawItem += DrawList_OnlineOffline;
-            TeamList.DrawItem += DrawList_OnlineOffline;
+            //FriendList.DrawItem += DrawList_OnlineOffline;
+            //TeamList.DrawItem += DrawList_OnlineOffline;
 
             ChatHelper.LoadChatTags();
             
@@ -92,8 +98,9 @@ namespace DevProLauncher.Windows
             ChatInput.BackColor = Program.Config.ChatBGColor.ToColor();
             ChatInput.ForeColor = Program.Config.NormalTextColor.ToColor();
             UserSearch.BackColor = Program.Config.ChatBGColor.ToColor();
-
             UserList.BackColor = Program.Config.ChatBGColor.ToColor();
+
+            ChannelList.BackColor = Program.Config.ChatBGColor.ToColor();
             FriendList.BackColor = Program.Config.ChatBGColor.ToColor();
             TeamList.BackColor = Program.Config.ChatBGColor.ToColor();
             IgnoreList.BackColor = Program.Config.ChatBGColor.ToColor();
@@ -322,100 +329,168 @@ namespace DevProLauncher.Windows
         }
         private void UserSearch_TextChanged(object sender, EventArgs e)
         {
-            IEnumerable<string> users = m_userData.Keys;
-            if (UserSearch.Text != "" && UserSearch.Text != "Search")
+            ChatWindow window = (ChatWindow) ChannelTabs.SelectedTab;
+
+            if (window != null)
             {
-                users = users.Where(user => user.ToLower().Contains(UserSearch.Text.ToLower()));
+                if (m_channelData.ContainsKey(window.Name))
+                {
+                    IEnumerable<UserData> users = m_channelData[window.Name];
+                    if (UserSearch.Text != "" && UserSearch.Text != "Search")
+                    {
+                        users = users.Where(user => user.username.ToLower().Contains(UserSearch.Text.ToLower()));
+                    }
+
+                    ChannelList.Items.Clear();
+                    ChannelList.Items.AddRange(users.ToArray<object>());
+                }
+            }
+        }
+
+        private void UpdateUserInfo(UserData user)
+        {
+            Program.UserInfo = user;
+            if (!string.IsNullOrEmpty(Program.UserInfo.team))
+            {
+                LoadTeamWindow();
+            }
+
+            if (!string.IsNullOrEmpty(user.team) && user.team == Program.UserInfo.team)
+            {
+                if (!TeamList.Items.Contains(user.username))
+                    TeamList.Items.Add(user.username);
+            }
+            else
+            {
+                if (TeamList.Items.Contains(user.username))
+                    TeamList.Items.Remove(user.username);
+            }
+        }
+
+        private void UpdateChannelList(object sender, EventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<object,EventArgs>(UpdateChannelList),sender,e);
+                return;
+            }
+            ChatWindow window = (ChatWindow) ChannelTabs.SelectedTab;
+            if (window != null)
+            {
+                if (m_channelData.ContainsKey(window.Name))
+                {
+                    List<UserData> users = m_channelData[window.Name];
+                    ChannelList.Items.Clear();
+                    ChannelList.Items.AddRange(users.ToArray());
+                }
+            }
+            else
+            {
+                ChannelList.Items.Clear();
+            }
+        }
+
+        private void UpdateOrAddChannelList(ChannelUsers users)
+        {
+            if (m_channelData.ContainsKey(users.Name))
+                m_channelData[users.Name] = new List<UserData>(users.Users);
+            else
+                m_channelData.Add(users.Name,new List<UserData>(users.Users));
+            UpdateChannelList(this,EventArgs.Empty);
+        }
+
+        private void AddOrRemoveChannelUser(UserData channelUser, bool remove)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<UserData, bool>(AddOrRemoveChannelUser), channelUser, remove);
+                return;
+            }
+
+            UserData toRemove = null;
+            foreach (UserData user in ChannelList.Items)
+            {
+                if (user.username == channelUser.username)
+                    toRemove = user;
+            }
+            if(toRemove != null)
+                ChannelList.Items.Remove(toRemove);
+            if (!remove)
+            {
+                ChannelList.Items.Add(channelUser);
+            }
+        }
+
+        private void AddChannelUser(ChannelUsers user)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<ChannelUsers>(AddChannelUser), user);
+                return;
+            }
+
+            if (m_channelData.ContainsKey(user.Name))
+            {
+                UserData founduser = null;
+                foreach (UserData channeluser in m_channelData[user.Name])
+                {
+                    if (channeluser.username == user.Users[0].username)
+                        founduser = channeluser;
+                }
+                if (founduser == null)
+                    m_channelData[user.Name].Add(user.Users[0]);
+                else
+                {
+                    m_channelData[user.Name].Remove(founduser);
+                    m_channelData[user.Name].Add(user.Users[0]);
+                }
+            }
+
+            ChatWindow window = (ChatWindow)ChannelTabs.SelectedTab;
+            if (window != null)
+            {
+                if(user.Name == window.Name)
+                    AddOrRemoveChannelUser(user.Users[0],false);
+            }
+        }
+
+        private void RemoveChannelUser(ChannelUsers user)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<ChannelUsers>(RemoveChannelUser), user);
+                return;
+            }
+            if (m_channelData.ContainsKey(user.Name))
+            {
+                UserData founduser = null;
+                foreach (UserData channeluser in m_channelData[user.Name])
+                {
+                    if (channeluser.username == user.Users[0].username)
+                        founduser = channeluser;
+                }
+                if (founduser != null)
+                    m_channelData[user.Name].Remove(founduser);
+            }
+
+            ChatWindow window = (ChatWindow)ChannelTabs.SelectedTab;
+            if (window != null)
+            {
+                if (user.Name == window.Name)
+                    AddOrRemoveChannelUser(user.Users[0], true);
+            }
+        }
+
+        private void UpdateUserList(UserData[] userlist)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<UserData[]>(UpdateUserList), (object)userlist);
+                return;
             }
 
             UserList.Items.Clear();
-            UserList.Items.AddRange(users.ToArray<object>());
-        }
-
-        private void CreateUserList(UserData[] userlist)
-        {
-            if (InvokeRequired)
-            {
-                Invoke(new Action<UserData[]>(CreateUserList), (object)userlist);
-            }
-            else
-            {
-                foreach (UserData user in userlist)
-                {
-                    if (m_userData.ContainsKey(user.username))
-                        m_userData[user.username] = user;
-                    else
-                        m_userData.Add(user.username, user);
-                }
-                UserList.Items.Clear();
-// ReSharper disable CoVariantArrayConversion
-                if (m_userData != null) 
-                    UserList.Items.AddRange(m_userData.Keys.ToArray());
-// ReSharper restore CoVariantArrayConversion
-            }
-        }
-        private void AddUser(UserData userinfo)
-        {
-            if (InvokeRequired)
-            {
-                Invoke(new Action<UserData>(AddUser), userinfo);
-            }
-            else
-            {
-                if (!m_userData.ContainsKey(userinfo.username))
-                    m_userData.Add(userinfo.username, userinfo);
-                else
-                    m_userData[userinfo.username] = userinfo;
-
-                if (userinfo.username == Program.UserInfo.username)
-                {
-                    Program.UserInfo = userinfo;
-                    if (!string.IsNullOrEmpty(Program.UserInfo.team))
-                    {
-                        LoadTeamWindow();
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(userinfo.team) && userinfo.team == Program.UserInfo.team)
-                {
-                    if (!TeamList.Items.Contains(userinfo.username))
-                        TeamList.Items.Add(userinfo.username);
-                }
-                else
-                {
-                    if (TeamList.Items.Contains(userinfo.username))
-                        TeamList.Items.Remove(userinfo.username);
-                }
-
-
-
-                if (!Program.Config.HideJoinLeave)
-                {
-                    WriteMessage(FriendList.Items.Contains(userinfo.username)
-                                     ? new ChatMessage(MessageType.Join, CommandType.None, null,
-                                                       "Your friend " + userinfo.username + " has joined the channel.")
-                                     : new ChatMessage(MessageType.Join, CommandType.None, null,
-                                                       userinfo.username + " has joined the channel."));
-                }
-                else
-                {
-                    if (FriendList.Items.Contains(userinfo.username))
-                        WriteMessage(new ChatMessage(MessageType.Join, CommandType.None, null, "Your friend " + userinfo.username + " has logged in."));
-                }
-                if (UserSearch.Text == "" || UserSearch.Text == "Search")
-                {
-                    if (!UserList.Items.Contains(userinfo.username))
-                        UserList.Items.Add(userinfo.username);
-                }
-                else
-                {
-                    if (userinfo.username.ToLower().Contains(UserSearch.Text.ToLower()))
-                    {
-                        if (!UserList.Items.Contains(userinfo.username))
-                            UserList.Items.Add(userinfo.username);
-                    }
-                }
-            }
+            UserList.Items.AddRange(userlist);
         }
 
         private void LoadTeamWindow()
@@ -425,39 +500,6 @@ namespace DevProLauncher.Windows
                 ChannelTabs.TabPages.Add(new ChatWindow(MessageType.Team.ToString(), false));
                 TeamNameLabel.Text = "Team: " + Program.UserInfo.team;
                 Program.ChatServer.SendPacket(DevServerPackets.TeamList);
-            }
-        }
-
-        private void RemoveUser(string username)
-        {
-            if (InvokeRequired)
-            {
-                Invoke(new Action<string>(RemoveUser), username);
-            }
-            else
-            {
-
-                if (!Program.Config.HideJoinLeave)
-                {
-                    WriteMessage(FriendList.Items.Contains(username)
-                                     ? new ChatMessage(MessageType.Leave, CommandType.None, null,
-                                                       "Your friend " + username + " has left the channel.")
-                                     : new ChatMessage(MessageType.Leave, CommandType.None, null,
-                                                       username + " has left the channel."));
-                }
-                else
-                {
-                    if (FriendList.Items.Contains(username))
-                        WriteMessage(new ChatMessage(MessageType.Leave, CommandType.None, null, "Your friend " + username + " has logged out."));
-                }
-
-                if (m_userData.ContainsKey(username))
-                {
-                    if (UserList.Items.Contains(username))
-                        UserList.Items.Remove(username);
-                    m_userData.Remove(username);
-                }
-
             }
         }
 
@@ -487,70 +529,64 @@ namespace DevProLauncher.Windows
 
         private void UserList_DrawItem(object sender, DrawItemEventArgs e)
         {
+            ListBox list = (ListBox) sender;
             e.DrawBackground();
 
             bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
 
             int index = e.Index;
-            if (index < 0 && index >= UserList.Items.Count)
+            if (index < 0 && index >= list.Items.Count)
             {
                 e.DrawFocusRectangle();
                 return;
             }
-            
-            string text = UserList.Items[index].ToString();
+
+            UserData user = (UserData)list.Items[index];
             Graphics g = e.Graphics;
-            if (!m_userData.ContainsKey(text))
-            {
-                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
-                g.DrawString(text, e.Font, (selected) ? Brushes.White : Brushes.Black, UserList.GetItemRectangle(index).Location);
-                e.DrawFocusRectangle();
-                return;
-            }
 
             g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
 
-            if (m_userData[text].rank > 0)
+            if (user.rank > 0)
             {
                 // Print text
                 g.DrawString("[", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
-                    UserList.GetItemRectangle(index).Location);
+                    list.GetItemRectangle(index).Location);
 
-                if (m_userData[text].rank == 1 || m_userData[text].rank == 4)
-                    g.DrawString("Dev", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(m_userData[text].rank)),
-                      new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[", e.Font).Width - 1, UserList.GetItemRectangle(index).Location.Y));
-                else if (m_userData[text].rank == 2 || m_userData[text].rank == 3)
-                    g.DrawString("Mod", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(m_userData[text].rank)),
-                      new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[", e.Font).Width - 1, UserList.GetItemRectangle(index).Location.Y));
-                else if (m_userData[text].rank == 99)
-                    g.DrawString("Dev", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(m_userData[text].rank)),
-                      new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[",e.Font).Width - 1 ,UserList.GetItemRectangle(index).Location.Y));
+                if (user.rank == 1 || user.rank == 4)
+                    g.DrawString("Dev", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(user.rank)),
+                      new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[", e.Font).Width - 1, list.GetItemRectangle(index).Location.Y));
+                else if (user.rank == 2 || user.rank == 3)
+                    g.DrawString("Mod", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(user.rank)),
+                      new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[", e.Font).Width - 1, list.GetItemRectangle(index).Location.Y));
+                else if (user.rank == 99)
+                    g.DrawString("Dev", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(user.rank)),
+                      new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[", e.Font).Width - 1, list.GetItemRectangle(index).Location.Y));
                 g.DrawString("]", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
-                    new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev", e.Font).Width, UserList.GetItemRectangle(index).Location.Y));
-                if (m_userData[text].getUserColor().ToArgb() == Color.Black.ToArgb())
+                    new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev", e.Font).Width, list.GetItemRectangle(index).Location.Y));
+                if (user.getUserColor().ToArgb() == Color.Black.ToArgb())
                 {
-                    g.DrawString(text, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
-                        new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev]", e.Font).Width, UserList.GetItemRectangle(index).Location.Y));
+                    g.DrawString(user.username, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
+                        new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev]", e.Font).Width, list.GetItemRectangle(index).Location.Y));
                 }
                 else
                 {
-                    g.DrawString(text, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(m_userData[text].getUserColor())),
-                        new Point(UserList.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev]", e.Font).Width, UserList.GetItemRectangle(index).Location.Y));
+                    g.DrawString(user.username, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(user.getUserColor())),
+                        new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev]", e.Font).Width, list.GetItemRectangle(index).Location.Y));
                 }
             }
             else
             {
-                if (m_userData[text].getUserColor().ToArgb() == Color.Black.ToArgb())
+                if (user.getUserColor().ToArgb() == Color.Black.ToArgb())
                 {
                     // Print text
-                    g.DrawString(text, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
-                        UserList.GetItemRectangle(index).Location);
+                    g.DrawString(user.username, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
+                        list.GetItemRectangle(index).Location);
                 }
                 else
                 {
                     // Print text
-                    g.DrawString(text, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(m_userData[text].getUserColor())),
-                        UserList.GetItemRectangle(index).Location);
+                    g.DrawString(user.username, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(user.getUserColor())),
+                        list.GetItemRectangle(index).Location);
                 }
                 
             }
@@ -558,29 +594,29 @@ namespace DevProLauncher.Windows
             e.DrawFocusRectangle();
         }
 
-        private void DrawList_OnlineOffline(object sender, DrawItemEventArgs e)
-        {
-            var list = (ListBox)sender;
-            e.DrawBackground();
+        //private void DrawList_OnlineOffline(object sender, DrawItemEventArgs e)
+        //{
+        //    var list = (ListBox)sender;
+        //    e.DrawBackground();
 
-            bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
+        //    bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
 
-            int index = e.Index;
-            if (index >= 0 && index < list.Items.Count)
-            {
-                string text = list.Items[index].ToString();
-                Graphics g = e.Graphics;
+        //    int index = e.Index;
+        //    if (index >= 0 && index < list.Items.Count)
+        //    {
+        //        string text = list.Items[index].ToString();
+        //        Graphics g = e.Graphics;
 
-                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
+        //        g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
 
-                //// Print text
-                g.DrawString((Program.Config.ColorBlindMode ? (m_userData.ContainsKey(text) ? text + " (Online)" : text + " (Offline)") : text), e.Font,
-                    (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : (m_userData.ContainsKey(text) ? Brushes.Green : Brushes.Red)),
-                    list.GetItemRectangle(index).Location);
-            }
+        //        //// Print text
+        //        g.DrawString((Program.Config.ColorBlindMode ? (m_userData.ContainsKey(text) ? text + " (Online)" : text + " (Offline)") : text), e.Font,
+        //            (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : (m_userData.ContainsKey(text) ? Brushes.Green : Brushes.Red)),
+        //            list.GetItemRectangle(index).Location);
+        //    }
 
-            e.DrawFocusRectangle();
-        }
+        //    e.DrawFocusRectangle();
+        //}
 
         private void ApplyNewColor(object sender, EventArgs e)
         {
@@ -671,7 +707,7 @@ namespace DevProLauncher.Windows
                     
                     break;
                 case "users":
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "There's " + m_userData.Count + " users online."));
+                    //WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "There's " + m_userData.Count + " users online."));
                     break;
                 case "ping":
                     Program.ChatServer.SendPacket(DevServerPackets.Ping);
@@ -767,8 +803,8 @@ namespace DevProLauncher.Windows
                     
                     break;
                 case "admin":
-                    string admins = string.Join(", ", m_userData.Where(x => x.Value.rank > 0).Select(x => x.Key));
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "The following admins are online: " + admins + "."));
+                    //string admins = string.Join(", ", m_userData.Where(x => x.Value.rank > 0).Select(x => x.Key));
+                    //WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "The following admins are online: " + admins + "."));
                     break;
                 default:
                     Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString(new PacketCommand { Command = cmd.ToUpper(), Data = ChatInput.Text.Substring(part.Length).Trim() }));
@@ -871,18 +907,19 @@ namespace DevProLauncher.Windows
 
         private void UserList_MouseUp(object sender, MouseEventArgs e)
         {
+            ListBox list = (ListBox) sender;
             if (e.Button == MouseButtons.Right)
             {
-                int index = UserList.IndexFromPoint(e.Location);
+                int index = list.IndexFromPoint(e.Location);
 
                 if (index == -1)
                 {
                     return;
                 }
 
-                UserList.SelectedIndex = index;
+                list.SelectedIndex = index;
 
-                if (UserList.SelectedItem == null)
+                if (list.SelectedItem == null)
                 {
                     return;
                 }
@@ -909,70 +946,74 @@ namespace DevProLauncher.Windows
                 if (Program.UserInfo.rank > 1)
                     mnu.Items.Add(mnuban);
 
-                mnu.Show(UserList, e.Location);
+                mnu.Show(list, e.Location);
             }
         }
 
         private void BanUser(object sender, EventArgs e)
         {
-            if (UserList.SelectedItem != null && MessageBox.Show("Are you sure you want to ban " + UserList.SelectedItem, "Ban User", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            ListBox list = UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserList;
+            if (list.SelectedItem != null && MessageBox.Show("Are you sure you want to ban " + ((UserData)list.SelectedItem).username, "Ban User", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString(
-                    new PacketCommand { Command = "BAN", Data = UserList.SelectedItem.ToString() }));
+                    new PacketCommand { Command = "BAN", Data = ((UserData)list.SelectedItem).username }));
             }
         }
 
         private void KickUser(object sender, EventArgs e)
         {
-            if (UserList.SelectedItem == null)
+            ListBox list = UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserList;
+            if (list.SelectedItem == null)
             {
                 return;
             }
             Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString(
-                new PacketCommand { Command = "KICK", Data = UserList.SelectedItem.ToString() }));
+                new PacketCommand { Command = "KICK", Data = ((UserData)list.SelectedItem).username }));
         }
 
         private void AddFriend(object sender, EventArgs e)
         {
-            if (UserList.SelectedItem == null)
+            ListBox list = UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserList;
+            if (list.SelectedItem == null)
             {
                 return;
             }
 
-            if (UserList.SelectedItem.ToString() == Program.UserInfo.username)
+            if (((UserData)list.SelectedItem).username == Program.UserInfo.username)
             {
                 WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "You cannot be your own friend."));
                 return;
             }
 
-            if (FriendList.Items.Cast<object>().Any(user => user.ToString().ToLower() == UserList.SelectedItem.ToString().ToLower()))
+            if (FriendList.Items.Cast<object>().Any(user => user.ToString().ToLower() == ((UserData)list.SelectedItem).username.ToLower()))
             {
-                WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, UserList.SelectedItem + " is already your friend."));
+                WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, ((UserData)list.SelectedItem).username + " is already your friend."));
                 return;
             }
 
-            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, UserList.SelectedItem + " has been added to your friend list."));
-            FriendList.Items.Add(UserList.SelectedItem.ToString());
-            Program.ChatServer.SendPacket(DevServerPackets.AddFriend, UserList.SelectedItem.ToString());
+            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, ((UserData)list.SelectedItem).username + " has been added to your friend list."));
+            FriendList.Items.Add(((UserData)list.SelectedItem).username);
+            Program.ChatServer.SendPacket(DevServerPackets.AddFriend, ((UserData)list.SelectedItem).username);
         }
 
         private void IgnoreUser(object sender, EventArgs e)
         {
-            if (UserList.SelectedItem.ToString() == Program.UserInfo.username)
+            ListBox list = UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserList;
+            if (((UserData)list.SelectedItem).username == Program.UserInfo.username)
             {
                 WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "You cannot ignore yourself."));
                 return;
             }
 
-            if (IgnoreList.Items.Contains(UserList.SelectedItem.ToString()))
+            if (IgnoreList.Items.Contains(((UserData)list.SelectedItem).username))
             {
-                WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, UserList.SelectedItem + " is already on your ignore list."));
+                WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, ((UserData)list.SelectedItem).username + " is already on your ignore list."));
                 return;
             }
 
-            IgnoreList.Items.Add(UserList.SelectedItem.ToString());
+            IgnoreList.Items.Add(((UserData)list.SelectedItem).username);
             SaveIgnoreList();
-            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, UserList.SelectedItem + " has been added to your ignore list."));
+            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, ((UserData)list.SelectedItem).username + " has been added to your ignore list."));
         }
 
         private void FriendList_MouseUp(object sender, MouseEventArgs e)
@@ -1070,24 +1111,25 @@ namespace DevProLauncher.Windows
 
         private void ViewProfile(object sender, EventArgs e)
         {
-            ListBox list = (UserListTabs.SelectedTab.Name == OnlineTab.Name ? UserList :(UserListTabs.SelectedTab.Name == TeamTab.Name ? TeamList: FriendList));
+            ListBox list = (UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserListTabs.SelectedTab.Name == UserListTab.Name ? UserList:
+                (UserListTabs.SelectedTab.Name == TeamTab.Name ? TeamList: FriendList));
             if (list.SelectedItem == null)
                 return;
 
-            var profile = new ProfileFrm(list.SelectedItem.ToString());
+            var profile = new ProfileFrm(list.SelectedItem is string ? list.SelectedItem.ToString():((UserData)list.SelectedItem).username);
             profile.ShowDialog();
         }
 
         private void RequestDuel(object sender, EventArgs e)
         {
-            ListBox list = (UserListTabs.SelectedTab.Name == OnlineTab.Name ? UserList : (UserListTabs.SelectedTab.Name == TeamTab.Name ? TeamList : FriendList));
-
+            ListBox list = (UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserListTabs.SelectedTab.Name == UserListTab.Name ? UserList :
+                (UserListTabs.SelectedTab.Name == TeamTab.Name ? TeamList : FriendList));
             if (list.SelectedItem == null)
             {
                 return;
             }
 
-            if (list.SelectedItem.ToString() == Program.UserInfo.username)
+            if ((list.SelectedItem is string ? list.SelectedItem.ToString() : ((UserData)list.SelectedItem).username) == Program.UserInfo.username)
             {
                 WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "You cannot duel request your self."));
             }
@@ -1104,11 +1146,12 @@ namespace DevProLauncher.Windows
                 Program.ChatServer.SendPacket(DevServerPackets.RequestDuel,
                     JsonSerializer.SerializeToString(
                     new DuelRequest
-                        { 
-                        username = list.SelectedItem.ToString(), 
-                        duelformatstring = form.GenerateGameString(false),
-                        server = server.serverName}));
-                WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "Duel request sent to " + list.SelectedItem + "."));
+                        {
+                            username = list.SelectedItem is string ? list.SelectedItem.ToString() : ((UserData)list.SelectedItem).username, 
+                            duelformatstring = form.GenerateGameString(false),
+                            server = server.serverName
+                        }));
+                WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "Duel request sent to " + (list.SelectedItem is string ? list.SelectedItem.ToString() : ((UserData)list.SelectedItem).username) + "."));
             }
         }
 
@@ -1177,11 +1220,11 @@ namespace DevProLauncher.Windows
             switch(command.Command)
             {
                 case "JOIN":
-                    string team;
-                    if (m_userData.ContainsKey(command.Data))
-                        team = m_userData[command.Data].team;
-                    else
-                        return;
+                    string team = "Derp";
+                    //if (m_userData.ContainsKey(command.Data))
+                    //    team = m_userData[command.Data].team;
+                    //else
+                    //    return;
 
                     if (Program.Config.RefuseTeamInvites)
                     {
@@ -1228,11 +1271,11 @@ namespace DevProLauncher.Windows
                         TeamList.Items.Clear();
                         ChannelTabs.TabPages.Remove(GetChatWindow(MessageType.Team.ToString()));
                     }
-                    foreach (string user in m_userData.Keys.Where(user => m_userData[user].team == command.Data))
-                    {
-                        m_userData[user].team = string.Empty;
-                        m_userData[user].teamRank = 0;
-                    }
+                    //foreach (string user in m_userData.Keys.Where(user => m_userData[user].team == command.Data))
+                    //{
+                    //    m_userData[user].team = string.Empty;
+                    //    m_userData[user].teamRank = 0;
+                    //}
 
                     break;
             }   
@@ -1314,7 +1357,7 @@ namespace DevProLauncher.Windows
 
         private void List_DoubleClick(object sender, EventArgs e)
         {
-            ListBox list = (UserListTabs.SelectedTab.Name == OnlineTab.Name ?UserList :(UserListTabs.SelectedTab.Name == TeamTab.Name ? TeamList: FriendList));
+            ListBox list = (UserListTabs.SelectedTab.Name == ChannelTab.Name ?ChannelList :(UserListTabs.SelectedTab.Name == TeamTab.Name ? TeamList: FriendList));
 
             if (list.SelectedItem == null)
             {
@@ -1404,6 +1447,20 @@ namespace DevProLauncher.Windows
                     LeaveChannel(selectedTab.Text);
                 }
             }
+        }
+
+        private void userSearchBtn_Click(object sender, EventArgs e)
+        {
+            string searchinfo = UserSearch.ForeColor == SystemColors.WindowFrame ? string.Empty : UserSearch.Text;
+            Program.ChatServer.SendPacket(DevServerPackets.UserList,
+                JsonSerializer.SerializeToString(new PacketCommand(){ Command = "USERS", Data = searchinfo}));
+        }
+
+        private void adminSearchBtn_Click(object sender, EventArgs e)
+        {
+            string searchinfo = UserSearch.ForeColor == SystemColors.WindowFrame ? string.Empty : UserSearch.Text;
+            Program.ChatServer.SendPacket(DevServerPackets.UserList,
+                JsonSerializer.SerializeToString(new PacketCommand() { Command = "ADMIN", Data = searchinfo }));
         }
     }
 }

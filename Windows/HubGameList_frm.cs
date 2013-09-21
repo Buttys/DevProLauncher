@@ -527,6 +527,9 @@ namespace DevProLauncher.Windows
 
         public ServerInfo GetServer()
         {
+            if (Program.ServerList.Count == 0)
+                return null;
+
             ServerInfo server;
             int serverselect = Program.Rand.Next(0, ServerList.Count);
 
@@ -537,6 +540,7 @@ namespace DevProLauncher.Windows
                 MessageBox.Show(Program.LanguageManager.Translation.GameNoServers);
                 return null;
             }
+
 
             return server;
         }

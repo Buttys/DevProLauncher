@@ -237,6 +237,8 @@ namespace DevProLauncher.Helpers
 
         public static void GenerateConfig(ServerInfo server, string roominfo)
         {
+            if (server == null)
+                return;
             if ((File.Exists(Program.Config.LauncherDir + "system.CONF")))
             {
                 File.Delete(Program.Config.LauncherDir + "system.CONF");
