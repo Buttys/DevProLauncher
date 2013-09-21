@@ -188,6 +188,11 @@ namespace DevProLauncher.Network
 #endif
                 while (m_isConnected)
                 {
+                    if (CheckDisconnected())
+                    {
+                        Disconnect();
+                        return;
+                    }
 
                     var packet = (DevClientPackets)m_reader.ReadByte();
                     int len = 0;
@@ -229,6 +234,11 @@ namespace DevProLauncher.Network
                 Disconnect();
             }
 #endif
+        }
+
+        private bool CheckDisconnected()
+        {
+            return (m_client.Client.Poll(1, SelectMode.SelectRead) && m_client.Available == 0);
         }
         private void OnCommand(MessageReceived e)
         {

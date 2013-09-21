@@ -495,6 +495,12 @@ namespace DevProLauncher.Windows
 
         private void LoadTeamWindow()
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(LoadTeamWindow));
+                return;
+            }
+
             if (GetChatWindow(MessageType.Team.ToString()) == null)
             {
                 ChannelTabs.TabPages.Add(new ChatWindow(MessageType.Team.ToString(), false));
