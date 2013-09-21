@@ -51,6 +51,7 @@ namespace DevProLauncher.Windows
             UserSearch.TextChanged += UserSearch_TextChanged;
             ChatInput.KeyPress += ChatInput_KeyPress;
             ChannelList.DoubleClick += List_DoubleClick;
+            UserList.DoubleClick += List_DoubleClick;
             FriendList.DoubleClick += List_DoubleClick;
             TeamList.DoubleClick += List_DoubleClick;
             ApplyOptionEvents();
@@ -350,6 +351,7 @@ namespace DevProLauncher.Windows
         private void UpdateUserInfo(UserData user)
         {
             Program.UserInfo = user;
+            Program.MainForm.UpdateUsername();
             if (!string.IsNullOrEmpty(Program.UserInfo.team))
             {
                 LoadTeamWindow();
@@ -1363,36 +1365,41 @@ namespace DevProLauncher.Windows
 
         private void List_DoubleClick(object sender, EventArgs e)
         {
-            ListBox list = (UserListTabs.SelectedTab.Name == ChannelTab.Name ?ChannelList :(UserListTabs.SelectedTab.Name == TeamTab.Name ? TeamList: FriendList));
-
+            ListBox list = (UserListTabs.SelectedTab.Name == ChannelTab.Name ?ChannelList :
+                UserListTabs.SelectedTab.Name == UserListTab.Name ? UserList:
+                (UserListTabs.SelectedTab.Name == TeamTab.Name ? TeamList: FriendList));
+ 
             if (list.SelectedItem == null)
             {
                 return;
             }
+            
+            string user = list.Name == ChannelList.Name || list.Name == UserList.Name ? 
+                ((UserData)list.SelectedItem).username : list.SelectedItem.ToString();
 
             if (Program.Config.PmWindows)
             {
-                if (!m_pmWindows.ContainsKey(list.SelectedItem.ToString()))
+                if (!m_pmWindows.ContainsKey(user))
                 {
-                    m_pmWindows.Add(list.SelectedItem.ToString(), new PmWindowFrm(list.SelectedItem.ToString(), true));
-                    m_pmWindows[list.SelectedItem.ToString()].Show();
-                    m_pmWindows[list.SelectedItem.ToString()].FormClosed += Chat_frm_FormClosed;
+                    m_pmWindows.Add(user, new PmWindowFrm(user, true));
+                    m_pmWindows[user].Show();
+                    m_pmWindows[user].FormClosed += Chat_frm_FormClosed;
                 }
                 else
                 {
-                    m_pmWindows[list.SelectedItem.ToString()].BringToFront();
+                    m_pmWindows[user].BringToFront();
                 }
             }
             else
             {
-                if (GetChatWindow(list.SelectedItem.ToString()) == null)
+                if (GetChatWindow(user) == null)
                 {
-                    ChannelTabs.TabPages.Add(new ChatWindow(list.SelectedItem.ToString(), true));
-                    ChannelTabs.SelectedTab = GetChatWindow(list.SelectedItem.ToString());
+                    ChannelTabs.TabPages.Add(new ChatWindow(user, true));
+                    ChannelTabs.SelectedTab = GetChatWindow(user);
                 }
                 else
                 {
-                    ChannelTabs.SelectedTab = GetChatWindow(list.SelectedItem.ToString());
+                    ChannelTabs.SelectedTab = GetChatWindow(user);
                 }
             }
         }

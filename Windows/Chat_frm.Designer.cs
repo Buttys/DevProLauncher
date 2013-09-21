@@ -449,12 +449,12 @@ namespace DevProLauncher.Windows
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.flowLayoutPanel1.Controls.Add(this.AddUserBtn);
             this.flowLayoutPanel1.Controls.Add(this.TeamStatsbtn);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 392);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(18, 392);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(175, 27);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(144, 27);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // AddUserBtn
