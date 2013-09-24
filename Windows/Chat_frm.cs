@@ -735,6 +735,8 @@ namespace DevProLauncher.Windows
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ping - Ping the server"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/help - Displays this list your reading now"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/uptime - Displays how long the server has been online"));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/stats - Shows how many users are online, dueling, and how many duels"));
+
 
                     if (Program.UserInfo.rank != 0)
                     {
