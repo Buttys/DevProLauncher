@@ -139,7 +139,7 @@ namespace DevProLauncher.Windows
                 return;
             }
 
-            if (SearchRequest_Btn.Text == "0")
+            if (SearchRequest_Btn.Text == "1")
             {
                 SearchRequest_Btn.Enabled = true;
                 SearchRequest_Btn.Text = Program.LanguageManager.Translation.GameBtnSearch;

@@ -55,14 +55,14 @@ namespace DevProLauncher.Network
         public ServerResponse ServerMessage;
         public ServerRooms AddRooms;
         public Command DevPointMsg;
-        public StringList FriendList;
+        public UserList FriendList;
         public ServerResponse JoinChannel;
         public Message ChatMessage;
         public UserDuelRequest DuelRequest;
         public UserDuelRequest DuelAccepted;
         public DuelRequestRefused DuelRefused;
         public Command TeamRequest;
-        public StringList TeamList;
+        public UserList TeamList;
         public ChannelList ChannelRequest;
         public ServerResponse AddGameServer;
         public ServerResponse RemoveGameServer;
@@ -349,11 +349,11 @@ namespace DevProLauncher.Network
                     break;
                 case DevClientPackets.FriendList:
                     if (FriendList != null)
-                        FriendList(JsonSerializer.DeserializeFromString<string[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                        FriendList(JsonSerializer.DeserializeFromString<UserData[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
                     break;
                 case DevClientPackets.TeamList:
                     if (TeamList != null)
-                        TeamList(JsonSerializer.DeserializeFromString<string[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                        TeamList(JsonSerializer.DeserializeFromString<UserData[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
                     break;
                 case DevClientPackets.Message:
                     if (ChatMessage != null)

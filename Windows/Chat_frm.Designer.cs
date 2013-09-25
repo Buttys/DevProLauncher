@@ -37,10 +37,8 @@ namespace DevProLauncher.Windows
             this.ChatInput = new System.Windows.Forms.TextBox();
             this.ChannelListBtn = new System.Windows.Forms.Button();
             this.LeaveBtn = new System.Windows.Forms.Button();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.UserSearch = new System.Windows.Forms.TextBox();
             this.ChannelTabs = new DevProLauncher.Windows.Components.FixedTabControl();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.UsersControl = new DevProLauncher.Windows.Components.FixedTabControl();
             this.UsersTab = new System.Windows.Forms.TabPage();
             this.UserListTabs = new DevProLauncher.Windows.Components.FixedTabControl();
@@ -52,16 +50,8 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.userSearchBtn = new System.Windows.Forms.Button();
             this.adminSearchBtn = new System.Windows.Forms.Button();
-            this.TeamTab = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.AddUserBtn = new System.Windows.Forms.Button();
-            this.TeamStatsbtn = new System.Windows.Forms.Button();
-            this.TeamList = new System.Windows.Forms.ListBox();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.TeamNameLabel = new System.Windows.Forms.Label();
-            this.FriendsTab = new System.Windows.Forms.TabPage();
-            this.FriendList = new System.Windows.Forms.ListBox();
+            this.teamSearchBtn = new System.Windows.Forms.Button();
+            this.friendSearchBtn = new System.Windows.Forms.Button();
             this.IgnoreTab = new System.Windows.Forms.TabPage();
             this.IgnoreList = new System.Windows.Forms.ListBox();
             this.OptionsTab = new System.Windows.Forms.TabPage();
@@ -106,11 +96,12 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.FontSize = new System.Windows.Forms.NumericUpDown();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.UserSearch = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
             this.UsersControl.SuspendLayout();
             this.UsersTab.SuspendLayout();
             this.UserListTabs.SuspendLayout();
@@ -118,11 +109,6 @@ namespace DevProLauncher.Windows
             this.UserListTab.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
-            this.TeamTab.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
-            this.FriendsTab.SuspendLayout();
             this.IgnoreTab.SuspendLayout();
             this.OptionsTab.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -134,6 +120,7 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FontSize)).BeginInit();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // UserTab
@@ -233,6 +220,17 @@ namespace DevProLauncher.Windows
             this.LeaveBtn.UseVisualStyleBackColor = true;
             this.LeaveBtn.Click += new System.EventHandler(this.LeaveBtn_Click);
             // 
+            // ChannelTabs
+            // 
+            this.ChannelTabs.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.ChannelTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChannelTabs.Location = new System.Drawing.Point(3, 3);
+            this.ChannelTabs.Multiline = true;
+            this.ChannelTabs.Name = "ChannelTabs";
+            this.ChannelTabs.SelectedIndex = 0;
+            this.ChannelTabs.Size = new System.Drawing.Size(690, 486);
+            this.ChannelTabs.TabIndex = 2;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -247,41 +245,6 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(215, 525);
             this.tableLayoutPanel3.TabIndex = 1;
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.UserSearch, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 495);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(209, 24);
-            this.tableLayoutPanel6.TabIndex = 2;
-            // 
-            // UserSearch
-            // 
-            this.UserSearch.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.UserSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UserSearch.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.UserSearch.Location = new System.Drawing.Point(3, 3);
-            this.UserSearch.Name = "UserSearch";
-            this.UserSearch.Size = new System.Drawing.Size(203, 20);
-            this.UserSearch.TabIndex = 1;
-            this.UserSearch.Text = "Search";
-            this.UserSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // ChannelTabs
-            // 
-            this.ChannelTabs.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.ChannelTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChannelTabs.Location = new System.Drawing.Point(3, 3);
-            this.ChannelTabs.Multiline = true;
-            this.ChannelTabs.Name = "ChannelTabs";
-            this.ChannelTabs.SelectedIndex = 0;
-            this.ChannelTabs.Size = new System.Drawing.Size(690, 486);
-            this.ChannelTabs.TabIndex = 2;
             // 
             // UsersControl
             // 
@@ -311,8 +274,6 @@ namespace DevProLauncher.Windows
             // 
             this.UserListTabs.Controls.Add(this.ChannelTab);
             this.UserListTabs.Controls.Add(this.UserListTab);
-            this.UserListTabs.Controls.Add(this.TeamTab);
-            this.UserListTabs.Controls.Add(this.FriendsTab);
             this.UserListTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UserListTabs.Location = new System.Drawing.Point(3, 3);
             this.UserListTabs.Multiline = true;
@@ -366,7 +327,7 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 2;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tableLayoutPanel12.Size = new System.Drawing.Size(181, 422);
             this.tableLayoutPanel12.TabIndex = 0;
             // 
@@ -379,7 +340,7 @@ namespace DevProLauncher.Windows
             this.UserList.IntegralHeight = false;
             this.UserList.Location = new System.Drawing.Point(3, 3);
             this.UserList.Name = "UserList";
-            this.UserList.Size = new System.Drawing.Size(175, 376);
+            this.UserList.Size = new System.Drawing.Size(175, 348);
             this.UserList.TabIndex = 3;
             // 
             // tableLayoutPanel13
@@ -389,12 +350,15 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel13.Controls.Add(this.userSearchBtn, 0, 0);
             this.tableLayoutPanel13.Controls.Add(this.adminSearchBtn, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.teamSearchBtn, 0, 1);
+            this.tableLayoutPanel13.Controls.Add(this.friendSearchBtn, 1, 1);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 385);
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 357);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
-            this.tableLayoutPanel13.RowCount = 1;
+            this.tableLayoutPanel13.RowCount = 2;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(175, 34);
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(175, 62);
             this.tableLayoutPanel13.TabIndex = 4;
             // 
             // userSearchBtn
@@ -402,7 +366,7 @@ namespace DevProLauncher.Windows
             this.userSearchBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userSearchBtn.Location = new System.Drawing.Point(3, 3);
             this.userSearchBtn.Name = "userSearchBtn";
-            this.userSearchBtn.Size = new System.Drawing.Size(81, 28);
+            this.userSearchBtn.Size = new System.Drawing.Size(81, 26);
             this.userSearchBtn.TabIndex = 0;
             this.userSearchBtn.Text = "Search";
             this.userSearchBtn.UseVisualStyleBackColor = true;
@@ -413,124 +377,33 @@ namespace DevProLauncher.Windows
             this.adminSearchBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.adminSearchBtn.Location = new System.Drawing.Point(90, 3);
             this.adminSearchBtn.Name = "adminSearchBtn";
-            this.adminSearchBtn.Size = new System.Drawing.Size(82, 28);
+            this.adminSearchBtn.Size = new System.Drawing.Size(82, 26);
             this.adminSearchBtn.TabIndex = 1;
             this.adminSearchBtn.Text = "Admins";
             this.adminSearchBtn.UseVisualStyleBackColor = true;
             this.adminSearchBtn.Click += new System.EventHandler(this.adminSearchBtn_Click);
             // 
-            // TeamTab
+            // teamSearchBtn
             // 
-            this.TeamTab.Controls.Add(this.tableLayoutPanel9);
-            this.TeamTab.Location = new System.Drawing.Point(4, 22);
-            this.TeamTab.Name = "TeamTab";
-            this.TeamTab.Padding = new System.Windows.Forms.Padding(3);
-            this.TeamTab.Size = new System.Drawing.Size(187, 428);
-            this.TeamTab.TabIndex = 1;
-            this.TeamTab.Text = "Team";
-            this.TeamTab.UseVisualStyleBackColor = true;
+            this.teamSearchBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.teamSearchBtn.Location = new System.Drawing.Point(3, 35);
+            this.teamSearchBtn.Name = "teamSearchBtn";
+            this.teamSearchBtn.Size = new System.Drawing.Size(81, 24);
+            this.teamSearchBtn.TabIndex = 2;
+            this.teamSearchBtn.Text = "Team";
+            this.teamSearchBtn.UseVisualStyleBackColor = true;
+            this.teamSearchBtn.Click += new System.EventHandler(this.teamSearchBtn_Click);
             // 
-            // tableLayoutPanel9
+            // friendSearchBtn
             // 
-            this.tableLayoutPanel9.ColumnCount = 1;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Controls.Add(this.flowLayoutPanel1, 0, 2);
-            this.tableLayoutPanel9.Controls.Add(this.TeamList, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel10, 0, 1);
-            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 3;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(181, 422);
-            this.tableLayoutPanel9.TabIndex = 1;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.flowLayoutPanel1.Controls.Add(this.AddUserBtn);
-            this.flowLayoutPanel1.Controls.Add(this.TeamStatsbtn);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(18, 392);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(144, 27);
-            this.flowLayoutPanel1.TabIndex = 4;
-            // 
-            // AddUserBtn
-            // 
-            this.AddUserBtn.Location = new System.Drawing.Point(3, 3);
-            this.AddUserBtn.Name = "AddUserBtn";
-            this.AddUserBtn.Size = new System.Drawing.Size(66, 23);
-            this.AddUserBtn.TabIndex = 0;
-            this.AddUserBtn.Text = "Add";
-            this.AddUserBtn.UseVisualStyleBackColor = true;
-            this.AddUserBtn.Click += new System.EventHandler(this.AddUserBtn_Click);
-            // 
-            // TeamStatsbtn
-            // 
-            this.TeamStatsbtn.Location = new System.Drawing.Point(75, 3);
-            this.TeamStatsbtn.Name = "TeamStatsbtn";
-            this.TeamStatsbtn.Size = new System.Drawing.Size(66, 23);
-            this.TeamStatsbtn.TabIndex = 1;
-            this.TeamStatsbtn.Text = "Stats";
-            this.TeamStatsbtn.UseVisualStyleBackColor = true;
-            this.TeamStatsbtn.Click += new System.EventHandler(this.TeamStatsbtn_Click);
-            // 
-            // TeamList
-            // 
-            this.TeamList.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TeamList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TeamList.FormattingEnabled = true;
-            this.TeamList.IntegralHeight = false;
-            this.TeamList.Location = new System.Drawing.Point(3, 3);
-            this.TeamList.Name = "TeamList";
-            this.TeamList.Size = new System.Drawing.Size(175, 358);
-            this.TeamList.TabIndex = 2;
-            // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.ColumnCount = 1;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Controls.Add(this.TeamNameLabel, 0, 0);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 367);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(175, 19);
-            this.tableLayoutPanel10.TabIndex = 5;
-            // 
-            // TeamNameLabel
-            // 
-            this.TeamNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TeamNameLabel.Location = new System.Drawing.Point(3, 0);
-            this.TeamNameLabel.Name = "TeamNameLabel";
-            this.TeamNameLabel.Size = new System.Drawing.Size(169, 19);
-            this.TeamNameLabel.TabIndex = 4;
-            this.TeamNameLabel.Text = "Team: None";
-            this.TeamNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // FriendsTab
-            // 
-            this.FriendsTab.Controls.Add(this.FriendList);
-            this.FriendsTab.Location = new System.Drawing.Point(4, 22);
-            this.FriendsTab.Name = "FriendsTab";
-            this.FriendsTab.Size = new System.Drawing.Size(187, 428);
-            this.FriendsTab.TabIndex = 2;
-            this.FriendsTab.Text = "Friends";
-            this.FriendsTab.UseVisualStyleBackColor = true;
-            // 
-            // FriendList
-            // 
-            this.FriendList.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.FriendList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FriendList.FormattingEnabled = true;
-            this.FriendList.IntegralHeight = false;
-            this.FriendList.Location = new System.Drawing.Point(0, 0);
-            this.FriendList.Name = "FriendList";
-            this.FriendList.Size = new System.Drawing.Size(187, 428);
-            this.FriendList.TabIndex = 2;
+            this.friendSearchBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.friendSearchBtn.Location = new System.Drawing.Point(90, 35);
+            this.friendSearchBtn.Name = "friendSearchBtn";
+            this.friendSearchBtn.Size = new System.Drawing.Size(82, 24);
+            this.friendSearchBtn.TabIndex = 3;
+            this.friendSearchBtn.Text = "Friends";
+            this.friendSearchBtn.UseVisualStyleBackColor = true;
+            this.friendSearchBtn.Click += new System.EventHandler(this.friendSearchBtn_Click);
             // 
             // IgnoreTab
             // 
@@ -1075,6 +948,30 @@ namespace DevProLauncher.Windows
             0,
             131072});
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.UserSearch, 0, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 495);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(209, 24);
+            this.tableLayoutPanel6.TabIndex = 2;
+            // 
+            // UserSearch
+            // 
+            this.UserSearch.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.UserSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UserSearch.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.UserSearch.Location = new System.Drawing.Point(3, 3);
+            this.UserSearch.Name = "UserSearch";
+            this.UserSearch.Size = new System.Drawing.Size(203, 20);
+            this.UserSearch.TabIndex = 1;
+            this.UserSearch.Text = "Search";
+            this.UserSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // ChatFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1089,8 +986,6 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
             this.UsersControl.ResumeLayout(false);
             this.UsersTab.ResumeLayout(false);
             this.UserListTabs.ResumeLayout(false);
@@ -1098,11 +993,6 @@ namespace DevProLauncher.Windows
             this.UserListTab.ResumeLayout(false);
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel13.ResumeLayout(false);
-            this.TeamTab.ResumeLayout(false);
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel10.ResumeLayout(false);
-            this.FriendsTab.ResumeLayout(false);
             this.IgnoreTab.ResumeLayout(false);
             this.OptionsTab.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -1117,6 +1007,8 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FontSize)).EndInit();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1180,16 +1072,6 @@ namespace DevProLauncher.Windows
         private System.Windows.Forms.CheckBox refuseteamchk;
         private FixedTabControl UserListTabs;
         private System.Windows.Forms.TabPage ChannelTab;
-        private System.Windows.Forms.TabPage TeamTab;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.ListBox TeamList;
-        private System.Windows.Forms.TabPage FriendsTab;
-        private System.Windows.Forms.ListBox FriendList;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button AddUserBtn;
-        private System.Windows.Forms.Button TeamStatsbtn;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private System.Windows.Forms.Label TeamNameLabel;
         private System.Windows.Forms.ListBox ChannelList;
         private System.Windows.Forms.TextBox ChatInput;
         private System.Windows.Forms.Button ChannelListBtn;
@@ -1200,5 +1082,7 @@ namespace DevProLauncher.Windows
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
         private System.Windows.Forms.Button userSearchBtn;
         private System.Windows.Forms.Button adminSearchBtn;
+        private System.Windows.Forms.Button teamSearchBtn;
+        private System.Windows.Forms.Button friendSearchBtn;
     }
 }

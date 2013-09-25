@@ -20,8 +20,12 @@ namespace DevProLauncher.Windows
         //private readonly Dictionary<string, UserData> m_userData = new Dictionary<string, UserData>();
         private Dictionary<string,List<UserData>> m_channelData = new Dictionary<string, List<UserData>>(); 
         private readonly Dictionary<string, PmWindowFrm> m_pmWindows = new Dictionary<string, PmWindowFrm>();
+        private List<UserData> m_filterUsers; 
         public bool Autoscroll = true;
         public bool Joinchannel = false;
+        private bool m_onlineMode;
+        private bool m_friendMode;
+        private Timer m_searchReset;
 
         public ChatFrm()
         {
@@ -29,6 +33,8 @@ namespace DevProLauncher.Windows
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
+            m_searchReset = new Timer {Interval = 1000};
+            m_filterUsers = new List<UserData>();
             //chat packets
             Program.ChatServer.UserListUpdate += UpdateUserList;
             Program.ChatServer.UpdateUserInfo += UpdateUserInfo;
@@ -49,24 +55,20 @@ namespace DevProLauncher.Windows
             UserSearch.Enter += UserSearch_Enter;
             UserSearch.Leave += UserSearch_Leave;
             UserSearch.TextChanged += UserSearch_TextChanged;
+            UserListTabs.SelectedIndexChanged += UserSearch_Reset;
             ChatInput.KeyPress += ChatInput_KeyPress;
             ChannelList.DoubleClick += List_DoubleClick;
             UserList.DoubleClick += List_DoubleClick;
-            FriendList.DoubleClick += List_DoubleClick;
-            TeamList.DoubleClick += List_DoubleClick;
+            m_searchReset.Tick += SearchTick;
             ApplyOptionEvents();
 
             ChannelList.MouseUp += UserList_MouseUp;
             UserList.MouseUp += UserList_MouseUp;
-            FriendList.MouseUp += FriendList_MouseUp;
-            TeamList.MouseUp += TeamList_MouseUp;
             IgnoreList.MouseUp += IgnoreList_MouseUp;
 
             //custom form drawing
             ChannelList.DrawItem += UserList_DrawItem;
             UserList.DrawItem += UserList_DrawItem;
-            //FriendList.DrawItem += DrawList_OnlineOffline;
-            //TeamList.DrawItem += DrawList_OnlineOffline;
 
             ChatHelper.LoadChatTags();
             
@@ -76,6 +78,52 @@ namespace DevProLauncher.Windows
 
             WriteSystemMessage("Welcome to the DevPro chat system!");
             WriteSystemMessage("To join a channel please click the channel list button.");
+        }
+
+        private void SearchTick(object sender,EventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<object, EventArgs>(SearchTick), sender, e);
+                return;
+            }
+
+            if (userSearchBtn.Text == "1")
+            {
+                userSearchBtn.Enabled = true;
+                adminSearchBtn.Enabled = true;
+                teamSearchBtn.Enabled = true;
+                friendSearchBtn.Enabled = true;
+
+                userSearchBtn.Text = "Search";
+                adminSearchBtn.Text = "Admins";
+                teamSearchBtn.Text = "Team";
+                friendSearchBtn.Text = "Friends";
+
+                m_searchReset.Enabled = false;
+            }
+            else
+            {
+                int value = Int32.Parse(userSearchBtn.Text);
+                userSearchBtn.Text = (value - 1).ToString();
+                adminSearchBtn.Text = (value - 1).ToString();
+                teamSearchBtn.Text = (value - 1).ToString();
+                friendSearchBtn.Text = (value - 1).ToString();
+            }
+        }
+
+        private void EnableSearchReset()
+        {
+            UserListTab.Focus();
+            userSearchBtn.Enabled = false;
+            adminSearchBtn.Enabled = false;
+            teamSearchBtn.Enabled = false;
+            friendSearchBtn.Enabled = false;
+            userSearchBtn.Text = "5";
+            adminSearchBtn.Text = "5";
+            teamSearchBtn.Text = "5";
+            friendSearchBtn.Text = "5";
+            m_searchReset.Enabled = true;
         }
 
         private void ApplyOptionEvents()
@@ -102,8 +150,6 @@ namespace DevProLauncher.Windows
             UserList.BackColor = Program.Config.ChatBGColor.ToColor();
 
             ChannelList.BackColor = Program.Config.ChatBGColor.ToColor();
-            FriendList.BackColor = Program.Config.ChatBGColor.ToColor();
-            TeamList.BackColor = Program.Config.ChatBGColor.ToColor();
             IgnoreList.BackColor = Program.Config.ChatBGColor.ToColor();
             IgnoreList.ForeColor = Program.Config.NormalTextColor.ToColor();
 
@@ -315,8 +361,8 @@ namespace DevProLauncher.Windows
         {
             if (UserSearch.Text == "Search")
             {
-                UserSearch.Text = "";
                 UserSearch.ForeColor = Program.Config.NormalTextColor.ToColor();
+                UserSearch.Text = "";
             }
         }
 
@@ -324,26 +370,53 @@ namespace DevProLauncher.Windows
         {
             if (UserSearch.Text == "")
             {
-                UserSearch.Text = "Search";
                 UserSearch.ForeColor = SystemColors.WindowFrame;
+                UserSearch.Text = "Search";
             }
         }
+
+        private void UserSearch_Reset(object sender, EventArgs e)
+        {
+            UserSearch.ForeColor = SystemColors.WindowFrame;
+            UserSearch.Text = "Search";
+        }
+
         private void UserSearch_TextChanged(object sender, EventArgs e)
         {
-            ChatWindow window = (ChatWindow) ChannelTabs.SelectedTab;
-
-            if (window != null)
+            if (UserListTabs.SelectedTab.Name == ChannelTab.Name)
             {
-                if (m_channelData.ContainsKey(window.Name))
-                {
-                    IEnumerable<UserData> users = m_channelData[window.Name];
-                    if (UserSearch.Text != "" && UserSearch.Text != "Search")
-                    {
-                        users = users.Where(user => user.username.ToLower().Contains(UserSearch.Text.ToLower()));
-                    }
+                ChatWindow window = (ChatWindow) ChannelTabs.SelectedTab;
 
-                    ChannelList.Items.Clear();
-                    ChannelList.Items.AddRange(users.ToArray<object>());
+                if (window != null)
+                {
+                    if (m_channelData.ContainsKey(window.Name))
+                    {
+                        IEnumerable<UserData> users = m_channelData[window.Name];
+                        if (!string.IsNullOrEmpty(UserSearch.Text) && UserSearch.ForeColor != SystemColors.WindowFrame)
+                        {
+                            users = users.Where(user => user.username.ToLower().Contains(UserSearch.Text.ToLower()));
+                        }
+
+                        ChannelList.Items.Clear();
+                        ChannelList.Items.AddRange(users.ToArray<object>());
+                    }
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(UserSearch.Text) && UserSearch.ForeColor != SystemColors.WindowFrame)
+                {
+                    UserList.Items.Clear();
+                    foreach (UserData user in m_filterUsers)
+                    {
+                        if (user.username.ToLower().Contains(UserSearch.Text.ToLower()))
+                            UserList.Items.Add(user);
+                    }
+                }
+                else
+                {
+                    UserList.Items.Clear();
+                    UserList.Items.AddRange(m_filterUsers.ToArray());
                 }
             }
         }
@@ -355,18 +428,10 @@ namespace DevProLauncher.Windows
             if (!string.IsNullOrEmpty(Program.UserInfo.team))
             {
                 LoadTeamWindow();
-            }
-
-            if (!string.IsNullOrEmpty(user.team) && user.team == Program.UserInfo.team)
-            {
-                if (!TeamList.Items.Contains(user.username))
-                    TeamList.Items.Add(user.username);
+                Program.MainForm.SetTeamProfile(true);
             }
             else
-            {
-                if (TeamList.Items.Contains(user.username))
-                    TeamList.Items.Remove(user.username);
-            }
+                Program.MainForm.SetTeamProfile(false);
         }
 
         private void UpdateChannelList(object sender, EventArgs e)
@@ -490,9 +555,12 @@ namespace DevProLauncher.Windows
                 Invoke(new Action<UserData[]>(UpdateUserList), (object)userlist);
                 return;
             }
-
+            m_onlineMode = false;
+            m_friendMode = false;
             UserList.Items.Clear();
             UserList.Items.AddRange(userlist);
+            m_filterUsers.Clear();
+            m_filterUsers.AddRange(userlist);
         }
 
         private void LoadTeamWindow()
@@ -506,33 +574,38 @@ namespace DevProLauncher.Windows
             if (GetChatWindow(MessageType.Team.ToString()) == null)
             {
                 ChannelTabs.TabPages.Add(new ChatWindow(MessageType.Team.ToString(), false));
-                TeamNameLabel.Text = "Team: " + Program.UserInfo.team;
-                Program.ChatServer.SendPacket(DevServerPackets.TeamList);
             }
         }
 
-        public void CreateFriendList(object[] friends)
+        public void CreateFriendList(UserData[] friends)
         {
             if (InvokeRequired)
             {
-                Invoke(new Action<string[]>(CreateFriendList), (object)friends);
+                Invoke(new Action<UserData[]>(CreateFriendList), (object)friends);
                 return;
             }
 
-            FriendList.Items.Clear();
-            FriendList.Items.AddRange(friends);
+            m_friendMode = true;
+            m_onlineMode = true;
+            UserList.Items.Clear();
+            UserList.Items.AddRange(friends);
+            m_filterUsers.Clear();
+            m_filterUsers.AddRange(friends);
         }
 
-        public void CreateTeamList(object[] users)
+        public void CreateTeamList(UserData[] users)
         {
             if (InvokeRequired)
             {
-                Invoke(new Action<string[]>(CreateTeamList), (object)users);
+                Invoke(new Action<UserData[]>(CreateTeamList), (object)users);
                 return;
             }
 
-            TeamList.Items.Clear();
-            TeamList.Items.AddRange(users);
+            m_onlineMode = true;
+            UserList.Items.Clear();
+            UserList.Items.AddRange(users);
+            m_filterUsers.Clear();
+            m_filterUsers.AddRange(users);
         }
 
         private void UserList_DrawItem(object sender, DrawItemEventArgs e)
@@ -554,77 +627,126 @@ namespace DevProLauncher.Windows
 
             g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
 
-            if (user.rank > 0)
+            if (!m_onlineMode)
             {
-                // Print text
-                g.DrawString("[", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
-                    list.GetItemRectangle(index).Location);
-
-                if (user.rank == 1 || user.rank == 4)
-                    g.DrawString("Dev", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(user.rank)),
-                      new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[", e.Font).Width - 1, list.GetItemRectangle(index).Location.Y));
-                else if (user.rank == 2 || user.rank == 3)
-                    g.DrawString("Mod", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(user.rank)),
-                      new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[", e.Font).Width - 1, list.GetItemRectangle(index).Location.Y));
-                else if (user.rank == 99)
-                    g.DrawString("Dev", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : ChatMessage.GetUserColor(user.rank)),
-                      new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[", e.Font).Width - 1, list.GetItemRectangle(index).Location.Y));
-                g.DrawString("]", e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
-                    new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev", e.Font).Width, list.GetItemRectangle(index).Location.Y));
-                if (user.getUserColor().ToArgb() == Color.Black.ToArgb())
+                if (user.rank > 0)
                 {
-                    g.DrawString(user.username, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
-                        new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev]", e.Font).Width, list.GetItemRectangle(index).Location.Y));
+                    // Print text
+                    g.DrawString("[", e.Font,
+                                 (selected)
+                                     ? Brushes.White
+                                     : (Program.Config.ColorBlindMode
+                                            ? Brushes.Black
+                                            : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
+                                 list.GetItemRectangle(index).Location);
+
+                    if (user.rank == 1 || user.rank == 4)
+                        g.DrawString("Dev", e.Font,
+                                     (selected)
+                                         ? Brushes.White
+                                         : (Program.Config.ColorBlindMode
+                                                ? Brushes.Black
+                                                : ChatMessage.GetUserColor(user.rank)),
+                                     new Point(
+                                         list.GetItemRectangle(index).Location.X +
+                                         (int) g.MeasureString("[", e.Font).Width - 1,
+                                         list.GetItemRectangle(index).Location.Y));
+                    else if (user.rank == 2 || user.rank == 3)
+                        g.DrawString("Mod", e.Font,
+                                     (selected)
+                                         ? Brushes.White
+                                         : (Program.Config.ColorBlindMode
+                                                ? Brushes.Black
+                                                : ChatMessage.GetUserColor(user.rank)),
+                                     new Point(
+                                         list.GetItemRectangle(index).Location.X +
+                                         (int) g.MeasureString("[", e.Font).Width - 1,
+                                         list.GetItemRectangle(index).Location.Y));
+                    else if (user.rank == 99)
+                        g.DrawString("Dev", e.Font,
+                                     (selected)
+                                         ? Brushes.White
+                                         : (Program.Config.ColorBlindMode
+                                                ? Brushes.Black
+                                                : ChatMessage.GetUserColor(user.rank)),
+                                     new Point(
+                                         list.GetItemRectangle(index).Location.X +
+                                         (int) g.MeasureString("[", e.Font).Width - 1,
+                                         list.GetItemRectangle(index).Location.Y));
+                    g.DrawString("]", e.Font,
+                                 (selected)
+                                     ? Brushes.White
+                                     : (Program.Config.ColorBlindMode
+                                            ? Brushes.Black
+                                            : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
+                                 new Point(
+                                     list.GetItemRectangle(index).Location.X +
+                                     (int) g.MeasureString("[Dev", e.Font).Width,
+                                     list.GetItemRectangle(index).Location.Y));
+                    if (user.getUserColor().ToArgb() == Color.Black.ToArgb())
+                    {
+                        g.DrawString(user.username, e.Font,
+                                     (selected)
+                                         ? Brushes.White
+                                         : (Program.Config.ColorBlindMode
+                                                ? Brushes.Black
+                                                : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
+                                     new Point(
+                                         list.GetItemRectangle(index).Location.X +
+                                         (int) g.MeasureString("[Dev]", e.Font).Width,
+                                         list.GetItemRectangle(index).Location.Y));
+                    }
+                    else
+                    {
+                        g.DrawString(user.username, e.Font,
+                                     (selected)
+                                         ? Brushes.White
+                                         : (Program.Config.ColorBlindMode
+                                                ? Brushes.Black
+                                                : new SolidBrush(user.getUserColor())),
+                                     new Point(
+                                         list.GetItemRectangle(index).Location.X +
+                                         (int) g.MeasureString("[Dev]", e.Font).Width,
+                                         list.GetItemRectangle(index).Location.Y));
+                    }
                 }
                 else
                 {
-                    g.DrawString(user.username, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(user.getUserColor())),
-                        new Point(list.GetItemRectangle(index).Location.X + (int)g.MeasureString("[Dev]", e.Font).Width, list.GetItemRectangle(index).Location.Y));
+                    if (user.getUserColor().ToArgb() == Color.Black.ToArgb())
+                    {
+                        // Print text
+                        g.DrawString(user.username, e.Font,
+                                     (selected)
+                                         ? Brushes.White
+                                         : (Program.Config.ColorBlindMode
+                                                ? Brushes.Black
+                                                : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
+                                     list.GetItemRectangle(index).Location);
+                    }
+                    else
+                    {
+                        // Print text
+                        g.DrawString(user.username, e.Font,
+                                     (selected)
+                                         ? Brushes.White
+                                         : (Program.Config.ColorBlindMode
+                                                ? Brushes.Black
+                                                : new SolidBrush(user.getUserColor())),
+                                     list.GetItemRectangle(index).Location);
+                    }
+
                 }
             }
             else
             {
-                if (user.getUserColor().ToArgb() == Color.Black.ToArgb())
-                {
-                    // Print text
-                    g.DrawString(user.username, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(Program.Config.NormalTextColor.ToColor())),
-                        list.GetItemRectangle(index).Location);
-                }
-                else
-                {
-                    // Print text
-                    g.DrawString(user.username, e.Font, (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : new SolidBrush(user.getUserColor())),
-                        list.GetItemRectangle(index).Location);
-                }
-                
+                //// Print text
+                g.DrawString((Program.Config.ColorBlindMode ? (user.Online ? user.username + " (Online)" : user.username + " (Offline)") : user.username), e.Font,
+                    (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : (user.Online ? Brushes.Green : Brushes.Red)),
+                    list.GetItemRectangle(index).Location);
             }
 
             e.DrawFocusRectangle();
         }
-
-        //private void DrawList_OnlineOffline(object sender, DrawItemEventArgs e)
-        //{
-        //    var list = (ListBox)sender;
-        //    e.DrawBackground();
-
-        //    bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
-
-        //    int index = e.Index;
-        //    if (index >= 0 && index < list.Items.Count)
-        //    {
-        //        string text = list.Items[index].ToString();
-        //        Graphics g = e.Graphics;
-
-        //        g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
-
-        //        //// Print text
-        //        g.DrawString((Program.Config.ColorBlindMode ? (m_userData.ContainsKey(text) ? text + " (Online)" : text + " (Offline)") : text), e.Font,
-        //            (selected) ? Brushes.White : (Program.Config.ColorBlindMode ? Brushes.Black : (m_userData.ContainsKey(text) ? Brushes.Green : Brushes.Red)),
-        //            list.GetItemRectangle(index).Location);
-        //    }
-
-        //    e.DrawFocusRectangle();
-        //}
 
         private void ApplyNewColor(object sender, EventArgs e)
         {
@@ -931,7 +1053,7 @@ namespace DevProLauncher.Windows
                 {
                     return;
                 }
-
+                
                 var mnu = new ContextMenuStrip();
                 var mnuprofile = new ToolStripMenuItem(Program.LanguageManager.Translation.chatViewProfile);
                 var mnuduel = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRequestDuel);
@@ -939,6 +1061,8 @@ namespace DevProLauncher.Windows
                 var mnuignore = new ToolStripMenuItem(Program.LanguageManager.Translation.chatIgnoreUser);
                 var mnukick = new ToolStripMenuItem("Kick");
                 var mnuban = new ToolStripMenuItem("Ban");
+                var mnuremovefriend = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRemoveFriend);
+                var mnuremoveteam = new ToolStripMenuItem("Remove from Team");
 
                 mnukick.Click += KickUser;
                 mnuban.Click += BanUser;
@@ -946,13 +1070,32 @@ namespace DevProLauncher.Windows
                 mnuduel.Click += RequestDuel;
                 mnufriend.Click += AddFriend;
                 mnuignore.Click += IgnoreUser;
+                mnuremovefriend.Click += RemoveFriend;
+                mnuremoveteam.Click += RemoveFromTeam;
 
-                mnu.Items.AddRange(new ToolStripItem[] { mnuprofile, mnuduel, mnufriend, mnuignore });
-
-                if (Program.UserInfo.rank > 0)
-                    mnu.Items.Add(mnukick);
-                if (Program.UserInfo.rank > 1)
-                    mnu.Items.Add(mnuban);
+                if (!m_onlineMode)
+                {
+                    mnu.Items.AddRange(new ToolStripItem[] {mnuprofile, mnuduel, mnufriend, mnuignore});               
+                    
+                    if (Program.UserInfo.rank > 0)
+                        mnu.Items.Add(mnukick);
+                    if (Program.UserInfo.rank > 1)
+                        mnu.Items.Add(mnuban);
+                }
+                else
+                {
+                    UserData user = (UserData) list.SelectedItem;
+                    mnu.Items.Add(mnuprofile);
+                    if (user.Online)
+                        mnu.Items.Add(mnuduel);
+                    if (m_friendMode)
+                        mnu.Items.Add(mnuremovefriend);
+                    else
+                    {
+                        if (Program.UserInfo.teamRank > 0)
+                            mnu.Items.Add(mnuremoveteam);
+                    }
+                }
 
                 mnu.Show(list, e.Location);
             }
@@ -993,14 +1136,7 @@ namespace DevProLauncher.Windows
                 return;
             }
 
-            if (FriendList.Items.Cast<object>().Any(user => user.ToString().ToLower() == ((UserData)list.SelectedItem).username.ToLower()))
-            {
-                WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, ((UserData)list.SelectedItem).username + " is already your friend."));
-                return;
-            }
-
             WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, ((UserData)list.SelectedItem).username + " has been added to your friend list."));
-            FriendList.Items.Add(((UserData)list.SelectedItem).username);
             Program.ChatServer.SendPacket(DevServerPackets.AddFriend, ((UserData)list.SelectedItem).username);
         }
 
@@ -1024,80 +1160,9 @@ namespace DevProLauncher.Windows
             WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, ((UserData)list.SelectedItem).username + " has been added to your ignore list."));
         }
 
-        private void FriendList_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right)
-            {
-                return;
-            }
-
-            int index = FriendList.IndexFromPoint(e.Location);
-
-            if (index == -1)
-            {
-                return;
-            }
-
-            FriendList.SelectedIndex = index;
-
-            if (FriendList.SelectedItem == null)
-            {
-                return;
-            }
-
-            var mnu = new ContextMenuStrip();
-            var mnuremovefriend = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRemoveFriend);
-            var mnuprofile = new ToolStripMenuItem(Program.LanguageManager.Translation.chatViewProfile);
-            var mnuduel = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRequestDuel);
-
-            mnuremovefriend.Click += RemoveFriend;
-            mnuprofile.Click += ViewProfile;
-            mnuduel.Click += RequestDuel;
-
-            mnu.Items.AddRange(new ToolStripItem[] { mnuprofile, mnuduel, mnuremovefriend });
-
-            mnu.Show(FriendList, e.Location);
-        }
-
-        private void TeamList_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                int index = TeamList.IndexFromPoint(e.Location);
-
-                if (index == -1)
-                {
-                    return;
-                }
-
-                TeamList.SelectedIndex = index;
-
-                if (TeamList.SelectedItem == null)
-                {
-                    return;
-                }
-
-                var mnu = new ContextMenuStrip();
-                var mnuprofile = new ToolStripMenuItem(Program.LanguageManager.Translation.chatViewProfile);
-                var mnuduel = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRequestDuel);
-                var mnuremoveteam = new ToolStripMenuItem("Remove from Team");
-
-                mnuprofile.Click += ViewProfile;
-                mnuduel.Click += RequestDuel;
-                mnuremoveteam.Click += RemoveFromTeam;
-
-                mnu.Items.AddRange(
-                    Program.UserInfo.teamRank > 0
-                        ? new ToolStripItem[] { mnuprofile, mnuduel, mnuremoveteam }
-                        : new ToolStripItem[] { mnuprofile, mnuduel });
-
-                mnu.Show(TeamList, e.Location);
-            }
-        }
-
         private void RemoveFromTeam(object sender, EventArgs e)
         {
-            if (TeamList.SelectedIndex == -1)
+            if (UserList.SelectedIndex == -1)
             {
                 return;
             }
@@ -1105,22 +1170,21 @@ namespace DevProLauncher.Windows
             if (MessageBox.Show("Are you sure?", "Remove User", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Program.ChatServer.SendPacket(DevServerPackets.ChatCommand,
-                    JsonSerializer.SerializeToString(new PacketCommand { Command = "TEAMREMOVE", Data = TeamList.SelectedItem.ToString() }));
+                    JsonSerializer.SerializeToString(new PacketCommand { Command = "TEAMREMOVE", Data = ((UserData)UserList.SelectedItem).username }));
             }
 
         }
 
         private void RemoveFriend(object sender, EventArgs e)
         {
-            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, FriendList.SelectedItem + " has been removed from your friendlist."));
-            Program.ChatServer.SendPacket(DevServerPackets.RemoveFriend, FriendList.SelectedItem.ToString());
-            FriendList.Items.Remove(FriendList.SelectedItem.ToString());
+            WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, ((UserData)UserList.SelectedItem).username + " has been removed from your friendlist."));
+            Program.ChatServer.SendPacket(DevServerPackets.RemoveFriend, ((UserData)UserList.SelectedItem).username);
+            UserList.Items.Remove(UserList.SelectedItem);
         }
 
         private void ViewProfile(object sender, EventArgs e)
         {
-            ListBox list = (UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserListTabs.SelectedTab.Name == UserListTab.Name ? UserList:
-                (UserListTabs.SelectedTab.Name == TeamTab.Name ? TeamList: FriendList));
+            ListBox list = (UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserList);
             if (list.SelectedItem == null)
                 return;
 
@@ -1130,8 +1194,7 @@ namespace DevProLauncher.Windows
 
         private void RequestDuel(object sender, EventArgs e)
         {
-            ListBox list = (UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserListTabs.SelectedTab.Name == UserListTab.Name ? UserList :
-                (UserListTabs.SelectedTab.Name == TeamTab.Name ? TeamList : FriendList));
+            ListBox list = (UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserList);
             if (list.SelectedItem == null)
             {
                 return;
@@ -1228,11 +1291,6 @@ namespace DevProLauncher.Windows
             switch(command.Command)
             {
                 case "JOIN":
-                    string team = "Derp";
-                    //if (m_userData.ContainsKey(command.Data))
-                    //    team = m_userData[command.Data].team;
-                    //else
-                    //    return;
 
                     if (Program.Config.RefuseTeamInvites)
                     {
@@ -1241,15 +1299,15 @@ namespace DevProLauncher.Windows
                         return;
                     }
 
-                    if (MessageBox.Show("You have been invited to join the team " + team, "Team Request", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show(command.Data + " has invited you to join a team.", "Team Request", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Program.UserInfo.username, "You have accepted the team invite to join " + team));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Program.UserInfo.username, "You have accepted the team invite."));
                         Program.ChatServer.SendPacket(DevServerPackets.TeamCommand,
                             JsonSerializer.SerializeToString(new PacketCommand { Command = "ACCEPT"}));
                     }
                     else
                     {
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Program.UserInfo.username, "You have refused the team invite to join " + team));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Program.UserInfo.username, "You have refused the team invite."));
                         Program.ChatServer.SendPacket(DevServerPackets.TeamCommand,
                             JsonSerializer.SerializeToString(new PacketCommand { Command = "REFUSE"}));
                     }
@@ -1257,36 +1315,38 @@ namespace DevProLauncher.Windows
                 case "LEAVE":
                     Program.UserInfo.team = string.Empty;
                     Program.UserInfo.teamRank = 0;
-                    TeamNameLabel.Text = "Team: None";
-                    TeamList.Items.Clear();
                     ChannelTabs.TabPages.Remove(GetChatWindow(MessageType.Team.ToString()));
+                    Program.MainForm.SetTeamProfile(false);
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Program.UserInfo.username, "You have left the team."));
                     break;
                 case "REMOVED":
                     Program.UserInfo.team = string.Empty;
                     Program.UserInfo.teamRank = 0;
-                    TeamNameLabel.Text = "Team: None";
-                    TeamList.Items.Clear();
                     ChannelTabs.TabPages.Remove(GetChatWindow(MessageType.Team.ToString()));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Program.UserInfo.username, "You have been removed from the team."));
+                    Program.MainForm.SetTeamProfile(false);
                     break;
                 case "DISBAND":
                     if (Program.UserInfo.team == command.Data)
                     {
                         Program.UserInfo.team = string.Empty;
                         Program.UserInfo.teamRank = 0;
-                        TeamNameLabel.Text = "Team: None";
-                        TeamList.Items.Clear();
                         ChannelTabs.TabPages.Remove(GetChatWindow(MessageType.Team.ToString()));
+                        Program.MainForm.SetTeamProfile(false);
                     }
-                    //foreach (string user in m_userData.Keys.Where(user => m_userData[user].team == command.Data))
-                    //{
-                    //    m_userData[user].team = string.Empty;
-                    //    m_userData[user].teamRank = 0;
-                    //}
 
                     break;
             }   
+        }
+
+        private UserData UserListContains(string name)
+        {
+            foreach (UserData user in UserList.Items)
+            {
+                if (user.username == name)
+                    return user;
+            }
+            return null;
         }
 
         private void IgnoreList_MouseUp(object sender, MouseEventArgs e)
@@ -1365,9 +1425,7 @@ namespace DevProLauncher.Windows
 
         private void List_DoubleClick(object sender, EventArgs e)
         {
-            ListBox list = (UserListTabs.SelectedTab.Name == ChannelTab.Name ?ChannelList :
-                UserListTabs.SelectedTab.Name == UserListTab.Name ? UserList:
-                (UserListTabs.SelectedTab.Name == TeamTab.Name ? TeamList: FriendList));
+            ListBox list = UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList:UserList;
  
             if (list.SelectedItem == null)
             {
@@ -1404,42 +1462,6 @@ namespace DevProLauncher.Windows
             }
         }
 
-        private void AddUserBtn_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(Program.UserInfo.team))
-            {
-                MessageBox.Show("You are not in a team.", "No u", MessageBoxButtons.OK);
-                return;
-            }
-
-            if(Program.UserInfo.teamRank <= 0)
-            {
-                MessageBox.Show("Your rank is too low.", "No u", MessageBoxButtons.OK);
-                return;
-            }
-            
-            var form = new InputFrm("Add Team Member","Enter Users name","Send","Cancel") {InputBox = {MaxLength = 14}};
-
-            if(form.ShowDialog() == DialogResult.OK)
-            {
-                Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, 
-                    JsonSerializer.SerializeToString(new PacketCommand { Command = "TEAMADD", Data = form.InputBox.Text }));
-            }
-
-        }
-
-        private void TeamStatsbtn_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(Program.UserInfo.team))
-            {
-                MessageBox.Show("You are not in a team.", "No u", MessageBoxButtons.OK);
-                return;
-            }
-
-            var form = new TeamProfileFrm(Program.UserInfo.team);
-            form.Show();
-        }
-
         private void ChannelListBtn_Click(object sender, EventArgs e)
         {
             var channellist = new ChannelListFrm();
@@ -1467,6 +1489,8 @@ namespace DevProLauncher.Windows
             string searchinfo = UserSearch.ForeColor == SystemColors.WindowFrame ? string.Empty : UserSearch.Text;
             Program.ChatServer.SendPacket(DevServerPackets.UserList,
                 JsonSerializer.SerializeToString(new PacketCommand(){ Command = "USERS", Data = searchinfo}));
+            EnableSearchReset();
+            
         }
 
         private void adminSearchBtn_Click(object sender, EventArgs e)
@@ -1474,6 +1498,22 @@ namespace DevProLauncher.Windows
             string searchinfo = UserSearch.ForeColor == SystemColors.WindowFrame ? string.Empty : UserSearch.Text;
             Program.ChatServer.SendPacket(DevServerPackets.UserList,
                 JsonSerializer.SerializeToString(new PacketCommand() { Command = "ADMIN", Data = searchinfo }));
+            EnableSearchReset();
+            
+        }
+
+        private void teamSearchBtn_Click(object sender, EventArgs e)
+        {
+            Program.ChatServer.SendPacket(DevServerPackets.UserList,
+                JsonSerializer.SerializeToString(new PacketCommand() { Command = "TEAM", Data = string.Empty }));
+            EnableSearchReset();
+        }
+
+        private void friendSearchBtn_Click(object sender, EventArgs e)
+        {
+            Program.ChatServer.SendPacket(DevServerPackets.UserList,
+                JsonSerializer.SerializeToString(new PacketCommand() { Command = "FRIENDS", Data = string.Empty }));
+            EnableSearchReset();
         }
     }
 }
