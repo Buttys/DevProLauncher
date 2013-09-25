@@ -83,8 +83,10 @@ function c100000006.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function c100000006.thop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
+	if g then
 	Duel.SendtoDeck(g,nil,1,REASON_EFFECT)
 	Duel.Damage(1-tp,500,REASON_EFFECT)
+	end
 end
 function c100000006.tdcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetTurnPlayer()==tp

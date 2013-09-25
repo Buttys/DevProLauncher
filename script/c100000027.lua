@@ -35,7 +35,7 @@ function c100000027.atop(e,tp,eg,ep,ev,re,r,rp)
 	e3:SetCode(EFFECT_EXTRA_ATTACK)	
 	e3:SetCondition(c100000023.spcon)
 	e3:SetValue(1)
-	c:RegisterEffect(e3)
+	e:GetHandler():RegisterEffect(e3)
 end
 function c100000027.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetFieldGroupCount(e:GetOwnerPlayer(),0,LOCATION_MZONE)>0
