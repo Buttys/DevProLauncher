@@ -28,6 +28,6 @@ function c39432962.sumop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,c39432962.filter,tp,LOCATION_HAND,0,1,1,nil,e,tp)
 	if g:GetCount()>0 then
 		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP_ATTACK+POS_FACEDOWN_DEFENCE)
-		Duel.ConfirmCards(1-tp,sg)
+		Duel.ConfirmCards(1-tp,g)
 	end
 end

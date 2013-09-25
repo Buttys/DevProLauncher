@@ -14,7 +14,7 @@ function c100100055.initial_effect(c)
 end
 function c100100055.con(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
-	return tc:GetCounter(0x91)>1
+	return tc and tc:GetCounter(0x91)>1
 end
 function c100100055.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,e:GetHandler()) end
