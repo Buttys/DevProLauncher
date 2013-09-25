@@ -23,7 +23,7 @@ end
 function c100000073.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	local tc=eg:GetFirst()
 	if chk==0 then return eg:IsExists(c100000073.filt,1,nil,tp) end
-	local g=eg:Filter(c100000073.filter,nil,tp)
+	local g=eg:Filter(c100000073.filter,nil,e,tp)
 	Duel.SetTargetCard(eg)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,g,g:GetCount(),0,0)
 end
