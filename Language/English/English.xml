@@ -26,7 +26,7 @@
   <RegistMsb2>Please enter password</RegistMsb2>
   <RegistMsb3>Please enter username.</RegistMsb3>
   <RegistMsb4>Registering Complete!</RegistMsb4>
-  <RegistMsb5>Username Exists</RegistMsb5>
+  <RegistMsb5>This Username Exists</RegistMsb5>
   <RegistMsb6>Username cannot contain special characters</RegistMsb6>
   <GameRanked>Ranked</GameRanked>
   <GameUnranked>Unranked</GameUnranked>
@@ -58,7 +58,7 @@
   <optionGb4>Launcher Settings</optionGb4>
   <optionMsbForget>Do you really want to forget auto login credentials?</optionMsbForget>
   <optionUser>Default Username</optionUser>
-  <optionDeck>Defualt Deck</optionDeck>
+  <optionDeck>Default Deck</optionDeck>
   <optionBtnAutoLogin>Forget Auto Login</optionBtnAutoLogin>
   <optionAntialias>Antialias</optionAntialias>
   <optionCbSound>Enable Sound</optionCbSound>
@@ -93,7 +93,7 @@
   <fileBtnDelete>Delete</fileBtnDelete>
   <fileBtnFolder>Open Folder</fileBtnFolder>
   <fileBtnGame>Open Game</fileBtnGame>
-  <fileMsgNoExist>does no exsist</fileMsgNoExist>
+  <fileMsgNoExist>Does not exists</fileMsgNoExist>
   <fileMsgNoSelect>Nothing selected</fileMsgNoSelect>
   <fileMsbMulti>Can't Rename multiple items</fileMsbMulti>
   <fileAskDelete>Are you sure you want to delete the following item(s) </fileAskDelete>
@@ -162,7 +162,7 @@
   <chatoptionsBtnSave>Save</chatoptionsBtnSave>
   <chatoptionsBtnCancel>Cancel</chatoptionsBtnCancel>
   <chatoptionsRequestFormText>Duel Request Settings</chatoptionsRequestFormText>
-  <chatBtnoptions>Options</chatBtnoptions>
+  <chatBtnoptions>Settings</chatBtnoptions>
   <chatTabUsers>Users</chatTabUsers>
   <chatTabFriends>Friends</chatTabFriends>
   <chatTabIgnore>Ignore</chatTabIgnore>
@@ -213,7 +213,7 @@
   <Supportgb2>Support DevPro</Supportgb2>
   <Supportgb2text>The DevPoint system is here to reward users who help out and support DevPro. While the 2 options below will earn you DevPoints you can also earn points for helping DevPro too!  || ||- Taking part in DevPro Events  - Fixing DevPro bugs Launcher or card scripts! || - Supporting the growth of DevPro</Supportgb2text>
   <Supportgb3>Earn DevPoints</Supportgb3>
-  <Supportgb3text>Earn points by completing offfers.</Supportgb3text>
+  <Supportgb3text>Earn points by completing offers.</Supportgb3text>
   <Supportgb4>Donate!</Supportgb4>
   <Supportgb4text>Earn by donating (Paypal, PaySafe, SMS and more)</Supportgb4text>
   <SupportRenameInput>Enter New Username</SupportRenameInput>

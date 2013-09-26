@@ -59,7 +59,7 @@ namespace DevProLauncher.Windows
             DeckBtn.Text = info.MainDeckBtn;
             ReplaysBtn.Text = info.MainReplaysBtn;
             OfflineBtn.Text = info.MainOfflineBtn;
-            DBSyncBtn.Text = info.MainSyncBtn;
+            //DBSyncBtn.Text = info.MainSyncBtn;
             siteBtn.Text = info.MainSiteBtn;
             MessageLabel.Text = info.MainServerMessage;
         }
@@ -94,7 +94,7 @@ namespace DevProLauncher.Windows
             gamelistTab.Controls.Add(GameWindow);
             mainTabs.TabPages.Add(gamelistTab);
 
-            var chatTab = new TabPage("Chat (Beta v4)");
+            var chatTab = new TabPage("Chat (Beta v4.2)");
             chatTab.Controls.Add(m_chatWindow);
             mainTabs.TabPages.Add(chatTab);
 
@@ -120,9 +120,9 @@ namespace DevProLauncher.Windows
             UpdateUsername();
 
             ProfileBtn.Enabled = true;
+            if (!string.IsNullOrEmpty(Program.UserInfo.team))
+                TeamProfileBtn.Enabled = true;
 
-            Program.ChatServer.SendPacket(DevServerPackets.UserList);
-            Program.ChatServer.SendPacket(DevServerPackets.FriendList);
             Program.ChatServer.SendPacket(DevServerPackets.DevPoints);
 
         }
@@ -206,6 +206,22 @@ namespace DevProLauncher.Windows
         {
             if(mainTabs.SelectedIndex == 2)
                 m_wcsBrowser.Navigate("http://wcs.devpro.org/launcher.php", false);
+        }
+
+        private void TeamProfileBtn_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Program.UserInfo.team))
+            {
+                MessageBox.Show("You are not in a team.", "No u", MessageBoxButtons.OK);
+                return;
+            }
+
+            var form = new TeamProfileFrm(Program.UserInfo.team);
+            form.Show();
+        }
+        public void SetTeamProfile(bool value)
+        {
+            TeamProfileBtn.Enabled = value;
         }
     }
 }

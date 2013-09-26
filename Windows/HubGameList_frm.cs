@@ -139,7 +139,7 @@ namespace DevProLauncher.Windows
                 return;
             }
 
-            if (SearchRequest_Btn.Text == "0")
+            if (SearchRequest_Btn.Text == "1")
             {
                 SearchRequest_Btn.Enabled = true;
                 SearchRequest_Btn.Text = Program.LanguageManager.Translation.GameBtnSearch;
@@ -527,6 +527,9 @@ namespace DevProLauncher.Windows
 
         public ServerInfo GetServer()
         {
+            if (Program.ServerList.Count == 0)
+                return null;
+
             ServerInfo server;
             int serverselect = Program.Rand.Next(0, ServerList.Count);
 
@@ -537,6 +540,7 @@ namespace DevProLauncher.Windows
                 MessageBox.Show(Program.LanguageManager.Translation.GameNoServers);
                 return null;
             }
+
 
             return server;
         }

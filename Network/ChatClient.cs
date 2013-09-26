@@ -28,13 +28,20 @@ namespace DevProLauncher.Network
         public delegate void ServerRooms(RoomInfos[] rooms);
         public delegate void GameRoomUpdate(RoomInfos room);
         public delegate void ServerDisconnected();        
-        public delegate void UserInfo(UserData user);
-        public delegate void UserList(UserData[] users);
         public delegate void Message(ChatMessage message);
         public delegate void UserDuelRequest(DuelRequest data);
         public delegate void DuelRequestRefused();
+        public delegate void UserInfo(UserData info);
+        public delegate void UserList(UserData[] info);
         public delegate void ChannelList(ChannelData[] channels);
         public delegate void StringList(string[] data);
+        public delegate void ChannelUsersUpdate(ChannelUsers users);
+
+        public UserInfo UpdateUserInfo;
+        public UserList UserListUpdate;
+        public ChannelUsersUpdate ChannelUserList;
+        public ChannelUsersUpdate AddUserToChannel;
+        public ChannelUsersUpdate RemoveUserFromChannel;
         public ServerDisconnected Disconnected;
         public LoginResponse LoginReply;
         public ClientPacket RegisterReply;
@@ -48,17 +55,14 @@ namespace DevProLauncher.Network
         public ServerResponse ServerMessage;
         public ServerRooms AddRooms;
         public Command DevPointMsg;
-        public UserInfo AddUser;
-        public UserList AddUsers;
-        public ServerResponse RemoveUser;
-        public StringList FriendList;
+        public UserList FriendList;
         public ServerResponse JoinChannel;
         public Message ChatMessage;
         public UserDuelRequest DuelRequest;
         public UserDuelRequest DuelAccepted;
         public DuelRequestRefused DuelRefused;
         public Command TeamRequest;
-        public StringList TeamList;
+        public UserList TeamList;
         public ChannelList ChannelRequest;
         public ServerResponse AddGameServer;
         public ServerResponse RemoveGameServer;
@@ -149,14 +153,11 @@ namespace DevProLauncher.Network
             switch (packet)
             {
                 case DevClientPackets.GameList:
-                    return true;
                 case DevClientPackets.UserList:
-                    return true;
                 case DevClientPackets.FriendList:
-                    return true;
                 case DevClientPackets.TeamList:
-                    return true;
                 case DevClientPackets.ChannelList:
+                case DevClientPackets.ChannelUsers:
                     return true;
                 default:
                     return false;
@@ -169,13 +170,9 @@ namespace DevProLauncher.Network
             switch (packet)
             {
                 case DevClientPackets.LoginFailed:
-                    return true;
                 case DevClientPackets.RegisterAccept:
-                    return true;
                 case DevClientPackets.RegisterFailed:
-                    return true;
                 case DevClientPackets.Pong:
-                    return true;
                 case DevClientPackets.RefuseDuelRequest:
                     return true;
                 default:
@@ -185,10 +182,17 @@ namespace DevProLauncher.Network
 
         private void Receive()
         {
+#if !DEBUG
             try
             {
+#endif
                 while (m_isConnected)
                 {
+                    if (CheckDisconnected())
+                    {
+                        Disconnect();
+                        return;
+                    }
 
                     var packet = (DevClientPackets)m_reader.ReadByte();
                     int len = 0;
@@ -223,11 +227,18 @@ namespace DevProLauncher.Network
 
                     Thread.Sleep(1);
                 }
+#if !DEBUG
             }
             catch (Exception)
             {
                 Disconnect();
             }
+#endif
+        }
+
+        private bool CheckDisconnected()
+        {
+            return (m_client.Client.Poll(1, SelectMode.SelectRead) && m_client.Available == 0);
         }
         private void OnCommand(MessageReceived e)
         {
@@ -278,17 +289,28 @@ namespace DevProLauncher.Network
                     if (ServerMessage != null)
                         ServerMessage(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
                     break;
-                case DevClientPackets.AddUser:                
-                    if (AddUser != null)
-                        AddUser(JsonSerializer.DeserializeFromString<UserData>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                case DevClientPackets.ChannelUsers:
+                    if(ChannelUserList != null)
+                        ChannelUserList(JsonSerializer.DeserializeFromString<ChannelUsers>(
+                            Encoding.UTF8.GetString(e.Raw)));
                     break;
-                case DevClientPackets.RemoveUser:                
-                    if (RemoveUser != null)
-                        RemoveUser(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
+                case DevClientPackets.AddChannelUser:
+                    if (AddUserToChannel != null)
+                        AddUserToChannel(JsonSerializer.DeserializeFromString<ChannelUsers>(
+                            Encoding.UTF8.GetString(e.Raw)));
                     break;
-                case DevClientPackets.UserList:                
-                    if (AddUsers != null)
-                        AddUsers(JsonSerializer.DeserializeFromString<UserData[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                case DevClientPackets.RemoveChannelUser:
+                    if (RemoveUserFromChannel != null)
+                        RemoveUserFromChannel(JsonSerializer.DeserializeFromString<ChannelUsers>(
+                            Encoding.UTF8.GetString(e.Raw)));
+                    break;
+                case DevClientPackets.UpdateUserInfo:
+                    if (UpdateUserInfo != null)
+                        UpdateUserInfo(JsonSerializer.DeserializeFromString<UserData>(Encoding.UTF8.GetString(e.Raw)));
+                    break;
+                case DevClientPackets.UserList:
+                    if (UserListUpdate != null)
+                        UserListUpdate(JsonSerializer.DeserializeFromString<UserData[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
                     break;
                 case DevClientPackets.GameServers:                
                     var servers = JsonSerializer.DeserializeFromString<ServerInfo[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
@@ -327,11 +349,11 @@ namespace DevProLauncher.Network
                     break;
                 case DevClientPackets.FriendList:
                     if (FriendList != null)
-                        FriendList(JsonSerializer.DeserializeFromString<string[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                        FriendList(JsonSerializer.DeserializeFromString<UserData[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
                     break;
                 case DevClientPackets.TeamList:
                     if (TeamList != null)
-                        TeamList(JsonSerializer.DeserializeFromString<string[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
+                        TeamList(JsonSerializer.DeserializeFromString<UserData[]>(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length))));
                     break;
                 case DevClientPackets.Message:
                     if (ChatMessage != null)
@@ -384,7 +406,7 @@ namespace DevProLauncher.Network
                     break;
                 case DevClientPackets.Kicked:
                     if (Kicked != null)
-                        Kicked(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
+                        Kicked(Encoding.UTF8.GetString(e.Raw));
                     break;
                 default:                
                     if (OnFatalError != null)
