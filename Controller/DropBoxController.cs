@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.ComponentModel;
 using System.Diagnostics;
+using DevProLauncher.Windows;
 
 namespace DevProLauncher.Controller
 {   
@@ -55,7 +56,7 @@ namespace DevProLauncher.Controller
             }
 
 #if DEBUG
-            dbClient.UseSandbox = true;
+           // dbClient.UseSandbox = true;
 #endif
 
             if (String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken))
@@ -83,7 +84,7 @@ namespace DevProLauncher.Controller
         {
 
 #if DEBUG
-            dbClient.UseSandbox = true;
+            //dbClient.UseSandbox = true;
 #endif
             try
             {

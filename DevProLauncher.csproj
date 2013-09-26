@@ -270,11 +270,11 @@
     <Compile Include="Windows\MessageBoxs\TeamProfile_frm.Designer.cs">
       <DependentUpon>TeamProfile_frm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NotifyBox.cs">
+    <Compile Include="Windows\MessageBoxs\Notify_frm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Windows\NotifyBox.designer.cs">
-      <DependentUpon>NotifyBox.cs</DependentUpon>
+    <Compile Include="Windows\MessageBoxs\Notify_frm.designer.cs">
+      <DependentUpon>Notify_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\Support_frm.cs">
       <SubType>Form</SubType>
@@ -358,8 +358,8 @@
     <EmbeddedResource Include="Windows\MessageBoxs\TeamProfile_frm.resx">
       <DependentUpon>TeamProfile_frm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\NotifyBox.resx">
-      <DependentUpon>NotifyBox.cs</DependentUpon>
+    <EmbeddedResource Include="Windows\MessageBoxs\Notify_frm.resx">
+      <DependentUpon>Notify_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Support_frm.resx">
       <DependentUpon>Support_frm.cs</DependentUpon>
