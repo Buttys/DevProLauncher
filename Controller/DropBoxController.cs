@@ -7,15 +7,26 @@ using System.Windows.Forms;
 using System.IO;
 using System.ComponentModel;
 using System.Diagnostics;
+using DevProLauncher.Windows;
 
 namespace DevProLauncher.Controller
-{
-    class DropBoxController
+{   
+    public class DropBoxController
     {
+        DropNetClient dbClient = null;
+
+        /// <summary>
+        /// Constructor initializes the DropboxClient
+        /// </summary>
+        public DropBoxController()
+        {
+            dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret);
+        }
+
         /// <summary>
         /// This method is binding an dropboxacc to the dropboxapp
         /// </summary>
-        static public void syncAcc()
+        public void syncAcc()
         {
 
             //Testing Connection
@@ -44,11 +55,8 @@ namespace DevProLauncher.Controller
                 return;
             }
 
-
-
-            DropNetClient dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret);
 #if DEBUG
-            dbClient.UseSandbox = true;
+           // dbClient.UseSandbox = true;
 #endif
 
             if (String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken))
@@ -72,15 +80,16 @@ namespace DevProLauncher.Controller
         /// <summary>
         /// this method will generate a useraccesstoken (if your dbaccount is already bound to the app)
         /// </summary>
-        static public void getUserToken()
+        public void getUserToken()
         {
-            DropNetClient dbClient = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret);
+
 #if DEBUG
-            dbClient.UseSandbox = true;
+            //dbClient.UseSandbox = true;
 #endif
             try
             {
-                var accessToken = dbClient.GetAccessToken();
+                DropNet.Models.UserLogin accessToken = new DropNet.Models.UserLogin();
+                accessToken = dbClient.GetAccessToken();
 
                 MessageBox.Show(accessToken.Token);
 
@@ -90,10 +99,10 @@ namespace DevProLauncher.Controller
                 MessageBox.Show("Login Saved");
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
 
         }
@@ -114,7 +123,7 @@ namespace DevProLauncher.Controller
 
             if (String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken))
             {
-                syncAcc();
+                MessageBox.Show("bind your account first");
             }
 
             if (db.Deck)
@@ -155,13 +164,19 @@ namespace DevProLauncher.Controller
 
             if (String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken))
             {
-                syncAcc();
+                MessageBox.Show("bind your account first");
             }
+            else
+            {
+                bwSync.DoWork += new DoWorkEventHandler(bwSync_DoWork);
+                bwSync.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bwSync_RunWorkerCompleted);
 
-            bwSync.DoWork += new DoWorkEventHandler(bwSync_DoWork);
-            bwSync.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bwSync_RunWorkerCompleted);
+                bwSync.RunWorkerAsync();
 
-            bwSync.RunWorkerAsync();
+                NotifyBox note = new NotifyBox();
+                note.setMsg("Sync start");
+                note.Show();
+            }
         }
 
         /// <summary>
@@ -171,7 +186,9 @@ namespace DevProLauncher.Controller
         /// <param name="e">e.Result shows a short, or with stacktrace in dbgmode, statusmessage </param>
         static void bwSync_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            //do something
+            NotifyBox note = new NotifyBox();
+            note.setMsg("Sync end");
+            note.Show();
         }
 
         /// <summary>
