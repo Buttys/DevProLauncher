@@ -152,5 +152,11 @@ namespace DevProLauncher.Windows.MessageBoxs
             Program.Config.chtBanList = form.BanList.Text;
             Program.Config.chtTimeLimit = form.TimeLimit.Text;
         }
+
+        private void dropboxbtn_Click(object sender, EventArgs e)
+        {
+            DropBoxSynch_frm dbsyncfrm = new DropBoxSynch_frm();
+            dbsyncfrm.Show();
+        }
     }
 }

@@ -68,6 +68,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DefualtDeck = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.dropboxbtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.OptionTabControl.SuspendLayout();
@@ -109,6 +110,7 @@
             this.flowLayoutPanel1.Controls.Add(this.SaveBtn);
             this.flowLayoutPanel1.Controls.Add(this.QuickSettingsBtn);
             this.flowLayoutPanel1.Controls.Add(this.RequestSettingsbtn);
+            this.flowLayoutPanel1.Controls.Add(this.dropboxbtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 318);
@@ -588,6 +590,16 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Default Deck";
             // 
+            // dropboxbtn
+            // 
+            this.dropboxbtn.Location = new System.Drawing.Point(125, 3);
+            this.dropboxbtn.Name = "dropboxbtn";
+            this.dropboxbtn.Size = new System.Drawing.Size(75, 23);
+            this.dropboxbtn.TabIndex = 6;
+            this.dropboxbtn.Text = "Dropbox";
+            this.dropboxbtn.UseVisualStyleBackColor = true;
+            this.dropboxbtn.Click += new System.EventHandler(this.dropboxbtn_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -667,6 +679,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox SkinList;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button dropboxbtn;
 
 
     }
