@@ -54,9 +54,11 @@ namespace DevProLauncher
 
             if (LauncherHelper.TestConnection())
             {
+#if !DEBUG
                 if (CheckUpdates())
                     return;
-                CheckServerInfo();
+                CheckServerInfo(); 
+#endif
             }
             else MessageBox.Show("An internet connection is required to play online.");
 #if DEBUG
@@ -121,6 +123,7 @@ namespace DevProLauncher
                 return false;
             }
 
+
             if (result.Equals("OK"))
                 return false;
 
@@ -131,6 +134,7 @@ namespace DevProLauncher
                 MessageBox.Show(LanguageManager.Translation.pMsbOldVers,
                     "DevPro - Update", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
             if (!result.StartsWith("KO"))
             {
                 MessageBox.Show("Error checking for update.",

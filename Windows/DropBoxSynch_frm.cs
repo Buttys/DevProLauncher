@@ -8,7 +8,7 @@ namespace DevProLauncher.Windows
     public partial class DropBoxSynch_frm : Form
     {
         dbsettings db;
-
+        DropBoxController dbctrl = null;
         /// <summary>
         /// Ctor, just loading some Settings
         /// </summary>
@@ -18,6 +18,7 @@ namespace DevProLauncher.Windows
             InitializeComponent();
 
             db = new dbsettings();
+            dbctrl = new DropBoxController();
 
             LoadSettings();
             this.deckCB.CheckedChanged += new System.EventHandler(this.deckCB_CheckedChanged);
@@ -27,7 +28,13 @@ namespace DevProLauncher.Windows
             this.texturesCB.CheckedChanged += new System.EventHandler(this.texturesCB_CheckedChanged);
             this.skinsCB.CheckedChanged += new System.EventHandler(this.skinsCB_CheckedChanged);
             this.soundsCB.CheckedChanged += new System.EventHandler(this.soundsCB_CheckedChanged);
+            this.FormClosing += new FormClosingEventHandler(DropBoxSynch_frm_FormClosing);
 
+        }
+
+        void DropBoxSynch_frm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
         }
 
         /// <summary>
@@ -104,7 +111,7 @@ namespace DevProLauncher.Windows
         private void submitBtn_Click(object sender, EventArgs e)
         {
 
-            DropBoxController.syncAcc();
+            dbctrl.syncAcc();
 
             //DropBoxController.filesyncAsync();
 
@@ -112,8 +119,8 @@ namespace DevProLauncher.Windows
 
         private void DropBoxSynch_frm_Load(object sender, EventArgs e)
         {
-            DropBoxController.getUserToken();
-            DropBoxController.filesyncAsync();
+            //DropBoxController.getUserToken();
+            //DropBoxController.filesyncAsync();
         }
 
         #region checkboxevents

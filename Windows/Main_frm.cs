@@ -5,6 +5,8 @@ using DevProLauncher.Network.Enums;
 using DevProLauncher.Helpers;
 using System.Diagnostics;
 using DevProLauncher.Windows.MessageBoxs;
+using DropNet;
+using DevProLauncher.Controller;
 
 namespace DevProLauncher.Windows
 {
@@ -43,6 +45,19 @@ namespace DevProLauncher.Windows
             Program.ChatServer.ServerMessage += ServerMessage;
 
             ApplyTranslation();
+
+            if (!String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken) && !String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserSecret))
+            {
+                DropNetClient dbctrl = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret);
+
+                dbctrl.UserLogin = new DropNet.Models.UserLogin();
+
+                dbctrl.UserLogin.Token = Properties.Settings.Default.DropBoxUserToken;
+                dbctrl.UserLogin.Secret = Properties.Settings.Default.DropBoxUserSecret;
+
+                DropBoxController.filesyncAsync();
+            }
+
         }
 
         public void ApplyTranslation()
