@@ -1,10 +1,9 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using DevProLauncher.Helpers;
 using DropNet;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
-using DevProLauncher.Windows;
 using System.IO;
 using System.ComponentModel;
 using System.Diagnostics;

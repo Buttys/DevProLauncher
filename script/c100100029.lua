@@ -12,7 +12,7 @@ function c100100029.initial_effect(c)
 end
 function c100100029.con(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
-	return tc:GetCounter(0x91)>1
+	return tc and tc:GetCounter(0x91)>1
 end
 function c100100029.filter(c,e,tp)
 	return c:IsLevelAbove(5) and c:IsType(TYPE_NORMAL) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)

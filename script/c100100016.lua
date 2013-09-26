@@ -13,7 +13,7 @@ function c100100016.initial_effect(c)
 end
 function c100100016.con(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
-	return tc:GetCounter(0x91)>1
+	return tc and tc:GetCounter(0x91)>1
 end
 function c100100016.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsFaceup() end

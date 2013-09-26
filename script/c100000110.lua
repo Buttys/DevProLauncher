@@ -147,6 +147,7 @@ function c100000110.adval(e,c)
 	local c=e:GetHandler()
 	local a=Duel.GetAttacker()
 	local d=Duel.GetAttackTarget()
+	if not d then return end
 	if ph==PHASE_DAMAGE_CAL then
 		if a==c then return d:GetAttack()+1000 end
 		if d==c then return a:GetAttack()+1000 end

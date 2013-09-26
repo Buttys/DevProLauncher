@@ -18,6 +18,7 @@ namespace DevProLauncher.Windows
         readonly SupportFrm m_devpointWindow;
         readonly FileManagerFrm m_filemanagerWindow;
         readonly CustomizeFrm m_customizerWindow;
+        readonly Browser_frm m_wcsBrowser;
 
         public MainFrm()
         {
@@ -32,7 +33,9 @@ namespace DevProLauncher.Windows
             m_loginWindow = new LoginFrm();
             loginTab.Controls.Add(m_loginWindow);
             mainTabs.TabPages.Add(loginTab);
-
+            
+            m_wcsBrowser = new Browser_frm();
+            m_wcsBrowser.FormBorderStyle = FormBorderStyle.None;
             m_chatWindow = new ChatFrm();
             GameWindow = new HubGameList_frm();
             m_devpointWindow = new SupportFrm();
@@ -43,6 +46,8 @@ namespace DevProLauncher.Windows
             Program.ChatServer.Banned += ServerMessage;
             Program.ChatServer.Kicked += ServerMessage;
             Program.ChatServer.ServerMessage += ServerMessage;
+
+            mainTabs.SelectedIndexChanged += LoadBrowserURL;
 
             ApplyTranslation();
 
@@ -69,7 +74,7 @@ namespace DevProLauncher.Windows
             DeckBtn.Text = info.MainDeckBtn;
             ReplaysBtn.Text = info.MainReplaysBtn;
             OfflineBtn.Text = info.MainOfflineBtn;
-            DBSyncBtn.Text = info.MainSyncBtn;
+            //DBSyncBtn.Text = info.MainSyncBtn;
             siteBtn.Text = info.MainSiteBtn;
             MessageLabel.Text = info.MainServerMessage;
         }
@@ -81,7 +86,6 @@ namespace DevProLauncher.Windows
                 Invoke(new Action<string>(ServerMessage), message);
                 return;
             }
-            MessageBox.Show(message,"Server Message");
             MessageLabel.Text = message;
         }
 
@@ -105,9 +109,13 @@ namespace DevProLauncher.Windows
             gamelistTab.Controls.Add(GameWindow);
             mainTabs.TabPages.Add(gamelistTab);
 
-            var chatTab = new TabPage("Chat (Beta v4)");
+            var chatTab = new TabPage("Chat (Beta v4.2)");
             chatTab.Controls.Add(m_chatWindow);
             mainTabs.TabPages.Add(chatTab);
+
+            var wcsTab = new TabPage("DevPro WCS");
+            wcsTab.Controls.Add(m_wcsBrowser);
+            mainTabs.TabPages.Add(wcsTab);
 
             var filemanagerTab = new TabPage("File Manager");
             filemanagerTab.Controls.Add(m_filemanagerWindow);
@@ -127,9 +135,9 @@ namespace DevProLauncher.Windows
             UpdateUsername();
 
             ProfileBtn.Enabled = true;
+            if (!string.IsNullOrEmpty(Program.UserInfo.team))
+                TeamProfileBtn.Enabled = true;
 
-            Program.ChatServer.SendPacket(DevServerPackets.UserList);
-            Program.ChatServer.SendPacket(DevServerPackets.FriendList);
             Program.ChatServer.SendPacket(DevServerPackets.DevPoints);
 
         }
@@ -177,7 +185,7 @@ namespace DevProLauncher.Windows
 
         private void siteBtn_Click(object sender, EventArgs e)
         {
-            Process.Start("http://devpro.org");
+            Process.Start("http://devpro.org/blog");
         }
 
         private void DeckBtn_Click(object sender, EventArgs e)
@@ -207,6 +215,28 @@ namespace DevProLauncher.Windows
         private void DBSyncBtn_Click(object sender, EventArgs e)
         {
             LauncherHelper.SyncCloud(sender,e);
+        }
+
+        private void LoadBrowserURL(object sender, EventArgs e)
+        {
+            if(mainTabs.SelectedIndex == 2)
+                m_wcsBrowser.Navigate("http://wcs.devpro.org/launcher.php", false);
+        }
+
+        private void TeamProfileBtn_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Program.UserInfo.team))
+            {
+                MessageBox.Show("You are not in a team.", "No u", MessageBoxButtons.OK);
+                return;
+            }
+
+            var form = new TeamProfileFrm(Program.UserInfo.team);
+            form.Show();
+        }
+        public void SetTeamProfile(bool value)
+        {
+            TeamProfileBtn.Enabled = value;
         }
     }
 }

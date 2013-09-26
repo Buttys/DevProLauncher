@@ -68,7 +68,7 @@ function c100000504.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,c:GetControler(),HINTMSG_FACEUP)
 	local tdg=dg:Select(c:GetControler(),1,1,nil)
 	local tc=tdg:GetFirst()	
-	if tc:IsFaceup() then
+	if tc and tc:IsFaceup() then
 		sg:AddCard(tc)
 	end
 end

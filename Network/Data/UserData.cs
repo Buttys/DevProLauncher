@@ -13,6 +13,7 @@ namespace DevProLauncher.Network.Data
         public int b { get; set; }
         public string team { get; set; }
         public int teamRank { get; set; }
+        public bool Online { get; set; }
 
         public Color getUserColor() { return Color.FromArgb(a, r, g, b); }
     }

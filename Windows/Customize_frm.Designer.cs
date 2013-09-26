@@ -108,6 +108,7 @@
             this.ViewSelect.Items.AddRange(new object[] {
             "Covers",
             "Backgrounds",
+            "GameBackgrounds",
             "Attack",
             "Activate",
             "Chain",
@@ -222,7 +223,7 @@
             this.RemoveThemeBtn.UseVisualStyleBackColor = true;
             this.RemoveThemeBtn.Click += new System.EventHandler(this.RemoveThemeBtn_Click);
             // 
-            // Customize_frm
+            // CustomizeFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;

@@ -23,6 +23,7 @@ function c100100124.operation(e,tp,eg,ep,ev,re,r,rp)
 	local dg=Duel.GetMatchingGroup(Card.IsFaceup,e:GetHandler():GetControler(),0,LOCATION_MZONE,nil)		
 	Duel.Hint(HINT_SELECTMSG,e:GetHandler():GetControler(),HINTMSG_FACEUP)
 	local tc=dg:Select(e:GetHandler():GetControler(),1,1,nil)		
+	if tc then
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_SET_ATTACK_FINAL)
@@ -30,4 +31,5 @@ function c100100124.operation(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetValue(tc:GetAttack()/2)
 	tc:RegisterEffect(e1)
 	Duel.Recover(tp,tc:GetFirst():GetAttack()/2,REASON_EFFECT)
+	end
 end
