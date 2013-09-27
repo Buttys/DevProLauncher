@@ -1,13 +1,13 @@
 --墓守の審神者
-function c?80800034.initial_effect(c)
+function c80800034.initial_effect(c)
 	--summon with 3 tribute
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(80800034,0))
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_SUMMON_PROC)
-	e1:SetCondition(c?80800034.ttcon)
-	e1:SetOperation(c?80800034.ttop)
+	e1:SetCondition(c80800034.ttcon)
+	e1:SetOperation(c80800034.ttop)
 	e1:SetValue(SUMMON_TYPE_ADVANCE)
 	c:RegisterEffect(e1)
 	--summon with 1 tribute
@@ -16,8 +16,8 @@ function c?80800034.initial_effect(c)
 	e2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e2:SetType(EFFECT_TYPE_SINGLE)
 	e2:SetCode(EFFECT_SUMMON_PROC)
-	e2:SetCondition(c?80800034.otcon)
-	e2:SetOperation(c?80800034.otop)
+	e2:SetCondition(c80800034.otcon)
+	e2:SetOperation(c80800034.otop)
 	e2:SetValue(SUMMON_TYPE_ADVANCE)
 	c:RegisterEffect(e2)
 	--summon success
@@ -26,42 +26,42 @@ function c?80800034.initial_effect(c)
 	e4:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
 	e4:SetCode(EVENT_SUMMON_SUCCESS)
-	e4:SetCondition(c?80800034.condition)
-	e4:SetTarget(c?80800034.target)
-	e4:SetOperation(c?80800034.operation)
+	e4:SetCondition(c80800034.condition)
+	e4:SetTarget(c80800034.target)
+	e4:SetOperation(c80800034.operation)
 	c:RegisterEffect(e4)
 	--tribute check
 	local e5=Effect.CreateEffect(c)
 	e5:SetType(EFFECT_TYPE_SINGLE)
 	e5:SetCode(EFFECT_MATERIAL_CHECK)
-	e5:SetValue(c?80800034.valcheck)
+	e5:SetValue(c80800034.valcheck)
 	e5:SetLabelObject(e4)
 	c:RegisterEffect(e5)
 end
-function c?80800034.ttcon(e,c)
+function c80800034.ttcon(e,c)
 	if c==nil then return true end
 	return Duel.GetTributeCount(c)>=3
 end
-function c?80800034.ttop(e,tp,eg,ep,ev,re,r,rp,c)
+function c80800034.ttop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local g=Duel.SelectTribute(tp,c,3,3)
 	c:SetMaterial(g)
 	Duel.Release(g, REASON_SUMMON+REASON_MATERIAL)
 end
-function c?80800034.otcon(e,c)
+function c80800034.otcon(e,c)
 	if c==nil then return true end
 	local g=Duel.GetTributeGroup(c)
 	return c:GetLevel()>6 and Duel.GetLocationCount(c:GetControler(),LOCATION_MZONE)>-1
 		and g:IsExists(Card.IsSetCard,1,nil,0x2e)
 end
-function c?80800034.otop(e,tp,eg,ep,ev,re,r,rp,c)
+function c80800034.otop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=Duel.GetTributeGroup(c)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local sg=g:FilterSelect(tp,Card.IsSetCard,1,1,nil,0x2e)
 	c:SetMaterial(sg)
 	Duel.Release(sg, REASON_SUMMON+REASON_MATERIAL)
 end
-function c?80800034.valcheck(e,c)
+function c80800034.valcheck(e,c)
 	local g=c:GetMaterial()
 	if g:FilterCount(Card.IsSetCard,nil,0x2e)>0 then
 		e:GetLabelObject():SetLabel(g:GetCount())
@@ -69,25 +69,25 @@ function c?80800034.valcheck(e,c)
 		e:GetLabelObject():SetLabel(g:GetCount())
 	end
 end
-function c?80800034.condition(e,tp,eg,ep,ev,re,r,rp)
+function c80800034.condition(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetSummonType()==SUMMON_TYPE_ADVANCE and e:GetLabel()>0
 end
-function c?80800034.filter(c)
+function c80800034.filter(c)
 	return c:GetLevel()>0
 end
-function c?80800034.filter2(c)
+function c80800034.filter2(c)
 	return c:IsFacedown() and c:IsDestructable()
 end
-function c?80800034.target(e,tp,eg,ep,ev,re,r,rp,chk)
+function c80800034.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then 
-	 return e:GetHandler():GetMaterial():FilterCount(c?80800034.filter,nil)>0
-		or Duel.IsExistingMatchingCard(c?80800034.filter2,tp,0,LOCATION_MZONE,1,nil)
+	 return e:GetHandler():GetMaterial():FilterCount(c80800034.filter,nil)>0
+		or Duel.IsExistingMatchingCard(c80800034.filter2,tp,0,LOCATION_MZONE,1,nil)
 		or Duel.IsExistingMatchingCard(Card.IsFaceup,tp,0,LOCATION_MZONE,1,nil) end
 	local sel=0
 	local ac=0
 	local gc=e:GetHandler():GetMaterial():FilterCount(Card.IsSetCard,nil,0x2e)
 	if gc>0 then sel=sel+1 end
-	if Duel.IsExistingMatchingCard(c?80800034.filter2,tp,0,LOCATION_MZONE,1,nil) then sel=sel+2 end
+	if Duel.IsExistingMatchingCard(c80800034.filter2,tp,0,LOCATION_MZONE,1,nil) then sel=sel+2 end
 	if Duel.IsExistingMatchingCard(Card.IsFaceup,tp,0,LOCATION_MZONE,1,nil) then sel=sel+4 end
 	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(80800034,10))
 	if sel==1 then
@@ -122,7 +122,7 @@ function c?80800034.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 	e:SetLabel(ac)
 end
-function c?80800034.operation(e,tp,eg,ep,ev,re,r,rp)
+function c80800034.operation(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local ac=e:GetLabel()
 	if ac==0 or ac==3 or ac==4 or ac==6 then
@@ -144,7 +144,7 @@ function c?80800034.operation(e,tp,eg,ep,ev,re,r,rp)
 		c:RegisterEffect(e1)
 	end
 	if ac==1 or ac==3 or ac==5 or ac==6 then
-		local sg=Duel.GetMatchingGroup(c?80800034.filter2,tp,0,LOCATION_MZONE,nil)
+		local sg=Duel.GetMatchingGroup(c80800034.filter2,tp,0,LOCATION_MZONE,nil)
 		Duel.Destroy(sg,REASON_EFFECT)
 	end
 	if ac==2 or ac==4 or ac==5 or ac==6 then
