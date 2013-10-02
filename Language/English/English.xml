@@ -190,7 +190,7 @@
   <MainReplaysBtn>Replays</MainReplaysBtn>
   <MainOfflineBtn>Offline</MainOfflineBtn>
   <MainProfileBtn>Profile</MainProfileBtn>
-  <MainServerMessage>Server messages will spawn here.</MainServerMessage>
+  <MainServerMessage>Launcher messages will spawn here.</MainServerMessage>
   <DuelReqestMessage> has challenged you to a ranked duel! Do you accept?</DuelReqestMessage>
   <DuelRequestBanlist> Banlist: </DuelRequestBanlist>
   <DuelRequestRules> Rules: </DuelRequestRules>
