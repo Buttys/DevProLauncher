@@ -17,7 +17,6 @@ namespace DevProLauncher.Windows
 {
     public sealed partial class ChatFrm : Form
     {
-        //private readonly Dictionary<string, UserData> m_userData = new Dictionary<string, UserData>();
         private Dictionary<string,List<UserData>> m_channelData = new Dictionary<string, List<UserData>>(); 
         private readonly Dictionary<string, PmWindowFrm> m_pmWindows = new Dictionary<string, PmWindowFrm>();
         private List<UserData> m_filterUsers; 
@@ -883,7 +882,7 @@ namespace DevProLauncher.Windows
                     if (Program.UserInfo.rank > 2)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 3 Commands --"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ban username reason - Ban a user"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ban username time reason - Ban a user, time format has to be in hours also you must give a reason."));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unban username - Unban a user"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ip username - Get a users IP"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banip ip - Ban a IP"));
@@ -1038,6 +1037,7 @@ namespace DevProLauncher.Windows
         private void UserList_MouseUp(object sender, MouseEventArgs e)
         {
             ListBox list = (ListBox) sender;
+
             if (e.Button == MouseButtons.Right)
             {
                 int index = list.IndexFromPoint(e.Location);
@@ -1339,16 +1339,6 @@ namespace DevProLauncher.Windows
             }   
         }
 
-        private UserData UserListContains(string name)
-        {
-            foreach (UserData user in UserList.Items)
-            {
-                if (user.username == name)
-                    return user;
-            }
-            return null;
-        }
-
         private void IgnoreList_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -1426,12 +1416,10 @@ namespace DevProLauncher.Windows
         private void List_DoubleClick(object sender, EventArgs e)
         {
             ListBox list = UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList:UserList;
- 
-            if (list.SelectedItem == null)
-            {
+
+            if (list.SelectedIndex == -1)
                 return;
-            }
-            
+
             string user = list.Name == ChannelList.Name || list.Name == UserList.Name ? 
                 ((UserData)list.SelectedItem).username : list.SelectedItem.ToString();
 

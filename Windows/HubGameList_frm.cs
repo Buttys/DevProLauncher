@@ -521,8 +521,11 @@ namespace DevProLauncher.Windows
                 }
             }
 
-            LauncherHelper.GenerateConfig(Program.ServerList[item.server], item.GenerateURI());
-            LauncherHelper.RunGame("-j");
+            if (Program.ServerList.ContainsKey(item.server))
+            {
+                LauncherHelper.GenerateConfig(Program.ServerList[item.server], item.GenerateURI());
+                LauncherHelper.RunGame("-j");
+            }
         }
 
         public ServerInfo GetServer()

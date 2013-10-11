@@ -86,11 +86,18 @@ namespace DevProLauncher.Windows
 
         private void WebRedirect(object sender, CancelEventArgs e)
         {
-            var webbrowser = (WebBrowser)sender;
-            if (!webbrowser.StatusText.StartsWith("http://ygopro.de"))
+            try
             {
-                e.Cancel = true;
-                Process.Start(webbrowser.StatusText);
+                var webbrowser = (WebBrowser) sender;
+                if (!webbrowser.StatusText.StartsWith("http://ygopro.de"))
+                {
+                    e.Cancel = true;
+                    Process.Start(webbrowser.StatusText);
+                }
+            }
+            catch (Exception)
+            {
+                
             }
         }
 

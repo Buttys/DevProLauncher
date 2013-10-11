@@ -78,6 +78,11 @@ namespace DevProLauncher.Windows.MessageBoxs
         {
             if (!IsDisposed)
             {
+                if (InvokeRequired)
+                {
+                    Invoke(new Action<DevClientPackets>(RegisterResponse),packet);
+                    return;
+                }
                 if (packet == DevClientPackets.RegisterAccept)
                 {
                     if (MessageBox.Show(Program.LanguageManager.Translation.RegistMsb4) == DialogResult.OK)
@@ -96,9 +101,7 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         private void ResetEvents(object sender, EventArgs e)
         {
-// ReSharper disable DelegateSubtraction
             Program.ChatServer.RegisterReply -= RegisterResponse;
-// ReSharper restore DelegateSubtraction
         }
     }
 }

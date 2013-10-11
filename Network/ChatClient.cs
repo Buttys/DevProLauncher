@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net.Sockets;
@@ -17,9 +18,11 @@ namespace DevProLauncher.Network
         bool m_isConnected;
         private TcpClient m_client;
         private BinaryReader m_reader;
-        private readonly Thread m_receiveThread;
-        private readonly object m_lock;
+        private Thread m_clientThread;
+        private Thread m_parseThread;
         private DateTime m_pingRequest;
+        private Queue<MessageReceived> m_recivedQueue;
+        private Queue<byte[]>  m_sendQueue ;
 
         public delegate void ServerResponse(string message);
         public delegate void Command(PacketCommand command);
@@ -73,8 +76,10 @@ namespace DevProLauncher.Network
         public ChatClient()
         {
             m_client = new TcpClient();
-            m_lock = new object();
-            m_receiveThread = new Thread(Receive) { IsBackground = true };
+            m_recivedQueue = new Queue<MessageReceived>();
+            m_sendQueue = new Queue<byte[]>();
+            m_clientThread = new Thread(HandleClient) { IsBackground = true };
+            m_parseThread = new Thread(OnCommand) { IsBackground = true };
             OnFatalError += FatalError;
         }
 
@@ -85,7 +90,8 @@ namespace DevProLauncher.Network
                 m_client.Connect(address, port);
                 m_reader = new BinaryReader(m_client.GetStream());
                 m_isConnected = true;
-                m_receiveThread.Start();
+                m_clientThread.Start();
+                m_parseThread.Start();
 
                 return true;
             }
@@ -115,12 +121,14 @@ namespace DevProLauncher.Network
             writer.Write((byte)type);
             writer.Write((short)(data.Length));
             writer.Write(data);
-            SendPacket(stream.ToArray());
+            lock(m_sendQueue)
+                m_sendQueue.Enqueue(stream.ToArray());
         }
         public void SendPacket(DevServerPackets type)
         {
             if (type == DevServerPackets.Ping) m_pingRequest = DateTime.Now;
-            SendPacket(new[] { (byte)type });
+            lock (m_sendQueue)
+                m_sendQueue.Enqueue(new[] { (byte)type });
         }
         public void SendMessage(MessageType type, CommandType command, string channel, string message)
         {
@@ -180,12 +188,10 @@ namespace DevProLauncher.Network
             }
         }
 
-        private void Receive()
+        private void HandleClient()
         {
-#if !DEBUG
             try
             {
-#endif
                 while (m_isConnected)
                 {
                     if (CheckDisconnected())
@@ -193,53 +199,77 @@ namespace DevProLauncher.Network
                         Disconnect();
                         return;
                     }
-
-                    var packet = (DevClientPackets)m_reader.ReadByte();
-                    int len = 0;
-                    byte[] content = null;
-                    if (!isOneByte(packet))
+                    //handle incoming
+                    if (m_client.Available >= 1)
                     {
-                        if (isLargePacket(packet))
+                        var packet = (DevClientPackets) m_reader.ReadByte();
+                        int len = 0;
+                        byte[] content = null;
+                        if (!isOneByte(packet))
                         {
-                            len = m_reader.ReadInt32();
-                            content = m_reader.ReadBytes(len);
+                            if (isLargePacket(packet))
+                            {
+                                len = m_reader.ReadInt32();
+                                content = m_reader.ReadBytes(len);
+                            }
+                            else
+                            {
+                                len = m_reader.ReadInt16();
+                                content = m_reader.ReadBytes(len);
+                            }
                         }
-                        else
-                        {
-                            len = m_reader.ReadInt16();
-                            content = m_reader.ReadBytes(len);
-                        }
-                    }
 
-                    lock (m_lock)
-                    {
-                        if(len>0)
+                        if (len > 0)
                         {
                             if (content != null)
                             {
                                 var reader = new BinaryReader(new MemoryStream(content));
-                                OnCommand(new MessageReceived(packet,content,reader));
+                                lock(m_recivedQueue)
+                                    m_recivedQueue.Enqueue(new MessageReceived(packet, content, reader));
                             }
                         }
                         else
-                            OnCommand(new MessageReceived(packet,null,null));
+                            lock (m_recivedQueue)
+                                m_recivedQueue.Enqueue(new MessageReceived(packet, null, null));
+                    }
+                    //send packet
+                    if (m_sendQueue.Count > 0)
+                    {
+                        byte[] packet;
+                        lock (m_sendQueue)
+                            packet = m_sendQueue.Dequeue();
+                        SendPacket(packet);
                     }
 
                     Thread.Sleep(1);
                 }
-#if !DEBUG
             }
             catch (Exception)
             {
                 Disconnect();
             }
-#endif
         }
 
         private bool CheckDisconnected()
         {
             return (m_client.Client.Poll(1, SelectMode.SelectRead) && m_client.Available == 0);
         }
+        private void OnCommand()
+        {
+            while (m_isConnected)
+            {
+                if (m_recivedQueue.Count > 0)
+                {
+                    MessageReceived packet;
+                    lock (m_recivedQueue)
+                        packet = m_recivedQueue.Dequeue();
+
+                    OnCommand(packet);
+                }
+                Thread.Sleep(1);
+            }
+        }
+
         private void OnCommand(MessageReceived e)
         {
             switch (e.Packet)

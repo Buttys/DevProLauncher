@@ -51,17 +51,17 @@ namespace DevProLauncher.Windows
 
             ApplyTranslation();
 
-            if (!String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken) && !String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserSecret))
-            {
-                DropNetClient dbctrl = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret);
+            //if (!String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken) && !String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserSecret))
+            //{
+            //    DropNetClient dbctrl = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret);
 
-                dbctrl.UserLogin = new DropNet.Models.UserLogin();
+            //    dbctrl.UserLogin = new DropNet.Models.UserLogin();
 
-                dbctrl.UserLogin.Token = Properties.Settings.Default.DropBoxUserToken;
-                dbctrl.UserLogin.Secret = Properties.Settings.Default.DropBoxUserSecret;
+            //    dbctrl.UserLogin.Token = Properties.Settings.Default.DropBoxUserToken;
+            //    dbctrl.UserLogin.Secret = Properties.Settings.Default.DropBoxUserSecret;
 
-                DropBoxController.filesyncAsync();
-            }
+            //    DropBoxController.filesyncAsync();
+            //}
 
         }
 
