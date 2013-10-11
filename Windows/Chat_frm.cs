@@ -882,7 +882,7 @@ namespace DevProLauncher.Windows
                     if (Program.UserInfo.rank > 2)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 3 Commands --"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ban username reason - Ban a user"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ban username time reason - Ban a user, time format has to be in hours also you must give a reason."));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unban username - Unban a user"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ip username - Get a users IP"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banip ip - Ban a IP"));
