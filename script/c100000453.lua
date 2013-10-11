@@ -16,6 +16,7 @@ function c100000453.recon(e,tp,eg,ep,ev,re,r,rp)
 end
 function c100000453.reop(e,tp,eg,ep,ev,re,r,rp)	
 	--damage
+	local c=e:GetHandler()
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_DAMAGE)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)

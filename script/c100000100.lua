@@ -12,12 +12,7 @@ function c100000100.condition(e,tp,eg,ep,ev,re,r,rp)
 	return tp~=Duel.GetTurnPlayer() and Duel.GetAttackTarget()==nil and Duel.IsPlayerCanDiscardDeck(tp,1) 
 end
 function c100000100.activate(e,tp,eg,ep,ev,re,r,rp)
-	local t={}
-	local l=1
-	while Duel.IsPlayerCanDraw(tp,l) do
-		t[l]=l
-		l=l+1
-	end
+	local ct=Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)
 	Duel.Hint(HINT_SELECTMSG,tp,aux.Stringid(100000100,0))
 	local announce=Duel.AnnounceNumber(tp,table.unpack(t))	
 	Duel.DiscardDeck(tp,announce,REASON_EFFECT)

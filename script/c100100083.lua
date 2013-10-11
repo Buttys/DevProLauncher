@@ -14,7 +14,7 @@ function c100100083.initial_effect(c)
 end
 function c100100083.con(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
-	return tc:GetCounter(0x91)>2
+	return tc and tc:GetCounter(0x91)>2
 end
 function c100100083.filter(c)
 	return c:IsType(TYPE_TUNER) and c:IsRace(RACE_DRAGON) and c:IsAttackBelow(1000) and c:IsDiscardable()

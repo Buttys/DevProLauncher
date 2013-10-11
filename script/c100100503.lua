@@ -16,7 +16,7 @@ end
 function c100100503.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local td=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and c100100503.filter(chk) end
-	if chk==0 then return Duel.IsExistingTarget(c100100503.filter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) and td:GetCounter(0x91)>1 end
+	if chk==0 then return Duel.IsExistingTarget(c100100503.filter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) and td and td:GetCounter(0x91)>1 end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectTarget(tp,c100100503.filter,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,g,1,0,0)
