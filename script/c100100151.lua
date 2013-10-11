@@ -47,6 +47,7 @@ function c100100151.atkcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function c100100151.atktg1(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
+	if not Duel.GetFieldCard(tp,LOCATION_SZONE,5) then return false end
 	local tc1=Duel.GetFieldCard(tp,LOCATION_SZONE,5):GetCounter(0x91)
 	local tc2=Duel.GetFieldCard(1-tp,LOCATION_SZONE,5):GetCounter(0x91)
 	e:SetLabel(0)
@@ -57,6 +58,7 @@ function c100100151.atktg1(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 end
 function c100100151.atktg2(e,tp,eg,ep,ev,re,r,rp,chk)
+	if not Duel.GetFieldCard(tp,LOCATION_SZONE,5) then return false end
 	local tc1=Duel.GetFieldCard(tp,LOCATION_SZONE,5):GetCounter(0x91)
 	local tc2=Duel.GetFieldCard(1-tp,LOCATION_SZONE,5):GetCounter(0x91)
 	if chk==0 then return e:GetHandler():GetFlagEffect(100100151)==0 and tc1>tc2 end
@@ -71,6 +73,7 @@ function c100100151.condition2(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetTurnPlayer()==tp
 end
 function c100100151.target3(e,tp,eg,ep,ev,re,r,rp,chk)
+	if not Duel.GetFieldCard(tp,LOCATION_SZONE,5) then return false end
 	local tc1=Duel.GetFieldCard(tp,LOCATION_SZONE,5):GetCounter(0x91)
 	local tc2=Duel.GetFieldCard(1-tp,LOCATION_SZONE,5):GetCounter(0x91)
 	if chk==0 then return true end 
@@ -82,6 +85,7 @@ function c100100151.target3(e,tp,eg,ep,ev,re,r,rp,chk)
 	else e:SetProperty(0) end
 end
 function c100100151.target4(e,tp,eg,ep,ev,re,r,rp,chk)
+	if not Duel.GetFieldCard(tp,LOCATION_SZONE,5) then return false end
 	local tc1=Duel.GetFieldCard(tp,LOCATION_SZONE,5):GetCounter(0x91)
 	local tc2=Duel.GetFieldCard(1-tp,LOCATION_SZONE,5):GetCounter(0x91)
 	if chk==0 then return tc1>tc2 and e:GetHandler():GetFlagEffect(100100151)==0 end

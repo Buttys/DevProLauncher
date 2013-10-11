@@ -19,7 +19,7 @@ function c100000296.condition(e,tp,eg,ep,ev,re,r,rp)
 	local at=Duel.GetAttackTarget()
 	return Duel.IsExistingMatchingCard(c100000296.filter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil)
 		and re:IsActiveType(TYPE_MONSTER) and re:GetHandler():GetControler()~=tp
-		and (a:GetCode()==(76812113) or at and at:GetCode()==(76812113))
+		and (a and a:GetCode()==(76812113) or at and at:GetCode()==(76812113))
 end
 function c100000296.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end

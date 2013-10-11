@@ -14,7 +14,7 @@ function c100100074.initial_effect(c)
 end
 function c100100074.con(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
-	return tc:GetCounter(0x91)>3
+	return tc and tc:GetCounter(0x91)>3
 end
 function c100100074.costfilter(c)
 	return c:IsSetCard(0x38) and c:IsType(TYPE_MONSTER) and c:IsDiscardable()

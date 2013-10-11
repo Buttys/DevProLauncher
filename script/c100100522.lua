@@ -15,7 +15,7 @@ function c100100522.initial_effect(c)
 end
 function c100100522.condition(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,5)	
-	return tc:GetCounter(0x91)>1 and (Duel.GetCurrentPhase()~=PHASE_DAMAGE or not Duel.IsDamageCalculated())
+	return tcc and tc:GetCounter(0x91)>1 and (Duel.GetCurrentPhase()~=PHASE_DAMAGE or not Duel.IsDamageCalculated())
 end
 function c100100522.cfilter(c)
 	return c:IsType(TYPE_TUNER) and c:IsAbleToRemoveAsCost()
