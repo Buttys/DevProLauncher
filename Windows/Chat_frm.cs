@@ -860,7 +860,7 @@ namespace DevProLauncher.Windows
                     if (Program.UserInfo.rank != 0)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Donator Commands --"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "[red][/red] [blue][/blue] [green][/green]- Color tags, wrap your text with them to change its color"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "None at this moment"));
                     }
 
                     if(Program.UserInfo.rank == 1)
