@@ -24,10 +24,10 @@ end
 function c100000259.operation(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
-		local g=Duel.SelectReleaseGroup(tp,nil,1,nil)
-		Duel.Release(g,REASON_EFFECT)
 		local c=e:GetHandler()
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
+		local g=Duel.SelectReleaseGroup(tp,Card.IsReleasableByEffect,1,1,c)
+		Duel.Release(g,REASON_EFFECT)
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_SET_ATTACK_FINAL)

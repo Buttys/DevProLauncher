@@ -16,7 +16,7 @@ end
 function c100100001.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
 	if chk==0 then return Duel.IsExistingMatchingCard(c100100001.costfilter,tp,LOCATION_HAND,0,1,nil)
-	 and tc:IsCanRemoveCounter(tp,0x91,4,REASON_COST) end	 
+	 and tc and tc:IsCanRemoveCounter(tp,0x91,4,REASON_COST) end	 
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
 	tc:RemoveCounter(tp,0x91,4,REASON_COST)	
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)

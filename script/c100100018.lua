@@ -13,7 +13,7 @@ end
 function c100100018.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local tc=Duel.GetFieldCard(tp,LOCATION_SZONE,5)
 	if chk==0 then return Duel.IsPlayerCanDiscardDeckAsCost(tp,3)
-	 and tc:IsCanRemoveCounter(tp,0x91,4,REASON_COST) end
+	 and tc and tc:IsCanRemoveCounter(tp,0x91,4,REASON_COST) end
 	Duel.Hint(HINT_OPSELECTED,1-tp,e:GetDescription())
 	tc:RemoveCounter(tp,0x91,4,REASON_COST)	
 	Duel.DiscardDeck(tp,3,REASON_COST)
