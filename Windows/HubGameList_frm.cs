@@ -523,7 +523,7 @@ namespace DevProLauncher.Windows
 
             if (Program.ServerList.ContainsKey(item.server))
             {
-                LauncherHelper.GenerateConfig(Program.ServerList[item.server], item.GenerateURI());
+                LauncherHelper.GenerateConfig(Program.ServerList[item.server], item.ToName());
                 LauncherHelper.RunGame("-j");
             }
         }

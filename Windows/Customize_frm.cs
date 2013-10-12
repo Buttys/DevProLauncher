@@ -28,6 +28,7 @@ namespace DevProLauncher.Windows
             Visible = true;
             ViewSelect.SelectedIndex = 0;
             Data.Add(ContentType.Covers, new Content { AssetPath = "Assets/Covers/", IconSize = new Size(177, 252), GameItem = "textures\\cover.jpg", FileType = ".jpg", ImageSize = new Size(178,254) });
+            Data.Add(ContentType.Covers2, new Content { AssetPath = "Assets/Covers/", IconSize = new Size(177, 252), GameItem = "textures\\cover2.jpg", FileType = ".jpg", ImageSize = new Size(178, 254) });
             Data.Add(ContentType.Backgrounds, new Content { AssetPath = "Assets/Backgrounds/", IconSize = new Size(256, 256), GameItem = "textures\\bg.jpg", FileType = ".jpg", ImageSize = new Size(1024, 640) });
             Data.Add(ContentType.GameBackgrounds, new Content { AssetPath = "Assets/GameBackgrounds/", IconSize = new Size(256, 256), GameItem = "textures\\bg2.jpg", FileType = ".jpg", ImageSize = new Size(1024, 640) });
             Data.Add(ContentType.Field, new Content { AssetPath = "Assets/Field/", IconSize = new Size(256, 256), GameItem = "textures\\field.png", FileType = ".png", ImageSize = new Size(256, 256) });
@@ -223,7 +224,8 @@ namespace DevProLauncher.Windows
         public void SelectedIndex_Changed(object sender, EventArgs e)
         {
             var control = (ComboBox)sender;
-            if (control.Text == "Covers") ContentView = ContentType.Covers;
+            if (control.Text == "Player 1 Covers") ContentView = ContentType.Covers;
+            if (control.Text == "Player 2 Covers") ContentView = ContentType.Covers2;
             if (control.Text == "Backgrounds") ContentView = ContentType.Backgrounds;
             if(control.Text == "GameBackgrounds") ContentView = ContentType.GameBackgrounds;
             if (control.Text == "Attack") ContentView = ContentType.AttackIcon;

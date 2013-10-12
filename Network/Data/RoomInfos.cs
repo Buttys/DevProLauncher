@@ -34,30 +34,30 @@ namespace DevProLauncher.Network.Data
 
             if (roomName.Length < 15) return null;
 
-            string rules = roomName.Substring(0, 7);
+            string rules = roomName.Substring(0, 6);
 
             infos.rule = int.Parse(rules[0].ToString());
             infos.mode = int.Parse(rules[1].ToString());
-            infos.banListType = int.Parse(rules[2].ToString());
-            infos.timer = int.Parse(rules[3].ToString());
-            infos.enablePriority = rules[4] == 'T' || rules[4] == '1';
-            infos.isNoCheckDeck = rules[5] == 'T' || rules[5] == '1';
-            infos.isNoShuffleDeck = rules[6] == 'T' || rules[6] == '1';
+            infos.timer = int.Parse(rules[2].ToString());
+            infos.enablePriority = rules[3] == 'T' || rules[3] == '1';
+            infos.isNoCheckDeck = rules[4] == 'T' || rules[4] == '1';
+            infos.isNoShuffleDeck = rules[5] == 'T' || rules[5] == '1';
 
-            string data = roomName.Substring(7, roomName.Length - 7);
+            string data = roomName.Substring(6, roomName.Length - 6);
 
             if (!data.Contains(",")) return null;
 
             string[] list = data.Split(',');
 
             infos.startLp = int.Parse(list[0]);
+            infos.banListType = int.Parse(list[1]);
 
-            infos.startHand = 5;
-            infos.drawCount = 1;
-            if (list[1] == "RL" || list[1] == "UL")
+            infos.startHand = int.Parse(list[2]);
+            infos.drawCount = int.Parse(list[3]);
+            if (list[4] == "RL" || list[4] == "UL")
                 infos.isLocked = true;
 
-            if (list[1] == "R" || list[1] == "RL")
+            if (list[4] == "R" || list[4] == "RL")
             {
                 infos.isRanked = true;
             }
@@ -66,13 +66,20 @@ namespace DevProLauncher.Network.Data
                 infos.isRanked = false;
             }
 
-            infos.roomName = (list[2] == "" ? GenerateroomName() : list[2]);
+            if (infos.isRanked)
+                infos.banListType = infos.rule == 0 ? 1 : 0;
+
+            infos.roomName = (list[5] == "" ? GenerateroomName() : list[5]);
 
             if (infos.rule >= 4) infos.isAnimemode = true;
 
             if (infos.enablePriority || infos.isNoCheckDeck || infos.isNoShuffleDeck ||
                 (infos.mode == 2) ? infos.startLp != 16000 : infos.startLp != 8000 || infos.startHand != 5 || infos.drawCount != 1)
                 infos.isIllegal = true;
+            else
+                infos.isIllegal = false;
+
+            infos.server = Program.Config.ServerName;
 
             return infos;
         }
@@ -97,9 +104,13 @@ namespace DevProLauncher.Network.Data
             return false;
         }
 
-        public string GenerateURI()
+        public string ToName()
         {
-            return rule.ToString() + mode + banListType + timer + (enablePriority ? 1 : 0) + (isNoCheckDeck ? 1 : 0) + (isNoShuffleDeck ? 1 : 0) + startLp + "," + (isRanked ? "R" : "U") + "," + roomName;
+            return rule + mode.ToString() + timer.ToString() + (enablePriority ? "T" : "F") +
+                   (isNoCheckDeck ? "T" : "F") + (isNoShuffleDeck ? "T" : "F") + startLp + "," + banListType.ToString() + "," +
+                   startHand.ToString() + "," + drawCount.ToString() + "," +
+                   (isRanked ? "R" : "U") + (isLocked ? "L" : "") + "," + roomName;
+
         }
 
         public static string GameRule(int rule)
@@ -137,7 +148,6 @@ namespace DevProLauncher.Network.Data
         }
         public static bool CompareRoomInfo(RoomInfos playerinfo,RoomInfos otherroom)
         {
-            
             if (playerinfo.rule == otherroom.rule && playerinfo.banListType == otherroom.banListType
                 && playerinfo.mode == otherroom.mode && playerinfo.isNoCheckDeck == otherroom.isNoCheckDeck
                 && playerinfo.isNoShuffleDeck == otherroom.isNoShuffleDeck && playerinfo.enablePriority == otherroom.enablePriority
@@ -148,21 +158,13 @@ namespace DevProLauncher.Network.Data
                 {
                     if (players.Length < 4)
                         return true;
-                    else
-                        return false;
+                    return false;
                 }
-                else
-                {
-                    if (players.Length < 2)
-                        return true;
-                    else
-                        return false;
-                }
-            }
-            else
-            {
+                if (players.Length < 2)
+                    return true;
                 return false;
             }
+            return false;
         }
 
         public string GetRoomName()

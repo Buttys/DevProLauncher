@@ -40,6 +40,7 @@ namespace DevProLauncher.Config
         public bool RandomPlacing = false;
         public bool AutoChain = true;
         public bool NoChainDelay = false;
+        public bool EnableCustomSleeves = true;
         public string IgnoreList = "";
 
         //quickhost settings

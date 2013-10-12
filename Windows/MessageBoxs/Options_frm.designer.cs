@@ -34,6 +34,7 @@
             this.SaveBtn = new System.Windows.Forms.Button();
             this.QuickSettingsBtn = new System.Windows.Forms.Button();
             this.RequestSettingsbtn = new System.Windows.Forms.Button();
+            this.dropboxbtn = new System.Windows.Forms.Button();
             this.OptionTabControl = new System.Windows.Forms.TabControl();
             this.GameTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -68,7 +69,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DefualtDeck = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dropboxbtn = new System.Windows.Forms.Button();
+            this.EnableSleeveLoading = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.OptionTabControl.SuspendLayout();
@@ -101,7 +102,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(608, 350);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(608, 362);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -113,7 +114,7 @@
             this.flowLayoutPanel1.Controls.Add(this.dropboxbtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 318);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 330);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(602, 29);
             this.flowLayoutPanel1.TabIndex = 7;
@@ -158,6 +159,16 @@
             this.RequestSettingsbtn.UseVisualStyleBackColor = true;
             this.RequestSettingsbtn.Click += new System.EventHandler(this.RequestSettingsbtn_Click);
             // 
+            // dropboxbtn
+            // 
+            this.dropboxbtn.Location = new System.Drawing.Point(125, 3);
+            this.dropboxbtn.Name = "dropboxbtn";
+            this.dropboxbtn.Size = new System.Drawing.Size(75, 23);
+            this.dropboxbtn.TabIndex = 6;
+            this.dropboxbtn.Text = "Dropbox";
+            this.dropboxbtn.UseVisualStyleBackColor = true;
+            this.dropboxbtn.Click += new System.EventHandler(this.dropboxbtn_Click);
+            // 
             // OptionTabControl
             // 
             this.OptionTabControl.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
@@ -166,7 +177,7 @@
             this.OptionTabControl.Location = new System.Drawing.Point(3, 3);
             this.OptionTabControl.Name = "OptionTabControl";
             this.OptionTabControl.SelectedIndex = 0;
-            this.OptionTabControl.Size = new System.Drawing.Size(602, 309);
+            this.OptionTabControl.Size = new System.Drawing.Size(602, 321);
             this.OptionTabControl.TabIndex = 8;
             // 
             // GameTab
@@ -175,7 +186,7 @@
             this.GameTab.Location = new System.Drawing.Point(4, 25);
             this.GameTab.Name = "GameTab";
             this.GameTab.Padding = new System.Windows.Forms.Padding(3);
-            this.GameTab.Size = new System.Drawing.Size(594, 280);
+            this.GameTab.Size = new System.Drawing.Size(594, 292);
             this.GameTab.TabIndex = 0;
             this.GameTab.Text = "Game Settings";
             this.GameTab.UseVisualStyleBackColor = true;
@@ -192,7 +203,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(588, 274);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(588, 286);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // groupBox2
@@ -201,7 +212,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 153);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(582, 119);
+            this.groupBox2.Size = new System.Drawing.Size(582, 130);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Game Settings";
@@ -218,7 +229,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(576, 100);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(576, 111);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // tableLayoutPanel8
@@ -226,12 +237,11 @@
             this.tableLayoutPanel8.ColumnCount = 2;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.label6, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.Antialias, 1, 0);
-            this.tableLayoutPanel8.Controls.Add(this.Enabled3d, 0, 1);
-            this.tableLayoutPanel8.Controls.Add(this.Fullscreen, 1, 1);
             this.tableLayoutPanel8.Controls.Add(this.SkinList, 1, 2);
             this.tableLayoutPanel8.Controls.Add(this.label4, 0, 2);
+            this.tableLayoutPanel8.Controls.Add(this.label6, 0, 1);
+            this.tableLayoutPanel8.Controls.Add(this.Antialias, 1, 1);
+            this.tableLayoutPanel8.Controls.Add(this.EnableSleeveLoading, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(291, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -239,14 +249,15 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(282, 94);
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(282, 105);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(47, 6);
+            this.label6.Location = new System.Drawing.Point(47, 31);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 13);
             this.label6.TabIndex = 4;
@@ -255,7 +266,7 @@
             // Antialias
             // 
             this.Antialias.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Antialias.Location = new System.Drawing.Point(144, 3);
+            this.Antialias.Location = new System.Drawing.Point(144, 28);
             this.Antialias.Maximum = new decimal(new int[] {
             32,
             0,
@@ -272,7 +283,7 @@
             this.Enabled3d.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Enabled3d.AutoSize = true;
             this.Enabled3d.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Enabled3d.Location = new System.Drawing.Point(43, 29);
+            this.Enabled3d.Location = new System.Drawing.Point(43, 81);
             this.Enabled3d.Name = "Enabled3d";
             this.Enabled3d.Size = new System.Drawing.Size(95, 17);
             this.Enabled3d.TabIndex = 2;
@@ -284,7 +295,7 @@
             this.Fullscreen.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Fullscreen.AutoSize = true;
             this.Fullscreen.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Fullscreen.Location = new System.Drawing.Point(187, 29);
+            this.Fullscreen.Location = new System.Drawing.Point(187, 81);
             this.Fullscreen.Name = "Fullscreen";
             this.Fullscreen.Size = new System.Drawing.Size(92, 17);
             this.Fullscreen.TabIndex = 3;
@@ -297,7 +308,7 @@
             this.SkinList.FormattingEnabled = true;
             this.SkinList.Items.AddRange(new object[] {
             "Default"});
-            this.SkinList.Location = new System.Drawing.Point(144, 61);
+            this.SkinList.Location = new System.Drawing.Point(144, 67);
             this.SkinList.Name = "SkinList";
             this.SkinList.Size = new System.Drawing.Size(135, 21);
             this.SkinList.TabIndex = 6;
@@ -308,7 +319,7 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Location = new System.Drawing.Point(3, 50);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(135, 44);
+            this.label4.Size = new System.Drawing.Size(135, 55);
             this.label4.TabIndex = 7;
             this.label4.Text = "Skin";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -320,6 +331,8 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.Controls.Add(this.AutoPlacing, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.RandomPlacing, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.Fullscreen, 1, 3);
+            this.tableLayoutPanel7.Controls.Add(this.Enabled3d, 0, 3);
             this.tableLayoutPanel7.Controls.Add(this.EnableMusic, 1, 2);
             this.tableLayoutPanel7.Controls.Add(this.AutoChain, 0, 1);
             this.tableLayoutPanel7.Controls.Add(this.EnableSound, 0, 2);
@@ -327,11 +340,12 @@
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 3;
+            this.tableLayoutPanel7.RowCount = 4;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(282, 94);
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(282, 105);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
             // AutoPlacing
@@ -363,7 +377,7 @@
             this.EnableMusic.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EnableMusic.AutoSize = true;
             this.EnableMusic.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.EnableMusic.Location = new System.Drawing.Point(189, 63);
+            this.EnableMusic.Location = new System.Drawing.Point(189, 54);
             this.EnableMusic.Name = "EnableMusic";
             this.EnableMusic.Size = new System.Drawing.Size(90, 17);
             this.EnableMusic.TabIndex = 1;
@@ -387,7 +401,7 @@
             this.EnableSound.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EnableSound.AutoSize = true;
             this.EnableSound.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.EnableSound.Location = new System.Drawing.Point(45, 63);
+            this.EnableSound.Location = new System.Drawing.Point(45, 54);
             this.EnableSound.Name = "EnableSound";
             this.EnableSound.Size = new System.Drawing.Size(93, 17);
             this.EnableSound.TabIndex = 0;
@@ -590,21 +604,23 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Default Deck";
             // 
-            // dropboxbtn
+            // EnableSleeveLoading
             // 
-            this.dropboxbtn.Location = new System.Drawing.Point(125, 3);
-            this.dropboxbtn.Name = "dropboxbtn";
-            this.dropboxbtn.Size = new System.Drawing.Size(75, 23);
-            this.dropboxbtn.TabIndex = 6;
-            this.dropboxbtn.Text = "Dropbox";
-            this.dropboxbtn.UseVisualStyleBackColor = true;
-            this.dropboxbtn.Click += new System.EventHandler(this.dropboxbtn_Click);
+            this.EnableSleeveLoading.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.EnableSleeveLoading.AutoSize = true;
+            this.EnableSleeveLoading.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.EnableSleeveLoading.Location = new System.Drawing.Point(18, 4);
+            this.EnableSleeveLoading.Name = "EnableSleeveLoading";
+            this.EnableSleeveLoading.Size = new System.Drawing.Size(120, 17);
+            this.EnableSleeveLoading.TabIndex = 8;
+            this.EnableSleeveLoading.Text = "Enable User Covers";
+            this.EnableSleeveLoading.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(608, 350);
+            this.ClientSize = new System.Drawing.Size(608, 362);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -680,6 +696,7 @@
         private System.Windows.Forms.ComboBox SkinList;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button dropboxbtn;
+        private System.Windows.Forms.CheckBox EnableSleeveLoading;
 
 
     }

@@ -24,14 +24,13 @@ namespace DevProLauncher.Windows.MessageBoxs
             RandomPlacing.Checked = Program.Config.RandomPlacing;
             AutoChain.Checked = Program.Config.AutoChain;
             NoDelay.Checked = Program.Config.NoChainDelay;
+            EnableSleeveLoading.Checked = Program.Config.EnableCustomSleeves;
 
             if (Directory.Exists(Program.Config.LauncherDir + "skins/"))
             {
                 string[] folders = Directory.GetDirectories(Path.Combine(Program.Config.LauncherDir ,"skins\\"));
                 foreach (var folder in folders)
-                    // ReSharper disable AssignNullToNotNullAttribute
                     SkinList.Items.Add(Path.GetFileName(folder));
-                    // ReSharper restore AssignNullToNotNullAttribute
             }            
             
             if(SkinList.Items.Count  > Program.Config.Skin + 1)
@@ -41,9 +40,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             {
                 string[] decks = Directory.GetFiles(Program.Config.LauncherDir + "deck/");
                 foreach (string deck in decks)
-// ReSharper disable AssignNullToNotNullAttribute
                     DefualtDeck.Items.Add(Path.GetFileNameWithoutExtension(deck));
-// ReSharper restore AssignNullToNotNullAttribute
             }
             DefualtDeck.Text = Program.Config.DefaultDeck;
 
@@ -74,6 +71,7 @@ namespace DevProLauncher.Windows.MessageBoxs
                 RandomPlacing.Text = Program.LanguageManager.Translation.optionCbRandomPlacing;
                 AutoChain.Text = Program.LanguageManager.Translation.optionCbAutoChain;
                 NoDelay.Text = Program.LanguageManager.Translation.optionCbNoChainDelay;
+                EnableSleeveLoading.Text = Program.LanguageManager.Translation.optionCbEnableSleeves;
 
                 LanguageInfo lang = Program.LanguageManager.Translation;
 
@@ -100,6 +98,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             Program.Config.RandomPlacing = RandomPlacing.Checked;
             Program.Config.AutoChain = AutoChain.Checked;
             Program.Config.NoChainDelay = NoDelay.Checked;
+            Program.Config.EnableCustomSleeves = EnableSleeveLoading.Checked;
 
             Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
             DialogResult = DialogResult.OK;

@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupportFrm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.LeftItems = new System.Windows.Forms.TableLayoutPanel();
+            this.RightItems = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -46,10 +49,8 @@
             this.DevPointCount = new System.Windows.Forms.Label();
             this.refreshbtn = new System.Windows.Forms.Button();
             this.refreshtimer = new System.Windows.Forms.Timer(this.components);
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.LeftItems = new System.Windows.Forms.TableLayoutPanel();
-            this.RightItems = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -59,7 +60,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.OfferLink)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -76,6 +76,51 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(938, 494);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.LeftItems, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.RightItems, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(754, 488);
+            this.tableLayoutPanel5.TabIndex = 3;
+            // 
+            // LeftItems
+            // 
+            this.LeftItems.AutoScroll = true;
+            this.LeftItems.ColumnCount = 1;
+            this.LeftItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
+            this.LeftItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LeftItems.Location = new System.Drawing.Point(3, 3);
+            this.LeftItems.Name = "LeftItems";
+            this.LeftItems.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.LeftItems.RowCount = 2;
+            this.LeftItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.LeftItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.LeftItems.Size = new System.Drawing.Size(371, 482);
+            this.LeftItems.TabIndex = 0;
+            // 
+            // RightItems
+            // 
+            this.RightItems.AutoScroll = true;
+            this.RightItems.ColumnCount = 1;
+            this.RightItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
+            this.RightItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.RightItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightItems.Location = new System.Drawing.Point(380, 3);
+            this.RightItems.Name = "RightItems";
+            this.RightItems.RowCount = 2;
+            this.RightItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.RightItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.RightItems.Size = new System.Drawing.Size(371, 482);
+            this.RightItems.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
@@ -249,51 +294,6 @@
             // 
             this.refreshtimer.Interval = 2000;
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.LeftItems, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.RightItems, 1, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(754, 488);
-            this.tableLayoutPanel5.TabIndex = 3;
-            // 
-            // LeftItems
-            // 
-            this.LeftItems.AutoScroll = true;
-            this.LeftItems.ColumnCount = 1;
-            this.LeftItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
-            this.LeftItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LeftItems.Location = new System.Drawing.Point(3, 3);
-            this.LeftItems.Name = "LeftItems";
-            this.LeftItems.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.LeftItems.RowCount = 2;
-            this.LeftItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.LeftItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.LeftItems.Size = new System.Drawing.Size(371, 482);
-            this.LeftItems.TabIndex = 0;
-            // 
-            // RightItems
-            // 
-            this.RightItems.AutoScroll = true;
-            this.RightItems.ColumnCount = 1;
-            this.RightItems.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
-            this.RightItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightItems.Location = new System.Drawing.Point(380, 3);
-            this.RightItems.Name = "RightItems";
-            this.RightItems.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.RightItems.RowCount = 2;
-            this.RightItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.RightItems.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.RightItems.Size = new System.Drawing.Size(371, 482);
-            this.RightItems.TabIndex = 1;
-            // 
             // SupportFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,6 +305,7 @@
             this.Name = "SupportFrm";
             this.Text = "Support_frm";
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -315,7 +316,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.OfferLink)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

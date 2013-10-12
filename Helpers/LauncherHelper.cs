@@ -93,9 +93,7 @@ namespace DevProLauncher.Helpers
             {
                 var webrequest = (HttpWebRequest)WebRequest.Create(url);
                 var webresponse = (HttpWebResponse)webrequest.GetResponse();
-// ReSharper disable AssignNullToNotNullAttribute
                 using (var reader = new StreamReader(webresponse.GetResponseStream()))
-// ReSharper restore AssignNullToNotNullAttribute
                 {
                     return reader.ReadToEnd();
                 }
@@ -268,6 +266,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
+            writer.WriteLine("enable_sleeve_loading" + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             writer.Close();
         }
         public static void GenerateConfig()
@@ -295,6 +294,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
+            writer.WriteLine("enable_sleeve_loading" + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             writer.Close();
         }
         public static void GenerateConfig(bool isreplay, string file = "")
@@ -322,6 +322,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
+            writer.WriteLine("enable_sleeve_loading" + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             if (isreplay)
                 writer.WriteLine("lastreplay = " + file);
             else
@@ -358,6 +359,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
+            writer.WriteLine("enable_sleeve_loading" + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             writer.Close();
         }
 

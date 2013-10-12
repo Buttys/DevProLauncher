@@ -76,7 +76,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             var input = new InputFrm("Create Channel", "Enter Channel Name", "Create", "Cancel");
             if (input.ShowDialog() == DialogResult.OK)
             {
-                Program.ChatServer.SendPacket(DevServerPackets.JoinChannel, input.InputBox.Text);
+                Program.ChatServer.SendPacket(DevServerPackets.JoinChannel, input.InputBox.Text.Trim());
                 DialogResult = DialogResult.OK;
             }
         }

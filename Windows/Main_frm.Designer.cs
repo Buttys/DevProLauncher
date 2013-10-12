@@ -39,10 +39,10 @@
             this.OfflineBtn = new System.Windows.Forms.Button();
             this.DeckBtn = new System.Windows.Forms.Button();
             this.ReplaysBtn = new System.Windows.Forms.Button();
+            this.TeamProfileBtn = new System.Windows.Forms.Button();
             this.ProfileBtn = new System.Windows.Forms.Button();
             this.siteBtn = new System.Windows.Forms.Button();
             this.MessageLabel = new System.Windows.Forms.Label();
-            this.TeamProfileBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -64,7 +64,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(918, 469);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(989, 469);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // mainTabs
@@ -73,7 +73,7 @@
             this.mainTabs.Location = new System.Drawing.Point(3, 3);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
-            this.mainTabs.Size = new System.Drawing.Size(912, 423);
+            this.mainTabs.Size = new System.Drawing.Size(983, 423);
             this.mainTabs.TabIndex = 3;
             // 
             // tableLayoutPanel2
@@ -88,7 +88,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(912, 34);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(983, 34);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // flowLayoutPanel1
@@ -102,7 +102,7 @@
             this.flowLayoutPanel1.Controls.Add(this.siteBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(387, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(458, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(522, 28);
             this.flowLayoutPanel1.TabIndex = 9;
@@ -147,6 +147,17 @@
             this.ReplaysBtn.UseVisualStyleBackColor = true;
             this.ReplaysBtn.Click += new System.EventHandler(this.ReplaysBtn_Click);
             // 
+            // TeamProfileBtn
+            // 
+            this.TeamProfileBtn.Enabled = false;
+            this.TeamProfileBtn.Location = new System.Drawing.Point(165, 3);
+            this.TeamProfileBtn.Name = "TeamProfileBtn";
+            this.TeamProfileBtn.Size = new System.Drawing.Size(66, 23);
+            this.TeamProfileBtn.TabIndex = 13;
+            this.TeamProfileBtn.Text = "Team";
+            this.TeamProfileBtn.UseVisualStyleBackColor = true;
+            this.TeamProfileBtn.Click += new System.EventHandler(this.TeamProfileBtn_Click);
+            // 
             // ProfileBtn
             // 
             this.ProfileBtn.Enabled = false;
@@ -174,27 +185,16 @@
             this.MessageLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MessageLabel.Location = new System.Drawing.Point(3, 0);
             this.MessageLabel.Name = "MessageLabel";
-            this.MessageLabel.Size = new System.Drawing.Size(378, 34);
+            this.MessageLabel.Size = new System.Drawing.Size(449, 34);
             this.MessageLabel.TabIndex = 0;
             this.MessageLabel.Text = "Server messages will spawn here.";
             this.MessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // TeamProfileBtn
-            // 
-            this.TeamProfileBtn.Enabled = false;
-            this.TeamProfileBtn.Location = new System.Drawing.Point(165, 3);
-            this.TeamProfileBtn.Name = "TeamProfileBtn";
-            this.TeamProfileBtn.Size = new System.Drawing.Size(66, 23);
-            this.TeamProfileBtn.TabIndex = 13;
-            this.TeamProfileBtn.Text = "Team";
-            this.TeamProfileBtn.UseVisualStyleBackColor = true;
-            this.TeamProfileBtn.Click += new System.EventHandler(this.TeamProfileBtn_Click);
             // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(918, 469);
+            this.ClientSize = new System.Drawing.Size(989, 469);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainFrm";

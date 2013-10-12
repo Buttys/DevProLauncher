@@ -95,6 +95,7 @@ namespace DevProLauncher.Config
         public string optionCbRandomPlacing = "Random Card Placing";
         public string optionCbAutoChain = "Auto Chain Order";
         public string optionCbNoChainDelay = "No Delay for Chain";
+        public string optionCbEnableSleeves = "Enable User Covers";
 
         // Host_frm.cs
         public string hostGb1 = "Settings";
@@ -253,6 +254,8 @@ namespace DevProLauncher.Config
         public string SupportItem6Des = "Create a team.";
         public string SupportItem7Name = "Send Server Message";
         public string SupportItem7Des = "Send a server message to everyone.(Limited: 3 Messages per day)";
+        public string SupportItem8Name = "Custom Sleeves";
+        public string SupportItem8Des = "Upload a custom sleeve that all users will be able to see in duels.";
 
         public string SupportBalance = "Balance";
         public string Supportgb2 = "Support DevPro";
