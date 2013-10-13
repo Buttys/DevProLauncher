@@ -22,9 +22,7 @@ namespace DevProLauncher.Windows.MessageBoxs
                 Priority.Checked = Program.Config.EnablePrority;
                 ShuffleDeck.Checked = Program.Config.DisableShuffleDeck;
                 CheckDeck.Checked = Program.Config.DisableCheckDeck;
-// ReSharper disable CoVariantArrayConversion
                 BanList.Items.AddRange(LauncherHelper.GetBanListArray());
-// ReSharper restore CoVariantArrayConversion
                 BanList.SelectedItem = Program.Config.BanList;
                 if (BanList.SelectedItem == null && BanList.Items.Count > 0)
                     BanList.SelectedIndex = 0;
@@ -35,9 +33,7 @@ namespace DevProLauncher.Windows.MessageBoxs
                 CardRules.SelectedIndex = 0;
                 Mode.SelectedIndex = 0;
                 GameName = LauncherHelper.GenerateString().Substring(0, 5);
-// ReSharper disable CoVariantArrayConversion
                 BanList.Items.AddRange(LauncherHelper.GetBanListArray());
-// ReSharper restore CoVariantArrayConversion
                 if (BanList.Items.Count > 0)
                     BanList.SelectedIndex = 0;
                 
@@ -61,9 +57,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             Priority.Checked = Program.Config.chtEnablePrority;
             ShuffleDeck.Checked = Program.Config.chtDisableShuffleDeck;
             CheckDeck.Checked = Program.Config.chtDisableCheckDeck;
-// ReSharper disable CoVariantArrayConversion
             BanList.Items.AddRange(LauncherHelper.GetBanListArray());
-// ReSharper restore CoVariantArrayConversion
             if (BanList.Items.Count > 0)
             {
                 if (BanList.Items.Contains(Program.Config.chtBanList))
@@ -154,11 +148,6 @@ namespace DevProLauncher.Windows.MessageBoxs
             else
                 gamestring = gamestring + "2";
 
-            if (BanList.SelectedItem == null)
-                gamestring += 0;
-            else
-                gamestring += LauncherHelper.GetBanListValue(BanList.SelectedItem.ToString());
-
             gamestring += (TimeLimit.SelectedIndex == -1 ? "0" : TimeLimit.SelectedIndex.ToString(CultureInfo.InvariantCulture));
 
             if ((Priority.Checked))
@@ -174,7 +163,9 @@ namespace DevProLauncher.Windows.MessageBoxs
             else
                 gamestring = gamestring + "O";
 
-            gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U")+ (PasswordInput.Text == "" ? "":"L") + "," +(PasswordInput.Text == "" ? GameName:PasswordInput.Text);
+            int banlistvalue = BanList.SelectedItem == null ? 0 : LauncherHelper.GetBanListValue(BanList.SelectedItem.ToString());
+
+            gamestring = gamestring + LifePoints.Text + "," + banlistvalue + ",5,1," + (isranked ? "R" : "U") + (PasswordInput.Text == "" ? "" : "L") + "," + (PasswordInput.Text == "" ? GameName : PasswordInput.Text);
 
             return gamestring;
         }
@@ -201,8 +192,6 @@ namespace DevProLauncher.Windows.MessageBoxs
             else
                 gamestring = gamestring + "2";
 
-            gamestring += LauncherHelper.GetBanListValue((BanList.SelectedItem == null ? "0": BanList.SelectedItem.ToString()));
-
             gamestring += (TimeLimit.SelectedIndex == -1 ? "0":TimeLimit.SelectedIndex.ToString(CultureInfo.InvariantCulture));
 
             if ((Priority.Checked))
@@ -218,7 +207,9 @@ namespace DevProLauncher.Windows.MessageBoxs
             else
                 gamestring = gamestring + "O";
 
-            gamestring = gamestring + LifePoints.Text + "," + (isranked ? "R" : "U")+"L" + "," + GameName;
+            int banlistvalue = BanList.SelectedItem == null ? 0 : LauncherHelper.GetBanListValue(BanList.SelectedItem.ToString());
+
+            gamestring = gamestring + LifePoints.Text + "," + banlistvalue + ",5,1,"  + (isranked ? "R" : "U")+"L" + "," + GameName;
 
             return gamestring;
         }

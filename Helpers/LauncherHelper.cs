@@ -250,8 +250,8 @@ namespace DevProLauncher.Helpers
             writer.WriteLine(("antialias = " + Program.Config.Antialias));
             writer.WriteLine("errorlog = 1");
             writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.LoginKey));
-            writer.WriteLine("gamename = " + gameName);
-            writer.WriteLine(("roompass ="));
+            writer.WriteLine("gamename =");
+            writer.WriteLine(("roompass = " + gameName));
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
             writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
             writer.WriteLine("numfont = fonts/arialbd.ttf");
@@ -266,7 +266,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
-            writer.WriteLine("enable_sleeve_loading" + Convert.ToInt32(Program.Config.EnableCustomSleeves));
+            writer.WriteLine("enable_sleeve_loading = " + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             writer.Close();
         }
         public static void GenerateConfig()
@@ -294,7 +294,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
-            writer.WriteLine("enable_sleeve_loading" + Convert.ToInt32(Program.Config.EnableCustomSleeves));
+            writer.WriteLine("enable_sleeve_loading = " + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             writer.Close();
         }
         public static void GenerateConfig(bool isreplay, string file = "")
@@ -322,7 +322,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
-            writer.WriteLine("enable_sleeve_loading" + Convert.ToInt32(Program.Config.EnableCustomSleeves));
+            writer.WriteLine("enable_sleeve_loading = " + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             if (isreplay)
                 writer.WriteLine("lastreplay = " + file);
             else
@@ -359,7 +359,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
-            writer.WriteLine("enable_sleeve_loading" + Convert.ToInt32(Program.Config.EnableCustomSleeves));
+            writer.WriteLine("enable_sleeve_loading = " + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             writer.Close();
         }
 
