@@ -48,6 +48,7 @@ namespace DevProLauncher.Windows
             Program.ChatServer.ServerMessage += ServerMessage;
 
             mainTabs.SelectedIndexChanged += LoadBrowserURL;
+            mainTabs.SelectedIndexChanged += m_chatWindow.AutoJoin;
 
             ApplyTranslation();
 
@@ -62,7 +63,6 @@ namespace DevProLauncher.Windows
 
             //    DropBoxController.filesyncAsync();
             //}
-
         }
 
         public void ApplyTranslation()

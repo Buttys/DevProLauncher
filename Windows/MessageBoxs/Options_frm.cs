@@ -12,13 +12,20 @@ namespace DevProLauncher.Windows.MessageBoxs
         {
             InitializeComponent();
             Username.Text = Program.Config.DefaultUsername;
-            
+
+            // Defaul Channel Items
+            DefaultChannel.Items.Add("None");
+            DefaultChannel.Items.Add("DevPro-English");
+            DefaultChannel.Items.Add("DevPro-French");
+            DefaultChannel.Items.Add("DevPro-German");
+
             Antialias.Text = Program.Config.Antialias.ToString(CultureInfo.InvariantCulture);
             EnableMusic.Checked = Program.Config.EnableMusic;
             EnableSound.Checked = Program.Config.EnableSound;
             Enabled3d.Checked = Program.Config.Enabled3D;
             Fullscreen.Checked = Program.Config.Fullscreen;
             GameFont.Text = Program.Config.GameFont;
+            DefaultChannel.Text = Program.Config.DefaultChannel;
             FontSize.Value = Program.Config.FontSize;
             AutoPlacing.Checked = Program.Config.AutoPlacing;
             RandomPlacing.Checked = Program.Config.RandomPlacing;
@@ -42,6 +49,7 @@ namespace DevProLauncher.Windows.MessageBoxs
                 foreach (string deck in decks)
                     DefualtDeck.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
+
             DefualtDeck.Text = Program.Config.DefaultDeck;
 
             ApplyTranslation();
@@ -58,6 +66,7 @@ namespace DevProLauncher.Windows.MessageBoxs
                 label1.Text = Program.LanguageManager.Translation.optionUser;
                 label5.Text = Program.LanguageManager.Translation.optionDeck;
                 label6.Text = Program.LanguageManager.Translation.optionAntialias;
+                label7.Text = Program.LanguageManager.Translation.optionChannel;
                 EnableSound.Text = Program.LanguageManager.Translation.optionCbSound;
                 EnableMusic.Text = Program.LanguageManager.Translation.optionCbMusic;
                 Enabled3d.Text = Program.LanguageManager.Translation.optionCbDirect;
@@ -86,6 +95,7 @@ namespace DevProLauncher.Windows.MessageBoxs
         {
             Program.Config.DefaultDeck = DefualtDeck.Text;
             Program.Config.DefaultUsername = Username.Text;
+            Program.Config.DefaultChannel = DefaultChannel.Text;
             Program.Config.Antialias = Convert.ToInt32(Antialias.Text);
             Program.Config.EnableSound = EnableSound.Checked;
             Program.Config.EnableMusic = EnableMusic.Checked;
