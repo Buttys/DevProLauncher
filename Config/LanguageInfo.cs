@@ -79,6 +79,7 @@ namespace DevProLauncher.Config
         public string optionMsbForget = "Do you really want to forget auto login credentials?";
         public string optionUser = "Default Username";
         public string optionDeck = "Default Deck";
+        public string optionChannel = "Default Channel";
         public string optionBtnAutoLogin = "Forget Auto Login";
         public string optionAntialias = "Antialias";
         public string optionCbSound = "Enable Sound";

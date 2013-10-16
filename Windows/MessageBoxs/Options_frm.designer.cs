@@ -41,15 +41,16 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.Antialias = new System.Windows.Forms.NumericUpDown();
-            this.Enabled3d = new System.Windows.Forms.CheckBox();
-            this.Fullscreen = new System.Windows.Forms.CheckBox();
             this.SkinList = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.Antialias = new System.Windows.Forms.NumericUpDown();
+            this.EnableSleeveLoading = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.AutoPlacing = new System.Windows.Forms.CheckBox();
             this.RandomPlacing = new System.Windows.Forms.CheckBox();
+            this.Fullscreen = new System.Windows.Forms.CheckBox();
+            this.Enabled3d = new System.Windows.Forms.CheckBox();
             this.EnableMusic = new System.Windows.Forms.CheckBox();
             this.AutoChain = new System.Windows.Forms.CheckBox();
             this.EnableSound = new System.Windows.Forms.CheckBox();
@@ -65,11 +66,12 @@
             this.GameFont = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.DefaultChannel = new System.Windows.Forms.ComboBox();
             this.Username = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DefualtDeck = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.EnableSleeveLoading = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.OptionTabControl.SuspendLayout();
@@ -253,6 +255,28 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(282, 105);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
+            // SkinList
+            // 
+            this.SkinList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.SkinList.FormattingEnabled = true;
+            this.SkinList.Items.AddRange(new object[] {
+            "Default"});
+            this.SkinList.Location = new System.Drawing.Point(144, 67);
+            this.SkinList.Name = "SkinList";
+            this.SkinList.Size = new System.Drawing.Size(135, 21);
+            this.SkinList.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(3, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(135, 55);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Skin";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -278,51 +302,17 @@
             this.Antialias.TabIndex = 5;
             this.Antialias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // Enabled3d
+            // EnableSleeveLoading
             // 
-            this.Enabled3d.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Enabled3d.AutoSize = true;
-            this.Enabled3d.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Enabled3d.Location = new System.Drawing.Point(43, 81);
-            this.Enabled3d.Name = "Enabled3d";
-            this.Enabled3d.Size = new System.Drawing.Size(95, 17);
-            this.Enabled3d.TabIndex = 2;
-            this.Enabled3d.Text = "Enable Directx";
-            this.Enabled3d.UseVisualStyleBackColor = true;
-            // 
-            // Fullscreen
-            // 
-            this.Fullscreen.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Fullscreen.AutoSize = true;
-            this.Fullscreen.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Fullscreen.Location = new System.Drawing.Point(187, 81);
-            this.Fullscreen.Name = "Fullscreen";
-            this.Fullscreen.Size = new System.Drawing.Size(92, 17);
-            this.Fullscreen.TabIndex = 3;
-            this.Fullscreen.Text = "Fullscreen      ";
-            this.Fullscreen.UseVisualStyleBackColor = true;
-            // 
-            // SkinList
-            // 
-            this.SkinList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.SkinList.FormattingEnabled = true;
-            this.SkinList.Items.AddRange(new object[] {
-            "Default"});
-            this.SkinList.Location = new System.Drawing.Point(144, 67);
-            this.SkinList.Name = "SkinList";
-            this.SkinList.Size = new System.Drawing.Size(135, 21);
-            this.SkinList.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 50);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(135, 55);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Skin";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.EnableSleeveLoading.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.EnableSleeveLoading.AutoSize = true;
+            this.EnableSleeveLoading.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.EnableSleeveLoading.Location = new System.Drawing.Point(18, 4);
+            this.EnableSleeveLoading.Name = "EnableSleeveLoading";
+            this.EnableSleeveLoading.Size = new System.Drawing.Size(120, 17);
+            this.EnableSleeveLoading.TabIndex = 8;
+            this.EnableSleeveLoading.Text = "Enable User Covers";
+            this.EnableSleeveLoading.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel7
             // 
@@ -371,6 +361,30 @@
             this.RandomPlacing.TabIndex = 4;
             this.RandomPlacing.Text = "Random Card Placing";
             this.RandomPlacing.UseVisualStyleBackColor = true;
+            // 
+            // Fullscreen
+            // 
+            this.Fullscreen.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Fullscreen.AutoSize = true;
+            this.Fullscreen.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Fullscreen.Location = new System.Drawing.Point(187, 81);
+            this.Fullscreen.Name = "Fullscreen";
+            this.Fullscreen.Size = new System.Drawing.Size(92, 17);
+            this.Fullscreen.TabIndex = 3;
+            this.Fullscreen.Text = "Fullscreen      ";
+            this.Fullscreen.UseVisualStyleBackColor = true;
+            // 
+            // Enabled3d
+            // 
+            this.Enabled3d.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Enabled3d.AutoSize = true;
+            this.Enabled3d.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Enabled3d.Location = new System.Drawing.Point(43, 81);
+            this.Enabled3d.Name = "Enabled3d";
+            this.Enabled3d.Size = new System.Drawing.Size(95, 17);
+            this.Enabled3d.TabIndex = 2;
+            this.Enabled3d.Text = "Enable Directx";
+            this.Enabled3d.UseVisualStyleBackColor = true;
             // 
             // EnableMusic
             // 
@@ -552,19 +566,31 @@
             this.tableLayoutPanel9.ColumnCount = 2;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Controls.Add(this.DefaultChannel, 1, 2);
             this.tableLayoutPanel9.Controls.Add(this.Username, 1, 0);
             this.tableLayoutPanel9.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.DefualtDeck, 1, 1);
             this.tableLayoutPanel9.Controls.Add(this.label5, 0, 1);
+            this.tableLayoutPanel9.Controls.Add(this.label7, 0, 2);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 3;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel9.Size = new System.Drawing.Size(273, 94);
             this.tableLayoutPanel9.TabIndex = 2;
+            // 
+            // DefaultChannel
+            // 
+            this.DefaultChannel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.DefaultChannel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DefaultChannel.FormattingEnabled = true;
+            this.DefaultChannel.Location = new System.Drawing.Point(139, 63);
+            this.DefaultChannel.Name = "DefaultChannel";
+            this.DefaultChannel.Size = new System.Drawing.Size(131, 21);
+            this.DefaultChannel.TabIndex = 6;
             // 
             // Username
             // 
@@ -604,17 +630,15 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Default Deck";
             // 
-            // EnableSleeveLoading
+            // label7
             // 
-            this.EnableSleeveLoading.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.EnableSleeveLoading.AutoSize = true;
-            this.EnableSleeveLoading.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.EnableSleeveLoading.Location = new System.Drawing.Point(18, 4);
-            this.EnableSleeveLoading.Name = "EnableSleeveLoading";
-            this.EnableSleeveLoading.Size = new System.Drawing.Size(120, 17);
-            this.EnableSleeveLoading.TabIndex = 8;
-            this.EnableSleeveLoading.Text = "Enable User Covers";
-            this.EnableSleeveLoading.UseVisualStyleBackColor = true;
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(26, 67);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(83, 13);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Default Channel";
             // 
             // Settings
             // 
@@ -688,15 +712,17 @@
         private System.Windows.Forms.NumericUpDown FontSize;
         private System.Windows.Forms.ComboBox GameFont;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ComboBox SkinList;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button dropboxbtn;
+        private System.Windows.Forms.CheckBox EnableSleeveLoading;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.TextBox Username;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox DefualtDeck;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox SkinList;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button dropboxbtn;
-        private System.Windows.Forms.CheckBox EnableSleeveLoading;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox DefaultChannel;
 
 
     }

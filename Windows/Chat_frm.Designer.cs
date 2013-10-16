@@ -637,9 +637,9 @@ namespace DevProLauncher.Windows
             // SystemColorBtn
             // 
             this.SystemColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SystemColorBtn.Location = new System.Drawing.Point(129, 253);
+            this.SystemColorBtn.Location = new System.Drawing.Point(134, 253);
             this.SystemColorBtn.Name = "SystemColorBtn";
-            this.SystemColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.SystemColorBtn.Size = new System.Drawing.Size(26, 19);
             this.SystemColorBtn.TabIndex = 38;
             this.SystemColorBtn.UseVisualStyleBackColor = true;
             this.SystemColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
@@ -647,9 +647,9 @@ namespace DevProLauncher.Windows
             // LeaveColorBtn
             // 
             this.LeaveColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LeaveColorBtn.Location = new System.Drawing.Point(129, 228);
+            this.LeaveColorBtn.Location = new System.Drawing.Point(134, 228);
             this.LeaveColorBtn.Name = "LeaveColorBtn";
-            this.LeaveColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.LeaveColorBtn.Size = new System.Drawing.Size(26, 19);
             this.LeaveColorBtn.TabIndex = 37;
             this.LeaveColorBtn.UseVisualStyleBackColor = true;
             this.LeaveColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
@@ -657,9 +657,9 @@ namespace DevProLauncher.Windows
             // JoinColorBtn
             // 
             this.JoinColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.JoinColorBtn.Location = new System.Drawing.Point(129, 203);
+            this.JoinColorBtn.Location = new System.Drawing.Point(134, 203);
             this.JoinColorBtn.Name = "JoinColorBtn";
-            this.JoinColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.JoinColorBtn.Size = new System.Drawing.Size(26, 19);
             this.JoinColorBtn.TabIndex = 36;
             this.JoinColorBtn.UseVisualStyleBackColor = true;
             this.JoinColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
@@ -667,9 +667,9 @@ namespace DevProLauncher.Windows
             // MeColorBtn
             // 
             this.MeColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MeColorBtn.Location = new System.Drawing.Point(129, 178);
+            this.MeColorBtn.Location = new System.Drawing.Point(134, 178);
             this.MeColorBtn.Name = "MeColorBtn";
-            this.MeColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.MeColorBtn.Size = new System.Drawing.Size(26, 19);
             this.MeColorBtn.TabIndex = 35;
             this.MeColorBtn.UseVisualStyleBackColor = true;
             this.MeColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
@@ -677,9 +677,9 @@ namespace DevProLauncher.Windows
             // ServerColorBtn
             // 
             this.ServerColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ServerColorBtn.Location = new System.Drawing.Point(129, 153);
+            this.ServerColorBtn.Location = new System.Drawing.Point(134, 153);
             this.ServerColorBtn.Name = "ServerColorBtn";
-            this.ServerColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.ServerColorBtn.Size = new System.Drawing.Size(26, 19);
             this.ServerColorBtn.TabIndex = 34;
             this.ServerColorBtn.UseVisualStyleBackColor = true;
             this.ServerColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
@@ -687,9 +687,9 @@ namespace DevProLauncher.Windows
             // NormalUserColorBtn
             // 
             this.NormalUserColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NormalUserColorBtn.Location = new System.Drawing.Point(129, 128);
+            this.NormalUserColorBtn.Location = new System.Drawing.Point(134, 128);
             this.NormalUserColorBtn.Name = "NormalUserColorBtn";
-            this.NormalUserColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.NormalUserColorBtn.Size = new System.Drawing.Size(26, 19);
             this.NormalUserColorBtn.TabIndex = 33;
             this.NormalUserColorBtn.UseVisualStyleBackColor = true;
             this.NormalUserColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
@@ -697,9 +697,9 @@ namespace DevProLauncher.Windows
             // Level1ColorBtn
             // 
             this.Level1ColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Level1ColorBtn.Location = new System.Drawing.Point(129, 103);
+            this.Level1ColorBtn.Location = new System.Drawing.Point(134, 103);
             this.Level1ColorBtn.Name = "Level1ColorBtn";
-            this.Level1ColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.Level1ColorBtn.Size = new System.Drawing.Size(26, 19);
             this.Level1ColorBtn.TabIndex = 32;
             this.Level1ColorBtn.UseVisualStyleBackColor = true;
             this.Level1ColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
@@ -707,9 +707,9 @@ namespace DevProLauncher.Windows
             // Level2ColorBtn
             // 
             this.Level2ColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Level2ColorBtn.Location = new System.Drawing.Point(129, 78);
+            this.Level2ColorBtn.Location = new System.Drawing.Point(134, 78);
             this.Level2ColorBtn.Name = "Level2ColorBtn";
-            this.Level2ColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.Level2ColorBtn.Size = new System.Drawing.Size(26, 19);
             this.Level2ColorBtn.TabIndex = 31;
             this.Level2ColorBtn.UseVisualStyleBackColor = true;
             this.Level2ColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
@@ -717,9 +717,9 @@ namespace DevProLauncher.Windows
             // Level99ColorBtn
             // 
             this.Level99ColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Level99ColorBtn.Location = new System.Drawing.Point(129, 53);
+            this.Level99ColorBtn.Location = new System.Drawing.Point(134, 53);
             this.Level99ColorBtn.Name = "Level99ColorBtn";
-            this.Level99ColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.Level99ColorBtn.Size = new System.Drawing.Size(26, 19);
             this.Level99ColorBtn.TabIndex = 30;
             this.Level99ColorBtn.UseVisualStyleBackColor = true;
             this.Level99ColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
@@ -727,9 +727,9 @@ namespace DevProLauncher.Windows
             // NormalTextColorBtn
             // 
             this.NormalTextColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NormalTextColorBtn.Location = new System.Drawing.Point(129, 28);
+            this.NormalTextColorBtn.Location = new System.Drawing.Point(134, 28);
             this.NormalTextColorBtn.Name = "NormalTextColorBtn";
-            this.NormalTextColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.NormalTextColorBtn.Size = new System.Drawing.Size(26, 19);
             this.NormalTextColorBtn.TabIndex = 29;
             this.NormalTextColorBtn.UseVisualStyleBackColor = true;
             this.NormalTextColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
@@ -739,7 +739,7 @@ namespace DevProLauncher.Windows
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Location = new System.Drawing.Point(3, 175);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(120, 25);
+            this.label8.Size = new System.Drawing.Size(125, 25);
             this.label8.TabIndex = 20;
             this.label8.Text = "/Me Message";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -749,7 +749,7 @@ namespace DevProLauncher.Windows
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Location = new System.Drawing.Point(3, 150);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(120, 25);
+            this.label7.Size = new System.Drawing.Size(125, 25);
             this.label7.TabIndex = 18;
             this.label7.Text = "Server Message";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -759,7 +759,7 @@ namespace DevProLauncher.Windows
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Location = new System.Drawing.Point(3, 125);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 25);
+            this.label4.Size = new System.Drawing.Size(125, 25);
             this.label4.TabIndex = 17;
             this.label4.Text = "Normal Username";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -769,7 +769,7 @@ namespace DevProLauncher.Windows
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Location = new System.Drawing.Point(3, 100);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(120, 25);
+            this.label9.Size = new System.Drawing.Size(125, 25);
             this.label9.TabIndex = 16;
             this.label9.Text = "Level 1";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -779,7 +779,7 @@ namespace DevProLauncher.Windows
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Location = new System.Drawing.Point(3, 75);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(120, 25);
+            this.label10.Size = new System.Drawing.Size(125, 25);
             this.label10.TabIndex = 15;
             this.label10.Text = "Level 2";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -789,7 +789,7 @@ namespace DevProLauncher.Windows
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Location = new System.Drawing.Point(3, 50);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(120, 25);
+            this.label11.Size = new System.Drawing.Size(125, 25);
             this.label11.TabIndex = 14;
             this.label11.Text = "Level 99";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -799,7 +799,7 @@ namespace DevProLauncher.Windows
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Location = new System.Drawing.Point(3, 25);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(120, 25);
+            this.label12.Size = new System.Drawing.Size(125, 25);
             this.label12.TabIndex = 13;
             this.label12.Text = "Normal Text";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -809,7 +809,7 @@ namespace DevProLauncher.Windows
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Location = new System.Drawing.Point(3, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(120, 25);
+            this.label13.Size = new System.Drawing.Size(125, 25);
             this.label13.TabIndex = 12;
             this.label13.Text = "Chat Background";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -819,7 +819,7 @@ namespace DevProLauncher.Windows
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Location = new System.Drawing.Point(3, 200);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(120, 25);
+            this.label14.Size = new System.Drawing.Size(125, 25);
             this.label14.TabIndex = 22;
             this.label14.Text = "Join";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -829,7 +829,7 @@ namespace DevProLauncher.Windows
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label15.Location = new System.Drawing.Point(3, 225);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(120, 25);
+            this.label15.Size = new System.Drawing.Size(125, 25);
             this.label15.TabIndex = 23;
             this.label15.Text = "Leave";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -839,7 +839,7 @@ namespace DevProLauncher.Windows
             this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label16.Location = new System.Drawing.Point(3, 250);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(120, 25);
+            this.label16.Size = new System.Drawing.Size(125, 25);
             this.label16.TabIndex = 26;
             this.label16.Text = "System";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -847,9 +847,9 @@ namespace DevProLauncher.Windows
             // BackgroundColorBtn
             // 
             this.BackgroundColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BackgroundColorBtn.Location = new System.Drawing.Point(129, 3);
+            this.BackgroundColorBtn.Location = new System.Drawing.Point(134, 3);
             this.BackgroundColorBtn.Name = "BackgroundColorBtn";
-            this.BackgroundColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.BackgroundColorBtn.Size = new System.Drawing.Size(26, 19);
             this.BackgroundColorBtn.TabIndex = 27;
             this.BackgroundColorBtn.UseVisualStyleBackColor = true;
             this.BackgroundColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
