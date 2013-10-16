@@ -615,6 +615,9 @@ namespace DevProLauncher.Windows
             bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
 
             int index = e.Index;
+            if (index == -1)
+                return;
+
             if (index < 0 && index >= list.Items.Count)
             {
                 e.DrawFocusRectangle();
@@ -1502,6 +1505,17 @@ namespace DevProLauncher.Windows
             Program.ChatServer.SendPacket(DevServerPackets.UserList,
                 JsonSerializer.SerializeToString(new PacketCommand() { Command = "FRIENDS", Data = string.Empty }));
             EnableSearchReset();
+        }
+
+        public void AutoJoin(object sender, EventArgs e)
+        {
+            List<string> channels = new List<string>();
+
+            for (int i = 0; i < ChannelTabs.TabCount; i++)
+                channels.Add(ChannelTabs.GetControl(i).Name);
+
+            if (Program.Config.DefaultChannel != "None" && !channels.Contains(Program.Config.DefaultChannel))
+                Program.ChatServer.SendPacket(DevServerPackets.JoinChannel, Program.Config.DefaultChannel);
         }
     }
 }
