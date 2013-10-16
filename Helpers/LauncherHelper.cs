@@ -253,7 +253,6 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("gamename =");
             writer.WriteLine(("roompass = " + gameName));
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
-            writer.WriteLine(("Default Channel = " + Program.Config.DefaultChannel));
             writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
             writer.WriteLine("numfont = fonts/arialbd.ttf");
             writer.WriteLine(("serverport = " + server.serverPort));
@@ -285,7 +284,6 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("nickname = ");
             writer.WriteLine("roompass =");
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
-            writer.WriteLine("Default Channel = " + Program.Config.DefaultChannel);
             writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
             writer.WriteLine("numfont = fonts/arialbd.ttf");
             writer.WriteLine(("fullscreen = " + Convert.ToInt32(Program.Config.Fullscreen)));
@@ -314,7 +312,6 @@ namespace DevProLauncher.Helpers
             writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.LoginKey));
             writer.WriteLine(("roompass ="));
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
-            writer.WriteLine("Default Channel = " + Program.Config.DefaultChannel);
             writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
             writer.WriteLine("numfont = fonts/arialbd.ttf");
             writer.WriteLine(("fullscreen = " + Convert.ToInt32(Program.Config.Fullscreen)));
@@ -349,7 +346,6 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("gamename =");
             writer.WriteLine("roompass =");
             writer.WriteLine("lastdeck = " + Program.Config.DefaultDeck);
-            writer.WriteLine("Default Channel = " + Program.Config.DefaultChannel);
             writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
             writer.WriteLine("numfont = fonts/arialbd.ttf");
             writer.WriteLine("serverport = " + server.serverPort);

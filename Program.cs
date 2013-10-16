@@ -63,10 +63,10 @@ namespace DevProLauncher
             }
             else MessageBox.Show("An internet connection is required to play online.");
 #if DEBUG
-            Config.ServerAddress = "91.250.87.52";
+            Config.ServerAddress = "86.0.24.143";
             Config.ChatPort = 8933;
-            Config.GamePort = 6666;
-            Server = new ServerInfo("DevPro", "91.250.87.52", 3333);
+            //Config.GamePort = 6666;
+            Server = new ServerInfo("DevPro", "86.0.24.143", 3333);
 #endif
 
             MainForm = new MainFrm();

@@ -25,8 +25,6 @@ namespace DevProLauncher.Windows
         private bool m_onlineMode;
         private bool m_friendMode;
         private Timer m_searchReset;
-        public bool m_autoJoined;
-        public bool m_isChan;
 
         public ChatFrm()
         {
