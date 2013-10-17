@@ -631,6 +631,9 @@ namespace DevProLauncher.Windows
             bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
 
             int index = e.Index;
+            if (index == -1)
+                return;
+
             if (index < 0 && index >= list.Items.Count)
             {
                 e.DrawFocusRectangle();
