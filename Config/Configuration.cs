@@ -21,6 +21,7 @@ namespace DevProLauncher.Config
         public string LauncherDir =  "";
         public string DefaultUsername = "";
         public string DefaultDeck = "";
+        public string DefaultChannel = "None";
         public bool EnableSound = true;
         public bool EnableMusic = true;
         public bool Enabled3D = false;
