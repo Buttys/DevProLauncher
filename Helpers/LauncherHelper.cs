@@ -11,6 +11,7 @@ using System.Text;
 using System.Net.NetworkInformation;
 using DevProLauncher.Network.Data;
 using DevProLauncher.Windows;
+using DevProLauncher.Windows.MessageBoxs;
 
 namespace DevProLauncher.Helpers
 {
@@ -42,6 +43,21 @@ namespace DevProLauncher.Helpers
                 return false;
             }
             return false;
+        }
+
+        private static string m_checkmateusr, m_checkmatepass;
+
+        public static void chkmate_btn_Click(object sender, EventArgs e)
+        {
+            Checkmate_frm form = new Checkmate_frm(string.IsNullOrEmpty(m_checkmateusr) ? string.Empty : m_checkmateusr,
+                string.IsNullOrEmpty(m_checkmatepass) ? "" : m_checkmatepass);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                m_checkmateusr = form.Username.Text;
+                m_checkmatepass = form.Password.Text;
+                GenerateCheckmateConfig(Program.Checkmate, m_checkmateusr, m_checkmatepass);
+                RunGame("-j");
+            }
         }
 
         public static void SyncCloud(object sender, EventArgs e)

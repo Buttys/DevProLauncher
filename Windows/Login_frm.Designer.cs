@@ -42,6 +42,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.loginBtn = new System.Windows.Forms.Button();
             this.registerBtn = new System.Windows.Forms.Button();
+            this.CheckmateBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -190,6 +191,7 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.loginBtn);
             this.flowLayoutPanel1.Controls.Add(this.registerBtn);
+            this.flowLayoutPanel1.Controls.Add(this.CheckmateBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(890, 3);
@@ -216,6 +218,16 @@
             this.registerBtn.Text = "Register";
             this.registerBtn.UseVisualStyleBackColor = true;
             this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
+            // 
+            // CheckmateBtn
+            // 
+            this.CheckmateBtn.Location = new System.Drawing.Point(3, 399);
+            this.CheckmateBtn.Name = "CheckmateBtn";
+            this.CheckmateBtn.Size = new System.Drawing.Size(75, 23);
+            this.CheckmateBtn.TabIndex = 2;
+            this.CheckmateBtn.Text = "Checkmate";
+            this.CheckmateBtn.UseVisualStyleBackColor = true;
+            this.CheckmateBtn.Click += new System.EventHandler(DevProLauncher.Helpers.LauncherHelper.chkmate_btn_Click);
             // 
             // LoginFrm
             // 
@@ -251,5 +263,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox languageSelect;
         private System.Windows.Forms.CheckBox savePassCheckBox;
+        private System.Windows.Forms.Button CheckmateBtn;
     }
 }

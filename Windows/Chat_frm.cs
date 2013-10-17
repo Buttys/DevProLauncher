@@ -25,6 +25,8 @@ namespace DevProLauncher.Windows
         private bool m_onlineMode;
         private bool m_friendMode;
         private Timer m_searchReset;
+        private bool m_autoJoined;
+
 
         public ChatFrm()
         {
@@ -77,6 +79,20 @@ namespace DevProLauncher.Windows
 
             WriteSystemMessage("Welcome to the DevPro chat system!");
             WriteSystemMessage("To join a channel please click the channel list button.");
+        }
+
+        public void LoadDefualtChannel()
+        {
+            if (!string.IsNullOrEmpty(Program.Config.DefaultChannel) && !m_autoJoined)
+            {
+                ChatWindow channel = GetChatWindow(Program.Config.DefaultChannel);
+
+                if (channel == null)
+                {
+                    Program.ChatServer.SendPacket(DevServerPackets.JoinChannel, Program.Config.DefaultChannel);
+                    m_autoJoined = true;
+                }
+            }
         }
 
         private void SearchTick(object sender,EventArgs e)

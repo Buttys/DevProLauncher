@@ -16,7 +16,7 @@ namespace DevProLauncher
 {
     static class Program
     {
-        public const string Version = "197100";
+        public const string Version = "197200";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;
@@ -52,6 +52,8 @@ namespace DevProLauncher
             ChatServer = new ChatClient();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Checkmate = new ServerInfo("Checkmate", "173.224.211.158", 21001);
 
             if (LauncherHelper.TestConnection())
             {

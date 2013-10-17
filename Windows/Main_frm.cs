@@ -47,7 +47,7 @@ namespace DevProLauncher.Windows
             Program.ChatServer.Kicked += ServerMessage;
             Program.ChatServer.ServerMessage += ServerMessage;
 
-            mainTabs.SelectedIndexChanged += LoadBrowserURL;
+            mainTabs.SelectedIndexChanged += TabChange;
 
             ApplyTranslation();
 
@@ -217,10 +217,12 @@ namespace DevProLauncher.Windows
             LauncherHelper.SyncCloud(sender,e);
         }
 
-        private void LoadBrowserURL(object sender, EventArgs e)
+        private void TabChange(object sender, EventArgs e)
         {
             if(mainTabs.SelectedIndex == 2)
                 m_wcsBrowser.Navigate("http://wcs.devpro.org/launcher.php", false);
+            else if(mainTabs.SelectedIndex == 1)
+                m_chatWindow.LoadDefualtChannel();
         }
 
         private void TeamProfileBtn_Click(object sender, EventArgs e)
