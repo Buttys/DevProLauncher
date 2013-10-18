@@ -12,6 +12,7 @@ namespace DevProLauncher.Helpers
     public static class ChatHelper
     {
         public static Dictionary<string, string> ChatTags = new Dictionary<string, string>();
+
         public static void LoadChatTags()
         {
             ChatTags.Add("Red", "\\cf2");
@@ -19,7 +20,7 @@ namespace DevProLauncher.Helpers
             ChatTags.Add("Blue", "\\cf4");
         }
 
-        public static void WriteMessage(ChatMessage message, CustomRTB window,bool autoscroll)
+        public static void WriteMessage(ChatMessage message, CustomRTB window, bool autoscroll)
         {
             if (window.Text != "")//start a new line unless theres no text
                 window.AppendText(Environment.NewLine);
@@ -180,13 +181,21 @@ namespace DevProLauncher.Helpers
             if (autoscroll)
                 window.ScrollToCaret();
         }
+
+        public static void SendMessage(string chatInput,string channel,bool isprivate)
+        {
+            Program.ChatServer.SendMessage(isprivate ? MessageType.PrivateMessage : MessageType.Message,
+                                           CommandType.None, channel, chatInput);
+        }
+
         private static void WriteText(CustomRTB window, string text, Color color)
         {
             window.Select(window.TextLength, 0);
             window.SelectionColor = color;
             window.AppendText(text);
         }
-        private static void FormatText(string message ,CustomRTB window)
+
+        private static void FormatText(string message, CustomRTB window)
         {
             window.AppendText(message);
             window.Select(window.Text.Length - message.Length, message.Length);
@@ -223,15 +232,10 @@ namespace DevProLauncher.Helpers
 
             window.SelectedRtf = strRTF;
         }
+
         private static IEnumerable<string> GetMessageTags(string message)
         {
             return ChatTags.Keys.Where(tag => message.Contains("[" + tag + "]") || message.Contains("[" + tag.ToLower() + "]")).Where(tag => message.Contains("[/" + tag + "]") || message.Contains("[/" + tag.ToLower() + "]")).ToArray();
-        }
-
-        public static void SendMessage(string chatInput,string channel,bool isprivate)
-        {
-            Program.ChatServer.SendMessage(isprivate ? MessageType.PrivateMessage : MessageType.Message,
-                                           CommandType.None, channel, chatInput);
         }
     }
 }

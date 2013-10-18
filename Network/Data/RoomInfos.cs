@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using System;
+﻿using System;
+
 namespace DevProLauncher.Network.Data
 {
     [Serializable]
@@ -51,20 +51,16 @@ namespace DevProLauncher.Network.Data
 
             infos.startLp = int.Parse(list[0]);
             infos.banListType = int.Parse(list[1]);
-
             infos.startHand = int.Parse(list[2]);
             infos.drawCount = int.Parse(list[3]);
+
             if (list[4] == "RL" || list[4] == "UL")
                 infos.isLocked = true;
 
             if (list[4] == "R" || list[4] == "RL")
-            {
                 infos.isRanked = true;
-            }
             else
-            {
                 infos.isRanked = false;
-            }
 
             if (infos.isRanked)
                 infos.banListType = infos.rule == 0 ? 1 : 0;

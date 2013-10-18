@@ -9,14 +9,10 @@
     {
         private IDictionary<int, CardInfos> m_cards;
 
-        public bool Loaded = false;
-
         public CardInfos FromId(int id)
         {
             if (m_cards.ContainsKey(id))
-            {
                 return m_cards[id];
-            }
             return null;
         }
 
@@ -24,16 +20,20 @@
         {
             try
             {
+                string path = Path.Combine(Program.Config.LauncherDir, "cards.cdb");
                 m_cards = new Dictionary<int, CardInfos>();
-                string str2 = Path.Combine(Program.Config.LauncherDir, "cards.cdb");
-                if (!File.Exists(str2)) return;
-                var connection = new SQLiteConnection("Data Source=" + str2);
+
+                if (!File.Exists(path)) return;
+
+                SQLiteConnection connection = new SQLiteConnection("Data Source=" + path);
                 connection.Open();
                 SQLiteDataReader reader = new SQLiteCommand("SELECT id, alias, type, level, race, attribute, atk, def FROM datas", connection).ExecuteReader();
+
                 while (reader.Read())
                 {
                     int id = reader.GetInt32(0);
-                    var infos = new CardInfos(id)
+
+                    CardInfos infos = new CardInfos(id)
                     {
                         AliasId = reader.GetInt32(1),
                         Type = reader.GetInt32(2),
@@ -45,8 +45,10 @@
                     };
                     m_cards.Add(id, infos);
                 }
+
                 reader.Close();
                 reader = new SQLiteCommand("SELECT id, name, desc FROM texts", connection).ExecuteReader();
+
                 while (reader.Read())
                 {
                     int key = reader.GetInt32(0);
@@ -58,7 +60,6 @@
                     }
                 }
                 connection.Close();
-                Loaded = true;
             }
             catch (Exception)
             {
