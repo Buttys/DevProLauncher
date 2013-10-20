@@ -29,10 +29,10 @@ namespace DevProLauncher.Windows
             //prevents the last items auto sizing
             LeftItems.Controls.Add(new Label(), 0, LeftItems.RowStyles.Count-1);
             RightItems.Controls.Add(new Label(), 0, LeftItems.RowStyles.Count - 1);
-            LeftItems.HorizontalScroll.Enabled = false;
-            LeftItems.HorizontalScroll.Visible = false;
-            RightItems.HorizontalScroll.Enabled = false;
-            RightItems.HorizontalScroll.Visible = false;
+
+            int vertScrollWidth = SystemInformation.VerticalScrollBarWidth;
+            RightItems.Padding = new Padding(0, 0, vertScrollWidth, 0);
+
             OfferLink.Click += OfferLink_Click;
             DonateLink.Click += DonateLink_Click;
             refreshtimer.Tick += refreshtimer_Tick;
@@ -44,10 +44,11 @@ namespace DevProLauncher.Windows
             AddItem(Properties.Resources.rankup, lang.SupportItem1Name, FormatString(lang.SupportItem1Des), 100, "DEVSTATUS", false);
             AddItem(Properties.Resources.maskchange, lang.SupportItem2Name, FormatString(lang.SupportItem2Des), 200, "DEVRENAME", true);
             AddItem(Properties.Resources.desruct, lang.SupportItem3Name, FormatString(lang.SupportItem3Des), 50, "DEVRESETRANK", false);
-            AddItem(Properties.Resources.bookoflife, lang.SupportItem4Name, FormatString(lang.SupportItem4Des), 1000, "DEVUNBAN", true);
+            AddItem(Properties.Resources.rankup, lang.SupportItem8Name, FormatString(lang.SupportItem8Des), 300, "NULL", false);
             AddItem(Properties.Resources.DNA, lang.SupportItem5Name, FormatString(lang.SupportItem5Des), 300, "DEVCOLOR", true);
             AddItem(Properties.Resources.sixsam, lang.SupportItem6Name, FormatString(lang.SupportItem6Des), 500, "DEVCREATETEAM", true);
             AddItem(Properties.Resources.message, lang.SupportItem7Name, FormatString(lang.SupportItem7Des), 150, "DEVMSG", true);
+            AddItem(Properties.Resources.bookoflife, lang.SupportItem4Name, FormatString(lang.SupportItem4Des), 1000, "DEVUNBAN", true);
             m_descriptions.Add("DEVRENAME", lang.SupportRenameInput);
             m_descriptions.Add("DEVUNBAN", lang.SupportUnbanInput);
             m_descriptions.Add("DEVCREATETEAM", lang.SupportTeamNameInput);
@@ -152,6 +153,12 @@ namespace DevProLauncher.Windows
             }
             else
             {
+                if (servercommand == "NULL")
+                {
+                    Process.Start("http://ygopro.de/login/");
+                    return;
+                }
+
                 if(MessageBox.Show("Confirm","Are you sure?",MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     Program.ChatServer.SendPacket(DevServerPackets.DevPointCommand,

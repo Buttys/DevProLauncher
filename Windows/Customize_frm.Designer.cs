@@ -106,7 +106,8 @@
             this.ViewSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ViewSelect.FormattingEnabled = true;
             this.ViewSelect.Items.AddRange(new object[] {
-            "Covers",
+            "Player 1 Covers",
+            "Player 2 Covers",
             "Backgrounds",
             "GameBackgrounds",
             "Attack",

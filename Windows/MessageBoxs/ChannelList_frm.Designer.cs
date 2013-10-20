@@ -32,7 +32,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.CreateBtn = new System.Windows.Forms.Button();
             this.JoinBtn = new System.Windows.Forms.Button();
-            this.CancelBtn = new System.Windows.Forms.Button();
+            this.DefaultBtn = new System.Windows.Forms.Button();
             this.ChannelList = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -57,7 +57,7 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.CreateBtn);
             this.flowLayoutPanel1.Controls.Add(this.JoinBtn);
-            this.flowLayoutPanel1.Controls.Add(this.CancelBtn);
+            this.flowLayoutPanel1.Controls.Add(this.DefaultBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 195);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -84,15 +84,15 @@
             this.JoinBtn.UseVisualStyleBackColor = true;
             this.JoinBtn.Click += new System.EventHandler(this.JoinBtn_Click);
             // 
-            // CancelBtn
+            // DefaultBtn
             // 
-            this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelBtn.Location = new System.Drawing.Point(155, 3);
-            this.CancelBtn.Name = "CancelBtn";
-            this.CancelBtn.Size = new System.Drawing.Size(70, 23);
-            this.CancelBtn.TabIndex = 2;
-            this.CancelBtn.Text = "Cancel";
-            this.CancelBtn.UseVisualStyleBackColor = true;
+            this.DefaultBtn.Location = new System.Drawing.Point(155, 3);
+            this.DefaultBtn.Name = "DefaultBtn";
+            this.DefaultBtn.Size = new System.Drawing.Size(70, 23);
+            this.DefaultBtn.TabIndex = 2;
+            this.DefaultBtn.Text = "Default";
+            this.DefaultBtn.UseVisualStyleBackColor = true;
+            this.DefaultBtn.Click += new System.EventHandler(this.DefaultBtn_Click);
             // 
             // ChannelList
             // 
@@ -104,13 +104,15 @@
             this.ChannelList.Size = new System.Drawing.Size(229, 186);
             this.ChannelList.TabIndex = 1;
             // 
-            // ChannelList_frm
+            // ChannelListFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(235, 227);
-            this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ChannelListFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Channel List";
@@ -126,7 +128,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button CreateBtn;
         private System.Windows.Forms.Button JoinBtn;
-        private System.Windows.Forms.Button CancelBtn;
+        private System.Windows.Forms.Button DefaultBtn;
         private System.Windows.Forms.ListBox ChannelList;
     }
 }

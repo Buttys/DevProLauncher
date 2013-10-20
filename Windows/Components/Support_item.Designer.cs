@@ -51,7 +51,7 @@
             this.ItemName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ItemName.Location = new System.Drawing.Point(0, 0);
             this.ItemName.Name = "ItemName";
-            this.ItemName.Size = new System.Drawing.Size(309, 179);
+            this.ItemName.Size = new System.Drawing.Size(345, 179);
             this.ItemName.TabIndex = 0;
             this.ItemName.TabStop = false;
             this.ItemName.Text = "Name";
@@ -68,7 +68,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(303, 160);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(339, 160);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -83,7 +83,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(197, 154);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(233, 154);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // ItemDes
@@ -91,7 +91,7 @@
             this.ItemDes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ItemDes.Location = new System.Drawing.Point(3, 0);
             this.ItemDes.Name = "ItemDes";
-            this.ItemDes.Size = new System.Drawing.Size(191, 116);
+            this.ItemDes.Size = new System.Drawing.Size(227, 116);
             this.ItemDes.TabIndex = 0;
             this.ItemDes.Text = "Description";
             // 
@@ -107,7 +107,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(191, 32);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(227, 32);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -115,14 +115,14 @@
             this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(93, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(111, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(95, 26);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(113, 26);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(17, 3);
+            this.button1.Location = new System.Drawing.Point(35, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -134,7 +134,7 @@
             this.ItemCost.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ItemCost.Location = new System.Drawing.Point(3, 0);
             this.ItemCost.Name = "ItemCost";
-            this.ItemCost.Size = new System.Drawing.Size(84, 32);
+            this.ItemCost.Size = new System.Drawing.Size(102, 32);
             this.ItemCost.TabIndex = 0;
             this.ItemCost.Text = "0 DevPoints";
             this.ItemCost.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -149,11 +149,11 @@
             this.ItemImage.TabIndex = 1;
             this.ItemImage.TabStop = false;
             // 
-            // Support_item
+            // SupportItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 179);
+            this.ClientSize = new System.Drawing.Size(345, 179);
             this.Controls.Add(this.ItemName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SupportItem";

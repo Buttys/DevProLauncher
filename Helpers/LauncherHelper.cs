@@ -11,6 +11,7 @@ using System.Text;
 using System.Net.NetworkInformation;
 using DevProLauncher.Network.Data;
 using DevProLauncher.Windows;
+using DevProLauncher.Windows.MessageBoxs;
 
 namespace DevProLauncher.Helpers
 {
@@ -42,6 +43,21 @@ namespace DevProLauncher.Helpers
                 return false;
             }
             return false;
+        }
+
+        private static string m_checkmateusr, m_checkmatepass;
+
+        public static void chkmate_btn_Click(object sender, EventArgs e)
+        {
+            Checkmate_frm form = new Checkmate_frm(string.IsNullOrEmpty(m_checkmateusr) ? string.Empty : m_checkmateusr,
+                string.IsNullOrEmpty(m_checkmatepass) ? "" : m_checkmatepass);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                m_checkmateusr = form.Username.Text;
+                m_checkmatepass = form.Password.Text;
+                GenerateCheckmateConfig(Program.Checkmate, m_checkmateusr, m_checkmatepass);
+                RunGame("-j");
+            }
         }
 
         public static void SyncCloud(object sender, EventArgs e)
@@ -93,9 +109,7 @@ namespace DevProLauncher.Helpers
             {
                 var webrequest = (HttpWebRequest)WebRequest.Create(url);
                 var webresponse = (HttpWebResponse)webrequest.GetResponse();
-// ReSharper disable AssignNullToNotNullAttribute
                 using (var reader = new StreamReader(webresponse.GetResponseStream()))
-// ReSharper restore AssignNullToNotNullAttribute
                 {
                     return reader.ReadToEnd();
                 }
@@ -252,8 +266,8 @@ namespace DevProLauncher.Helpers
             writer.WriteLine(("antialias = " + Program.Config.Antialias));
             writer.WriteLine("errorlog = 1");
             writer.WriteLine(("nickname = " + Program.UserInfo.username + "$" + Program.LoginKey));
-            writer.WriteLine("gamename = " + gameName);
-            writer.WriteLine(("roompass ="));
+            writer.WriteLine("gamename =");
+            writer.WriteLine(("roompass = " + gameName));
             writer.WriteLine(("lastdeck = " + Program.Config.DefaultDeck));
             writer.WriteLine("textfont = fonts/" + Program.Config.GameFont + " " + Program.Config.FontSize);
             writer.WriteLine("numfont = fonts/arialbd.ttf");
@@ -268,6 +282,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
+            writer.WriteLine("enable_sleeve_loading = " + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             writer.Close();
         }
         public static void GenerateConfig()
@@ -295,6 +310,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
+            writer.WriteLine("enable_sleeve_loading = " + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             writer.Close();
         }
         public static void GenerateConfig(bool isreplay, string file = "")
@@ -322,6 +338,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
+            writer.WriteLine("enable_sleeve_loading = " + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             if (isreplay)
                 writer.WriteLine("lastreplay = " + file);
             else
@@ -358,6 +375,7 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
             writer.WriteLine("auto_chain_order = " + Convert.ToInt32(Program.Config.AutoChain));
             writer.WriteLine("no_delay_for_chain = " + Convert.ToInt32(Program.Config.NoChainDelay));
+            writer.WriteLine("enable_sleeve_loading = " + Convert.ToInt32(Program.Config.EnableCustomSleeves));
             writer.Close();
         }
 

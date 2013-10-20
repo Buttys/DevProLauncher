@@ -29,6 +29,7 @@ namespace DevProLauncher.Windows.MessageBoxs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PmWindowFrm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ChatInput = new System.Windows.Forms.TextBox();
             this.ChatLog = new DevProLauncher.Windows.Components.CustomRTB();
@@ -74,6 +75,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(525, 365);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PmWindowFrm";
             this.Text = "PmWindow_frm";
             this.tableLayoutPanel1.ResumeLayout(false);

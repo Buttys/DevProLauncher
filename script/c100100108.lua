@@ -20,7 +20,7 @@ function c100100108.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	e2:SetLabel(0)
 	Duel.RegisterEffect(e2,tp)
 	local tc=Duel.GetFieldCard(1-tp,LOCATION_SZONE,5)
-	if Duel.GetTurnPlayer()~=tp then
+	if tc and Duel.GetTurnPlayer()~=tp then
 		tc:RegisterFlagEffect(100100108,RESET_EVENT+RESET_PHASE+PHASE_END,0,3)
 	else
 		tc:RegisterFlagEffect(100100108,RESET_EVENT+RESET_PHASE+PHASE_END,0,4)

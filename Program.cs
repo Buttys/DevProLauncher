@@ -16,7 +16,7 @@ namespace DevProLauncher
 {
     static class Program
     {
-        public const string Version = "196500";
+        public const string Version = "197200";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;
@@ -38,8 +38,8 @@ namespace DevProLauncher
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 #endif
             //new update server - Forced change to prevent resting a users config
-            Config.UpdaterAddress = "http://ygopro.de/launcher/version.php";
-            Config.ServerInfoAddress = "http://ygopro.de/launcher/server.php";
+            Config.UpdaterAddress = "/launcher/version.php";
+            Config.ServerInfoAddress = "/launcher/server.php";
 
             LanguageManager = new LanguageManager();
             //LanguageManager.Save("English");    
@@ -53,12 +53,16 @@ namespace DevProLauncher
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            Checkmate = new ServerInfo("Checkmate", "173.224.211.158", 21001);
+
             if (LauncherHelper.TestConnection())
             {
 #if !DEBUG
-                if (CheckUpdates())
-                    return;
-                CheckServerInfo(); 
+                if (CheckUpdates("http://91.250.87.52"))
+                    if(CheckUpdates("http://ygopro.de"))
+                        return;
+                if (!CheckServerInfo("http://91.250.87.52"))
+                    CheckServerInfo("http://ygopro.de");
 #endif
             }
             else MessageBox.Show("An internet connection is required to play online.");
@@ -107,7 +111,7 @@ namespace DevProLauncher
             }
         }
 
-        public static bool CheckUpdates()
+        public static bool CheckUpdates(string url)
         {
             string updateLink = Config.UpdaterAddress;
             const string updaterName = "YgoUpdater.exe";
@@ -116,7 +120,7 @@ namespace DevProLauncher
             string result;
             try
             {
-                result = client.DownloadString(updateLink + "?v=" + Version);
+                result = client.DownloadString(url + updateLink + "?v=" + Version);
             }
             catch
             {
@@ -169,14 +173,14 @@ namespace DevProLauncher
             return true;
         }
 
-        public static bool CheckServerInfo()
+        public static bool CheckServerInfo(string url)
         {
             string updateLink = Config.ServerInfoAddress;
             var client = new WebClient { Proxy = null };
             string result;
             try
             {
-                result = client.DownloadString(updateLink + "?v=" + Version);
+                result = client.DownloadString(url + updateLink + "?v=" + Version);
             }
             catch
             {

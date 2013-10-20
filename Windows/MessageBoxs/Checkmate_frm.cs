@@ -10,7 +10,7 @@ namespace DevProLauncher.Windows.MessageBoxs
 
             label1.Text = "- To register an account simply type a username and password! \n" +
                           "- To play without registering you can simply leave the password field blank. \n" +
-                          "- Anime related cards may not work!";
+                          "- Anime related cards will not work!";
             Username.Text = username;
             Password.Text = password;
         }

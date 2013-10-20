@@ -3,6 +3,7 @@
     public enum ContentType
     {
         Covers,
+        Covers2,
         GameBackgrounds,
         Backgrounds,
         AttackIcon,

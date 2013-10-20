@@ -19,7 +19,6 @@ namespace DevProLauncher.Windows
 
         private readonly Dictionary<string, RoomInfos> m_rooms = new Dictionary<string, RoomInfos>();
         private List<string> ServerList = new List<string>();
-        private string checkmateusr, checkmatepass;
 
         public HubGameList_frm()
         {
@@ -523,7 +522,7 @@ namespace DevProLauncher.Windows
 
             if (Program.ServerList.ContainsKey(item.server))
             {
-                LauncherHelper.GenerateConfig(Program.ServerList[item.server], item.GenerateURI());
+                LauncherHelper.GenerateConfig(Program.ServerList[item.server], item.ToName());
                 LauncherHelper.RunGame("-j");
             }
         }
@@ -648,19 +647,6 @@ namespace DevProLauncher.Windows
         private void Quick_Btn_Click(object sender, EventArgs e)
         {
             QuickBtn_MouseUp(sender, new MouseEventArgs(MouseButtons.Right, 1, 1, 1, 1));
-        }
-
-        private void chkmate_btn_Click(object sender, EventArgs e)
-        {
-            Checkmate_frm form = new Checkmate_frm(string.IsNullOrEmpty(checkmateusr) ? Program.UserInfo.username:checkmateusr,
-                string.IsNullOrEmpty(checkmatepass) ? "":checkmatepass);
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                checkmateusr = form.Username.Text;
-                checkmatepass = form.Password.Text;
-                LauncherHelper.GenerateCheckmateConfig(Program.Checkmate, checkmateusr,checkmatepass);
-                LauncherHelper.RunGame("-j");
-            }
         }
 
     }

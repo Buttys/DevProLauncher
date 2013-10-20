@@ -37,7 +37,7 @@
     <StartupObject>DevProLauncher.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\ygo.ico</ApplicationIcon>
+    <ApplicationIcon>Favicon_DropShadow_64x64.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DropNet, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -429,6 +429,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DropNet.dll" />
+    <Content Include="Favicon_DropShadow_64x64.ico" />
     <Content Include="RestSharp.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

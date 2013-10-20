@@ -9,7 +9,8 @@ namespace DevProLauncher.Windows.Components
         {
             InitializeComponent();
             TopLevel = false;
-            Dock = DockStyle.Fill;
+            //Dock = DockStyle.Fill;
+            Anchor = AnchorStyles.None;
             Visible = true;
             ItemImage.Image = image;
             ItemName.Text = name;

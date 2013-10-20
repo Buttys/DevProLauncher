@@ -26,7 +26,7 @@
   <RegistMsb2>Please enter password</RegistMsb2>
   <RegistMsb3>Please enter username.</RegistMsb3>
   <RegistMsb4>Registering Complete!</RegistMsb4>
-  <RegistMsb5>This Username Exists</RegistMsb5>
+  <RegistMsb5>This username has been taken.</RegistMsb5>
   <RegistMsb6>Username cannot contain special characters</RegistMsb6>
   <GameRanked>Ranked</GameRanked>
   <GameUnranked>Unranked</GameUnranked>
@@ -75,6 +75,7 @@
   <optionCbRandomPlacing>Random Card Placing</optionCbRandomPlacing>
   <optionCbAutoChain>Auto Chain Order</optionCbAutoChain>
   <optionCbNoChainDelay>No Delay for Chain</optionCbNoChainDelay>
+  <optionCbEnableSleeves>Enable User Covers</optionCbEnableSleeves>
   <hostGb1>Settings</hostGb1>
   <hostGb2>Additional Options</hostGb2>
   <hostBanlist>Ban List</hostBanlist>
@@ -93,7 +94,7 @@
   <fileBtnDelete>Delete</fileBtnDelete>
   <fileBtnFolder>Open Folder</fileBtnFolder>
   <fileBtnGame>Open Game</fileBtnGame>
-  <fileMsgNoExist>Does not exists</fileMsgNoExist>
+  <fileMsgNoExist>Does not exist</fileMsgNoExist>
   <fileMsgNoSelect>Nothing selected</fileMsgNoSelect>
   <fileMsbMulti>Can't Rename multiple items</fileMsbMulti>
   <fileAskDelete>Are you sure you want to delete the following item(s) </fileAskDelete>
@@ -190,7 +191,7 @@
   <MainReplaysBtn>Replays</MainReplaysBtn>
   <MainOfflineBtn>Offline</MainOfflineBtn>
   <MainProfileBtn>Profile</MainProfileBtn>
-  <MainServerMessage>Launcher messages will spawn here.</MainServerMessage>
+  <MainServerMessage>Server messages will spawn here.</MainServerMessage>
   <DuelReqestMessage> has challenged you to a ranked duel! Do you accept?</DuelReqestMessage>
   <DuelRequestBanlist> Banlist: </DuelRequestBanlist>
   <DuelRequestRules> Rules: </DuelRequestRules>
@@ -209,11 +210,13 @@
   <SupportItem6Des>Create a team.</SupportItem6Des>
   <SupportItem7Name>Send Server Message</SupportItem7Name>
   <SupportItem7Des>Send a server message to everyone.(Limited: 3 Messages per day)</SupportItem7Des>
+  <SupportItem8Name>Custom Sleeves</SupportItem8Name>
+  <SupportItem8Des>Upload a custom sleeve that all users will be able to see in duels.</SupportItem8Des>
   <SupportBalance>Balance</SupportBalance>
   <Supportgb2>Support DevPro</Supportgb2>
   <Supportgb2text>The DevPoint system is here to reward users who help out and support DevPro. While the 2 options below will earn you DevPoints you can also earn points for helping DevPro too!  || ||- Taking part in DevPro Events  - Fixing DevPro bugs Launcher or card scripts! || - Supporting the growth of DevPro</Supportgb2text>
   <Supportgb3>Earn DevPoints</Supportgb3>
-  <Supportgb3text>Earn points by completing offers.</Supportgb3text>
+  <Supportgb3text>Earn points by completing offfers.</Supportgb3text>
   <Supportgb4>Donate!</Supportgb4>
   <Supportgb4text>Earn by donating (Paypal, PaySafe, SMS and more)</Supportgb4text>
   <SupportRenameInput>Enter New Username</SupportRenameInput>

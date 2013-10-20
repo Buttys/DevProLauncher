@@ -25,6 +25,8 @@ namespace DevProLauncher.Windows
         private bool m_onlineMode;
         private bool m_friendMode;
         private Timer m_searchReset;
+        private bool m_autoJoined;
+
 
         public ChatFrm()
         {
@@ -77,6 +79,20 @@ namespace DevProLauncher.Windows
 
             WriteSystemMessage("Welcome to the DevPro chat system!");
             WriteSystemMessage("To join a channel please click the channel list button.");
+        }
+
+        public void LoadDefualtChannel()
+        {
+            if (!string.IsNullOrEmpty(Program.Config.DefaultChannel) && !m_autoJoined)
+            {
+                ChatWindow channel = GetChatWindow(Program.Config.DefaultChannel);
+
+                if (channel == null)
+                {
+                    Program.ChatServer.SendPacket(DevServerPackets.JoinChannel, Program.Config.DefaultChannel);
+                    m_autoJoined = true;
+                }
+            }
         }
 
         private void SearchTick(object sender,EventArgs e)
@@ -615,6 +631,9 @@ namespace DevProLauncher.Windows
             bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
 
             int index = e.Index;
+            if (index == -1)
+                return;
+
             if (index < 0 && index >= list.Items.Count)
             {
                 e.DrawFocusRectangle();
@@ -860,7 +879,7 @@ namespace DevProLauncher.Windows
                     if (Program.UserInfo.rank != 0)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Donator Commands --"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "[red][/red] [blue][/blue] [green][/green]- Color tags, wrap your text with them to change its color"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "None at this moment"));
                     }
 
                     if(Program.UserInfo.rank == 1)
