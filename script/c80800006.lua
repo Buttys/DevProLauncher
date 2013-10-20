@@ -54,8 +54,8 @@ function c80800006.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function c80800006.desop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
-	local tc=g:GetFirst()
-	local tc1=g:GetNext()
+	local tc1=g:GetFirst()
+	local tc=g:GetNext()
 	if tc:IsRelateToEffect(e) and tc:IsFaceup() and tc1:IsRelateToEffect(e) and tc1:IsFacedown() then
 		Duel.Destroy(tc,REASON_EFFECT)
 		Duel.Destroy(tc1,REASON_EFFECT)
