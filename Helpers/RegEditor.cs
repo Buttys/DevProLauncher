@@ -5,7 +5,6 @@ namespace DevProLauncher.Helpers
 {
     public static class RegEditor
     {
-
        public static bool Write(string path, string key, object value)
         {
             try
@@ -46,6 +45,7 @@ namespace DevProLauncher.Helpers
                 // Setting
                 RegistryKey rk = Registry.CurrentUser;
                 RegistryKey sk1 = rk.OpenSubKey(path);
+
                 // If the RegistryKey exists, I delete it
                 if (sk1 != null)
                     rk.DeleteSubKeyTree(path);
@@ -64,10 +64,10 @@ namespace DevProLauncher.Helpers
             // Opening the registry key
             RegistryKey rk = Registry.CurrentUser;
             RegistryKey sk1 = rk.OpenSubKey(path);
+
             if (sk1 == null)
-            {
                 return null;
-            }
+
             try
             {
                 return (string)sk1.GetValue(key);

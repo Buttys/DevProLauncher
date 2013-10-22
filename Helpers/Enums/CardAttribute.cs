@@ -1,6 +1,5 @@
 ﻿namespace DevProLauncher.Helpers.Enums
 {
-
     public enum CardAttribute
     {
         Dark = 0x20,

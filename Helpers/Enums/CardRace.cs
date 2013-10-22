@@ -1,6 +1,5 @@
 ﻿namespace DevProLauncher.Helpers.Enums
 {
-
     public enum CardRace
     {
         Aqua = 0x40,

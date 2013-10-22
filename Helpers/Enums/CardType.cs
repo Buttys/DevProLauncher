@@ -1,6 +1,5 @@
 ﻿namespace DevProLauncher.Helpers.Enums
 {
-
     public enum CardType
     {
         Continuous = 0x20000,

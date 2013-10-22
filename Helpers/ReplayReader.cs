@@ -23,10 +23,10 @@ namespace DevProLauncher.Helpers
             public const int ReplaySize = 32;
 
             public ReplayHeader Header;
+            public BinaryReader DataReader;
+
             private byte[] _mFileContent;
             private byte[] _mData;
-
-            public BinaryReader DataReader;
 
             public bool Compressed
             {
@@ -43,7 +43,7 @@ namespace DevProLauncher.Helpers
                 try
                 {
                     _mFileContent = File.ReadAllBytes(fileName);
-                    var reader = new BinaryReader(new MemoryStream(_mFileContent));
+                    BinaryReader reader = new BinaryReader(new MemoryStream(_mFileContent));
                     HandleHeader(reader);
                     HandleData(reader);
                     reader.Close();
@@ -58,7 +58,7 @@ namespace DevProLauncher.Helpers
 
             public string ReadString(int length)
             {
-                var value = Encoding.Unicode.GetString(DataReader.ReadBytes(length));
+                string value = Encoding.Unicode.GetString(DataReader.ReadBytes(length));
                 return value.Substring(0, value.IndexOf("\0", StringComparison.Ordinal));
             }
 
@@ -83,11 +83,11 @@ namespace DevProLauncher.Helpers
                     return;
                 }
 
-                var inData = new byte[compressedSize];
+                Byte[] inData = new byte[compressedSize];
                 Array.Copy(_mFileContent, ReplaySize, inData, 0, compressedSize);
-                var outData = new byte[Header.DataSize];
+                Byte[] outData = new byte[Header.DataSize];
 
-                var lzma = new Decoder();
+                Decoder lzma = new Decoder();
                 lzma.SetDecoderProperties(Header.Props);
                 lzma.Code(new MemoryStream(inData), new MemoryStream(outData), compressedSize, Header.DataSize, null);
 
@@ -95,6 +95,5 @@ namespace DevProLauncher.Helpers
                 DataReader = new BinaryReader(new MemoryStream(_mData));
             }
         }
-
     }
 }
