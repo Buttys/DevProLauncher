@@ -1,4 +1,4 @@
---ゴゴゴゴーレム－ＧＦ
+--ゴゴゴゴーレム－GF
 function c2948263.initial_effect(c)
 	c:EnableReviveLimit()
 	--cannot special summon
@@ -16,26 +16,25 @@ function c2948263.initial_effect(c)
 	e2:SetCondition(c2948263.spcon)
 	e2:SetOperation(c2948263.spop)
 	c:RegisterEffect(e2)
-	--half damage
+	--reduce
 	local e3=Effect.CreateEffect(c)
-	e3:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_FIELD)
-	e3:SetRange(LOCATION_MZONE)
+	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
 	e3:SetCode(EVENT_PRE_BATTLE_DAMAGE)
-	e3:SetCondition(c2948263.dcon)
-	e3:SetOperation(c2948263.dop)
+	e3:SetCondition(c2948263.rdcon)
+	e3:SetOperation(c2948263.rdop)
 	c:RegisterEffect(e3)
-	--negate activate
+	--disable
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(2948263,0))
-	e4:SetCategory(CATEGORY_NEGATE)
+	e4:SetCategory(CATEGORY_DISABLE)
+	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_QUICK_F)
+	e4:SetCode(EVENT_CHAINING)
 	e4:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DAMAGE_CAL)
-	e4:SetType(EFFECT_TYPE_QUICK_F)
 	e4:SetRange(LOCATION_MZONE)
 	e4:SetCountLimit(1)
-	e4:SetCode(EVENT_CHAINING)
-	e4:SetCondition(c2948263.condition)
-	e4:SetTarget(c2948263.target)
-	e4:SetOperation(c2948263.operation)
+	e4:SetCondition(c2948263.discon)
+	e4:SetTarget(c2948263.distg)
+	e4:SetOperation(c2948263.disop)
 	c:RegisterEffect(e4)
 end
 function c2948263.spcon(e,c)
@@ -46,41 +45,41 @@ end
 function c2948263.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=Duel.SelectReleaseGroup(c:GetControler(),Card.IsSetCard,1,1,nil,0x59)
 	Duel.Release(g,REASON_COST)
-	local atk=g:GetFirst():GetBaseAttack()*2
+	local atk=g:GetFirst():GetBaseAttack()
 	if atk<0 then return end
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_UPDATE_ATTACK)
-	e1:SetValue(atk)
-	e1:SetReset(RESET_EVENT+0xfe0000)
+	e1:SetValue(atk*2)
+	e1:SetReset(RESET_EVENT+0xff0000)
 	c:RegisterEffect(e1)
 end
-function c2948263.dcon(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	return ep~=tp and (c==Duel.GetAttacker() or c==Duel.GetAttackTarget())
+function c2948263.rdcon(e,tp,eg,ep,ev,re,r,rp)
+	return ep~=tp
 end
-function c2948263.dop(e,tp,eg,ep,ev,re,r,rp)
+function c2948263.rdop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeBattleDamage(ep,ev/2)
 end
-function c2948263.condition(e,tp,eg,ep,ev,re,r,rp,chk)
+function c2948263.discon(e,tp,eg,ep,ev,re,r,rp)
 	local loc=Duel.GetChainInfo(ev,CHAININFO_TRIGGERING_LOCATION)
-	return not e:GetHandler():IsStatus(STATUS_BATTLE_DESTROYED) and ep~=tp
-		and loc==LOCATION_MZONE and re:IsActiveType(TYPE_MONSTER) and Duel.IsChainDisablable(ev)
-		and e:GetHandler():IsAttackAbove(1500)
+	return not e:GetHandler():IsStatus(STATUS_BATTLE_DESTROYED) and Duel.IsChainDisablable(ev)
+		and rp~=tp and re:IsActiveType(TYPE_MONSTER) and loc==LOCATION_MZONE
 end
-function c2948263.target(e,tp,eg,ep,ev,re,r,rp,chk)
+function c2948263.distg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
-	Duel.SetOperationInfo(0,CATEGORY_NEGATE,eg,1,0,0)
+	Duel.SetOperationInfo(0,CATEGORY_DISABLE,eg,1,0,0)
 end
-function c2948263.operation(e,tp,eg,ep,ev,re,r,rp)
+function c2948263.disop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if c:IsAttackAbove(1500) and Duel.NegateActivation(ev) then
-		local e1=Effect.CreateEffect(c)
-		e1:SetType(EFFECT_TYPE_SINGLE)
-		e1:SetProperty(EFFECT_FLAG_COPY_INHERIT)
-		e1:SetReset(RESET_EVENT+0x1ff0000)
-		e1:SetCode(EFFECT_UPDATE_ATTACK)
-		e1:SetValue(-1500)
-		c:RegisterEffect(e1)
+	if c:IsFacedown() or c:GetAttack()<1500 or not c:IsRelateToEffect(e) or Duel.GetCurrentChain()~=ev+1 or c:IsStatus(STATUS_BATTLE_DESTROYED) then
+		return
 	end
+	Duel.NegateEffect(ev)
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_SINGLE)
+	e1:SetProperty(EFFECT_FLAG_COPY_INHERIT)
+	e1:SetReset(RESET_EVENT+0x1ff0000)
+	e1:SetCode(EFFECT_UPDATE_ATTACK)
+	e1:SetValue(-1500)
+	c:RegisterEffect(e1)
 end

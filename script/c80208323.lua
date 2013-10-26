@@ -1,4 +1,4 @@
---®½ç¤Î¼¬×Ïª•
+--ç•°ç•Œã®æ£˜ç´«ç£
 function c80208323.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)

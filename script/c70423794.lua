@@ -50,8 +50,7 @@ function c70423794.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c70423794.descon(e,tp,eg,ep,ev,re,r,rp)
-	local tg=e:GetHandler():GetEquipTarget()
-	return tg and eg:IsContains(tg)
+	return eg:IsContains(e:GetHandler():GetEquipTarget())
 end
 function c70423794.desfilter(c)
 	return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsDestructable()

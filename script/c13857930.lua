@@ -24,7 +24,7 @@ function c13857930.initial_effect(c)
 	e4:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e4:SetCode(EFFECT_ADD_CODE)
 	e4:SetValue(17732278)
-	c:RegisterEffect(e4) 
+	c:RegisterEffect(e4)
 end
 function c13857930.condition(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler()==Duel.GetAttacker() or e:GetHandler()==Duel.GetAttackTarget()

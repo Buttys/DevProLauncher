@@ -23,7 +23,7 @@ function c78734254.initial_effect(c)
 	e4:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e4:SetCode(EFFECT_ADD_CODE)
 	e4:SetValue(17955766)
-	c:RegisterEffect(e4) 
+	c:RegisterEffect(e4)
 end
 function c78734254.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil) end

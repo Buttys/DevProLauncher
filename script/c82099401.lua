@@ -1,4 +1,5 @@
 --水晶の占い師
+--TCG Version
 function c82099401.initial_effect(c)
 	--flip
 	local e1=Effect.CreateEffect(c)
@@ -10,7 +11,6 @@ function c82099401.initial_effect(c)
 end
 function c82099401.operation(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)<2 then return end
-	Duel.ConfirmDecktop(tp,2)
 	local g=Duel.GetDecktopGroup(tp,2)
 	if g:GetCount()>0 then
 		Duel.DisableShuffleCheck()
@@ -18,7 +18,6 @@ function c82099401.operation(e,tp,eg,ep,ev,re,r,rp)
 		local add=g:Select(tp,1,1,nil)
 		if add:GetFirst():IsAbleToHand() then
 			Duel.SendtoHand(add,nil,REASON_EFFECT)
-			Duel.ConfirmCards(1-tp,add)
 			Duel.ShuffleHand(tp)
 		else
 			Duel.SendtoGrave(add,REASON_EFFECT)

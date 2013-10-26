@@ -1,10 +1,9 @@
 --地獄大百足
---change 36029076 to desired card ID
 function c36029076.initial_effect(c)
 	--summon with no tribute
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(36029076,0))
-	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_SUMMON_PROC)
 	e1:SetCondition(c36029076.ntcon)
@@ -13,9 +12,10 @@ function c36029076.initial_effect(c)
 end
 function c36029076.ntcon(e,c)
 	if c==nil then return true end
-	return c:GetLevel()>4 and Duel.GetLocationCount(c:GetControler(),LOCATION_MZONE)>0
-		and Duel.GetFieldGroupCount(c:GetControler(),LOCATION_MZONE,0)==0
-		and Duel.GetFieldGroupCount(c:GetControler(),0,LOCATION_MZONE)>0
+	local tp=c:GetControler()
+	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+		and Duel.GetFieldGroupCount(tp,0,LOCATION_MZONE)>0
+		and Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==0
 end
 function c36029076.ntop(e,tp,eg,ep,ev,re,r,rp,c)
 	--change base attack
