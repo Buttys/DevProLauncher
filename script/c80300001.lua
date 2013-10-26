@@ -73,7 +73,7 @@ function c80300001.retop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.SendtoDeck(g,nil,2,REASON_EFFECT)
 	local ct=g:FilterCount(Card.IsLocation,nil,LOCATION_DECK+LOCATION_HAND+LOCATION_EXTRA)
 	if ct>0 then
-		Duel.Recover(p,ct*300,REASON_EFFECT)
+		Duel.Recover(tp,ct*300,REASON_EFFECT)
 	end
 end
 function c80300001.discon(e,tp,eg,ep,ev,re,r,rp)
