@@ -13,7 +13,7 @@ end
 function c22900598.condition(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetFieldCard(tp,LOCATION_SZONE,5)~=nil then return false end
 	local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_MZONE,0,nil)
-	return g:FilterCount(Card.IsRace,nil,0x7FFFEF)==0
+	return g:GetCount()>0 and g:FilterCount(Card.IsRace,nil,RACE_ZOMBIE)==g:GetCount()
 end
 function c22900598.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,22900598)==0 end
