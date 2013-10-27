@@ -1,7 +1,7 @@
 --ゴーストリック・デュラハン
 function c80800053.initial_effect(c)
 	--xyz summon
-	aux.AddXyzProcedure(c,aux.XyzFilterFunction(c,3),2)
+	aux.AddXyzProcedure(c,aux.XyzFilterFunction(c,1),2)
 	c:EnableReviveLimit()
 	--atk
 	local e1=Effect.CreateEffect(c)
