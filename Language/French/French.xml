@@ -75,6 +75,7 @@
   <optionCbRandomPlacing>Placement aléatoire</optionCbRandomPlacing>
   <optionCbAutoChain>Chaîner auto</optionCbAutoChain>
   <optionCbNoChainDelay>Chaîner sans délai</optionCbNoChainDelay>
+  <optionCbEnableSleeves>Activer Sleeves personnalisées</optionCbEnableSleeves>
   <hostGb1>Paramètres</hostGb1>
   <hostGb2>Options supplémentaires</hostGb2>
   <hostBanlist>Restriction :</hostBanlist>
@@ -209,6 +210,8 @@
   <SupportItem6Des>Créée une Equipe de Duellistes.</SupportItem6Des>
   <SupportItem7Name>Envoie de Messages Serveur</SupportItem7Name>
   <SupportItem7Des>Permet d'envoyer des Messages Serveur à tout le monde (dans la limite de 3 Messages par jour)</SupportItem7Des>
+  <SupportItem8Name>Sleeves personnalisées</SupportItem8Name>
+  <SupportItem8Des>Envoi une sleeve personnalisée que les autres duellistes seront capable de voir en Duels.</SupportItem8Des>
   <SupportBalance>Compte</SupportBalance>
   <Supportgb2>Supportez DevPro !</Supportgb2>
   <Supportgb2text>Les DevPoints permettent de récompenser les Duellistes qui aident et supportent DevPro. Tandis que les 2 options ci-dessous vous font gagner des DevPoints, vous pouvez aussi en gagner en aidant la Team Devpro !  ||- Prendre part aux Events DevPro || - Résoudre les bugs de cartes et du lanceur! || - Contribuer à la montée en charge de DevPro</Supportgb2text>
