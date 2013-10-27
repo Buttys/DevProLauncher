@@ -9,6 +9,7 @@ function c80800049.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetCode(EVENT_ATTACK_ANNOUNCE)
+	e1:SetCondition(c80800049.descon)
 	e1:SetTarget(c80800049.destg)
 	e1:SetOperation(c80800049.desop)
 	c:RegisterEffect(e1)
@@ -24,6 +25,10 @@ function c80800049.initial_effect(c)
 	e2:SetTarget(c80800049.target)
 	e2:SetOperation(c80800049.operation)
 	c:RegisterEffect(e2)
+end
+function c80800049.descon(e,tp,eg,ep,ev,re,r,rp)
+	local at=Duel.GetAttacker()
+	return at:GetControler()~=tp
 end
 function c80800049.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end

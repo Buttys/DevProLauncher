@@ -1,4 +1,5 @@
 --極星天ヴァナディース
+--TCG Version
 function c61777313.initial_effect(c)
 	--synchro custom
 	local e1=Effect.CreateEffect(c)
@@ -40,9 +41,8 @@ function c61777313.synop(e,tp,eg,ep,ev,re,r,rp,syncard,f,minc,maxc)
 	local sg=g:SelectWithSumEqual(tp,Card.GetSynchroLevel,lv,minc,maxc,syncard)
 	Duel.SetSynchroMaterial(sg)
 end
-function c61777313.cfilter(c,lv)
-	local clv=c:GetLevel()
-	return c:IsSetCard(0x42) and clv>0 and clv~=lv and c:IsAbleToGraveAsCost()
+function c61777313.cfilter(c)
+	return c:IsSetCard(0x42) and c:GetLevel()>0 and c:IsAbleToGraveAsCost()
 end
 function c61777313.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c61777313.cfilter,tp,LOCATION_DECK,0,1,nil,e:GetHandler():GetLevel()) end

@@ -227,7 +227,6 @@
             this.CheckmateBtn.TabIndex = 2;
             this.CheckmateBtn.Text = "Checkmate";
             this.CheckmateBtn.UseVisualStyleBackColor = true;
-            this.CheckmateBtn.Click += new System.EventHandler(DevProLauncher.Helpers.LauncherHelper.chkmate_btn_Click);
             // 
             // LoginFrm
             // 

@@ -1,5 +1,4 @@
 --天空の泉
---in testing 11.10.13
 function c92223641.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -25,11 +24,11 @@ function c92223641.filter(g,tp)
 	return nil
 end
 function c92223641.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	local rc=c92223641.filter(eg,tp)
 	if chk==0 then
+		local rc=c92223641.filter(eg,tp)
 		return rc and rc:IsAbleToRemoveAsCost()
 	end
-	if not rc then return false end
+	local rc=c92223641.filter(eg,tp)
 	e:SetLabel(rc:GetAttack())
 	Duel.Remove(rc,POS_FACEUP,REASON_EFFECT)
 end

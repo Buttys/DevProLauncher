@@ -36,17 +36,17 @@ function c80368942.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.SpecialSummon(spg,0,tp,tp,false,false,POS_FACEUP)
 end
 function c80368942.count_unique_code(g)
-  local check={}
-  local count=0
-  local tc=g:GetFirst()
-  while tc do
-    for i,code in ipairs({tc:GetCode()}) do
-      if not check[code] then
-        check[code]=true
-        count=count+1
-      end
-    end
-    tc=g:GetNext()
-  end
-  return count
-end 
+	local check={}
+	local count=0
+	local tc=g:GetFirst()
+	while tc do
+		for i,code in ipairs({tc:GetCode()}) do
+			if not check[code] then
+				check[code]=true
+				count=count+1
+			end
+		end
+		tc=g:GetNext()
+	end
+	return count
+end

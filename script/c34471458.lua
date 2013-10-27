@@ -1,4 +1,5 @@
 --フォーチュンレディ·ライティー
+--TCG Version
 function c34471458.initial_effect(c)
 	--atk,def
 	local e1=Effect.CreateEffect(c)

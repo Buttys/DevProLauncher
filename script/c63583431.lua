@@ -5,7 +5,7 @@ function c63583431.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	c:RegisterEffect(e1)
-	--damage reduce
+	--reduce
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetCode(EFFECT_CHANGE_DAMAGE)
@@ -23,43 +23,40 @@ function c63583431.initial_effect(c)
 	e3:SetCode(EVENT_ATTACK_ANNOUNCE)
 	e3:SetHintTiming(TIMING_BATTLE_PHASE)
 	e3:SetCountLimit(1)
-	e3:SetCondition(c63583431.condition)
-	e3:SetTarget(c63583431.target)
-	e3:SetOperation(c63583431.operation)
+	e3:SetCondition(c63583431.indcon)
+	e3:SetTarget(c63583431.indtg)
+	e3:SetOperation(c63583431.indop)
 	c:RegisterEffect(e3)
 end
 function c63583431.cfilter(c)
 	return c:IsFaceup() and c:IsSetCard(0x59)
 end
 function c63583431.damcon(e)
-  return Duel.IsExistingMatchingCard(c63583431.cfilter,e:GetHandlerPlayer(),LOCATION_MZONE,0,2,nil) 
+	return Duel.IsExistingMatchingCard(c63583431.cfilter,e:GetHandlerPlayer(),LOCATION_MZONE,0,2,nil)
 end
 function c63583431.damval(e,re,val,r,rp,rc)
 	if bit.band(r,REASON_EFFECT)~=0 then return 0 end
 	return val
 end
-function c63583431.condition(e,tp,eg,ep,ev,re,r,rp)
-	local a=Duel.GetAttacker()
-	local at=Duel.GetAttackTarget()
-	return bit.band(Duel.GetCurrentPhase(),0x38)~=0 and at and ((a:IsControler(tp) and a:IsOnField() and a:IsSetCard(0x59))
-		or (at:IsControler(tp) and at:IsOnField() and at:IsFaceup() and at:IsSetCard(0x59)))
+function c63583431.indcon(e,tp,eg,ep,ev,re,r,rp)
+	local tc=Duel.GetAttacker()
+	if tc:IsControler(1-tp) then tc=Duel.GetAttackTarget() end
+	e:SetLabelObject(tc)
+	return tc and tc:IsFaceup() and tc:IsControler(tp) and tc:IsSetCard(0x59)
 end
-function c63583431.target(e,tp,eg,ep,ev,re,r,rp,chk)
+function c63583431.indtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
-	Duel.SetTargetCard(Duel.GetAttacker())
-	Duel.SetTargetCard(Duel.GetAttackTarget())
+	Duel.SetTargetCard(e:GetLabelObject())
 end
-function c63583431.operation(e,tp,eg,ep,ev,re,r,rp)
-	local a=Duel.GetAttacker()
-	local at=Duel.GetAttackTarget()
-	if at:IsControler(tp) then a,at=at,a end
-	if a:IsFacedown() or not a:IsRelateToEffect(e) or not at:IsRelateToEffect(e) 
-	or not e:GetHandler():IsRelateToEffect(e)
-	then return end
-	local e1=Effect.CreateEffect(e:GetHandler())
-	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetCode(EFFECT_INDESTRUCTABLE_BATTLE)
-	e1:SetValue(1)
-	e1:SetReset(RESET_PHASE+PHASE_DAMAGE)
-	a:RegisterEffect(e1,true)
+function c63583431.indop(e,tp,eg,ep,ev,re,r,rp)
+	if not e:GetHandler():IsRelateToEffect(e) then return end
+	local tc=Duel.GetFirstTarget()
+	if tc:IsRelateToEffect(e) then
+		local e1=Effect.CreateEffect(e:GetHandler())
+		e1:SetType(EFFECT_TYPE_SINGLE)
+		e1:SetCode(EFFECT_INDESTRUCTABLE_BATTLE)
+		e1:SetValue(1)
+		e1:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_DAMAGE)
+		tc:RegisterEffect(e1)
+	end
 end

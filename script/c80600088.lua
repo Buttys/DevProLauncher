@@ -36,10 +36,10 @@ function c80600088.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80600088.eqlimit(e,c)
-	return c:IsSetCard(0x7a)
+	return c:IsSetCard(0x107a)
 end
 function c80600088.eqfilter1(c)
-	return c:IsFaceup() and  c:IsSetCard(0x7a)
+	return c:IsFaceup() and  c:IsSetCard(0x107a)
 end
 function c80600088.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and c80600088.eqfilter1(chkc) end
@@ -82,17 +82,17 @@ function c80600088.spcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function c80600088.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsAbleToRemoveAsCost()
-		and	Duel.GetFlagEffect(tp,80600066)=0
+		and	Duel.GetFlagEffect(tp,80600066)==0
 	end
 	Duel.RegisterFlagEffect(tp,80600066,RESET_PHASE+PHASE_END,0,1)
 	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_COST)
 end
 function c80600088.filter1(c,e,tp)
-	return c:IsFaceup() and c:IsSetCard(0x7a) and 
+	return c:IsFaceup() and c:IsSetCard(0x107a) and 
 	Duel.IsExistingMatchingCard(c80600088.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,c:GetCode())
 end
 function c80600088.filter2(c,e,tp,code)
-	return not c:IsCode(code) and c:IsSetCard(0x7a)
+	return not c:IsCode(code) and c:IsSetCard(0x107a)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_XYZ,tp,false,false)
 end
 function c80600088.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

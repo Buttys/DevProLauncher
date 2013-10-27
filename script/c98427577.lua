@@ -1,4 +1,5 @@
 --くず鉄のかかし 
+--TCG Version
 function c98427577.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -20,9 +21,8 @@ function c98427577.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.SetTargetCard(tg)
 end
 function c98427577.activate(e,tp,eg,ep,ev,re,r,rp)
-	Duel.NegateAttack()
 	local c=e:GetHandler()
-	if c:IsRelateToEffect(e) and c:IsCanTurnSet() then
+	if 	Duel.NegateAttack() and c:IsRelateToEffect(e) and c:IsCanTurnSet() then
 		Duel.BreakEffect()
 		c:CancelToGrave()
 		Duel.ChangePosition(c,POS_FACEDOWN)

@@ -18,17 +18,19 @@ function c1003028.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c1003028.cfilter(c)
-	return c:IsFacedown() or c:GetLevel()~=4
+	return c:IsFaceup() and c:GetLevel()~=4
 end
 function c1003028.spcon(e,c)
 	if c==nil then return true end
-	return Duel.GetLocationCount(c:GetControler(),LOCATION_MZONE)>0
-		and	Duel.GetFieldGroupCount(c:GetControler(),0,LOCATION_MZONE)>0
-		and not Duel.IsExistingMatchingCard(c1003028.cfilter,c:GetControler(),LOCATION_MZONE,0,1,nil)
-		and Duel.GetFlagEffect(tp,1003028)==0
+	local tp=c:GetControler()
+	return Duel.GetFlagEffect(tp,1003028)==0
+		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+		and Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)>0
+		and Duel.GetFieldGroupCount(tp,0,LOCATION_MZONE)>0
+		and not Duel.IsExistingMatchingCard(c1003028.cfilter,tp,LOCATION_MZONE,0,1,nil)
 end
-function c1003028.spop(e,tp)
-	Duel.RegisterFlagEffect(tp,1003028,RESET_PHASE+PHASE_END,0,1)
+function c1003028.spop(e,tp,eg,ep,ev,re,r,rp,c)
+	Duel.RegisterFlagEffect(tp,1003028,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
 end
 function c1003028.xyzlimit(e,c)
 	if not c then return false end

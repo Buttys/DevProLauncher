@@ -1,6 +1,6 @@
 --カゲトカゲ
+--TCG Version
 function c94656263.initial_effect(c)
-	c:EnableReviveLimit()
 	--spsummon
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(94656263,0))
@@ -19,6 +19,15 @@ function c94656263.initial_effect(c)
 	e2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e2:SetValue(1)
 	c:RegisterEffect(e2)
+	--summon limit
+	local e3=Effect.CreateEffect(c)
+	e3:SetType(EFFECT_TYPE_SINGLE)
+	e3:SetCode(EFFECT_CANNOT_SUMMON)
+	c:RegisterEffect(e3)
+	--
+	local e4=e3:Clone()
+	e4:SetCode(EFFECT_CANNOT_MSET)
+	c:RegisterEffect(e4)	
 end
 function c94656263.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local ec=eg:GetFirst()
@@ -33,6 +42,5 @@ function c94656263.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) then
 		Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)
-		c:CompleteProcedure()
 	end
 end

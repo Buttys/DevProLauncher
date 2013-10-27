@@ -31,17 +31,17 @@ function c1539051.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Draw(p,ct,REASON_EFFECT)
 end
 function c1539051.count_unique_code(g)
-  local check={}
-  local count=0
-  local tc=g:GetFirst()
-  while tc do
-    for i,code in ipairs({tc:GetCode()}) do
-      if not check[code] then
-        check[code]=true
-        count=count+1
-      end
-    end
-    tc=g:GetNext()
-  end
-  return count
-end 
+	local check={}
+	local count=0
+	local tc=g:GetFirst()
+	while tc do
+		for i,code in ipairs({tc:GetCode()}) do
+			if not check[code] then
+				check[code]=true
+				count=count+1
+			end
+		end
+		tc=g:GetNext()
+	end
+	return count
+end
