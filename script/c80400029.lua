@@ -42,7 +42,7 @@ function c80400029.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 function c80400029.cfilter(c)
-	return c:IsCode(70095154)
+	return c:IsSetCard(0x103)
 end
 function c80400029.ncon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetMatchingGroupCount(c80400029.cfilter,tp,LOCATION_MZONE,0,nil)==0

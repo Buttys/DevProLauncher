@@ -82,7 +82,7 @@ function c80600088.spcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function c80600088.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsAbleToRemoveAsCost()
-		and	Duel.GetFlagEffect(tp,80600066)=0
+		and	Duel.GetFlagEffect(tp,80600066)==0
 	end
 	Duel.RegisterFlagEffect(tp,80600066,RESET_PHASE+PHASE_END,0,1)
 	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_COST)

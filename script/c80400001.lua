@@ -30,7 +30,7 @@ function c80400001.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c80400001.filter(c)
-	return (c:IsCode(80033124) or c:IsCode(47295267) or c:IsCode(63224564) or c:IsCode(63477921) or c:IsCode(90440725) or c:IsCode(92773018) or c:IsCode(3004) or c:IsCode(3005) or c:IsCode(3010)) and c:IsAbleToHand()
+	return (c:IsSetCard(0x103a) or c:IsSetCard(0x103b)) and c:IsAbleToHand()
 end
 function c80400001.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c80400001.filter,tp,LOCATION_DECK,0,1,nil) end
@@ -54,7 +54,7 @@ function c80400001.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.RegisterFlagEffect(tp,80400001,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
 end
 function c80400001.cfilter(c,e,tp)
-	return (c:IsCode(26439287) or c:IsCode(5373478) or c:IsCode(70095154) or c:IsCode(3002) or c:IsCode(80400001)) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return (c:IsSetCard(0x103a) or c:IsSetCard(0x103b)) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c80400001.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
