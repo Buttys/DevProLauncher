@@ -72,8 +72,8 @@ function c80600085.op(e,tp,eg,ep,ev,re,r,rp)
 		local tc=g:Select(1-tp,1,1,nil):GetFirst()
 		if tc:IsAbleToHand() then
 			Duel.SendtoHand(tc,nil,REASON_EFFECT)
-		else
-			Duel.SendtoGrave(tc,REASON_EFFECT)
-		end
+		end			
+		g:RemoveCard(tc)
+		Duel.SendtoGrave(g,REASON_EFFECT)
 	end
 end

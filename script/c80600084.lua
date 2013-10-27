@@ -46,15 +46,14 @@ end
 function c80600084.op(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_EFFECT)
 end
-function c80600084.filter(c,e,tp)
-	return c:IsSetCard(0x7a) and c:IsType(TYPE_NORMAL) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+function c80600084.sfilter(c,e,tp)
+	return c:IsSetCard(0x107a) and c:IsType(TYPE_NORMAL) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c80600084.sumtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and chkc:IsControler(tp) and c80600084.filter(chkc,e,tp) end
-	if chk==0 then return Duel.IsExistingTarget(c80600084.filter,tp,LOCATION_GRAVE,0,1,nil,e,tp)
+	if chk==0 then return Duel.IsExistingTarget(c80600084.sfilter,tp,LOCATION_GRAVE,0,1,nil,e,tp)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectTarget(tp,c80600084.filter,tp,LOCATION_GRAVE,0,1,1,nil,e,tp)
+	local g=Duel.SelectTarget(tp,c80600084.sfilter,tp,LOCATION_GRAVE,0,1,1,nil,e,tp)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,g,1,0,0)
 end
 function c80600084.sumop(e,tp,eg,ep,ev,re,r,rp)
@@ -65,7 +64,7 @@ function c80600084.sumop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c80600084.filter(c)
-	return c:IsSetCard(0x7a) and c:IsFaceup() and c:GetLevel()==5
+	return c:IsSetCard(0x107a) and c:IsFaceup() and c:GetLevel()==5
 end
 function c80600084.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c80600084.filter(chkc) end
