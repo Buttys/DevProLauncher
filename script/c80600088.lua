@@ -9,7 +9,7 @@ function c80600088.initial_effect(c)
 	e1:SetTarget(c80600088.target)
 	e1:SetOperation(c80600088.operation)
 	c:RegisterEffect(e1)
-	--cannot be destroyed
+	--cannot be Target
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_EQUIP)
 	e2:SetCode(EFFECT_CANNOT_BE_EFFECT_TARGET)
@@ -58,25 +58,6 @@ end
 function c80600088.valcon(e,re,rp)
 	return rp~=e:GetHandlerPlayer()
 end
-function c80600088.eqcon(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	return c:IsPreviousLocation(LOCATION_ONFIELD) and c:IsPreviousPosition(POS_FACEUP) and c:IsReason(REASON_DESTROY) and c:CheckUniqueOnField(tp)
-end
-function c80600088.eqcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetFlagEffect(tp,80600088)==0 end
-	Duel.RegisterFlagEffect(tp,80600088,RESET_PHASE+PHASE_END,0,1)
-end
-function c80600088.eqfilter2(c)
-	return c:IsFaceup() and c:IsSetCard(0x107a) and c:IsRace(RACE_WARRIOR)
-end
-function c80600088.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c80600088.eqfilter2(chkc) end
-	if chk==0 then return e:GetHandler():IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingTarget(c80600088.eqfilter2,tp,LOCATION_MZONE,0,1,nil) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_EQUIP)
-	Duel.SelectTarget(tp,c80600088.eqfilter2,tp,LOCATION_MZONE,0,1,1,nil)
-	Duel.SetOperationInfo(0,CATEGORY_EQUIP,e:GetHandler(),1,0,0)
-end
 function c80600088.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetTurnID()~=Duel.GetTurnCount()
 end
@@ -88,7 +69,7 @@ function c80600088.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_COST)
 end
 function c80600088.filter1(c,e,tp)
-	return c:IsFaceup() and c:IsSetCard(0x107a) and 
+	return c:IsFaceup() and c:IsSetCard(0x107a) and c:IsType(TYPE_XYZ) and 
 	Duel.IsExistingMatchingCard(c80600088.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,c:GetCode())
 end
 function c80600088.filter2(c,e,tp,code)

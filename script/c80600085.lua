@@ -63,17 +63,19 @@ function c80600085.tg(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,0,LOCATION_DECK)
 end
-function c80600085.op(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.SelectMatchingCard(tp,c80600085.filter1,tp,LOCATION_DECK,0,3,3,nil,e,tp)
+function c80600085.op(e,tp,eg,ep,ev,re,r,rp)	
+	local g=Duel.GetMatchingGroup(c80600085.filter1,tp,LOCATION_DECK,0,nil)
 	if g:GetCount()>=3 then
-		Duel.ConfirmCards(1-tp,g)
+		local sg=g:Select(tp,3,3,nil)
+		Duel.ConfirmCards(1-tp,sg)
 		Duel.ShuffleDeck(tp)
 		Duel.Hint(HINT_SELECTMSG,1-tp,HINTMSG_ATOHAND)
-		local tc=g:Select(1-tp,1,1,nil):GetFirst()
+		local tg=sg:Select(1-tp,1,1,nil)
+		local tc=tg:GetFirst()
 		if tc:IsAbleToHand() then
 			Duel.SendtoHand(tc,nil,REASON_EFFECT)
-		end			
-		g:RemoveCard(tc)
+			g:RemoveCard(tc)
+		end
 		Duel.SendtoGrave(g,REASON_EFFECT)
 	end
 end
