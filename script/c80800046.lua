@@ -28,7 +28,7 @@ function c80800046.initial_effect(c)
 end
 
 function c80800046.filter(c)
-	return bit.band(c:GetSummonType(),SUMMON_TYPE_SPECIAL)~=0
+	return bit.band(c:GetSummonType(),SUMMON_TYPE_SPECIAL)~=0 and not c:IsType(TYPE_TOKEN)
 end
 function c80800046.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) and c80800046.filter(chkc) end
@@ -41,6 +41,7 @@ function c80800046.op(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) then
+		c:SetMaterial(tc)
 		Duel.Overlay(c,Group.FromCards(tc))
 	end
 end

@@ -29,7 +29,7 @@ function c80800047.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.RegisterFlagEffect(tp,80800047,RESET_PHASE+PHASE_END,0,1)
 end
 function c80800047.filter(c)
-	return c:IsPosition(POS_FACEUP_ATTACK) and bit.band(c:GetSummonType(),SUMMON_TYPE_SPECIAL)~=0
+	return c:IsPosition(POS_FACEUP_ATTACK) and bit.band(c:GetSummonType(),SUMMON_TYPE_SPECIAL)~=0 and not c:IsType(TYPE_TOKEN)
 end
 function c80800047.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) and c80800047.filter(chkc) end
@@ -42,6 +42,7 @@ function c80800047.op(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) then
+		c:SetMaterial(tc)
 		Duel.Overlay(c,Group.FromCards(tc))
 	end
 end
