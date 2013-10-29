@@ -460,6 +460,7 @@ namespace DevProLauncher.Windows
             this.chkmate_btn.TabIndex = 5;
             this.chkmate_btn.Text = "Checkmate Server";
             this.chkmate_btn.UseVisualStyleBackColor = true;
+            this.chkmate_btn.Click += new System.EventHandler(this.chkmate_btn_Click);
             // 
             // tableLayoutPanel7
             // 
