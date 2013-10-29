@@ -79,7 +79,7 @@ function c80600000.operation(e,tp,eg,ep,ev,re,r,rp)
 		e2:SetCode(EFFECT_CANNOT_ATTACK)
 		e2:SetTargetRange(LOCATION_MZONE,0)
 		e2:SetTarget(c80600000.ftarget)
-		e2:SetLabel(g:GetFirst():GetFieldID())
+		e2:SetLabel(tc:GetFieldID())
 		e2:SetReset(RESET_PHASE+PHASE_END)
 		Duel.RegisterEffect(e2,tp)
 	end
