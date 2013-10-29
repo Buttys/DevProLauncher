@@ -73,7 +73,7 @@ function c80600000.operation(e,tp,eg,ep,ev,re,r,rp)
 		local g=Duel.GetMatchingGroup(c80600000.filter,tp,LOCATION_MZONE,LOCATION_MZONE,tc)
 		local bc=g:GetFirst()
 		while bc do
-			atk=atk+bc:GetAttack()
+			atk=atk+bc:GetBaseAttack()
 			bc=g:GetNext()
 		end
 		local e1=Effect.CreateEffect(e:GetHandler())
