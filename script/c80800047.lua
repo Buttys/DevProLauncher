@@ -42,8 +42,9 @@ function c80800047.op(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) then
-		c:SetMaterial(tc)
-		Duel.Overlay(c,Group.FromCards(tc))
+		local tg=Group.FromCards(tc)
+		c:SetMaterial(tg)
+		Duel.Overlay(c,tg)
 	end
 end
 function c80800047.repfilter(c,tp)
