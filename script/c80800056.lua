@@ -23,13 +23,12 @@ function c80800056.condition(e,tp,eg,ep,ev,re,r,rp)
 	local p=Duel.GetTurnPlayer()
 	local phase=Duel.GetCurrentPhase()
 	return 	ct1<ct2 and
-			(bit.band(phase,PHASE_MAIN1+PHASE_MAIN2)~=0 and p==tp) or
-			(phase==PHASE_BATTLE and p~=tp)
+			((bit.band(phase,PHASE_MAIN1+PHASE_MAIN2)~=0 and p==tp) or
+			(phase==PHASE_BATTLE and p~=tp))
 end
 function c80800056.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
-	
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_CHANGE_DAMAGE)
@@ -39,9 +38,6 @@ function c80800056.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e1:SetReset(RESET_PHASE+PHASE_END,1)
 	Duel.RegisterEffect(e1,tp)
 end
-function c80800056.filter(c)
-	return c:IsFaceup() and (c:GetAttack()>0 or c:GetDefence()>0)
-end
 function c80800056.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,e:GetHandler()) end
 	local sg=Duel.GetMatchingGroup(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,e:GetHandler())
@@ -49,5 +45,5 @@ function c80800056.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function c80800056.operation(e,tp,eg,ep,ev,re,r,rp)
 	local sg=Duel.GetMatchingGroup(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,e:GetHandler())
-	Duel.Destroy(sg,nil,REASON_EFFECT)
+	Duel.Destroy(sg,REASON_EFFECT)
 end
