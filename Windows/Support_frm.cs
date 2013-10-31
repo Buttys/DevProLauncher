@@ -155,7 +155,7 @@ namespace DevProLauncher.Windows
             {
                 if (servercommand == "NULL")
                 {
-                    Process.Start("http://ygopro.de/login/");
+                    Process.Start("http://ygopro.de/login.php?sites=login");
                     return;
                 }
 
