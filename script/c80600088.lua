@@ -73,7 +73,7 @@ function c80600088.filter1(c,e,tp)
 	Duel.IsExistingMatchingCard(c80600088.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,c:GetCode())
 end
 function c80600088.filter2(c,e,tp,code)
-	return not c:IsCode(code) and c:IsSetCard(0x107a)
+	return not c:IsCode(code) and c:IsSetCard(0x107a) and c:IsType(TYPE_XYZ) 
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_XYZ,tp,false,false)
 end
 function c80600088.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
