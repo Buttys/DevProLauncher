@@ -69,7 +69,7 @@ function c80400002.splimit(e,c)
 	return not c:IsRace(RACE_MACHINE)
 end
 function c80400002.filter(c)
-	return c:IsFaceup() and c:IsSetCard(0x103)
+	return c:IsFaceup() and c:IsSetCard(0x103c)
 end
 function c80400002.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c80400002.filter,tp,LOCATION_MZONE,0,1,nil) end

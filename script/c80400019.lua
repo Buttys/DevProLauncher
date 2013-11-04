@@ -12,7 +12,7 @@ function c80400019.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c80400019.cfilter(c)
-	return c:IsSetCard(0x103)
+	return c:IsSetCard(0x103c)
 end
 function c80400019.condition(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(c80400019.cfilter,tp,LOCATION_GRAVE,0,1,nil)

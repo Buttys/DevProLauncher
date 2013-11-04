@@ -1,86 +1,82 @@
---ZW－極星神馬聖鎧
-function c80800004.initial_effect(c)
-	c:SetUniqueOnField(1,0,80800004)
-	--equip
+--虹クリボー
+function cc80800004.initial_effect(c)
+	--special summon
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(80800004,0))
-	e1:SetType(EFFECT_TYPE_IGNITION)
-	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e1:SetDescription(aux.Stringid(c80800004,0))
 	e1:SetCategory(CATEGORY_EQUIP)
-	e1:SetRange(LOCATION_HAND+LOCATION_MZONE)
-	e1:SetCondition(c80800004.eqcon)
-	e1:SetTarget(c80800004.eqtg)
-	e1:SetOperation(c80800004.eqop)
+	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e1:SetCode(EVENT_ATTACK_ANNOUNCE)
+	e1:SetRange(LOCATION_HAND)
+	e1:SetCondition(cc80800004.condition)
+	e1:SetCost(cc80800004.cost1)
+	e1:SetTarget(cc80800004.target)
+	e1:SetOperation(cc80800004.operation)
 	c:RegisterEffect(e1)
 	--spsummon
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(80800004,0))
+	e2:SetDescription(aux.Stringid(c80800004,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
-	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
-	e2:SetProperty(EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DELAY)
-	e2:SetCode(EVENT_TO_GRAVE)
-	e2:SetCondition(c80800004.spcon)
-	e2:SetTarget(c80800004.sptg)
-	e2:SetOperation(c80800004.spop)
+	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e2:SetCode(EVENT_ATTACK_ANNOUNCE)
+	e2:SetRange(LOCATION_GRAVE)
+	e2:SetCondition(cc80800004.spcon)
+	e2:SetCost(cc80800004.cost2)
+	e2:SetTarget(cc80800004.sptg)
+	e2:SetOperation(cc80800004.spop)
 	c:RegisterEffect(e2)
 end
-function c80800004.eqcon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():CheckUniqueOnField(tp)
+function cc80800004.condition(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.GetAttacker():IsControler(1-tp)
 end
-function c80800004.filter(c)
-	return c:IsFaceup() and c:IsSetCard(0x7f)
+function cc80800004.cost1(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.GetFlagEffect(tp,c80800004)==0 end
+	Duel.RegisterFlagEffect(tp,c80800004,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
 end
-function c80800004.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c80800004.filter(chkc) end
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingTarget(c80800004.filter,tp,LOCATION_MZONE,0,1,nil) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_EQUIP)
-	Duel.SelectTarget(tp,c80800004.filter,tp,LOCATION_MZONE,0,1,1,nil)
+function cc80800004.target(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end
 end
-function c80800004.eqop(e,tp,eg,ep,ev,re,r,rp)
+function cc80800004.operation(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not c:IsRelateToEffect(e) then return end
-	local tc=Duel.GetFirstTarget()
-	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or tc:GetControler()~=tp or tc:IsFacedown() or not tc:IsRelateToEffect(e) or not c:CheckUniqueOnField(tp) then
+	local at=Duel.GetAttacker()
+	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or at:GetControler()==tp or at:IsFacedown()  then
 		Duel.SendtoGrave(c,REASON_EFFECT)
 		return
 	end
-	Duel.Equip(tp,c,tc,true)
+	Duel.Equip(tp,c,at,true)
+	--cannot attack
 	local e1=Effect.CreateEffect(c)
-	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetCode(EFFECT_EQUIP_LIMIT)
+	e1:SetType(EFFECT_TYPE_EQUIP)
+	e1:SetCode(EFFECT_CANNOT_ATTACK)
 	e1:SetReset(RESET_EVENT+0x1fe0000)
-	e1:SetValue(c80800004.eqlimit)
 	c:RegisterEffect(e1)
-	--atkup
 	local e2=Effect.CreateEffect(c)
-	e2:SetType(EFFECT_TYPE_EQUIP)
-	e2:SetCode(EFFECT_UPDATE_ATTACK)
-	e2:SetValue(1000)
+	e2:SetType(EFFECT_TYPE_SINGLE)
+	e2:SetCode(EFFECT_EQUIP_LIMIT)
 	e2:SetReset(RESET_EVENT+0x1fe0000)
+	e2:SetValue(1)
 	c:RegisterEffect(e2)
 end
-function c80800004.eqlimit(e,c)
-	return c:IsSetCard(0x7f)
+function cc80800004.spcon(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.GetAttacker():IsControler(1-tp) and Duel.GetAttackTarget()==nil
 end
-function c80800004.spfilter(c,e,tp)
-	return c:IsSetCard(0x7f) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+function cc80800004.cost2(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.GetFlagEffect(tp,1005)==0 end
+	Duel.RegisterFlagEffect(tp,1005,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
 end
-function c80800004.spcon(e,tp,eg,ep,ev,re,r,rp)
-	local ec=e:GetHandler():GetPreviousEquipTarget()
-	return e:GetHandler():IsReason(REASON_LOST_TARGET) and ec and ec:IsReason(REASON_DESTROY)
-		and ec:IsLocation(LOCATION_GRAVE) and ec:GetReasonPlayer()==1-tp
-end
-function c80800004.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
+function cc80800004.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.IsExistingTarget(c80800004.spfilter,tp,LOCATION_GRAVE,0,1,nil,e,tp) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectTarget(tp,c80800004.spfilter,tp,LOCATION_GRAVE,0,1,1,nil,e,tp)
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,g,1,0,0)
+		and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) end
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)
 end
-function c80800004.spop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=Duel.GetFirstTarget()
-	if tc:IsRelateToEffect(e) then
-		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
+function cc80800004.spop(e,tp,eg,ep,ev,re,r,rp)
+	local c=e:GetHandler()
+	if c:IsRelateToEffect(e) and Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then
+		local e1=Effect.CreateEffect(c)
+		e1:SetType(EFFECT_TYPE_SINGLE)
+		e1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)
+		e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+		e1:SetReset(RESET_EVENT+0x47e0000)
+		e1:SetValue(LOCATION_REMOVED)
+		c:RegisterEffect(e1,true)
 	end
 end

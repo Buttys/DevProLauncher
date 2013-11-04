@@ -54,7 +54,7 @@ function c80400001.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.RegisterFlagEffect(tp,80400001,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
 end
 function c80400001.cfilter(c,e,tp)
-	return (c:IsSetCard(0x103a) or c:IsSetCard(0x103b)) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsSetCard(0x103c) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c80400001.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
