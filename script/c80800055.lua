@@ -27,10 +27,9 @@ function c80800055.tg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetChainLimit(c80800055.chainlimit)
 end
 function c80800055.chainlimit(e,rp,tp)
-	return tp==rp or not e:IsHasType(EFFECT_TYPE_ACTIVATE)
+	return tp==rp
 end
 function c80800055.op(e,tp,eg,ep,ev,re,r,rp)
 	local sg=Duel.GetMatchingGroup(Card.IsAbleToHand,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,e:GetHandler())
 	Duel.SendtoHand(sg,nil,REASON_EFFECT)
 end
-
