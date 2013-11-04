@@ -17,8 +17,9 @@ function c80800015.initial_effect(c)
 	e3:SetDescription(aux.Stringid(80800015,1))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DELAY)
-	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
-	e3:SetCode(EVENT_TO_GRAVE)
+	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e3:SetCode(EVENT_CONFIRM_DECKTOP)
+	e3:SetRange(LOCATION_DECK)
 	e3:SetCondition(c80800015.spcon)
 	e3:SetCost(c80800015.spcost)
 	e3:SetTarget(c80800015.sptg)
@@ -41,9 +42,7 @@ function c80800015.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c80800015.spcon(e,tp,eg,ep,ev,re,r,rp)
-	if not re or e:GetHandler():IsReason(REASON_RETURN) then return false end
-	local code=re:GetHandler():GetCode()
-	return e:GetHandler():IsPreviousLocation(LOCATION_DECK) and (code==32362575 or code==79106360 or code==18631392 or code==58577036 or code==43040603 or code==22796548 or code==90951921 or code==1020 or code==80800015 or code==80800020)
+	return eg:IsContains(e:GetHandler())
 end
 function c80800015.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,80800015)==0 end
