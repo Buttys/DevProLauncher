@@ -69,8 +69,8 @@ namespace DevProLauncher.Network
         public ChannelList ChannelRequest;
         public ServerResponse AddGameServer;
         public ServerResponse RemoveGameServer;
-        public ServerResponse Kicked;
-        public ServerResponse Banned;
+
+        public string ServerKickBanMessage;
 
 
         public ChatClient()
@@ -283,18 +283,7 @@ namespace DevProLauncher.Network
                         LoginReply(e.Packet, null);
                     break;
                 case DevClientPackets.Banned:
-                    string message = Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length));
-                    if (string.IsNullOrEmpty(message))
-                    {
-                        if (Banned != null)
-                            Banned("You are banned.");
-                    }
-                    else
-                    {
-                        if (Banned != null)
-                            Banned(message);
-                    }
-
+                    ServerKickBanMessage = Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length));
                     break;
                 case DevClientPackets.RegisterAccept:                
                     if (RegisterReply != null)
@@ -435,8 +424,7 @@ namespace DevProLauncher.Network
                         UpdateRoomStatus(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
                     break;
                 case DevClientPackets.Kicked:
-                    if (Kicked != null)
-                        Kicked(Encoding.UTF8.GetString(e.Raw));
+                    ServerKickBanMessage = Encoding.UTF8.GetString(e.Raw);
                     break;
                 default:                
                     if (OnFatalError != null)

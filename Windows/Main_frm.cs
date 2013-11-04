@@ -43,8 +43,6 @@ namespace DevProLauncher.Windows
             m_customizerWindow = new CustomizeFrm();
             LauncherHelper.CardManager.Init();
 
-            Program.ChatServer.Banned += ServerMessage;
-            Program.ChatServer.Kicked += ServerMessage;
             Program.ChatServer.ServerMessage += ServerMessage;
 
             mainTabs.SelectedIndexChanged += TabChange;
@@ -162,7 +160,7 @@ namespace DevProLauncher.Windows
                 var connectionCheck = (Timer)sender;
                 Hide();
                 connectionCheck.Enabled = false;
-                if (MessageBox.Show("Disconnected from server.", "Server", MessageBoxButtons.OK) == DialogResult.OK)
+                if (MessageBox.Show(!string.IsNullOrEmpty(Program.ChatServer.ServerKickBanMessage) ? Program.ChatServer.ServerKickBanMessage: "Disconnected from server.", "Server", MessageBoxButtons.OK) == DialogResult.OK)
                 {
                     var process = new Process();
                     var startInfos = new ProcessStartInfo(Application.ExecutablePath, "-r");
