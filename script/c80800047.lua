@@ -43,6 +43,10 @@ function c80800047.op(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) then
 		local tg=Group.FromCards(tc)
+		local mg=tc:GetMaterial()
+		if mg:GetCount()>0 then
+			Duel.SendtoGrave(mg,REASON_RULE)
+		end
 		c:SetMaterial(tg)
 		Duel.Overlay(c,tg)
 	end
