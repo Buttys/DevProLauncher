@@ -1,6 +1,6 @@
 --光子竜降臨
 function c80800062.initial_effect(c)
-	aux.AddRitualProcGreater(c,aux.FilterBoolFunction(Card.IsCode,1045))
+	aux.AddRitualProcGreater(c,aux.FilterBoolFunction(Card.IsCode,80800045))
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
@@ -19,7 +19,7 @@ function c80800062.mfilter1(c,e)
 	return c:IsType(TYPE_MONSTER) and c:GetLevel()>0 and c:IsAbleToRemove() and not c:IsImmuneToEffect(e) 
 end
 function c80800062.filter(c,e,tp,m)
-	if not c:IsCode(1045) or not c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,true,false) then return false end
+	if not c:IsCode(80800045) or not c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,true,false) then return false end
 	return m:CheckWithSumEqual(Card.GetLevel,4,1,c)
 end
 function c80800062.target(e,tp,eg,ep,ev,re,r,rp,chk)
