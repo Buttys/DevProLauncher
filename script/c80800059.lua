@@ -17,7 +17,7 @@ function c80800059.initial_effect(c)
 	e2:SetCode(EVENT_PREDRAW)
 	e2:SetRange(LOCATION_GRAVE)
 	e2:SetCondition(c80800059.thcon)
-    	e2:SetCost(c80800059.cost)
+	e2:SetCost(c80800059.cost)
 	e2:SetTarget(c80800059.thtg)
 	e2:SetOperation(c80800059.thop)
 	c:RegisterEffect(e2)
@@ -64,6 +64,7 @@ function c80800059.thcon(e,tp,eg,ep,ev,re,r,rp)
 		and Duel.GetDrawCount(tp)>0
 end
 function c80800059.cost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk then return not Duel.CheckSpecialSummonActivity(tp) end
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_OATH)
@@ -75,7 +76,7 @@ function c80800059.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.RegisterEffect(e1,tp)
 end
 function c80800059.sumlimit(e,c,sump,sumtype,sumpos,targetp,se)
-	return e:GetLabelObject()~=se
+	return e:GetLabelObject()~=se 
 end
 function c80800059.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsAbleToHand() end

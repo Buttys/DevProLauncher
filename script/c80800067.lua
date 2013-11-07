@@ -11,7 +11,10 @@ function c80800067.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c80800067.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetFlagEffect(tp,80800067)==0 end
+	if chk==0 then return Duel.GetFlagEffect(tp,80800067)==0 and
+	Duel.IsExistingMatchingCard(Card.IsAbleToGraveAsCost,tp,LOCATION_HAND,0,1,e:GetHandler()) end
+	local g=Duel.SelectMatchingCard(tp,Card.IsAbleToGraveAsCost,tp,LOCATION_HAND,0,1,1,nil)
+	Duel.SendtoGrave(g,REASON_COST)
 	Duel.RegisterFlagEffect(tp,80800067,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
 end
 function c80800067.filter(c)

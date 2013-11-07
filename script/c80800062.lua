@@ -1,6 +1,6 @@
 --光子竜降臨
 function c80800062.initial_effect(c)
-	aux.AddRitualProcGreater(c,aux.FilterBoolFunction(Card.IsCode,80800045))
+	aux.AddRitualProcEqual(c,aux.FilterBoolFunction(Card.IsCode,80800045))
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
