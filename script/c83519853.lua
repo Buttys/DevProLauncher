@@ -1,7 +1,7 @@
 --Ignoble Knight of High Laundsallyn
 function c83519853.initial_effect(c)
 	--synchro summon
-	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsSetCode,0x7a),1)
+	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsSetCode,0x107a),1)
 	c:EnableReviveLimit()
 	c:SetUniqueOnField(1,0,83519853)
 	--equip
