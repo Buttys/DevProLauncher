@@ -19,6 +19,7 @@ function c80800053.initial_effect(c)
 	e2:SetCode(EVENT_FREE_CHAIN)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetRange(LOCATION_MZONE)
+	e2:SetCountLimit(1)
 	e2:SetCost(c80800053.cost)
 	e2:SetTarget(c80800053.tg)
 	e2:SetOperation(c80800053.op)
@@ -45,9 +46,8 @@ function c80800053.tg(e,c)
 	return c~=e:GetHandler() and (c:IsFacedown() or c:IsSetCard(0x8d))
 end
 function c80800053.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetFlagEffect(tp,80800053)==0 and e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
+	if chk==0 then e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
-	Duel.RegisterFlagEffect(tp,80800053,RESET_PHASE+PHASE_END,0,1)
 end
 function c80800053.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsFaceup() and chkc:GetLocation()==LOCATION_MZONE end
