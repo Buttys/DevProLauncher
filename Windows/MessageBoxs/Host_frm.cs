@@ -40,8 +40,8 @@ namespace DevProLauncher.Windows.MessageBoxs
 
             }
             Mode.SelectedIndexChanged += DuelModeChanged;
-            if(!isranked)
-                CardRules.SelectedIndexChanged += CardRulesChanged;
+            //if(!isranked)
+                //CardRules.SelectedIndexChanged += CardRulesChanged;
             ApplyTranslation();
         }
 
@@ -135,10 +135,6 @@ namespace DevProLauncher.Windows.MessageBoxs
                 gamestring = "1";
             else if (CardRules.Text == "OCG/TCG")
                 gamestring = "2";
-            else if (CardRules.Text == "Anime")
-                gamestring = "4";
-            else if (CardRules.Text == "Turbo Duel")
-                gamestring = "5";
             else
                 gamestring = "3";
             if (Mode.Text == "Single")
@@ -179,10 +175,6 @@ namespace DevProLauncher.Windows.MessageBoxs
                 gamestring = "1";
             else if (CardRules.Text == "OCG/TCG")
                 gamestring = "2";
-            else if (CardRules.Text == "Anime")
-                gamestring = "4";
-            else if (CardRules.Text == "Turbo Duel")
-                gamestring = "5";
             else
                 gamestring = "3";
             if (Mode.Text == "Single")

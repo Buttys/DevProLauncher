@@ -67,9 +67,9 @@ namespace DevProLauncher.Windows
             this.SearchReset = new System.Windows.Forms.Timer(this.components);
             this.GameListUpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.SpectateBtn = new System.Windows.Forms.Button();
+            this.SpectateTimer = new System.Windows.Forms.Timer(this.components);
             this.RankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
-            this.SpectateTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -307,9 +307,7 @@ namespace DevProLauncher.Windows
             "All",
             "OCG",
             "TCG",
-            "OCG/TCG",
-            "Anime",
-            "Turbo Duel"});
+            "OCG/TCG"});
             this.Format.Location = new System.Drawing.Point(113, 3);
             this.Format.Name = "Format";
             this.Format.Size = new System.Drawing.Size(104, 21);
@@ -522,6 +520,10 @@ namespace DevProLauncher.Windows
             this.SpectateBtn.UseVisualStyleBackColor = true;
             this.SpectateBtn.Click += new System.EventHandler(this.SpectateBtn_Click);
             // 
+            // SpectateTimer
+            // 
+            this.SpectateTimer.Interval = 1000;
+            // 
             // RankedList
             // 
             this.RankedList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -545,10 +547,6 @@ namespace DevProLauncher.Windows
             this.UnrankedList.Name = "UnrankedList";
             this.UnrankedList.Size = new System.Drawing.Size(317, 475);
             this.UnrankedList.TabIndex = 0;
-            // 
-            // SpectateTimer
-            // 
-            this.SpectateTimer.Interval = 1000;
             // 
             // HubGameList_frm
             // 
