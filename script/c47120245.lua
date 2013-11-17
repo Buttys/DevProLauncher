@@ -1,6 +1,6 @@
---聖騎士ボーズ
+--Noble Knight Borz
 function c47120245.initial_effect(c)
-	--Attribute Dark
+	--Normal monster
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
@@ -18,54 +18,46 @@ function c47120245.initial_effect(c)
 	e2:SetCondition(c47120245.eqcon2)
 	e2:SetValue(ATTRIBUTE_DARK)
 	c:RegisterEffect(e2)
-	local e3=Effect.CreateEffect(c)
-	e3:SetType(EFFECT_TYPE_SINGLE)
-	e3:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	local e3=e2:Clone()
 	e3:SetCode(EFFECT_UPDATE_LEVEL)
-	e3:SetRange(LOCATION_MZONE)
-	e3:SetCondition(c47120245.eqcon2)
 	e3:SetValue(1)
 	c:RegisterEffect(e3)
-	--Search
+	--search
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(47120245,0))
-	e4:SetCategory(CATEGORY_TOHAND)
+	e4:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e4:SetType(EFFECT_TYPE_IGNITION)
 	e4:SetRange(LOCATION_MZONE)
-	e4:SetCondition(c47120245.con)
-	e4:SetCost(c47120245.cost)
-	e4:SetTarget(c47120245.tg)
-	e4:SetOperation(c47120245.op)
+	e4:SetCondition(c47120245.thcon)
+	e4:SetCost(c47120245.thcost)
+	e4:SetTarget(c47120245.thtg)
+	e4:SetOperation(c47120245.thop)
 	c:RegisterEffect(e4)
 end
 function c47120245.eqcon1(e)
-	local eg=e:GetHandler():GetEquipGroup()
-	return not eg or not eg:IsExists(Card.IsSetCard,1,nil,0x207a)
+	return not e:GetHandler():GetEquipGroup():IsExists(Card.IsSetCard,1,nil,0x207a)
 end
 function c47120245.eqcon2(e)
-	local eg=e:GetHandler():GetEquipGroup()
-	return eg and eg:IsExists(Card.IsSetCard,1,nil,0x207a)
+	return e:GetHandler():GetEquipGroup():IsExists(Card.IsSetCard,1,nil,0x207a)
 end
-function c47120245.con(e,tp,eg,ep,ev,re,r,rp)
+function c47120245.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return c47120245.eqcon2(e)
 end
-function c47120245.cost(e,tp,eg,ep,ev,re,r,rp,chk)
+function c47120245.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,47120245)==0 end
 	Duel.RegisterFlagEffect(tp,47120245,RESET_PHASE+PHASE_END,0,1)
 end
-function c47120245.filter1(c)
+function c47120245.thfilter(c)
 	return c:IsSetCard(0x207a) and c:IsAbleToHand()
 end
-function c47120245.tg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then
-		local g=Duel.GetMatchingGroup(c47120245.filter1,tp,LOCATION_DECK,0,nil)
-		return g:GetCount()>=3
-	end
+function c47120245.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(c47120245.thfilter,tp,LOCATION_DECK,0,3,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,0,LOCATION_DECK)
 end
-function c47120245.op(e,tp,eg,ep,ev,re,r,rp)	
-	local g=Duel.GetMatchingGroup(c47120245.filter1,tp,LOCATION_DECK,0,nil)
+function c47120245.thop(e,tp,eg,ep,ev,re,r,rp)
+	local g=Duel.GetMatchingGroup(Card.IsSetCard,tp,LOCATION_DECK,0,nil,0x207a)
 	if g:GetCount()>=3 then
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local sg=g:Select(tp,3,3,nil)
 		Duel.ConfirmCards(1-tp,sg)
 		Duel.ShuffleDeck(tp)

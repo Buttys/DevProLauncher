@@ -59,6 +59,7 @@ namespace DevProLauncher.Config
         public string GameNotUpdating = "Status: Not Updating";
         public string GameUpdating1 = "Status: Updating for ";
         public string GameUpdating2 = " seconds.";
+        public string GameSpectate = "Random Spectate";
 
         public string GameNoServers = "No servers are available.";
 

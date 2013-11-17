@@ -1,4 +1,5 @@
 --ライトロード・メイデン ミネルバ
+--TCG Version
 function c80300002.initial_effect(c)
 	--search
 	local e1=Effect.CreateEffect(c)
@@ -24,6 +25,7 @@ function c80300002.initial_effect(c)
 	local e3=Effect.CreateEffect(c)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e3:SetDescription(aux.Stringid(80300002,2))
+	e3:SetProperty(EFFECT_FLAG_REPEAT)
 	e3:SetCategory(CATEGORY_DECKDES)
 	e3:SetCode(EVENT_PHASE+PHASE_END)
 	e3:SetRange(LOCATION_MZONE)

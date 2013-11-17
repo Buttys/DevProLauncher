@@ -23,16 +23,16 @@ function c85463083.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetCountLimit(1)
-	e3:SetCondition(c85463083.condition)
-	e3:SetTarget(c85463083.target)
-	e3:SetOperation(c85463083.operation)
+	e3:SetCondition(c85463083.atkcon)
+	e3:SetTarget(c85463083.atktg)
+	e3:SetOperation(c85463083.atkop)
 	c:RegisterEffect(e3)
 end
-function c85463083.sfilter(c)
+function c85463083.filter(c)
 	return c:IsFaceup() and c:IsSetCard(0x8d)
 end
 function c85463083.sumcon(e)
-	return not Duel.IsExistingMatchingCard(c85463083.sfilter,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil)
+	return not Duel.IsExistingMatchingCard(c85463083.filter,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil)
 end
 function c85463083.postg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -46,42 +46,42 @@ function c85463083.posop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ChangePosition(c,POS_FACEDOWN_DEFENCE)
 	end
 end
-function c85463083.condition(e,tp,eg,ep,ev,re,r,rp)
+function c85463083.atkcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetCurrentPhase()==PHASE_MAIN1
 end
-function c85463083.filter(c)
-	return c:IsFaceup() and c:IsSetCard(0x8d)
-end
-function c85463083.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+function c85463083.atktg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and c85463083.filter(chkc) end
 	if chk==0 then return Duel.IsExistingTarget(c85463083.filter,tp,LOCATION_MZONE,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local g=Duel.SelectTarget(tp,c85463083.filter,tp,LOCATION_MZONE,0,1,1,nil)
+	local e1=Effect.CreateEffect(e:GetHandler())
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetCode(EFFECT_CANNOT_ATTACK)
+	e1:SetProperty(EFFECT_FLAG_OATH)
+	e1:SetTargetRange(LOCATION_MZONE,0)
+	e1:SetTarget(c85463083.ftarget)
+	e1:SetLabel(g:GetFirst():GetFieldID())
+	e1:SetReset(RESET_PHASE+PHASE_END)
+	Duel.RegisterEffect(e1,tp)
 end
-function c85463083.operation(e,tp,eg,ep,ev,re,r,rp)
+function c85463083.atkop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if tc:IsFaceup() and tc:IsRelateToEffect(e) then
 		local atk=0
 		local g=Duel.GetMatchingGroup(c85463083.filter,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
 		local bc=g:GetFirst()
 		while bc do
-			atk=atk+bc:GetBaseAttack()
+			local catk=bc:GetBaseAttack()
+			if catk<0 then catk=0 end
+			atk=atk+catk
 			bc=g:GetNext()
 		end
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_SET_ATTACK_FINAL)
-		e1:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END+RESET_OPPO_TURN)
 		e1:SetValue(atk)
+		e1:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,2)
 		tc:RegisterEffect(e1)
-		local e2=Effect.CreateEffect(e:GetHandler())
-		e2:SetType(EFFECT_TYPE_FIELD)
-		e2:SetCode(EFFECT_CANNOT_ATTACK)
-		e2:SetTargetRange(LOCATION_MZONE,0)
-		e2:SetTarget(c85463083.ftarget)
-		e2:SetLabel(tc:GetFieldID())
-		e2:SetReset(RESET_PHASE+PHASE_END)
-		Duel.RegisterEffect(e2,tp)
 	end
 end
 function c85463083.ftarget(e,c)

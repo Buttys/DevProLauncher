@@ -1,4 +1,5 @@
 --ライトロード·モンク エイリン
+--TCG Version
 function c44178886.initial_effect(c)
 	--to deck
 	local e1=Effect.CreateEffect(c)
@@ -14,6 +15,7 @@ function c44178886.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e2:SetCategory(CATEGORY_DECKDES)
 	e2:SetDescription(aux.Stringid(44178886,1))
+	e2:SetProperty(EFFECT_FLAG_REPEAT)
 	e2:SetCode(EVENT_PHASE+PHASE_END)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetCountLimit(1)

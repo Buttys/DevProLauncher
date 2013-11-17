@@ -47,6 +47,7 @@ namespace DevProLauncher.Windows
             RankedList.DoubleClick += LoadRoom;
 
             SearchReset.Tick += ResetSearch;
+            SpectateTimer.Tick += ResetSpectate;
             GameListUpdateTimer.Tick += UpdateGameListTimer;
 
             RefreshDeckList();
@@ -148,6 +149,27 @@ namespace DevProLauncher.Windows
             {
                 int value = Int32.Parse(SearchRequest_Btn.Text);
                 SearchRequest_Btn.Text = (value - 1).ToString(CultureInfo.InvariantCulture);
+            }
+        }
+
+        private void ResetSpectate(object sender, EventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<object, EventArgs>(ResetSpectate), sender, e);
+                return;
+            }
+
+            if (SpectateBtn.Text == "1")
+            {
+                SpectateBtn.Enabled = true;
+                SpectateBtn.Text = Program.LanguageManager.Translation.GameSpectate;
+                SpectateTimer.Enabled = false;
+            }
+            else
+            {
+                int value = Int32.Parse(SpectateBtn.Text);
+                SpectateBtn.Text = (value - 1).ToString(CultureInfo.InvariantCulture);
             }
         }
 
@@ -652,6 +674,14 @@ namespace DevProLauncher.Windows
         private void chkmate_btn_Click(object sender, EventArgs e)
         {
             LauncherHelper.chkmate_btn_Click(sender,e);
+        }
+
+        private void SpectateBtn_Click(object sender, EventArgs e)
+        {
+            Program.ChatServer.SendPacket(DevServerPackets.RandomSpectate);
+            SpectateBtn.Enabled = false;
+            SpectateBtn.Text = "5";
+            SpectateTimer.Enabled = true;
         }
 
     }

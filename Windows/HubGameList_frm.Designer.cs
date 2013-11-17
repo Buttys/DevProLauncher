@@ -66,8 +66,10 @@ namespace DevProLauncher.Windows
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SearchReset = new System.Windows.Forms.Timer(this.components);
             this.GameListUpdateTimer = new System.Windows.Forms.Timer(this.components);
+            this.SpectateBtn = new System.Windows.Forms.Button();
             this.RankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
+            this.SpectateTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -95,7 +97,7 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(915, 485);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(915, 506);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -111,17 +113,17 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 305F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(244, 479);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 334F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(244, 500);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel4);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 177);
+            this.groupBox2.Location = new System.Drawing.Point(3, 169);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(238, 299);
+            this.groupBox2.Size = new System.Drawing.Size(238, 328);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
@@ -132,13 +134,15 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel6, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.SpectateBtn, 0, 2);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(232, 280);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(232, 309);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // tableLayoutPanel5
@@ -149,11 +153,11 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel5.Controls.Add(this.SearchRequest_Btn, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 213);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 215);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(226, 64);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(226, 62);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // SearchRequest_Btn
@@ -161,7 +165,7 @@ namespace DevProLauncher.Windows
             this.SearchRequest_Btn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SearchRequest_Btn.Location = new System.Drawing.Point(3, 3);
             this.SearchRequest_Btn.Name = "SearchRequest_Btn";
-            this.SearchRequest_Btn.Size = new System.Drawing.Size(136, 58);
+            this.SearchRequest_Btn.Size = new System.Drawing.Size(136, 56);
             this.SearchRequest_Btn.TabIndex = 1;
             this.SearchRequest_Btn.Text = "Search";
             this.SearchRequest_Btn.UseVisualStyleBackColor = true;
@@ -174,7 +178,7 @@ namespace DevProLauncher.Windows
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(145, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(78, 58);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(78, 56);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // Host_btn
@@ -211,13 +215,13 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(226, 204);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(226, 206);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // UserFilter
             // 
             this.UserFilter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UserFilter.Location = new System.Drawing.Point(3, 182);
+            this.UserFilter.Location = new System.Drawing.Point(3, 184);
             this.UserFilter.Name = "UserFilter";
             this.UserFilter.Size = new System.Drawing.Size(220, 20);
             this.UserFilter.TabIndex = 0;
@@ -227,7 +231,7 @@ namespace DevProLauncher.Windows
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 160);
+            this.label1.Location = new System.Drawing.Point(3, 162);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 1;
@@ -260,14 +264,14 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(220, 148);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(220, 150);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
             // ActiveGames
             // 
             this.ActiveGames.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ActiveGames.AutoSize = true;
-            this.ActiveGames.Location = new System.Drawing.Point(9, 102);
+            this.ActiveGames.Location = new System.Drawing.Point(9, 104);
             this.ActiveGames.Name = "ActiveGames";
             this.ActiveGames.Size = new System.Drawing.Size(92, 17);
             this.ActiveGames.TabIndex = 0;
@@ -278,7 +282,7 @@ namespace DevProLauncher.Windows
             // 
             this.IlligalGames.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.IlligalGames.AutoSize = true;
-            this.IlligalGames.Location = new System.Drawing.Point(120, 102);
+            this.IlligalGames.Location = new System.Drawing.Point(120, 104);
             this.IlligalGames.Name = "IlligalGames";
             this.IlligalGames.Size = new System.Drawing.Size(89, 17);
             this.IlligalGames.TabIndex = 1;
@@ -289,7 +293,7 @@ namespace DevProLauncher.Windows
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 4);
+            this.label4.Location = new System.Drawing.Point(35, 6);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 13);
             this.label4.TabIndex = 7;
@@ -306,7 +310,7 @@ namespace DevProLauncher.Windows
             "OCG/TCG",
             "Anime",
             "Turbo Duel"});
-            this.Format.Location = new System.Drawing.Point(113, 1);
+            this.Format.Location = new System.Drawing.Point(113, 3);
             this.Format.Name = "Format";
             this.Format.Size = new System.Drawing.Size(104, 21);
             this.Format.TabIndex = 6;
@@ -315,7 +319,7 @@ namespace DevProLauncher.Windows
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 29);
+            this.label3.Location = new System.Drawing.Point(24, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 5;
@@ -330,7 +334,7 @@ namespace DevProLauncher.Windows
             "Single",
             "Match",
             "Tag"});
-            this.GameType.Location = new System.Drawing.Point(113, 26);
+            this.GameType.Location = new System.Drawing.Point(113, 28);
             this.GameType.Name = "GameType";
             this.GameType.Size = new System.Drawing.Size(104, 21);
             this.GameType.TabIndex = 4;
@@ -339,7 +343,7 @@ namespace DevProLauncher.Windows
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 54);
+            this.label2.Location = new System.Drawing.Point(36, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 3;
@@ -351,7 +355,7 @@ namespace DevProLauncher.Windows
             this.BanList.FormattingEnabled = true;
             this.BanList.Items.AddRange(new object[] {
             "All"});
-            this.BanList.Location = new System.Drawing.Point(113, 51);
+            this.BanList.Location = new System.Drawing.Point(113, 53);
             this.BanList.Name = "BanList";
             this.BanList.Size = new System.Drawing.Size(104, 21);
             this.BanList.TabIndex = 2;
@@ -360,7 +364,7 @@ namespace DevProLauncher.Windows
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 79);
+            this.label5.Location = new System.Drawing.Point(28, 81);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 13);
             this.label5.TabIndex = 8;
@@ -374,7 +378,7 @@ namespace DevProLauncher.Windows
             "All",
             "3 minutes",
             "5 minutes"});
-            this.TimeLimit.Location = new System.Drawing.Point(113, 76);
+            this.TimeLimit.Location = new System.Drawing.Point(113, 78);
             this.TimeLimit.Name = "TimeLimit";
             this.TimeLimit.Size = new System.Drawing.Size(104, 21);
             this.TimeLimit.TabIndex = 9;
@@ -383,7 +387,7 @@ namespace DevProLauncher.Windows
             // 
             this.lockedChk.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lockedChk.AutoSize = true;
-            this.lockedChk.Location = new System.Drawing.Point(24, 127);
+            this.lockedChk.Location = new System.Drawing.Point(24, 129);
             this.lockedChk.Name = "lockedChk";
             this.lockedChk.Size = new System.Drawing.Size(62, 17);
             this.lockedChk.TabIndex = 10;
@@ -394,7 +398,7 @@ namespace DevProLauncher.Windows
             // 
             this.UpdateLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.UpdateLabel.AutoSize = true;
-            this.UpdateLabel.Location = new System.Drawing.Point(69, 161);
+            this.UpdateLabel.Location = new System.Drawing.Point(69, 153);
             this.UpdateLabel.Name = "UpdateLabel";
             this.UpdateLabel.Size = new System.Drawing.Size(106, 13);
             this.UpdateLabel.TabIndex = 2;
@@ -474,7 +478,7 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(659, 479);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(659, 500);
             this.tableLayoutPanel7.TabIndex = 2;
             // 
             // groupBox3
@@ -483,7 +487,7 @@ namespace DevProLauncher.Windows
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(332, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(324, 473);
+            this.groupBox3.Size = new System.Drawing.Size(324, 494);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ranked";
@@ -494,7 +498,7 @@ namespace DevProLauncher.Windows
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(323, 473);
+            this.groupBox1.Size = new System.Drawing.Size(323, 494);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Unranked";
@@ -507,6 +511,17 @@ namespace DevProLauncher.Windows
             // 
             this.GameListUpdateTimer.Interval = 1000;
             // 
+            // SpectateBtn
+            // 
+            this.SpectateBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SpectateBtn.Location = new System.Drawing.Point(3, 283);
+            this.SpectateBtn.Name = "SpectateBtn";
+            this.SpectateBtn.Size = new System.Drawing.Size(226, 23);
+            this.SpectateBtn.TabIndex = 2;
+            this.SpectateBtn.Text = "Random Spectate";
+            this.SpectateBtn.UseVisualStyleBackColor = true;
+            this.SpectateBtn.Click += new System.EventHandler(this.SpectateBtn_Click);
+            // 
             // RankedList
             // 
             this.RankedList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -516,7 +531,7 @@ namespace DevProLauncher.Windows
             this.RankedList.ItemHeight = 50;
             this.RankedList.Location = new System.Drawing.Point(3, 16);
             this.RankedList.Name = "RankedList";
-            this.RankedList.Size = new System.Drawing.Size(318, 454);
+            this.RankedList.Size = new System.Drawing.Size(318, 475);
             this.RankedList.TabIndex = 0;
             // 
             // UnrankedList
@@ -528,14 +543,18 @@ namespace DevProLauncher.Windows
             this.UnrankedList.ItemHeight = 50;
             this.UnrankedList.Location = new System.Drawing.Point(3, 16);
             this.UnrankedList.Name = "UnrankedList";
-            this.UnrankedList.Size = new System.Drawing.Size(317, 454);
+            this.UnrankedList.Size = new System.Drawing.Size(317, 475);
             this.UnrankedList.TabIndex = 0;
+            // 
+            // SpectateTimer
+            // 
+            this.SpectateTimer.Interval = 1000;
             // 
             // HubGameList_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(915, 485);
+            this.ClientSize = new System.Drawing.Size(915, 506);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "HubGameList_frm";
@@ -600,5 +619,7 @@ namespace DevProLauncher.Windows
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox DeckSelect;
         private System.Windows.Forms.Button chkmate_btn;
+        private System.Windows.Forms.Button SpectateBtn;
+        private System.Windows.Forms.Timer SpectateTimer;
     }
 }
