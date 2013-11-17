@@ -304,9 +304,7 @@
             this.CardRules.Items.AddRange(new object[] {
             "OCG/TCG",
             "OCG",
-            "TCG",
-            "Anime",
-            "Turbo Duel"});
+            "TCG"});
             this.CardRules.Location = new System.Drawing.Point(121, 28);
             this.CardRules.Name = "CardRules";
             this.CardRules.Size = new System.Drawing.Size(138, 21);
