@@ -1,4 +1,5 @@
 --ライトロード·サモナー ルミナス
+--TCG Version
 function c95503687.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)
@@ -17,6 +18,7 @@ function c95503687.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e2:SetCategory(CATEGORY_DECKDES)
 	e2:SetDescription(aux.Stringid(95503687,1))
+	e2:SetProperty(EFFECT_FLAG_REPEAT)
 	e2:SetCode(EVENT_PHASE+PHASE_END)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetCountLimit(1)

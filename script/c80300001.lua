@@ -1,4 +1,5 @@
 --ライトロード・アーク ミカエル
+--TCG Version
 function c80300001.initial_effect(c)
 	--synchro summon
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsAttribute,ATTRIBUTE_LIGHT),1)
@@ -30,6 +31,7 @@ function c80300001.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e3:SetCategory(CATEGORY_DECKDES)
 	e3:SetDescription(aux.Stringid(80300001,2))
+	e3:SetProperty(EFFECT_FLAG_REPEAT)
 	e3:SetCode(EVENT_PHASE+PHASE_END)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetCountLimit(1)

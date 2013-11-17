@@ -69,7 +69,8 @@ namespace DevProLauncher.Windows.MessageBoxs
                     { 
                     Username = UsernameInput.Text, 
                     Password= LauncherHelper.EncodePassword(PasswordInput.Text), 
-                    UID= LauncherHelper.GetUID()
+                    UID= LauncherHelper.GetUID(),
+                    Version = Convert.ToInt32(Program.Version)
                 }));
             RegisterBtn.Enabled = false;
         }

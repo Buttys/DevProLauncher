@@ -1,4 +1,5 @@
 --ライトロード・アサシン ライデン
+--TCG Version
 function c80300003.initial_effect(c)
 	--atkup
 	local e1=Effect.CreateEffect(c)
@@ -15,6 +16,7 @@ function c80300003.initial_effect(c)
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(80300003,0))
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
+	e2:SetProperty(EFFECT_FLAG_REPEAT)
 	e2:SetCategory(CATEGORY_DECKDES)
 	e2:SetCode(EVENT_PHASE+PHASE_END)
 	e2:SetRange(LOCATION_MZONE)

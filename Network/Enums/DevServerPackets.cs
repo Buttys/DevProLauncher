@@ -4,6 +4,7 @@
     {
         GameList = 0,
         ChannelList = 1,
+        RandomSpectate = 2,
         Ping = 3,
         Login = 4,
         Register = 5,
