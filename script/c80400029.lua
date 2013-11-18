@@ -42,10 +42,10 @@ function c80400029.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 function c80400029.cfilter(c)
-	return c:IsSetCard(0x103c)
+	return c:IsCode(70095154)
 end
 function c80400029.ncon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetMatchingGroupCount(c80400029.cfilter,tp,LOCATION_MZONE,0,nil)==0
+	return Duel.GetMatchingGroupCount(c80400029.cfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,nil)==0
 end
 function c80400029.ntg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
@@ -63,7 +63,7 @@ function c80400029.ntg(e,tp,eg,ep,ev,re,r,rp,chk)
 	c:RegisterEffect(e1)
 end
 function c80400029.condition(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.IsExistingMatchingCard(c80400029.cfilter,tp,LOCATION_MZONE,0,1,nil)
+	return Duel.IsExistingMatchingCard(c80400029.cfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
 end
 function c80400029.dfilter(c)
 	return c:IsRace(RACE_MACHINE) and c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsAbleToRemove()
