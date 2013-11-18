@@ -22,8 +22,8 @@ function c80100014.activate(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
 	e1:SetTargetRange(1,0)
 	e1:SetReset(RESET_PHASE+PHASE_END)
-	e1:SetCost(c80100014.chain_filter)
 	e1:SetTarget(c80100014.chain_target)
+	e1:SetValue(c80100014.chain_filter)
 	e1:SetOperation(c80100014.chain_operation)
 	Duel.RegisterEffect(e1,tp)
 end
@@ -31,9 +31,8 @@ end
 function c80100014.filter(c,e)
 	return c:IsCanBeFusionMaterial() and c:IsAbleToRemove() and not c:IsImmuneToEffect(e)
 end
-function c80100014.chain_filter(c,e,tp,m,chkf)
-	return c:IsType(TYPE_FUSION) and c:IsRace(RACE_MACHINE) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)
-		and c:CheckFusionMaterial(m,nil,chkf)
+function c80100014.chain_filter(c)
+	return c:IsRace(RACE_MACHINE) 
 end
 function c80100014.chain_target(e,te,tp)
 	return Duel.GetMatchingGroup(c80100014.filter,tp,LOCATION_MZONE+LOCATION_GRAVE+LOCATION_HAND,0,nil,te)
