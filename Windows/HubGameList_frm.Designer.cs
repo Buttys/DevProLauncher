@@ -55,6 +55,7 @@ namespace DevProLauncher.Windows
             this.label5 = new System.Windows.Forms.Label();
             this.TimeLimit = new System.Windows.Forms.ComboBox();
             this.lockedChk = new System.Windows.Forms.CheckBox();
+            this.SpectateBtn = new System.Windows.Forms.Button();
             this.UpdateLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
@@ -63,13 +64,12 @@ namespace DevProLauncher.Windows
             this.chkmate_btn = new System.Windows.Forms.Button();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.RankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.SearchReset = new System.Windows.Forms.Timer(this.components);
             this.GameListUpdateTimer = new System.Windows.Forms.Timer(this.components);
-            this.SpectateBtn = new System.Windows.Forms.Button();
             this.SpectateTimer = new System.Windows.Forms.Timer(this.components);
-            this.RankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
-            this.UnrankedList = new DevProLauncher.Windows.Components.DoubleBufferedListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -392,6 +392,17 @@ namespace DevProLauncher.Windows
             this.lockedChk.Text = "Locked";
             this.lockedChk.UseVisualStyleBackColor = true;
             // 
+            // SpectateBtn
+            // 
+            this.SpectateBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SpectateBtn.Location = new System.Drawing.Point(3, 283);
+            this.SpectateBtn.Name = "SpectateBtn";
+            this.SpectateBtn.Size = new System.Drawing.Size(226, 23);
+            this.SpectateBtn.TabIndex = 2;
+            this.SpectateBtn.Text = "Random Spectate";
+            this.SpectateBtn.UseVisualStyleBackColor = true;
+            this.SpectateBtn.Click += new System.EventHandler(this.SpectateBtn_Click);
+            // 
             // UpdateLabel
             // 
             this.UpdateLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -490,40 +501,6 @@ namespace DevProLauncher.Windows
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ranked";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.UnrankedList);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(323, 494);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Unranked";
-            // 
-            // SearchReset
-            // 
-            this.SearchReset.Interval = 1000;
-            // 
-            // GameListUpdateTimer
-            // 
-            this.GameListUpdateTimer.Interval = 1000;
-            // 
-            // SpectateBtn
-            // 
-            this.SpectateBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SpectateBtn.Location = new System.Drawing.Point(3, 283);
-            this.SpectateBtn.Name = "SpectateBtn";
-            this.SpectateBtn.Size = new System.Drawing.Size(226, 23);
-            this.SpectateBtn.TabIndex = 2;
-            this.SpectateBtn.Text = "Random Spectate";
-            this.SpectateBtn.UseVisualStyleBackColor = true;
-            this.SpectateBtn.Click += new System.EventHandler(this.SpectateBtn_Click);
-            // 
-            // SpectateTimer
-            // 
-            this.SpectateTimer.Interval = 1000;
-            // 
             // RankedList
             // 
             this.RankedList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -536,6 +513,17 @@ namespace DevProLauncher.Windows
             this.RankedList.Size = new System.Drawing.Size(318, 475);
             this.RankedList.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.UnrankedList);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(323, 494);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Unranked";
+            // 
             // UnrankedList
             // 
             this.UnrankedList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -547,6 +535,18 @@ namespace DevProLauncher.Windows
             this.UnrankedList.Name = "UnrankedList";
             this.UnrankedList.Size = new System.Drawing.Size(317, 475);
             this.UnrankedList.TabIndex = 0;
+            // 
+            // SearchReset
+            // 
+            this.SearchReset.Interval = 1000;
+            // 
+            // GameListUpdateTimer
+            // 
+            this.GameListUpdateTimer.Interval = 1000;
+            // 
+            // SpectateTimer
+            // 
+            this.SpectateTimer.Interval = 1000;
             // 
             // HubGameList_frm
             // 
