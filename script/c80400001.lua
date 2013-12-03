@@ -30,7 +30,7 @@ function c80400001.initial_effect(c)
 	e3:SetValue(70095154)
 	c:RegisterEffect(e3)
 end
-function c80400001.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
+function c80400001.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetFlagEffect(tp,80400001)==0 end
 	Duel.RegisterFlagEffect(tp,80400001,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
 end
