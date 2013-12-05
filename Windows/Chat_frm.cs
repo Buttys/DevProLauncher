@@ -291,7 +291,7 @@ namespace DevProLauncher.Windows
                 return;
             }
 
-            if(message.from != null && IgnoreList.Items.Contains(message.from.username))
+            if(message.from != null && IgnoreUser(message.from))
             {
                 return;
             }
@@ -355,6 +355,12 @@ namespace DevProLauncher.Windows
 
                 window.WriteMessage(message, Autoscroll);
             }
+        }
+
+        public bool IgnoreUser(UserData user)
+        {
+            return IgnoreList.Items.Contains(user.username) && user.rank < 1;
+
         }
 
         public void WriteSystemMessage(string message)

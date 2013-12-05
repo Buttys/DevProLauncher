@@ -28,6 +28,7 @@
         TournamentCreate = 25,
         Stats = 26,
         TeamStats = 27,
-        TeamCommand = 28
+        TeamCommand = 28,
+        UpdatePassword = 29
     }
 }

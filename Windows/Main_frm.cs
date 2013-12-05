@@ -111,7 +111,7 @@ namespace DevProLauncher.Windows
             chatTab.Controls.Add(m_chatWindow);
             mainTabs.TabPages.Add(chatTab);
 
-            var wcsTab = new TabPage("DevPro WCS");
+            var wcsTab = new TabPage("Events");
             wcsTab.Controls.Add(m_wcsBrowser);
             mainTabs.TabPages.Add(wcsTab);
 
@@ -218,7 +218,7 @@ namespace DevProLauncher.Windows
         private void TabChange(object sender, EventArgs e)
         {
             if(mainTabs.SelectedIndex == 2)
-                m_wcsBrowser.Navigate("http://wcs.devpro.org/launcher.php", false);
+                m_wcsBrowser.Navigate("http://ygopro.de/launcher/events.php", false);
             else if(mainTabs.SelectedIndex == 1)
                 m_chatWindow.LoadDefualtChannel();
         }
