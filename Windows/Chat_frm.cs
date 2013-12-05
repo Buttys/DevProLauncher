@@ -902,6 +902,8 @@ namespace DevProLauncher.Windows
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute - Prevents a user from talking"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute - Allows a muted user to talk again"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/smsg - Sends a server message that displays on the bottom of the launcher"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getaccounts - Gets a list of accounts based on the inputted username"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banusername - Bans a user's account"));
                     }
 
                     if (Program.UserInfo.rank > 2)
