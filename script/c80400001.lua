@@ -6,6 +6,7 @@ function c80400001.initial_effect(c)
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SUMMON_SUCCESS)
+	e1:SetCost(c80400001.cost)
 	e1:SetTarget(c80400001.target)
 	e1:SetOperation(c80400001.operation)
 	c:RegisterEffect(e1)
@@ -28,6 +29,10 @@ function c80400001.initial_effect(c)
 	e3:SetRange(LOCATION_MZONE+LOCATION_GRAVE)
 	e3:SetValue(70095154)
 	c:RegisterEffect(e3)
+end
+function c80400001.cost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.GetFlagEffect(tp,80400001)==0 end
+	Duel.RegisterFlagEffect(tp,80400001,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
 end
 function c80400001.filter(c)
 	return (c:IsSetCard(0x103a) or c:IsSetCard(0x103b)) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToHand()

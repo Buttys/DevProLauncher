@@ -25,14 +25,12 @@ function c80900006.initial_effect(c)
 	e3:SetCategory(CATEGORY_ATKCHANGE+CATEGORY_SPECIAL_SUMMON+CATEGORY_TOKEN)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
 	e3:SetCode(EVENT_DAMAGE_STEP_END)
+	e3:SetCondition(c80900006.indescon)
 	e3:SetOperation(c80900006.operation)
 	c:RegisterEffect(e3)
 end
 function c80900006.splimit(e,se,sp,st)
 	return not e:GetHandler():IsLocation(LOCATION_EXTRA) or bit.band(st,SUMMON_TYPE_FUSION)==SUMMON_TYPE_FUSION
-end
-function c80900006.batfilter(e,c)
-	return c:IsAttribute(0x2f)
 end
 function c80900006.indescon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetBattleTarget()~=nil
