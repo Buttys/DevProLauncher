@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -872,12 +872,12 @@ namespace DevProLauncher.Windows
                     break;
                 case "help":
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Basic Commands --"));
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/me - Displays Username + Message"));
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/join - Join a other channel"));
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/leave - Leave the current channel"));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/me - Displays Username, and then your Message"));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/join - Joins another channel"));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/leave - Leaves the channel you're currently in"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/autoscroll - Enable/Disable autoscroll"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ping - Ping the server"));
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/help - Displays this list your reading now"));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/help - Displays the list you're reading now"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/uptime - Displays how long the server has been online"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/stats - Shows how many users are online, dueling, and how many duels"));
 
@@ -890,64 +890,64 @@ namespace DevProLauncher.Windows
 
                     if(Program.UserInfo.rank == 1)
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, " -- Level 1 users are classed as helpers and don't need any extra commands"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Send a server message"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Sends a server message"));
 
                         
 
                     if (Program.UserInfo.rank > 1)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 2 Commands --"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/kick username reason - Kick a user"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Send a server message"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute - Prevents a user from talking"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute - Allows a muted user to talk again"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/kick username reason - Kicks a user"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Sends a server message"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute - Prevents a user from sending any messages"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute - Allows a muted user to message again"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/smsg - Sends a server message that displays on the bottom of the launcher"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getaccounts - Gets a list of accounts based on the inputted username"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getaccounts - Gets a list of accounts for the the inputted username"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banusername - Bans a user's account"));
                     }
 
                     if (Program.UserInfo.rank > 2)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 3 Commands --"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ban username time reason - Ban a user, time format has to be in hours also you must give a reason."));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unban username - Unban a user"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ip username - Get a users IP"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banip ip - Ban a IP"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ban username time reason - Bans a user, time format has to be in hours, also you must give a reason."));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unban username - Unbans a user"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ip username - Gets a users IP"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banip ip - Bans an IP"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unbanip ip - Unbans IP"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getbanlist - Get ban list"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/roomowner roomname - Get the creator of a channel"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/killroom roomname - force a chat channel to close"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getbanlist - Gets ban list"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/roomowner roomname - Gets the creator of a channel"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/killroom roomname - forces a chat channel to close"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getuid username - Gets the UID of a username"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getuidaccounts uid - Gets the accnount names registered under the UID"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getuidaccounts uid - Gets the account names registered under the UID"));
                     }
 
                     if (Program.UserInfo.rank == 99)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 99 Commands --"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/op username level - Set a users level"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/addpoints amount of DevPoints - Give a user DevPoints"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/removepoints amount of DevPoints - Remove DevPoints from a user"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/op username level - Sets a users level"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/addpoints amount of DevPoints - Gives a user DevPoints"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/removepoints amount of DevPoints - Removes DevPoints from a user"));
                     }
 
                     if (Program.UserInfo.teamRank >= 0 && Program.UserInfo.team != string.Empty)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Team Commands --"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/leaveteam - leave the team"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/leaveteam - leaves the team"));
                     }
 
                     if (Program.UserInfo.teamRank >= 1)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Team User Level 1 Commands --"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamadd username - add a user to the team"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamremove username - remove a user from the team"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamadd username - adds a user to the team"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamremove username - removes a user from the team"));
                     }
 
                     if (Program.UserInfo.teamRank == 99)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Team User Level 99 Commands --"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamdisband - disbands the team"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamop username level - promote user in the team"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamchangeleader username - change the leader of a team"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamop username level - promotes a user in the team"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/teamchangeleader username - changes the leader of a team"));
                     }
                     
                     break;
