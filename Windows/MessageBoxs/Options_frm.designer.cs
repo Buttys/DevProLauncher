@@ -70,6 +70,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DefualtDeck = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.accountTab = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.UpdatePassword = new System.Windows.Forms.Button();
+            this.currentPassword = new System.Windows.Forms.TextBox();
+            this.newPassword = new System.Windows.Forms.TextBox();
+            this.confirmPassword = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.OptionTabControl.SuspendLayout();
@@ -88,6 +100,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.FontSize)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
+            this.accountTab.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -173,6 +190,7 @@
             // 
             this.OptionTabControl.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.OptionTabControl.Controls.Add(this.GameTab);
+            this.OptionTabControl.Controls.Add(this.accountTab);
             this.OptionTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OptionTabControl.Location = new System.Drawing.Point(3, 3);
             this.OptionTabControl.Name = "OptionTabControl";
@@ -616,6 +634,142 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Default Deck";
             // 
+            // accountTab
+            // 
+            this.accountTab.Controls.Add(this.tableLayoutPanel10);
+            this.accountTab.Location = new System.Drawing.Point(4, 25);
+            this.accountTab.Name = "accountTab";
+            this.accountTab.Padding = new System.Windows.Forms.Padding(3);
+            this.accountTab.Size = new System.Drawing.Size(594, 292);
+            this.accountTab.TabIndex = 1;
+            this.accountTab.Text = "Account Settings";
+            this.accountTab.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 2;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel10.Controls.Add(this.groupBox5, 0, 0);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(588, 286);
+            this.tableLayoutPanel10.TabIndex = 0;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.tableLayoutPanel11);
+            this.groupBox5.Location = new System.Drawing.Point(3, 3);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(288, 129);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Update Password";
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 2;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.87943F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.12057F));
+            this.tableLayoutPanel11.Controls.Add(this.label7, 0, 0);
+            this.tableLayoutPanel11.Controls.Add(this.label8, 0, 1);
+            this.tableLayoutPanel11.Controls.Add(this.label9, 0, 2);
+            this.tableLayoutPanel11.Controls.Add(this.flowLayoutPanel2, 1, 3);
+            this.tableLayoutPanel11.Controls.Add(this.currentPassword, 1, 0);
+            this.tableLayoutPanel11.Controls.Add(this.newPassword, 1, 1);
+            this.tableLayoutPanel11.Controls.Add(this.confirmPassword, 1, 2);
+            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 5;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(282, 110);
+            this.tableLayoutPanel11.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Location = new System.Drawing.Point(3, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(97, 25);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Current Password";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label8
+            // 
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Location = new System.Drawing.Point(3, 25);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(97, 25);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "New Password";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label9
+            // 
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(3, 50);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(97, 25);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Confirm Password";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.UpdatePassword);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(106, 78);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(173, 32);
+            this.flowLayoutPanel2.TabIndex = 3;
+            // 
+            // UpdatePassword
+            // 
+            this.UpdatePassword.Location = new System.Drawing.Point(78, 3);
+            this.UpdatePassword.Name = "UpdatePassword";
+            this.UpdatePassword.Size = new System.Drawing.Size(92, 23);
+            this.UpdatePassword.TabIndex = 0;
+            this.UpdatePassword.Text = "Update";
+            this.UpdatePassword.UseVisualStyleBackColor = true;
+            this.UpdatePassword.Click += new System.EventHandler(this.UpdatePassword_Click);
+            // 
+            // currentPassword
+            // 
+            this.currentPassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.currentPassword.Location = new System.Drawing.Point(106, 3);
+            this.currentPassword.Name = "currentPassword";
+            this.currentPassword.Size = new System.Drawing.Size(173, 20);
+            this.currentPassword.TabIndex = 4;
+            this.currentPassword.UseSystemPasswordChar = true;
+            // 
+            // newPassword
+            // 
+            this.newPassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.newPassword.Location = new System.Drawing.Point(106, 28);
+            this.newPassword.Name = "newPassword";
+            this.newPassword.Size = new System.Drawing.Size(173, 20);
+            this.newPassword.TabIndex = 5;
+            this.newPassword.UseSystemPasswordChar = true;
+            // 
+            // confirmPassword
+            // 
+            this.confirmPassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.confirmPassword.Location = new System.Drawing.Point(106, 53);
+            this.confirmPassword.Name = "confirmPassword";
+            this.confirmPassword.Size = new System.Drawing.Size(173, 20);
+            this.confirmPassword.TabIndex = 6;
+            this.confirmPassword.UseSystemPasswordChar = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -649,6 +803,12 @@
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
+            this.accountTab.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.tableLayoutPanel11.ResumeLayout(false);
+            this.tableLayoutPanel11.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -697,6 +857,18 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button dropboxbtn;
         private System.Windows.Forms.CheckBox EnableSleeveLoading;
+        private System.Windows.Forms.TabPage accountTab;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button UpdatePassword;
+        private System.Windows.Forms.TextBox currentPassword;
+        private System.Windows.Forms.TextBox newPassword;
+        private System.Windows.Forms.TextBox confirmPassword;
 
 
     }

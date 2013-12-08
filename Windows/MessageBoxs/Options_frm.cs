@@ -3,6 +3,10 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.IO;
 using DevProLauncher.Config;
+using DevProLauncher.Helpers;
+using DevProLauncher.Network.Data;
+using DevProLauncher.Network.Enums;
+using ServiceStack.Text;
 
 namespace DevProLauncher.Windows.MessageBoxs
 {
@@ -43,6 +47,9 @@ namespace DevProLauncher.Windows.MessageBoxs
                     DefualtDeck.Items.Add(Path.GetFileNameWithoutExtension(deck));
             }
             DefualtDeck.Text = Program.Config.DefaultDeck;
+
+            if (Program.UserInfo == null)
+                accountTab.Enabled = false;
 
             ApplyTranslation();
         }
@@ -156,6 +163,31 @@ namespace DevProLauncher.Windows.MessageBoxs
         {
             DropBoxSynch_frm dbsyncfrm = new DropBoxSynch_frm();
             dbsyncfrm.Show();
+        }
+
+        private void UpdatePassword_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(currentPassword.Text) || string.IsNullOrEmpty(newPassword.Text) ||
+                string.IsNullOrEmpty(confirmPassword.Text))
+            {
+                MessageBox.Show("Cannot have empty values");
+                return;
+            }
+
+            if (newPassword.Text != currentPassword.Text)
+            {
+                MessageBox.Show("New password does not match the confirm password.");
+                return;
+            }
+
+            Program.ChatServer.SendPacket(DevServerPackets.UpdatePassword, 
+                JsonSerializer.SerializeToString(
+                new LoginRequest()
+                    {
+                        Username = Program.UserInfo.username,
+                        Password = LauncherHelper.EncodePassword(currentPassword.Text),
+                        UID = LauncherHelper.EncodePassword(newPassword.Text)
+                    }));
         }
     }
 }
