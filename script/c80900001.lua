@@ -42,8 +42,12 @@ function c80900001.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e1:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
 	e1:SetReset(RESET_PHASE+PHASE_END)
 	e1:SetTargetRange(1,0)
+	e1:SetTarget(c80900001.sumlimit)
 	Duel.RegisterEffect(e1,tp)
 	Duel.RegisterFlagEffect(tp,80900001,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
+end
+function c80900001.sumlimit(e,c,sump,sumtype,sumpos,targetp,se)
+	return sumtype~=SUMMON_TYPE_XYZ and se:GetHandler()~=e:GetHandler()
 end
 function c80900001.spfilter(c,e,tp)
 	return c:IsSetCard(0x54) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
