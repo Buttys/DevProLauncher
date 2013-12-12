@@ -40,6 +40,7 @@ local.properties
 # Visual Studio Project Files
 *.sln
 *.csproj
+*.vcxproj*
 # User-specific files
 *.suo
 *.user
