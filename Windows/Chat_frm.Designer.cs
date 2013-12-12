@@ -75,6 +75,8 @@ namespace DevProLauncher.Windows
             this.NormalUserColorBtn = new System.Windows.Forms.Button();
             this.Level1ColorBtn = new System.Windows.Forms.Button();
             this.Level2ColorBtn = new System.Windows.Forms.Button();
+            this.Level3ColorBtn = new System.Windows.Forms.Button();
+            this.Level4ColorBtn = new System.Windows.Forms.Button();
             this.Level99ColorBtn = new System.Windows.Forms.Button();
             this.NormalTextColorBtn = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -592,14 +594,16 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel11.ColumnCount = 2;
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.83333F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.16667F));
-            this.tableLayoutPanel11.Controls.Add(this.SystemColorBtn, 1, 10);
-            this.tableLayoutPanel11.Controls.Add(this.LeaveColorBtn, 1, 9);
-            this.tableLayoutPanel11.Controls.Add(this.JoinColorBtn, 1, 8);
-            this.tableLayoutPanel11.Controls.Add(this.MeColorBtn, 1, 7);
-            this.tableLayoutPanel11.Controls.Add(this.ServerColorBtn, 1, 6);
-            this.tableLayoutPanel11.Controls.Add(this.NormalUserColorBtn, 1, 5);
-            this.tableLayoutPanel11.Controls.Add(this.Level1ColorBtn, 1, 4);
-            this.tableLayoutPanel11.Controls.Add(this.Level2ColorBtn, 1, 3);
+            this.tableLayoutPanel11.Controls.Add(this.SystemColorBtn, 1, 12);
+            this.tableLayoutPanel11.Controls.Add(this.LeaveColorBtn, 1, 11);
+            this.tableLayoutPanel11.Controls.Add(this.JoinColorBtn, 1, 10);
+            this.tableLayoutPanel11.Controls.Add(this.MeColorBtn, 1, 9);
+            this.tableLayoutPanel11.Controls.Add(this.ServerColorBtn, 1, 8);
+            this.tableLayoutPanel11.Controls.Add(this.NormalUserColorBtn, 1, 7);
+            this.tableLayoutPanel11.Controls.Add(this.Level1ColorBtn, 1, 6);
+            this.tableLayoutPanel11.Controls.Add(this.Level2ColorBtn, 1, 5);
+            this.tableLayoutPanel11.Controls.Add(this.Level3ColorBtn, 1, 4);
+            this.tableLayoutPanel11.Controls.Add(this.Level4ColorBtn, 1, 3);
             this.tableLayoutPanel11.Controls.Add(this.Level99ColorBtn, 1, 2);
             this.tableLayoutPanel11.Controls.Add(this.NormalTextColorBtn, 1, 1);
             this.tableLayoutPanel11.Controls.Add(this.label8, 0, 7);
@@ -709,6 +713,26 @@ namespace DevProLauncher.Windows
             this.Level2ColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Level2ColorBtn.Location = new System.Drawing.Point(129, 78);
             this.Level2ColorBtn.Name = "Level2ColorBtn";
+            this.Level2ColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.Level2ColorBtn.TabIndex = 31;
+            this.Level2ColorBtn.UseVisualStyleBackColor = true;
+            this.Level2ColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
+            // 
+            // Level3ColorBtn
+            // 
+            this.Level1ColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Level1ColorBtn.Location = new System.Drawing.Point(129, 75);
+            this.Level1ColorBtn.Name = "Level3ColorBtn";
+            this.Level1ColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.Level1ColorBtn.TabIndex = 32;
+            this.Level1ColorBtn.UseVisualStyleBackColor = true;
+            this.Level1ColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
+            // 
+            // Level4ColorBtn
+            // 
+            this.Level2ColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Level2ColorBtn.Location = new System.Drawing.Point(129, 65);
+            this.Level2ColorBtn.Name = "Level4ColorBtn";
             this.Level2ColorBtn.Size = new System.Drawing.Size(24, 19);
             this.Level2ColorBtn.TabIndex = 31;
             this.Level2ColorBtn.UseVisualStyleBackColor = true;
@@ -1020,7 +1044,7 @@ namespace DevProLauncher.Windows
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private FixedTabControl UsersControl;
+        private DevProLauncher.Windows.Components.FixedTabControl UsersControl;
         private System.Windows.Forms.TabPage UsersTab;
         private System.Windows.Forms.TabPage OptionsTab;
         private System.Windows.Forms.TabPage IgnoreTab;
@@ -1048,6 +1072,8 @@ namespace DevProLauncher.Windows
         private System.Windows.Forms.Button NormalUserColorBtn;
         private System.Windows.Forms.Button Level1ColorBtn;
         private System.Windows.Forms.Button Level2ColorBtn;
+        private System.Windows.Forms.Button Level3ColorBtn;
+        private System.Windows.Forms.Button Level4ColorBtn;
         private System.Windows.Forms.Button Level99ColorBtn;
         private System.Windows.Forms.Button NormalTextColorBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
@@ -1066,11 +1092,11 @@ namespace DevProLauncher.Windows
         private System.Windows.Forms.NumericUpDown FontSize;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label label2;
-        private FixedTabControl ChannelTabs;
+        private DevProLauncher.Windows.Components.FixedTabControl ChannelTabs;
         private System.Windows.Forms.CheckBox pmwindowchk;
         private System.Windows.Forms.CheckBox usernamecolorchk;
         private System.Windows.Forms.CheckBox refuseteamchk;
-        private FixedTabControl UserListTabs;
+        private DevProLauncher.Windows.Components.FixedTabControl UserListTabs;
         private System.Windows.Forms.TabPage ChannelTab;
         private System.Windows.Forms.ListBox ChannelList;
         private System.Windows.Forms.TextBox ChatInput;
