@@ -907,11 +907,11 @@ namespace DevProLauncher.Windows
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 2 Commands --"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/kick username reason - Kicks a user"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Sends a server message"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute - Prevents a user from sending any messages"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute - Allows a muted user to message again"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute username channel - Prevents a user from sending any messages in a certain channel."));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute username channel - Allows a muted user to send messages again"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/smsg - Sends a server message that displays on the bottom of the launcher"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getaccounts - Gets a list of accounts for the the inputted username"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banusername - Bans a user's account"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getaccounts username - Gets a list of accounts for the the inputted username"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banusername username - Bans a user's account"));
                     }
 
                     if (Program.UserInfo.rank > 2)
