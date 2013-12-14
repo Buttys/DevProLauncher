@@ -16,7 +16,7 @@ namespace DevProLauncher
 {
     static class Program
     {
-        public const string Version = "198100";
+        public const string Version = "198200";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;
@@ -37,7 +37,7 @@ namespace DevProLauncher
 #if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 #endif
-            //new update server - Forced change to prevent resting a users config
+            //new update server - Forced change to prevent reseting a users config
             Config.UpdaterAddress = "/launcher/version.php";
             Config.ServerInfoAddress = "/launcher/server.php";
 

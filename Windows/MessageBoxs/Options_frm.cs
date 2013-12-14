@@ -174,7 +174,7 @@ namespace DevProLauncher.Windows.MessageBoxs
                 return;
             }
 
-            if (newPassword.Text != currentPassword.Text)
+            if (newPassword.Text != confirmPassword.Text)
             {
                 MessageBox.Show("New password does not match the confirm password.");
                 return;

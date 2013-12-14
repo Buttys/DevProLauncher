@@ -261,7 +261,7 @@
             this.tableLayoutPanel8.Controls.Add(this.Antialias, 1, 1);
             this.tableLayoutPanel8.Controls.Add(this.EnableSleeveLoading, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(291, 3);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 3;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -344,7 +344,7 @@
             this.tableLayoutPanel7.Controls.Add(this.EnableSound, 0, 2);
             this.tableLayoutPanel7.Controls.Add(this.NoDelay, 1, 1);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(291, 3);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 4;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -747,6 +747,7 @@
             // 
             this.currentPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.currentPassword.Location = new System.Drawing.Point(106, 3);
+            this.currentPassword.MaxLength = 15;
             this.currentPassword.Name = "currentPassword";
             this.currentPassword.Size = new System.Drawing.Size(173, 20);
             this.currentPassword.TabIndex = 4;
@@ -756,6 +757,7 @@
             // 
             this.newPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.newPassword.Location = new System.Drawing.Point(106, 28);
+            this.newPassword.MaxLength = 15;
             this.newPassword.Name = "newPassword";
             this.newPassword.Size = new System.Drawing.Size(173, 20);
             this.newPassword.TabIndex = 5;
@@ -765,6 +767,7 @@
             // 
             this.confirmPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.confirmPassword.Location = new System.Drawing.Point(106, 53);
+            this.confirmPassword.MaxLength = 15;
             this.confirmPassword.Name = "confirmPassword";
             this.confirmPassword.Size = new System.Drawing.Size(173, 20);
             this.confirmPassword.TabIndex = 6;
