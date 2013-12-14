@@ -12,13 +12,15 @@ namespace DevProLauncher.Windows
 {
     public partial class MainFrm : Form
     {
-        public readonly HubGameList_frm GameWindow;
-        readonly LoginFrm m_loginWindow;
-        readonly ChatFrm m_chatWindow;
-        readonly SupportFrm m_devpointWindow;
-        readonly FileManagerFrm m_filemanagerWindow;
-        readonly CustomizeFrm m_customizerWindow;
-        readonly Browser_frm m_wcsBrowser;
+        public HubGameList_frm GameWindow;
+        LoginFrm m_loginWindow;
+        ChatFrm m_chatWindow;
+        SupportFrm m_devpointWindow;
+        FileManagerFrm m_filemanagerWindow;
+        CustomizeFrm m_customizerWindow;
+        Browser_frm m_wcsBrowser;
+        Browser_frm m_faqBrowser;
+
 
         public MainFrm()
         {
@@ -41,6 +43,8 @@ namespace DevProLauncher.Windows
             m_devpointWindow = new SupportFrm();
             m_filemanagerWindow = new FileManagerFrm();
             m_customizerWindow = new CustomizeFrm();
+            m_faqBrowser = new Browser_frm();
+            m_faqBrowser.FormBorderStyle = FormBorderStyle.None;
             LauncherHelper.CardManager.Init();
 
             Program.ChatServer.ServerMessage += ServerMessage;
@@ -126,6 +130,10 @@ namespace DevProLauncher.Windows
             var devpointTab = new TabPage("Support DevPro");
             devpointTab.Controls.Add(m_devpointWindow);
             mainTabs.TabPages.Add(devpointTab);
+
+            var faqTab = new TabPage("FAQ");
+            faqTab.Controls.Add(m_faqBrowser);
+            mainTabs.TabPages.Add(faqTab);
                 
             ConnectionCheck.Enabled = true;
             ConnectionCheck.Tick += CheckConnection;
@@ -217,9 +225,11 @@ namespace DevProLauncher.Windows
 
         private void TabChange(object sender, EventArgs e)
         {
-            if(mainTabs.SelectedIndex == 2)
+            if (mainTabs.SelectedIndex == 2)
                 m_wcsBrowser.Navigate("http://ygopro.de/launcher/events.php", false);
-            else if(mainTabs.SelectedIndex == 1)
+            else if (mainTabs.SelectedIndex == mainTabs.TabPages.Count - 1)
+                m_faqBrowser.Navigate("http://devpro.org/faq/", false);
+            else if (mainTabs.SelectedIndex == 1)
                 m_chatWindow.LoadDefualtChannel();
         }
 
