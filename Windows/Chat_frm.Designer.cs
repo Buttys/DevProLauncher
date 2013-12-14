@@ -75,6 +75,8 @@ namespace DevProLauncher.Windows
             this.NormalUserColorBtn = new System.Windows.Forms.Button();
             this.Level1ColorBtn = new System.Windows.Forms.Button();
             this.Level2ColorBtn = new System.Windows.Forms.Button();
+            this.Level3ColorBtn = new System.Windows.Forms.Button();
+            this.Level4ColorBtn = new System.Windows.Forms.Button();
             this.Level99ColorBtn = new System.Windows.Forms.Button();
             this.NormalTextColorBtn = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -89,6 +91,8 @@ namespace DevProLauncher.Windows
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.BackgroundColorBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -592,33 +596,40 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel11.ColumnCount = 2;
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.83333F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.16667F));
-            this.tableLayoutPanel11.Controls.Add(this.SystemColorBtn, 1, 10);
-            this.tableLayoutPanel11.Controls.Add(this.LeaveColorBtn, 1, 9);
-            this.tableLayoutPanel11.Controls.Add(this.JoinColorBtn, 1, 8);
-            this.tableLayoutPanel11.Controls.Add(this.MeColorBtn, 1, 7);
-            this.tableLayoutPanel11.Controls.Add(this.ServerColorBtn, 1, 6);
-            this.tableLayoutPanel11.Controls.Add(this.NormalUserColorBtn, 1, 5);
-            this.tableLayoutPanel11.Controls.Add(this.Level1ColorBtn, 1, 4);
-            this.tableLayoutPanel11.Controls.Add(this.Level2ColorBtn, 1, 3);
+            this.tableLayoutPanel11.Controls.Add(this.SystemColorBtn, 1, 12);
+            this.tableLayoutPanel11.Controls.Add(this.LeaveColorBtn, 1, 11);
+            this.tableLayoutPanel11.Controls.Add(this.JoinColorBtn, 1, 10);
+            this.tableLayoutPanel11.Controls.Add(this.MeColorBtn, 1, 9);
+            this.tableLayoutPanel11.Controls.Add(this.ServerColorBtn, 1, 8);
+            this.tableLayoutPanel11.Controls.Add(this.NormalUserColorBtn, 1, 7);
+            this.tableLayoutPanel11.Controls.Add(this.Level1ColorBtn, 1, 6);
+            this.tableLayoutPanel11.Controls.Add(this.Level2ColorBtn, 1, 5);
+            this.tableLayoutPanel11.Controls.Add(this.Level3ColorBtn, 1, 4);
+            this.tableLayoutPanel11.Controls.Add(this.Level4ColorBtn, 1, 3);
             this.tableLayoutPanel11.Controls.Add(this.Level99ColorBtn, 1, 2);
             this.tableLayoutPanel11.Controls.Add(this.NormalTextColorBtn, 1, 1);
-            this.tableLayoutPanel11.Controls.Add(this.label8, 0, 7);
-            this.tableLayoutPanel11.Controls.Add(this.label7, 0, 6);
-            this.tableLayoutPanel11.Controls.Add(this.label4, 0, 5);
-            this.tableLayoutPanel11.Controls.Add(this.label9, 0, 4);
-            this.tableLayoutPanel11.Controls.Add(this.label10, 0, 3);
+            this.tableLayoutPanel11.Controls.Add(this.label8, 0, 9);
+            this.tableLayoutPanel11.Controls.Add(this.label7, 0, 8);
+            this.tableLayoutPanel11.Controls.Add(this.label4, 0, 7);
+            this.tableLayoutPanel11.Controls.Add(this.label9, 0, 6);
+            this.tableLayoutPanel11.Controls.Add(this.label10, 0, 5);
             this.tableLayoutPanel11.Controls.Add(this.label11, 0, 2);
             this.tableLayoutPanel11.Controls.Add(this.label12, 0, 1);
             this.tableLayoutPanel11.Controls.Add(this.label13, 0, 0);
-            this.tableLayoutPanel11.Controls.Add(this.label14, 0, 8);
-            this.tableLayoutPanel11.Controls.Add(this.label15, 0, 9);
-            this.tableLayoutPanel11.Controls.Add(this.label16, 0, 10);
+            this.tableLayoutPanel11.Controls.Add(this.label14, 0, 10);
+            this.tableLayoutPanel11.Controls.Add(this.label15, 0, 11);
+            this.tableLayoutPanel11.Controls.Add(this.label16, 0, 12);
             this.tableLayoutPanel11.Controls.Add(this.BackgroundColorBtn, 1, 0);
+            this.tableLayoutPanel11.Controls.Add(this.label3, 0, 4);
+            this.tableLayoutPanel11.Controls.Add(this.label5, 0, 3);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.tableLayoutPanel11.RowCount = 12;
+            this.tableLayoutPanel11.RowCount = 15;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -637,7 +648,7 @@ namespace DevProLauncher.Windows
             // SystemColorBtn
             // 
             this.SystemColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SystemColorBtn.Location = new System.Drawing.Point(129, 253);
+            this.SystemColorBtn.Location = new System.Drawing.Point(129, 303);
             this.SystemColorBtn.Name = "SystemColorBtn";
             this.SystemColorBtn.Size = new System.Drawing.Size(24, 19);
             this.SystemColorBtn.TabIndex = 38;
@@ -647,7 +658,7 @@ namespace DevProLauncher.Windows
             // LeaveColorBtn
             // 
             this.LeaveColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LeaveColorBtn.Location = new System.Drawing.Point(129, 228);
+            this.LeaveColorBtn.Location = new System.Drawing.Point(129, 278);
             this.LeaveColorBtn.Name = "LeaveColorBtn";
             this.LeaveColorBtn.Size = new System.Drawing.Size(24, 19);
             this.LeaveColorBtn.TabIndex = 37;
@@ -657,7 +668,7 @@ namespace DevProLauncher.Windows
             // JoinColorBtn
             // 
             this.JoinColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.JoinColorBtn.Location = new System.Drawing.Point(129, 203);
+            this.JoinColorBtn.Location = new System.Drawing.Point(129, 253);
             this.JoinColorBtn.Name = "JoinColorBtn";
             this.JoinColorBtn.Size = new System.Drawing.Size(24, 19);
             this.JoinColorBtn.TabIndex = 36;
@@ -667,7 +678,7 @@ namespace DevProLauncher.Windows
             // MeColorBtn
             // 
             this.MeColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MeColorBtn.Location = new System.Drawing.Point(129, 178);
+            this.MeColorBtn.Location = new System.Drawing.Point(129, 228);
             this.MeColorBtn.Name = "MeColorBtn";
             this.MeColorBtn.Size = new System.Drawing.Size(24, 19);
             this.MeColorBtn.TabIndex = 35;
@@ -677,7 +688,7 @@ namespace DevProLauncher.Windows
             // ServerColorBtn
             // 
             this.ServerColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ServerColorBtn.Location = new System.Drawing.Point(129, 153);
+            this.ServerColorBtn.Location = new System.Drawing.Point(129, 203);
             this.ServerColorBtn.Name = "ServerColorBtn";
             this.ServerColorBtn.Size = new System.Drawing.Size(24, 19);
             this.ServerColorBtn.TabIndex = 34;
@@ -687,7 +698,7 @@ namespace DevProLauncher.Windows
             // NormalUserColorBtn
             // 
             this.NormalUserColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NormalUserColorBtn.Location = new System.Drawing.Point(129, 128);
+            this.NormalUserColorBtn.Location = new System.Drawing.Point(129, 178);
             this.NormalUserColorBtn.Name = "NormalUserColorBtn";
             this.NormalUserColorBtn.Size = new System.Drawing.Size(24, 19);
             this.NormalUserColorBtn.TabIndex = 33;
@@ -697,7 +708,7 @@ namespace DevProLauncher.Windows
             // Level1ColorBtn
             // 
             this.Level1ColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Level1ColorBtn.Location = new System.Drawing.Point(129, 103);
+            this.Level1ColorBtn.Location = new System.Drawing.Point(129, 153);
             this.Level1ColorBtn.Name = "Level1ColorBtn";
             this.Level1ColorBtn.Size = new System.Drawing.Size(24, 19);
             this.Level1ColorBtn.TabIndex = 32;
@@ -707,12 +718,31 @@ namespace DevProLauncher.Windows
             // Level2ColorBtn
             // 
             this.Level2ColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Level2ColorBtn.Location = new System.Drawing.Point(129, 78);
+            this.Level2ColorBtn.Location = new System.Drawing.Point(129, 128);
             this.Level2ColorBtn.Name = "Level2ColorBtn";
             this.Level2ColorBtn.Size = new System.Drawing.Size(24, 19);
             this.Level2ColorBtn.TabIndex = 31;
             this.Level2ColorBtn.UseVisualStyleBackColor = true;
             this.Level2ColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
+            // 
+            // Level3ColorBtn
+            // 
+            this.Level3ColorBtn.Location = new System.Drawing.Point(129, 103);
+            this.Level3ColorBtn.Name = "Level3ColorBtn";
+            this.Level3ColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.Level3ColorBtn.TabIndex = 39;
+            this.Level3ColorBtn.UseVisualStyleBackColor = true;
+            this.Level3ColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
+            // 
+            // Level4ColorBtn
+            // 
+            this.Level4ColorBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Level4ColorBtn.Location = new System.Drawing.Point(129, 78);
+            this.Level4ColorBtn.Name = "Level4ColorBtn";
+            this.Level4ColorBtn.Size = new System.Drawing.Size(24, 19);
+            this.Level4ColorBtn.TabIndex = 40;
+            this.Level4ColorBtn.UseVisualStyleBackColor = true;
+            this.Level4ColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
             // 
             // Level99ColorBtn
             // 
@@ -737,7 +767,7 @@ namespace DevProLauncher.Windows
             // label8
             // 
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(3, 175);
+            this.label8.Location = new System.Drawing.Point(3, 225);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(120, 25);
             this.label8.TabIndex = 20;
@@ -747,7 +777,7 @@ namespace DevProLauncher.Windows
             // label7
             // 
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(3, 150);
+            this.label7.Location = new System.Drawing.Point(3, 200);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(120, 25);
             this.label7.TabIndex = 18;
@@ -757,7 +787,7 @@ namespace DevProLauncher.Windows
             // label4
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 125);
+            this.label4.Location = new System.Drawing.Point(3, 175);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(120, 25);
             this.label4.TabIndex = 17;
@@ -767,7 +797,7 @@ namespace DevProLauncher.Windows
             // label9
             // 
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(3, 100);
+            this.label9.Location = new System.Drawing.Point(3, 150);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(120, 25);
             this.label9.TabIndex = 16;
@@ -777,7 +807,7 @@ namespace DevProLauncher.Windows
             // label10
             // 
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(3, 75);
+            this.label10.Location = new System.Drawing.Point(3, 125);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(120, 25);
             this.label10.TabIndex = 15;
@@ -817,7 +847,7 @@ namespace DevProLauncher.Windows
             // label14
             // 
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(3, 200);
+            this.label14.Location = new System.Drawing.Point(3, 250);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(120, 25);
             this.label14.TabIndex = 22;
@@ -827,7 +857,7 @@ namespace DevProLauncher.Windows
             // label15
             // 
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Location = new System.Drawing.Point(3, 225);
+            this.label15.Location = new System.Drawing.Point(3, 275);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(120, 25);
             this.label15.TabIndex = 23;
@@ -837,7 +867,7 @@ namespace DevProLauncher.Windows
             // label16
             // 
             this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label16.Location = new System.Drawing.Point(3, 250);
+            this.label16.Location = new System.Drawing.Point(3, 300);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(120, 25);
             this.label16.TabIndex = 26;
@@ -853,6 +883,27 @@ namespace DevProLauncher.Windows
             this.BackgroundColorBtn.TabIndex = 27;
             this.BackgroundColorBtn.UseVisualStyleBackColor = true;
             this.BackgroundColorBtn.Click += new System.EventHandler(this.ApplyNewColor);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 100);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(120, 25);
+            this.label3.TabIndex = 41;
+            this.label3.Text = "Level 3";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(3, 75);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(120, 25);
+            this.label5.TabIndex = 42;
+            this.label5.Text = "Level 4";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // groupBox1
             // 
@@ -1001,6 +1052,7 @@ namespace DevProLauncher.Windows
             this.tableLayoutPanel14.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
+            this.tableLayoutPanel11.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
@@ -1020,7 +1072,7 @@ namespace DevProLauncher.Windows
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private FixedTabControl UsersControl;
+        private DevProLauncher.Windows.Components.FixedTabControl UsersControl;
         private System.Windows.Forms.TabPage UsersTab;
         private System.Windows.Forms.TabPage OptionsTab;
         private System.Windows.Forms.TabPage IgnoreTab;
@@ -1048,6 +1100,8 @@ namespace DevProLauncher.Windows
         private System.Windows.Forms.Button NormalUserColorBtn;
         private System.Windows.Forms.Button Level1ColorBtn;
         private System.Windows.Forms.Button Level2ColorBtn;
+        private System.Windows.Forms.Button Level3ColorBtn;
+        private System.Windows.Forms.Button Level4ColorBtn;
         private System.Windows.Forms.Button Level99ColorBtn;
         private System.Windows.Forms.Button NormalTextColorBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
@@ -1066,11 +1120,11 @@ namespace DevProLauncher.Windows
         private System.Windows.Forms.NumericUpDown FontSize;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label label2;
-        private FixedTabControl ChannelTabs;
+        private DevProLauncher.Windows.Components.FixedTabControl ChannelTabs;
         private System.Windows.Forms.CheckBox pmwindowchk;
         private System.Windows.Forms.CheckBox usernamecolorchk;
         private System.Windows.Forms.CheckBox refuseteamchk;
-        private FixedTabControl UserListTabs;
+        private DevProLauncher.Windows.Components.FixedTabControl UserListTabs;
         private System.Windows.Forms.TabPage ChannelTab;
         private System.Windows.Forms.ListBox ChannelList;
         private System.Windows.Forms.TextBox ChatInput;
@@ -1084,5 +1138,7 @@ namespace DevProLauncher.Windows
         private System.Windows.Forms.Button adminSearchBtn;
         private System.Windows.Forms.Button teamSearchBtn;
         private System.Windows.Forms.Button friendSearchBtn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
     }
 }
