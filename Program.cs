@@ -26,7 +26,7 @@ namespace DevProLauncher
         public static Dictionary<string, ServerInfo> ServerList = new Dictionary<string, ServerInfo>();
         public static MainFrm MainForm;
         public static ServerInfo Server;
-        public static ServerInfo Checkmate;
+        public static Dictionary<string,ServerInfo> CheckmateServerList = new Dictionary<string,ServerInfo>();
         public static Random Rand = new Random();
 
         [STAThread]
@@ -53,7 +53,8 @@ namespace DevProLauncher
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Checkmate = new ServerInfo("Checkmate", "173.224.211.158", 21001);
+            CheckmateServerList.Add("Checkmate USA+CN", new ServerInfo("Checkmate USA+CN", "173.224.211.158", 21001));
+            CheckmateServerList.Add("Checkmate EU",new ServerInfo("Checkmate EU", "94.247.40.146", 7980));
 
             if (LauncherHelper.TestConnection())
             {
@@ -206,12 +207,15 @@ namespace DevProLauncher
 
             try
             {
+                
                 string[] serverinfo = result.Split(new [] { "|" }, StringSplitOptions.RemoveEmptyEntries);
                 Config.ServerAddress = serverinfo[1];
                 Config.ChatPort = int.Parse(serverinfo[2]);
                 Config.GamePort = int.Parse(serverinfo[3]);
                 Server = new ServerInfo("DevPro",serverinfo[1],int.Parse(serverinfo[4]));
-                Checkmate = new ServerInfo("Checkmate", serverinfo[5], int.Parse(serverinfo[6]));
+                //CheckmateServerList.Clear();
+                //if(!CheckmateServerList.ContainsKey("Checkmate"))
+                //    CheckmateServerList.Add("Checkmate",new ServerInfo("Checkmate", serverinfo[5], int.Parse(serverinfo[6])));
             }
             catch
             {
