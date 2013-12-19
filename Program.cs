@@ -16,7 +16,7 @@ namespace DevProLauncher
 {
     static class Program
     {
-        public const string Version = "198300";
+        public const string Version = "198200";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;
@@ -177,7 +177,7 @@ namespace DevProLauncher
                                 FileName = Path.Combine(updaterPath, updaterName),
                                 Arguments =
                                     data[1] + " " +
-                                    Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetExecutingAssembly().Location)
+                                    System.Reflection.Assembly.GetExecutingAssembly().Location
                             }
                     };
                 updateProcess.Start();
