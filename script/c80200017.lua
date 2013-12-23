@@ -20,10 +20,9 @@ function c80200017.initial_effect(c)
 	c:RegisterEffect(e2)
 	--draw
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(90953320,0))
+	e3:SetDescription(aux.Stringid(80200017,1))
 	e3:SetCategory(CATEGORY_DRAW)
-	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
-	e3:SetRange(LOCATION_MZONE)
+	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e3:SetCondition(c80200017.drcon)
 	e3:SetTarget(c80200017.drtg)
@@ -46,7 +45,7 @@ function c80200017.spop(e,tp,eg,ep,ev,re,r,rp)
 end
 function c80200017.drcon(e,tp,eg,ep,ev,re,r,rp)
 	local tg=eg:GetFirst()
-	return Duel.GetTurnplayer()~=tp and tg~=e:GetHandler() and tg:IsType(TYPE_MONSTER) and tg:IsSetCard(0x93)
+	return Duel.GetTurnPlayer()~=tp and tg~=e:GetHandler() and tg:IsType(TYPE_MONSTER) and tg:IsSetCard(0x95)
 end
 function c80200017.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsRelateToEffect(e) end

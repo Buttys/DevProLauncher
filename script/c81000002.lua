@@ -51,7 +51,7 @@ function c81000002.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c81000002.descon(e,tp,eg,ep,ev,re,r,rp)
-	return eg:IsExists(e:GetHandler():GetCardTarget())
+	return eg:IsContains(e:GetHandler():GetCardTarget())
 end
 function c81000002.desop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Destroy(e:GetHandler(),REASON_EFFECT)
