@@ -747,6 +747,7 @@
             // 
             this.currentPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.currentPassword.Location = new System.Drawing.Point(106, 3);
+            this.currentPassword.MaxLength = 15;
             this.currentPassword.Name = "currentPassword";
             this.currentPassword.Size = new System.Drawing.Size(173, 20);
             this.currentPassword.TabIndex = 4;
@@ -756,6 +757,7 @@
             // 
             this.newPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.newPassword.Location = new System.Drawing.Point(106, 28);
+            this.newPassword.MaxLength = 15;
             this.newPassword.Name = "newPassword";
             this.newPassword.Size = new System.Drawing.Size(173, 20);
             this.newPassword.TabIndex = 5;
@@ -765,6 +767,7 @@
             // 
             this.confirmPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.confirmPassword.Location = new System.Drawing.Point(106, 53);
+            this.confirmPassword.MaxLength = 15;
             this.confirmPassword.Name = "confirmPassword";
             this.confirmPassword.Size = new System.Drawing.Size(173, 20);
             this.confirmPassword.TabIndex = 6;

@@ -16,7 +16,7 @@ namespace DevProLauncher
 {
     static class Program
     {
-        public const string Version = "198100";
+        public const string Version = "198400";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;
@@ -26,7 +26,7 @@ namespace DevProLauncher
         public static Dictionary<string, ServerInfo> ServerList = new Dictionary<string, ServerInfo>();
         public static MainFrm MainForm;
         public static ServerInfo Server;
-        public static ServerInfo Checkmate;
+        public static Dictionary<string,ServerInfo> CheckmateServerList = new Dictionary<string,ServerInfo>();
         public static Random Rand = new Random();
 
         [STAThread]
@@ -35,9 +35,9 @@ namespace DevProLauncher
             Config = new Configuration();
             LoadConfig(ConfigurationFilename);
 #if !DEBUG
-            //AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 #endif
-            //new update server - Forced change to prevent resting a users config
+            //new update server - Forced change to prevent reseting a users config
             Config.UpdaterAddress = "/launcher/version.php";
             Config.ServerInfoAddress = "/launcher/server.php";
 
@@ -53,14 +53,14 @@ namespace DevProLauncher
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Checkmate = new ServerInfo("Checkmate", "173.224.211.158", 21001);
+            CheckmateServerList.Add("Checkmate USA+CN", new ServerInfo("Checkmate USA+CN", "173.224.211.158", 21001));
+            CheckmateServerList.Add("Checkmate EU",new ServerInfo("Checkmate EU", "94.247.40.146", 7980));
 
             if (LauncherHelper.TestConnection())
             {
 #if !DEBUG
-                if (CheckUpdates("http://91.250.87.52"))
-                    if(CheckUpdates("http://ygopro.de"))
-                        return;
+                if (NewUpdateCheck())
+                    return;
                 if (!CheckServerInfo("http://91.250.87.52"))
                     CheckServerInfo("http://ygopro.de");
 #endif
@@ -69,7 +69,6 @@ namespace DevProLauncher
 #if DEBUG
             Config.ServerAddress = "86.0.24.143";
             Config.ChatPort = 8933;
-            //Config.GamePort = 6666;
             Server = new ServerInfo("DevPro", "86.0.24.143", 3333);
 #endif
 
@@ -111,7 +110,23 @@ namespace DevProLauncher
             }
         }
 
-        public static bool CheckUpdates(string url)
+        public static bool NewUpdateCheck()
+        {
+            int checkOne = CheckUpdates("http://91.250.87.52");
+
+            if(checkOne == 2)
+                return true;
+            if(checkOne == 0)
+            {
+                int checkTwo = CheckUpdates("http://ygopro.de");
+                    if(checkTwo == 2)
+                        return true;
+            }
+
+            return false;//if checks are 1
+        }
+
+        public static int CheckUpdates(string url)
         {
             string updateLink = Config.UpdaterAddress;
             const string updaterName = "YgoUpdater.exe";
@@ -124,13 +139,12 @@ namespace DevProLauncher
             }
             catch
             {
-                Console.WriteLine("Unable to connect to update server");
-                return false;
+                return 0;
             }
 
 
             if (result.Equals("OK"))
-                return false;
+                return 1;
 
 
 
@@ -142,35 +156,34 @@ namespace DevProLauncher
 
             if (!result.StartsWith("KO"))
             {
-                MessageBox.Show("Error checking for update.",
-                    "DevPro - Update", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
+                return 0;
             }
 
             if (result.Contains("|"))
             {
+                string updaterPath = Path.GetTempPath();
                 Config.NewUpdate = true;
                 SaveConfig(ConfigurationFilename, Config);
 
                 string[] data = result.Split(new [] { "|" }, StringSplitOptions.RemoveEmptyEntries);
 
-                File.WriteAllBytes(Path.Combine(Application.StartupPath, updaterName), Properties.Resources.YgoUpdater);
-                File.WriteAllBytes(Path.Combine(Application.StartupPath, dllName), Properties.Resources.ICSharpCode_SharpZipLib);
+                File.WriteAllBytes(Path.Combine(updaterPath, updaterName), Properties.Resources.YgoUpdater);
+                File.WriteAllBytes(Path.Combine(updaterPath, dllName), Properties.Resources.ICSharpCode_SharpZipLib);
 
                 var updateProcess = new Process
                     {
                         StartInfo =
                             {
-                                FileName = Path.Combine(Application.StartupPath, updaterName),
+                                FileName = Path.Combine(updaterPath, updaterName),
                                 Arguments =
                                     data[1] + " " +
-                                    Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetExecutingAssembly().Location)
+                                    System.Reflection.Assembly.GetExecutingAssembly().Location
                             }
                     };
                 updateProcess.Start();
             }
 
-            return true;
+            return 2;
         }
 
         public static bool CheckServerInfo(string url)
@@ -194,12 +207,15 @@ namespace DevProLauncher
 
             try
             {
+                
                 string[] serverinfo = result.Split(new [] { "|" }, StringSplitOptions.RemoveEmptyEntries);
                 Config.ServerAddress = serverinfo[1];
                 Config.ChatPort = int.Parse(serverinfo[2]);
                 Config.GamePort = int.Parse(serverinfo[3]);
                 Server = new ServerInfo("DevPro",serverinfo[1],int.Parse(serverinfo[4]));
-                Checkmate = new ServerInfo("Checkmate", serverinfo[5], int.Parse(serverinfo[6]));
+                //CheckmateServerList.Clear();
+                //if(!CheckmateServerList.ContainsKey("Checkmate"))
+                //    CheckmateServerList.Add("Checkmate",new ServerInfo("Checkmate", serverinfo[5], int.Parse(serverinfo[6])));
             }
             catch
             {

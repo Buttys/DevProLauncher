@@ -52,7 +52,7 @@ namespace DevProLauncher.Helpers
             {
                 m_checkmateusr = form.Username.Text;
                 m_checkmatepass = form.Password.Text;
-                GenerateCheckmateConfig(Program.Checkmate, m_checkmateusr, m_checkmatepass);
+                GenerateCheckmateConfig(Program.CheckmateServerList[form.ServerSelect.SelectedItem.ToString()], m_checkmateusr, m_checkmatepass);
                 RunGame("-j");
             }
         }
