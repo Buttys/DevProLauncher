@@ -24,7 +24,7 @@ function c80200003.initial_effect(c)
 end
 function c80200003.condition(e,tp,eg,ep,ev,re,r,rp)
 	local at=Duel.GetAttackTarget()
-	return at and at:GetControler()==tp and at:IsSetCard(0x7b)
+	return at and at:GetControler()==tp and at:IsSetCard(0x7b) and at:IsFaceup()
 end
 function c80200003.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -39,7 +39,7 @@ function c80200003.operation(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c80200003.xyzfilter(c,mg)
-	return c:IsSetCard(0x7b) and c:IsXyzSummonable(mg)
+	return c:IsSetCard(0x7b)and c:IsFaceup() and c:IsXyzSummonable(mg)
 end
 function c80200003.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetSummonType()==SUMMON_TYPE_SPECIAL+1
