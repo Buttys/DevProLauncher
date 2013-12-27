@@ -17,8 +17,17 @@ namespace DevProLauncher.Windows.MessageBoxs
             ServerSelect.SelectedIndex = 0;
             Username.Text = username;
             Password.Text = password;
+            ApplyTranslation();
         }
+        private void ApplyTranslation()
+        {
+            DevProLauncher.Config.LanguageInfo info = Program.LanguageManager.Translation;
 
+            label1.Text = info.checkmateInfo;
+            label2.Text = info.checkmateUser;
+            label3.Text = info.checkmatePw;
+            Playbtn.Text = info.checkmateBtn;
+        }
         private void Playbtn_Click(object sender, System.EventArgs e)
         {
             if (string.IsNullOrEmpty(Username.Text))

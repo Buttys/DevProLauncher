@@ -73,7 +73,7 @@
             this.optionsGB.Size = new System.Drawing.Size(222, 97);
             this.optionsGB.TabIndex = 16;
             this.optionsGB.TabStop = false;
-            this.optionsGB.Text = "options";
+            this.optionsGB.Text = "Options";
             // 
             // deckCB
             // 

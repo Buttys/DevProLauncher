@@ -443,11 +443,10 @@
             this.NoDelay.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.NoDelay.AutoSize = true;
             this.NoDelay.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.NoDelay.Location = new System.Drawing.Point(164, 29);
+            this.NoDelay.Location = new System.Drawing.Point(264, 30);
             this.NoDelay.Name = "NoDelay";
-            this.NoDelay.Size = new System.Drawing.Size(115, 17);
+            this.NoDelay.Size = new System.Drawing.Size(15, 14);
             this.NoDelay.TabIndex = 6;
-            this.NoDelay.Text = "No Delay for Chain";
             this.NoDelay.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
@@ -739,7 +738,7 @@
             this.UpdatePassword.Name = "UpdatePassword";
             this.UpdatePassword.Size = new System.Drawing.Size(92, 23);
             this.UpdatePassword.TabIndex = 0;
-            this.UpdatePassword.Text = "Update";
+            this.UpdatePassword.Text = "Update Password";
             this.UpdatePassword.UseVisualStyleBackColor = true;
             this.UpdatePassword.Click += new System.EventHandler(this.UpdatePassword_Click);
             // 

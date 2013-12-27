@@ -26,7 +26,7 @@ namespace DevProLauncher.Windows
         private bool m_friendMode;
         private Timer m_searchReset;
         private bool m_autoJoined;
-
+        private LanguageInfo lang = Program.LanguageManager.Translation;
 
         public ChatFrm()
         {
@@ -77,8 +77,8 @@ namespace DevProLauncher.Windows
             ApplyTranslations();
             ApplyChatSettings();
 
-            WriteSystemMessage("Welcome to the DevPro chat system!");
-            WriteSystemMessage("To join a channel please click the channel list button.");
+            WriteSystemMessage(lang.chatMsg1);
+            WriteSystemMessage(lang.chatMsg2);
         }
 
         public void LoadDefualtChannel()
@@ -202,14 +202,21 @@ namespace DevProLauncher.Windows
 
         public void ApplyTranslations()
         {
-            LanguageInfo lang = Program.LanguageManager.Translation;
             //options
             groupBox7.Text = lang.chatoptionsGb2;
             groupBox5.Text = lang.chatoptionsGb3;
             HideJoinLeavechk.Text = lang.chatoptionsLblHideJoinLeave;
+            pmwindowchk.Text = lang.chatoptionsLblPmWindows;
             Colorblindchk.Text = lang.chatoptionsLblColorBlindMode;
+            usernamecolorchk.Text = lang.chatoptionsLblUserColors;
+            refuseteamchk.Text = lang.chatoptionsLblRefuseTeamInvites;
             Timestampchk.Text = lang.chatoptionsLblShowTimeStamp;
             DuelRequestchk.Text = lang.chatoptionsLblRefuseDuelRequests;
+
+            groupBox1.Text = lang.chatoptionsFontTitle;
+            label1.Text = lang.chatoptionsFontLbl;
+            label2.Text = lang.chatoptionsFontSize;
+
             label13.Text = lang.chatoptionsLblChatBackground;
             label12.Text = lang.chatoptionsLblNormalText;
             label11.Text = lang.chatoptionsLblLevel99;
@@ -221,6 +228,20 @@ namespace DevProLauncher.Windows
             label14.Text = lang.chatoptionsLblJoin;
             label15.Text = lang.chatoptionsLblLeave;
             label16.Text = lang.chatoptionsLblSystem;
+
+            userSearchBtn.Text = lang.chatBtnUser;
+            adminSearchBtn.Text = lang.chatBtnAdmin;
+            teamSearchBtn.Text =  lang.chatBtnTeam;
+            friendSearchBtn.Text = lang.chatBtnFriend;
+            ChannelListBtn.Text = lang.chatBtnChannel;
+            LeaveBtn.Text = lang.chatBtnLeave;
+
+            UserTab.Text = lang.chatUserTab;
+            IgnoreTab.Text = lang.chatIgnoreTab;
+            OptionsTab.Text = lang.chatOptionTab;
+            ChannelTab.Text = lang.chatChannelTab;
+            UserListTab.Text = lang.chatUserListTab;
+
         }
 
         public void LoadIgnoreList()
@@ -1094,10 +1115,10 @@ namespace DevProLauncher.Windows
                 var mnuduel = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRequestDuel);
                 var mnufriend = new ToolStripMenuItem(Program.LanguageManager.Translation.chatAddFriend);
                 var mnuignore = new ToolStripMenuItem(Program.LanguageManager.Translation.chatIgnoreUser);
-                var mnukick = new ToolStripMenuItem("Kick");
-                var mnuban = new ToolStripMenuItem("Ban");
+                var mnukick = new ToolStripMenuItem(Program.LanguageManager.Translation.chatKick);
+                var mnuban = new ToolStripMenuItem(Program.LanguageManager.Translation.chatBan);
                 var mnuremovefriend = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRemoveFriend);
-                var mnuremoveteam = new ToolStripMenuItem("Remove from Team");
+                var mnuremoveteam = new ToolStripMenuItem(Program.LanguageManager.Translation.chatTeamRemove);
 
                 mnukick.Click += KickUser;
                 mnuban.Click += BanUser;

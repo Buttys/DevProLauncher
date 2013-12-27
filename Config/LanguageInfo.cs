@@ -61,6 +61,12 @@ namespace DevProLauncher.Config
         public string GameUpdating2 = " seconds.";
         public string GameSpectate = "Random Spectate";
 
+        public string GameAll = "All";
+        public string GameSingle = "Single";
+        public string GameMatch = "Match";
+        public string GameTag = "Tag";
+        public string GameMinutes = "minutes";
+
         public string GameNoServers = "No servers are available.";
 
 
@@ -73,10 +79,14 @@ namespace DevProLauncher.Config
 
 
         // Option_frm.cs
+        public string optionTitle = "Options";
+        public string optionGameTab = "Game Settings";
+        public string optionAccountTab = "Account Settings";
         public string optionGb1 = "User Settings";
         public string optionGb2 = "Game Settings";
         public string optionGb3 = "Font Settings";
         public string optionGb4 = "Launcher Settings";
+        public string optionGb5 = "Update Password";
         public string optionMsbForget = "Do you really want to forget auto login credentials?";
         public string optionUser = "Default Username";
         public string optionDeck = "Default Deck";
@@ -97,6 +107,23 @@ namespace DevProLauncher.Config
         public string optionCbAutoChain = "Auto Chain Order";
         public string optionCbNoChainDelay = "No Delay for Chain";
         public string optionCbEnableSleeves = "Enable User Covers";
+        public string optionCurrentPW = "Current Password";
+        public string optionNewPW = "New Password";
+        public string optionConfirmPW = "Confirm Password";
+        public string optionUpdatePW = "Update Password";
+
+        // DropboxSynch_frm.cs
+        public string DropboxTitle = "Synchronize with the Cloud";
+        public string DropboxDescription = "synchronize your decks and replays with every\r\nclient connected with your  DropBo" +
+                "x account";
+        public string DropboxSubmit = "Sync";
+        public string DropboxOptions = "Options";
+        public string DropboxDeck = "sync decks";
+        public string DropboxReplay = "sync replays";
+        public string DropboxSkin = "sync skins";
+        public string DropboxSound = "sync sounds";
+        public string DropboxTexture = "sync textures";
+        public string DropboxAll = "sync all";
 
         // Host_frm.cs
         public string hostGb1 = "Settings";
@@ -115,6 +142,8 @@ namespace DevProLauncher.Config
         public string hostpassword = "Password";
 
         // FileManager_frm.cs
+
+        public string fileBtnCopy = "Copy Decklist";
         public string fileBtnRename = "Rename";
         public string fileBtnDelete = "Delete";
         public string fileBtnFolder = "Open Folder";
@@ -127,6 +156,13 @@ namespace DevProLauncher.Config
         public string fileInputConfirm = "Rename";
         public string fileBtnRefresh = "Refresh";
         public string fileBtnImport = "Import";
+
+        // ReplayInfoControl..cs
+        public string replayError = "Error opening replay.";
+        public string replayType = "Replay Type: ";
+        public string replayLP = "Starting Lifepoints: ";
+        public string replayHand = "Starting Handcards: ";
+        public string replayDraw = "Draw Count: ";
 
         // About_frm.cs
         public string aboutLabel1 = "About DevPro";
@@ -179,9 +215,16 @@ namespace DevProLauncher.Config
         public string chatoptionsGb4 = "Channel Settings";
         public string chatoptionsLblHideJoinLeave = "Hide Join/Leave";
         public string chatoptionsLblPmWindows = "PM Windows";
+        public string chatoptionsLblUserColors = "Username Colors";
+        public string chatoptionsLblRefuseTeamInvites = "Refuse Team Invites";
         public string chatoptionsLblColorBlindMode = "Color Blind Mode";
         public string chatoptionsLblShowTimeStamp = "Show Time Stamp";
         public string chatoptionsLblRefuseDuelRequests = "Refuse Duel Requests";
+
+        public string chatoptionsFontTitle = "Font Settings";
+        public string chatoptionsFontLbl = "Font";
+        public string chatoptionsFontSize = "Font Size";
+
         public string chatoptionsLblChatBackground = "Chat Background";
         public string chatoptionsLblNormalText = "Normal Text";
         public string chatoptionsLblLevel99 = "Level 99";
@@ -200,10 +243,22 @@ namespace DevProLauncher.Config
 
         //Chat_frm.cs
 
+        public string chatTitle ="Chat (Beta v4.2)";
+        public string chatMsg1 = "Welcome to the DevPro chat system!";
+        public string chatMsg2 = "To join a channel please click the channel list button.";
         public string chatBtnoptions = "Settings";
+        public string chatBtnUser = "Search Users";
+        public string chatBtnAdmin = "Search Admins";
+        public string chatBtnTeam = "Search in Team";
+        public string chatBtnFriend = "Search in Friendlist";
+        public string chatBtnChannel = "Channel List";
+        public string chatBtnLeave = "Channel List";
         public string chatTabUsers = "Users";
         public string chatTabFriends = "Friends";
         public string chatTabIgnore = "Ignore";
+        public string chatKick = "Kick";
+        public string chatBan = "Ban";
+        public string chatTeamRemove = "Remove from Team";
         public string chatUserCount = "User Count: ";
         public string chatAddFriend = "Add to Friends";
         public string chatRequestDuel = "Request Duel";
@@ -213,18 +268,43 @@ namespace DevProLauncher.Config
         public string chatRemoveIgnore = "Remove";
         public string chatAutoScroll = "Auto-Scroll";
 
-        //Main_frm.cs
+        public string chatUserTab = "Users";
+        public string chatIgnoreTab = "Ignore";
+        public string chatOptionTab = "Options";
+        public string chatChannelTab = "Channel";
+        public string chatUserListTab = "UserList";
+        
+        // Checkmate_frm.cs
+
+        public string checkmateInfo = "- To register an account simply type a username and password! \n" +
+                                      "- To play without registering you can simply leave the password field blank. \n";
+        public string checkmateUser = "Username";
+        public string checkmatePw = "Password";
+        public string checkmateBtn = "Play";
+
+        // ChannelList_frm.cs
+
+        public string channelCreate = "Create";
+        public string channelJoin = "Join";
+        public string channelDefault = "Default";
+        public string channelTitle = "Create Channel";
+        public string channelMsg = "Enter Channel Name";
+        public string channelCancel = "Cancel";
+        // Main_frm.cs
 
         public string MainFormTitle = "YGOPro Launcher ";
-        public string MainChatTab = "Chat (Beta)";
-        public string MainRankingTab = "Ranking";
-        public string MainTornyTab = "Tournament Room";
-        public string MainYoutubeTab = "Youtube";
+        public string MainGameTab = "Game List";
+        public string MainChatTab = "Chat (Beta v4.2)";
+        public string MainEventTab = "Downloads";
+        //deprecated   public string MainRankingTab = "Ranking";
+        //deprecated    public string MainTornyTab = "Tournament Room";
+        //deprecated   public string MainYoutubeTab = "Youtube";
         public string MainFileManagerTab = "File Manager";
         public string MainFileDeckTab = "Decks";
         public string MainFileReplayTab = "Replays";
         public string MainCustomizeTab = "Customize";
-        public string MainAboutTab = "About";
+        //deprecated   public string MainAboutTab = "About";
+        public string MainFaqTab = "FAQ";
 
         public string MainSyncBtn = "Dropbox Sync";
         public string MainSiteBtn = "Site";
@@ -241,6 +321,7 @@ namespace DevProLauncher.Config
         public string DuelRequestMode = " Type: ";
 
         //DevPro SupportTab
+        public string SupportTitle = "Support DevPro";
         public string SupportItem1Name = "Donator Status";
         public string SupportItem1Des = "Unlocks Donator status in chat, Orange username and additional chat commands.";
         public string SupportItem2Name = "Change Username";
@@ -270,5 +351,8 @@ namespace DevProLauncher.Config
         public string SupportUnbanInput = "Enter Username";
         public string SupportTeamNameInput = "Enter Team Name";
         public string SupportMSGInput = "Enter Message";
+
+        public string SupportRefreshBtn = "Refresh";
+        public string SupportGetBtn = "Get";
     }
 }

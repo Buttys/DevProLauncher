@@ -48,6 +48,7 @@ namespace DevProLauncher.Windows.Components
         {
             if (Program.LanguageManager.Loaded)
             {
+                CopyDeckBtn.Text = Program.LanguageManager.Translation.fileBtnCopy;
                 RenameBtn.Text = Program.LanguageManager.Translation.fileBtnRename;
                 DeleteBtn.Text = Program.LanguageManager.Translation.fileBtnDelete;
                 OpenBtn.Text = Program.LanguageManager.Translation.fileBtnFolder;

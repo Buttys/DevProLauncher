@@ -30,8 +30,24 @@ namespace DevProLauncher.Windows
             this.soundsCB.CheckedChanged += new System.EventHandler(this.soundsCB_CheckedChanged);
             this.FormClosing += new FormClosingEventHandler(DropBoxSynch_frm_FormClosing);
 
+            ApplyTranslation();
         }
-
+        private void ApplyTranslation()
+        {
+            if (Program.LanguageManager.Loaded)
+            {
+                this.Text = Program.LanguageManager.Translation.DropboxTitle;
+                descriptionLb.Text = Program.LanguageManager.Translation.DropboxDescription;
+                submitBtn.Text = Program.LanguageManager.Translation.DropboxSubmit;
+                optionsGB.Text = Program.LanguageManager.Translation.DropboxOptions;
+                deckCB.Text = Program.LanguageManager.Translation.DropboxDeck;
+                allCB.Text =  Program.LanguageManager.Translation.DropboxAll;
+                replayCB.Text = Program.LanguageManager.Translation.DropboxReplay;
+                texturesCB.Text = Program.LanguageManager.Translation.DropboxTexture;
+                skinsCB.Text = Program.LanguageManager.Translation.DropboxSkin;
+                soundsCB.Text = Program.LanguageManager.Translation.DropboxSound;
+            }
+        }
         void DropBoxSynch_frm_FormClosing(object sender, FormClosingEventArgs e)
         {
             

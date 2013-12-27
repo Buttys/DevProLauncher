@@ -22,12 +22,13 @@ namespace DevProLauncher.Windows.Components
         }
         public void ReadReplay(string fileName)
         {
+            DevProLauncher.Config.LanguageInfo info = Program.LanguageManager.Translation;
             try
             {
                 var replay = new ReplayReader.YgoReplay();
                 if (!replay.FromFile(fileName))
                 {
-                    ReplayInfo.Text = "Error opening replay.";
+                    ReplayInfo.Text = info.replayError;
                     return;
                 }
 
@@ -63,15 +64,15 @@ namespace DevProLauncher.Windows.Components
                 }
 
                 ReplayInfo.Text += Environment.NewLine;
-                ReplayInfo.Text = "Replay Type: " + (replay.Tag ? "Tag" : "Single");
+                ReplayInfo.Text = info.replayType + (replay.Tag ? info.GameTag : info.GameSingle);
                 if (!replay.Tag)
                 {
                     ReplayInfo.Text += Environment.NewLine;
-                    ReplayInfo.Text += "StartLP: " + startlp;
+                    ReplayInfo.Text += info.replayLP + startlp;
                     ReplayInfo.Text += Environment.NewLine;
-                    ReplayInfo.Text += "StartHand: " + starthand;
+                    ReplayInfo.Text += info.replayHand + starthand;
                     ReplayInfo.Text += Environment.NewLine;
-                    ReplayInfo.Text += "DrawCount: " + drawcount;
+                    ReplayInfo.Text += info.replayDraw + drawcount;
                     ReplayInfo.Text += Environment.NewLine;
                 }
 
@@ -149,7 +150,7 @@ namespace DevProLauncher.Windows.Components
             {
                 DeckList.Items.Clear();
                 CardList.Clear();
-                ReplayInfo.Text = "Error reading replay.";
+                ReplayInfo.Text = info.replayError;
             }
         }
 
