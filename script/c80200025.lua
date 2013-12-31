@@ -18,7 +18,7 @@ function c80200025.initial_effect(c)
 	e2:SetTarget(c80200025.sptg)
 	e2:SetOperation(c80200025.spop)
 	c:RegisterEffect(e2)
-	--destroy
+	--Set
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(80200025,1))
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)

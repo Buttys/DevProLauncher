@@ -35,7 +35,7 @@ end
 function c80200003.operation(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) then
-		Duel.SpecialSummon(c,1,tp,tp,false,false,POS_FACEUP)
+		Duel.SpecialSummon(c,1,tp,tp,false,false,POS_FACEUP_DEFENCE)
 	end
 end
 function c80200003.xyzfilter(c,mg)
