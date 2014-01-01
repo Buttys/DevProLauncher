@@ -46,11 +46,11 @@ function c80200060.activate(e,tp,eg,ep,ev,re,r,rp)
 		end
 	end
 end
-function c80200028.bpcon(e,tp,eg,ep,ev,re,r,rp)
+function c80200060.bpcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsReason(REASON_DESTROY) and e:GetHandler():GetReasonPlayer()~=tp
 		and e:GetHandler():GetPreviousControler()==tp
 end
-function c80200028.bpop(e,tp,eg,ep,ev,re,r,rp)
+function c80200060.bpop(e,tp,eg,ep,ev,re,r,rp)
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_SKIP_BP)

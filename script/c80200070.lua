@@ -28,7 +28,7 @@ function c80200070.initial_effect(c)
 end
 function c80200070.cfilter(c,tp)
 	return c:IsSetCard(0x7b) and  c:IsType(TYPE_XYZ) and c:IsReason(REASON_DESTROY) and c:IsPreviousLocation(LOCATION_MZONE) and c:GetPreviousControler()==tp 
-	and (not c:IsReason(REASON_BATTLE) or Duel.GetTurnPlayer()==tp)
+	and (not c:IsReason(REASON_BATTLE) or Duel.GetTurnPlayer()~=tp)
 end
 function c80200070.descon(e,tp,eg,ep,ev,re,r,rp)
 	return rp~=tp and eg:IsExists(c80200070.cfilter,1,nil,tp)
