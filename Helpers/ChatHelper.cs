@@ -158,7 +158,7 @@ namespace DevProLauncher.Helpers
                     File.AppendAllText(LogDirectory + LogFile, LogText + Environment.NewLine);
 
             }
-            else if ((MessageType)message.type == MessageType.System || (MessageType)message.type == MessageType.Server)
+            else if ((MessageType)message.type == MessageType.System || (MessageType)message.type == MessageType.Server || (MessageType)message.type == MessageType.MOTD)
             {
                 if (Program.Config.ShowTimeStamp)
                 {

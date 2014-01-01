@@ -888,6 +888,10 @@ namespace DevProLauncher.Windows
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/help - Displays the list you're reading now"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/uptime - Displays how long the server has been online"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/stats - Shows how many users are online, dueling, and how many duels"));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute username - (Channel Owners/Admins) Prevents a user from sending any messages in a certain channel."));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute username -(Channel Owners/Admins) Allows a muted user to send messages again"));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/setmotd message -(Channel Owners/Admins) Sets a message of the day that is sent to users when they join the channel."));
+
 
 
                     if (Program.UserInfo.rank != 0)
@@ -907,8 +911,6 @@ namespace DevProLauncher.Windows
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 2 Commands --"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/kick username reason - Kicks a user"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Sends a server message"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute username channel - Prevents a user from sending any messages in a certain channel."));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute username channel - Allows a muted user to send messages again"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/smsg - Sends a server message that displays on the bottom of the launcher"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getaccounts username - Gets a list of accounts for the the inputted username"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banusername username - Bans a user's account"));
@@ -966,9 +968,12 @@ namespace DevProLauncher.Windows
                     }
                     
                     break;
-                case "admin":
-                    //string admins = string.Join(", ", m_userData.Where(x => x.Value.rank > 0).Select(x => x.Key));
-                    //WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "The following admins are online: " + admins + "."));
+                case "setmotd":
+                    Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString(new PacketCommand { Command = cmd.ToUpper(), Data = ChatInput.Text.Substring(part.Length).Trim() + "|" + ChannelTabs.SelectedTab.Text }));
+                    break;
+                case "mute":
+                case "unmute":
+                    Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString(new PacketCommand { Command = cmd.ToUpper(), Data = ChatInput.Text.Substring(part.Length).Trim() + "|" + ChannelTabs.SelectedTab.Text }));
                     break;
                 default:
                     Program.ChatServer.SendPacket(DevServerPackets.ChatCommand, JsonSerializer.SerializeToString(new PacketCommand { Command = cmd.ToUpper(), Data = ChatInput.Text.Substring(part.Length).Trim() }));
