@@ -26,17 +26,14 @@ namespace DevProLauncher.Windows.Components
             m_fileType = filetype;
             RefreshFileList();
             Name = name;
-            if (name == "Decks")
-            {
-               m_infoWindow = new CardInfoControl();
-               tableLayoutPanel1.Controls.Add((CardInfoControl)m_infoWindow, 1, 0);
-                
-            }
-            else if (name == "Replays")
+
+            if (name == "Replays")
             {
                 m_infoWindow = new ReplayInfoControl();
                 tableLayoutPanel1.Controls.Add((ReplayInfoControl)m_infoWindow, 1, 0);
             }
+            else
+                tableLayoutPanel1.ColumnStyles.RemoveAt(1);
 
             FileList.MouseUp += OnListMouseUp;
             FileList.SelectedIndexChanged +=FileList_SelectedIndexChanged;
@@ -198,12 +195,8 @@ namespace DevProLauncher.Windows.Components
         {
             if (FileList.SelectedIndex == -1)
                 return;
-
-            if (Name == "Decks")
-            {
-                ((CardInfoControl)m_infoWindow).LoadDeck(Program.Config.LauncherDir + m_fileLocation +  FileList.SelectedItem + ".ydk");
-            }
-            else if (Name == "Replays")
+            
+            if (Name == "Replays")
             {
                 ((ReplayInfoControl)m_infoWindow).ReadReplay(Program.Config.LauncherDir + m_fileLocation + FileList.SelectedItem + ".yrp");
             }
@@ -233,51 +226,6 @@ namespace DevProLauncher.Windows.Components
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
             RefreshFileList();
-        }
-
-        private void CopyDeckBtn_Click(object sender, EventArgs e)
-        {
-            var decklist = new StringBuilder();
-
-            var window = m_infoWindow as CardInfoControl;
-            if (window != null)
-            {
-                if (window.DeckList.Items.Count == 0)
-                    return;
-                foreach (object item in window.DeckList.Items)
-                {
-                    if (item.ToString().StartsWith("--"))
-                    {
-                        decklist.AppendLine(item.ToString());
-                    }
-                    else
-                    {
-                        decklist.AppendLine(item + " x" + window.CardList[item.ToString()].Amount);
-                    }
-                }
-            }
-            else
-            {
-                var control = m_infoWindow as ReplayInfoControl;
-                if (control != null)
-                {
-                    if (control.DeckList.Items.Count == 0)
-                        return;
-                    foreach (object item in control.DeckList.Items)
-                    {
-                        if (item.ToString().StartsWith("--"))
-                        {
-                            decklist.AppendLine(item.ToString());
-                        }
-                        else
-                        {
-                            decklist.AppendLine(item + " x" + control.CardList[item.ToString()].Amount);
-                        }
-                    }
-                }
-            }
-
-            Clipboard.SetText(decklist.ToString());
         }
         
     }

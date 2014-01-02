@@ -5,8 +5,6 @@ using DevProLauncher.Network.Enums;
 using DevProLauncher.Helpers;
 using System.Diagnostics;
 using DevProLauncher.Windows.MessageBoxs;
-using DropNet;
-using DevProLauncher.Controller;
 
 namespace DevProLauncher.Windows
 {
@@ -45,7 +43,6 @@ namespace DevProLauncher.Windows
             m_customizerWindow = new CustomizeFrm();
             m_faqBrowser = new Browser_frm();
             m_faqBrowser.FormBorderStyle = FormBorderStyle.None;
-            LauncherHelper.CardManager.Init();
 
             Program.ChatServer.ServerMessage += ServerMessage;
 
@@ -216,11 +213,6 @@ namespace DevProLauncher.Windows
             var settings = new Settings();
             settings.ShowDialog();
 
-        }
-
-        private void DBSyncBtn_Click(object sender, EventArgs e)
-        {
-            LauncherHelper.SyncCloud(sender,e);
         }
 
         private void TabChange(object sender, EventArgs e)

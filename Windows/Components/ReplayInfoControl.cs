@@ -10,7 +10,6 @@ namespace DevProLauncher.Windows.Components
 {
     public sealed partial class ReplayInfoControl : Form
     {
-        public Dictionary<string, CardInfos> CardList = new Dictionary<string,CardInfos>();
 
         public ReplayInfoControl()
         {
@@ -18,8 +17,8 @@ namespace DevProLauncher.Windows.Components
             TopLevel = false;
             Dock = DockStyle.Fill;
             Visible = true;
-            DeckList.DrawItem += DeckList_DrawItem;
         }
+
         public void ReadReplay(string fileName)
         {
             try
@@ -75,80 +74,9 @@ namespace DevProLauncher.Windows.Components
                     ReplayInfo.Text += Environment.NewLine;
                 }
 
-                if (!replay.Tag)
-                {
-                    bool playerfound = false;
-                    string[] players = !replay.Tag ? new[] { hostname, clientname } : new[] { hostname, clientname, player3, player4 };
-
-                    foreach (string player in players)
-                    {
-                        var cardnumbers = new List<string> {"#main"};
-                        if (replay.DataReader != null)
-                        {
-                            int count = replay.DataReader.ReadInt32();
-                            for (var i = 0; i < count; ++i)
-                            {
-                                cardnumbers.Add(replay.DataReader.ReadInt32().ToString(CultureInfo.InvariantCulture));
-                            }
-
-                            count = replay.DataReader.ReadInt32();
-                            cardnumbers.Add("#extra");
-                            for (int i = 0; i < count; ++i)
-                            {
-                                cardnumbers.Add(replay.DataReader.ReadInt32().ToString(CultureInfo.InvariantCulture));
-                            }
-                        }
-                        if (player == Program.UserInfo.username)
-                        {
-                            playerfound = true;
-                            DeckList.Items.Clear();
-                            CardList.Clear();
-                            foreach (string cardnumber in cardnumbers)
-                            {
-                                if (cardnumber.StartsWith("#"))
-                                {
-                                    if (cardnumber.Contains("main"))
-                                    {
-                                        DeckList.Items.Add("--Main--");
-                                    }
-                                    if (cardnumber.Contains("extra"))
-                                    {
-                                        DeckList.Items.Add("--Extra--");
-                                    }
-                                    continue;
-                                }
-                                CardInfos card = LauncherHelper.CardManager.FromId(Int32.Parse(cardnumber));
-                                if (card == null) continue;
-                                if (CardList.ContainsKey(card.Name))
-                                {
-                                    CardList[card.Name].Amount++;
-                                }
-                                else
-                                {
-                                    CardList.Add(card.Name, (CardInfos)card.Clone());
-                                    DeckList.Items.Add(card.Name);
-                                    CardList[card.Name].Amount++;
-                                }
-                            }
-                        }
-                    }
-
-                    if (!playerfound)
-                    {
-                        CardList.Clear();
-                        DeckList.Items.Clear();
-                    }
-                }
-                else
-                {
-                    CardList.Clear();
-                    DeckList.Items.Clear();
-                }
             }
             catch
             {
-                DeckList.Items.Clear();
-                CardList.Clear();
                 ReplayInfo.Text = "Error reading replay.";
             }
         }
@@ -159,50 +87,5 @@ namespace DevProLauncher.Windows.Components
                 return name.Split(']')[1];
             return name;
         }
-
-        private void DeckList_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            e.DrawBackground();
-
-            bool selected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
-
-            int index = e.Index;
-            if (index >= 0 && index < DeckList.Items.Count)
-            {
-                string text = DeckList.Items[index].ToString();
-                Graphics g = e.Graphics;
-                if (!CardList.ContainsKey(text))
-                {
-                    g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
-                    g.DrawString(text, e.Font, (selected) ? Brushes.Blue : Brushes.Black,
-                         DeckList.GetItemRectangle(index).Location);
-                    e.DrawFocusRectangle();
-                    return;
-                }
-
-                CardInfos card = CardList[text];
-
-                Color itemcolor =
-                (card.HasType(CardType.Trap) ? Color.Violet :
-                (card.HasType(CardType.Spell) ? Color.LawnGreen :
-                (card.HasType(CardType.Synchro) ? Color.White :
-                (card.HasType(CardType.Xyz) ? Color.Gray :
-                (card.HasType(CardType.Ritual) ? Color.CornflowerBlue :
-                (card.HasType(CardType.Fusion) ? Color.MediumPurple :
-                (card.HasType(CardType.Effect) ? Color.Orange :
-                (card.HasType(CardType.Normal) ? Color.Yellow :
-
-                Color.Red))))))));
-
-                g.FillRectangle(new SolidBrush(itemcolor), e.Bounds);
-
-                // Print text
-                g.DrawString(text + " x" + card.Amount, e.Font, (selected) ? Brushes.Blue : Brushes.Black,
-                    DeckList.GetItemRectangle(index).Location);
-            }
-
-            e.DrawFocusRectangle();
-        }
-
     }
 }

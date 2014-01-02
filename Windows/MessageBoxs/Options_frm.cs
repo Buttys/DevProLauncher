@@ -159,12 +159,6 @@ namespace DevProLauncher.Windows.MessageBoxs
             Program.Config.chtTimeLimit = form.TimeLimit.Text;
         }
 
-        private void dropboxbtn_Click(object sender, EventArgs e)
-        {
-            DropBoxSynch_frm dbsyncfrm = new DropBoxSynch_frm();
-            dbsyncfrm.Show();
-        }
-
         private void UpdatePassword_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(currentPassword.Text) || string.IsNullOrEmpty(newPassword.Text) ||

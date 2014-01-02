@@ -44,19 +44,24 @@ namespace DevProLauncher.Windows.MessageBoxs
                 MessageBox.Show("Confirm password is wrong.");
                 return;
             }
-            if (ConfirmInput.Text == "")
+            if (string.IsNullOrEmpty(ConfirmInput.Text))
             {
                 MessageBox.Show(Program.LanguageManager.Translation.RegistMsb1);
                 return;
             }
-            if (PasswordInput.Text == "")
+            if (string.IsNullOrEmpty(PasswordInput.Text))
             {
                 MessageBox.Show(Program.LanguageManager.Translation.RegistMsb2);
                 return;
             }
-            if (UsernameInput.Text == "")
+            if (string.IsNullOrEmpty(UsernameInput.Text))
             {
                 MessageBox.Show(Program.LanguageManager.Translation.RegistMsb3);
+                return;
+            }
+            if (string.IsNullOrEmpty(EmailInput.Text))
+            {
+                MessageBox.Show("Email address reqired.");
                 return;
             }
             if (!Regex.IsMatch(UsernameInput.Text, "^[a-zA-Z0-9_]*$"))
@@ -64,13 +69,21 @@ namespace DevProLauncher.Windows.MessageBoxs
                 MessageBox.Show(Program.LanguageManager.Translation.RegistMsb6);
                 return;
             }
+
+            if (!Regex.IsMatch(EmailInput.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z"))
+            {
+                MessageBox.Show("Invalid email address.");
+                return;
+            }
+
             Program.ChatServer.SendPacket(DevServerPackets.Register, JsonSerializer.SerializeToString(
-                new LoginRequest
+                new RegisterRequest
                     { 
                     Username = UsernameInput.Text, 
                     Password= LauncherHelper.EncodePassword(PasswordInput.Text), 
                     UID= LauncherHelper.GetUID(),
-                    Version = Convert.ToInt32(Program.Version)
+                    Version = Convert.ToInt32(Program.Version),
+                    Email = EmailInput.Text
                 }));
             RegisterBtn.Enabled = false;
         }

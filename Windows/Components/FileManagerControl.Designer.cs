@@ -37,7 +37,6 @@
             this.DeleteBtn = new System.Windows.Forms.Button();
             this.RenameBtn = new System.Windows.Forms.Button();
             this.RefreshBtn = new System.Windows.Forms.Button();
-            this.CopyDeckBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -75,7 +74,6 @@
             this.flowLayoutPanel1.Controls.Add(this.DeleteBtn);
             this.flowLayoutPanel1.Controls.Add(this.RenameBtn);
             this.flowLayoutPanel1.Controls.Add(this.RefreshBtn);
-            this.flowLayoutPanel1.Controls.Add(this.CopyDeckBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(703, 3);
@@ -143,17 +141,7 @@
             this.RefreshBtn.UseVisualStyleBackColor = true;
             this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
             // 
-            // CopyDeckBtn
-            // 
-            this.CopyDeckBtn.Location = new System.Drawing.Point(3, 217);
-            this.CopyDeckBtn.Name = "CopyDeckBtn";
-            this.CopyDeckBtn.Size = new System.Drawing.Size(99, 27);
-            this.CopyDeckBtn.TabIndex = 6;
-            this.CopyDeckBtn.Text = "Copy Decklist";
-            this.CopyDeckBtn.UseVisualStyleBackColor = true;
-            this.CopyDeckBtn.Click += new System.EventHandler(this.CopyDeckBtn_Click);
-            // 
-            // FileManager_frm
+            // FileManagerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -161,7 +149,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FileManagerFrm";
+            this.Name = "FileManagerControl";
             this.Text = "FileManagerDesign";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -180,7 +168,6 @@
         private System.Windows.Forms.Button RenameBtn;
         private System.Windows.Forms.Button ImportBtn;
         private System.Windows.Forms.Button RefreshBtn;
-        private System.Windows.Forms.Button CopyDeckBtn;
 
     }
 }

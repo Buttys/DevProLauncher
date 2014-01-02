@@ -34,7 +34,6 @@
             this.SaveBtn = new System.Windows.Forms.Button();
             this.QuickSettingsBtn = new System.Windows.Forms.Button();
             this.RequestSettingsbtn = new System.Windows.Forms.Button();
-            this.dropboxbtn = new System.Windows.Forms.Button();
             this.OptionTabControl = new System.Windows.Forms.TabControl();
             this.GameTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -128,7 +127,6 @@
             this.flowLayoutPanel1.Controls.Add(this.SaveBtn);
             this.flowLayoutPanel1.Controls.Add(this.QuickSettingsBtn);
             this.flowLayoutPanel1.Controls.Add(this.RequestSettingsbtn);
-            this.flowLayoutPanel1.Controls.Add(this.dropboxbtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 330);
@@ -175,16 +173,6 @@
             this.RequestSettingsbtn.Text = "Request Settings";
             this.RequestSettingsbtn.UseVisualStyleBackColor = true;
             this.RequestSettingsbtn.Click += new System.EventHandler(this.RequestSettingsbtn_Click);
-            // 
-            // dropboxbtn
-            // 
-            this.dropboxbtn.Location = new System.Drawing.Point(125, 3);
-            this.dropboxbtn.Name = "dropboxbtn";
-            this.dropboxbtn.Size = new System.Drawing.Size(75, 23);
-            this.dropboxbtn.TabIndex = 6;
-            this.dropboxbtn.Text = "Dropbox";
-            this.dropboxbtn.UseVisualStyleBackColor = true;
-            this.dropboxbtn.Click += new System.EventHandler(this.dropboxbtn_Click);
             // 
             // OptionTabControl
             // 
@@ -858,7 +846,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox SkinList;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button dropboxbtn;
         private System.Windows.Forms.CheckBox EnableSleeveLoading;
         private System.Windows.Forms.TabPage accountTab;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
