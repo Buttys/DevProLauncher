@@ -61,7 +61,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             }
             if (string.IsNullOrEmpty(EmailInput.Text))
             {
-                MessageBox.Show("Email address reqired.");
+                MessageBox.Show(Program.LanguageManager.Translation.RegistMsb7);
                 return;
             }
             if (!Regex.IsMatch(UsernameInput.Text, "^[a-zA-Z0-9_]*$"))
@@ -72,7 +72,7 @@ namespace DevProLauncher.Windows.MessageBoxs
 
             if (!Regex.IsMatch(EmailInput.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z"))
             {
-                MessageBox.Show("Invalid email address.");
+                MessageBox.Show(Program.LanguageManager.Translation.RegistMsb8);
                 return;
             }
 
