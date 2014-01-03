@@ -112,7 +112,7 @@ namespace DevProLauncher.Windows
             chatTab.Controls.Add(m_chatWindow);
             mainTabs.TabPages.Add(chatTab);
 
-            var wcsTab = new TabPage("Events");
+            var wcsTab = new TabPage("Downloads");
             wcsTab.Controls.Add(m_wcsBrowser);
             mainTabs.TabPages.Add(wcsTab);
 
@@ -220,7 +220,7 @@ namespace DevProLauncher.Windows
             if (mainTabs.SelectedIndex == 2)
                 m_wcsBrowser.Navigate("http://ygopro.de/launcher/events.php", false);
             else if (mainTabs.SelectedIndex == mainTabs.TabPages.Count - 1)
-                m_faqBrowser.Navigate("http://devpro.org/faq/", false);
+                m_faqBrowser.Navigate("http://ygopro.de/en/faq/", false);
             else if (mainTabs.SelectedIndex == 1)
                 m_chatWindow.LoadDefualtChannel();
         }
