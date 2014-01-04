@@ -889,8 +889,8 @@ namespace DevProLauncher.Windows
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/uptime - Displays how long the server has been online"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/stats - Shows how many users are online, dueling, and how many duels"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute username - (Channel Owners/Admins) Prevents a user from sending any messages in a certain channel."));
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute username -(Channel Owners/Admins) Allows a muted user to send messages again"));
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/setmotd message -(Channel Owners/Admins) Sets a message of the day that is sent to users when they join the channel."));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute username - (Channel Owners/Admins) Allows a muted user to send messages again"));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/setmotd message - (Channel Owners/Admins) Sets a message of the day that is sent to users when they join the channel."));
 
 
 
@@ -913,13 +913,13 @@ namespace DevProLauncher.Windows
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Sends a server message"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/smsg - Sends a server message that displays on the bottom of the launcher"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getaccounts username - Gets a list of accounts for the the inputted username"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banusername username - Bans a user's account"));
                     }
 
                     if (Program.UserInfo.rank > 2)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 3 Commands --"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ban username time reason - Bans a user, time format has to be in hours, also you must give a reason."));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banusername username - Bans a user's account"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unban username - Unbans a user"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/ip username - Gets a users IP"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/banip ip - Bans an IP"));
