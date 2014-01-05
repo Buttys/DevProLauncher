@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterFrm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.RegisterBtn = new System.Windows.Forms.Button();
             this.CancelBtn = new System.Windows.Forms.Button();
+            this.RegisterBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -82,16 +82,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(160, 30);
             this.flowLayoutPanel1.TabIndex = 13;
             // 
-            // RegisterBtn
-            // 
-            this.RegisterBtn.Location = new System.Drawing.Point(7, 3);
-            this.RegisterBtn.Name = "RegisterBtn";
-            this.RegisterBtn.Size = new System.Drawing.Size(72, 23);
-            this.RegisterBtn.TabIndex = 0;
-            this.RegisterBtn.Text = "Register";
-            this.RegisterBtn.UseVisualStyleBackColor = true;
-            this.RegisterBtn.Click += new System.EventHandler(this.RegisterBtn_Click);
-            // 
             // CancelBtn
             // 
             this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -101,6 +91,16 @@
             this.CancelBtn.TabIndex = 1;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
+            // 
+            // RegisterBtn
+            // 
+            this.RegisterBtn.Location = new System.Drawing.Point(7, 3);
+            this.RegisterBtn.Name = "RegisterBtn";
+            this.RegisterBtn.Size = new System.Drawing.Size(72, 23);
+            this.RegisterBtn.TabIndex = 0;
+            this.RegisterBtn.Text = "Register";
+            this.RegisterBtn.UseVisualStyleBackColor = true;
+            this.RegisterBtn.Click += new System.EventHandler(this.RegisterBtn_Click);
             // 
             // label1
             // 
