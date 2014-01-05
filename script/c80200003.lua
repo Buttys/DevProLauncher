@@ -38,21 +38,24 @@ function c80200003.operation(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SpecialSummon(c,1,tp,tp,false,false,POS_FACEUP_DEFENCE)
 	end
 end
+function c80200003.matfilter(c)
+	return c:IsSetCard(0x7b) and c:IsFaceup()
+end
 function c80200003.xyzfilter(c,mg)
-	return c:IsSetCard(0x7b)and c:IsFaceup() and c:IsXyzSummonable(mg)
+	return c:IsSetCard(0x7b) and c:IsXyzSummonable(mg)
 end
 function c80200003.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetSummonType()==SUMMON_TYPE_SPECIAL+1
 end
 function c80200003.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-	local mg=Duel.GetMatchingGroup(Card.IsSetCard,tp,LOCATION_MZONE,0,nil,0x7b)
+	local mg=Duel.GetMatchingGroup(c80200003.matfilter,tp,LOCATION_MZONE,0,nil)
 	if chk==0 then return 
 		mg:GetCount()>1
 		and Duel.IsExistingMatchingCard(c80200003.xyzfilter,tp,LOCATION_EXTRA,0,1,nil,mg) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,0,0)
 end
 function c80200003.spop(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetMatchingGroup(Card.IsSetCard,tp,LOCATION_MZONE,0,nil,0x7b)
+	local g=Duel.GetMatchingGroup(c80200003.matfilter,tp,LOCATION_MZONE,0,nil)
 	local xyzg=Duel.GetMatchingGroup(c80200003.xyzfilter,tp,LOCATION_EXTRA,0,nil,g)
 	if xyzg:GetCount()>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)

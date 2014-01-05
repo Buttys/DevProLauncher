@@ -22,8 +22,9 @@ function c80200028.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80200028.retcon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():IsReason(REASON_DESTROY) and e:GetHandler():GetReasonPlayer()~=tp
-		and e:GetHandler():GetPreviousControler()==tp
+	local c=e:GetHandler()
+	return c:IsReason(REASON_DESTROY) and c:GetReasonPlayer()~=tp
+		and c:GetPreviousControler()==tp
 end
 function c80200028.rettg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
