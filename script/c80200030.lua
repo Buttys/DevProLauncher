@@ -39,7 +39,7 @@ function c80200030.spgop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local tc=Duel.SelectMatchingCard(tp,c80200030.spgfilter,tp,LOCATION_HAND,0,1,1,nil,e,tp):GetFirst()
-	if tc and Duel.SpecialSummon(tc,125,tp,tp,false,false,POS_FACEUP)>0 then
+	if tc and Duel.SpecialSummon(tc,125,tp,tp,false,false,POS_FACEUP_DEFENCE)>0 then
 		tc:RegisterFlagEffect(80200031,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
 		tc:RegisterFlagEffect(tc:GetOriginalCode(),RESET_EVENT+0x1ff0000,0,0)
 		local e1=Effect.CreateEffect(e:GetHandler())

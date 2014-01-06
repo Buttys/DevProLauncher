@@ -78,9 +78,22 @@ namespace DevProLauncher.Windows.MessageBoxs
                 groupBox1.Text = Program.LanguageManager.Translation.hostGb1;
                 groupBox2.Text = Program.LanguageManager.Translation.hostGb2;
                 label6.Text = Program.LanguageManager.Translation.hostTimeLimit;
+                TimeLimit.Items.Clear();
+                TimeLimit.Items.AddRange(new object[] {
+                "3 "+Program.LanguageManager.Translation.GameMinutes,
+                "5 "+Program.LanguageManager.Translation.GameMinutes});
+
                 label5.Text = Program.LanguageManager.Translation.hostBanlist;
                 label3.Text = Program.LanguageManager.Translation.hostRules;
+
                 label4.Text = Program.LanguageManager.Translation.hostMode;
+                Mode.Items.Clear();
+                Mode.Items.AddRange(new object[] {
+                Program.LanguageManager.Translation.GameSingle,
+                Program.LanguageManager.Translation.GameTag,
+                Program.LanguageManager.Translation.GameMatch
+                });
+
                 Priority.Text = Program.LanguageManager.Translation.hostPrio;
                 CheckDeck.Text = Program.LanguageManager.Translation.hostCheckDeck;
                 ShuffleDeck.Text = Program.LanguageManager.Translation.hostShuffle;

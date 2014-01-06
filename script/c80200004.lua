@@ -20,8 +20,9 @@ function c80200004.initial_effect(c)
 	e2:SetOperation(c80200004.op)
 	c:RegisterEffect(e2)
 end
-function c80200004.condition(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==1 and Duel.GetFieldGroupCount(tp,0,LOCATION_HAND) < 5
+function c80200004.condition(e)
+	local tp=e:GetHandlerPlayer()
+	return Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==1 and Duel.GetFieldGroupCount(tp,0,LOCATION_HAND)<5
 end
 function c80200004.filter(c)
 	return c:IsRace(RACE_DRAGON) and c:GetLevel()==8

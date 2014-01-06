@@ -58,10 +58,13 @@ namespace DevProLauncher.Windows.MessageBoxs
         {
             if (Program.LanguageManager.Loaded)
             {
+                this.Text = Program.LanguageManager.Translation.optionTitle;
+                GameTab.Text = Program.LanguageManager.Translation.optionGameTab;
                 groupBox1.Text = Program.LanguageManager.Translation.optionGb1;
                 groupBox2.Text = Program.LanguageManager.Translation.optionGb2;
                 groupBox3.Text = Program.LanguageManager.Translation.optionGb3;
                 groupBox4.Text = Program.LanguageManager.Translation.optionGb4;
+                groupBox5.Text = Program.LanguageManager.Translation.optionGb5;
                 label1.Text = Program.LanguageManager.Translation.optionUser;
                 label5.Text = Program.LanguageManager.Translation.optionDeck;
                 label6.Text = Program.LanguageManager.Translation.optionAntialias;
@@ -79,6 +82,12 @@ namespace DevProLauncher.Windows.MessageBoxs
                 AutoChain.Text = Program.LanguageManager.Translation.optionCbAutoChain;
                 NoDelay.Text = Program.LanguageManager.Translation.optionCbNoChainDelay;
                 EnableSleeveLoading.Text = Program.LanguageManager.Translation.optionCbEnableSleeves;
+
+                accountTab.Text = Program.LanguageManager.Translation.optionAccountTab;
+                label7.Text = Program.LanguageManager.Translation.optionCurrentPW;
+                label8.Text = Program.LanguageManager.Translation.optionNewPW;
+                label9.Text = Program.LanguageManager.Translation.optionConfirmPW;
+                UpdatePassword.Text = Program.LanguageManager.Translation.optionUpdatePW;
 
                 LanguageInfo lang = Program.LanguageManager.Translation;
 

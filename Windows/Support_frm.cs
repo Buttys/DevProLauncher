@@ -54,6 +54,7 @@ namespace DevProLauncher.Windows
             m_descriptions.Add("DEVCREATETEAM", lang.SupportTeamNameInput);
             m_descriptions.Add("DEVMSG", lang.SupportMSGInput);
 
+            this.Text = lang.SupportTitle;
             groupBox4.Text = lang.SupportBalance;
             groupBox2.Text = lang.Supportgb2;
             label1.Text = FormatString(lang.Supportgb2text);
@@ -61,6 +62,8 @@ namespace DevProLauncher.Windows
             label3.Text = lang.Supportgb3text;
             groupBox3.Text = lang.Supportgb4;
             label2.Text = lang.Supportgb4text;
+
+            refreshbtn.Text = lang.SupportRefreshBtn;
         }
         private string FormatString(string text)
         {

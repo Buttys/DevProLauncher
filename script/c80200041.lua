@@ -1,7 +1,7 @@
 --ＣＮｏ．１０７超銀河眼の時空龍
 function c80200041.initial_effect(c)
 	--xyz summon
-	aux.AddXyzProcedure(c,aux.XyzFilterFunction(c,8),3)
+	aux.AddXyzProcedure(c,aux.XyzFilterFunction(c,9),3)
 	c:EnableReviveLimit()
 	--negate
 	local e1=Effect.CreateEffect(c)
@@ -67,7 +67,7 @@ function c80200041.negop(e,tp,eg,ep,ev,re,r,rp)
 	e4:SetCode(EFFECT_CANNOT_TRIGGER)
 	e4:SetTargetRange(0,LOCATION_ONFIELD)
 	e4:SetReset(RESET_PHASE+PHASE_END)
-	Duel.RegisterEffect(e4,true)
+	Duel.RegisterEffect(e4,tp)
 	local e5=Effect.CreateEffect(c)
 	e5:SetType(EFFECT_TYPE_FIELD)
 	e5:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
@@ -75,7 +75,7 @@ function c80200041.negop(e,tp,eg,ep,ev,re,r,rp)
 	e5:SetTargetRange(0,1)
 	e5:SetValue(c80200041.aclimit)
 	e5:SetReset(RESET_PHASE+PHASE_END)
-	Duel.RegisterEffect(e5,true)
+	Duel.RegisterEffect(e5,tp)
 end
 function c80200041.aclimit(e,re,tp)
 	return re:GetHandler():IsLocation(LOCATION_ONFIELD)

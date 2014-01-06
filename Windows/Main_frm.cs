@@ -68,6 +68,8 @@ namespace DevProLauncher.Windows
         {
             LanguageInfo info = Program.LanguageManager.Translation;
 
+
+
             OptionsBtn.Text = info.chatBtnoptions;
             ProfileBtn.Text = info.MainProfileBtn;
             DeckBtn.Text = info.MainDeckBtn;
@@ -77,7 +79,6 @@ namespace DevProLauncher.Windows
             siteBtn.Text = info.MainSiteBtn;
             MessageLabel.Text = info.MainServerMessage;
         }
-
         private void ServerMessage(string message)
         {
             if (InvokeRequired)
@@ -103,32 +104,34 @@ namespace DevProLauncher.Windows
             }
 
             mainTabs.TabPages.Remove(mainTabs.SelectedTab);
+            LanguageInfo info = Program.LanguageManager.Translation;
 
-            var gamelistTab = new TabPage("GameList");
+            var gamelistTab = new TabPage(info.MainGameTab);
             gamelistTab.Controls.Add(GameWindow);
             mainTabs.TabPages.Add(gamelistTab);
 
-            var chatTab = new TabPage("Chat (Beta v4.2)");
+            var chatTab = new TabPage(info.MainChatTab);
             chatTab.Controls.Add(m_chatWindow);
             mainTabs.TabPages.Add(chatTab);
 
-            var wcsTab = new TabPage("Downloads");
+            var wcsTab = new TabPage(info.MainEventTab);
+
             wcsTab.Controls.Add(m_wcsBrowser);
             mainTabs.TabPages.Add(wcsTab);
 
-            var filemanagerTab = new TabPage("File Manager");
+            var filemanagerTab = new TabPage(info.MainFileManagerTab);
             filemanagerTab.Controls.Add(m_filemanagerWindow);
             mainTabs.TabPages.Add(filemanagerTab);
 
-            var cuztomizerTab = new TabPage("Customizer");
+            var cuztomizerTab = new TabPage(info.MainCustomizeTab);
             cuztomizerTab.Controls.Add(m_customizerWindow);
             mainTabs.TabPages.Add(cuztomizerTab);
 
-            var devpointTab = new TabPage("Support DevPro");
+            var devpointTab = new TabPage(info.SupportTitle);
             devpointTab.Controls.Add(m_devpointWindow);
             mainTabs.TabPages.Add(devpointTab);
 
-            var faqTab = new TabPage("FAQ");
+            var faqTab = new TabPage(info.MainFaqTab);
             faqTab.Controls.Add(m_faqBrowser);
             mainTabs.TabPages.Add(faqTab);
                 

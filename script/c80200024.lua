@@ -26,7 +26,7 @@ function c80200024.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function c80200024.spfilter(c)
-	return c:IsSetCard(0x88) and not c:IsCode(80200024) and c:IsAbleToRemoveAsCost()
+	return c:IsSetCard(0x88) and c:IsType(TYPE_MONSTER) and not c:IsCode(80200024) and c:IsAbleToRemoveAsCost()
 end
 function c80200024.spcon(e,c)
 	if c==nil then return true end

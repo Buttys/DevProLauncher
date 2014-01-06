@@ -27,8 +27,10 @@ namespace DevProLauncher.Windows
 
         public void ApplyTranslations()
         {
+            m_deckTab.Text = Program.LanguageManager.Translation.MainFileDeckTab;
             m_deckTab.ApplyTranslation();
             m_replayTab.ApplyTranslation();
+            m_replayTab.Text = Program.LanguageManager.Translation.MainFileReplayTab;
         }
     }
 }
