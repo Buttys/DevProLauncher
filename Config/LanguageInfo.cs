@@ -39,6 +39,8 @@ namespace DevProLauncher.Config
         public string RegistMsb4 = "Registering Complete!";
         public string RegistMsb5 = "This username has been taken.";
         public string RegistMsb6 = "Username cannot contain special characters";
+        public string RegistMsb7 = "Email address reqired.";
+        public string RegistMsb8 = "Invalid email address.";
 
         // HubGameList_frm
 

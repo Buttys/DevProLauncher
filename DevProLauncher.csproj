@@ -40,14 +40,6 @@
     <ApplicationIcon>Favicon_DropShadow_64x64.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DropNet, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\DropNet.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>.\ServiceStack.Text.dll</HintPath>
       <Private>True</Private>
@@ -55,10 +47,6 @@
     <Reference Include="sysglobl" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>.\System.Data.SQLite.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,9 +61,6 @@
     <Compile Include="Config\LanguageInfo.cs" />
     <Compile Include="Config\LanguageManager.cs" />
     <Compile Include="Config\SerializableColor.cs" />
-    <Compile Include="Controller\DropBoxController.cs" />
-    <Compile Include="Helpers\CardInfo.cs" />
-    <Compile Include="Helpers\CardManager.cs" />
     <Compile Include="Helpers\ChatHelper.cs" />
     <Compile Include="Helpers\Enums\CardAttribute.cs" />
     <Compile Include="Helpers\Enums\CardRace.cs" />
@@ -99,6 +84,7 @@
     <Compile Include="Network\ChatClient.cs" />
     <Compile Include="Network\MessageReceived.cs" />
     <Compile Include="Network\Data\ChatMessage.cs" />
+    <Compile Include="Network\Data\RegisterRequest.cs" />
     <Compile Include="SevenZip\Common\CommandLineParser.cs" />
     <Compile Include="SevenZip\Common\CRC.cs" />
     <Compile Include="SevenZip\Common\InBuffer.cs" />
@@ -119,12 +105,6 @@
     </Compile>
     <Compile Include="Windows\Browser_frm.Designer.cs">
       <DependentUpon>Browser_frm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Components\CardInfoControl.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Windows\Components\CardInfoControl.Designer.cs">
-      <DependentUpon>CardInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\Components\ChatWindow.cs">
       <SubType>Component</SubType>
@@ -156,12 +136,6 @@
     </Compile>
     <Compile Include="Windows\Customize_frm.Designer.cs">
       <DependentUpon>Customize_frm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\DropBoxSynch_frm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Windows\DropBoxSynch_frm.Designer.cs">
-      <DependentUpon>DropBoxSynch_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\Enums\CommandType.cs" />
     <Compile Include="Windows\Enums\ContentType.cs" />
@@ -270,21 +244,12 @@
     <Compile Include="Windows\MessageBoxs\TeamProfile_frm.Designer.cs">
       <DependentUpon>TeamProfile_frm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\MessageBoxs\Notify_frm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Windows\MessageBoxs\Notify_frm.designer.cs">
-      <DependentUpon>Notify_frm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Windows\Support_frm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Windows\Support_frm.Designer.cs">
       <DependentUpon>Support_frm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Windows\Components\CardInfoControl.resx">
-      <DependentUpon>CardInfoControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Windows\Components\ReplayInfoControl.resx">
       <DependentUpon>ReplayInfoControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,9 +261,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Customize_frm.resx">
       <DependentUpon>Customize_frm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Windows\DropBoxSynch_frm.resx">
-      <DependentUpon>DropBoxSynch_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\FileManager_frm.resx">
       <DependentUpon>FileManager_frm.cs</DependentUpon>
@@ -357,9 +319,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\MessageBoxs\TeamProfile_frm.resx">
       <DependentUpon>TeamProfile_frm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Windows\MessageBoxs\Notify_frm.resx">
-      <DependentUpon>Notify_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Support_frm.resx">
       <DependentUpon>Support_frm.cs</DependentUpon>
@@ -428,10 +387,8 @@
     <None Include="Resources\ygo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DropNet.dll" />
     <Content Include="Favicon_DropShadow_64x64.ico" />
     <None Include="Resources\swords.png" />
-    <Content Include="RestSharp.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

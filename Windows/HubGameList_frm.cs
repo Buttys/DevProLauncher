@@ -639,11 +639,9 @@ namespace DevProLauncher.Windows
             {
                 backgroundcolor = new SolidBrush(info.hasStarted ? Color.LightGray :
                 (info.isIllegal ? Color.LightCoral :
-                (info.rule == 4 ? Color.Violet :
-                (info.rule == 5 ? Color.Gold :
                 (info.mode == 2 ? Color.LightGreen :
-                (info.mode == 1 ? Color.LightSteelBlue :
-                Color.LightBlue))))));
+                (info.mode == 1 ? Color.BlanchedAlmond :
+                Color.LightBlue))));
             }
 
             //draw item

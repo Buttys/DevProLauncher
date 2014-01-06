@@ -38,6 +38,7 @@ namespace DevProLauncher.Network.Data
                 case MessageType.Server:
                     return Program.Config.ServerMsgColor.ToColor();
                 case MessageType.System:
+                case MessageType.MOTD:
                     return Program.Config.SystemColor.ToColor();
                 case MessageType.Join:
                     return Program.Config.JoinColor.ToColor();

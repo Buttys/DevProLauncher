@@ -5,8 +5,6 @@ using DevProLauncher.Network.Enums;
 using DevProLauncher.Helpers;
 using System.Diagnostics;
 using DevProLauncher.Windows.MessageBoxs;
-using DropNet;
-using DevProLauncher.Controller;
 
 namespace DevProLauncher.Windows
 {
@@ -45,7 +43,6 @@ namespace DevProLauncher.Windows
             m_customizerWindow = new CustomizeFrm();
             m_faqBrowser = new Browser_frm();
             m_faqBrowser.FormBorderStyle = FormBorderStyle.None;
-            LauncherHelper.CardManager.Init();
 
             Program.ChatServer.ServerMessage += ServerMessage;
 
@@ -118,6 +115,7 @@ namespace DevProLauncher.Windows
             mainTabs.TabPages.Add(chatTab);
 
             var wcsTab = new TabPage(info.MainEventTab);
+
             wcsTab.Controls.Add(m_wcsBrowser);
             mainTabs.TabPages.Add(wcsTab);
 
@@ -220,17 +218,12 @@ namespace DevProLauncher.Windows
 
         }
 
-        private void DBSyncBtn_Click(object sender, EventArgs e)
-        {
-            LauncherHelper.SyncCloud(sender,e);
-        }
-
         private void TabChange(object sender, EventArgs e)
         {
             if (mainTabs.SelectedIndex == 2)
                 m_wcsBrowser.Navigate("http://ygopro.de/launcher/events.php", false);
             else if (mainTabs.SelectedIndex == mainTabs.TabPages.Count - 1)
-                m_faqBrowser.Navigate("http://devpro.org/faq/", false);
+                m_faqBrowser.Navigate("http://ygopro.de/en/faq/", false);
             else if (mainTabs.SelectedIndex == 1)
                 m_chatWindow.LoadDefualtChannel();
         }

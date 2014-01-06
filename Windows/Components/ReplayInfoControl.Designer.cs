@@ -30,8 +30,6 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.DeckList = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.ReplayInfo = new System.Windows.Forms.Label();
             this.VSText = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -51,8 +49,6 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.DeckList, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.ReplayInfo, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.VSText, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -65,27 +61,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(235, 386);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // DeckList
-            // 
-            this.DeckList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeckList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.DeckList.FormattingEnabled = true;
-            this.DeckList.Location = new System.Drawing.Point(3, 148);
-            this.DeckList.Name = "DeckList";
-            this.DeckList.Size = new System.Drawing.Size(229, 235);
-            this.DeckList.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 110);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 35);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Your Deck";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ReplayInfo
             // 
@@ -127,9 +102,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label ReplayInfo;
         private System.Windows.Forms.Label VSText;
-        public System.Windows.Forms.ListBox DeckList;
     }
 }
