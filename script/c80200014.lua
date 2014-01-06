@@ -59,5 +59,5 @@ function c80200014.op(e,tp,eg,ep,ev,re,r,rp)
 	Duel.RegisterEffect(e2,tp)
 end
 function c80200014.tgfilter(e,c)
-	return c:IsFaceup() and c:IsSetCard(0x95)
+	return c:IsFaceup() and c:IsSetCard(0x97)
 end

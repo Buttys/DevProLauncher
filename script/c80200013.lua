@@ -46,7 +46,7 @@ function c80200013.setcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetTurnPlayer()~=tp
 end
 function c80200013.setfilter(c)
-	return c:IsType(TYPE_MONSTER) and c:IsSetCard(0x95) and c:IsSSetable()
+	return c:IsType(TYPE_MONSTER) and c:IsSetCard(0x97) and c:IsSSetable()
 end
 function c80200013.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE) and c80200013.setfilter(chkc) end

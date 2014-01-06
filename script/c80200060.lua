@@ -24,7 +24,7 @@ function c80200060.filter(c)
 	return c:IsDestructable() and c:IsType(TYPE_SPELL+TYPE_TRAP)
 end
 function c80200060.setfilter(c)
-	return c:IsSetCard(0x95) and c:IsType(TYPE_MONSTER) and c:IsSSetable()
+	return c:IsSetCard(0x97) and c:IsType(TYPE_MONSTER) and c:IsSSetable()
 end
 function c80200060.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and c80200060.filter(chkc) end

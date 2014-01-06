@@ -46,7 +46,7 @@ function c80200017.spop(e,tp,eg,ep,ev,re,r,rp)
 end
 function c80200017.drcon(e,tp,eg,ep,ev,re,r,rp)
 	local tg=eg:GetFirst()
-	return Duel.GetTurnPlayer()~=tp and tg~=e:GetHandler() and tg:IsType(TYPE_MONSTER) and tg:IsSetCard(0x95)
+	return Duel.GetTurnPlayer()~=tp and tg~=e:GetHandler() and tg:IsType(TYPE_MONSTER) and tg:IsSetCard(0x97)
 end
 function c80200017.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsRelateToEffect(e) end

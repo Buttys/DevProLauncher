@@ -45,7 +45,7 @@ function c80200016.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c80200016.cfilter(c,tp)
-	return c:IsLocation(LOCATION_GRAVE) and c:IsControler(tp) and c:IsSetCard(0x95)
+	return c:IsLocation(LOCATION_GRAVE) and c:IsControler(tp) and c:IsSetCard(0x97)
 end
 function c80200016.spcon1(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(c80200016.cfilter,1,nil,tp)
