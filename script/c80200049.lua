@@ -10,6 +10,7 @@ function c80200049.initial_effect(c)
 	e1:SetCode(EVENT_CHAINING)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetCondition(c80200049.condition)
+	e1:SetTarget(c80200049.target1)
 	e1:SetCost(c80200049.cost)
 	e1:SetOperation(c80200049.activate)
 	c:RegisterEffect(e1)
@@ -31,8 +32,15 @@ function c80200049.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 	e:GetHandler():RegisterFlagEffect(80200049,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
 end
+function c80200049.target1(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDestructable,tp,LOCATION_SZONE,0,1,nil) 
+	end
+end
 function c80200049.repop(e,tp,eg,ep,ev,re,r,rp)
-	e:GetHandler():CancelToGrave(false)
+	local c=e:GetHandler()
+	if c:IsType(TYPE_SPELL+TYPE_TRAP)then
+	c:CancelToGrave(false)
+	end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local dg=Duel.SelectMatchingCard(tp,Card.IsDestructable,tp,0,LOCATION_SZONE,1,1,nil)
 	if dg then
