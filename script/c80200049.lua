@@ -16,7 +16,7 @@ function c80200049.initial_effect(c)
 	--reload
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(80200049,1))
-	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e2:SetCategory(CATEGORY_TODECK+CATEGORY_DRAW)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
 	e2:SetRange(LOCATION_MZONE)
@@ -52,15 +52,15 @@ function c80200049.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeChainOperation(ev,c80200049.repop)
 end
 function c80200049.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return ( Duel.IsPlayerCanDraw(tp) or Duel.IsPlayerCanDraw(1-tp))
+	if chk==0 then return Duel.IsPlayerCanDraw(tp) and Duel.IsPlayerCanDraw(1-tp)
 		and (
-		Duel.IsExistingMatchingCard(Card.IsAbleToDeck,tp,LOCATION_HAND,0,1,e:GetHandler()) 
+		Duel.IsExistingMatchingCard(Card.IsAbleToDeck,tp,LOCATION_HAND,0,1,nil) 
 		or 
-		Duel.IsExistingMatchingCard(Card.IsAbleToDeck,tp,0,LOCATION_HAND,1,e:GetHandler())  
+		Duel.IsExistingMatchingCard(Card.IsAbleToDeck,tp,0,LOCATION_HAND,1,nil)  
 		)
-		end
-	Duel.SetOperationInfo(0,PLAYER_ALL,nil,1,tp,LOCATION_HAND)
-	Duel.SetOperationInfo(0,PLAYER_ALL,nil,0,tp,1)
+	end
+	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,1,PLAYER_ALL,LOCATION_HAND)
+	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,PLAYER_ALL,1)
 end
 function c80200049.operation(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetFieldGroup(tp,LOCATION_HAND,0)	
