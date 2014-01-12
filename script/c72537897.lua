@@ -34,7 +34,8 @@ end
 function c72537897.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then 
 		local g=Duel.GetMatchingGroup(c72537897.spfilter,tp,LOCATION_DECK,0,nil,e,tp)
-		return Duel.GetLocationCount(tp,LOCATION_MZONE)>2 and
+		return Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0,nil)==0 and
+		Duel.GetLocationCount(tp,LOCATION_MZONE)>2 and
 		g:GetClassCount(Card.GetCode)>=3 end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,3,tp,LOCATION_DECK)
 end
