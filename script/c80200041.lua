@@ -25,6 +25,8 @@ function c80200041.initial_effect(c)
 	e1:SetOperation(c80200041.atop)
 	c:RegisterEffect(e1)
 end
+c80200041.rankdown=88177324
+
 function c80200041.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
