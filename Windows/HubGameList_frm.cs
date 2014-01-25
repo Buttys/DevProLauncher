@@ -72,6 +72,7 @@ namespace DevProLauncher.Windows
             label5.Text = info.GameTimeLimit;
             ActiveGames.Text = info.GameActive;
             IlligalGames.Text = info.GameIlligal;
+            lockedChk.Text = info.GameLocked;
             label1.Text = info.GameUserFilter;
             SearchRequest_Btn.Text = info.GameBtnSearch;
             Host_btn.Text = info.GameBtnHost;
