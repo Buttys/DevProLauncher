@@ -26,8 +26,7 @@ function c80200058.condition(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetCurrentPhase()==PHASE_MAIN1 and not Duel.CheckPhaseActivity() and e:GetHandler():GetFlagEffect(80200058)==1 
 end
 function c80200058.filter1(c,e,tp)
-	return  c:IsSetCard(0x48)
-		and c:IsCanBeSpecialSummoned(e,0,tp,false,false) and
+	return c:IsCanBeSpecialSummoned(e,0,tp,false,false) and
 		Duel.IsExistingMatchingCard(c80200058.filter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,c:GetCode())
 end
 function c80200058.filter2(c,e,tp,code)
