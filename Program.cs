@@ -16,7 +16,7 @@ namespace DevProLauncher
 {
     static class Program
     {
-        public const string Version = "198500";
+        public const string Version = "199000";
         public static Configuration Config;
         public static LanguageManager LanguageManager;
         public static ChatClient ChatServer;

@@ -18,7 +18,7 @@ function c80200072.initial_effect(c)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DELAY)
-	e2:SetCode(EVENT_TO_GRAVE)
+	e2:SetCode(EVENT_DESTROYED)
 	e2:SetCondition(c80200072.descon)
 	e2:SetTarget(c80200072.destg)
 	e2:SetOperation(c80200072.desop)
@@ -36,7 +36,7 @@ function c80200072.checkop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.RegisterFlagEffect(Duel.GetTurnPlayer(),80200072,RESET_PHASE+PHASE_END,0,1)
 end
 function c80200072.cost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetTurnPlayer()~=tp or Duel.GetFlagEffect(tp,80200072)==0 end
+	if chk==0 then return Duel.GetTurnPlayer()~=tp and Duel.GetFlagEffect(tp,80200072)==0 end
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_CANNOT_BP)
@@ -65,11 +65,11 @@ function c80200072.activate(e,tp,eg,ep,ev,re,r,rp)
 end
 function c80200072.descon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	return rp~=tp and c:IsReason(REASON_DESTROY) and c:GetPreviousControler()==tp
+	return rp~=tp and c:GetPreviousControler()==tp
 end
 function c80200072.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and c80200072.desfilter(chkc) end
-	if chk==0 then return true end
+	if chk==0 then return Duel.IsExistingTarget(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectTarget(tp,Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
