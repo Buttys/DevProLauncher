@@ -25,7 +25,7 @@
   <RegistMsb1>Please confirm your password</RegistMsb1>
   <RegistMsb2>Please enter password</RegistMsb2>
   <RegistMsb3>Please enter username.</RegistMsb3>
-  <RegistMsb4>Registering Complete!</RegistMsb4>
+  <RegistMsb4>Registration Complete!</RegistMsb4>
   <RegistMsb5>This username has been taken.</RegistMsb5>
   <RegistMsb6>Username cannot contain special characters</RegistMsb6>
   <GameRanked>Ranked</GameRanked>
@@ -163,6 +163,7 @@
   <chatoptionsBtnSave>Save</chatoptionsBtnSave>
   <chatoptionsBtnCancel>Cancel</chatoptionsBtnCancel>
   <chatoptionsRequestFormText>Duel Request Settings</chatoptionsRequestFormText>
+  <chatBtnLeave>Leave</chatBtnLeave>
   <chatBtnoptions>Settings</chatBtnoptions>
   <chatTabUsers>Users</chatTabUsers>
   <chatTabFriends>Friends</chatTabFriends>
