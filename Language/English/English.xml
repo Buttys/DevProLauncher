@@ -173,6 +173,10 @@
   <chatRequestDuel>Request Duel</chatRequestDuel>
   <chatIgnoreUser>Ignore User</chatIgnoreUser>
   <chatViewProfile>View Profile</chatViewProfile>
+  <chatBtnAdmin> Admins</chatBtnAdmin>
+ <chatBtnTeam> Team</chatBtnTeam>
+ <chatBtnFriend> Friends</chatBtnFriend>
+  <chatBtnUser> Users</chatBtnUser>
   <chatRemoveFriend>Remove Friend</chatRemoveFriend>
   <chatRemoveIgnore>Remove</chatRemoveIgnore>
   <chatAutoScroll>Auto-Scroll</chatAutoScroll>
