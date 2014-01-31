@@ -58,7 +58,7 @@ function c80200058.activate(e,tp,eg,ep,ev,re,r,rp)
 end
 function c80200058.regop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if ep==tp and r==REASON_RULE and eg:IsContains(c) and not c:IsPublic() 
+	if ep==tp and r==REASON_RULE and Duel.GetCurrentPhase()==PHASE_DRAW and eg:IsContains(c) and not c:IsPublic() 
 		and Duel.SelectYesNo(tp,aux.Stringid(80200058,0)) then
 		Duel.Hint(HINT_CARD,0,80200058)
 		local e1=Effect.CreateEffect(c)
