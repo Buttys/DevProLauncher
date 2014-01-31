@@ -78,6 +78,20 @@ namespace DevProLauncher.Windows
             Host_btn.Text = info.GameBtnHost;
             Quick_Btn.Text = info.GameBtnQuick;
             UpdateLabel.Text = info.GameNotUpdating;
+            SpectateBtn.Text = info.GameSpectate;
+
+            Format.Items.Insert(0, info.GameAll);
+
+            GameType.Items.Insert(0, info.GameAll);
+            GameType.Items.Insert(1, info.GameSingle);
+            GameType.Items.Insert(2, info.GameMatch);
+            GameType.Items.Insert(3, info.GameTag);
+
+            BanList.Items.Insert(0, info.GameAll);
+
+            TimeLimit.Items.Insert(0, info.GameAll);
+            TimeLimit.Items.Insert(0, "3 "+info.GameMinutes);
+            TimeLimit.Items.Insert(1, "5 "+info.GameMinutes);
         }
 
         public void RefreshDeckList()

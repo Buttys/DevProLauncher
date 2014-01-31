@@ -110,10 +110,10 @@ namespace DevProLauncher.Windows
                 teamSearchBtn.Enabled = true;
                 friendSearchBtn.Enabled = true;
 
-                userSearchBtn.Text = "Search";
-                adminSearchBtn.Text = "Admins";
-                teamSearchBtn.Text = "Team";
-                friendSearchBtn.Text = "Friends";
+                userSearchBtn.Text = lang.chatBtnUser;
+                adminSearchBtn.Text = lang.chatBtnAdmin;
+                teamSearchBtn.Text = lang.chatBtnTeam;
+                friendSearchBtn.Text = lang.chatBtnFriend;
 
                 m_searchReset.Enabled = false;
             }
