@@ -80,18 +80,18 @@ namespace DevProLauncher.Windows
             UpdateLabel.Text = info.GameNotUpdating;
             SpectateBtn.Text = info.GameSpectate;
 
-            Format.Items.Insert(0, info.GameAll);
+            Format.Items[0] = info.GameAll;
 
-            GameType.Items.Insert(0, info.GameAll);
-            GameType.Items.Insert(1, info.GameSingle);
-            GameType.Items.Insert(2, info.GameMatch);
-            GameType.Items.Insert(3, info.GameTag);
+            GameType.Items[0] = info.GameAll;
+            GameType.Items[1] = info.GameSingle;
+            GameType.Items[2] = info.GameMatch;
+            GameType.Items[3] = info.GameTag;
 
-            BanList.Items.Insert(0, info.GameAll);
+            BanList.Items[0] = info.GameAll;
 
-            TimeLimit.Items.Insert(0, info.GameAll);
-            TimeLimit.Items.Insert(0, "3 "+info.GameMinutes);
-            TimeLimit.Items.Insert(1, "5 "+info.GameMinutes);
+            TimeLimit.Items[0] = info.GameAll;
+            TimeLimit.Items[1] = "3 "+info.GameMinutes;
+            TimeLimit.Items[2] = "5 "+info.GameMinutes;
         }
 
         public void RefreshDeckList()
@@ -404,9 +404,10 @@ namespace DevProLauncher.Windows
         {
             if (e.Button == MouseButtons.Right || sender is Button)
             {
+                LanguageInfo info = Program.LanguageManager.Translation;
                 var mnu = new ContextMenuStrip();
-                var mnuRanked = new ToolStripMenuItem("Ranked");
-                var mnuUnRanked = new ToolStripMenuItem("UnRanked");
+                var mnuRanked = new ToolStripMenuItem(info.GameRanked);
+                var mnuUnRanked = new ToolStripMenuItem(info.GameUnranked);
                 var mnuSingle = new ToolStripMenuItem("Single") { Name = "Single" };
                 var mnuMatch = new ToolStripMenuItem("Match") { Name = "Match" };
                 var mnuTag = new ToolStripMenuItem("Tag") { Name = "Tag" };
@@ -508,10 +509,11 @@ namespace DevProLauncher.Windows
         {
             if (e.Button == MouseButtons.Right || sender is Button)
             {
+                LanguageInfo info = Program.LanguageManager.Translation;
                 var mnu = new ContextMenuStrip();
-                var mnuranked = new ToolStripMenuItem("Ranked");
+                var mnuranked = new ToolStripMenuItem(info.GameRanked);
                 mnuranked.Name = "Ranked";
-                var mnuunranked = new ToolStripMenuItem("Unranked");
+                var mnuunranked = new ToolStripMenuItem(info.GameUnranked);
 
                 mnuranked.Click += HostGame;
                 mnuunranked.Click += HostGame;
