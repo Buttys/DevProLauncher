@@ -68,7 +68,7 @@ function c80200072.descon(e,tp,eg,ep,ev,re,r,rp)
 	return rp~=tp and c:GetPreviousControler()==tp
 end
 function c80200072.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsOnField() and c80200072.desfilter(chkc) end
+	if chkc then return chkc:IsOnField() and chkc:IsDestructable() end
 	if chk==0 then return Duel.IsExistingTarget(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectTarget(tp,Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)

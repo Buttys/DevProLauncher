@@ -66,7 +66,7 @@ function c80200025.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function c80200025.setop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 then
+	if tc and tc:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 then
 		Duel.SSet(tp,tc)	
 		tc:RegisterFlagEffect(80200025,RESET_EVENT+0x1fe0000,0,1)
 		local e1=Effect.CreateEffect(e:GetHandler())

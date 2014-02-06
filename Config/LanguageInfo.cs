@@ -254,7 +254,7 @@ namespace DevProLauncher.Config
         public string chatBtnTeam = "Search in Team";
         public string chatBtnFriend = "Search in Friendlist";
         public string chatBtnChannel = "Channel List";
-        public string chatBtnLeave = "Channel List";
+        public string chatBtnLeave = "Leave Channel";
         public string chatTabUsers = "Users";
         public string chatTabFriends = "Friends";
         public string chatTabIgnore = "Ignore";
