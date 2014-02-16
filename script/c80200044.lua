@@ -35,6 +35,8 @@ function c80200044.initial_effect(c)
 	e3:SetOperation(c80200044.operation)
 	c:RegisterEffect(e3)
 end
+c80200044.rankdown=49678559
+
 function c80200044.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,2,REASON_EFFECT) end
 	if Duel.SelectYesNo(tp,aux.Stringid(80200044,2)) then

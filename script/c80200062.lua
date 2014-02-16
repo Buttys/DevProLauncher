@@ -6,9 +6,14 @@ function c80200062.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
 	e1:SetCode(EVENT_FREE_CHAIN)
+	e1:SetCost(c80200062.cost)
 	e1:SetTarget(c80200062.target)
 	e1:SetOperation(c80200062.activate)
 	c:RegisterEffect(e1)
+end
+function c80200062.cost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.GetFlagEffect(tp,80200062)==0 end
+	Duel.RegisterFlagEffect(tp,80200062,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)
 end
 function c80200062.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsPlayerCanDraw(tp,3) end

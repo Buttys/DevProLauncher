@@ -73,7 +73,7 @@ function c80200021.tdcon(e,tp,eg,ep,ev,re,r,rp)
 		(c:IsReason(REASON_REVEAL) or c:IsPreviousPosition(POS_FACEUP) or Duel.IsPlayerAffectedByEffect(tp,EFFECT_REVERSE_DECK))
 end
 function c80200021.filter(c)
-	return  c:IsSetCard(0x90) and c:IsType(TYPE_SPELL+TYPE_TRAP) and0c:IsAbleToHand()
+	return  c:IsSetCard(0x90) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToHand()
 end
 function c80200021.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE) and c80200021.filter(chkc) end

@@ -110,10 +110,10 @@ namespace DevProLauncher.Windows
                 teamSearchBtn.Enabled = true;
                 friendSearchBtn.Enabled = true;
 
-                userSearchBtn.Text = "Search";
-                adminSearchBtn.Text = "Admins";
-                teamSearchBtn.Text = "Team";
-                friendSearchBtn.Text = "Friends";
+                userSearchBtn.Text = lang.chatBtnUser;
+                adminSearchBtn.Text = lang.chatBtnAdmin;
+                teamSearchBtn.Text = lang.chatBtnTeam;
+                friendSearchBtn.Text = lang.chatBtnFriend;
 
                 m_searchReset.Enabled = false;
             }
@@ -909,7 +909,7 @@ namespace DevProLauncher.Windows
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/help - Displays the list you're reading now"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/uptime - Displays how long the server has been online"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/stats - Shows how many users are online, dueling, and how many duels"));
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute username hours - (Channel Owners/Admins) Prevents a user from sending any messages in a certain channel."));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute username - (Channel Owners/Admins) Prevents a user from sending any messages in a certain channel."));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute username - (Channel Owners/Admins) Allows a muted user to send messages again"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/setmotd message - (Channel Owners/Admins) Sets a message of the day that is sent to users when they join the channel."));
 
