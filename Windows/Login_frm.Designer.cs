@@ -30,7 +30,6 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.PatchNotes = new System.Windows.Forms.WebBrowser();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.languageSelect = new System.Windows.Forms.ComboBox();
@@ -39,6 +38,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.passwordInput = new System.Windows.Forms.TextBox();
             this.savePassCheckBox = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.LoadBtn = new System.Windows.Forms.Button();
+            this.PatchNotes = new System.Windows.Forms.WebBrowser();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.loginBtn = new System.Windows.Forms.Button();
             this.registerBtn = new System.Windows.Forms.Button();
@@ -46,6 +48,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,8 +71,8 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.PatchNotes, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -78,15 +81,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.074534F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(881, 483);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // PatchNotes
-            // 
-            this.PatchNotes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PatchNotes.Location = new System.Drawing.Point(3, 3);
-            this.PatchNotes.MinimumSize = new System.Drawing.Size(20, 20);
-            this.PatchNotes.Name = "PatchNotes";
-            this.PatchNotes.Size = new System.Drawing.Size(875, 438);
-            this.PatchNotes.TabIndex = 1;
             // 
             // tableLayoutPanel3
             // 
@@ -187,6 +181,36 @@
             this.savePassCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.savePassCheckBox.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.LoadBtn);
+            this.panel1.Controls.Add(this.PatchNotes);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(875, 438);
+            this.panel1.TabIndex = 1;
+            // 
+            // LoadBtn
+            // 
+            this.LoadBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LoadBtn.Location = new System.Drawing.Point(373, 208);
+            this.LoadBtn.Name = "LoadBtn";
+            this.LoadBtn.Size = new System.Drawing.Size(128, 23);
+            this.LoadBtn.TabIndex = 2;
+            this.LoadBtn.Text = "Load Patch Notes";
+            this.LoadBtn.UseVisualStyleBackColor = true;
+            this.LoadBtn.Click += new System.EventHandler(this.LoadBtn_Click);
+            // 
+            // PatchNotes
+            // 
+            this.PatchNotes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PatchNotes.Location = new System.Drawing.Point(0, 0);
+            this.PatchNotes.MinimumSize = new System.Drawing.Size(20, 20);
+            this.PatchNotes.Name = "PatchNotes";
+            this.PatchNotes.Size = new System.Drawing.Size(875, 438);
+            this.PatchNotes.TabIndex = 0;
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.loginBtn);
@@ -242,6 +266,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -259,10 +284,12 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.Button registerBtn;
-        private System.Windows.Forms.WebBrowser PatchNotes;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox languageSelect;
         private System.Windows.Forms.CheckBox savePassCheckBox;
         private System.Windows.Forms.Button CheckmateBtn;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button LoadBtn;
+        private System.Windows.Forms.WebBrowser PatchNotes;
     }
 }

@@ -16,6 +16,7 @@ namespace DevProLauncher.Windows
     {
         public LoginFrm()
         {
+            
             InitializeComponent();
             TopLevel = false;
             Dock = DockStyle.Fill;
@@ -48,10 +49,7 @@ namespace DevProLauncher.Windows
             passwordInput.KeyDown += PasswordInput_KeyDown;
 
             PatchNotes.ScriptErrorsSuppressed = true;
-            PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
-                                    ? "http://ygopro.de/update-news/"
-                                    : "http://ygopro.de/update-news/?lang=en");
-            PatchNotes.Navigating += WebRedirect;
+            //PatchNotes.Dock = DockStyle.Fill;
 
 
             ApplyTranslation();
@@ -112,9 +110,12 @@ namespace DevProLauncher.Windows
             Program.Config.Language = languageSelect.SelectedItem.ToString();
             Program.SaveConfig(Program.ConfigurationFilename, Program.Config);
             Program.LanguageManager.Load(languageSelect.SelectedItem.ToString());
-            PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
-                                    ? "http://ygopro.de/update-news/"
-                                    : "http://ygopro.de/update-news/?lang=en");
+            if (!LoadBtn.Enabled)
+            {
+                PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
+                                        ? "http://ygopro.de/update-news/"
+                                        : "http://ygopro.de/update-news/?lang=en");
+            }
             ApplyTranslation();
             Program.MainForm.ReLoadLanguage();
         }
@@ -232,6 +233,17 @@ namespace DevProLauncher.Windows
         private void CheckmateBtn_Click(object sender, EventArgs e)
         {
             LauncherHelper.chkmate_btn_Click(sender, e);
+        }
+
+        private void LoadBtn_Click(object sender, EventArgs e)
+        {
+            LoadBtn.Visible = false;
+            LoadBtn.Enabled = false;
+            PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
+                        ? "http://ygopro.de/update-news/"
+                        : "http://ygopro.de/update-news/?lang=en");
+            PatchNotes.Navigating += WebRedirect;
+            
         }
     }
 }

@@ -50,18 +50,6 @@ namespace DevProLauncher.Windows
 
             ApplyTranslation();
 
-            //if (!String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserToken) && !String.IsNullOrEmpty(Properties.Settings.Default.DropBoxUserSecret))
-            //{
-            //    DropNetClient dbctrl = new DropNetClient(Program.Config.AppKey, Program.Config.AppSecret);
-
-            //    dbctrl.UserLogin = new DropNet.Models.UserLogin();
-
-            //    dbctrl.UserLogin.Token = Properties.Settings.Default.DropBoxUserToken;
-            //    dbctrl.UserLogin.Secret = Properties.Settings.Default.DropBoxUserSecret;
-
-            //    DropBoxController.filesyncAsync();
-            //}
-
         }
 
         public void ApplyTranslation()
@@ -75,7 +63,6 @@ namespace DevProLauncher.Windows
             DeckBtn.Text = info.MainDeckBtn;
             ReplaysBtn.Text = info.MainReplaysBtn;
             OfflineBtn.Text = info.MainOfflineBtn;
-            //DBSyncBtn.Text = info.MainSyncBtn;
             siteBtn.Text = info.MainSiteBtn;
             MessageLabel.Text = info.MainServerMessage;
         }
