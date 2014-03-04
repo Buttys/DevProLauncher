@@ -113,8 +113,8 @@ namespace DevProLauncher.Windows
             if (!LoadBtn.Enabled)
             {
                 PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
-                                        ? "http://ygopro.de/update-news/"
-                                        : "http://ygopro.de/update-news/?lang=en");
+                                        ? "http://ygopro.de/en/category/"
+                                        : "http://ygopro.de/en/category/patch-notes/");
             }
             ApplyTranslation();
             Program.MainForm.ReLoadLanguage();
@@ -240,8 +240,8 @@ namespace DevProLauncher.Windows
             LoadBtn.Visible = false;
             LoadBtn.Enabled = false;
             PatchNotes.Navigate(languageSelect.SelectedItem.ToString() == "German"
-                        ? "http://ygopro.de/update-news/"
-                        : "http://ygopro.de/update-news/?lang=en");
+                        ? "http://ygopro.de/en/category/"
+                        : "http://ygopro.de/en/category/patch-notes/");
             PatchNotes.Navigating += WebRedirect;
             
         }
