@@ -176,7 +176,7 @@
   <chatBtnAdmin> Admins</chatBtnAdmin>
  <chatBtnTeam> Team</chatBtnTeam>
  <chatBtnFriend> Friends</chatBtnFriend>
-  <chatBtnUser> Users</chatBtnUser>
+  <chatBtnUser> User Search</chatBtnUser>
   <chatRemoveFriend>Remove Friend</chatRemoveFriend>
   <chatRemoveIgnore>Remove</chatRemoveIgnore>
   <chatAutoScroll>Auto-Scroll</chatAutoScroll>
