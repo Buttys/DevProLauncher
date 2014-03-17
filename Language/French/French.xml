@@ -3,14 +3,14 @@
   <QuickHostSetting>Paramètres Jeu Rapide</QuickHostSetting>
   <QuickHostBtn>Sauver</QuickHostBtn>
   <pmsbProgRun>Programme déjà en cours d'exécution.</pmsbProgRun>
-  <pMsbErrorToServer>Erreur de connection au serveur.</pMsbErrorToServer>
+  <pMsbErrorToServer>Erreur de connexion au serveur.</pMsbErrorToServer>
   <pMsbBadLog>Mauvais profil et/ou mot de passe.</pMsbBadLog>
   <pMsbOldVers>Votre version du lanceur est trop ancienne. Veuillez le réinstaller.</pMsbOldVers>
   <pMsbException>Oooops! Une erreur est survenue! Le programme va fermer!</pMsbException>
   <LoginUserName>Profil</LoginUserName>
   <LoginPassWord>Mot de passe</LoginPassWord>
   <LoginLanguage>Langue</LoginLanguage>
-  <LoginLoginButton>OK</LoginLoginButton>
+  <LoginLoginButton>Connexion</LoginLoginButton>
   <LoginRegisterButton>S'inscrire</LoginRegisterButton>
   <LoginAutoLogin>Me connecter automatiquement.</LoginAutoLogin>
   <LoginMsb1>Non connecté au serveur.</LoginMsb1>
@@ -26,8 +26,12 @@
   <RegistMsb2>Veuillez entrer votre mot de passe.</RegistMsb2>
   <RegistMsb3>Veuillez entrer votre profil.</RegistMsb3>
   <RegistMsb4>Enregistrement réussi!</RegistMsb4>
-  <RegistMsb5>Profil déjà existant.</RegistMsb5>
+  <RegistMsb5>Pseudo déjà existant.</RegistMsb5>
   <RegistMsb6>Le profil ne peut contenir de caractères spéciaux.</RegistMsb6>
+  <RegistMsb7>Un Email est obligatoire.</RegistMsb7>
+  <RegistMsb8>L'adresse mail est invalide.</RegistMsb8>
+  
+  
   <GameRanked>Classé</GameRanked>
   <GameUnranked>Non classé</GameUnranked>
   <GameDefualtDeck>Deck par défaut</GameDefualtDeck>
@@ -45,6 +49,9 @@
   <GameNotUpdating>Status : Filtre suspendu</GameNotUpdating>
   <GameUpdating1>Status : Filtrage en cours pour </GameUpdating1>
   <GameUpdating2> secondes.</GameUpdating2>
+  <GameSpectate> Voir Match </GameSpectate>
+  <GameAll>Tous</GameAll>
+  
   <GameNoServers>Aucun serveur disponible.</GameNoServers>
   <GamePasswordExsists>Un salon avec ce mot de passe existe déjà.</GamePasswordExsists>
   <GameLocked>Verrouillé</GameLocked>
@@ -52,10 +59,15 @@
   <GameLPChange>Vos paramètres de création rapide d'un salon ne suivent pas les recommandations au niveau des Life Points. Souhaitez-vous les accorder avec les règles en vigueur ?</GameLPChange>
   <GameEnterPassword>Entrez le mot de passe</GameEnterPassword>
   <GameWrongPassword>Mot de passe incorrect</GameWrongPassword>
+  
+  <optionTitle> Options </optionTitle>
+  <optionGameTab> Options du jeu </optionGameTab>
+  <optionAccountTab> Options de connexion </optionAccountTab>
   <optionGb1>Paramètres Utilisateurs</optionGb1>
   <optionGb2>Paramètres Jeu</optionGb2>
   <optionGb3>Paramètres Police</optionGb3>
   <optionGb4>Paramètres Lanceur</optionGb4>
+  <optionGb5> Changer MDP </optionGb5>
   <optionMsbForget>Souhaitez-vous vraiment oublier la connexion automatique au lancement du lanceur?</optionMsbForget>
   <optionUser>Profil par défaut</optionUser>
   <optionDeck>Deck par défaut</optionDeck>
@@ -76,6 +88,13 @@
   <optionCbAutoChain>Chaîner auto</optionCbAutoChain>
   <optionCbNoChainDelay>Chaîner sans délai</optionCbNoChainDelay>
   <optionCbEnableSleeves>Activer Sleeves personnalisées</optionCbEnableSleeves>
+  <optionCurrentPW> MDP Actuel </optionCurrentPW>
+  <optionNewPW> Nouveau MDP </optionNewPW>
+  <optionConfirmPW> Confirmer MDP </optionConfirmPW>
+  <optionUpdatePW> Changer MDP </optionUpdatePW>
+  
+  
+  
   <hostGb1>Paramètres</hostGb1>
   <hostGb2>Options supplémentaires</hostGb2>
   <hostBanlist>Restriction :</hostBanlist>
@@ -90,6 +109,8 @@
   <hostBtnHost>Créer</hostBtnHost>
   <hostBtnCancel>Annuler</hostBtnCancel>
   <hostpassword>Mot de passe</hostpassword>
+  
+  <fileBtnCopy> Copier DeckList </fileBtnCopy>
   <fileBtnRename>Renommer</fileBtnRename>
   <fileBtnDelete>Supprimer</fileBtnDelete>
   <fileBtnFolder>Ouvrir dossier</fileBtnFolder>
@@ -102,9 +123,18 @@
   <fileInputConfirm>Renommer</fileInputConfirm>
   <fileBtnRefresh>Actualiser</fileBtnRefresh>
   <fileBtnImport>Importer</fileBtnImport>
+  
+  <replayError> Erreur à l'ouverture du replay. </replayError>
+  <replayType> Type du replay: </replayType>
+  <replayLP> Point De Vie Départ </replayLP>
+  <replayHand> Main de départ </replayHand>
+  <replayDraw> Nombre Pioche </replayDraw>
+  
   <aboutLabel1>A propos de DevPro</aboutLabel1>
-  <aAboutText>The YGOPro Online Development Group is a rag tag team of programmers, philanthropist, and generally knowledgeable people in the YGOPro community that seek to better and progress the Yu-Gi-Oh! Online community as a whole by providing services and software to allow duelist to grow by dueling and forming lasting friendships.</aAboutText>
+  <aAboutText>The YGOPro Online groupe de developpement est une équipe de programmateurs, philosophes et généralement personne voulant aider les personnes de la YGOPro communauté pour améliorer l'expérience que vous avez pu avoir avec Yu-Gi-Oh! Online.</aAboutText>
   <aboutLabel5>Contributeurs DevPro</aboutLabel5>
+  
+  
   <cusRemoveBtn>Retirer</cusRemoveBtn>
   <cusAddThemeBtn>Ajouter</cusAddThemeBtn>
   <cusAddContentBtn>Ajouter</cusAddContentBtn>
@@ -112,6 +142,8 @@
   <cusBackup>Sauvegarder</cusBackup>
   <cusLabelTheme>Thème</cusLabelTheme>
   <cusLabelCont>Contenu</cusLabelCont>
+  
+  
   <profileName>Profil</profileName>
   <profileWin>Gagné</profileWin>
   <profileLose>Perdu</profileLose>
@@ -138,6 +170,8 @@
   <profileLblwld>Gagné/Perdu/Nul: </profileLblwld>
   <profileLblRank>Rang: </profileLblRank>
   <profileLblTeam>Equipe: </profileLblTeam>
+  
+  
   <chatoptionsFormName>Options du Chat</chatoptionsFormName>
   <chatoptionsGb1>Paramètres du Chat</chatoptionsGb1>
   <chatoptionsGb2>Autres paramètres</chatoptionsGb2>
@@ -148,6 +182,10 @@
   <chatoptionsLblColorBlindMode>Mode pour daltoniens</chatoptionsLblColorBlindMode>
   <chatoptionsLblShowTimeStamp>Montrer l'horodatage</chatoptionsLblShowTimeStamp>
   <chatoptionsLblRefuseDuelRequests>Refuser Requête Duel</chatoptionsLblRefuseDuelRequests>
+  
+  <chatoptionsFontTitle> Param Police </chatoptionsFontTitle>
+  <chatoptionsFontLbl> Police </chatoptionsFontLbl>
+  <chatoptionsFontSize>Taille Police </chatoptionsFontSize>
   <chatoptionsLblChatBackground>Fond du Chat</chatoptionsLblChatBackground>
   <chatoptionsLblNormalText>Texte Normal</chatoptionsLblNormalText>
   <chatoptionsLblLevel99>Niveau 99</chatoptionsLblLevel99>
@@ -163,11 +201,21 @@
   <chatoptionsBtnSave>Sauver</chatoptionsBtnSave>
   <chatoptionsBtnCancel>Annuler</chatoptionsBtnCancel>
   <chatoptionsRequestFormText>Paramètres Requête Duel</chatoptionsRequestFormText>
+ 
+  <chatMsg1>Bienvenue dans le chat de DevPro</chatMsg1>
+  <chatMsg2>Pour joindre un salon, clique sur le bouton Salon Liste</chatMsg2>
   <chatBtnoptions>Options</chatBtnoptions>
+  <chatBtnUser>Duellistes</chatBtnUser>
+  <chatBtnAdmin>Admins</chatBtnAdmin>
+  <chatBtnTeam>Team</chatBtnTeam>
+  <chatBtnFriend>Amis</chatBtnFriend>
+  <chatBtnChannel>Liste Salons</chatBtnChannel>
+  <chatBtnLeave>Quitter</chatBtnLeave>
   <chatTabUsers>Duellistes</chatTabUsers>
   <chatTabFriends>Amis</chatTabFriends>
   <chatTabIgnore>Ignorés</chatTabIgnore>
-  <chatUserCount>En Ligne : </chatUserCount>
+  <chatUserCount>En Ligne :</chatUserCount>
+  <chatTeamRemove>Retirer de la Team</chatTeamRemove>
   <chatAddFriend>Ajouter ami</chatAddFriend>
   <chatRequestDuel>Défier en Duel</chatRequestDuel>
   <chatIgnoreUser>Ignorer duelliste</chatIgnoreUser>
@@ -175,8 +223,27 @@
   <chatRemoveFriend>Retirer ami</chatRemoveFriend>
   <chatRemoveIgnore>Retirer</chatRemoveIgnore>
   <chatAutoScroll>Défil. Auto</chatAutoScroll>
+  <chatUserTab>Duellistes</chatUserTab>
+  <chatIgnoreTab>Ignorés</chatIgnoreTab>
+  <chatChannelTab>Salon</chatChannelTab>
+  <chatUserListTab>Liste Duellistes</chatUserListTab>  
+  
+  <checkmateInfo>Pour s'enregistrer, une simple inscription suffit \n - Pour jouer vous pouvez laisser le mot de passe vide </checkmateInfo>
+  <checkmateUser>Pseudo </checkmateUser>
+  <checkmatePW>Mot De Passe : </checkmatePW>
+  <checkmateBtn>Jouer !</checkmateBtn>
+  
+  <channelCreate> Créer </channelCreate>
+  <channelJoin> Joindre </channelJoin>
+  <channelDefault> Defaut </channelDefault>
+  <channelTitle> Créer un Salon </channelTitle>
+  <channelMsg> Nom du Salon </channelMsg>
+  <channelCancel> Fermer </channelCancel>
+  
   <MainFormTitle>Lanceur YgoPro Online </MainFormTitle>
+  <MainGameTab>Zone De Duel</MainGameTab>
   <MainChatTab>Chat</MainChatTab>
+  <MainEventTab>Evénements</MainEventTab>
   <MainRankingTab>Classement</MainRankingTab>
   <MainTornyTab>Salon des Tournois</MainTornyTab>
   <MainYoutubeTab>Youtube</MainYoutubeTab>
@@ -192,10 +259,11 @@
   <MainOfflineBtn>Hors-Ligne</MainOfflineBtn>
   <MainProfileBtn>Profil</MainProfileBtn>
   <MainServerMessage>Les messages Serveur apparaîtront ici.</MainServerMessage>
+  <MainProfileBtn>Profil </MainProfileBtn>
   <DuelReqestMessage> vous défie en Duel classé ! Acceptez-vous ce challenge ?</DuelReqestMessage>
-  <DuelRequestBanlist> Restriction: </DuelRequestBanlist>
-  <DuelRequestRules> Règles de jeu: </DuelRequestRules>
-  <DuelRequestMode> Type: </DuelRequestMode>
+  <DuelRequestBanlist>Restriction: </DuelRequestBanlist>
+  <DuelRequestRules>Règles de jeu: </DuelRequestRules>
+  <DuelRequestMode>Type: </DuelRequestMode>
   <SupportItem1Name>Status de Duelliste Donneur</SupportItem1Name>
   <SupportItem1Des>Vous octroie des commandes supplémentaires dans le chat ainsi qu'un changement de status.</SupportItem1Des>
   <SupportItem2Name>Changement de Pseudo</SupportItem2Name>
@@ -208,10 +276,10 @@
   <SupportItem5Des>Change la couleur de votre Pseudo dans le chat.</SupportItem5Des>
   <SupportItem6Name>Création d'une Equipe</SupportItem6Name>
   <SupportItem6Des>Créée une Equipe de Duellistes.</SupportItem6Des>
-  <SupportItem7Name>Envoie de Messages Serveur</SupportItem7Name>
+  <SupportItem7Name>Envoi de Messages Serveur</SupportItem7Name>
   <SupportItem7Des>Permet d'envoyer des Messages Serveur à tout le monde (dans la limite de 3 Messages par jour)</SupportItem7Des>
   <SupportItem8Name>Sleeves personnalisées</SupportItem8Name>
-  <SupportItem8Des>Envoi une sleeve personnalisée que les autres duellistes seront capable de voir en Duels.</SupportItem8Des>
+  <SupportItem8Des>Envoie une sleeve personnalisée que les autres duellistes seront capable de voir en Duels.</SupportItem8Des>
   <SupportBalance>Compte</SupportBalance>
   <Supportgb2>Supportez DevPro !</Supportgb2>
   <Supportgb2text>Les DevPoints permettent de récompenser les Duellistes qui aident et supportent DevPro. Tandis que les 2 options ci-dessous vous font gagner des DevPoints, vous pouvez aussi en gagner en aidant la Team Devpro !  ||- Prendre part aux Events DevPro || - Résoudre les bugs de cartes et du lanceur! || - Contribuer à la montée en charge de DevPro</Supportgb2text>
@@ -223,4 +291,7 @@
   <SupportUnbanInput>Entrez votre Pseudo</SupportUnbanInput>
   <SupportTeamNameInput>Entrez le nom de votre Equipe</SupportTeamNameInput>
   <SupportMSGInput>Entrez votre message</SupportMSGInput>
+  <profileLblwld> Victoire/Défaite/Nul </profileLblwld>
+  <SupportRefreshBtn>Actualiser</SupportRefreshBtn>
+  <SupportGetBtn>Obtenir</SupportGetBtn>
 </LanguageInfo>
