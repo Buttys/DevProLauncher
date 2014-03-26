@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using DevProLauncher.Network.Enums;
@@ -8,6 +8,8 @@ namespace DevProLauncher.Windows.MessageBoxs
 {
     public partial class ChannelListFrm : Form
     {
+        private DevProLauncher.Config.LanguageInfo info = Program.LanguageManager.Translation;
+
         public ChannelListFrm()
         {
             InitializeComponent();
@@ -15,8 +17,16 @@ namespace DevProLauncher.Windows.MessageBoxs
             ChannelList.DrawItem += DrawList_Channels;
             Program.ChatServer.ChannelRequest += GenerateChannelList;
             Program.ChatServer.SendPacket(DevServerPackets.ChannelList);
-        }
 
+            ApplyTranslations();
+        }
+        public void ApplyTranslations()
+        {
+            CreateBtn.Text = info.channelCreate;
+            JoinBtn.Text = info.channelJoin;
+            DefaultBtn.Text = info.channelDefault;
+
+        }
         public void GenerateChannelList(ChannelData[] channels)
         {
             if (InvokeRequired)
@@ -52,7 +62,7 @@ namespace DevProLauncher.Windows.MessageBoxs
                 bool defualt = channel.name == Program.Config.DefaultChannel;
                 Graphics g = e.Graphics;
 
-                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
+                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Color.White), e.Bounds);
 
                 //// Print text
                 g.DrawString(channel.name + " (" + channel.userCount + ")" + (defualt ? " (Default)" : ""), e.Font,
@@ -74,7 +84,7 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         private void CreateBtn_Click(object sender, EventArgs e)
         {
-            var input = new InputFrm("Create Channel", "Enter Channel Name", "Create", "Cancel");
+            var input = new InputFrm(info.channelTitle, info.channelMsg, info.channelCreate, info.channelCancel);
             if (input.ShowDialog() == DialogResult.OK)
             {
                 Program.ChatServer.SendPacket(DevServerPackets.JoinChannel, input.InputBox.Text.Trim());
