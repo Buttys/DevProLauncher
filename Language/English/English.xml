@@ -49,7 +49,7 @@
   <GamePasswordExsists>A room with that password already exists.</GamePasswordExsists>
   <GameLocked>Locked</GameLocked>
   <GameOpen>Open</GameOpen>
-  <GameLPChange>Your quick host settings does not follow the recommend lifepoints rule, do you want to change this to the default?</GameLPChange>
+  <GameLPChange>Your quick host settings does not follow the recommend life points rule, do you want to change this to the default?</GameLPChange>
   <GameEnterPassword>Enter password</GameEnterPassword>
   <GameWrongPassword>Incorrect password</GameWrongPassword>
   <optionGb1>User Settings</optionGb1>
@@ -82,10 +82,10 @@
   <hostTimeLimit>Time Limit</hostTimeLimit>
   <hostRules>Card Rules</hostRules>
   <hostMode>Duel Mode</hostMode>
-  <hostPrio>Enable Priority</hostPrio>
+  <hostPrio>TCG Rulings</hostPrio>
   <hostCheckDeck>Disable Check Deck</hostCheckDeck>
   <hostShuffle>Disable Shuffle Deck</hostShuffle>
-  <hostLifep>Lifepoints</hostLifep>
+  <hostLifep>Life Points</hostLifep>
   <hostGameN>Game Name</hostGameN>
   <hostBtnHost>Host</hostBtnHost>
   <hostBtnCancel>Cancel</hostBtnCancel>
@@ -184,7 +184,7 @@
   <MainChatTab>Chat (Beta)</MainChatTab>
   <MainRankingTab>Ranking</MainRankingTab>
   <MainTornyTab>Tournament Room</MainTornyTab>
-  <MainYoutubeTab>Youtube</MainYoutubeTab>
+  <MainYoutubeTab>YouTube</MainYoutubeTab>
   <MainFileManagerTab>File Manager</MainFileManagerTab>
   <MainFileDeckTab>Decks</MainFileDeckTab>
   <MainFileReplayTab>Replays</MainFileReplayTab>
@@ -221,9 +221,9 @@
   <Supportgb2>Support DevPro</Supportgb2>
   <Supportgb2text>The DevPoint system is here to reward users who help out and support DevPro. While the 2 options below will earn you DevPoints you can also earn points for helping DevPro too!  || ||- Taking part in DevPro Events  - Fixing DevPro bugs Launcher or card scripts! || - Supporting the growth of DevPro</Supportgb2text>
   <Supportgb3>Earn DevPoints</Supportgb3>
-  <Supportgb3text>Earn points by completing offfers.</Supportgb3text>
+  <Supportgb3text>Earn points by completing offers.</Supportgb3text>
   <Supportgb4>Donate!</Supportgb4>
-  <Supportgb4text>Earn by donating (Paypal, PaySafe, SMS and more)</Supportgb4text>
+  <Supportgb4text>Earn by donating (PayPal, PaySafe, SMS and more)</Supportgb4text>
   <SupportRenameInput>Enter New Username</SupportRenameInput>
   <SupportUnbanInput>Enter Username</SupportUnbanInput>
   <SupportTeamNameInput>Enter Team Name</SupportTeamNameInput>
