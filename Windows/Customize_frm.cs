@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -31,8 +31,8 @@ namespace DevProLauncher.Windows
             Data.Add(ContentType.Covers2, new Content { AssetPath = "Assets/Covers/", IconSize = new Size(177, 252), GameItem = "textures\\cover2.jpg", FileType = ".jpg", ImageSize = new Size(178, 254) });
             Data.Add(ContentType.Backgrounds, new Content { AssetPath = "Assets/Backgrounds/", IconSize = new Size(256, 256), GameItem = "textures\\bg.jpg", FileType = ".jpg", ImageSize = new Size(1024, 640) });
             Data.Add(ContentType.GameBackgrounds, new Content { AssetPath = "Assets/GameBackgrounds/", IconSize = new Size(256, 256), GameItem = "textures\\bg2.jpg", FileType = ".jpg", ImageSize = new Size(1024, 640) });
-            Data.Add(ContentType.Field, new Content { AssetPath = "Assets/Field/", IconSize = new Size(256, 256), GameItem = "textures\\field.png", FileType = ".png", ImageSize = new Size(256, 256) });
-            Data.Add(ContentType.FieldTransparent, new Content { AssetPath = "Assets/FieldTransparent/", IconSize = new Size(256, 256), GameItem = "textures\\field-transparent.png", FileType = ".png", ImageSize = new Size(256, 256) });
+            Data.Add(ContentType.Field, new Content { AssetPath = "Assets/Field/", IconSize = new Size(256, 256), GameItem = "textures\\field2.png", FileType = ".png", ImageSize = new Size(512, 410) });
+            Data.Add(ContentType.FieldTransparent, new Content { AssetPath = "Assets/FieldTransparent/", IconSize = new Size(256, 256), GameItem = "textures\\field-transparent.png", FileType = ".png", ImageSize = new Size(512, 410) });
             Data.Add(ContentType.Numbers, new Content { AssetPath = "Assets/Numbers/", IconSize = new Size(256, 256), GameItem = "textures\\number.png", FileType = ".png", ImageSize = new Size(320, 256) });
             Data.Add(ContentType.Mask, new Content { AssetPath = "Assets/Mask/", IconSize = new Size(254, 254), GameItem = "textures\\mask.png", FileType = ".png", ImageSize = new Size(254, 254) });
             Data.Add(ContentType.AttackIcon, new Content { AssetPath = "Assets/AttackIcon/", IconSize = new Size(128, 128), GameItem = "textures\\attack.png", FileType = ".png", ImageSize = new Size(128, 128) });
