@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using DevProLauncher.Network.Enums;
@@ -62,7 +62,7 @@ namespace DevProLauncher.Windows.MessageBoxs
                 bool defualt = channel.name == Program.Config.DefaultChannel;
                 Graphics g = e.Graphics;
 
-                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Program.Config.ChatBGColor.ToColor()), e.Bounds);
+                g.FillRectangle((selected) ? (Program.Config.ColorBlindMode ? new SolidBrush(Color.Black) : new SolidBrush(Color.Blue)) : new SolidBrush(Color.White), e.Bounds);
 
                 //// Print text
                 g.DrawString(channel.name + " (" + channel.userCount + ")" + (defualt ? " (Default)" : ""), e.Font,

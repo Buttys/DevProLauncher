@@ -909,7 +909,7 @@ namespace DevProLauncher.Windows
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/help - Displays the list you're reading now"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/uptime - Displays how long the server has been online"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/stats - Shows how many users are online, dueling, and how many duels"));
-                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute username - (Channel Owners/Admins) Prevents a user from sending any messages in a certain channel."));
+                    WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/mute username hours - (Channel Owners/Admins) Prevents a user from sending any messages in a certain channel for a certain amount of hours."));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute username - (Channel Owners/Admins) Allows a muted user to send messages again"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/setmotd message - (Channel Owners/Admins) Sets a message of the day that is sent to users when they join the channel."));
 
@@ -949,7 +949,6 @@ namespace DevProLauncher.Windows
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/roomowner roomname - Gets the creator of a channel"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/killroom roomname - forces a chat channel to close"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getuid username - Gets the UID of a username"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/getuidaccounts uid - Gets the account names registered under the UID"));
                     }
 
                     if (Program.UserInfo.rank == 99)
