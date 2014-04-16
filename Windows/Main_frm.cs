@@ -209,8 +209,12 @@ namespace DevProLauncher.Windows
         {
             if (mainTabs.SelectedIndex == 2)
                 m_wcsBrowser.Navigate("http://ygopro.de/launcher/events.php", false);
-            else if (mainTabs.SelectedIndex == mainTabs.TabPages.Count - 1)
-                m_faqBrowser.Navigate("http://ygopro.de/en/faq/", false);
+            else if (mainTabs.SelectedIndex == mainTabs.TabPages.Count - 1){
+                if (Program.LanguageManager.language.Equals("German"))
+                    m_faqBrowser.Navigate("http://ygopro.de/de/?page_id=446", false);
+                else
+                    m_faqBrowser.Navigate("http://ygopro.de/en/faq/", false);
+            }
             else if (mainTabs.SelectedIndex == 1)
                 m_chatWindow.LoadDefualtChannel();
         }
