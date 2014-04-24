@@ -889,9 +889,6 @@ namespace DevProLauncher.Windows
                     }
                     
                     break;
-                case "users":
-                    //WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "There's " + m_userData.Count + " users online."));
-                    break;
                 case "ping":
                     Program.ChatServer.SendPacket(DevServerPackets.Ping);
                     break;
@@ -913,8 +910,6 @@ namespace DevProLauncher.Windows
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/unmute username - (Channel Owners/Admins) Allows a muted user to send messages again"));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/setmotd message - (Channel Owners/Admins) Sets a message of the day that is sent to users when they join the channel."));
 
-
-
                     if (Program.UserInfo.rank != 0)
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Donator Commands --"));
@@ -924,8 +919,6 @@ namespace DevProLauncher.Windows
                     if(Program.UserInfo.rank == 1)
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, " -- Level 1 users are classed as helpers and don't need any extra commands"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/msg - Sends a server message"));
-
-                        
 
                     if (Program.UserInfo.rank > 1)
                     {
