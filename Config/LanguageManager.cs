@@ -11,6 +11,7 @@ namespace DevProLauncher.Config
 
         public LanguageInfo Translation { get; set; }
         public bool Loaded { get; set; }
+        public string language { get; set; }
 
         public LanguageManager()
         {
@@ -45,6 +46,7 @@ namespace DevProLauncher.Config
                 TextReader textReader = new StreamReader(Path + language + "/" + language + ".xml");
                 Translation = (LanguageInfo)deserializer.Deserialize(textReader);
                 textReader.Close();
+                this.language = language;
                 Loaded = true;
                 if(File.Exists(Path + language + "/strings.conf"))
                     File.Copy(Path + language + "/strings.conf", "strings.conf", true);
