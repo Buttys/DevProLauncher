@@ -1106,16 +1106,17 @@ namespace DevProLauncher.Windows
                 {
                     return;
                 }
-                
-                var mnu = new ContextMenuStrip();
-                var mnuprofile = new ToolStripMenuItem(Program.LanguageManager.Translation.chatViewProfile);
-                var mnuduel = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRequestDuel);
-                var mnufriend = new ToolStripMenuItem(Program.LanguageManager.Translation.chatAddFriend);
-                var mnuignore = new ToolStripMenuItem(Program.LanguageManager.Translation.chatIgnoreUser);
-                var mnukick = new ToolStripMenuItem(Program.LanguageManager.Translation.chatKick);
-                var mnuban = new ToolStripMenuItem(Program.LanguageManager.Translation.chatBan);
-                var mnuremovefriend = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRemoveFriend);
-                var mnuremoveteam = new ToolStripMenuItem(Program.LanguageManager.Translation.chatTeamRemove);
+
+                ContextMenuStrip mnu = new ContextMenuStrip();
+                ToolStripMenuItem mnuprofile = new ToolStripMenuItem(Program.LanguageManager.Translation.chatViewProfile);
+                ToolStripMenuItem mnuduel = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRequestDuel);
+                ToolStripMenuItem mnufriend = new ToolStripMenuItem(Program.LanguageManager.Translation.chatAddFriend);
+                ToolStripMenuItem mnuignore = new ToolStripMenuItem(Program.LanguageManager.Translation.chatIgnoreUser);
+                ToolStripMenuItem mnukick = new ToolStripMenuItem(Program.LanguageManager.Translation.chatKick);
+                ToolStripMenuItem mnuban = new ToolStripMenuItem(Program.LanguageManager.Translation.chatBan);
+                ToolStripMenuItem mnuremovefriend = new ToolStripMenuItem(Program.LanguageManager.Translation.chatRemoveFriend);
+                ToolStripMenuItem mnuremoveteam = new ToolStripMenuItem(Program.LanguageManager.Translation.chatTeamRemove);
+                ToolStripMenuItem mnuspectateuser = new ToolStripMenuItem(Program.LanguageManager.Translation.chatSpectate);
 
                 mnukick.Click += KickUser;
                 mnuban.Click += BanUser;
@@ -1125,10 +1126,11 @@ namespace DevProLauncher.Windows
                 mnuignore.Click += IgnoreUser;
                 mnuremovefriend.Click += RemoveFriend;
                 mnuremoveteam.Click += RemoveFromTeam;
+                mnuspectateuser.Click += SpectateUser;
 
                 if (!m_onlineMode)
                 {
-                    mnu.Items.AddRange(new ToolStripItem[] {mnuprofile, mnuduel, mnufriend, mnuignore});               
+                    mnu.Items.AddRange(new ToolStripItem[] {mnuprofile, mnuduel,mnuspectateuser, mnufriend, mnuignore});               
                     
                     if (Program.UserInfo.rank > 0)
                         mnu.Items.Add(mnukick);
@@ -1140,7 +1142,9 @@ namespace DevProLauncher.Windows
                     UserData user = (UserData) list.SelectedItem;
                     mnu.Items.Add(mnuprofile);
                     if (user.Online)
-                        mnu.Items.Add(mnuduel);
+                    {
+                        mnu.Items.AddRange(new ToolStripItem[] { mnuduel, mnuspectateuser }); 
+                    }
                     if (m_friendMode)
                         mnu.Items.Add(mnuremovefriend);
                     else
@@ -1175,13 +1179,19 @@ namespace DevProLauncher.Windows
                 new PacketCommand { Command = "KICK", Data = ((UserData)list.SelectedItem).username }));
         }
 
+        private void SpectateUser(object sender, EventArgs e)
+        {
+            ListBox list = UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserList;
+            if (list.SelectedItem == null)
+                return;
+            Program.ChatServer.SendPacket(DevServerPackets.SpectateUser, ((UserData)list.SelectedItem).username);
+        }
+
         private void AddFriend(object sender, EventArgs e)
         {
             ListBox list = UserListTabs.SelectedTab.Name == ChannelTab.Name ? ChannelList : UserList;
             if (list.SelectedItem == null)
-            {
                 return;
-            }
 
             if (((UserData)list.SelectedItem).username == Program.UserInfo.username)
             {

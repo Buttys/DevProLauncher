@@ -397,6 +397,7 @@ namespace DevProLauncher.Windows
 
                 LauncherHelper.GenerateConfig(GetServer(), form.GenerateURI((button.Name == "Ranked")));
                 LauncherHelper.RunGame("-j");
+                Program.ChatServer.SendPacket(DevServerPackets.HostDuel);
             }
         }
 
