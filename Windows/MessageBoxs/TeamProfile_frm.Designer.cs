@@ -133,7 +133,8 @@
             this.groupBox2.Size = new System.Drawing.Size(346, 347);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Stats";
+            this.groupBox2.Text = "                                                 Stats                           " +
+    "                               ";
             // 
             // tableLayoutPanel2
             // 
@@ -154,35 +155,36 @@
             // 
             this.groupBox3.Controls.Add(this.tableLayoutPanel5);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Location = new System.Drawing.Point(3, 20);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 20, 3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(136, 322);
+            this.groupBox3.Size = new System.Drawing.Size(136, 305);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Condition";
+            this.groupBox3.Text = "              Condition                     ";
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinUnknown, 0, 14);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinLastTurn, 0, 13);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinExodius, 0, 12);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinVennominaga, 0, 11);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinExodia, 0, 10);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinTimeLimit, 0, 9);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinSurrendered, 0, 8);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinDestinyLeo, 0, 7);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinDestinyBoard, 0, 6);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinHorakhty, 0, 5);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinCountdown, 0, 4);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinRageQuit, 0, 3);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWin0Cards, 0, 2);
-            this.tableLayoutPanel5.Controls.Add(this.txtUWinLP0, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinUnknown, 0, 13);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinLastTurn, 0, 12);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinExodius, 0, 11);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinVennominaga, 0, 10);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinExodia, 0, 9);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinTimeLimit, 0, 8);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinSurrendered, 0, 7);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinDestinyLeo, 0, 6);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinDestinyBoard, 0, 5);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinHorakhty, 0, 4);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinCountdown, 0, 3);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinRageQuit, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWin0Cards, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.txtUWinLP0, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 15;
+            this.tableLayoutPanel5.RowCount = 14;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -198,134 +200,148 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(130, 303);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(130, 286);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
             // txtUWinUnknown
             // 
             this.txtUWinUnknown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinUnknown.Location = new System.Drawing.Point(3, 280);
+            this.txtUWinUnknown.Location = new System.Drawing.Point(3, 260);
             this.txtUWinUnknown.Name = "txtUWinUnknown";
-            this.txtUWinUnknown.Size = new System.Drawing.Size(124, 23);
+            this.txtUWinUnknown.Size = new System.Drawing.Size(124, 26);
             this.txtUWinUnknown.TabIndex = 1;
             this.txtUWinUnknown.Text = "Unknown";
+            this.txtUWinUnknown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinLastTurn
             // 
             this.txtUWinLastTurn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinLastTurn.Location = new System.Drawing.Point(3, 260);
+            this.txtUWinLastTurn.Location = new System.Drawing.Point(3, 240);
             this.txtUWinLastTurn.Name = "txtUWinLastTurn";
             this.txtUWinLastTurn.Size = new System.Drawing.Size(124, 20);
             this.txtUWinLastTurn.TabIndex = 1;
             this.txtUWinLastTurn.Text = "Last Turn";
+            this.txtUWinLastTurn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinExodius
             // 
             this.txtUWinExodius.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinExodius.Location = new System.Drawing.Point(3, 240);
+            this.txtUWinExodius.Location = new System.Drawing.Point(3, 220);
             this.txtUWinExodius.Name = "txtUWinExodius";
             this.txtUWinExodius.Size = new System.Drawing.Size(124, 20);
             this.txtUWinExodius.TabIndex = 1;
             this.txtUWinExodius.Text = "Exodius";
+            this.txtUWinExodius.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinVennominaga
             // 
             this.txtUWinVennominaga.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinVennominaga.Location = new System.Drawing.Point(3, 220);
+            this.txtUWinVennominaga.Location = new System.Drawing.Point(3, 200);
             this.txtUWinVennominaga.Name = "txtUWinVennominaga";
             this.txtUWinVennominaga.Size = new System.Drawing.Size(124, 20);
             this.txtUWinVennominaga.TabIndex = 1;
             this.txtUWinVennominaga.Text = "Vennominaga";
+            this.txtUWinVennominaga.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinExodia
             // 
             this.txtUWinExodia.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinExodia.Location = new System.Drawing.Point(3, 200);
+            this.txtUWinExodia.Location = new System.Drawing.Point(3, 180);
             this.txtUWinExodia.Name = "txtUWinExodia";
             this.txtUWinExodia.Size = new System.Drawing.Size(124, 20);
             this.txtUWinExodia.TabIndex = 1;
             this.txtUWinExodia.Text = "Exodia";
+            this.txtUWinExodia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinTimeLimit
             // 
             this.txtUWinTimeLimit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinTimeLimit.Location = new System.Drawing.Point(3, 180);
+            this.txtUWinTimeLimit.Location = new System.Drawing.Point(3, 160);
             this.txtUWinTimeLimit.Name = "txtUWinTimeLimit";
             this.txtUWinTimeLimit.Size = new System.Drawing.Size(124, 20);
             this.txtUWinTimeLimit.TabIndex = 1;
             this.txtUWinTimeLimit.Text = "Time Limit Up";
+            this.txtUWinTimeLimit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinSurrendered
             // 
             this.txtUWinSurrendered.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinSurrendered.Location = new System.Drawing.Point(3, 160);
+            this.txtUWinSurrendered.Location = new System.Drawing.Point(3, 140);
             this.txtUWinSurrendered.Name = "txtUWinSurrendered";
             this.txtUWinSurrendered.Size = new System.Drawing.Size(124, 20);
             this.txtUWinSurrendered.TabIndex = 1;
             this.txtUWinSurrendered.Text = "Surrendered";
+            this.txtUWinSurrendered.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinDestinyLeo
             // 
             this.txtUWinDestinyLeo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinDestinyLeo.Location = new System.Drawing.Point(3, 140);
+            this.txtUWinDestinyLeo.Location = new System.Drawing.Point(3, 120);
             this.txtUWinDestinyLeo.Name = "txtUWinDestinyLeo";
             this.txtUWinDestinyLeo.Size = new System.Drawing.Size(124, 20);
             this.txtUWinDestinyLeo.TabIndex = 1;
             this.txtUWinDestinyLeo.Text = "Destiny Leo";
+            this.txtUWinDestinyLeo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinDestinyBoard
             // 
             this.txtUWinDestinyBoard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinDestinyBoard.Location = new System.Drawing.Point(3, 120);
+            this.txtUWinDestinyBoard.Location = new System.Drawing.Point(3, 100);
             this.txtUWinDestinyBoard.Name = "txtUWinDestinyBoard";
             this.txtUWinDestinyBoard.Size = new System.Drawing.Size(124, 20);
             this.txtUWinDestinyBoard.TabIndex = 1;
             this.txtUWinDestinyBoard.Text = "Destiny Board";
+            this.txtUWinDestinyBoard.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinHorakhty
             // 
             this.txtUWinHorakhty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinHorakhty.Location = new System.Drawing.Point(3, 100);
+            this.txtUWinHorakhty.Location = new System.Drawing.Point(3, 80);
             this.txtUWinHorakhty.Name = "txtUWinHorakhty";
             this.txtUWinHorakhty.Size = new System.Drawing.Size(124, 20);
             this.txtUWinHorakhty.TabIndex = 1;
             this.txtUWinHorakhty.Text = "Horakhty";
+            this.txtUWinHorakhty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinCountdown
             // 
             this.txtUWinCountdown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinCountdown.Location = new System.Drawing.Point(3, 80);
+            this.txtUWinCountdown.Location = new System.Drawing.Point(3, 60);
             this.txtUWinCountdown.Name = "txtUWinCountdown";
             this.txtUWinCountdown.Size = new System.Drawing.Size(124, 20);
             this.txtUWinCountdown.TabIndex = 1;
             this.txtUWinCountdown.Text = "Final Countdown";
+            this.txtUWinCountdown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinRageQuit
             // 
             this.txtUWinRageQuit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinRageQuit.Location = new System.Drawing.Point(3, 60);
+            this.txtUWinRageQuit.Location = new System.Drawing.Point(3, 40);
             this.txtUWinRageQuit.Name = "txtUWinRageQuit";
             this.txtUWinRageQuit.Size = new System.Drawing.Size(124, 20);
             this.txtUWinRageQuit.TabIndex = 1;
             this.txtUWinRageQuit.Text = "Rage Quit/ D/C";
+            this.txtUWinRageQuit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWin0Cards
             // 
             this.txtUWin0Cards.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWin0Cards.Location = new System.Drawing.Point(3, 40);
+            this.txtUWin0Cards.Location = new System.Drawing.Point(3, 20);
             this.txtUWin0Cards.Name = "txtUWin0Cards";
             this.txtUWin0Cards.Size = new System.Drawing.Size(124, 20);
             this.txtUWin0Cards.TabIndex = 1;
             this.txtUWin0Cards.Text = "0 Cards Left";
+            this.txtUWin0Cards.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtUWinLP0
             // 
             this.txtUWinLP0.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUWinLP0.Location = new System.Drawing.Point(3, 20);
+            this.txtUWinLP0.Location = new System.Drawing.Point(3, 0);
             this.txtUWinLP0.Name = "txtUWinLP0";
             this.txtUWinLP0.Size = new System.Drawing.Size(124, 20);
             this.txtUWinLP0.TabIndex = 1;
             this.txtUWinLP0.Text = "LP Reached 0";
+            this.txtUWinLP0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox5
             // 
@@ -336,7 +352,7 @@
             this.groupBox5.Size = new System.Drawing.Size(192, 322);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Ranked";
+            this.groupBox5.Text = "                       Ranked                                      ";
             // 
             // tableLayoutPanel3
             // 
