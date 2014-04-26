@@ -56,8 +56,6 @@ namespace DevProLauncher.Windows
         {
             LanguageInfo info = Program.LanguageManager.Translation;
 
-
-
             OptionsBtn.Text = info.chatBtnoptions;
             ProfileBtn.Text = info.MainProfileBtn;
             DeckBtn.Text = info.MainDeckBtn;
