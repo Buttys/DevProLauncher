@@ -253,9 +253,9 @@ namespace DevProLauncher.Helpers
             writer.WriteLine(("lastport = " + server.serverPort));
             writer.WriteLine(("fullscreen = " + Convert.ToInt32(Program.Config.Fullscreen)));
             writer.WriteLine(("enable_sound = " + Convert.ToInt32(Program.Config.EnableSound)));
-            writer.WriteLine(("sound_volume = " + Program.Config.SoundVolume));
+            writer.WriteLine(("sound_volume = " + Convert.ToDouble(Program.Config.SoundVolume)));
             writer.WriteLine(("enable_music = " + Convert.ToInt32(Program.Config.EnableMusic)));
-            writer.WriteLine(("music_volume = " + Program.Config.MusicVolume));
+            writer.WriteLine(("music_volume = " + Convert.ToDouble(Program.Config.MusicVolume)));
             writer.WriteLine("skin_index = " + Convert.ToInt32(Program.Config.Skin));
             writer.WriteLine("auto_card_placing = " + Convert.ToInt32(Program.Config.AutoPlacing));
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
@@ -283,9 +283,9 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("numfont = fonts/arialbd.ttf");
             writer.WriteLine(("fullscreen = " + Convert.ToInt32(Program.Config.Fullscreen)));
             writer.WriteLine(("enable_sound = " + Convert.ToInt32(Program.Config.EnableSound)));
-            writer.WriteLine(("sound_volume = " + Program.Config.SoundVolume));
+            writer.WriteLine(("sound_volume = " + Convert.ToDouble(Program.Config.SoundVolume)));
             writer.WriteLine(("enable_music = " + Convert.ToInt32(Program.Config.EnableMusic)));
-            writer.WriteLine(("music_volume = " + Program.Config.MusicVolume));
+            writer.WriteLine(("music_volume = " + Convert.ToDouble(Program.Config.MusicVolume)));
             writer.WriteLine("skin_index = " + Convert.ToInt32(Program.Config.Skin));
             writer.WriteLine("auto_card_placing = " + Convert.ToInt32(Program.Config.AutoPlacing));
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
@@ -313,9 +313,9 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("numfont = fonts/arialbd.ttf");
             writer.WriteLine(("fullscreen = " + Convert.ToInt32(Program.Config.Fullscreen)));
             writer.WriteLine(("enable_sound = " + Convert.ToInt32(Program.Config.EnableSound)));
-            writer.WriteLine(("sound_volume = " + Program.Config.SoundVolume));
+            writer.WriteLine(("sound_volume = " + Convert.ToDouble(Program.Config.SoundVolume)));
             writer.WriteLine(("enable_music = " + Convert.ToInt32(Program.Config.EnableMusic)));
-            writer.WriteLine(("music_volume = " + Program.Config.MusicVolume));
+            writer.WriteLine(("music_volume = " + Convert.ToDouble(Program.Config.MusicVolume)));
             writer.WriteLine("skin_index = " + Convert.ToInt32(Program.Config.Skin));
             writer.WriteLine("auto_card_placing = " + Convert.ToInt32(Program.Config.AutoPlacing));
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
@@ -353,9 +353,9 @@ namespace DevProLauncher.Helpers
             writer.WriteLine("lastport = " + server.serverPort);
             writer.WriteLine("fullscreen = " + Convert.ToInt32(Program.Config.Fullscreen));
             writer.WriteLine(("enable_sound = " + Convert.ToInt32(Program.Config.EnableSound)));
-            writer.WriteLine(("sound_volume = " + Program.Config.SoundVolume));
+            writer.WriteLine(("sound_volume = " + Convert.ToDouble(Program.Config.SoundVolume)));
             writer.WriteLine(("enable_music = " + Convert.ToInt32(Program.Config.EnableMusic)));
-            writer.WriteLine(("music_volume = " + Program.Config.MusicVolume));
+            writer.WriteLine(("music_volume = " + Convert.ToDouble(Program.Config.MusicVolume)));
             writer.WriteLine("skin_index = " + Convert.ToInt32(Program.Config.Skin));
             writer.WriteLine("auto_card_placing = " + Convert.ToInt32(Program.Config.AutoPlacing));
             writer.WriteLine("random_card_placing = " + Convert.ToInt32(Program.Config.RandomPlacing));
