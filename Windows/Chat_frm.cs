@@ -470,12 +470,7 @@ namespace DevProLauncher.Windows
             Program.UserInfo = user;
             Program.MainForm.UpdateUsername();
             if (!string.IsNullOrEmpty(Program.UserInfo.team))
-            {
                 LoadTeamWindow();
-                Program.MainForm.SetTeamProfile(true);
-            }
-            else
-                Program.MainForm.SetTeamProfile(false);
         }
 
         private void UpdateChannelList(object sender, EventArgs e)
@@ -1251,7 +1246,7 @@ namespace DevProLauncher.Windows
             if (list.SelectedItem == null)
                 return;
 
-            var profile = new ProfileFrm(list.SelectedItem is string ? list.SelectedItem.ToString():((UserData)list.SelectedItem).username);
+            var profile = new ProfileFrm(list.SelectedItem is string ? list.SelectedItem.ToString():((UserData)list.SelectedItem).username,false);
             profile.ShowDialog();
         }
 
@@ -1379,7 +1374,6 @@ namespace DevProLauncher.Windows
                     Program.UserInfo.team = string.Empty;
                     Program.UserInfo.teamRank = 0;
                     ChannelTabs.TabPages.Remove(GetChatWindow(MessageType.Team.ToString()));
-                    Program.MainForm.SetTeamProfile(false);
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Program.UserInfo.username, "You have left the team."));
                     break;
                 case "REMOVED":
@@ -1387,7 +1381,6 @@ namespace DevProLauncher.Windows
                     Program.UserInfo.teamRank = 0;
                     ChannelTabs.TabPages.Remove(GetChatWindow(MessageType.Team.ToString()));
                     WriteMessage(new ChatMessage(MessageType.System, CommandType.None, Program.UserInfo.username, "You have been removed from the team."));
-                    Program.MainForm.SetTeamProfile(false);
                     break;
                 case "DISBAND":
                     if (Program.UserInfo.team == command.Data)
@@ -1395,9 +1388,7 @@ namespace DevProLauncher.Windows
                         Program.UserInfo.team = string.Empty;
                         Program.UserInfo.teamRank = 0;
                         ChannelTabs.TabPages.Remove(GetChatWindow(MessageType.Team.ToString()));
-                        Program.MainForm.SetTeamProfile(false);
                     }
-
                     break;
             }   
         }
