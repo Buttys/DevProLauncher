@@ -250,7 +250,7 @@
             this.tableLayoutPanel7.ColumnCount = 3;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.91638F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.08362F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 145F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 146F));
             this.tableLayoutPanel7.Controls.Add(this.AutoPlacing, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.NoDelay, 1, 1);
             this.tableLayoutPanel7.Controls.Add(this.RandomPlacing, 0, 1);
@@ -272,7 +272,7 @@
             this.AutoPlacing.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.AutoPlacing.AutoSize = true;
             this.AutoPlacing.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.AutoPlacing.Location = new System.Drawing.Point(35, 4);
+            this.AutoPlacing.Location = new System.Drawing.Point(34, 4);
             this.AutoPlacing.Name = "AutoPlacing";
             this.AutoPlacing.Size = new System.Drawing.Size(111, 17);
             this.AutoPlacing.TabIndex = 3;
@@ -284,7 +284,7 @@
             this.NoDelay.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.NoDelay.AutoSize = true;
             this.NoDelay.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.NoDelay.Location = new System.Drawing.Point(168, 34);
+            this.NoDelay.Location = new System.Drawing.Point(167, 34);
             this.NoDelay.Name = "NoDelay";
             this.NoDelay.Size = new System.Drawing.Size(115, 17);
             this.NoDelay.TabIndex = 6;
@@ -296,7 +296,7 @@
             this.RandomPlacing.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.RandomPlacing.AutoSize = true;
             this.RandomPlacing.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.RandomPlacing.Location = new System.Drawing.Point(17, 34);
+            this.RandomPlacing.Location = new System.Drawing.Point(16, 34);
             this.RandomPlacing.Name = "RandomPlacing";
             this.RandomPlacing.Size = new System.Drawing.Size(129, 17);
             this.RandomPlacing.TabIndex = 4;
@@ -309,7 +309,7 @@
             this.AutoChain.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.AutoChain.AutoSize = true;
             this.AutoChain.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.AutoChain.Location = new System.Drawing.Point(176, 4);
+            this.AutoChain.Location = new System.Drawing.Point(175, 4);
             this.AutoChain.Name = "AutoChain";
             this.AutoChain.Size = new System.Drawing.Size(107, 17);
             this.AutoChain.TabIndex = 5;
@@ -320,11 +320,11 @@
             // 
             this.EnableSleeveLoading.AutoSize = true;
             this.EnableSleeveLoading.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.EnableSleeveLoading.Dock = System.Windows.Forms.DockStyle.Right;
-            this.EnableSleeveLoading.Location = new System.Drawing.Point(309, 3);
+            this.EnableSleeveLoading.Dock = System.Windows.Forms.DockStyle.Top;
+            this.EnableSleeveLoading.Location = new System.Drawing.Point(288, 3);
             this.EnableSleeveLoading.Name = "EnableSleeveLoading";
             this.tableLayoutPanel7.SetRowSpan(this.EnableSleeveLoading, 2);
-            this.EnableSleeveLoading.Size = new System.Drawing.Size(120, 54);
+            this.EnableSleeveLoading.Size = new System.Drawing.Size(141, 17);
             this.EnableSleeveLoading.TabIndex = 8;
             this.EnableSleeveLoading.Text = "Enable User Covers";
             this.EnableSleeveLoading.UseVisualStyleBackColor = true;
@@ -344,7 +344,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.70731F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.29268F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 187F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 188F));
             this.tableLayoutPanel3.Controls.Add(this.Enabled3d, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel3, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel4, 2, 1);
@@ -366,7 +366,7 @@
             this.Enabled3d.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Enabled3d.AutoSize = true;
             this.Enabled3d.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Enabled3d.Location = new System.Drawing.Point(290, 8);
+            this.Enabled3d.Location = new System.Drawing.Point(289, 8);
             this.Enabled3d.Name = "Enabled3d";
             this.Enabled3d.Size = new System.Drawing.Size(95, 17);
             this.Enabled3d.TabIndex = 2;
@@ -378,7 +378,7 @@
             // 
             this.flowLayoutPanel3.Controls.Add(this.label4);
             this.flowLayoutPanel3.Controls.Add(this.SkinList);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(391, 3);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(390, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(179, 28);
             this.flowLayoutPanel3.TabIndex = 4;
@@ -410,9 +410,9 @@
             this.flowLayoutPanel4.Controls.Add(this.label6);
             this.flowLayoutPanel4.Controls.Add(this.Antialias);
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(391, 37);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(390, 37);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(182, 28);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(183, 28);
             this.flowLayoutPanel4.TabIndex = 5;
             // 
             // label6
@@ -513,10 +513,11 @@
             // 
             this.Fullscreen.AutoSize = true;
             this.Fullscreen.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Fullscreen.Dock = System.Windows.Forms.DockStyle.Right;
             this.Fullscreen.Location = new System.Drawing.Point(281, 43);
             this.Fullscreen.Margin = new System.Windows.Forms.Padding(3, 9, 3, 3);
             this.Fullscreen.Name = "Fullscreen";
-            this.Fullscreen.Size = new System.Drawing.Size(104, 17);
+            this.Fullscreen.Size = new System.Drawing.Size(103, 22);
             this.Fullscreen.TabIndex = 3;
             this.Fullscreen.Text = "       Fullscreen      ";
             this.Fullscreen.UseVisualStyleBackColor = true;
