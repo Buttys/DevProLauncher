@@ -127,8 +127,8 @@
             this.Single = new System.Windows.Forms.Label();
             this.SingleWLD = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.userTab = new System.Windows.Forms.TabPage();
+            this.teamTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
@@ -208,8 +208,8 @@
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.userTab.SuspendLayout();
+            this.teamTab.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -1370,8 +1370,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.userTab);
+            this.tabControl1.Controls.Add(this.teamTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -1379,27 +1379,27 @@
             this.tabControl1.Size = new System.Drawing.Size(403, 524);
             this.tabControl1.TabIndex = 1;
             // 
-            // tabPage1
+            // userTab
             // 
-            this.tabPage1.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(395, 498);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Single";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.userTab.Controls.Add(this.tableLayoutPanel1);
+            this.userTab.Location = new System.Drawing.Point(4, 22);
+            this.userTab.Name = "userTab";
+            this.userTab.Padding = new System.Windows.Forms.Padding(3);
+            this.userTab.Size = new System.Drawing.Size(395, 498);
+            this.userTab.TabIndex = 0;
+            this.userTab.Text = "Single";
+            this.userTab.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // teamTab
             // 
-            this.tabPage2.Controls.Add(this.tableLayoutPanel7);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(395, 498);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Team";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.teamTab.Controls.Add(this.tableLayoutPanel7);
+            this.teamTab.Location = new System.Drawing.Point(4, 22);
+            this.teamTab.Name = "teamTab";
+            this.teamTab.Padding = new System.Windows.Forms.Padding(3);
+            this.teamTab.Size = new System.Drawing.Size(395, 498);
+            this.teamTab.TabIndex = 1;
+            this.teamTab.Text = "Team";
+            this.teamTab.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel7
             // 
@@ -2208,8 +2208,8 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.userTab.ResumeLayout(false);
+            this.teamTab.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
@@ -2327,8 +2327,8 @@
         private System.Windows.Forms.Label SingleWLD;
         private System.Windows.Forms.Label UserLevel;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage userTab;
+        private System.Windows.Forms.TabPage teamTab;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;

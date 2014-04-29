@@ -22,7 +22,7 @@ namespace DevProLauncher.Windows.MessageBoxs
 
             if (!ownProfile || string.IsNullOrEmpty(Program.UserInfo.team))
             {
-                tabControl1.TabPages[1].Hide();
+                ((Control)tabControl1.TabPages[1]).Enabled = false;
             }
             else
             {
@@ -34,9 +34,7 @@ namespace DevProLauncher.Windows.MessageBoxs
         public void OnClose(object sender, EventArgs e)
         {
             if (Program.ChatServer.UserStats != null) 
-// ReSharper disable DelegateSubtraction
                 Program.ChatServer.UserStats -= UpdatePlayerProfile;
-// ReSharper restore DelegateSubtraction
         }
 
         public void ApplyTranslation()
