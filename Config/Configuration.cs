@@ -22,7 +22,9 @@ namespace DevProLauncher.Config
         public string DefaultUsername = "";
         public string DefaultDeck = "";
         public bool EnableSound = true;
+        public int SoundVolume = 50;
         public bool EnableMusic = true;
+        public int MusicVolume = 50;
         public bool Enabled3D = false;
         public int Antialias = 0;
         public bool AutoLogin = false;

@@ -32,7 +32,6 @@ namespace DevProLauncher
         [STAThread]
         static void Main()
         {
-            Config = new Configuration();
             LoadConfig(ConfigurationFilename);
 #if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
@@ -41,8 +40,7 @@ namespace DevProLauncher
             Config.UpdaterAddress = "/launcher/version.php";
             Config.ServerInfoAddress = "/launcher/server.php";
 
-            LanguageManager = new LanguageManager();
-            //LanguageManager.Save("English");    
+            LanguageManager = new LanguageManager();  
             LanguageManager.Load(Config.Language);
 
             if (LauncherHelper.CheckInstance())
@@ -95,35 +93,36 @@ namespace DevProLauncher
         {
             if (!File.Exists(filename))
             {
-                SaveConfig(filename, new Configuration());
+                Config = new Configuration();
+                SaveConfig(filename, Config);
             }
-            try
+            else
             {
-                var deserializer = new XmlSerializer(typeof(Configuration));
-                TextReader textReader = new StreamReader(filename);
-                Config = (Configuration)deserializer.Deserialize(textReader);
-                textReader.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error Loading " + filename);
+                try
+                {
+                    var deserializer = new XmlSerializer(typeof(Configuration));
+                    TextReader textReader = new StreamReader(filename);
+                    Config = (Configuration)deserializer.Deserialize(textReader);
+                    textReader.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error Loading " + filename);
+                }
             }
         }
 
         public static bool NewUpdateCheck()
         {
-            int checkOne = CheckUpdates("http://91.250.87.52");
-
-            if(checkOne == 2)
-                return true;
-            if(checkOne == 0)
+            switch(CheckUpdates("http://91.250.87.52"))
             {
-                int checkTwo = CheckUpdates("http://ygopro.de");
-                    if(checkTwo == 2)
-                        return true;
+                case 0:
+                    return (CheckUpdates("http://ygopro.de") == 2);
+                case 2:
+                    return true;
+                default:
+                    return false;
             }
-
-            return false;//if checks are 1
         }
 
         public static int CheckUpdates(string url)
@@ -145,8 +144,6 @@ namespace DevProLauncher
 
             if (result.Equals("OK"))
                 return 1;
-
-
 
             if (result.Equals("KO"))
             {
