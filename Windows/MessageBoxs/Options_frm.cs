@@ -30,6 +30,12 @@ namespace DevProLauncher.Windows.MessageBoxs
             NoDelay.Checked = Program.Config.NoChainDelay;
             EnableSleeveLoading.Checked = Program.Config.EnableCustomSleeves;
 
+            MusicVolume.Enabled = EnableMusic.Checked;
+            MusicVolume.Value = Program.Config.MusicVolume;
+
+            SoundVolume.Enabled = EnableSound.Checked;
+            SoundVolume.Value = Program.Config.SoundVolume;
+
             if (Directory.Exists(Program.Config.LauncherDir + "skins/"))
             {
                 string[] folders = Directory.GetDirectories(Path.Combine(Program.Config.LauncherDir ,"skins\\"));
@@ -104,7 +110,9 @@ namespace DevProLauncher.Windows.MessageBoxs
             Program.Config.DefaultUsername = Username.Text;
             Program.Config.Antialias = Convert.ToInt32(Antialias.Text);
             Program.Config.EnableSound = EnableSound.Checked;
+            Program.Config.SoundVolume = SoundVolume.Value;
             Program.Config.EnableMusic = EnableMusic.Checked;
+            Program.Config.MusicVolume = MusicVolume.Value;
             Program.Config.Enabled3D = Enabled3d.Checked;
             Program.Config.Fullscreen = Fullscreen.Checked;
             Program.Config.FontSize = (int)FontSize.Value;
@@ -191,6 +199,16 @@ namespace DevProLauncher.Windows.MessageBoxs
                         Password = LauncherHelper.EncodePassword(currentPassword.Text),
                         UID = LauncherHelper.EncodePassword(newPassword.Text)
                     }));
+        }
+
+        private void EnableMusic_CheckedChanged(object sender, EventArgs e)
+        {
+            MusicVolume.Enabled = EnableMusic.Checked;
+        }
+
+        private void EnableSound_CheckedChanged(object sender, EventArgs e)
+        {
+            SoundVolume.Enabled = EnableSound.Checked;
         }
     }
 }

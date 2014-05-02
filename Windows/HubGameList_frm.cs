@@ -383,7 +383,6 @@ namespace DevProLauncher.Windows
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-
                 if (m_rooms.ContainsKey(form.PasswordInput.Text))
                 {
                     MessageBox.Show(Program.LanguageManager.Translation.GamePasswordExsists);
@@ -397,6 +396,7 @@ namespace DevProLauncher.Windows
 
                 LauncherHelper.GenerateConfig(GetServer(), form.GenerateURI((button.Name == "Ranked")));
                 LauncherHelper.RunGame("-j");
+                Program.ChatServer.SendPacket(DevServerPackets.HostDuel);
             }
         }
 

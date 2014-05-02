@@ -56,8 +56,6 @@ namespace DevProLauncher.Windows
         {
             LanguageInfo info = Program.LanguageManager.Translation;
 
-
-
             OptionsBtn.Text = info.chatBtnoptions;
             ProfileBtn.Text = info.MainProfileBtn;
             DeckBtn.Text = info.MainDeckBtn;
@@ -128,11 +126,8 @@ namespace DevProLauncher.Windows
             UpdateUsername();
 
             ProfileBtn.Enabled = true;
-            if (!string.IsNullOrEmpty(Program.UserInfo.team))
-                TeamProfileBtn.Enabled = true;
 
             Program.ChatServer.SendPacket(DevServerPackets.DevPoints);
-
         }
 
         public void UpdateUsername()
@@ -194,7 +189,7 @@ namespace DevProLauncher.Windows
 
         private void ProfileBtn_Click(object sender, EventArgs e)
         {
-            var profile = new ProfileFrm();
+            var profile = new ProfileFrm(Program.UserInfo.team,true);
             profile.ShowDialog();
         }
 
@@ -217,22 +212,6 @@ namespace DevProLauncher.Windows
             }
             else if (mainTabs.SelectedIndex == 1)
                 m_chatWindow.LoadDefualtChannel();
-        }
-
-        private void TeamProfileBtn_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(Program.UserInfo.team))
-            {
-                MessageBox.Show("You are not in a team.", "No u", MessageBoxButtons.OK);
-                return;
-            }
-
-            var form = new TeamProfileFrm(Program.UserInfo.team);
-            form.Show();
-        }
-        public void SetTeamProfile(bool value)
-        {
-            TeamProfileBtn.Enabled = value;
         }
     }
 }

@@ -29,6 +29,8 @@
         Stats = 26,
         TeamStats = 27,
         TeamCommand = 28,
-        UpdatePassword = 29
+        UpdatePassword = 29,
+        SpectateUser = 30,
+        HostDuel = 31
     }
 }

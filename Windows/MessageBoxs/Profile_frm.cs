@@ -9,32 +9,32 @@ namespace DevProLauncher.Windows.MessageBoxs
     {
         private readonly string m_profileUsername;
 
-        public ProfileFrm()
+        public ProfileFrm(string userOrTeamName, bool ownProfile)
         {
-            m_profileUsername = Program.UserInfo.username;
+            string user = ownProfile ? Program.UserInfo.username : userOrTeamName;
+            
+            m_profileUsername = user;
             InitializeComponent();
             ApplyTranslation();
-            Username.Text += Program.UserInfo.username;
-            Program.ChatServer.UserStats += ProfileUpdate;
+            Username.Text += user;
+            Program.ChatServer.UserStats += UpdatePlayerProfile;
             FormClosed += OnClose;
 
-        }
-
-        public ProfileFrm(string username)
-        {
-            m_profileUsername = username;
-            InitializeComponent();
-            ApplyTranslation();
-            Username.Text += username;
-            Program.ChatServer.UserStats += ProfileUpdate;
-
+            if (!ownProfile || string.IsNullOrEmpty(Program.UserInfo.team))
+            {
+                ((Control)tabControl1.TabPages[1]).Enabled = false;
+            }
+            else
+            {
+                TeamName.Text = "Team: " + team;
+                Program.ChatServer.TeamStats += UpdateTeamProfile;
+                Program.ChatServer.SendPacket(DevServerPackets.TeamStats, userOrTeamName);
+            }
         }
         public void OnClose(object sender, EventArgs e)
         {
             if (Program.ChatServer.UserStats != null) 
-// ReSharper disable DelegateSubtraction
-                Program.ChatServer.UserStats -= ProfileUpdate;
-// ReSharper restore DelegateSubtraction
+                Program.ChatServer.UserStats -= UpdatePlayerProfile;
         }
 
         public void ApplyTranslation()
@@ -74,15 +74,14 @@ namespace DevProLauncher.Windows.MessageBoxs
 
         }
 
-        private void ProfileUpdate(string message)
+        private void UpdatePlayerProfile(string message)
         {
             if (InvokeRequired)
             {
-                Invoke(new Action<string>(ProfileUpdate), message);
+                Invoke(new Action<string>(UpdatePlayerProfile), message);
             }
             else
             {
-
                 if (!IsDisposed)
                 {
                     string[] sections = message.Split(new[] {"||"}, StringSplitOptions.None);
@@ -166,8 +165,72 @@ namespace DevProLauncher.Windows.MessageBoxs
                         RLOSEDestinyLeo.Text = rankedparts[26];
                         RLOSEUnknown.Text = rankedparts[27];
                     }
+                }
+            }
+        }
 
-                    
+        private void UpdateTeamProfile(string message)
+        {
+            if (IsDisposed)
+                return;
+            if (InvokeRequired)
+            {
+                Invoke(new Action<string>(UpdateTeamProfile), message);
+            }
+            else
+            {
+                string[] rankedparts = message.Split(',');
+
+                if (rankedparts[0] != "NotFound")
+                {
+                    TWinLP0.Text = rankedparts[0];
+                    TWinSurrendered.Text = rankedparts[1];
+                    TWin0Cards.Text = rankedparts[2];
+                    TWinTimeLimit.Text = rankedparts[3];
+                    TWinRageQuit.Text = rankedparts[4];
+                    TWinExodia.Text = rankedparts[5];
+                    TWinCountdown.Text = rankedparts[6];
+                    TWinVennominaga.Text = rankedparts[7];
+                    TWinHorakhty.Text = rankedparts[8];
+                    TWinExodius.Text = rankedparts[9];
+                    TWinDestinyBoard.Text = rankedparts[10];
+                    TWinLastTurn.Text = rankedparts[11];
+                    TWinDestinyLeo.Text = rankedparts[12];
+                    TWinUnknown.Text = rankedparts[13];
+
+                    TLOSELP0.Text = rankedparts[14];
+                    TLOSESurrendered.Text = rankedparts[15];
+                    TLOSE0Cards.Text = rankedparts[16];
+                    TLOSETimeLimit.Text = rankedparts[17];
+                    TLOSERageQuit.Text = rankedparts[18];
+                    TLOSEExodia.Text = rankedparts[19];
+                    TLOSECountdown.Text = rankedparts[20];
+                    TLOSEVennominaga.Text = rankedparts[21];
+                    TLOSEHorakhty.Text = rankedparts[22];
+                    TLOSEExodius.Text = rankedparts[23];
+                    TLOSEDestinyBoard.Text = rankedparts[24];
+                    TLOSELastTurn.Text = rankedparts[25];
+                    TLOSEDestinyLeo.Text = rankedparts[26];
+                    TLOSEUnknown.Text = rankedparts[27];
+
+                    TSingleWLD.Text = rankedparts[28] + "/" + rankedparts[29] + "/" + rankedparts[30];
+                    TMatchWLD.Text = rankedparts[31] + "/" + rankedparts[32] + "/" + rankedparts[33];
+                    TTagWLD.Text = rankedparts[34] + "/" + rankedparts[35] + "/" + rankedparts[36];
+
+                    TeamLevel.Text = "Lvl: " + rankedparts[37];
+                    TRank.Text = "Rank: " + rankedparts[38];
+
+                    int totalwins = Convert.ToInt32(rankedparts[28]) + Convert.ToInt32(rankedparts[31]) + Convert.ToInt32(rankedparts[34]);
+                    int totalgames = Convert.ToInt32(rankedparts[28]) + Convert.ToInt32(rankedparts[29]) + Convert.ToInt32(rankedparts[30])
+                        + Convert.ToInt32(rankedparts[31]) + Convert.ToInt32(rankedparts[32]) + Convert.ToInt32(rankedparts[33])
+                        + Convert.ToInt32(rankedparts[34]) + Convert.ToInt32(rankedparts[35]) + Convert.ToInt32(rankedparts[36]);
+                    if (totalgames != 0)
+                    {
+                        var ratio = (totalwins * 100) / totalgames;
+                        Ratio.Text = "W/L Ratio: " + ratio.ToString("#.##") + "%";
+                    }
+                    else
+                        Ratio.Text = "W/L Ratio: 0%";
 
                 }
             }

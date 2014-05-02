@@ -269,6 +269,7 @@ namespace DevProLauncher.Config
         public string chatRemoveFriend = "Remove Friend";
         public string chatRemoveIgnore = "Remove";
         public string chatAutoScroll = "Auto-Scroll";
+        public string chatSpectate = "Spectate";
 
         public string chatUserTab = "Users";
         public string chatIgnoreTab = "Ignore";
@@ -296,16 +297,16 @@ namespace DevProLauncher.Config
 
         public string MainFormTitle = "YGOPro Launcher ";
         public string MainGameTab = "Game List";
-        public string MainChatTab = "Chat (Beta v4.2)";
+        public string MainChatTab = "Chat";
         public string MainEventTab = "Downloads";
-        //deprecated   public string MainRankingTab = "Ranking";
-        //deprecated    public string MainTornyTab = "Tournament Room";
-        //deprecated   public string MainYoutubeTab = "Youtube";
+        public string MainRankingTab = "Ranking";
+        public string MainTornyTab = "Tournament Room";
+        public string MainYoutubeTab = "Youtube";
         public string MainFileManagerTab = "File Manager";
         public string MainFileDeckTab = "Decks";
         public string MainFileReplayTab = "Replays";
         public string MainCustomizeTab = "Customize";
-        //deprecated   public string MainAboutTab = "About";
+        public string MainAboutTab = "About";
         public string MainFaqTab = "FAQ";
 
         public string MainSyncBtn = "Dropbox Sync";

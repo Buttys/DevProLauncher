@@ -39,7 +39,6 @@
             this.OfflineBtn = new System.Windows.Forms.Button();
             this.DeckBtn = new System.Windows.Forms.Button();
             this.ReplaysBtn = new System.Windows.Forms.Button();
-            this.TeamProfileBtn = new System.Windows.Forms.Button();
             this.ProfileBtn = new System.Windows.Forms.Button();
             this.siteBtn = new System.Windows.Forms.Button();
             this.MessageLabel = new System.Windows.Forms.Label();
@@ -97,10 +96,8 @@
             this.flowLayoutPanel1.Controls.Add(this.OfflineBtn);
             this.flowLayoutPanel1.Controls.Add(this.DeckBtn);
             this.flowLayoutPanel1.Controls.Add(this.ReplaysBtn);
-            this.flowLayoutPanel1.Controls.Add(this.TeamProfileBtn);
             this.flowLayoutPanel1.Controls.Add(this.ProfileBtn);
             this.flowLayoutPanel1.Controls.Add(this.siteBtn);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(458, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -147,21 +144,10 @@
             this.ReplaysBtn.UseVisualStyleBackColor = true;
             this.ReplaysBtn.Click += new System.EventHandler(this.ReplaysBtn_Click);
             // 
-            // TeamProfileBtn
-            // 
-            this.TeamProfileBtn.Enabled = false;
-            this.TeamProfileBtn.Location = new System.Drawing.Point(165, 3);
-            this.TeamProfileBtn.Name = "TeamProfileBtn";
-            this.TeamProfileBtn.Size = new System.Drawing.Size(66, 23);
-            this.TeamProfileBtn.TabIndex = 13;
-            this.TeamProfileBtn.Text = "Team";
-            this.TeamProfileBtn.UseVisualStyleBackColor = true;
-            this.TeamProfileBtn.Click += new System.EventHandler(this.TeamProfileBtn_Click);
-            // 
             // ProfileBtn
             // 
             this.ProfileBtn.Enabled = false;
-            this.ProfileBtn.Location = new System.Drawing.Point(93, 3);
+            this.ProfileBtn.Location = new System.Drawing.Point(165, 3);
             this.ProfileBtn.Name = "ProfileBtn";
             this.ProfileBtn.Size = new System.Drawing.Size(66, 23);
             this.ProfileBtn.TabIndex = 8;
@@ -171,7 +157,7 @@
             // 
             // siteBtn
             // 
-            this.siteBtn.Location = new System.Drawing.Point(12, 3);
+            this.siteBtn.Location = new System.Drawing.Point(84, 3);
             this.siteBtn.Name = "siteBtn";
             this.siteBtn.Size = new System.Drawing.Size(75, 23);
             this.siteBtn.TabIndex = 11;
@@ -221,7 +207,6 @@
         private System.Windows.Forms.Button ProfileBtn;
         private System.Windows.Forms.Label MessageLabel;
         private System.Windows.Forms.Button siteBtn;
-        private System.Windows.Forms.Button TeamProfileBtn;
     }
 }
 
