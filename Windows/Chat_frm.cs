@@ -943,8 +943,8 @@ namespace DevProLauncher.Windows
                     {
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "-- Level 99 Commands --"));
                         WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/op username level - Sets a users level"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/addpoints amount of DevPoints - Gives a user DevPoints"));
-                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/removepoints amount of DevPoints - Removes DevPoints from a user"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/addpoints username amount of DevPoints - Gives a user DevPoints"));
+                        WriteMessage(new ChatMessage(MessageType.System, CommandType.None, null, "/removepoints username amount of DevPoints - Removes DevPoints from a user"));
                     }
 
                     if (Program.UserInfo.teamRank >= 0 && Program.UserInfo.team != string.Empty)
