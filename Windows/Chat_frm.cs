@@ -1276,7 +1276,6 @@ namespace DevProLauncher.Windows
                     JsonSerializer.SerializeToString(
                     new DuelRequest
                         {
-                            from = Program.UserInfo,
                             username = list.SelectedItem is string ? list.SelectedItem.ToString() : ((UserData)list.SelectedItem).username, 
                             duelformatstring = form.GenerateGameString(false),
                             server = server.serverName
@@ -1293,7 +1292,7 @@ namespace DevProLauncher.Windows
                 return;
             }
 
-            if (Program.Config.RefuseDuelRequests || IgnoreUser(command.from))
+            if (Program.Config.RefuseDuelRequests || IgnoreUser(command.username)
             {
                 Program.ChatServer.SendPacket(DevServerPackets.RefuseDuel);
                 return;
