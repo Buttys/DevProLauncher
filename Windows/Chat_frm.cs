@@ -1292,7 +1292,7 @@ namespace DevProLauncher.Windows
                 return;
             }
 
-            if (Program.Config.RefuseDuelRequests || IgnoreUser(command.username)
+            if (Program.Config.RefuseDuelRequests || IgnoreList.Items.Contains(command.username))
             {
                 Program.ChatServer.SendPacket(DevServerPackets.RefuseDuel);
                 return;
