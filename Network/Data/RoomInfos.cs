@@ -25,6 +25,7 @@ namespace DevProLauncher.Network.Data
 
         public string roomName { get; set; }
         public string[] playerList { get; set; }
+        public int[] eloList { get; set; }
 
         public string server { get; set; }
 
