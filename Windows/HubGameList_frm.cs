@@ -321,17 +321,25 @@ namespace DevProLauncher.Windows
         {
             if (m_rooms.ContainsKey(data.Command))
             {
-                Invoke(new Action<string, string[]>(InternalRoomPlayersUpdate), data.Command, ((object)data.Data.Split(',')));
+                string[] parts = data.Data.Split('|');
+                string[] eloparts = parts[1].Split(',');
+                string[] players = parts[0].Split(',');
+                List<int> elos = new List<int>();
+                foreach (string elo in eloparts)
+                    elos.Add(int.Parse(elo));
+
+                Invoke(new Action<string, string[], int[]>(InternalRoomPlayersUpdate), data.Command, (object)players,(object)elos.ToArray());
             }
         }
 
-        private void InternalRoomPlayersUpdate(string room, string[] data)
+        private void InternalRoomPlayersUpdate(string room, string[] players, int[] elos)
         {
             string roomname = room;
             if (!m_rooms.ContainsKey(roomname)) return;
             RoomInfos item = m_rooms[roomname];
 
-            item.playerList = data;
+            item.playerList = players;
+            item.eloList = elos;
 
             if (item.isRanked)
                 RankedList.UpdateList();
@@ -622,17 +630,16 @@ namespace DevProLauncher.Windows
                 {
                     if (istag)
                     {
-                        string player1 = players[0].Trim();
-                        string player2 = (players.Length > 1) ? players[1].Trim() : "???";
-                        string player3 = (players.Length > 2) ? players[2].Trim() : "???";
-                        string player4 = (players.Length > 3) ? players[3].Trim() : "???";
+                        string player1 = players[0].Trim() + (info.isRanked ? " (" + info.eloList[0].ToString() + ")" : string.Empty);
+                        string player2 = (players.Length > 1) ? players[1].Trim() + (info.isRanked ? " (" + info.eloList[1].ToString() + ")" : string.Empty) : "???";
+                        string player3 = (players.Length > 2) ? players[2].Trim() + (info.isRanked ? " (" + info.eloList[2].ToString() + ")" : string.Empty) : "???";
+                        string player4 = (players.Length > 3) ? players[3].Trim() + (info.isRanked ? " (" + info.eloList[3].ToString() + ")" : string.Empty) : "???";
                         playerstring = player1 + ", " + player2 + " vs " + player3 + ", " + player4;
                     }
                     else
                     {
-                        string player1 = players[0].Trim();
-                        string player2 = (players.Length > 1) ? players[1].Trim() : "???";
-
+                        string player1 = players[0].Trim() + (info.isRanked ? " (" +info.eloList[0].ToString()+ ")":string.Empty) ;
+                        string player2 = (players.Length > 1) ? players[1].Trim() + (info.isRanked ? " (" + info.eloList[1].ToString() + ")" : string.Empty) : "???";
                         playerstring = player1 + " vs " + player2;
                     }
                 }
