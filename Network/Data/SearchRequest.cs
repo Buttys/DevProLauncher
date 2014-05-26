@@ -10,6 +10,8 @@
         public bool IlligalGames { get; set; }
         public bool Locked { get; set; }
         public string Filter { get; set; }
+        public uint MinElo { get; set; }
+        public uint MaxElo { get; set; }
 
         public SearchRequest()
         {
@@ -21,8 +23,10 @@
             IlligalGames = false;
             Locked = false;
             Filter = string.Empty;
+            MinElo = 0;
+            MaxElo = 9999;
         }
-        public SearchRequest(int format, int type, int banlist, int timelimit, bool active, bool illigal,bool locked,string filter)
+        public SearchRequest(int format, int type, int banlist, int timelimit, bool active, bool illigal,bool locked,string filter,uint minelo, uint maxelo)
         {
             Format = format;
             GameType = type;
@@ -32,6 +36,8 @@
             IlligalGames = illigal;
             Filter = filter;
             Locked = locked;
+            MinElo = minelo;
+            MaxElo = maxelo;
         }
     }
 }

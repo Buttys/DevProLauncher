@@ -349,13 +349,25 @@ namespace DevProLauncher.Windows
 
         private void SearchRequest_Btn_Click(object sender, EventArgs e)
         {
+            uint min=0, max=9999;
+            try
+            {
+                min = uint.Parse(minEloTxtBox.Text);
+                max = uint.Parse(maxEloTxtBox.Text);
+            }
+            catch (Exception exc)
+            {
+               // safe to ignore as it switches to default values
+               // MessageBox.Show("Not a valid Elo Number (0-9999)." +min.ToString());
+            }
             Program.ChatServer.SendPacket(DevServerPackets.GameList, JsonSerializer.SerializeToString(
                 new SearchRequest(
                     (Format.SelectedIndex == -1 ? Format.SelectedIndex : Format.SelectedIndex-1),
                     (GameType.SelectedIndex == -1 ? GameType.SelectedIndex : GameType.SelectedIndex-1),
                     (BanList.SelectedIndex == -1 ? BanList.SelectedIndex : BanList.SelectedIndex-1),
                     (TimeLimit.SelectedIndex == -1 ? TimeLimit.SelectedIndex : TimeLimit.SelectedIndex-1),
-                    ActiveGames.Checked, IlligalGames.Checked, lockedChk.Checked, UserFilter.Text
+                    ActiveGames.Checked, IlligalGames.Checked, lockedChk.Checked, UserFilter.Text,
+                    min, max
                     )));
             SearchRequest_Btn.Enabled = false;
             SearchRequest_Btn.Text = "5";
@@ -705,6 +717,5 @@ namespace DevProLauncher.Windows
             SpectateBtn.Text = "5";
             SpectateTimer.Enabled = true;
         }
-
     }
 }
