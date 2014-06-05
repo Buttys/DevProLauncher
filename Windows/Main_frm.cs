@@ -18,7 +18,7 @@ namespace DevProLauncher.Windows
         CustomizeFrm m_customizerWindow;
         Browser_frm m_wcsBrowser;
         Browser_frm m_faqBrowser;
-
+        RankingFrm m_rankingWindow;
 
         public MainFrm()
         {
@@ -38,6 +38,7 @@ namespace DevProLauncher.Windows
             m_wcsBrowser.FormBorderStyle = FormBorderStyle.None;
             m_chatWindow = new ChatFrm();
             GameWindow = new HubGameList_frm();
+            m_rankingWindow = new RankingFrm();
             m_devpointWindow = new SupportFrm();
             m_filemanagerWindow = new FileManagerFrm();
             m_customizerWindow = new CustomizeFrm();
@@ -61,6 +62,7 @@ namespace DevProLauncher.Windows
             DeckBtn.Text = info.MainDeckBtn;
             ReplaysBtn.Text = info.MainReplaysBtn;
             OfflineBtn.Text = info.MainOfflineBtn;
+            forumBtn.Text = info.MainForumBtn;
             siteBtn.Text = info.MainSiteBtn;
             MessageLabel.Text = info.MainServerMessage;
         }
@@ -98,6 +100,10 @@ namespace DevProLauncher.Windows
             var chatTab = new TabPage(info.MainChatTab);
             chatTab.Controls.Add(m_chatWindow);
             mainTabs.TabPages.Add(chatTab);
+
+            var rankingTab = new TabPage(info.MainRankingTab);
+            rankingTab.Controls.Add(m_rankingWindow);
+            mainTabs.TabPages.Add(rankingTab);
 
             var wcsTab = new TabPage(info.MainEventTab);
 
@@ -141,6 +147,7 @@ namespace DevProLauncher.Windows
             m_filemanagerWindow.ApplyTranslations();
             m_customizerWindow.ApplyTranslation();
             m_chatWindow.ApplyTranslations();
+            m_rankingWindow.ApplyTranslation();
         }
 
         private void CheckConnection(object sender, EventArgs e)
@@ -171,9 +178,18 @@ namespace DevProLauncher.Windows
             LauncherHelper.RunGame("");
         }
 
+        private void forumBtn_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://forum.ygopro.de/");
+        }
         private void siteBtn_Click(object sender, EventArgs e)
         {
-            Process.Start("http://devpro.org/blog");
+            if (Program.LanguageManager.language.Equals("German"))
+                Process.Start("http://ygopro.de/");
+            else if (Program.LanguageManager.language.Equals("French"))
+                Process.Start("http://ygopro.de/fr/");
+            else
+                Process.Start("http://devpro.org/blog");
         }
 
         private void DeckBtn_Click(object sender, EventArgs e)
@@ -189,7 +205,7 @@ namespace DevProLauncher.Windows
 
         private void ProfileBtn_Click(object sender, EventArgs e)
         {
-            var profile = new ProfileFrm(Program.UserInfo.team,true);
+            var profile = new ProfileFrm(Program.UserInfo.username);
             profile.ShowDialog();
         }
 

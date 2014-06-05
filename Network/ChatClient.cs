@@ -52,6 +52,7 @@ namespace DevProLauncher.Network
         public ServerResponse RemoveRoom;
         public ServerResponse UserStats;
         public ServerResponse TeamStats;
+        public ServerResponse Ranking;
         public Command UpdateRoomPlayers;
         public GameRoomUpdate CreateRoom;
         public ServerResponse UpdateRoomStatus;
@@ -300,6 +301,11 @@ namespace DevProLauncher.Network
                 case DevClientPackets.TeamStats:
                     if (TeamStats != null)
                         TeamStats(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
+                    break;
+                case DevClientPackets.Ranking:
+                    //MessageBox.Show(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
+                    if (Ranking != null)
+                        Ranking(Encoding.UTF8.GetString(e.Reader.ReadBytes(e.Raw.Length)));
                     break;
                 case DevClientPackets.Pong:
                     MessageBox.Show("PONG!: " + -(int)m_pingRequest.Subtract(DateTime.Now).TotalMilliseconds);

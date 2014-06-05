@@ -9,27 +9,14 @@ namespace DevProLauncher.Windows.MessageBoxs
     {
         private readonly string m_profileUsername;
 
-        public ProfileFrm(string userOrTeamName, bool ownProfile)
+        public ProfileFrm(string userName)
         {
-            string user = ownProfile ? Program.UserInfo.username : userOrTeamName;
-            
-            m_profileUsername = user;
+            m_profileUsername = userName;
             InitializeComponent();
             ApplyTranslation();
-            Username.Text += user;
+            Username.Text += userName;
             Program.ChatServer.UserStats += UpdatePlayerProfile;
             FormClosed += OnClose;
-
-            if (!ownProfile || string.IsNullOrEmpty(Program.UserInfo.team))
-            {
-                ((Control)tabControl1.TabPages[1]).Enabled = false;
-            }
-            else
-            {
-                TeamName.Text = "Team: " + team;
-                Program.ChatServer.TeamStats += UpdateTeamProfile;
-                Program.ChatServer.SendPacket(DevServerPackets.TeamStats, userOrTeamName);
-            }
         }
         public void OnClose(object sender, EventArgs e)
         {
@@ -44,7 +31,10 @@ namespace DevProLauncher.Windows.MessageBoxs
             Text = language.profileName;
             Username.Text = language.profileLblUsername;
             rank.Text = language.profileLblRank;
+            singlerank.Text = language.profileLblSingleRank;
             team.Text = language.profileLblTeam;
+            elo.Text = language.profileLblElo;
+            singleelo.Text = language.profileLblSingleElo;
             groupBox4.Text = language.profileLblwld;
             groupBox2.Text = language.profileGb2;
             groupBox3.Text = language.profileGb3;
@@ -86,19 +76,36 @@ namespace DevProLauncher.Windows.MessageBoxs
                 {
                     string[] sections = message.Split(new[] {"||"}, StringSplitOptions.None);
                     rank.Text += sections[0];
-                    UserLevel.Text = "Lvl: " + sections[5];
-                    if (sections[1] == "not found")
+                    singlerank.Text += sections[1];
+                    UserLevel.Text = "Lvl: " + sections[6];
+                    elo.Text += sections[7];
+                    singleelo.Text += sections[8]; 
+                    if (sections[2] == "not found")
                         MatchWLD.Text = "0/0/0";
                     else
                     {
-                        string[] values = sections[1].Split(',');
+                        string[] values = sections[2].Split(',');
                         MatchWLD.Text = values[0] + "/" + values[1] + "/" + values[2];
                         SingleWLD.Text = values[3] + "/" + values[4] + "/" + values[5];
                         TagWLD.Text = values[6] + "/" + values[7] + "/" + values[8];
                     }
-                    team.Text += sections[2];
-                    string[] unrankedparts = sections[3].Split(',');
-                    string[] rankedparts = sections[4].Split(',');
+
+                    string teamName = sections[3];
+                    team.Text += teamName;
+
+                    if (teamName.Equals("None"))
+                    {
+                        ((Control)tabControl1.TabPages[1]).Enabled = false;
+                    }
+                    else
+                    {
+                        TeamName.Text = "Team: " + teamName;
+                        Program.ChatServer.TeamStats += UpdateTeamProfile;
+                        Program.ChatServer.SendPacket(DevServerPackets.TeamStats, teamName);
+                    }
+
+                    string[] unrankedparts = sections[4].Split(',');
+                    string[] rankedparts = sections[5].Split(',');
 
                     if (unrankedparts[0] != "NotFound")
                     {

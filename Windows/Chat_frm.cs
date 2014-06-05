@@ -1246,7 +1246,7 @@ namespace DevProLauncher.Windows
             if (list.SelectedItem == null)
                 return;
 
-            var profile = new ProfileFrm(list.SelectedItem is string ? list.SelectedItem.ToString():((UserData)list.SelectedItem).username,false);
+            var profile = new ProfileFrm(list.SelectedItem is string ? list.SelectedItem.ToString():((UserData)list.SelectedItem).username);
             profile.ShowDialog();
         }
 

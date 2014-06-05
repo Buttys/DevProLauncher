@@ -71,6 +71,7 @@
     <Compile Include="Helpers\ReplayReader.cs" />
     <Compile Include="Network\Data\ChannelData.cs" />
     <Compile Include="Network\Data\ChannelUsers.cs" />
+    <Compile Include="Network\Data\RankingRequest.cs" />
     <Compile Include="Network\Data\DuelRequest.cs" />
     <Compile Include="Network\Data\LoginData.cs" />
     <Compile Include="Network\Data\LoginRequest.cs" />
@@ -244,6 +245,12 @@
     <Compile Include="Windows\Support_frm.Designer.cs">
       <DependentUpon>Support_frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Ranking_frm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Ranking_frm.Designer.cs">
+      <DependentUpon>Ranking_frm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Windows\Components\ReplayInfoControl.resx">
       <DependentUpon>ReplayInfoControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -313,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\Support_frm.resx">
       <DependentUpon>Support_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Ranking_frm.resx">
+      <DependentUpon>Ranking_frm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

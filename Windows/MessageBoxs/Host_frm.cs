@@ -12,6 +12,7 @@ namespace DevProLauncher.Windows.MessageBoxs
         public Host(bool options, bool isranked)
         {
             InitializeComponent();
+            ApplyTranslation();
             if (options)
             {
                 TimeLimit.SelectedItem = Program.Config.TimeLimit;
@@ -42,12 +43,12 @@ namespace DevProLauncher.Windows.MessageBoxs
             Mode.SelectedIndexChanged += DuelModeChanged;
             //if(!isranked)
                 //CardRules.SelectedIndexChanged += CardRulesChanged;
-            ApplyTranslation();
         }
 
         public Host()
         {
             InitializeComponent();
+            ApplyTranslation();
 
             TimeLimit.SelectedItem = Program.Config.chtTimeLimit;
             BanList.SelectedItem = Program.Config.chtBanList;
@@ -68,7 +69,6 @@ namespace DevProLauncher.Windows.MessageBoxs
 
             Mode.SelectedIndexChanged += DuelModeChanged;
 
-            ApplyTranslation();
         }
 
         public void ApplyTranslation()

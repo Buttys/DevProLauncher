@@ -42,6 +42,7 @@
             this.ProfileBtn = new System.Windows.Forms.Button();
             this.siteBtn = new System.Windows.Forms.Button();
             this.MessageLabel = new System.Windows.Forms.Label();
+            this.forumBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -98,6 +99,7 @@
             this.flowLayoutPanel1.Controls.Add(this.ReplaysBtn);
             this.flowLayoutPanel1.Controls.Add(this.ProfileBtn);
             this.flowLayoutPanel1.Controls.Add(this.siteBtn);
+            this.flowLayoutPanel1.Controls.Add(this.forumBtn);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(458, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -176,6 +178,16 @@
             this.MessageLabel.Text = "Server messages will spawn here.";
             this.MessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // forumBtn
+            // 
+            this.forumBtn.Location = new System.Drawing.Point(3, 3);
+            this.forumBtn.Name = "forumBtn";
+            this.forumBtn.Size = new System.Drawing.Size(75, 23);
+            this.forumBtn.TabIndex = 12;
+            this.forumBtn.Text = "Forum";
+            this.forumBtn.UseVisualStyleBackColor = true;
+            this.forumBtn.Click += new System.EventHandler(this.forumBtn_Click);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,6 +219,7 @@
         private System.Windows.Forms.Button ProfileBtn;
         private System.Windows.Forms.Label MessageLabel;
         private System.Windows.Forms.Button siteBtn;
+        private System.Windows.Forms.Button forumBtn;
     }
 }
 

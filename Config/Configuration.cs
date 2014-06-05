@@ -43,6 +43,8 @@ namespace DevProLauncher.Config
         public bool AutoChain = true;
         public bool NoChainDelay = false;
         public bool EnableCustomSleeves = true;
+        public bool MuteOpponent = false;
+        public bool MuteSpectators = true;
         public string IgnoreList = "";
         public string DefaultChannel = "";
 
