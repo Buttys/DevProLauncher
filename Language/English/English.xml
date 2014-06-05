@@ -136,7 +136,7 @@
   <profileLblUnknown>Unknown</profileLblUnknown>
   <profileLblUsername>Username: </profileLblUsername>
   <profileLblwld>Win/Lose/Draw</profileLblwld>
-  <profileLblRank>Rank: </profileLblRank>
+  <profileLblRank>Rank (Match): </profileLblRank>
   <profileLblTeam>Team: </profileLblTeam>
   <chatoptionsFormName>Chat Options</chatoptionsFormName>
   <chatoptionsGb1>Chat Settings</chatoptionsGb1>
@@ -228,4 +228,23 @@
   <SupportUnbanInput>Enter Username</SupportUnbanInput>
   <SupportTeamNameInput>Enter Team Name</SupportTeamNameInput>
   <SupportMSGInput>Enter Message</SupportMSGInput>
+  <GameMinElo>MinElo</GameMinElo>
+  <GameMaxElo>MaxElo</GameMaxElo>
+  <RankingRank>Rank</RankingRank>
+  <RankingUsername>Username</RankingUsername>
+  <RankingElo>Elo</RankingElo>
+  <RankingWin>W</RankingWin>
+  <RankingLoss>L</RankingLoss>
+  <RankingDraw>D</RankingDraw>
+  <RankingTeam>Team</RankingTeam>
+  <RankingLoadBtn>Load rankings</RankingLoadBtn>
+  <optionMuteOpp>Mute Opponents</optionMuteOpp>
+  <optionMuteSpec>Mute Spectators</optionMuteSpec>
+  <optionCurrentPW>Current Password</optionCurrentPW>
+  <optionNewPW>New Password</optionNewPW>
+  <optionConfirmPW>Confirm Password</optionConfirmPW>
+  <profileLblSingleRank>Rank (Single):</profileLblSingleRank>
+  <profileLblElo>Elo (Match):</profileLblElo>
+  <profileLblSingleElo>Elo (Single):</profileLblSingleElo>
+  <MainForumBtn>Forum</MainForumBtn>
 </LanguageInfo>
