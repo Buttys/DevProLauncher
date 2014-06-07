@@ -37,6 +37,7 @@ namespace DevProLauncher.Windows
         {
             LanguageInfo info = Program.LanguageManager.Translation;
 
+            SingleRankingGroupBox.Text = info.RankingSingleGb;
             SingleRankLbl.Text      = info.RankingRank;
             SingleUsernameLbl.Text  = info.RankingUsername;
             SingleEloLbl.Text       = info.RankingElo;
@@ -45,7 +46,9 @@ namespace DevProLauncher.Windows
             SingleDrawLbl.Text      = info.RankingDraw;
             SingleTeamLbl.Text      = info.RankingTeam;
 
-            tableLayoutPanel5.Text      = info.RankingRank;
+
+            MatchRankingGroupBox.Text = info.RankingMatchGb;
+            MatchRankLbl.Text = info.RankingRank;
             MatchUsernameLbl.Text  = info.RankingUsername;
             MatchEloLbl.Text       = info.RankingElo;
             MatchWinLbl.Text       = info.RankingWin;

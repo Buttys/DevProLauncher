@@ -82,6 +82,8 @@ namespace DevProLauncher.Config
         public string GameWrongPassword = "Incorrect password";
 
         // Ranking_frm.cs
+        public string RankingSingleGb = "Single Rankings";
+        public string RankingMatchGb = "Match Rankings";
         public string RankingRank = "Rank";
         public string RankingUsername = "Username";
         public string RankingElo = "Elo";
@@ -196,6 +198,7 @@ namespace DevProLauncher.Config
 
         //Profile_frm.cs
         public string profileName = "Profile";
+        public string profileLvl = "Lvl: ";
         public string profileWin = "Win";
         public string profileLose = "Lose";
         public string profileGb1 = "User Info";
@@ -203,6 +206,7 @@ namespace DevProLauncher.Config
         public string profileGb3 = "Condition";
         public string profileGb4 = "Ranked";
         public string profileGb5 = "Unranked";
+        public string profileTRatio = "W/L Ratio: ";
         public string profileLblLP = "LP Reached 0";
         public string profileLblSurrendered = "Surrendered";
         public string profileLbl0Cards = "0 Cards Left";
@@ -219,6 +223,7 @@ namespace DevProLauncher.Config
         public string profileLblUnknown = "Unknown";
         public string profileLblUsername = "Username: ";
         public string profileLblwld = "Win/Lose/Draw";
+        public string profileLblTRank = "Rank: ";
         public string profileLblRank = "Rank (Match): ";
         public string profileLblSingleRank = "Rank (Single): ";
         public string profileLblTeam = "Team: ";

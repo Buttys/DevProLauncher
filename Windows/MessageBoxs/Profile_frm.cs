@@ -31,6 +31,7 @@ namespace DevProLauncher.Windows.MessageBoxs
             Text = language.profileName;
             Username.Text = language.profileLblUsername;
             rank.Text = language.profileLblRank;
+            UserLevel.Text = language.profileLvl; 
             singlerank.Text = language.profileLblSingleRank;
             team.Text = language.profileLblTeam;
             elo.Text = language.profileLblElo;
@@ -62,6 +63,29 @@ namespace DevProLauncher.Windows.MessageBoxs
             txtUWinDestinyLeo.Text = language.profileLblDestinyLeo;
             txtUWinUnknown.Text = language.profileLblUnknown;
 
+            // team
+            groupBox7.Text = language.profileGb2;
+            groupBox8.Text = language.profileGb3;
+            groupBox9.Text = language.profileGb4;
+            Ratio.Text = language.profileTRatio;
+            TeamLevel.Text = language.profileLvl;
+            TRank.Text = language.profileLblTRank;
+
+            txtTWinLP0.Text = language.profileLblLP;
+            txtTWinSurrendered.Text = language.profileLblSurrendered;
+            txtTWin0Cards.Text = language.profileLbl0Cards;
+            txtTWinTimeLimit.Text = language.profileLblTimeLimit;
+            txtTWinRageQuit.Text = language.profileLblDisconnect;
+            txtTWinExodia.Text = language.profileLblExodia;
+            txtTWinCountdown.Text = language.profileLblFinalCountdown;
+            txtTWinVennominaga.Text = language.profileLblVennominaga;
+            txtTWinHorakhty.Text = language.profileLblHorakhty;
+            txtTWinExodius.Text = language.profileLblExodius;
+            txtTWinDestinyBoard.Text = language.profileLblDestinyBoard;
+            txtTWinLastTurn.Text = language.profileLblLastTurn;
+            txtTWinDestinyLeo.Text = language.profileLblDestinyLeo;
+            txtTWinUnknown.Text = language.profileLblUnknown;
+
         }
 
         private void UpdatePlayerProfile(string message)
@@ -77,7 +101,7 @@ namespace DevProLauncher.Windows.MessageBoxs
                     string[] sections = message.Split(new[] {"||"}, StringSplitOptions.None);
                     rank.Text += sections[0];
                     singlerank.Text += sections[1];
-                    UserLevel.Text = "Lvl: " + sections[6];
+                    UserLevel.Text +=  sections[6];
                     elo.Text += sections[7];
                     singleelo.Text += sections[8]; 
                     if (sections[2] == "not found")
@@ -190,6 +214,8 @@ namespace DevProLauncher.Windows.MessageBoxs
 
                 if (rankedparts[0] != "NotFound")
                 {
+                    TeamName.Text += team.Text;
+
                     TWinLP0.Text = rankedparts[0];
                     TWinSurrendered.Text = rankedparts[1];
                     TWin0Cards.Text = rankedparts[2];
@@ -224,8 +250,8 @@ namespace DevProLauncher.Windows.MessageBoxs
                     TMatchWLD.Text = rankedparts[31] + "/" + rankedparts[32] + "/" + rankedparts[33];
                     TTagWLD.Text = rankedparts[34] + "/" + rankedparts[35] + "/" + rankedparts[36];
 
-                    TeamLevel.Text = "Lvl: " + rankedparts[37];
-                    TRank.Text = "Rank: " + rankedparts[38];
+                    TeamLevel.Text +=  rankedparts[37];
+                    TRank.Text += rankedparts[38];
 
                     int totalwins = Convert.ToInt32(rankedparts[28]) + Convert.ToInt32(rankedparts[31]) + Convert.ToInt32(rankedparts[34]);
                     int totalgames = Convert.ToInt32(rankedparts[28]) + Convert.ToInt32(rankedparts[29]) + Convert.ToInt32(rankedparts[30])
@@ -234,10 +260,10 @@ namespace DevProLauncher.Windows.MessageBoxs
                     if (totalgames != 0)
                     {
                         var ratio = (totalwins * 100) / totalgames;
-                        Ratio.Text = "W/L Ratio: " + ratio.ToString("#.##") + "%";
+                        Ratio.Text += ratio.ToString("#.##") + "%";
                     }
                     else
-                        Ratio.Text = "W/L Ratio: 0%";
+                        Ratio.Text +="0%";
 
                 }
             }
