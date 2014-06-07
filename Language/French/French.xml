@@ -294,4 +294,24 @@
   <profileLblwld> Victoire/Défaite/Nul </profileLblwld>
   <SupportRefreshBtn>Actualiser</SupportRefreshBtn>
   <SupportGetBtn>Obtenir</SupportGetBtn>
+  
+  <GameMinElo>MinElo</GameMinElo>
+  <GameMaxElo>MaxElo</GameMaxElo>
+  <RankingRank>Rang</RankingRank>
+  <RankingUsername>Duelliste</RankingUsername>
+  <RankingElo>Elo</RankingElo>
+  <RankingWin>G</RankingWin>
+  <RankingLoss>P</RankingLoss>
+  <RankingDraw>N</RankingDraw>
+  <RankingTeam>Equipe</RankingTeam>
+  <RankingLoadBtn>Charger classement</RankingLoadBtn>
+  <optionMuteOpp>Mute Adversaires</optionMuteOpp>
+  <optionMuteSpec>Mute Spectateurs</optionMuteSpec>
+  <optionCurrentPW>MdP actuel</optionCurrentPW>
+  <optionNewPW>Nouveau MdP</optionNewPW>
+  <optionConfirmPW>Confirmez MdP</optionConfirmPW>
+  <profileLblSingleRank>Rang (Single):</profileLblSingleRank>
+  <profileLblElo>Elo (Match):</profileLblElo>
+  <profileLblSingleElo>Elo (Single):</profileLblSingleElo>
+  <MainForumBtn>Forum</MainForumBtn>
 </LanguageInfo>
