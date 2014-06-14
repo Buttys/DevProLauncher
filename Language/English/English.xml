@@ -247,4 +247,9 @@
   <profileLblElo>Elo (Match):</profileLblElo>
   <profileLblSingleElo>Elo (Single):</profileLblSingleElo>
   <MainForumBtn>Forum</MainForumBtn>
+  <RankingSingleGb>Single Rankings</RankingSingleGb>
+  <RankingMatchGb>Match Rankings</RankingMatchGb>
+  <profileLvl>Lvl:</profileLvl>
+  <profileTRatio>W/L Ratio:</profileTRatio>
+  <profileLblTRank>Rank:</profileLblTRank>
 </LanguageInfo>
