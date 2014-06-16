@@ -55,6 +55,8 @@ namespace DevProLauncher.Config
         public string GameActive = "Active Games";
         public string GameIlligal = "Illegal Games";
         public string GameUserFilter = "User Filter";
+        public string GameMinElo = "MinElo";
+        public string GameMaxElo = "MaxElo";
         public string GameBtnSearch = "Search";
         public string GameBtnHost = "Host";
         public string GameBtnQuick = "Quick";
@@ -79,6 +81,18 @@ namespace DevProLauncher.Config
         public string GameEnterPassword = "Enter password";
         public string GameWrongPassword = "Incorrect password";
 
+        // Ranking_frm.cs
+        public string RankingSingleGb = "Single Rankings";
+        public string RankingMatchGb = "Match Rankings";
+        public string RankingRank = "Rank";
+        public string RankingUsername = "Username";
+        public string RankingElo = "Elo";
+        public string RankingWin = "W";
+        public string RankingLoss = "L";
+        public string RankingDraw = "D";
+        public string RankingTeam = "Team";
+
+        public string RankingLoadBtn = "Load rankings";
 
         // Option_frm.cs
         public string optionTitle = "Options";
@@ -109,6 +123,8 @@ namespace DevProLauncher.Config
         public string optionCbAutoChain = "Auto Chain Order";
         public string optionCbNoChainDelay = "No Delay for Chain";
         public string optionCbEnableSleeves = "Enable User Covers";
+        public string optionMuteOpp = "Mute Opponents";
+        public string optionMuteSpec = "Mute Spectators";
         public string optionCurrentPW = "Current Password";
         public string optionNewPW = "New Password";
         public string optionConfirmPW = "Confirm Password";
@@ -182,6 +198,7 @@ namespace DevProLauncher.Config
 
         //Profile_frm.cs
         public string profileName = "Profile";
+        public string profileLvl = "Lvl: ";
         public string profileWin = "Win";
         public string profileLose = "Lose";
         public string profileGb1 = "User Info";
@@ -189,6 +206,7 @@ namespace DevProLauncher.Config
         public string profileGb3 = "Condition";
         public string profileGb4 = "Ranked";
         public string profileGb5 = "Unranked";
+        public string profileTRatio = "W/L Ratio: ";
         public string profileLblLP = "LP Reached 0";
         public string profileLblSurrendered = "Surrendered";
         public string profileLbl0Cards = "0 Cards Left";
@@ -205,9 +223,13 @@ namespace DevProLauncher.Config
         public string profileLblUnknown = "Unknown";
         public string profileLblUsername = "Username: ";
         public string profileLblwld = "Win/Lose/Draw";
-        public string profileLblRank = "Rank: ";
+        public string profileLblTRank = "Rank: ";
+        public string profileLblRank = "Rank (Match): ";
+        public string profileLblSingleRank = "Rank (Single): ";
         public string profileLblTeam = "Team: ";
-
+        public string profileLblElo = "Elo (Match): ";
+        public string profileLblSingleElo = "Elo (Single): ";
+        
         //ChatOptions_frm.cs
 
         public string chatoptionsFormName = "Chat Options";
@@ -310,6 +332,7 @@ namespace DevProLauncher.Config
         public string MainFaqTab = "FAQ";
 
         public string MainSyncBtn = "Dropbox Sync";
+        public string MainForumBtn = "Forum";
         public string MainSiteBtn = "Site";
         public string MainDeckBtn = "Deck Edit";
         public string MainReplaysBtn = "Replays";

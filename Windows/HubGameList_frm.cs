@@ -74,6 +74,8 @@ namespace DevProLauncher.Windows
             IlligalGames.Text = info.GameIlligal;
             lockedChk.Text = info.GameLocked;
             label1.Text = info.GameUserFilter;
+            minEloLbl.Text = info.GameMinElo;
+            maxEloLbl.Text = info.GameMaxElo;
             SearchRequest_Btn.Text = info.GameBtnSearch;
             Host_btn.Text = info.GameBtnHost;
             Quick_Btn.Text = info.GameBtnQuick;
@@ -349,13 +351,25 @@ namespace DevProLauncher.Windows
 
         private void SearchRequest_Btn_Click(object sender, EventArgs e)
         {
+            uint min=0, max=9999;
+            try
+            {
+                min = uint.Parse(minEloTxtBox.Text);
+                max = uint.Parse(maxEloTxtBox.Text);
+            }
+            catch (Exception exc)
+            {
+               // safe to ignore as it switches to default values
+               // MessageBox.Show("Not a valid Elo Number (0-9999)." +min.ToString());
+            }
             Program.ChatServer.SendPacket(DevServerPackets.GameList, JsonSerializer.SerializeToString(
                 new SearchRequest(
                     (Format.SelectedIndex == -1 ? Format.SelectedIndex : Format.SelectedIndex-1),
                     (GameType.SelectedIndex == -1 ? GameType.SelectedIndex : GameType.SelectedIndex-1),
                     (BanList.SelectedIndex == -1 ? BanList.SelectedIndex : BanList.SelectedIndex-1),
                     (TimeLimit.SelectedIndex == -1 ? TimeLimit.SelectedIndex : TimeLimit.SelectedIndex-1),
-                    ActiveGames.Checked, IlligalGames.Checked, lockedChk.Checked, UserFilter.Text
+                    ActiveGames.Checked, IlligalGames.Checked, lockedChk.Checked, UserFilter.Text,
+                    min, max
                     )));
             SearchRequest_Btn.Enabled = false;
             SearchRequest_Btn.Text = "5";
@@ -630,16 +644,16 @@ namespace DevProLauncher.Windows
                 {
                     if (istag)
                     {
-                        string player1 = players[0].Trim() + (info.isRanked ? " (" + info.eloList[0].ToString() + ")" : string.Empty);
-                        string player2 = (players.Length > 1) ? players[1].Trim() + (info.isRanked ? " (" + info.eloList[1].ToString() + ")" : string.Empty) : "???";
-                        string player3 = (players.Length > 2) ? players[2].Trim() + (info.isRanked ? " (" + info.eloList[2].ToString() + ")" : string.Empty) : "???";
-                        string player4 = (players.Length > 3) ? players[3].Trim() + (info.isRanked ? " (" + info.eloList[3].ToString() + ")" : string.Empty) : "???";
+                        string player1 = players[0].Trim() +" (" + info.eloList[0].ToString() + ")";
+                        string player2 = (players.Length > 1) ? players[1].Trim() + " (" + info.eloList[1].ToString() + ")" : "???";
+                        string player3 = (players.Length > 2) ? players[2].Trim() + " (" + info.eloList[2].ToString() + ")" : "???";
+                        string player4 = (players.Length > 3) ? players[3].Trim() + " (" + info.eloList[3].ToString() + ")" : "???";
                         playerstring = player1 + ", " + player2 + " vs " + player3 + ", " + player4;
                     }
                     else
                     {
-                        string player1 = players[0].Trim() + (info.isRanked ? " (" +info.eloList[0].ToString()+ ")":string.Empty) ;
-                        string player2 = (players.Length > 1) ? players[1].Trim() + (info.isRanked ? " (" + info.eloList[1].ToString() + ")" : string.Empty) : "???";
+                        string player1 = players[0].Trim() + " (" +info.eloList[0].ToString()+ ")" ;
+                        string player2 = (players.Length > 1) ? players[1].Trim() + " (" + info.eloList[1].ToString() + ")" : "???";
                         playerstring = player1 + " vs " + player2;
                     }
                 }
@@ -705,6 +719,5 @@ namespace DevProLauncher.Windows
             SpectateBtn.Text = "5";
             SpectateTimer.Enabled = true;
         }
-
     }
 }

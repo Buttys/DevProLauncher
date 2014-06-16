@@ -9,27 +9,14 @@ namespace DevProLauncher.Windows.MessageBoxs
     {
         private readonly string m_profileUsername;
 
-        public ProfileFrm(string userOrTeamName, bool ownProfile)
+        public ProfileFrm(string userName)
         {
-            string user = ownProfile ? Program.UserInfo.username : userOrTeamName;
-            
-            m_profileUsername = user;
+            m_profileUsername = userName;
             InitializeComponent();
             ApplyTranslation();
-            Username.Text += user;
+            Username.Text += userName;
             Program.ChatServer.UserStats += UpdatePlayerProfile;
             FormClosed += OnClose;
-
-            if (!ownProfile || string.IsNullOrEmpty(Program.UserInfo.team))
-            {
-                ((Control)tabControl1.TabPages[1]).Enabled = false;
-            }
-            else
-            {
-                TeamName.Text = "Team: " + team;
-                Program.ChatServer.TeamStats += UpdateTeamProfile;
-                Program.ChatServer.SendPacket(DevServerPackets.TeamStats, userOrTeamName);
-            }
         }
         public void OnClose(object sender, EventArgs e)
         {
@@ -44,7 +31,11 @@ namespace DevProLauncher.Windows.MessageBoxs
             Text = language.profileName;
             Username.Text = language.profileLblUsername;
             rank.Text = language.profileLblRank;
+            UserLevel.Text = language.profileLvl; 
+            singlerank.Text = language.profileLblSingleRank;
             team.Text = language.profileLblTeam;
+            elo.Text = language.profileLblElo;
+            singleelo.Text = language.profileLblSingleElo;
             groupBox4.Text = language.profileLblwld;
             groupBox2.Text = language.profileGb2;
             groupBox3.Text = language.profileGb3;
@@ -72,6 +63,29 @@ namespace DevProLauncher.Windows.MessageBoxs
             txtUWinDestinyLeo.Text = language.profileLblDestinyLeo;
             txtUWinUnknown.Text = language.profileLblUnknown;
 
+            // team
+            groupBox7.Text = language.profileGb2;
+            groupBox8.Text = language.profileGb3;
+            groupBox9.Text = language.profileGb4;
+            Ratio.Text = language.profileTRatio;
+            TeamLevel.Text = language.profileLvl;
+            TRank.Text = language.profileLblTRank;
+
+            txtTWinLP0.Text = language.profileLblLP;
+            txtTWinSurrendered.Text = language.profileLblSurrendered;
+            txtTWin0Cards.Text = language.profileLbl0Cards;
+            txtTWinTimeLimit.Text = language.profileLblTimeLimit;
+            txtTWinRageQuit.Text = language.profileLblDisconnect;
+            txtTWinExodia.Text = language.profileLblExodia;
+            txtTWinCountdown.Text = language.profileLblFinalCountdown;
+            txtTWinVennominaga.Text = language.profileLblVennominaga;
+            txtTWinHorakhty.Text = language.profileLblHorakhty;
+            txtTWinExodius.Text = language.profileLblExodius;
+            txtTWinDestinyBoard.Text = language.profileLblDestinyBoard;
+            txtTWinLastTurn.Text = language.profileLblLastTurn;
+            txtTWinDestinyLeo.Text = language.profileLblDestinyLeo;
+            txtTWinUnknown.Text = language.profileLblUnknown;
+
         }
 
         private void UpdatePlayerProfile(string message)
@@ -86,19 +100,36 @@ namespace DevProLauncher.Windows.MessageBoxs
                 {
                     string[] sections = message.Split(new[] {"||"}, StringSplitOptions.None);
                     rank.Text += sections[0];
-                    UserLevel.Text = "Lvl: " + sections[5];
-                    if (sections[1] == "not found")
+                    singlerank.Text += sections[1];
+                    UserLevel.Text +=  sections[6];
+                    elo.Text += sections[7];
+                    singleelo.Text += sections[8]; 
+                    if (sections[2] == "not found")
                         MatchWLD.Text = "0/0/0";
                     else
                     {
-                        string[] values = sections[1].Split(',');
+                        string[] values = sections[2].Split(',');
                         MatchWLD.Text = values[0] + "/" + values[1] + "/" + values[2];
                         SingleWLD.Text = values[3] + "/" + values[4] + "/" + values[5];
                         TagWLD.Text = values[6] + "/" + values[7] + "/" + values[8];
                     }
-                    team.Text += sections[2];
-                    string[] unrankedparts = sections[3].Split(',');
-                    string[] rankedparts = sections[4].Split(',');
+
+                    string teamName = sections[3];
+                    team.Text += teamName;
+
+                    if (teamName.Equals("None"))
+                    {
+                        ((Control)tabControl1.TabPages[1]).Enabled = false;
+                    }
+                    else
+                    {
+                        TeamName.Text = "Team: " + teamName;
+                        Program.ChatServer.TeamStats += UpdateTeamProfile;
+                        Program.ChatServer.SendPacket(DevServerPackets.TeamStats, teamName);
+                    }
+
+                    string[] unrankedparts = sections[4].Split(',');
+                    string[] rankedparts = sections[5].Split(',');
 
                     if (unrankedparts[0] != "NotFound")
                     {
@@ -183,6 +214,8 @@ namespace DevProLauncher.Windows.MessageBoxs
 
                 if (rankedparts[0] != "NotFound")
                 {
+                    TeamName.Text += team.Text;
+
                     TWinLP0.Text = rankedparts[0];
                     TWinSurrendered.Text = rankedparts[1];
                     TWin0Cards.Text = rankedparts[2];
@@ -217,8 +250,8 @@ namespace DevProLauncher.Windows.MessageBoxs
                     TMatchWLD.Text = rankedparts[31] + "/" + rankedparts[32] + "/" + rankedparts[33];
                     TTagWLD.Text = rankedparts[34] + "/" + rankedparts[35] + "/" + rankedparts[36];
 
-                    TeamLevel.Text = "Lvl: " + rankedparts[37];
-                    TRank.Text = "Rank: " + rankedparts[38];
+                    TeamLevel.Text +=  rankedparts[37];
+                    TRank.Text += rankedparts[38];
 
                     int totalwins = Convert.ToInt32(rankedparts[28]) + Convert.ToInt32(rankedparts[31]) + Convert.ToInt32(rankedparts[34]);
                     int totalgames = Convert.ToInt32(rankedparts[28]) + Convert.ToInt32(rankedparts[29]) + Convert.ToInt32(rankedparts[30])
@@ -227,10 +260,10 @@ namespace DevProLauncher.Windows.MessageBoxs
                     if (totalgames != 0)
                     {
                         var ratio = (totalwins * 100) / totalgames;
-                        Ratio.Text = "W/L Ratio: " + ratio.ToString("#.##") + "%";
+                        Ratio.Text += ratio.ToString("#.##") + "%";
                     }
                     else
-                        Ratio.Text = "W/L Ratio: 0%";
+                        Ratio.Text +="0%";
 
                 }
             }

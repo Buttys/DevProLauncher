@@ -29,6 +29,8 @@ namespace DevProLauncher.Windows.MessageBoxs
             AutoChain.Checked = Program.Config.AutoChain;
             NoDelay.Checked = Program.Config.NoChainDelay;
             EnableSleeveLoading.Checked = Program.Config.EnableCustomSleeves;
+            MuteOpp.Checked = Program.Config.MuteOpponent;
+            MuteSpec.Checked = Program.Config.MuteSpectators;
 
             MusicVolume.Enabled = EnableMusic.Checked;
             MusicVolume.Value = Program.Config.MusicVolume;
@@ -64,38 +66,42 @@ namespace DevProLauncher.Windows.MessageBoxs
         {
             if (Program.LanguageManager.Loaded)
             {
-                this.Text = Program.LanguageManager.Translation.optionTitle;
-                GameTab.Text = Program.LanguageManager.Translation.optionGameTab;
-                groupBox1.Text = Program.LanguageManager.Translation.optionGb1;
-                groupBox2.Text = Program.LanguageManager.Translation.optionGb2;
-                groupBox3.Text = Program.LanguageManager.Translation.optionGb3;
-                groupBox4.Text = Program.LanguageManager.Translation.optionGb4;
-                groupBox5.Text = Program.LanguageManager.Translation.optionGb5;
-                label1.Text = Program.LanguageManager.Translation.optionUser;
-                label5.Text = Program.LanguageManager.Translation.optionDeck;
-                label6.Text = Program.LanguageManager.Translation.optionAntialias;
-                EnableSound.Text = Program.LanguageManager.Translation.optionCbSound;
-                EnableMusic.Text = Program.LanguageManager.Translation.optionCbMusic;
-                Enabled3d.Text = Program.LanguageManager.Translation.optionCbDirect;
-                Fullscreen.Text = Program.LanguageManager.Translation.optionCbFull;
-                label2.Text = Program.LanguageManager.Translation.optionTexts;
-                label3.Text = Program.LanguageManager.Translation.optionTextf;
-                QuickSettingsBtn.Text = Program.LanguageManager.Translation.optionBtnQuick;
-                SaveBtn.Text = Program.LanguageManager.Translation.optionBtnSave;
-                CancelBtn.Text = Program.LanguageManager.Translation.optionBtnCancel;
-                AutoPlacing.Text = Program.LanguageManager.Translation.optionCbAutoPlacing;
-                RandomPlacing.Text = Program.LanguageManager.Translation.optionCbRandomPlacing;
-                AutoChain.Text = Program.LanguageManager.Translation.optionCbAutoChain;
-                NoDelay.Text = Program.LanguageManager.Translation.optionCbNoChainDelay;
-                EnableSleeveLoading.Text = Program.LanguageManager.Translation.optionCbEnableSleeves;
+                LanguageInfo info = Program.LanguageManager.Translation;
 
-                accountTab.Text = Program.LanguageManager.Translation.optionAccountTab;
-                label7.Text = Program.LanguageManager.Translation.optionCurrentPW;
-                label8.Text = Program.LanguageManager.Translation.optionNewPW;
-                label9.Text = Program.LanguageManager.Translation.optionConfirmPW;
-                UpdatePassword.Text = Program.LanguageManager.Translation.optionUpdatePW;
+                this.Text = info.optionTitle;
+                GameTab.Text = info.optionGameTab;
+                groupBox1.Text = info.optionGb1;
+                groupBox2.Text = info.optionGb2;
+                groupBox3.Text = info.optionGb3;
+                groupBox4.Text = info.optionGb4;
+                groupBox5.Text = info.optionGb5;
+                label1.Text = info.optionUser;
+                label5.Text = info.optionDeck;
+                label6.Text = info.optionAntialias;
+                EnableSound.Text = info.optionCbSound;
+                EnableMusic.Text = info.optionCbMusic;
+                Enabled3d.Text = info.optionCbDirect;
+                Fullscreen.Text = info.optionCbFull;
+                label2.Text = info.optionTexts;
+                label3.Text = info.optionTextf;
+                QuickSettingsBtn.Text = info.optionBtnQuick;
+                SaveBtn.Text = info.optionBtnSave;
+                CancelBtn.Text = info.optionBtnCancel;
+                AutoPlacing.Text = info.optionCbAutoPlacing;
+                RandomPlacing.Text = info.optionCbRandomPlacing;
+                AutoChain.Text = info.optionCbAutoChain;
+                NoDelay.Text = info.optionCbNoChainDelay;
+                EnableSleeveLoading.Text = info.optionCbEnableSleeves;
+                MuteOpp.Text = info.optionMuteOpp;
+                MuteSpec.Text = info.optionMuteSpec;
 
-                LanguageInfo lang = Program.LanguageManager.Translation;
+                accountTab.Text = info.optionAccountTab;
+                label7.Text = info.optionCurrentPW;
+                label8.Text = info.optionNewPW;
+                label9.Text = info.optionConfirmPW;
+                UpdatePassword.Text = info.optionUpdatePW;
+
+                LanguageInfo lang = info;
 
                 RequestSettingsbtn.Text = lang.chatoptionsBtnRequestSettings;
                 SaveBtn.Text = lang.chatoptionsBtnSave;
@@ -123,6 +129,8 @@ namespace DevProLauncher.Windows.MessageBoxs
             Program.Config.AutoChain = AutoChain.Checked;
             Program.Config.NoChainDelay = NoDelay.Checked;
             Program.Config.EnableCustomSleeves = EnableSleeveLoading.Checked;
+            Program.Config.MuteOpponent = MuteOpp.Checked;
+            Program.Config.MuteSpectators = MuteSpec.Checked;
 
             Program.SaveConfig(Program.ConfigurationFilename,Program.Config);
             DialogResult = DialogResult.OK;

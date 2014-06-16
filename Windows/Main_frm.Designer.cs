@@ -42,6 +42,7 @@
             this.ProfileBtn = new System.Windows.Forms.Button();
             this.siteBtn = new System.Windows.Forms.Button();
             this.MessageLabel = new System.Windows.Forms.Label();
+            this.forumBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -63,7 +64,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(989, 503);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(989, 562);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // mainTabs
@@ -72,7 +73,7 @@
             this.mainTabs.Location = new System.Drawing.Point(3, 3);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
-            this.mainTabs.Size = new System.Drawing.Size(983, 457);
+            this.mainTabs.Size = new System.Drawing.Size(983, 516);
             this.mainTabs.TabIndex = 3;
             // 
             // tableLayoutPanel2
@@ -83,7 +84,7 @@
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.MessageLabel, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 466);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 525);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -98,6 +99,7 @@
             this.flowLayoutPanel1.Controls.Add(this.ReplaysBtn);
             this.flowLayoutPanel1.Controls.Add(this.ProfileBtn);
             this.flowLayoutPanel1.Controls.Add(this.siteBtn);
+            this.flowLayoutPanel1.Controls.Add(this.forumBtn);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(458, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -176,11 +178,21 @@
             this.MessageLabel.Text = "Server messages will spawn here.";
             this.MessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // forumBtn
+            // 
+            this.forumBtn.Location = new System.Drawing.Point(3, 3);
+            this.forumBtn.Name = "forumBtn";
+            this.forumBtn.Size = new System.Drawing.Size(75, 23);
+            this.forumBtn.TabIndex = 12;
+            this.forumBtn.Text = "Forum";
+            this.forumBtn.UseVisualStyleBackColor = true;
+            this.forumBtn.Click += new System.EventHandler(this.forumBtn_Click);
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 503);
+            this.ClientSize = new System.Drawing.Size(989, 562);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainFrm";
@@ -207,6 +219,7 @@
         private System.Windows.Forms.Button ProfileBtn;
         private System.Windows.Forms.Label MessageLabel;
         private System.Windows.Forms.Button siteBtn;
+        private System.Windows.Forms.Button forumBtn;
     }
 }
 

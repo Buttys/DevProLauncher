@@ -39,6 +39,7 @@
         CreateRoom = 37,
         ChannelUsers = 38,
         AddChannelUser = 39,
-        RemoveChannelUser = 40
+        RemoveChannelUser = 40,
+        Ranking = 41
     }
 }

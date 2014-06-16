@@ -31,6 +31,7 @@
         TeamCommand = 28,
         UpdatePassword = 29,
         SpectateUser = 30,
-        HostDuel = 31
+        HostDuel = 31,
+        GetRanking = 32
     }
 }
