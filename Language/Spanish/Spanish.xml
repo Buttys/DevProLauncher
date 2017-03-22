@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <QuickHostSetting>ConfiguraciÃ³n rÃ¡pida de acogida</QuickHostSetting>
+  <QuickHostSetting>Configuracion rapida de acogida</QuickHostSetting>
   <QuickHostBtn>Confirmar</QuickHostBtn>
-  <pmsbProgRun>Programa ya se estÃ¡ ejecutando</pmsbProgRun>
+  <pmsbProgRun>Programa ya se esta ejecutando</pmsbProgRun>
   <pMsbErrorToServer>Error al conectar con el servidor</pMsbErrorToServer>
   <pMsbBadLog>Login Incorrecto</pMsbBadLog>
-  <pMsbOldVers>Usted tiene una versiÃ³n antigua del Lanzador. Por favor, vuelva a instalarlo.</pMsbOldVers>
-  <pMsbException>Oooops! Algo malo sucediÃ³! Software se cerrarÃ¡ ahora!</pMsbException>
+  <pMsbOldVers>Usted tiene una versión antigua del Lanzador. Por favor, vuelva a instalarlo.</pMsbOldVers>
+  <pMsbException>Oooops! Algo malo sucedido Software se cerrara ahora!</pMsbException>
   <LoginUserName>Nombre de usuario</LoginUserName>
-  <LoginPassWord>ContraseÃ±a</LoginPassWord>
+  <LoginPassWord>Contraseña</LoginPassWord>
   <LoginLanguage>Lenguaje</LoginLanguage>
   <LoginLoginButton>Login</LoginLoginButton>
   <LoginRegisterButton>Registrarse</LoginRegisterButton>
-  <LoginAutoLogin>Iniciar sesiÃ³n automÃ¡ticamente la prÃ³xima vez</LoginAutoLogin>
-  <LoginMsb1>No estÃ¡ conectado al servidor.</LoginMsb1>
+  <LoginAutoLogin>Iniciar sesion automaticamente la próxima vez</LoginAutoLogin>
+  <LoginMsb1>No esta conectado al servidor.</LoginMsb1>
   <LoginMsb2>Por favor, introduzca nombre de usuario.</LoginMsb2>
-  <LoginMsb3>Por favor, introduzca su contraseÃ±a.</LoginMsb3>
+  <LoginMsb3>Por favor, introduzca su contraseña.</LoginMsb3>
   <LoginBtnOffline>Modo Offline</LoginBtnOffline>
   <RegistLbUser>Nombre de usuario</RegistLbUser>
-  <RegistLbPw>ContraseÃ±a</RegistLbPw>
-  <RegistLbPw2>Confirmar ContraseÃ±a</RegistLbPw2>
+  <RegistLbPw>Contraseña</RegistLbPw>
+  <RegistLbPw2>Confirmar Contraseña</RegistLbPw2>
   <RegistBtnRegister>Registrarse</RegistBtnRegister>
   <RegistBtnCancel>Cancelar</RegistBtnCancel>
-  <RegistMsb1>Por favor, confirme su contraseÃ±a</RegistMsb1>
-  <RegistMsb2>Por favor, introduzca la contraseÃ±a</RegistMsb2>
+  <RegistMsb1>Por favor, confirme su contraseña</RegistMsb1>
+  <RegistMsb2>Por favor, introduzca la contraseña</RegistMsb2>
   <RegistMsb3>Por favor, introduzca su nombre de usuario.</RegistMsb3>
   <RegistMsb4>Registro completo!</RegistMsb4>
   <RegistMsb5>Nombre de usuario ya existe</RegistMsb5>
@@ -41,7 +41,7 @@
   <GameColumnType>Tipo</GameColumnType>
   <GameColumnRules>Reglas</GameColumnRules>
   <GameColumnMode>Modo</GameColumnMode>
-  <GameColumnState>CondiciÃ³n</GameColumnState>
+  <GameColumnState>Condición</GameColumnState>
   <GameColumnPlayers>Jugadores</GameColumnPlayers>
   <GameColumnBanList>Banlist</GameColumnBanList>
   <GameColumnTimer>Tiempo</GameColumnTimer>
@@ -49,35 +49,35 @@
   <GameBtnReplay>Repeticiones</GameBtnReplay>
   <GameBtnOption>Opciones</GameBtnOption>
   <GameBtnProfile>Perfil</GameBtnProfile>
-  <GameBtnHost>AnfitriÃ³n</GameBtnHost>
-  <GameBtnQuick>RÃ¡pido</GameBtnQuick>
+  <GameBtnHost>Anfitrión</GameBtnHost>
+  <GameBtnQuick>Rapido</GameBtnQuick>
   <GameLabWLD>Ganar / Perder / Empate</GameLabWLD>
   <GameLabDeck>Deck:</GameLabDeck>
   <GameLabUser>Nombre de Usuario:</GameLabUser>
   <GameBtnOffline>Offline</GameBtnOffline>
   <GameBtnLogout>Cerrar Usuario</GameBtnLogout>
-  <GamePasswordExsists>Una Sala con esa ContraseÃ±a ya Existe</GamePasswordExsists>
+  <GamePasswordExsists>Una Sala con esa Contraseña ya Existe</GamePasswordExsists>
   <GameLocked>Cerrado</GameLocked>
   <GameOpen>Abierto</GameOpen>
-  <GameLPChange>Sus ajustes rÃ¡pidos de Anfitrion no sigue la norma recomendada de Puntos de Vida, Â¿quieres cambiar esto a la predeterminada?</GameLPChange>
-  <GameEnterPassword>Introdusca la ContraseÃ±a</GameEnterPassword>
-  <GameWrongPassword>ContraseÃ±a Incorrecta</GameWrongPassword>
+  <GameLPChange>Sus ajustes rapidos de Anfitrion no sigue la norma recomendada de Puntos de Vida, Â¿quieres cambiar esto a la predeterminada?</GameLPChange>
+  <GameEnterPassword>Introdusca la Contraseña</GameEnterPassword>
+  <GameWrongPassword>Contraseña Incorrecta</GameWrongPassword>
   <optionGb1>Ajustes del usuario</optionGb1>
-  <optionGb2>ConfiguraciÃ³n del Juego</optionGb2>
-  <optionGb3>ConfiguraciÃ³n de Fuente</optionGb3>
+  <optionGb2>Configuracion del Juego</optionGb2>
+  <optionGb3>Configuracion de Fuente</optionGb3>
   <optionGb4>Ajustes del Launcher</optionGb4>
   <optionMsbForget>Â¿EstÃ¡s seguro que quieres olvidar las credenciales de inicio de sesiÃ³n automÃ¡tico?</optionMsbForget>
   <optionUser>Nombre de usuario Por defecto</optionUser>
   <optionDeck>Deck Por Defecto</optionDeck>
-  <optionBtnAutoLogin>OlvÃ­dar el inicio de sesiÃ³n AutomÃ¡tico</optionBtnAutoLogin>
+  <optionBtnAutoLogin>Olvi­dar el inicio de sesion Automatico</optionBtnAutoLogin>
   <optionAntialias>Antialias</optionAntialias>
   <optionCbSound>Activar sonido</optionCbSound>
   <optionCbMusic>Activar Music</optionCbMusic>
   <optionCbDirect>Activar Directx</optionCbDirect>
   <optionCbFull>Pantalla Completa</optionCbFull>
-  <optionTexts>TamaÃ±o de la Fuente</optionTexts>
+  <optionTexts>Tamaño de la Fuente</optionTexts>
   <optionTextf>Juego de Fuente</optionTextf>
-  <optionBtnQuick>ConfiguraciÃ³n RÃ¡pida del Anfitrion</optionBtnQuick>
+  <optionBtnQuick>Configuracion Rapida del Anfitrion</optionBtnQuick>
   <optionBtnSave>Guardar</optionBtnSave>
   <optionBtnCancel>Cancelar</optionBtnCancel>
   <optionCbCustomSkin>Usar Skin Personalizado</optionCbCustomSkin>
@@ -98,14 +98,14 @@
   <hostGameN>Nombre del Juego</hostGameN>
   <hostBtnHost>Anfitrion</hostBtnHost>
   <hostBtnCancel>Cancelar</hostBtnCancel>
-  <hostpassword>ContraseÃ±a</hostpassword>
+  <hostpassword>Contraseña</hostpassword>
   <fileBtnRename>Renombrar</fileBtnRename>
   <fileBtnDelete>Borrar</fileBtnDelete>
   <fileBtnFolder>Abrir carpeta</fileBtnFolder>
   <fileBtnGame>Juego Abierto</fileBtnGame>
   <fileMsgNoExist>No Existe</fileMsgNoExist>
   <fileMsgNoSelect>Nada se ha Seleccionado</fileMsgNoSelect>
-  <fileMsbMulti>No se puede renombrar varios artÃ­culos</fileMsbMulti>
+  <fileMsbMulti>No se puede renombrar varios arti­culos</fileMsbMulti>
   <fileAskDelete>Â¿EstÃ¡ seguro que desea eliminar el elemento siguiente(s)?</fileAskDelete>
   <fileNewName>Entre el Nombre Nuevo</fileNewName>
   <fileInputConfirm>Renombrar</fileInputConfirm>
@@ -115,8 +115,8 @@
   <aAboutText>El Grupo de Desarrollo YGOPro Online es un equipo de la etiqueta de trapo de programadores, filÃ¡ntropo, y las personas en general con conocimientos en la comunidad YGOPro que buscan mejorar y avanzar en el Yu-Gi-Oh! Comunidad en lÃ­nea como un todo por la prestaciÃ³n de servicios y el software para permitir que crezca un duelista amistades duraderas duelo y de conformaciÃ³n.</aAboutText>
   <aboutLabel5>DevPro Colaboradores</aboutLabel5>
   <cusRemoveBtn>Quitar</cusRemoveBtn>
-  <cusAddThemeBtn>AÃ±adir</cusAddThemeBtn>
-  <cusAddContentBtn>AÃ±adir</cusAddContentBtn>
+  <cusAddThemeBtn>Añadir</cusAddThemeBtn>
+  <cusAddContentBtn>Añadir</cusAddContentBtn>
   <cusPreview>Avance</cusPreview>
   <cusBackup>Retroceder</cusBackup>
   <cusLabelTheme>Tema</cusLabelTheme>
@@ -151,7 +151,7 @@
   <chatoptionsGb1>Configuracion del Chat</chatoptionsGb1>
   <chatoptionsGb2>Otras Configuraciones</chatoptionsGb2>
   <chatoptionsGb3>Estilo del Color</chatoptionsGb3>
-  <chatoptionsGb4>ConfiguraciÃ³n del canal</chatoptionsGb4>
+  <chatoptionsGb4>Configuracion del canal</chatoptionsGb4>
   <chatoptionsLblHideJoinLeave>Ocultar ENTRAR / SALIR</chatoptionsLblHideJoinLeave>
   <chatoptionsLblPmWindows>PM Windows</chatoptionsLblPmWindows>
   <chatoptionsLblColorBlindMode>Color de Boldes</chatoptionsLblColorBlindMode>
@@ -194,7 +194,7 @@
   <MainFileReplayTab>Repeticiones</MainFileReplayTab>
   <MainCustomizeTab>Personalizar</MainCustomizeTab>
   <MainAboutTab>Acerca</MainAboutTab>
-  <DuelReqestMessage> te ha retado a un duelo por Rankink! Â¿Aceptas?</DuelReqestMessage>
+  <DuelReqestMessage> te ha retado a un duelo por Rankink! ¿Aceptas?</DuelReqestMessage>
   <DuelRequestBanlist> Banlist: </DuelRequestBanlist>
   <DuelRequestRules> Reglas: </DuelRequestRules>
   <DuelRequestMode> Tipo: </DuelRequestMode>
